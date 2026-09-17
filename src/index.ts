@@ -13,7 +13,7 @@ const AI_PROMPT = [
 	"2. If nothing fits, return empty array [].",
 	"3. shift=да ONLY if a threshold is empirically confirmed.",
 	"4. A general news item is NOT a threshold shift.",
-	"DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic. If axis is positive (wellbeing, autonomy, sovereignty) and news is negative, direction=падение. If axis is negative (loneliness, risk, inequality) and news is negative, direction=рост.",
+	"DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic. If axis is positive and news is negative, direction=падение. If axis is negative and news is negative, direction=рост.",
 	"Return ONLY JSON, no markdown."
 ].join(" ");
 
@@ -31,7 +31,7 @@ const HUMAN_PROMPT = [
 	"RULES: 1. Select 1-3 MOST relevant axes.",
 	"2. If nothing fits, return empty array [].",
 	"3. shift=да ONLY if a threshold is empirically confirmed.",
-	"DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic. If axis is positive (wellbeing, autonomy, sovereignty) and news is negative, direction=падение. If axis is negative (loneliness, risk, inequality) and news is negative, direction=рост.",
+	"DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic.",
 	"Return ONLY JSON, no markdown."
 ].join(" ");
 
@@ -52,6 +52,9 @@ const SOURCES = [
 	{ name: "Freedom House", url: "https://freedomhouse.org/rss.xml", kind: "human" },
 ];
 
+const AI_AXES = ["smd","itq","agg","cycle_velocity","verification","hexad","geopolitics"];
+const HUMAN_AXES = ["h1_agency","h2_sovereignty","h3_wellbeing","h4_equity","h5_meaning","h6_democracy"];
+
 function parseAIResponse(response: any): any {
 	const content = response?.choices?.[0]?.message?.content
 		?? response?.response
@@ -69,9 +72,7 @@ function parseAIResponse(response: any): any {
 
 function validateParsed(p: any): any {
 	if (!p || typeof p !== "object") return p;
-	if (Array.isArray(p.axes) && p.axes.length > 3) {
-		p.axes = p.axes.slice(0, 3);
-	}
+	if (Array.isArray(p.axes) && p.axes.length > 3) p.axes = p.axes.slice(0, 3);
 	if (!Array.isArray(p.axes)) p.axes = [];
 	let rel = p.relevance;
 	if (typeof rel === "string") rel = parseFloat(rel);
@@ -81,23 +82,17 @@ function validateParsed(p: any): any {
 	p.relevance = rel;
 	if (rel < 0.3) p.shift = "неопределённо";
 	else if (rel < 0.5 && p.shift === "да") p.shift = "нет";
-	const validShift = ["да", "нет", "неопределённо"];
-	if (!validShift.includes(p.shift)) p.shift = "неопределённо";
-	const validDir = ["рост", "падение", "стабильно", "неопределённо"];
-	if (!validDir.includes(p.direction)) p.direction = "неопределённо";
+	if (!["да","нет","неопределённо"].includes(p.shift)) p.shift = "неопределённо";
+	if (!["рост","падение","стабильно","неопределённо"].includes(p.direction)) p.direction = "неопределённо";
 	return p;
 }
 
 function decodeEntities(s: string): string {
 	return s
-		.replace(/&lt;/g, "<")
-		.replace(/&gt;/g, ">")
-		.replace(/&amp;/g, "&")
-		.replace(/&quot;/g, '"')
-		.replace(/&#39;/g, "'")
-		.replace(/<[^>]+>/g, "")
-		.replace(/\s+/g, " ")
-		.trim();
+		.replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+		.replace(/&amp;/g, "&").replace(/&quot;/g, '"')
+		.replace(/&#39;/g, "'").replace(/<[^>]+>/g, "")
+		.replace(/\s+/g, " ").trim();
 }
 
 function extractTag(xml: string, tag: string): string {
@@ -122,11 +117,11 @@ function parseRSS(xml: string, maxItems: number): any[] {
 		const atomRe = /<entry[\s>][\s\S]*?<\/entry>/gi;
 		while ((m = atomRe.exec(xml)) !== null && items.length < maxItems) {
 			const block = m[0];
-			const linkMatch = block.match(/<link[^>]*href="([^"]+)"/i);
+			const lm = block.match(/<link[^>]*href="([^"]+)"/i);
 			items.push({
 				title: extractTag(block, "title"),
 				summary: extractTag(block, "summary").slice(0, 500),
-				url: linkMatch ? linkMatch[1] : "",
+				url: lm ? lm[1] : "",
 			});
 		}
 	}
@@ -136,37 +131,25 @@ function parseRSS(xml: string, maxItems: number): any[] {
 async function sha256Hex(s: string): Promise<string> {
 	const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
 	return Array.from(new Uint8Array(buf))
-		.map((b) => b.toString(16).padStart(2, "0"))
-		.join("")
-		.slice(0, 16);
+		.map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, 16);
 }
 
 async function runCollection(env: any, limit: number, maxPerSource: number): Promise<any> {
 	const startedAt = Date.now();
 	const stats: any = {
-		sources_processed: 0,
-		items_fetched: 0,
-		items_classified: 0,
-		items_saved: 0,
-		errors: [],
-		sample: [],
+		sources_processed: 0, items_fetched: 0,
+		items_classified: 0, items_saved: 0,
+		errors: [], sample: [],
 	};
-
 	for (let i = 0; i < limit; i++) {
 		const src = SOURCES[i];
 		try {
-			const r = await fetch(src.url, {
-				headers: { "User-Agent": "human-ai-monitor/0.4" },
-			});
-			if (!r.ok) {
-				stats.errors.push(src.name + ": HTTP " + r.status);
-				continue;
-			}
+			const r = await fetch(src.url, { headers: { "User-Agent": "human-ai-monitor/0.5" } });
+			if (!r.ok) { stats.errors.push(src.name + ": HTTP " + r.status); continue; }
 			const xml = await r.text();
 			const items = parseRSS(xml, maxPerSource);
 			stats.items_fetched += items.length;
 			stats.sources_processed++;
-
 			for (const item of items) {
 				if (!item.title) continue;
 				try {
@@ -181,20 +164,13 @@ async function runCollection(env: any, limit: number, maxPerSource: number): Pro
 					const parsed = validateParsed(parseAIResponse(ai));
 					if (!parsed) continue;
 					stats.items_classified++;
-
 					const hash = await sha256Hex(item.url || item.title);
 					const today = new Date().toISOString().slice(0, 10);
-
 					await env.DB.prepare(
 						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, shift, direction, reasoning, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
 					).bind(
-						hash,
-						item.title.slice(0, 500),
-						item.summary.slice(0, 1000),
-						item.url.slice(0, 500),
-						src.name,
-						today,
-						"en",
+						hash, item.title.slice(0, 500), item.summary.slice(0, 1000),
+						item.url.slice(0, 500), src.name, today, "en",
 						JSON.stringify(parsed.axes ?? []),
 						typeof parsed.relevance === "number" ? parsed.relevance : 0.5,
 						String(parsed.shift ?? "неопределённо"),
@@ -203,14 +179,10 @@ async function runCollection(env: any, limit: number, maxPerSource: number): Pro
 						new Date().toISOString()
 					).run();
 					stats.items_saved++;
-
 					if (stats.sample.length < 3) {
 						stats.sample.push({
-							source: src.name,
-							title: item.title.slice(0, 120),
-							axes: parsed.axes,
-							relevance: parsed.relevance,
-							shift: parsed.shift,
+							source: src.name, title: item.title.slice(0, 120),
+							axes: parsed.axes, relevance: parsed.relevance, shift: parsed.shift,
 						});
 					}
 				} catch (e: any) {
@@ -221,10 +193,118 @@ async function runCollection(env: any, limit: number, maxPerSource: number): Pro
 			stats.errors.push("fetch " + src.name + ": " + (e?.message ?? e));
 		}
 	}
+	return { duration_ms: Date.now() - startedAt, ...stats };
+}
 
+function getWeekRange(offsetWeeks = 0): any {
+	const now = new Date();
+	const day = now.getUTCDay();
+	const diff = (day + 6) % 7;
+	const monday = new Date(now);
+	monday.setUTCDate(now.getUTCDate() - diff - 7 * offsetWeeks);
+	const sunday = new Date(monday);
+	sunday.setUTCDate(monday.getUTCDate() + 6);
 	return {
-		duration_ms: Date.now() - startedAt,
-		...stats,
+		start: monday.toISOString().slice(0, 10),
+		end: sunday.toISOString().slice(0, 10),
+	};
+}
+
+async function buildProtocolMarkdown(env: any, weekStart: string, weekEnd: string): Promise<string> {
+	const res = await env.DB.prepare(
+		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning FROM items WHERE date >= ? AND date <= ? ORDER BY relevance DESC LIMIT 500"
+	).bind(weekStart, weekEnd).all();
+	const items: any[] = res.results ?? [];
+	const byAxis: any = {};
+	for (const it of items) {
+		try {
+			const axes = JSON.parse(it.axes ?? "[]");
+			for (const a of axes) {
+				if (!byAxis[a]) byAxis[a] = [];
+				byAxis[a].push(it);
+			}
+		} catch {}
+	}
+	const gap: any = await env.DB.prepare(
+		"SELECT * FROM gap_history ORDER BY week_start DESC LIMIT 1"
+	).first();
+	const shifts = items.filter((it) => it.shift === "да").length;
+	const lines: string[] = [];
+	lines.push("# Human-AI Monitor Protocol");
+	lines.push("## Week: " + weekStart + " — " + weekEnd);
+	lines.push("");
+	lines.push("**Items collected:** " + items.length);
+	lines.push("**Shifts detected:** " + shifts);
+	lines.push("");
+	if (gap) {
+		lines.push("### Gap Index");
+		lines.push("- AI score: " + gap.ai_score);
+		lines.push("- Human score: " + gap.human_score);
+		lines.push("- **Gap: " + gap.gap + "** (" + gap.interpretation + ")");
+		lines.push("");
+	}
+	lines.push("---");
+	lines.push("");
+	lines.push("## AI Axes (RSI)");
+	lines.push("");
+	for (const axis of AI_AXES) {
+		lines.push("### " + axis);
+		lines.push("");
+		const list = byAxis[axis] ?? [];
+		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
+		for (const it of list.slice(0, 5)) {
+			const marker = it.shift === "да" ? "🔴" : it.shift === "нет" ? "🟢" : "🟡";
+			lines.push("- " + marker + " [" + it.title + "](" + it.url + ") — " + it.source);
+			if (it.reasoning) lines.push("  - " + it.reasoning);
+		}
+		lines.push("");
+	}
+	lines.push("## Human Axes (HHI)");
+	lines.push("");
+	for (const axis of HUMAN_AXES) {
+		lines.push("### " + axis);
+		lines.push("");
+		const list = byAxis[axis] ?? [];
+		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
+		for (const it of list.slice(0, 5)) {
+			const marker = it.shift === "да" ? "🔴" : it.shift === "нет" ? "🟢" : "🟡";
+			lines.push("- " + marker + " [" + it.title + "](" + it.url + ") — " + it.source);
+			if (it.reasoning) lines.push("  - " + it.reasoning);
+		}
+		lines.push("");
+	}
+	lines.push("---");
+	lines.push("");
+	lines.push("**Together — We Are Strong.**");
+	return lines.join("\n");
+}
+
+async function generateAndSaveProtocol(env: any, offsetWeeks = 0): Promise<any> {
+	const range = getWeekRange(offsetWeeks);
+	const markdown = await buildProtocolMarkdown(env, range.start, range.end);
+	const itemsRes = await env.DB.prepare(
+		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ?"
+	).bind(range.start, range.end).first();
+	const shiftsRes = await env.DB.prepare(
+		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'да'"
+	).bind(range.start, range.end).first();
+	const gap: any = await env.DB.prepare(
+		"SELECT * FROM gap_history ORDER BY week_start DESC LIMIT 1"
+	).first();
+	const itemsCount = (itemsRes as any)?.n ?? 0;
+	const shiftsCount = (shiftsRes as any)?.n ?? 0;
+	const path = "data/protocols/" + range.start + "_" + range.end + ".md";
+	await env.DB.prepare(
+		"INSERT OR REPLACE INTO protocols (week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at, content) VALUES (?,?,?,?,?,?,?,?,?,?)"
+	).bind(
+		range.start, range.end,
+		gap?.ai_score ?? 0, gap?.human_score ?? 0, gap?.gap ?? 0,
+		itemsCount, shiftsCount, path, new Date().toISOString(), markdown
+	).run();
+	return {
+		week_start: range.start, week_end: range.end,
+		items_count: itemsCount, shifts_count: shiftsCount,
+		bytes: markdown.length,
 	};
 }
 
@@ -248,11 +328,11 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.4.0",
+					version: "0.5.0",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/health", "/gap", "/protocols", "/axes/{axis}", "/classify", "/collect"],
+					endpoints: ["/health", "/gap", "/protocols", "/protocols/{week}", "/protocols/{week}/content", "/axes/{axis}", "/classify", "/collect", "/generate"],
 				});
 			}
 			if (path === "/health") return json({ status: "ok", ts: Date.now() });
@@ -265,6 +345,16 @@ export default {
 			if (path === "/protocols") {
 				const res = await env.DB.prepare("SELECT * FROM protocols ORDER BY week_start DESC LIMIT 50").all();
 				return json({ count: res.results?.length ?? 0, protocols: res.results ?? [] });
+			}
+			const cm = path.match(/^\/protocols\/([0-9]{4}-[0-9]{2}-[0-9]{2})\/content$/);
+			if (cm) {
+				const row: any = await env.DB.prepare(
+					"SELECT content FROM protocols WHERE week_start = ?"
+				).bind(cm[1]).first();
+				if (!row || !row.content) return json({ error: "No content" }, 404);
+				return new Response(row.content, {
+					headers: { "Content-Type": "text/markdown; charset=utf-8", ...CORS },
+				});
 			}
 			const pm = path.match(/^\/protocols\/([0-9]{4}-[0-9]{2}-[0-9]{2})$/);
 			if (pm) {
@@ -297,13 +387,21 @@ export default {
 				});
 				return json({ input: text, kind, parsed: validateParsed(parseAIResponse(response)) });
 			}
-
 			if (path === "/collect") {
 				const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "3", 10), SOURCES.length);
 				const maxPerSource = Math.min(parseInt(url.searchParams.get("max") ?? "2", 10), 5);
 				return json(await runCollection(env, limit, maxPerSource));
 			}
-
+			if (path === "/generate") {
+				const weekParam = url.searchParams.get("week");
+				let offset = 0;
+				if (weekParam) {
+					const target = new Date(weekParam + "T00:00:00Z");
+					const now = new Date();
+					offset = Math.floor((now.getTime() - target.getTime()) / (7 * 24 * 3600 * 1000));
+				}
+				return json(await generateAndSaveProtocol(env, offset));
+			}
 			return json({ error: "Not Found", path }, 404);
 		} catch (err) {
 			const message = err instanceof Error ? err.message : String(err);
@@ -313,6 +411,11 @@ export default {
 
 	async scheduled(event, env, ctx): Promise<void> {
 		console.log("[cron] " + new Date(event.scheduledTime).toISOString());
-		ctx.waitUntil(runCollection(env, SOURCES.length, 5));
+		ctx.waitUntil((async () => {
+			const collectResult = await runCollection(env, SOURCES.length, 5);
+			console.log("[cron] collected: " + JSON.stringify(collectResult));
+			const gen = await generateAndSaveProtocol(env, 1);
+			console.log("[cron] protocol: " + JSON.stringify(gen));
+		})());
 	},
 };
