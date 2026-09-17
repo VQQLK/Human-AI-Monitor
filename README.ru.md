@@ -3,10 +3,21 @@
 **Открытый инструмент мониторинга развития Искусственного Интеллекта и 
 Человечества.**
 
-> «Кто победит в гонке за ИИ, тот и победит.»
+> «Кто победит в ИИ, тот и победит.»
 > — Дональд Трамп, 13.09.2026
 >
-> «Мы должны замедлить темп фронтира.»
+> «Мы опережаем Китай в сфере ИИ. Мы самая технологически развитая страна 
+в мире, и, честно говоря, я хочу, чтобы так и оставалось, потому что кто 
+победит в ИИ, тот и победит.»
+> — Дональд Трамп, 13.09.2026
+>
+> «We Must Pace the Frontier» («Мы должны сдерживать темп развития 
+моделей»).
+> — Дарио Амодеи, 12.09.2026
+>
+> «Мы должны замедлить темп, с которым мы улучшаем возможности ИИ-моделей. 
+Прогресс всё ещё будет казаться быстрым, и мы должны мудро использовать 
+время, которое получим.»
 > — Дарио Амодеи, 12.09.2026
 >
 > **Но кто мониторит сам процесс? Кто следит за тем, что происходит с 
@@ -19,15 +30,15 @@
 `human-ai-monitor` — еженедельный протокол, отслеживающий **12 осей 
 развития**:
 
-**6 осей ИИ (RSI):**
+**6 осей ИИ (RSI — Recursive Self-Improvement):**
 - **SMD** — Глубина самомодификации
 - **ITQ** — Траектория улучшения
 - **AGG** — Автономная генерация целей
-- **Cycle Velocity** — Скорость цикла
+- **Cycle Velocity** — Скорость цикла улучшений
 - **Verification** — Иерархия верификации
 - **Hexad** — Детекция фазового перехода
 
-**6 осей Человечества (HHI):**
+**6 осей Человечества (HHI — Human Horizon Index):**
 - **H1 Agency** — Агентность человека
 - **H2 Sovereignty** — Когнитивный суверенитет
 - **H3 Wellbeing** — Благополучие
@@ -35,7 +46,7 @@
 - **H5 Meaning** — Смысл и цель
 - **H6 Democracy** — Устойчивость институтов
 
-**Gap Index** — разрыв между развитием ИИ и Человечества.
+**Gap Index** — разрыв между развитием ИИ и состоянием Человечества.
 
 ---
 
@@ -83,7 +94,7 @@ alignment признают отсутствие плана. Регуляторы
 - 🔄 Сборка Android APK (PWA + Capacitor)
 
 **Дорожная карта:**
-- [ ] Публичный API
+- [ ] Публичный API (FastAPI на Workers)
 - [ ] Многоязычность (EN / RU / ZH)
 - [ ] Push-уведомления о сдвиге порогов
 - [ ] Интеграция с глобальными индексами (V-Dem, WHR, Pew)
@@ -95,12 +106,49 @@ alignment признают отсутствие плана. Регуляторы
 ## Быстрый старт
 
 ```bash
-git clone https://github.com/your-username/human-ai-monitor.git
-cd human-ai-monitor
+git clone https://github.com/VQQLK/Human-AI-Monitor.git
+cd Human-AI-Monitor
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
 python -m src.main --dry-run
+```
+
+---
+
+## Структура репозитория
+
+```
+.
+├── README.md              ← English
+├── README.ru.md           ← Русский
+├── MANIFESTO.md           ← English
+├── MANIFESTO.ru.md        ← Русский
+├── LICENSE                ← MIT
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── docs/
+│   ├── methodology.md
+│   ├── architecture.md
+│   ├── math_brief.md
+│   └── PRESS_RELEASE.md
+├── research/
+│   ├── README.md
+│   └── part1..part5.md    ← Полное исследование (русский)
+├── config/
+│   ├── axes_ai.yaml
+│   ├── axes_human.yaml
+│   ├── sources_ai.yaml
+│   └── sources_human.yaml
+├── data/protocols/
+│   └── 2026-09-07_2026-09-17.md
+├── migrations/
+│   └── 0001_initial_schema.sql
+├── prompts/
+│   ├── classify_ai.txt
+│   └── classify_human.txt
+├── src/
+└── test/
 ```
 
 ---
