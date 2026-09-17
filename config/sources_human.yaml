@@ -1,0 +1,132 @@
+# ============================================================
+# Human–AI Monitor — источники данных по осям Человечества
+# ============================================================
+# Большинство индексов обновляются раз в год (V-Dem, WHR, WVS).
+# Новостные RSS — оперативные сигналы.
+# Значения индексов вносятся вручную в data/index_history.json.
+# ============================================================
+
+rss:
+  # --- Здоровье и благополучие ---
+  - name: "WHO News"
+    url: "https://www.who.int/rss-feeds/news-english.xml"
+    lang: "en"
+    tier: 1
+    axes: ["h3_wellbeing"]
+
+  - name: "Nature — Human Behaviour"
+    url: "https://www.nature.com/nhumbehav.rss"
+    lang: "en"
+    tier: 1
+    axes: ["h1_agency", "h3_wellbeing", "h5_meaning"]
+
+  - name: "The Lancet — Public Health"
+    url: "https://www.thelancet.com/rssfeed/lanpub_online.xml"
+    lang: "en"
+    tier: 1
+    axes: ["h3_wellbeing", "h4_equity"]
+
+  # --- Технологии и общество ---
+  - name: "Pew Research — Internet & Tech"
+    url: "https://www.pewresearch.org/topic/internet-technology/feed/"
+    lang: "en"
+    tier: 1
+    axes: ["h1_agency", "h2_sovereignty"]
+
+  - name: "Reuters Institute"
+    url: "https://reutersinstitute.politics.ox.ac.uk/rss.xml"
+    lang: "en"
+    tier: 1
+    axes: ["h2_sovereignty", "h6_democracy"]
+
+  - name: "Wired — Culture"
+    url: "https://www.wired.com/feed/category/culture/latest/rss"
+    lang: "en"
+    tier: 2
+    axes: ["h1_agency", "h2_sovereignty"]
+
+  # --- Демократия и институты ---
+  - name: "Freedom House"
+    url: "https://freedomhouse.org/rss.xml"
+    lang: "en"
+    tier: 1
+    axes: ["h6_democracy"]
+
+  - name: "V-Dem Institute"
+    url: "https://www.v-dem.net/news/rss.xml"
+    lang: "en"
+    tier: 1
+    axes: ["h6_democracy"]
+
+  - name: "Edelman Trust Barometer"
+    url: "https://www.edelman.com/rss.xml"
+    lang: "en"
+    tier: 2
+    axes: ["h6_democracy"]
+
+  # --- Экономика и неравенство ---
+  - name: "World Inequality Lab"
+    url: "https://wid.world/feed/"
+    lang: "en"
+    tier: 1
+    axes: ["h4_equity"]
+
+  - name: "OECD — Economy"
+    url: "https://www.oecd.org/newsroom/rss.xml"
+    lang: "en"
+    tier: 2
+    axes: ["h4_equity", "h5_meaning"]
+
+  - name: "ILO News"
+    url: "https://www.ilo.org/rss/news"
+    lang: "en"
+    tier: 2
+    axes: ["h4_equity", "h5_meaning"]
+
+  # --- Смысл, культура, философия ---
+  - name: "Aeon Essays"
+    url: "https://aeon.co/feed.rss"
+    lang: "en"
+    tier: 2
+    axes: ["h5_meaning"]
+
+  - name: "Noema Magazine"
+    url: "https://www.noemamag.com/feed/"
+    lang: "en"
+    tier: 2
+    axes: ["h5_meaning", "h6_democracy"]
+
+  # --- Русскоязычные ---
+  - name: "Meduza"
+    url: "https://meduza.io/rss/all"
+    lang: "ru"
+    tier: 2
+    axes: ["h6_democracy", "h2_sovereignty"]
+
+# ============================================================
+# HTML-источники (индексы, обновляемые раз в год)
+# ============================================================
+# Значения этих индексов вносятся вручную в data/index_history.json:
+# - World Happiness Report    → h3_wellbeing
+# - World Values Survey       → h5_meaning
+# - Gallup World Poll         → h3_wellbeing, h5_meaning
+# - V-Dem Democracy Report    → h6_democracy
+# - OECD Better Life Index    → h1_agency, h5_meaning
+# - ITU Digital Development   → h4_equity
+# - World Bank Data           → h4_equity
+#
+# Автоматизация возможна через публичные API (World Bank, OECD),
+# но требует отдельного коллектора и валидации. См. TODO в README.
+# ============================================================
+
+html_sources: []
+
+# ============================================================
+# Методология обновления индексов
+# ============================================================
+# 1. Раз в квартал: обновить значения level (0–1) для 6 осей HHI.
+# 2. Источники: официальные отчёты институтов.
+# 3. Формула level: нормализация последнего доступного значения
+#    к шкале 0–1 (0 — критический минимум, 1 — исторический максимум).
+# 4. Все обновления — через PR с обоснованием и ссылкой на отчёт.
+# ============================================================
