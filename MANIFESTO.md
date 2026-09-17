@@ -1,46 +1,46 @@
-# Манифест Human–AI Monitor
+# Manifesto of Human–AI Monitor
 
-## Мы наблюдаем
+## We observe
 
-Мы — не корпорации. Не государства. Не лаборатории.
-Мы — те, кто хочет **видеть**.
+We are not corporations. Not states. Not laboratories.
+We are those who want to **see**.
 
-Технологические лидеры провозглашают сингулярность.
-Ответственные за alignment признают отсутствие плана.
-Политики отвергают замедление ради превосходства.
-Учёные предупреждают о рассогласовании целей.
+Tech leaders proclaim singularity.
+Alignment researchers admit there is no plan.
+Politicians reject slowdown for the sake of superiority.
+Scientists warn about misaligned goals.
 
-**Но кто следит за тем, что происходит с нами?**
+**But who watches what is happening to us?**
 
-## Мы измеряем
+## We measure
 
-Не для того, чтобы предсказать будущее.
-Не для того, чтобы остановить прогресс.
-Не для того, чтобы кого-то обвинить.
+Not to predict the future.
+Not to stop progress.
+Not to blame anyone.
 
-А для того, чтобы **видеть ясно**.
+But to **see clearly**.
 
-12 осей. 6 для ИИ. 6 для Человечества.
-Gap Index — разрыв между ними.
+12 axes. 6 for AI. 6 for Humanity.
+Gap Index — the gap between them.
 
-Если ИИ растёт, а Человечество — нет, это не сингулярность.
-Это **расхождение**. И оно — главный риск.
+If AI grows while Humanity does not, this is not singularity.
+This is **divergence**. And it is the main risk.
 
-## Мы делимся
+## We share
 
-Все данные открыты. Все промпты видны. Все источники указаны.
-Любой может проверить. Любой может воспроизвести.
-Любой может улучшить.
+All data is open. All prompts are visible. All sources are cited.
+Anyone can verify. Anyone can reproduce.
+Anyone can improve.
 
-Потому что **знание о собственном пути не может быть привилегией**.
+Because **knowledge of one's own path cannot be a privilege**.
 
-## Мы приглашаем
+## We invite
 
-- **Исследователей** — использовать API.
-- **Разработчиков** — форкать и улучшать.
-- **Журналистов** — ссылаться и проверять.
-- **Граждан** — читать и задавать вопросы.
-- **Скептиков** — находить ошибки и опровергать.
+- **Researchers** — to use the API.
+- **Developers** — to fork and improve.
+- **Journalists** — to reference and verify.
+- **Citizens** — to read and ask questions.
+- **Skeptics** — to find errors and refute.
 
-**Вместе — Мы Сила.**
-**Дорогу осилит идущий.**
+**Together — We Are Strong.**
+**The road will be mastered by the one who walks it.**
