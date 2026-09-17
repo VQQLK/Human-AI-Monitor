@@ -1,22 +1,18 @@
-/**
- * Human–AI Monitor — конфигурация Cloudflare Worker
- * https://developers.cloudflare.com/workers/wrangler/configuration/
- */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "human-ai-monitor-collector",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-09-11",
-	"observability": {
-		"enabled": true
-	},
+	"observability": { "enabled": true },
 	"upload_source_maps": true,
-
 	"d1_databases": [
 		{
 			"binding": "DB",
 			"database_name": "human-ai-monitor-db",
 			"database_id": "4b4a909a-5088-48f4-aaed-ef393c61b6dd"
 		}
-	]
+	],
+	"ai": { "binding": "AI" },
+	"triggers": { "crons": ["0 6 * * 1"] },
+	"vars": { "CLASSIFIER_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8" }
 }
