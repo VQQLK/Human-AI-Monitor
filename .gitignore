@@ -165,3 +165,22 @@ dist
 .env*
 !.env.example
 .wrangler/
+.env
+.dev.vars
+.env.local
+
+# Wrangler secrets (локальные)
+.dev.vars
+.dev.vars.*
+
+# Wrangler generated types
+worker-configuration.d.ts
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# IDE
+.idea/
+*.swp
+*.swo
