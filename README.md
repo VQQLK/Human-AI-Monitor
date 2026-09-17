@@ -3,10 +3,20 @@
 **An open tool for monitoring the development of Artificial Intelligence 
 and Humanity.**
 
-> "Whoever wins the AI race wins everything."
+> "Whoever wins AI, wins."
 > — Donald Trump, 13.09.2026
 >
-> "We must pace the frontier."
+> "We're leading China in AI. We're the most sophisticated country in the 
+world, and frankly I want to keep it that way because whoever wins AI, 
+wins."
+> — Donald Trump, 13.09.2026
+>
+> "We Must Pace the Frontier."
+> — Dario Amodei, 12.09.2026
+>
+> "We must slow the pace at which we improve the capabilities of AI 
+models. Progress will still seem fast, and we must make wise use of the 
+time we gain."
 > — Dario Amodei, 12.09.2026
 >
 > **But who monitors the process itself? Who watches what is happening to 
