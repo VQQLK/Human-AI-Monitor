@@ -6,10 +6,14 @@ const AI_PROMPT = [
 	'"shift":"да"|"нет"|"неопределённо",',
 	'"direction":"рост"|"падение"|"стабильно"|"неопределённо",',
 	'"reasoning":"1-2 sentences in Russian"}',
-	"smd=self-modification, itq=improvement trajectory, agg=autonomous goals,",
-	"cycle_velocity=speed, verification=audit, hexad=phase transition,",
-	"geopolitics=AI governance. shift=да only if empirically confirmed.",
-	"Return ONLY JSON."
+	"Axes: smd=self-modification, itq=improvement trajectory,",
+	"agg=autonomous goals, cycle_velocity=speed, verification=audit,",
+	"hexad=phase transition, geopolitics=AI governance.",
+	"RULES: 1. Select 1-3 MOST relevant axes. NEVER return all 7.",
+	"2. If nothing fits, return empty array [].",
+	"3. shift=да ONLY if a threshold is empirically confirmed.",
+	"4. A general news item is NOT a threshold shift.",
+	"Return ONLY JSON, no markdown."
 ].join(" ");
 
 const HUMAN_PROMPT = [
@@ -20,17 +24,21 @@ const HUMAN_PROMPT = [
 	'"shift":"да"|"нет"|"неопределённо",',
 	'"direction":"рост"|"падение"|"стабильно"|"неопределённо",',
 	'"reasoning":"1-2 sentences in Russian"}',
-	"h1_agency=autonomy, h2_sovereignty=critical thinking,",
+	"Axes: h1_agency=autonomy, h2_sovereignty=critical thinking,",
 	"h3_wellbeing=mental health, h4_equity=access, h5_meaning=purpose,",
-	"h6_democracy=institutions. shift=да only if empirically confirmed.",
-	"Return ONLY JSON."
+	"h6_democracy=institutions.",
+	"RULES: 1. Select 1-3 MOST relevant axes.",
+	"2. If nothing fits, return empty array [].",
+	"3. shift=да ONLY if a threshold is empirically confirmed.",
+	"Return ONLY JSON, no markdown."
 ].join(" ");
 
 const SOURCES = [
 	{ name: "OpenAI Blog", url: "https://openai.com/news/rss.xml", kind: "ai" },
-	{ name: "Anthropic News", url: "https://www.anthropic.com/news/rss.xml", kind: "ai" },
+	{ name: "Meta AI Blog", url: "https://ai.meta.com/blog/rss/", kind: "ai" },
 	{ name: "DeepMind Blog", url: "https://deepmind.google/blog/rss.xml", kind: "ai" },
 	{ name: "Hugging Face Blog", url: "https://huggingface.co/blog/feed.xml", kind: "ai" },
+	{ name: "Mistral AI", url: "https://mistral.ai/news/feed.xml", kind: "ai" },
 	{ name: "MIT Tech Review AI", url: "https://www.technologyreview.com/topic/artificial-intelligence/feed", kind: "ai" },
 	{ name: "The Verge AI", url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", kind: "ai" },
 	{ name: "AI Alignment Forum", url: "https://www.alignmentforum.org/feed.xml", kind: "ai" },
@@ -40,7 +48,6 @@ const SOURCES = [
 	{ name: "WHO News", url: "https://www.who.int/rss-feeds/news-english.xml", kind: "human" },
 	{ name: "Reuters Institute", url: "https://reutersinstitute.politics.ox.ac.uk/rss.xml", kind: "human" },
 	{ name: "Freedom House", url: "https://freedomhouse.org/rss.xml", kind: "human" },
-	{ name: "Nature Human Behaviour", url: "https://www.nature.com/nhumbehav.rss", kind: "human" },
 ];
 
 function parseAIResponse(response: any): any {
@@ -56,6 +63,27 @@ function parseAIResponse(response: any): any {
 		}
 	}
 	return null;
+}
+
+function validateParsed(p: any): any {
+	if (!p || typeof p !== "object") return p;
+	if (Array.isArray(p.axes) && p.axes.length > 3) {
+		p.axes = p.axes.slice(0, 3);
+	}
+	if (!Array.isArray(p.axes)) p.axes = [];
+	let rel = p.relevance;
+	if (typeof rel === "string") rel = parseFloat(rel);
+	if (typeof rel !== "number" || isNaN(rel)) rel = 0.5;
+	if (rel < 0) rel = 0;
+	if (rel > 1) rel = 1;
+	p.relevance = rel;
+	if (rel < 0.3) p.shift = "неопределённо";
+	else if (rel < 0.5 && p.shift === "да") p.shift = "нет";
+	const validShift = ["да", "нет", "неопределённо"];
+	if (!validShift.includes(p.shift)) p.shift = "неопределённо";
+	const validDir = ["рост", "падение", "стабильно", "неопределённо"];
+	if (!validDir.includes(p.direction)) p.direction = "неопределённо";
+	return p;
 }
 
 function decodeEntities(s: string): string {
@@ -113,20 +141,20 @@ async function sha256Hex(s: string): Promise<string> {
 
 async function runCollection(env: any, limit: number, maxPerSource: number): Promise<any> {
 	const startedAt = Date.now();
-	const stats = {
+	const stats: any = {
 		sources_processed: 0,
 		items_fetched: 0,
 		items_classified: 0,
 		items_saved: 0,
-		errors: [] as string[],
-		sample: [] as any[],
+		errors: [],
+		sample: [],
 	};
 
 	for (let i = 0; i < limit; i++) {
 		const src = SOURCES[i];
 		try {
 			const r = await fetch(src.url, {
-				headers: { "User-Agent": "human-ai-monitor/0.3" },
+				headers: { "User-Agent": "human-ai-monitor/0.4" },
 			});
 			if (!r.ok) {
 				stats.errors.push(src.name + ": HTTP " + r.status);
@@ -148,7 +176,7 @@ async function runCollection(env: any, limit: number, maxPerSource: number): Pro
 							{ role: "user", content: text }
 						],
 					});
-					const parsed = parseAIResponse(ai);
+					const parsed = validateParsed(parseAIResponse(ai));
 					if (!parsed) continue;
 					stats.items_classified++;
 
@@ -218,7 +246,7 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.3.0",
+					version: "0.4.0",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
@@ -265,7 +293,7 @@ export default {
 						{ role: "user", content: text }
 					],
 				});
-				return json({ input: text, kind, parsed: parseAIResponse(response) });
+				return json({ input: text, kind, parsed: validateParsed(parseAIResponse(response)) });
 			}
 
 			if (path === "/collect") {
