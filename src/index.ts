@@ -13,6 +13,7 @@ const AI_PROMPT = [
 	"2. If nothing fits, return empty array [].",
 	"3. shift=да ONLY if a threshold is empirically confirmed.",
 	"4. A general news item is NOT a threshold shift.",
+	"DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic. If axis is positive (wellbeing, autonomy, sovereignty) and news is negative, direction=падение. If axis is negative (loneliness, risk, inequality) and news is negative, direction=рост.",
 	"Return ONLY JSON, no markdown."
 ].join(" ");
 
@@ -30,6 +31,7 @@ const HUMAN_PROMPT = [
 	"RULES: 1. Select 1-3 MOST relevant axes.",
 	"2. If nothing fits, return empty array [].",
 	"3. shift=да ONLY if a threshold is empirically confirmed.",
+	"DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic. If axis is positive (wellbeing, autonomy, sovereignty) and news is negative, direction=падение. If axis is negative (loneliness, risk, inequality) and news is negative, direction=рост.",
 	"Return ONLY JSON, no markdown."
 ].join(" ");
 
