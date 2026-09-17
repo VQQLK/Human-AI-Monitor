@@ -1,30 +1,47 @@
 const AI_PROMPT = [
 	"You classify signals about AI self-improvement (RSI).",
-	"Return STRICT JSON with fields:",
-	'{"axes": ["smd"|"itq"|"agg"|"cycle_velocity"|"verification"|"hexad"|"geopolitics"],',
-	' "relevance": number 0.0-1.0,',
-	' "shift": "да"|"нет"|"неопределённо",',
-	' "direction": "рост"|"падение"|"стабильно"|"неопределённо",',
-	' "reasoning": "1-2 sentences in Russian"}',
-	"Axes: smd=self-modification, itq=improvement trajectory, agg=autonomous goals,",
-	"cycle_velocity=improvement speed, verification=verification hierarchy,",
-	"hexad=phase transition, geopolitics=AI governance blocs.",
-	"Return ONLY JSON, no markdown."
+	"Return STRICT JSON:",
+	'{"axes":["smd"|"itq"|"agg"|"cycle_velocity"|"verification"|"hexad"|"geopolitics"],',
+	'"relevance":number 0.0-1.0,',
+	'"shift":"да"|"нет"|"неопределённо",',
+	'"direction":"рост"|"падение"|"стабильно"|"неопределённо",',
+	'"reasoning":"1-2 sentences in Russian"}',
+	"smd=self-modification, itq=improvement trajectory, agg=autonomous goals,",
+	"cycle_velocity=speed, verification=audit, hexad=phase transition,",
+	"geopolitics=AI governance. shift=да only if empirically confirmed.",
+	"Return ONLY JSON."
 ].join(" ");
 
 const HUMAN_PROMPT = [
 	"You classify signals about Humanity (HHI).",
-	"Return STRICT JSON with fields:",
-	'{"axes": ["h1_agency"|"h2_sovereignty"|"h3_wellbeing"|"h4_equity"|"h5_meaning"|"h6_democracy"],',
-	' "relevance": number 0.0-1.0,',
-	' "shift": "да"|"нет"|"неопределённо",',
-	' "direction": "рост"|"падение"|"стабильно"|"неопределённо",',
-	' "reasoning": "1-2 sentences in Russian"}',
-	"Axes: h1_agency=human autonomy, h2_sovereignty=critical thinking,",
-	"h3_wellbeing=mental health, h4_equity=access/inequality,",
-	"h5_meaning=purpose, h6_democracy=institutions.",
-	"Return ONLY JSON, no markdown."
+	"Return STRICT JSON:",
+	'{"axes":["h1_agency"|"h2_sovereignty"|"h3_wellbeing"|"h4_equity"|"h5_meaning"|"h6_democracy"],',
+	'"relevance":number 0.0-1.0,',
+	'"shift":"да"|"нет"|"неопределённо",',
+	'"direction":"рост"|"падение"|"стабильно"|"неопределённо",',
+	'"reasoning":"1-2 sentences in Russian"}',
+	"h1_agency=autonomy, h2_sovereignty=critical thinking,",
+	"h3_wellbeing=mental health, h4_equity=access, h5_meaning=purpose,",
+	"h6_democracy=institutions. shift=да only if empirically confirmed.",
+	"Return ONLY JSON."
 ].join(" ");
+
+const SOURCES = [
+	{ name: "OpenAI Blog", url: "https://openai.com/news/rss.xml", kind: "ai" },
+	{ name: "Anthropic News", url: "https://www.anthropic.com/news/rss.xml", kind: "ai" },
+	{ name: "DeepMind Blog", url: "https://deepmind.google/blog/rss.xml", kind: "ai" },
+	{ name: "Hugging Face Blog", url: "https://huggingface.co/blog/feed.xml", kind: "ai" },
+	{ name: "MIT Tech Review AI", url: "https://www.technologyreview.com/topic/artificial-intelligence/feed", kind: "ai" },
+	{ name: "The Verge AI", url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", kind: "ai" },
+	{ name: "AI Alignment Forum", url: "https://www.alignmentforum.org/feed.xml", kind: "ai" },
+	{ name: "arXiv cs.AI", url: "http://export.arxiv.org/rss/cs.AI", kind: "ai" },
+	{ name: "arXiv cs.LG", url: "http://export.arxiv.org/rss/cs.LG", kind: "ai" },
+	{ name: "Pew Internet", url: "https://www.pewresearch.org/topic/internet-technology/feed/", kind: "human" },
+	{ name: "WHO News", url: "https://www.who.int/rss-feeds/news-english.xml", kind: "human" },
+	{ name: "Reuters Institute", url: "https://reutersinstitute.politics.ox.ac.uk/rss.xml", kind: "human" },
+	{ name: "Freedom House", url: "https://freedomhouse.org/rss.xml", kind: "human" },
+	{ name: "Nature Human Behaviour", url: "https://www.nature.com/nhumbehav.rss", kind: "human" },
+];
 
 function parseAIResponse(response: any): any {
 	const content = response?.choices?.[0]?.message?.content
@@ -39,6 +56,146 @@ function parseAIResponse(response: any): any {
 		}
 	}
 	return null;
+}
+
+function decodeEntities(s: string): string {
+	return s
+		.replace(/&lt;/g, "<")
+		.replace(/&gt;/g, ">")
+		.replace(/&amp;/g, "&")
+		.replace(/&quot;/g, '"')
+		.replace(/&#39;/g, "'")
+		.replace(/<[^>]+>/g, "")
+		.replace(/\s+/g, " ")
+		.trim();
+}
+
+function extractTag(xml: string, tag: string): string {
+	const re = new RegExp("<" + tag + "[^>]*>([\\s\\S]*?)<\\/" + tag + ">", "i");
+	const m = xml.match(re);
+	return m ? decodeEntities(m[1]) : "";
+}
+
+function parseRSS(xml: string, maxItems: number): any[] {
+	const items: any[] = [];
+	const rssRe = /<item[\s>][\s\S]*?<\/item>/gi;
+	let m;
+	while ((m = rssRe.exec(xml)) !== null && items.length < maxItems) {
+		const block = m[0];
+		items.push({
+			title: extractTag(block, "title"),
+			summary: extractTag(block, "description").slice(0, 500),
+			url: extractTag(block, "link"),
+		});
+	}
+	if (items.length === 0) {
+		const atomRe = /<entry[\s>][\s\S]*?<\/entry>/gi;
+		while ((m = atomRe.exec(xml)) !== null && items.length < maxItems) {
+			const block = m[0];
+			const linkMatch = block.match(/<link[^>]*href="([^"]+)"/i);
+			items.push({
+				title: extractTag(block, "title"),
+				summary: extractTag(block, "summary").slice(0, 500),
+				url: linkMatch ? linkMatch[1] : "",
+			});
+		}
+	}
+	return items;
+}
+
+async function sha256Hex(s: string): Promise<string> {
+	const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+	return Array.from(new Uint8Array(buf))
+		.map((b) => b.toString(16).padStart(2, "0"))
+		.join("")
+		.slice(0, 16);
+}
+
+async function runCollection(env: any, limit: number, maxPerSource: number): Promise<any> {
+	const startedAt = Date.now();
+	const stats = {
+		sources_processed: 0,
+		items_fetched: 0,
+		items_classified: 0,
+		items_saved: 0,
+		errors: [] as string[],
+		sample: [] as any[],
+	};
+
+	for (let i = 0; i < limit; i++) {
+		const src = SOURCES[i];
+		try {
+			const r = await fetch(src.url, {
+				headers: { "User-Agent": "human-ai-monitor/0.3" },
+			});
+			if (!r.ok) {
+				stats.errors.push(src.name + ": HTTP " + r.status);
+				continue;
+			}
+			const xml = await r.text();
+			const items = parseRSS(xml, maxPerSource);
+			stats.items_fetched += items.length;
+			stats.sources_processed++;
+
+			for (const item of items) {
+				if (!item.title) continue;
+				try {
+					const text = (item.title + ". " + item.summary).slice(0, 800);
+					const systemPrompt = src.kind === "human" ? HUMAN_PROMPT : AI_PROMPT;
+					const ai: any = await env.AI.run(env.CLASSIFIER_MODEL, {
+						messages: [
+							{ role: "system", content: systemPrompt },
+							{ role: "user", content: text }
+						],
+					});
+					const parsed = parseAIResponse(ai);
+					if (!parsed) continue;
+					stats.items_classified++;
+
+					const hash = await sha256Hex(item.url || item.title);
+					const today = new Date().toISOString().slice(0, 10);
+
+					await env.DB.prepare(
+						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, shift, direction, reasoning, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
+					).bind(
+						hash,
+						item.title.slice(0, 500),
+						item.summary.slice(0, 1000),
+						item.url.slice(0, 500),
+						src.name,
+						today,
+						"en",
+						JSON.stringify(parsed.axes ?? []),
+						typeof parsed.relevance === "number" ? parsed.relevance : 0.5,
+						String(parsed.shift ?? "неопределённо"),
+						String(parsed.direction ?? "неопределённо"),
+						String(parsed.reasoning ?? "").slice(0, 1000),
+						new Date().toISOString()
+					).run();
+					stats.items_saved++;
+
+					if (stats.sample.length < 3) {
+						stats.sample.push({
+							source: src.name,
+							title: item.title.slice(0, 120),
+							axes: parsed.axes,
+							relevance: parsed.relevance,
+							shift: parsed.shift,
+						});
+					}
+				} catch (e: any) {
+					stats.errors.push("classify " + src.name + ": " + (e?.message ?? e));
+				}
+			}
+		} catch (e: any) {
+			stats.errors.push("fetch " + src.name + ": " + (e?.message ?? e));
+		}
+	}
+
+	return {
+		duration_ms: Date.now() - startedAt,
+		...stats,
+	};
 }
 
 export default {
@@ -61,10 +218,11 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.2.0",
+					version: "0.3.0",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
-					endpoints: ["/health", "/gap", "/protocols", "/axes/{axis}", "/classify?text=...&kind=ai|human"],
+					sources_count: SOURCES.length,
+					endpoints: ["/health", "/gap", "/protocols", "/axes/{axis}", "/classify", "/collect"],
 				});
 			}
 			if (path === "/health") return json({ status: "ok", ts: Date.now() });
@@ -99,23 +257,23 @@ export default {
 			if (path === "/classify") {
 				const text = url.searchParams.get("text");
 				const kind = (url.searchParams.get("kind") ?? "ai").toLowerCase();
-				if (!text) return json({ error: "Missing text param" }, 400);
+				if (!text) return json({ error: "Missing text" }, 400);
 				const systemPrompt = kind === "human" ? HUMAN_PROMPT : AI_PROMPT;
-				const response: any = await env.AI.run(env.CLASSIFIER_MODEL as any, {
+				const response: any = await env.AI.run(env.CLASSIFIER_MODEL, {
 					messages: [
 						{ role: "system", content: systemPrompt },
 						{ role: "user", content: text }
 					],
 				});
-				const parsed = parseAIResponse(response);
-				return json({
-					input: text,
-					kind,
-					model: env.CLASSIFIER_MODEL,
-					parsed,
-					neurons: response?.usage?.neurons ?? null,
-				});
+				return json({ input: text, kind, parsed: parseAIResponse(response) });
 			}
+
+			if (path === "/collect") {
+				const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "3", 10), SOURCES.length);
+				const maxPerSource = Math.min(parseInt(url.searchParams.get("max") ?? "2", 10), 5);
+				return json(await runCollection(env, limit, maxPerSource));
+			}
+
 			return json({ error: "Not Found", path }, 404);
 		} catch (err) {
 			const message = err instanceof Error ? err.message : String(err);
@@ -125,11 +283,6 @@ export default {
 
 	async scheduled(event, env, ctx): Promise<void> {
 		console.log("[cron] " + new Date(event.scheduledTime).toISOString());
-		ctx.waitUntil((async () => {
-			try {
-				const row = await env.DB.prepare("SELECT COUNT(*) as n FROM items").first();
-				console.log("[cron] Items: " + JSON.stringify(row));
-			} catch (e) { console.error("[cron] DB: " + e); }
-		})());
+		ctx.waitUntil(runCollection(env, SOURCES.length, 5));
 	},
 };
