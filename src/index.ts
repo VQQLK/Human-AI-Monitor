@@ -206,7 +206,7 @@ async function sha256Hex(s: string): Promise<string> {
 		.map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, 16);
 }
 
-async function runCollection(env: any, limit: number, maxPerSource: number, offset: number = 0): Promise<any> {
+async function runCollection(env: Env, limit: number, maxPerSource: number, offset: number = 0): Promise<any> {
 	const startedAt = Date.now();
 	const stats: any = {
 		sources_processed: 0, items_fetched: 0,
@@ -288,7 +288,7 @@ function getWeekRange(offsetWeeks: number): any {
 	};
 }
 
-async function buildProtocolMarkdown(env: any, weekStart: string, weekEnd: string): Promise<string> {
+async function buildProtocolMarkdown(env: Env, weekStart: string, weekEnd: string): Promise<string> {
 	const res = await env.DB.prepare(
 		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning FROM items WHERE date >= ? AND date <= ? ORDER BY relevance DESC LIMIT 500"
 	).bind(weekStart, weekEnd).all();
@@ -357,7 +357,7 @@ async function buildProtocolMarkdown(env: any, weekStart: string, weekEnd: strin
 	return lines.join("\n");
 }
 
-async function generateAndSaveProtocol(env: any, offsetWeeks: number): Promise<any> {
+async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<any> {
 	const range = getWeekRange(offsetWeeks);
 	const markdown = await buildProtocolMarkdown(env, range.start, range.end);
 	const itemsRes = await env.DB.prepare(
@@ -387,7 +387,7 @@ async function generateAndSaveProtocol(env: any, offsetWeeks: number): Promise<a
 }
 
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
+	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		const url = new URL(request.url);
 		const path = url.pathname;
 
@@ -407,7 +407,7 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.9.1",
+					version: "0.9.3",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
@@ -490,7 +490,7 @@ export default {
 		}
 	},
 
-	async scheduled(event, env, ctx): Promise<void> {
+	async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
 		const isSecondBatch = event.cron === "30 6 * * 1";
 		const offset = isSecondBatch ? 12 : 0;
 		const limit = isSecondBatch ? 9 : 12;
