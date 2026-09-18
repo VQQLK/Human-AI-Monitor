@@ -38,20 +38,21 @@ const HUMAN_PROMPT = [
 ].join(" ");
 
 const SOURCES = [
-	{ name: "OpenAI Blog", url: "https://openai.com/news/rss.xml", kind: "ai" },
-	{ name: "Meta AI Blog", url: "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml", kind: "ai" },
-	{ name: "DeepMind Blog", url: "https://deepmind.google/blog/rss.xml", kind: "ai" },
-	{ name: "Hugging Face Blog", url: "https://huggingface.co/blog/feed.xml", kind: "ai" },
-	{ name: "Mistral AI", url: "https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_mistral_news.xml", kind: "ai" },
-	{ name: "MIT Tech Review AI", url: "https://www.technologyreview.com/topic/artificial-intelligence/feed", kind: "ai" },
-	{ name: "The Verge AI", url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", kind: "ai" },
-	{ name: "AI Alignment Forum", url: "https://www.alignmentforum.org/feed.xml", kind: "ai" },
-	{ name: "arXiv cs.AI", url: "http://export.arxiv.org/rss/cs.AI", kind: "ai" },
-	{ name: "arXiv cs.LG", url: "http://export.arxiv.org/rss/cs.LG", kind: "ai" },
-	{ name: "Pew Internet", url: "https://www.pewresearch.org/topic/internet-technology/feed/", kind: "human" },
-	{ name: "WHO News", url: "https://www.who.int/rss-feeds/news-english.xml", kind: "human" },
-	{ name: "Reuters Institute", url: "https://reutersinstitute.politics.ox.ac.uk/rss.xml", kind: "human" },
-	{ name: "Freedom House", url: "https://freedomhouse.org/rss.xml", kind: "human" },
+	{ name: "OpenAI Blog", url: "https://openai.com/news/rss.xml", kind: "ai", type: "rss" },
+	{ name: "Meta AI Blog", url: "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml", kind: "ai", type: "rss" },
+	{ name: "DeepMind Blog", url: "https://deepmind.google/blog/rss.xml", kind: "ai", type: "rss" },
+	{ name: "Hugging Face Blog", url: "https://huggingface.co/blog/feed.xml", kind: "ai", type: "rss" },
+	{ name: "Mistral AI", url: "https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_mistral_news.xml", kind: "ai", type: "rss" },
+	{ name: "MIT Tech Review AI", url: "https://www.technologyreview.com/topic/artificial-intelligence/feed", kind: "ai", type: "rss" },
+	{ name: "The Verge AI", url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", kind: "ai", type: "rss" },
+	{ name: "AI Alignment Forum", url: "https://www.alignmentforum.org/feed.xml", kind: "ai", type: "rss" },
+	{ name: "arXiv cs.AI", url: "http://export.arxiv.org/rss/cs.AI", kind: "ai", type: "rss" },
+	{ name: "arXiv cs.LG", url: "http://export.arxiv.org/rss/cs.LG", kind: "ai", type: "rss" },
+	{ name: "EleutherAI Blog", url: "https://blog.eleuther.ai", kind: "ai", type: "html", htmlSelector: "a.entry-link" },
+	{ name: "Pew Internet", url: "https://www.pewresearch.org/topic/internet-technology/feed/", kind: "human", type: "rss" },
+	{ name: "WHO News", url: "https://www.who.int/rss-feeds/news-english.xml", kind: "human", type: "rss" },
+	{ name: "Reuters Institute", url: "https://reutersinstitute.politics.ox.ac.uk/rss.xml", kind: "human", type: "rss" },
+	{ name: "Freedom House", url: "https://freedomhouse.org/rss.xml", kind: "human", type: "rss" },
 ];
 
 const AI_AXES = ["smd","itq","agg","cycle_velocity","verification","hexad","geopolitics"];
@@ -130,6 +131,38 @@ function parseRSS(xml: string, maxItems: number): any[] {
 	return items;
 }
 
+async function fetchFromHtml(src: any): Promise<any[]> {
+	const r = await fetch(src.url, {
+		headers: { "User-Agent": "human-ai-monitor/0.7" },
+	});
+	if (!r.ok) throw new Error("HTTP " + r.status);
+
+	const items: any[] = [];
+	const seen = new Set<string>();
+
+	const rewriter = new HTMLRewriter().on(src.htmlSelector, {
+		element(el: any) {
+			const href = el.getAttribute("href");
+			const ariaLabel = el.getAttribute("aria-label");
+			if (!href) return;
+
+			let fullUrl = href;
+			try {
+				fullUrl = href.startsWith("http") ? href : new URL(href, src.url).href;
+			} catch (e) {
+				return;
+			}
+			if (seen.has(fullUrl)) return;
+			seen.add(fullUrl);
+let title = ariaLabel ? decodeEntities(ariaLabel.replace(/^post link to /, "")) : "";
+			items.push({ title: title, url: fullUrl, summary: "" });
+		},
+	});
+
+	await rewriter.transform(r).text();
+	return items.slice(0, 20);
+}
+
 async function sha256Hex(s: string): Promise<string> {
 	const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
 	return Array.from(new Uint8Array(buf))
@@ -146,10 +179,16 @@ async function runCollection(env: any, limit: number, maxPerSource: number): Pro
 	for (let i = 0; i < limit; i++) {
 		const src = SOURCES[i];
 		try {
-			const r = await fetch(src.url, { headers: { "User-Agent": "human-ai-monitor/0.6" } });
-			if (!r.ok) { stats.errors.push(src.name + ": HTTP " + r.status); continue; }
-			const xml = await r.text();
-			const items = parseRSS(xml, maxPerSource);
+			let items: any[] = [];
+			if (src.type === "html") {
+				items = await fetchFromHtml(src);
+				items = items.slice(0, maxPerSource);
+			} else {
+				const r = await fetch(src.url, { headers: { "User-Agent": "human-ai-monitor/0.7" } });
+				if (!r.ok) { stats.errors.push(src.name + ": HTTP " + r.status); continue; }
+				const xml = await r.text();
+				items = parseRSS(xml, maxPerSource);
+			}
 			stats.items_fetched += items.length;
 			stats.sources_processed++;
 			for (const item of items) {
@@ -181,7 +220,7 @@ async function runCollection(env: any, limit: number, maxPerSource: number): Pro
 						new Date().toISOString()
 					).run();
 					stats.items_saved++;
-					if (stats.sample.length < 3) {
+					if (stats.sample.length < 5) {
 						stats.sample.push({
 							source: src.name, title: item.title.slice(0, 120),
 							axes: parsed.axes, relevance: parsed.relevance, shift: parsed.shift,
@@ -225,7 +264,7 @@ async function buildProtocolMarkdown(env: any, weekStart: string, weekEnd: strin
 				if (!byAxis[a]) byAxis[a] = [];
 				byAxis[a].push(it);
 			}
-		} catch {}
+		} catch (e) {}
 	}
 	const gap: any = await env.DB.prepare(
 		"SELECT * FROM gap_history ORDER BY week_start DESC LIMIT 1"
@@ -331,7 +370,7 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.6.0",
+					version: "0.7.0",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
@@ -373,7 +412,7 @@ export default {
 					try {
 						const a = JSON.parse(row.axes ?? "[]");
 						return Array.isArray(a) && a.includes(axis);
-					} catch { return false; }
+					} catch (e) { return false; }
 				});
 				return json({ axis, count: items.length, items }, 200);
 			}
