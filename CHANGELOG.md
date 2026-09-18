@@ -16,6 +16,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Web interface (Cloudflare Pages)
 - Multilingual support (EN / RU / ZH)
 
+## [0.9.1] - 2026-09-18
+
+### Fixed
+- Date and category prefixes in Anthropic Research RSS titles (`Sep 17, 2026ScienceHow Claude...` → `How Claude...`)
+
+### Changed
+- `cleanTitle()` now handles three prefix formats: date-first, category-first, date+category
+- Worker version 0.9.0 → 0.9.1
+
 ## [0.9.0] - 2026-09-18
 
 ### Added
