@@ -16,6 +16,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Web interface (Cloudflare Pages)
 - Multilingual support (EN / RU / ZH)
 
+## [0.8.1] - 2026-09-18
+
+### Added
+- `offset` parameter in `/collect` endpoint for batched collection
+- Browser User-Agent to bypass bot detection (fixes Pew Internet 403)
+
+### Fixed
+- CDATA section decoding in RSS titles (OpenAI Blog, The Verge, AI Alignment Forum)
+- All 17 sources now collecting successfully
+
+### Known issues
+- Cloudflare Workers 50-subrequest limit: use batching for Cron weekly full collection
+
+### Changed
+- Worker version 0.8.0 → 0.8.1
+
 ## [0.8.0] - 2026-09-18
 
 ### Added
