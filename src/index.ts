@@ -37,10 +37,10 @@ const HUMAN_PROMPT = [
 
 const SOURCES = [
 	{ name: "OpenAI Blog", url: "https://openai.com/news/rss.xml", kind: "ai" },
-	{ name: "Meta AI Blog", url: "https://ai.meta.com/blog/rss/", kind: "ai" },
+	{ name: "Meta AI Blog", url: "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml", kind: "ai" },
 	{ name: "DeepMind Blog", url: "https://deepmind.google/blog/rss.xml", kind: "ai" },
 	{ name: "Hugging Face Blog", url: "https://huggingface.co/blog/feed.xml", kind: "ai" },
-	{ name: "Mistral AI", url: "https://mistral.ai/news/feed.xml", kind: "ai" },
+	{ name: "Mistral AI", url: "https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_mistral_news.xml", kind: "ai" },
 	{ name: "MIT Tech Review AI", url: "https://www.technologyreview.com/topic/artificial-intelligence/feed", kind: "ai" },
 	{ name: "The Verge AI", url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", kind: "ai" },
 	{ name: "AI Alignment Forum", url: "https://www.alignmentforum.org/feed.xml", kind: "ai" },
