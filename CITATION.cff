@@ -1,42 +1,9 @@
 cff-version: 1.2.0
-message: "If you use Human–AI Monitor in your research, please cite it as 
-below."
-title: "Human–AI Monitor: Weekly Protocols on AI and Humanity Development"
-abstract: >-
-  An open tool for monitoring the development of Artificial Intelligence 
-and
-  Humanity across 12 symmetric axes (6 AI RSI axes + 6 Human HHI axes) 
-plus
-  geopolitics as a meta-layer. Publishes weekly protocols, tracks Gap 
-Index,
-  and provides a public API.
+message: "Please cite this repository."
+title: "Human-AI Monitor"
 authors:
-  - name: "Human–AI Monitor Contributors"
-    website: "https://github.com/VQQLK/Human-AI-Monitor"
-repository-code: "https://github.com/VQQLK/Human-AI-Monitor"
-url: "https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
-license: "MIT"
-license-url: "https://github.com/VQQLK/Human-AI-Monitor/blob/main/LICENSE"
-version: "0.6.0"
-date-released: "2026-09-18"
-keywords:
-  - "artificial intelligence"
-  - "AI safety"
-  - "AI alignment"
-  - "recursive self-improvement"
-  - "technological singularity"
-  - "AI governance"
-  - "human wellbeing"
-  - "open science"
-  - "open data"
-  - "Cloudflare Workers"
-preferred-citation:
-  type: "software"
-  title: "Human–AI Monitor: Weekly Protocols on AI and Humanity 
-Development"
-  authors:
-    - name: "Human–AI Monitor Contributors"
-  year: 2026
-  version: "0.6.0"
-  license: "MIT"
-  url: "https://github.com/VQQLK/Human-AI-Monitor"
+  - name: "Human-AI Monitor Contributors"
+version: 0.6.0
+date-released: 2026-09-18
+url: "https://github.com/VQQLK/Human-AI-Monitor"
+license: MIT
