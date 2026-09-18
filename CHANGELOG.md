@@ -16,6 +16,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Web interface (Cloudflare Pages)
 - Multilingual support (EN / RU / ZH)
 
+## [0.9.2] - 2026-09-18
+
+### Fixed
+- Cron Trigger split into 2 batches to stay under Cloudflare 50-subrequest limit:
+  - Batch 1 (06:00 UTC): 12 sources × 3 items = 48 subrequests
+  - Batch 2 (06:30 UTC): 9 sources × 3 items = 36 subrequests
+
+### Changed
+- `scheduled` handler distinguishes batches via `event.cron`
+- Protocol generation now runs only in Batch 2 (after all sources collected)
+- Cron schedules: `0 6 * * 1` (Batch 1) + `30 6 * * 1` (Batch 2)
+- Worker version 0.9.1 → 0.9.2
+
 ## [0.9.1] - 2026-09-18
 
 ### Fixed
