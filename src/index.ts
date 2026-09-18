@@ -49,6 +49,8 @@ const SOURCES = [
 	{ name: "arXiv cs.AI", url: "http://export.arxiv.org/rss/cs.AI", kind: "ai", type: "rss" },
 	{ name: "arXiv cs.LG", url: "http://export.arxiv.org/rss/cs.LG", kind: "ai", type: "rss" },
 	{ name: "EleutherAI Blog", url: "https://blog.eleuther.ai", kind: "ai", type: "html", htmlSelector: "a.entry-link" },
+	{ name: "BAIR Blog", url: "https://bair.berkeley.edu/blog/feed.xml", kind: "ai", type: "rss" },
+	{ name: "Cohere Labs Blog", url: "https://cohere-labs-community.github.io/blog/", kind: "ai", type: "html", htmlSelector: "a.post-title" },
 	{ name: "Pew Internet", url: "https://www.pewresearch.org/topic/internet-technology/feed/", kind: "human", type: "rss" },
 	{ name: "WHO News", url: "https://www.who.int/rss-feeds/news-english.xml", kind: "human", type: "rss" },
 	{ name: "Reuters Institute", url: "https://reutersinstitute.politics.ox.ac.uk/rss.xml", kind: "human", type: "rss" },
@@ -67,7 +69,7 @@ function parseAIResponse(response: any): any {
 	if (typeof content === "string") {
 		const match = content.match(/\{[\s\S]*\}/);
 		if (match) {
-			try { return JSON.parse(match[0]); } catch { return null; }
+			try { return JSON.parse(match[0]); } catch (e) { return null; }
 		}
 	}
 	return null;
@@ -94,7 +96,10 @@ function decodeEntities(s: string): string {
 	return s
 		.replace(/&lt;/g, "<").replace(/&gt;/g, ">")
 		.replace(/&amp;/g, "&").replace(/&quot;/g, '"')
-		.replace(/&#39;/g, "'").replace(/<[^>]+>/g, "")
+		.replace(/&#39;/g, "'").replace(/&apos;/g, "'")
+		.replace(/&#8217;/g, "\u2019").replace(/&#8216;/g, "\u2018")
+		.replace(/&#8220;/g, "\u201C").replace(/&#8221;/g, "\u201D")
+		.replace(/<[^>]+>/g, "")
 		.replace(/\s+/g, " ").trim();
 }
 
@@ -133,34 +138,52 @@ function parseRSS(xml: string, maxItems: number): any[] {
 
 async function fetchFromHtml(src: any): Promise<any[]> {
 	const r = await fetch(src.url, {
-		headers: { "User-Agent": "human-ai-monitor/0.7" },
+		headers: { "User-Agent": "human-ai-monitor/0.8" },
 	});
 	if (!r.ok) throw new Error("HTTP " + r.status);
 
 	const items: any[] = [];
 	const seen = new Set<string>();
+	let currentItem: any = null;
 
 	const rewriter = new HTMLRewriter().on(src.htmlSelector, {
 		element(el: any) {
 			const href = el.getAttribute("href");
-			const ariaLabel = el.getAttribute("aria-label");
 			if (!href) return;
 
 			let fullUrl = href;
 			try {
 				fullUrl = href.startsWith("http") ? href : new URL(href, src.url).href;
-			} catch (e) {
-				return;
-			}
+			} catch (e) { return; }
 			if (seen.has(fullUrl)) return;
 			seen.add(fullUrl);
-let title = ariaLabel ? decodeEntities(ariaLabel.replace(/^post link to /, "")) : "";
-			items.push({ title: title, url: fullUrl, summary: "" });
+
+			const ariaLabel = el.getAttribute("aria-label");
+			const item: any = { title: "", url: fullUrl, summary: "" };
+
+			if (ariaLabel) {
+				item.title = decodeEntities(ariaLabel.replace(/^post link to /, ""));
+				items.push(item);
+			} else {
+				items.push(item);
+				currentItem = item;
+				el.onEndTag(() => { currentItem = null; });
+			}
+		},
+		text(chunk: any) {
+			if (currentItem) currentItem.title += chunk.text;
 		},
 	});
 
 	await rewriter.transform(r).text();
-	return items.slice(0, 20);
+
+	for (const item of items) {
+		if (typeof item.title === "string") {
+			item.title = decodeEntities(item.title).trim();
+		}
+	}
+
+	return items.filter((i: any) => i.title && i.title.length > 3).slice(0, 20);
 }
 
 async function sha256Hex(s: string): Promise<string> {
@@ -184,7 +207,7 @@ async function runCollection(env: any, limit: number, maxPerSource: number): Pro
 				items = await fetchFromHtml(src);
 				items = items.slice(0, maxPerSource);
 			} else {
-				const r = await fetch(src.url, { headers: { "User-Agent": "human-ai-monitor/0.7" } });
+				const r = await fetch(src.url, { headers: { "User-Agent": "human-ai-monitor/0.8" } });
 				if (!r.ok) { stats.errors.push(src.name + ": HTTP " + r.status); continue; }
 				const xml = await r.text();
 				items = parseRSS(xml, maxPerSource);
@@ -370,7 +393,7 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.7.0",
+					version: "0.8.0",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
