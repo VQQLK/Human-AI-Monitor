@@ -2,8 +2,6 @@
 
 > **Languages:** [🇺🇸 English](CODE_OF_CONDUCT.md) • [🇷🇺 Русский](CODE_OF_CONDUCT.ru.md)
 
-## Our Pledge
-
 We as contributors and maintainers pledge to make participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
 ## Our Principles
