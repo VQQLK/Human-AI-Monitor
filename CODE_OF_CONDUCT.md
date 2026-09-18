@@ -47,19 +47,19 @@ This Code of Conduct applies both within project spaces and in public spaces whe
 
 ### Moderation Process
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainers. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project administrators. All complaints will be reviewed and investigated promptly and fairly.
 
-All project maintainers are obligated to respect the privacy and security of the reporter of any incident.
+All project administrators are obligated to respect the privacy and security of the reporter of any incident.
 
 ### Enforcement Guidelines
 
-Project maintainers will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:
+Project administrators will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:
 
 #### 1. Correction
 
 **Community Impact:** Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.
 
-**Consequence:** A private, written warning from project maintainers, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.
+**Consequence:** A private, written warning from project administrators, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.
 
 #### 2. Warning
 
@@ -81,7 +81,7 @@ Project maintainers will follow these Community Impact Guidelines in determining
 
 ### Appeals
 
-Enforcement decisions can be appealed by opening a GitHub issue marked with `[Appeal]` in the title. Appeals will be reviewed by maintainers not involved in the original decision.
+Enforcement decisions can be appealed by opening a GitHub issue marked with `[Appeal]` in the title. Appeals will be reviewed by administrators not involved in the original decision.
 
 ## Attribution
 
