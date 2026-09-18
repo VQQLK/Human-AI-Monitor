@@ -109,7 +109,7 @@ way."
 > — *Irish Open, Doonbeg. Dismissed AI existential risks as a "hoax" and 
 "4D chess".*
 
-**Xi Jinping (President of the People’s Republic of China) — 13.09.2026**
+**Xi Jinping (President of the People's Republic of China) — 13.09.2026**
 > "First, the open source and inclusive AI initiative. China will be a 
 pioneer in establishing a BRICS AI open source community, support the 
 cooperation in developing and applying large language models, hold 
@@ -215,7 +215,7 @@ reproducible.
 
 ## Architecture
 
-- **Cloudflare Workers** (TypeScript) — runtime, 9 API endpoints, Cron 
+- **Cloudflare Workers** (TypeScript) — runtime, 10 API endpoints, Cron 
 Trigger
 - **Cloudflare D1** (Serverless SQLite) — 4 tables: items, protocols, 
 gap_history, index_history
@@ -242,7 +242,7 @@ models hosted by Cloudflare Workers AI.
 ## Current status
 
 **MVP live:**
-- ✅ Cloudflare Worker with 9 API endpoints — deployed
+- ✅ Cloudflare Worker with 10 API endpoints — deployed
 - ✅ D1 database (4 tables, populated)
 - ✅ Workers AI classifier (Qwen 3, calibrated for 12 symmetric axes + 
 geopolitics)
