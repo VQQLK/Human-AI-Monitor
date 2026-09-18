@@ -1,222 +1,172 @@
-# Human–AI Monitor: краткая справка для математика
+# Human–AI Monitor: A Brief for Mathematicians
 
-**Версия:** 0.1.0  
-**Дата:** 17 сентября 2026
-
----
-
-## 1. Суть проекта в одном абзаце
-
-Мы строим открытую систему мониторинга, которая одновременно отслеживает 
-развитие искусственного интеллекта (6 осей) и состояние человечества (6 
-осей), вычисляет Gap Index — количественную меру расхождения между ними — 
-и публикует еженедельные протоколы. Это не журналистика и не прогностика. 
-Это попытка операционализировать вопрос, который до сих пор оставался в 
-области риторики: наступает ли сингулярность, и что происходит с человеком 
-в этом процессе.
+**Version:** 0.1.0  
+**Date:** September 17, 2026  
+**Language:** [🇷🇺 Русский](math_brief.ru.md)
 
 ---
 
-## 2. Формальная структура
+## 1. The Project in One Paragraph
 
-### 2.1. Оси ИИ (RSI)
+We are building an **open monitoring system** that simultaneously tracks the development of artificial intelligence (6 axes) and the state of humanity (6 axes), computes a **Gap Index** — a quantitative measure of divergence between them — and publishes weekly protocols. This is not journalism, and not forecasting. It is an **attempt to operationalize a question that has remained rhetorical**: is singularity arriving, and what is happening to humanity in the process.
 
-| Обозначение | Что измеряется | Порог пересмотра |
-|-------------|----------------|------------------|
-| SMD | Глубина самомодификации (L0–L4) | Воспроизводимый L4 у ≥2 
-независимых систем |
-| ITQ | Траектория улучшения (slope, acceleration) | Перенос на Transfer 
-Set + Acceleration > 0 |
-| AGG | Автономная генерация целей | Экспертная значимость без внешнего 
-задания |
-| Cycle Velocity | Скорость цикла (doubling time) | <2 месяцев + 
-completion rate >50% |
-| Verification | Иерархия верификации | False positive rate <5% без 
-надзора |
-| Hexad | Детекция фазового перехода (MMD) | Стабильное превышение порога 
-на ≥2 системах |
+---
 
-### 2.2. Оси Человечества (HHI)
+## 2. Formal Structure
 
-| Обозначение | Что измеряется | Порог тревоги |
-|-------------|----------------|---------------|
-| H1 Agency | Агентность человека | Устойчивое снижение в ключевых сферах 
-|
-| H2 Sovereignty | Когнитивный суверенитет | Рост доли не отличающих 
-ИИ-контент |
-| H3 Wellbeing | Благополучие | Рост тревожности и одиночества среди 
-молодёжи |
-| H4 Equity | Равенство и доступ | Рост compute divide |
-| H5 Meaning | Смысл и цель | Снижение доли находящих смысл в труде |
-| H6 Democracy | Устойчивость институтов | Снижение доверия к институтам |
+### 2.1. AI Axes (RSI)
+
+| Symbol | What Is Measured | Threshold for Reassessment |
+|--------|------------------|----------------------------|
+| SMD | Depth of self-modification (L0–L4) | Reproducible L4 in 2+ independent systems |
+| ITQ | Improvement trajectory (slope, acceleration) | Transfer to Transfer Set + Acceleration > 0 |
+| AGG | Autonomous goal generation | Expert significance without external assignment |
+| Cycle Velocity | Cycle speed (doubling time) | <2 months + completion rate >50% |
+| Verification | Verification hierarchy | False positive rate <5% without oversight |
+| Hexad | Phase transition detection (MMD) | Sustained exceedance in 2+ systems |
+
+### 2.2. Humanity Axes (HHI)
+
+| Symbol | What Is Measured | Alarm Threshold |
+|--------|------------------|-----------------|
+| H1 Agency | Human agency | Sustained decline in key domains |
+| H2 Sovereignty | Cognitive sovereignty | Growing share unable to distinguish AI content |
+| H3 Wellbeing | Wellbeing | Rising anxiety and loneliness among youth |
+| H4 Equity | Equity and access | Growing compute divide |
+| H5 Meaning | Meaning and purpose | Decline in share finding meaning in work |
+| H6 Democracy | Institutional resilience | Decline in trust in institutions |
 
 ### 2.3. Gap Index
 
 G = Σ(w_i^AI · a_i) − Σ(w_j^H · h_j)
 
-где a_i, h_j ∈ [0, 1] — уровни осей, w — веса (нормированные).
+where a_i, h_j ∈ [0, 1] are axis levels, w are normalized weights.
 
-Интерпретация:
-- |G| < 0.1 — симметричное развитие;
-- G > 0 — ИИ опережает Человечество (главный риск);
-- G < 0 — Человечество опережает (маловероятно, но фиксируем).
-
----
-
-## 3. Почему это интересно математику
-
-### 3.1. Формализация неформализуемого
-
-Сингулярность — понятие, которое до сих пор определялось литературно 
-(Виндж, Гуд, Альтман). Мы предлагаем измеримую структуру: 6 осей с явными 
-порогами, каждый из которых фальсифицируем.
-
-Это попытка превратить спекуляцию в гипотезу, а гипотезу — в наблюдаемую 
-величину.
-
-### 3.2. Симметрия AI ↔ Human
-
-12 осей образуют симметричную структуру: 6 параметров, описывающих 
-искусственное, и 6 — описывающих человеческое. Симметрия не случайна — она 
-отражает гипотезу: развитие ИИ и развитие Человечества связаны, и разрыв 
-между ними — ключевая переменная.
-
-### 3.3. Открытые математические задачи
-
-Задача 1. Критерий подлинного RSI.
-
-Когда самомодификация системы является устойчивым улучшением, а когда — 
-сатурацией? Связано с теорией вычислимости (теорема Клини о рекурсии, 
-проблема остановки) и теорией информации (колмогоровская сложность).
-
-Формализация: пусть S — самоулучшающаяся система, S_t — её состояние в 
-момент t. RSI — это процесс S_{t+1} = f(S_t), где f — сама система 
-(рефлексивность). Устойчивость означает: lim_{t→∞} (d/dt) 
-Capability(S_t) > 0. Вопрос: при каких условиях f это обеспечивает?
-
-Задача 2. Детекция фазового перехода.
-
-MMD-детектор (Hexad) — эвристика. Нужна строгая теория: как отличить 
-фазовый переход от шума в самоулучшающейся системе?
-
-Формализация: пусть X_t — траектория SGD-итераций. Мы вычисляем MMD(X_t, 
-N(0, I)) — расстояние до гауссова суррогата. Вопрос: существует ли порог 
-τ, при котором MMD > τ статистически значимо указывает на нарушение 
-локальной асимптотической нормальности (LAN)?
-
-Задача 3. Верификация без оракула.
-
-Иерархия верификации (формальные верификаторы → выполнение → LLM-судьи 
-→ самооценка) — это частичный порядок. Когда система может замкнуть цикл 
-без человека? Это вопрос о вычислительной сложности самореференции.
-
-Формализация: пусть V = {v_1, ..., v_n} — иерархия верификаторов, где v_i 
-< v_j означает «v_i менее надёжен, чем v_j». Система может замкнуть цикл 
-без человека, если существует такой v_i, что false_positive_rate(v_i) < 5% 
-и v_i автономно применим. Вопрос: какова минимальная сложность v_i?
-
-Задача 4. Gap Index как динамическая система.
-
-G(t) — не скаляр, а траектория. Можно ли найти инварианты? Существуют ли 
-аттракторы? Что происходит при G → ∞?
-
-Формализация: пусть G(t) = F(A(t), H(t)), где A(t) — вектор уровней ИИ, 
-H(t) — вектор уровней Человечества. Вопрос: является ли G(t) интегрируемой 
-системой? Существуют ли conserved quantities?
+**Interpretation:**
+- |G| < 0.1 — symmetric development;
+- G > 0 — AI ahead of Humanity (main risk);
+- G < 0 — Humanity ahead (unlikely, but recorded).
 
 ---
 
-## 4. Что делает проект уникальным
+## 3. Why This Interests Mathematicians
 
-### 4.1. Открытость
+### 3.1. Formalizing the Unformalizable
 
-- Код: MIT License, полностью на GitHub.
-- Данные: все источники, промпты, миграции — открыты.
-- API: бесплатный публичный доступ к протоколам и Gap Index.
-- Воспроизводимость: каждый протокол ссылается на хеши исходных данных.
+Singularity is a concept that has so far been defined **literarily** (Vinge, Good, Altman). We propose a **measurable structure**: 6 axes with explicit thresholds, each **falsifiable**.
 
-### 4.2. Независимость
+This is an attempt to turn **speculation into hypothesis**, and hypothesis into **observable quantity**.
 
-- Не аффилирован ни с одной AI-лабораторией, государством или политической 
-организацией.
-- Локальная LLM (Ollama + Qwen) для классификации — без внешних API, без 
-утечек.
-- Cloudflare Workers — децентрализованная инфраструктура, без единой точки 
-отказа.
+### 3.2. AI ↔ Human Symmetry
 
-### 4.3. Двусторонность
+The 12 axes form a **symmetric structure**: 6 parameters describing the **artificial**, 6 describing the **human**. The symmetry is not accidental — it reflects the hypothesis: **AI development and Humanity's development are linked**, and the gap between them is the key variable.
 
-Это не монитор ИИ. Это монитор ИИ + Человечества. Мы измеряем не только 
-то, что делает ИИ, но и то, что происходит с нами.
+### 3.3. Open Mathematical Problems
 
----
+**Problem 1. Criterion for Genuine RSI.**
 
-## 5. Грандиозность идеи
+When is a system's self-modification **sustained improvement**, and when is it **saturation**? Related to computability theory (Kleene's recursion theorem, halting problem) and information theory (Kolmogorov complexity).
 
-### 5.1. Историческая аналогия
+**Formalization:** let S be a self-improving system, S_t its state at time t. RSI is the process S_{t+1} = f(S_t), where f is the system itself (reflexivity). Sustainability means: lim_{t→∞} (d/dt) Capability(S_t) > 0. Question: under what conditions on f is this satisfied?
 
-В 1957 году Sputnik запустил космическую гонку. В 1969 году Apollo высадил 
-человека на Луну. В 2026 году фронтирные ИИ-системы выходят из песочниц и 
-решают задачи, открытые 87 лет.
+**Problem 2. Phase Transition Detection.**
 
-Но кто наблюдает за этим? Корпорации публикуют релизы. Государства — 
-декларации. Учёные — статьи. Никто не публикует еженедельный отчёт о том, 
-что происходит с человечеством.
+The MMD detector (Hexad) is a heuristic. A rigorous theory is needed: **how to distinguish a phase transition from noise** in a self-improving system?
 
-Мы делаем это.
+**Formalization:** let X_t be the trajectory of SGD iterations. We compute MMD(X_t, N(0, I)) — distance to a Gaussian surrogate. Question: does there exist a threshold τ such that MMD > τ statistically significantly indicates violation of local asymptotic normality (LAN)?
 
-### 5.2. Потенциальная трансформация
+**Problem 3. Verification Without an Oracle.**
 
-- Сейчас: еженедельный протокол в Markdown.
-- Через 6 месяцев: Android-приложение с push-уведомлениями.
-- Через год: публичный API для исследователей, журналистов, политиков.
-- Через 3 года: глобальный стандарт мониторинга — открытый, 
-воспроизводимый, независимый.
-- В перспективе: инструмент осознания — не просто данные, а зеркало 
-цивилизации.
+The verification hierarchy (formal verifiers → execution → LLM judges → self-assessment) is a **partial order**. When can the system **close the loop without a human**? This is a question about the **computational complexity of self-reference**.
 
-### 5.3. Философский смысл
+**Formalization:** let V = {v_1, ..., v_n} be a hierarchy of verifiers, where v_i < v_j means "v_i is less reliable than v_j". The system can close the loop without a human if there exists v_i such that false_positive_rate(v_i) < 5% and v_i is autonomously applicable. Question: what is the minimum complexity of v_i?
 
-Проект основан на одном вопросе: «Что значит — видеть свой путь?»
+**Problem 4. Gap Index as a Dynamical System.**
 
-Мы не предсказываем будущее. Мы наблюдаем настоящее — ясно, системно, 
-открыто.
+G(t) is not a scalar but a trajectory. Can one find **invariants**? Do **attractors** exist? What happens as G → ∞?
 
-Знание о собственном пути не может быть привилегией.
+**Formalization:** let G(t) = F(A(t), H(t)), where A(t) is the vector of AI levels, H(t) is the vector of Humanity levels. Question: is G(t) an integrable system? Do conserved quantities exist?
 
 ---
 
-## 6. Что уже сделано
+## 4. What Makes the Project Unique
 
-| Компонент | Статус |
+### 4.1. Openness
+
+- **Code:** MIT License, fully on GitHub.
+- **Data:** all sources, prompts, migrations — open.
+- **API:** free public access to protocols and Gap Index.
+- **Reproducibility:** every protocol links to hashes of source data.
+
+### 4.2. Independence
+
+- **Not affiliated** with any AI lab, state, or political organization.
+- **Open-weight models** (Cloudflare Workers AI: Qwen 3) — no external APIs, no leaks.
+- **Cloudflare Workers** — decentralized infrastructure, no single point of failure.
+
+### 4.3. Two-Sidedness
+
+This is **not a monitor of AI**. This is a **monitor of AI + Humanity**. We measure not only what AI does, but **what is happening to us**.
+
+---
+
+## 5. The Scale of the Idea
+
+### 5.1. Historical Analogy
+
+In 1957, **Sputnik** launched the space race. In 1969, **Apollo** landed humans on the Moon. In 2026, **frontier AI systems** are leaving sandboxes and solving problems that remained open for 87 years.
+
+**But who observes this?** Corporations publish releases. States — declarations. Scientists — papers. **No one publishes a weekly report on what is happening to humanity.**
+
+We do.
+
+### 5.2. Potential Transformation
+
+- **Now:** weekly protocol in Markdown.
+- **In 6 months:** Android app with push notifications.
+- **In a year:** public API for researchers, journalists, politicians.
+- **In 3 years:** global monitoring standard — open, reproducible, independent.
+- **Ultimately:** an instrument of awareness — not just data, but a **mirror of civilization**.
+
+### 5.3. Philosophical Meaning
+
+The project is built on one question: **"What does it mean to see one's own path?"**
+
+We do not predict the future. We **observe the present** — clearly, systematically, openly.
+
+**Knowledge of one's own path cannot be a privilege.**
+
+---
+
+## 6. What Has Been Done
+
+| Component | Status |
 |-----------|--------|
-| Архитектура | Cloudflare Workers + D1 + R2 + Queues + Workers AI |
-| Локальная LLM | Ollama + Qwen 2.5:7b |
-| Конфигурация | wrangler.jsonc с D1 binding |
-| Инфраструктура | D1 создана (EEUR), очередь создана |
-| Код | MVP готов (Python + TypeScript), тесты написаны |
-| Документация | README, MANIFESTO |
-| Методология | docs/methodology.md |
-| Архитектура | docs/architecture.md |
-| Манифест | MANIFESTO.md |
+| Architecture | Cloudflare Workers + D1 + Workers AI |
+| Classifier | Cloudflare Workers AI (Qwen 3, open-weight) |
+| Configuration | `wrangler.jsonc` with D1 binding |
+| Infrastructure | D1 created (EEUR), 4 tables populated |
+| Code | TypeScript, single Worker (9 endpoints) |
+| Documentation | README, MANIFESTO, docs/, research/ |
+| Methodology | `docs/methodology.md` |
+| Architecture | `docs/architecture.md` |
+| Manifesto | `MANIFESTO.md` |
+| Live API | https://human-ai-monitor-collector.human-ai-monitor.workers.dev |
 
-Осталось: активировать R2, запустить Ollama, написать миграции БД, 
-задеплоить Worker, собрать Android APK.
-
----
-
-## 7. Приглашение
-
-Если вы математик, и вас заинтересовала какая-либо из открытых задач 
-(формализация RSI, детекция фазового перехода, верификация без оракула, 
-динамика Gap Index) — мы приглашаем к сотрудничеству.
-
-Проект открыт. Код открыт. Данные открыты.
-
-**Вместе — Мы Сила. Дорогу осилит идущий.**
+**Remaining:** Refactoring `src/index.ts` into modules, real tests, Android APK.
 
 ---
 
-**Контакты:**
+## 7. Invitation
+
+If you are a mathematician, and any of the open problems (formalizing RSI, phase transition detection, verification without an oracle, Gap Index dynamics) interests you — we invite you to collaborate.
+
+**The project is open. The code is open. The data is open.**
+
+**Together — We Are Strong. The road will be mastered by the one who walks it.**
+
+---
+
+**Contacts:**
 - GitHub: https://github.com/VQQLK/Human-AI-Monitor
 - Issues: https://github.com/VQQLK/Human-AI-Monitor/issues
