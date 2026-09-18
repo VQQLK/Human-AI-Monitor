@@ -9,11 +9,12 @@ const AI_PROMPT = [
 	"Axes: smd=self-modification, itq=improvement trajectory,",
 	"agg=autonomous goals, cycle_velocity=speed, verification=audit,",
 	"hexad=phase transition, geopolitics=AI governance.",
-	"RULES: 1. Select 1-3 MOST relevant axes. NEVER return all 7.",
+	"RULES:",
+	"1. Select 1-3 MOST relevant axes. NEVER return all 7.",
 	"2. If nothing fits, return empty array [].",
 	"3. shift=да ONLY if a threshold is empirically confirmed.",
 	"4. A general news item is NOT a threshold shift.",
-	"DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic. If axis is positive and news is negative, direction=падение. If axis is negative and news is negative, direction=рост.",
+	"5. DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic.",
 	"Return ONLY JSON, no markdown."
 ].join(" ");
 
@@ -28,10 +29,11 @@ const HUMAN_PROMPT = [
 	"Axes: h1_agency=autonomy, h2_sovereignty=critical thinking,",
 	"h3_wellbeing=mental health, h4_equity=access, h5_meaning=purpose,",
 	"h6_democracy=institutions.",
-	"RULES: 1. Select 1-3 MOST relevant axes.",
+	"RULES:",
+	"1. Select 1-3 MOST relevant axes.",
 	"2. If nothing fits, return empty array [].",
 	"3. shift=да ONLY if a threshold is empirically confirmed.",
-	"DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic.",
+	"4. DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic.",
 	"Return ONLY JSON, no markdown."
 ].join(" ");
 
@@ -144,7 +146,7 @@ async function runCollection(env: any, limit: number, maxPerSource: number): Pro
 	for (let i = 0; i < limit; i++) {
 		const src = SOURCES[i];
 		try {
-			const r = await fetch(src.url, { headers: { "User-Agent": "human-ai-monitor/0.5" } });
+			const r = await fetch(src.url, { headers: { "User-Agent": "human-ai-monitor/0.6" } });
 			if (!r.ok) { stats.errors.push(src.name + ": HTTP " + r.status); continue; }
 			const xml = await r.text();
 			const items = parseRSS(xml, maxPerSource);
@@ -196,7 +198,7 @@ async function runCollection(env: any, limit: number, maxPerSource: number): Pro
 	return { duration_ms: Date.now() - startedAt, ...stats };
 }
 
-function getWeekRange(offsetWeeks = 0): any {
+function getWeekRange(offsetWeeks: number): any {
 	const now = new Date();
 	const day = now.getUTCDay();
 	const diff = (day + 6) % 7;
@@ -279,7 +281,7 @@ async function buildProtocolMarkdown(env: any, weekStart: string, weekEnd: strin
 	return lines.join("\n");
 }
 
-async function generateAndSaveProtocol(env: any, offsetWeeks = 0): Promise<any> {
+async function generateAndSaveProtocol(env: any, offsetWeeks: number): Promise<any> {
 	const range = getWeekRange(offsetWeeks);
 	const markdown = await buildProtocolMarkdown(env, range.start, range.end);
 	const itemsRes = await env.DB.prepare(
@@ -312,12 +314,13 @@ export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		const url = new URL(request.url);
 		const path = url.pathname;
+
 		const CORS = {
 			"Access-Control-Allow-Origin": "*",
 			"Access-Control-Allow-Methods": "GET, OPTIONS",
 			"Access-Control-Allow-Headers": "Content-Type",
 		};
-		const json = (data: unknown, status = 200) =>
+		const json = (data: unknown, status: number) =>
 			new Response(JSON.stringify(data, null, 2), {
 				status,
 				headers: { "Content-Type": "application/json; charset=utf-8", ...CORS },
@@ -328,23 +331,23 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.5.0",
+					version: "0.6.0",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
 					endpoints: ["/health", "/gap", "/protocols", "/protocols/{week}", "/protocols/{week}/content", "/axes/{axis}", "/classify", "/collect", "/generate"],
-				});
+				}, 200);
 			}
-			if (path === "/health") return json({ status: "ok", ts: Date.now() });
+			if (path === "/health") return json({ status: "ok", ts: Date.now() }, 200);
 
 			if (path === "/gap") {
 				const row = await env.DB.prepare("SELECT * FROM gap_history ORDER BY week_start DESC LIMIT 1").first();
 				if (!row) return json({ error: "No gap data" }, 404);
-				return json(row);
+				return json(row, 200);
 			}
 			if (path === "/protocols") {
-				const res = await env.DB.prepare("SELECT * FROM protocols ORDER BY week_start DESC LIMIT 50").all();
-				return json({ count: res.results?.length ?? 0, protocols: res.results ?? [] });
+				const res = await env.DB.prepare("SELECT week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at FROM protocols ORDER BY week_start DESC LIMIT 50").all();
+				return json({ count: res.results?.length ?? 0, protocols: res.results ?? [] }, 200);
 			}
 			const cm = path.match(/^\/protocols\/([0-9]{4}-[0-9]{2}-[0-9]{2})\/content$/);
 			if (cm) {
@@ -358,26 +361,27 @@ export default {
 			}
 			const pm = path.match(/^\/protocols\/([0-9]{4}-[0-9]{2}-[0-9]{2})$/);
 			if (pm) {
-				const row = await env.DB.prepare("SELECT * FROM protocols WHERE week_start = ?").bind(pm[1]).first();
+				const row = await env.DB.prepare("SELECT week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at FROM protocols WHERE week_start = ?").bind(pm[1]).first();
 				if (!row) return json({ error: "Not found" }, 404);
-				return json(row);
+				return json(row, 200);
 			}
 			const am = path.match(/^\/axes\/([a-z0-9_]+)$/);
 			if (am) {
 				const axis = am[1];
-				const res = await env.DB.prepare("SELECT * FROM items ORDER BY date DESC LIMIT 200").all();
+				const res = await env.DB.prepare("SELECT hash, title, summary, url, source, date, axes, relevance, shift, direction, reasoning FROM items ORDER BY date DESC LIMIT 200").all();
 				const items = (res.results ?? []).filter((row: any) => {
 					try {
 						const a = JSON.parse(row.axes ?? "[]");
 						return Array.isArray(a) && a.includes(axis);
 					} catch { return false; }
 				});
-				return json({ axis, count: items.length, items });
+				return json({ axis, count: items.length, items }, 200);
 			}
 			if (path === "/classify") {
 				const text = url.searchParams.get("text");
 				const kind = (url.searchParams.get("kind") ?? "ai").toLowerCase();
 				if (!text) return json({ error: "Missing text" }, 400);
+				if (text.length > 1000) return json({ error: "Text too long (max 1000 chars)" }, 400);
 				const systemPrompt = kind === "human" ? HUMAN_PROMPT : AI_PROMPT;
 				const response: any = await env.AI.run(env.CLASSIFIER_MODEL, {
 					messages: [
@@ -385,12 +389,12 @@ export default {
 						{ role: "user", content: text }
 					],
 				});
-				return json({ input: text, kind, parsed: validateParsed(parseAIResponse(response)) });
+				return json({ input: text, kind, parsed: validateParsed(parseAIResponse(response)) }, 200);
 			}
 			if (path === "/collect") {
 				const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "3", 10), SOURCES.length);
 				const maxPerSource = Math.min(parseInt(url.searchParams.get("max") ?? "2", 10), 5);
-				return json(await runCollection(env, limit, maxPerSource));
+				return json(await runCollection(env, limit, maxPerSource), 200);
 			}
 			if (path === "/generate") {
 				const weekParam = url.searchParams.get("week");
@@ -400,7 +404,7 @@ export default {
 					const now = new Date();
 					offset = Math.floor((now.getTime() - target.getTime()) / (7 * 24 * 3600 * 1000));
 				}
-				return json(await generateAndSaveProtocol(env, offset));
+				return json(await generateAndSaveProtocol(env, offset), 200);
 			}
 			return json({ error: "Not Found", path }, 404);
 		} catch (err) {
