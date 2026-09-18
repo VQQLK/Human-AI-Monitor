@@ -20,9 +20,9 @@
 
 ## What is this
 
-`human-ai-monitor` is a weekly protocol that tracks **12 axes of development**:
+`human-ai-monitor` is a weekly protocol that tracks **12 symmetric axes** plus **geopolitics** as a meta-layer:
 
-**6 AI axes (RSI — Recursive Self-Improvement):**
+**6 symmetric AI axes (RSI — Recursive Self-Improvement)** plus **geopolitics** (meta-layer):
 - **SMD** — Self-Modification Depth
 - **ITQ** — Improvement Trajectory Quality
 - **AGG** — Autonomous Goal Generation
@@ -69,7 +69,7 @@
 **MVP live:**
 - ✅ Cloudflare Worker with 9 API endpoints — deployed
 - ✅ D1 database (4 tables, populated)
-- ✅ Workers AI classifier (Qwen 3, calibrated for 12 axes)
+- ✅ Workers AI classifier (Qwen 3, calibrated for 12 symmetric axes + geopolitics)
 - ✅ RSS collector (12+ of 14 sources working)
 - ✅ Weekly protocol auto-generation (Markdown)
 - ✅ Cron Trigger (every Monday 06:00 UTC)
@@ -87,6 +87,7 @@
 - ⚠️ RSS-only collection; HTML parsing not implemented yet
 - ⚠️ `shift` field may over-trigger on general news
 - ⚠️ YAML configs exist but are NOT yet read by the Worker; axes and sources are hardcoded in `src/index.ts`
+- ⚠️ Methodological asymmetry: code implements 13 axes (7 AI + 6 Human). The 12 symmetric axes are the core; geopolitics is a meta-layer.
 
 ---
 
