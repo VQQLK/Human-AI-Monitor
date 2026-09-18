@@ -1,368 +1,234 @@
-# Архитектура Human–AI Monitor
+# Human–AI Monitor Architecture
 
-**Версия:** 0.1.0  
-**Дата:** 17 сентября 2026  
-**Статус:** рабочий документ
-
----
-
-## 1. Обзор
-
-Human–AI Monitor построен на **децентрализованной инфраструктуре 
-Cloudflare** — глобальной сети edge-серверов, которая обеспечивает:
-
-- **Нулевой cold start** — Workers запускаются мгновенно.
-- **Глобальное распределение** — код исполняется ближе к пользователю.
-- **Бесплатный tier** — до 3M запросов/месяц для Workers.
-- **Отказоустойчивость** — нет единой точки отказа.
-
-**Стоимость на старте:** $0.
+**Version:** 0.2.0  
+**Date:** September 18, 2026  
+**Status:** working document  
+**Language:** [🇷🇺 Русский](architecture.ru.md)
 
 ---
 
-## 2. Компоненты
+## 1. Overview
 
-### 2.1. Cloudflare Workers — «мозг» системы
+Human–AI Monitor is built on a **decentralized Cloudflare infrastructure** — a global network of edge servers providing:
 
-**Роль:** Оркестрация сбора данных и API.
+- **Zero cold start** — Workers start instantly.
+- **Global distribution** — code runs close to the user.
+- **Free tier** — up to 100,000 requests/day for Workers.
+- **Fault tolerance** — no single point of failure.
 
-**Два Worker-а:**
-
-1. **`rsi-collector-worker`** — сбор данных:
-   - Запускается по **Cron Trigger** (еженедельно, понедельник 06:00 UTC).
-   - Собирает RSS-ленты, arXiv, новостные источники.
-   - Отправляет элементы в **Queue** для асинхронной обработки.
-   - Обрабатывает элементы через **Queue Consumer**:
-     - Классифицирует через **Ollama** (локальная LLM).
-     - Сохраняет в **D1**.
-     - Архивирует сырые данные в **R2**.
-
-2. **`api-worker`** — публичный API:
-   - GET `/gap` — текущий Gap Index.
-   - GET `/axes/{axis}?days=30` — сигналы по оси.
-   - GET `/protocols` — список протоколов.
-   - GET `/protocols/{date}` — конкретный протокол.
-
-**Технологии:** TypeScript, Wrangler CLI.
-
-### 2.2. Cloudflare D1 — база данных
-
-**Роль:** Хранение структурированных данных.
-
-**Тип:** Serverless SQL (SQLite).
-
-**Бесплатный tier:**
-- 5 ГБ хранилища.
-- 5M чтений/день.
-- 100K записей/день.
-
-**Таблицы:**
-- `items` — классифицированные сигналы.
-- `protocols` — метаданные еженедельных протоколов.
-- `gap_history` — динамика Gap Index.
-- `index_history` — значения 12 осей по датам.
-
-**Binding:** `DB` (в `wrangler.jsonc`).
-
-### 2.3. Cloudflare R2 — хранилище сырых данных
-
-**Роль:** Архив необработанных данных.
-
-**Тип:** S3-совместимое объектное хранилище.
-
-**Бесплатный tier:**
-- 10 ГБ хранилища/месяц.
-- 1M Class A операций.
-- 10M Class B операций.
-- **Egress бесплатный** (в отличие от AWS S3).
-
-**Binding:** `RAW_DATA_BUCKET`.
-
-**Структура:**
-```
-raw/
-├── 2026-09-07/
-│   ├── rss_openai.json
-│   ├── rss_anthropic.json
-│   └── news_ap.json
-├── 2026-09-14/
-│   └── ...
-```
-
-### 2.4. Cloudflare Queues — надёжность
-
-**Роль:** Асинхронная обработка с гарантией доставки.
-
-**Зачем:**
-- **Устойчивость:** если обработка упала, сообщение не теряется.
-- **Масштабируемость:** можно добавить консьюмеров.
-- **Rate limiting:** не перегружаем LLM.
-
-**Binding:** `CLASSIFIER_QUEUE`.
-
-### 2.5. Cloudflare Workers AI — резервный классификатор
-
-**Роль:** Резервная LLM для классификации.
-
-**Когда используется:**
-- Если локальная Ollama недоступна.
-- Для быстрых тестов без настройки локальной LLM.
-
-**Модели:** Llama 3.3, Qwen 3, Mistral.
-
-**Binding:** `AI`.
-
-### 2.6. Ollama + Qwen 2.5:7b — основной классификатор
-
-**Роль:** Локальная LLM для классификации сигналов.
-
-**Почему локальная:**
-- **Независимость** от внешних API (OpenAI, Anthropic).
-- **Бесплатность** — нет платы за токены.
-- **Приватность** — данные не уходят в облако.
-- **Контроль** — версия модели фиксирована.
-
-**Интеграция:** через **Cloudflare Tunnel**:
-- `cloudflared tunnel --url http://localhost:11434` создаёт публичный URL.
-- URL сохраняется как **секрет** в Workers: `OLLAMA_TUNNEL_URL`.
-
-**Альтернатива для production:** Cloudflare Workers VPC (более безопасно, 
-но сложнее в настройке).
-
-### 2.7. Cloudflare Pages — веб-интерфейс
-
-**Роль:** Хостинг публичного сайта.
-
-**Стек:** SvelteKit + TailwindCSS (статический экспорт).
-
-**Функции:**
-- Публикация протоколов (Markdown → HTML).
-- Визуализация Gap Index (график).
-- Карточки 12 осей.
-- Многоязычность (EN / RU / ZH) через HTMLRewriter.
-
-**Домен:** `human-ai-monitor.org` (планируется).
+**Cost at launch:** $0.
 
 ---
 
-## 3. Схема потока данных
+## 2. Components
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│  Cron Trigger (понедельник 06:00 UTC)                       │
-│         │                                                    │
-│         ▼                                                    │
-│  ┌─────────────────┐                                         
-│
-│  │ Collector       │  RSS, arXiv, News                       │
-│  │ Worker          │◄──────────────────────                  
-│
-│  └────────┬────────┘                                         
-│
-│           │                                                  │
-│           │ items (JSON)                                     │
-│           ▼                                                  │
-│  ┌─────────────────┐                                         
-│
-│  │ Queue           │                                         │
-│  │ (buffer)        │                                         │
-│  └────────┬────────┘                                         
-│
-│           │                                                  │
-│           │ 1 item at a time                                 │
-│           ▼                                                  │
-│  ┌─────────────────┐         
-┌─────────────────┐             │
-│  │ Queue Consumer  │────────►│ Ollama (Qwen)   │             
-│
-│  │ (classification)│         │ via Tunnel      │             │
-│  └────────┬────────┘         
-└─────────────────┘             │
-│           │                                                  │
-│           │ classified items                                 │
-│           ▼                                                  │
-│  ┌─────────────────┐    
-┌─────────────────┐                  │
-│  │ D1              │    │ R2              │                  │
-│  │ (structured)    │    │ (raw archive)   │                  │
-│  └────────┬────────┘    
-└─────────────────┘                  │
-│           │                                                  │
-│           ▼                                                  │
-│  ┌─────────────────┐                                         
-│
-│  │ Protocol        │  Markdown                               │
-│  │ Generator       │                                         │
-│  └────────┬────────┘                                         
-│
-│           │                                                  │
-│           ▼                                                  │
-│  ┌─────────────────┐                                         
-│
-│  │ GitHub          │                                         │
-│  │ (data/protocols)│                                         │
-│  └─────────────────┘                                         
-│
-│                                                              │
-│  ┌─────────────────┐                                         
-│
-│  │ API Worker      │◄──── Android app / web / external       │
-│  │ (public API)    │                                         │
-│  └─────────────────┘                                         
-│
-└─────────────────────────────────────────────────────────────┘
-```
+### 2.1. Cloudflare Workers — the "brain" of the system
 
----
+**Role:** Orchestration of data collection, classification, and public API.
 
-## 4. Безопасность
+**Single Worker with two handlers:**
 
-### 4.1. Секреты
+1. **`fetch` handler** — public API:
+   - `GET /` — project metadata.
+   - `GET /health` — health check.
+   - `GET /gap` — current Gap Index.
+   - `GET /protocols` — list of weekly protocols.
+   - `GET /protocols/{week}` — single protocol metadata.
+   - `GET /protocols/{week}/content` — Markdown content.
+   - `GET /axes/{axis}` — signals for a specific axis.
+   - `GET /classify?text=...&kind=ai|human` — classify arbitrary text.
+   - `GET /collect?limit=N&max=M` — manual RSS collection.
+   - `GET /generate?week=YYYY-MM-DD` — manual protocol generation.
 
-Хранятся в **Cloudflare Secrets** (не в коде):
-- `CLOUDFLARE_API_TOKEN` — для деплоя.
-- `OLLAMA_TUNNEL_URL` — URL локальной LLM.
-- `GITHUB_TOKEN` — для пуша протоколов.
+2. **`scheduled` handler** — Cron Trigger:
+   - Runs every Monday at 06:00 UTC.
+   - Collects fresh news from 14 RSS sources.
+   - Classifies each item via Workers AI.
+   - Saves to D1.
+   - Generates Markdown protocol for the past week.
 
-**Локально:** `.env` — **не коммитится** (в `.gitignore`).
+**Technology:** TypeScript, Wrangler CLI.
 
-**В Git:** только `.env.example` — шаблон без реальных значений.
+### 2.2. Cloudflare D1 — database
 
-### 4.2. Верификация
+**Role:** Storage of structured data.
 
-- **D1:** Wrangler проверяет токен и права.
-- **R2:** доступ только через bindings.
-- **Queue:** сообщения подписаны.
-- **API:** rate limiting (100 запросов/мин на IP).
+**Type:** Serverless SQL (SQLite).
 
-### 4.3. Приватность
+**Free tier:**
+- 5 GB storage.
+- 5M reads/day.
+- 100K writes/day.
 
-- **Локальная LLM** — данные не уходят третьим лицам.
-- **R2** — только сырые данные, публичные.
-- **D1** — только структурированные публичные данные.
+**Tables:**
+- `items` — classified signals (hash, title, url, axes JSON, relevance, shift, direction, reasoning).
+- `protocols` — weekly protocol metadata + Markdown content.
+- `gap_history` — Gap Index dynamics.
+- `index_history` — values of 12 axes over time.
+
+**Binding:** `DB` (in `wrangler.jsonc`).
+
+### 2.3. Cloudflare Workers AI — classifier
+
+**Role:** Classification of signals along 12 axes.
+
+**Model:** `@cf/qwen/qwen3-30b-a3b-fp8` (open-weight, MoE architecture).
+
+**Why Workers AI:**
+- **Independence** — open-weight model, no external providers.
+- **Free tier** — 10,000 neurons/day.
+- **Global edge** — runs on Cloudflare's 300+ locations.
+- **No cold start** — instant inference.
+
+**Binding:** `AI` (in `wrangler.jsonc`).
+
+**Cost:** ~15 neurons per classification (~660 classifications/day free).
+
+### 2.4. Cloudflare Cron Trigger — scheduler
+
+**Role:** Weekly automation.
+
+**Schedule:** `0 6 * * 1` (every Monday at 06:00 UTC).
+
+**What it does:**
+1. Collects fresh RSS items.
+2. Classifies via Workers AI.
+3. Saves to D1.
+4. Generates Markdown protocol for the past week.
 
 ---
 
-## 5. Развёртывание
+## 3. Data Flow
 
-### 5.1. Локально
+Cron Trigger (Monday 06:00 UTC)
+|
+v
+Worker.scheduled() <-- RSS, arXiv, News
+|
+v (items JSON)
+Workers AI (Qwen 3)
+|
+v (classified items: axes, relevance, shift, reasoning)
+D1 Database (4 tables)
+|
+v
+Protocol Generator (Markdown)
+|
+v
+GitHub (data/protocols/)
+
+API endpoints <-- Android app / web / external
+
+---
+
+## 4. Security
+
+### 4.1. Secrets
+
+Stored in **Cloudflare Secrets** (not in code):
+- `CLOUDFLARE_API_TOKEN` — for deployment (local `.env`).
+- `CLOUDFLARE_ACCOUNT_ID` — account identifier (local `.env`).
+
+**Local:** `.env` — **not committed** (in `.gitignore`).
+
+**In Git:** only `.env.example` — template without real values.
+
+### 4.2. Verification
+
+- **D1:** Wrangler validates token and permissions.
+- **API:** parameter validation (text length <= 1000 chars).
+- **No external AI providers:** all inference runs on Cloudflare's open-weight models.
+
+### 4.3. Privacy
+
+- **Workers AI** — data is not used for model training.
+- **D1** — only structured public data.
+- **No third-party analytics.**
+
+---
+
+## 5. Deployment
+
+### 5.1. Local
 
 ```bash
 git clone https://github.com/VQQLK/Human-AI-Monitor.git
 cd Human-AI-Monitor
 npm install
-npx wrangler login
-npx wrangler dev --test-scheduled
-```
-
-### 5.2. Production
-
-```bash
-# Применить миграции
+cp .env.example .env
+# Add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID to .env
+npx wrangler deploy --dry-run
+5.2. Production
+bash
+# Apply migrations
 npx wrangler d1 migrations apply human-ai-monitor-db --remote
 
-# Задеплоить Worker
+# Deploy Worker
 npx wrangler deploy
+5.3. Cron Trigger
+Configured in wrangler.jsonc:
 
-# Секреты
-npx wrangler secret put OLLAMA_TUNNEL_URL
-npx wrangler secret put GITHUB_TOKEN
-```
-
-### 5.3. Cron Trigger
-
-В `wrangler.jsonc`:
-```jsonc
+jsonc
 "triggers": {
   "crons": ["0 6 * * 1"]
 }
-```
+Runs every Monday at 06:00 UTC.
 
-Запускается **каждый понедельник в 06:00 UTC**.
+6. Scaling
+6.1. By Load
+Resource	Free tier	On excess
+Workers	100K requests/day	$5/month per 10M
+D1	5 GB, 5M reads/day	$0.75/GB
+Workers AI	10K neurons/day	$0.011 per 1K neurons
+At launch — everything fits within the Free tier.
 
----
+6.2. By Geography
+Cloudflare has 300+ edge locations.
 
-## 6. Масштабирование
+Worker runs closer to the user.
 
-### 6.1. По нагрузке
+D1 has regional replicas.
 
-| Ресурс | Free tier | При превышении |
-|--------|-----------|----------------|
-| Workers | 100K запросов/день | $5/мес за 10M |
-| D1 | 5 ГБ, 5M чтений/день | $0.75/ГБ |
-| R2 | 10 ГБ, 1M Class A | $0.015/ГБ |
-| Queues | 1M операций/мес | $0.40/1M |
+6.3. By Sources
+Adding a source — one line in the SOURCES array.
 
-**На старте** — всё укладывается в **Free**.
+Scaling collection — parallel fetch calls.
 
-### 6.2. По географии
+Scaling classification — Workers AI handles bursts automatically.
 
-- Cloudflare имеет **300+ edge-локаций**.
-- Worker исполняется **ближе к пользователю**.
-- D1 имеет **региональные реплики**.
+7. Alternatives (for comparison)
+Component	Our choice	Alternatives	Why our choice
+Runtime	Cloudflare Workers	AWS Lambda, Vercel	Zero cold start, global edge
+DB	D1	Postgres, MongoDB	Serverless, free, integrated
+LLM	Workers AI (Qwen 3)	OpenAI, Anthropic	Open-weight, free tier, no external
+Frontend	SvelteKit + Pages	Next.js, Astro	Lightweight, static export
+CI/CD	GitHub Actions	CircleCI	Free, integrated with repo
+8. Limitations
+No rate limiting. Cloudflare's rate limiting binding is experimental and not available on the Free tier. Mitigation: parameter validation (text <= 1000 chars).
 
-### 6.3. По источникам
+RSS-only collection. HTML parsing not implemented yet. Some sources without RSS are inaccessible.
 
-- Добавить источник — **одна строка** в `config/sources_*.yaml`.
-- Масштабирование сбора — через **Queue**.
-- Масштабирование классификации — через **несколько консьюмеров**.
+Single region D1. Currently EEUR. On growth — replicas.
 
----
+No automatic backups. Planned: weekly export of D1 to R2.
 
-## 7. Альтернативы (для сравнения)
+Monolithic src/index.ts. Refactoring into modules is in the roadmap.
 
-| Компонент | Наш выбор | Альтернативы | Почему наш выбор |
-|-----------|-----------|--------------|------------------|
-| Runtime | Cloudflare Workers | AWS Lambda, Vercel | Нулевой cold start, 
-глобальный edge |
-| БД | D1 | Postgres, MongoDB | Serverless, бесплатно, интегрирован |
-| Хранилище | R2 | S3, GCS | Бесплатный egress |
-| LLM | Ollama (локально) | OpenAI, Anthropic | Независимость, 
-бесплатность |
-| Очередь | Cloudflare Queues | RabbitMQ, SQS | Интеграция с Workers |
-| Frontend | SvelteKit + Pages | Next.js, Astro | Лёгкость, статический 
-экспорт |
+9. Roadmap
+□ Refactoring: split src/index.ts into 7 modules.
+□ Real test coverage (parser, classifier, protocol).
+□ Android APK (PWA + Capacitor).
+□ Web interface (Cloudflare Pages).
+□ Multilingual support (EN / RU / ZH).
+□ Push notifications for threshold shifts.
+□ HTML parsing for non-RSS sources.
+□ Integration with global indices (V-Dem, WHR, Pew).
+□ Decentralized mirror (IPFS).
+□ Independent methodology audit.
+10. Invitation
+The architecture is open for improvement. If you see how to make it better — open an Issue or Pull Request.
 
----
+Together — We Are Strong. The road will be mastered by the one who walks it.
 
-## 8. Ограничения
-
-1. **Локальная LLM зависит от локального Mac.** Если Mac выключен — 
-классификация недоступна. **Решение:** fallback на Workers AI.
-
-2. **Cloudflare Tunnel — нестабильный URL.** Если используем Quick Tunnel, 
-URL меняется. **Решение:** именованный туннель с постоянным доменом.
-
-3. **D1 — не полноценный Postgres.** Нет сложных JOIN, транзакций. 
-**Решение:** нормализовать схему.
-
-4. **Один регион D1.** Пока — EEUR. **Решение:** при росте — реплики.
-
-5. **Нет резервного копирования.** **Решение:** еженедельный экспорт D1 в 
-R2.
-
----
-
-## 9. Направления развития
-
-- [ ] Публичный API (rate limiting, документация OpenAPI).
-- [ ] Android-приложение (Capacitor + SvelteKit).
-- [ ] Push-уведомления о сдвиге порогов.
-- [ ] Децентрализованное зеркало (IPFS).
-- [ ] Многоязычность (EN / RU / ZH).
-- [ ] Независимый аудит методологии.
-- [ ] Интеграция с глобальными индексами (V-Dem, WHR, Pew).
-
----
-
-## 10. Приглашение
-
-Архитектура **открыта для улучшений**. Если вы видите, как сделать лучше — 
-открывайте Issue или Pull Request.
-
-**Вместе — Мы Сила. Дорогу осилит идущий.**
-
----
-
-**Контакт:**
+Contact:
 GitHub Issues: https://github.com/VQQLK/Human-AI-Monitor/issues
