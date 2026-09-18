@@ -491,12 +491,22 @@ export default {
 	},
 
 	async scheduled(event, env, ctx): Promise<void> {
-		console.log("[cron] " + new Date(event.scheduledTime).toISOString());
+		const isSecondBatch = event.cron === "30 6 * * 1";
+		const offset = isSecondBatch ? 12 : 0;
+		const limit = isSecondBatch ? 9 : 12;
+		const batchNumber = isSecondBatch ? 2 : 1;
+
+		console.log("[cron] Batch " + batchNumber + " triggered at " + new Date(event.scheduledTime).toISOString());
+		console.log("[cron] offset=" + offset + " limit=" + limit + " maxPerSource=3");
+
 		ctx.waitUntil((async () => {
-			const collectResult = await runCollection(env, SOURCES.length, 5);
+			const collectResult = await runCollection(env, limit, 3, offset);
 			console.log("[cron] collected: " + JSON.stringify(collectResult));
-			const gen = await generateAndSaveProtocol(env, 1);
-			console.log("[cron] protocol: " + JSON.stringify(gen));
+
+			if (isSecondBatch) {
+				const gen = await generateAndSaveProtocol(env, 1);
+				console.log("[cron] protocol: " + JSON.stringify(gen));
+			}
 		})());
 	},
 };

@@ -13,6 +13,6 @@
 		}
 	],
 	"ai": { "binding": "AI" },
-	"triggers": { "crons": ["0 6 * * 1"] },
+	"triggers": { "crons": ["0 6 * * 1", "30 6 * * 1"] },
 	"vars": { "CLASSIFIER_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8" }
 }
