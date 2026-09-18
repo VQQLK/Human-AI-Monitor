@@ -32,6 +32,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pew Internet intermittently returns HTTP 403 (rate limiting from their side)
 - Batch collection recommended: `?limit=12&offset=0` and `?limit=9&offset=12`
 
+## [0.9.0] - 2026-09-18
+
+### Added
+- Anthropic News feed (via 0xSMW/rss-feeds proxy)
+- Anthropic Engineering feed (via Olshansk/rss-feeds)
+- Anthropic Research feed (via Olshansk/rss-feeds)
+- Anthropic Red Team feed (via Olshansk/rss-feeds)
+
+### Changed
+- Sources count: 17 → 21
+- Worker version 0.8.1 → 0.9.0
+
+### Known issues
+- Anthropic Research feed has date prefixes in titles (fix in v0.9.1)
+- Pew Internet intermittently returns HTTP 403
+
 ## [0.8.1] - 2026-09-18
 
 ### Added
