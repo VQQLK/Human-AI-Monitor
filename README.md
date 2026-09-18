@@ -400,7 +400,7 @@ Please read the full Code of Conduct before contributing.
 
 MIT. Use, fork, improve.
 
-**To give benefit to the other people — what could be higher than this goal? — Приносить пользу другим людям — что может быть выше этой цели?**
+**To give benefit to the other people — what could be higher than this goal?**
 
 ---
 
