@@ -93,4 +93,4 @@ For answers to common questions about this code of conduct, see the FAQ at https
 
 ---
 
-**Together — We Are Strong. The road will be mastered by the one who walks it.**
+**United we stand. Only the one who walks conquers the road.**
