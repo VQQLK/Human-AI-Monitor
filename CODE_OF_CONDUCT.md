@@ -15,7 +15,7 @@
 
 The following behaviors are expected and requested of all community members:
 
-- Use welcoming and inclusive language
+- Use welcoming and neutral language
 - Be respectful of differing viewpoints and experiences
 - Gracefully accept constructive criticism
 - Focus on what is best for the community
