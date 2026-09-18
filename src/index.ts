@@ -39,6 +39,10 @@ const HUMAN_PROMPT = [
 
 const SOURCES = [
 	{ name: "OpenAI Blog", url: "https://openai.com/news/rss.xml", kind: "ai", type: "rss" },
+	{ name: "Anthropic News", url: "https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_anthropic_news.xml", kind: "ai", type: "rss" },
+	{ name: "Anthropic Engineering", url: "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_engineering.xml", kind: "ai", type: "rss" },
+	{ name: "Anthropic Research", url: "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_research.xml", kind: "ai", type: "rss" },
+	{ name: "Anthropic Red Team", url: "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_red.xml", kind: "ai", type: "rss" },
 	{ name: "Meta AI Blog", url: "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml", kind: "ai", type: "rss" },
 	{ name: "DeepMind Blog", url: "https://deepmind.google/blog/rss.xml", kind: "ai", type: "rss" },
 	{ name: "Hugging Face Blog", url: "https://huggingface.co/blog/feed.xml", kind: "ai", type: "rss" },
@@ -394,7 +398,7 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.8.0",
+					version: "0.9.0",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
