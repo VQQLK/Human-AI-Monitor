@@ -327,6 +327,8 @@ See CONTRIBUTING.md.
 
 ---
 ## Repository structure
+```
+
 ├── README.md ← English
 ├── README.ru.md ← Russian
 ├── MANIFESTO.md ← English
@@ -366,8 +368,10 @@ See CONTRIBUTING.md.
 ├── test/
 │ └── index.spec.ts ← Boilerplate (real tests in progress)
 └── .github/
-└── workflows/
-└── ci.yml ← CI: build + test on every push
+    └── workflows/
+        └── ci.yml ← CI: build + test on every push
+```
+
 ---
 
 ## License
