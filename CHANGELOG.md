@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Real test coverage (parser, classifier, protocol)
 - Refactoring: split monolithic src/index.ts into modules
 - HTML parsing for non-RSS sources
+- HTML entity decoding for HTML-parsed sources (`&#39;` → `'`)
 - Android APK (PWA + Capacitor)
 - Web interface (Cloudflare Pages)
 - Multilingual support (EN / RU / ZH)
