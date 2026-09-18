@@ -326,6 +326,49 @@ We welcome:
 See CONTRIBUTING.md.
 
 ---
+## Repository structure
+├── README.md ← English
+├── README.ru.md ← Russian
+├── MANIFESTO.md ← English
+├── MANIFESTO.ru.md ← Russian
+├── LICENSE ← MIT (code)
+├── DATA_LICENSE ← CC-BY 4.0 (data)
+├── CITATION.cff ← academic citation
+├── CHANGELOG.md ← version history
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── AGENTS.md
+├── package.json
+├── tsconfig.json
+├── wrangler.jsonc
+├── docs/
+│ ├── methodology.md
+│ ├── architecture.md
+│ ├── math_brief.md
+│ └── PRESS_RELEASE.md
+├── research/
+│ ├── README.md
+│ └── part1..part5.md ← Full research paper (Russian)
+├── config/
+│ ├── axes_ai.yaml
+│ ├── axes_human.yaml
+│ ├── sources_ai.yaml
+│ └── sources_human.yaml
+├── data/protocols/
+│ └── 2026-09-07_2026-09-17.md
+├── migrations/
+│ └── 0001_initial_schema.sql
+├── prompts/
+│ ├── classify_ai.txt
+│ └── classify_human.txt
+├── src/
+│ └── index.ts ← Worker code (fetch + scheduled)
+├── test/
+│ └── index.spec.ts ← Boilerplate (real tests in progress)
+└── .github/
+└── workflows/
+└── ci.yml ← CI: build + test on every push
+---
 
 ## License
 
