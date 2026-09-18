@@ -109,6 +109,14 @@ way."
 > — *Irish Open, Doonbeg. Dismissed AI existential risks as a "hoax" and 
 "4D chess".*
 
+**Xi Jinping (President of the People’s Republic of China) — 13.09.2026**
+> "First, the open source and inclusive AI initiative. China will be a 
+pioneer in establishing a BRICS AI open source community, support the 
+cooperation in developing and applying large language models, hold 
+specialized AI seminars and training courses, and build an open ecosystem 
+for AI."
+> — *At Session II of the 18th BRICS Summit, New Delhi".*
+
 ### 🧮 Mathematics Community
 
 **25 Fields Medal Winners — 11.09.2026**
