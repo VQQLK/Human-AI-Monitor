@@ -94,6 +94,7 @@ function validateParsed(p: any): any {
 
 function decodeEntities(s: string): string {
 	return s
+		.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
 		.replace(/&lt;/g, "<").replace(/&gt;/g, ">")
 		.replace(/&amp;/g, "&").replace(/&quot;/g, '"')
 		.replace(/&#39;/g, "'").replace(/&apos;/g, "'")
@@ -138,7 +139,7 @@ function parseRSS(xml: string, maxItems: number): any[] {
 
 async function fetchFromHtml(src: any): Promise<any[]> {
 	const r = await fetch(src.url, {
-		headers: { "User-Agent": "human-ai-monitor/0.8" },
+		headers: { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" },
 	});
 	if (!r.ok) throw new Error("HTTP " + r.status);
 
@@ -192,14 +193,14 @@ async function sha256Hex(s: string): Promise<string> {
 		.map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, 16);
 }
 
-async function runCollection(env: any, limit: number, maxPerSource: number): Promise<any> {
+async function runCollection(env: any, limit: number, maxPerSource: number, offset: number = 0): Promise<any> {
 	const startedAt = Date.now();
 	const stats: any = {
 		sources_processed: 0, items_fetched: 0,
 		items_classified: 0, items_saved: 0,
 		errors: [], sample: [],
 	};
-	for (let i = 0; i < limit; i++) {
+	for (let i = offset; i < offset + limit && i < SOURCES.length; i++) {
 		const src = SOURCES[i];
 		try {
 			let items: any[] = [];
@@ -207,7 +208,7 @@ async function runCollection(env: any, limit: number, maxPerSource: number): Pro
 				items = await fetchFromHtml(src);
 				items = items.slice(0, maxPerSource);
 			} else {
-				const r = await fetch(src.url, { headers: { "User-Agent": "human-ai-monitor/0.8" } });
+				const r = await fetch(src.url, { headers: { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" } });
 				if (!r.ok) { stats.errors.push(src.name + ": HTTP " + r.status); continue; }
 				const xml = await r.text();
 				items = parseRSS(xml, maxPerSource);
@@ -456,7 +457,8 @@ export default {
 			if (path === "/collect") {
 				const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "3", 10), SOURCES.length);
 				const maxPerSource = Math.min(parseInt(url.searchParams.get("max") ?? "2", 10), 5);
-				return json(await runCollection(env, limit, maxPerSource), 200);
+				const offset = Math.max(0, parseInt(url.searchParams.get("offset") ?? "0", 10));
+				return json(await runCollection(env, limit, maxPerSource, offset), 200);
 			}
 			if (path === "/generate") {
 				const weekParam = url.searchParams.get("week");
