@@ -3,6 +3,8 @@
 **An open tool for monitoring the development of Artificial Intelligence 
 and Humanity.**
 
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md) [![EN](https://img.shields.io/badge/lang-EN-blue.svg)](CODE_OF_CONDUCT.md) [![RU](https://img.shields.io/badge/lang-RU-red.svg)](CODE_OF_CONDUCT.ru.md)
 ---
 
 ## Voices
@@ -374,6 +376,26 @@ See CONTRIBUTING.md.
 
 ---
 
+## Code of Conduct
+
+This project follows the [Contributor Covenant](https://www.contributor-covenant.org/) v2.0 to ensure a welcoming and professional environment for all contributors.
+
+**🌐 Available in two languages:**
+- [🇺🇸 English](CODE_OF_CONDUCT.md)
+- [🇷🇺 Русский](CODE_OF_CONDUCT.ru.md)
+
+### Our 5 Core Principles
+
+1. **Respect.** We debate ideas, not people.
+2. **Facts over opinions.** Every argument must be backed by a verifiable source.
+3. **Transparency.** All decisions and changes are discussed in public.
+4. **Openness.** We welcome diverse perspectives and constructive dissent.
+5. **Accountability.** We take responsibility for our words and our code.
+
+Please read the full Code of Conduct before contributing.
+
+---
+
 ## License
 
 MIT. Use, fork, improve.
@@ -383,5 +405,4 @@ goal?**
 
 ---
 
-**Together — We Are Strong. The road will be mastered by the one who walks 
-it.**
+**United we stand. Only the one who walks conquers the road.**
