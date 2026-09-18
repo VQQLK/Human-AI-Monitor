@@ -96,6 +96,15 @@ function validateParsed(p: any): any {
 	return p;
 }
 
+function cleanTitle(s: string): string {
+	let t = s;
+	if (/(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},?\s+\d{4}/i.test(t)) {
+		t = t.replace(/^.*?\d{4}\s*/, "");
+	}
+	t = t.replace(/^(Science|Frontier Red Team|Alignment|Research|Policy|Engineering|Product|Announcements|Societal Impacts|Economic Research|Interpretability|Alignment Science)\s*/i, "");
+	return t.trim();
+}
+
 function decodeEntities(s: string): string {
 	return s
 		.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
@@ -111,7 +120,7 @@ function decodeEntities(s: string): string {
 function extractTag(xml: string, tag: string): string {
 	const re = new RegExp("<" + tag + "[^>]*>([\\s\\S]*?)<\\/" + tag + ">", "i");
 	const m = xml.match(re);
-	return m ? decodeEntities(m[1]) : "";
+	return m ? cleanTitle(decodeEntities(m[1])) : "";
 }
 
 function parseRSS(xml: string, maxItems: number): any[] {
@@ -398,7 +407,7 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.9.0",
+					version: "0.9.1",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
