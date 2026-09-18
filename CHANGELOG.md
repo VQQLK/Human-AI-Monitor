@@ -16,6 +16,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Web interface (Cloudflare Pages)
 - Multilingual support (EN / RU / ZH)
 
+## [0.9.3] - 2026-09-18
+
+### Changed
+- Replaced `env: any` with `env: Env` in all functions (type safety)
+- `fetch` signature: `(request: Request, env: Env, ctx: ExecutionContext)`
+- `scheduled` signature: `(event: ScheduledEvent, env: Env, ctx: ExecutionContext)`
+- Worker version 0.9.1 → 0.9.3
+
 ## [0.9.2] - 2026-09-18
 
 ### Fixed
