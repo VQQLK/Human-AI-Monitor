@@ -30,7 +30,7 @@ The following behaviors are expected and requested of all community members:
 The following behaviors are considered harassment and are unacceptable within our community:
 
 - **Personal attacks:** insults, threats, intimidation, or derogatory language directed at individuals
-- **Discrimination:** harassment based on protected characteristics (race, gender, religion, disability, sexual orientation, etc.)
+- **Discrimination:** harassment based on protected characteristics (race, gender, religion, disability, etc.)
 - **Harassment:** stalking, unwanted attention, or persistent private communication after being asked to stop
 - **Doxxing:** publishing others' private information (physical or electronic addresses, personal details) without explicit permission
 - **Trolling:** deliberately disruptive behavior, inflammatory comments, or bad-faith arguments
