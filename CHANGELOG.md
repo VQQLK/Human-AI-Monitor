@@ -16,6 +16,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Web interface (Cloudflare Pages)
 - Multilingual support (EN / RU / ZH)
 
+## [0.8.0] - 2026-09-18
+
+### Added
+- Cohere Labs Community Blog (HTML source via `a.post-title` selector)
+- BAIR Blog (RSS source: https://bair.berkeley.edu/blog/feed.xml)
+- HTMLRewriter now supports two title extraction modes: `aria-label` and text content
+- HTML entity decoding for HTML-parsed sources
+
+### Changed
+- Sources count: 15 → 17
+- User-Agent updated to v0.8
+
+## [0.7.0] - 2026-09-18
+
+### Added
+- HTML parsing support via Cloudflare `HTMLRewriter`
+- First HTML source: EleutherAI Blog (`a.entry-link` selector)
+- `type` field in SOURCES: `rss` (default) or `html` with `htmlSelector`
+- `fetchFromHtml()` function for static HTML sites
+
+### Changed
+- Worker version 0.6.0 → 0.7.0
+- Sources count: 14 → 15
+
 ## [0.6.0] - 2026-09-18
 
 ### Added
