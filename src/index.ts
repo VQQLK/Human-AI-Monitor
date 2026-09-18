@@ -59,6 +59,11 @@ const SOURCES = [
 	{ name: "WHO News", url: "https://www.who.int/rss-feeds/news-english.xml", kind: "human", type: "rss" },
 	{ name: "Reuters Institute", url: "https://reutersinstitute.politics.ox.ac.uk/rss.xml", kind: "human", type: "rss" },
 	{ name: "Freedom House", url: "https://freedomhouse.org/rss.xml", kind: "human", type: "rss" },
+	{ name: "Noema Magazine", url: "https://www.noemamag.com/?feed=noemarss", kind: "human", type: "rss" },
+	{ name: "Harvard Business Review", url: "https://feeds.feedburner.com/HarvardBusinessReview", kind: "human", type: "rss" },
+	{ name: "Nature Mental Health", url: "https://www.nature.com/natmentalhealth.rss", kind: "human", type: "rss" },
+	{ name: "Aeon Essays", url: "https://aeon.co/feed.rss", kind: "human", type: "rss" },
+	{ name: "Stanford Internet Observatory", url: "https://cyber.fsi.stanford.edu/rss.xml", kind: "human", type: "rss" },
 ];
 
 const AI_AXES = ["smd","itq","agg","cycle_velocity","verification","hexad","geopolitics"];
@@ -243,6 +248,11 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 					if (!parsed) continue;
 					stats.items_classified++;
 					const hash = await sha256Hex(item.url || item.title);
+const existing = await env.DB.prepare("SELECT hash FROM items WHERE hash = ?").bind(hash).first();
+if (existing) {
+  stats.items_saved++;
+  continue;
+}
 					const today = new Date().toISOString().slice(0, 10);
 					await env.DB.prepare(
 						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, shift, direction, reasoning, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
@@ -492,8 +502,8 @@ export default {
 
 	async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
 		const isSecondBatch = event.cron === "30 6 * * 1";
-		const offset = isSecondBatch ? 12 : 0;
-		const limit = isSecondBatch ? 9 : 12;
+		const offset = isSecondBatch ? 13 : 0;
+		const limit = isSecondBatch ? 13 : 13;
 		const batchNumber = isSecondBatch ? 2 : 1;
 
 		console.log("[cron] Batch " + batchNumber + " triggered at " + new Date(event.scheduledTime).toISOString());
