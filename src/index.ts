@@ -4,7 +4,7 @@ import { AI_AXES, HUMAN_AXES, SMD_THRESHOLD } from "./config/axes";
 import { AI_PROMPT, HUMAN_PROMPT } from "./config/prompts";
 import { fetchWithRetry } from "./utils/fetch-with-retry";
 
-function parseAIResponse(response: any): any {
+export function parseAIResponse(response: any): any {
 	const content = response?.choices?.[0]?.message?.content
 		?? response?.response
 		?? null;
@@ -19,7 +19,7 @@ function parseAIResponse(response: any): any {
 	return null;
 }
 
-function validateParsed(p: any): any {
+export function validateParsed(p: any): any {
 	if (!p || typeof p !== "object") return p;
 	if (Array.isArray(p.axes) && p.axes.length > 3) p.axes = p.axes.slice(0, 3);
 	if (!Array.isArray(p.axes)) p.axes = [];
@@ -36,7 +36,7 @@ function validateParsed(p: any): any {
 	return p;
 }
 
-function cleanTitle(s: string): string {
+export function cleanTitle(s: string): string {
 	let t = s;
 	if (/(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},?\s+\d{4}/i.test(t)) {
 		t = t.replace(/^.*?\d{4}\s*/, "");
@@ -45,7 +45,7 @@ function cleanTitle(s: string): string {
 	return t.trim();
 }
 
-function decodeEntities(s: string): string {
+export function decodeEntities(s: string): string {
 	return s
 		.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
 		.replace(/&lt;/g, "<").replace(/&gt;/g, ">")
@@ -57,13 +57,13 @@ function decodeEntities(s: string): string {
 		.replace(/\s+/g, " ").trim();
 }
 
-function extractTag(xml: string, tag: string): string {
+export function extractTag(xml: string, tag: string): string {
 	const re = new RegExp("<" + tag + "[^>]*>([\\s\\S]*?)<\\/" + tag + ">", "i");
 	const m = xml.match(re);
 	return m ? cleanTitle(decodeEntities(m[1])) : "";
 }
 
-function parseRSS(xml: string, maxItems: number): any[] {
+export function parseRSS(xml: string, maxItems: number): any[] {
 	const items: any[] = [];
 	const rssRe = /<item[\s>][\s\S]*?<\/item>/gi;
 	let m;
@@ -138,7 +138,7 @@ async function fetchFromHtml(src: any): Promise<any[]> {
 	return items.filter((i: any) => i.title && i.title.length > 3).slice(0, 20);
 }
 
-async function sha256Hex(s: string): Promise<string> {
+export async function sha256Hex(s: string): Promise<string> {
 	const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
 	return Array.from(new Uint8Array(buf))
 		.map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, 16);
@@ -224,7 +224,7 @@ if (existing) {
 	return { duration_ms: Date.now() - startedAt, ...stats };
 }
 
-function getWeekRange(offsetWeeks: number): any {
+export function getWeekRange(offsetWeeks: number): any {
 	const now = new Date();
 	const day = now.getUTCDay();
 	const diff = (day + 6) % 7;
