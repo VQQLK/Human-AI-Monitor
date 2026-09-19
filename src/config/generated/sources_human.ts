@@ -34,7 +34,8 @@ export default {
         "h3_wellbeing",
         "h4_equity"
       ],
-      "note": "Fixed: using alternative etoc endpoint (RSS 1.0 RDF format, HTTP 200)"
+      "note": "Disabled: etoc endpoint returns HTTP 200 locally but 403 from Worker (Cloudflare bot protection checks TLS fingerprint)",
+      "enabled": false
     },
     {
       "name": "Pew Research — Internet & Tech",
