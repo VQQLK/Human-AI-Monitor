@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Trump AI Force announcement (19.09.2026) to Voices section in README.md and README.ru.md
+
 ### Planned
 - Real test coverage (parser, classifier, protocol)
 - Refactoring: split monolithic src/index.ts into modules
