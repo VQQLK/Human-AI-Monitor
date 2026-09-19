@@ -429,11 +429,11 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.9.4",
+					version: "0.9.5",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/health", "/gap", "/protocols", "/protocols/{week}", "/protocols/{week}/content", "/axes/{axis}", "/classify", "/collect", "/generate"],
+					endpoints: ["/health", "/gap", "/protocols", "/protocols/{week}", "/protocols/{week}/content", "/axes/{axis}", "/classify", "/verify", "/collect", "/generate"],
 				}, 200);
 			}
 			if (path === "/health") return json({ status: "ok", ts: Date.now() }, 200);
