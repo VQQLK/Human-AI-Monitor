@@ -405,3 +405,5 @@ MIT. Use, fork, improve.
 ---
 
 **United we stand. Only the one who walks conquers the road.**
+
+**Приносить пользу другим людям — что может быть выше этой цели?**
