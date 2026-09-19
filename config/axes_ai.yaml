@@ -15,8 +15,8 @@ axes:
     description: "Глубина самомодификации: способность системы изменять 
 собственный код или архитектуру (L0–L4)"
     threshold: "Воспроизводимый L4 у ≥2 независимых систем"
-    current: "L1–L2 (большинство); L3–L4 (заявки без верификации)"
-    level: 0.30
+    current: "L4 (Anthropic R&D: 26% AL4, >90% AL3); L1-L2 (остальные)"
+    level: 0.45
     keywords:
       - "self-modification"
       - "self-referential"

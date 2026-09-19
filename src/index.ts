@@ -1,3 +1,5 @@
+import { detectCheating } from "./cheat-detector";
+
 const AI_PROMPT = [
 	"You classify signals about AI self-improvement (RSI).",
 	"Return STRICT JSON:",
@@ -67,6 +69,16 @@ const SOURCES = [
 ];
 
 const AI_AXES = ["smd","itq","agg","cycle_velocity","verification","hexad","geopolitics"];
+
+// SMD thresholds based on Anthropic R&D Automation Index (Sep 2026)
+// AL0=human, AL3=collaboration, AL4=AI-led, AL5=full autonomy
+const SMD_THRESHOLD = {
+	L4_MIN_SYSTEMS: 2,        // need ≥2 independent systems at L4
+	L4_CURRENT_SYSTEMS: 1,    // Anthropic is first (26% AL4 as of Aug 2026)
+	ANTHROPIC_AL4_PERCENT: 26,
+	ANTHROPIC_AL3_PERCENT: 90,
+	LEVEL: 0.45,              // 1 system out of 2 needed → 0.45
+};
 const HUMAN_AXES = ["h1_agency","h2_sovereignty","h3_wellbeing","h4_equity","h5_meaning","h6_democracy"];
 
 function parseAIResponse(response: any): any {
@@ -417,7 +429,7 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.9.3",
+					version: "0.9.4",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
@@ -492,6 +504,13 @@ export default {
 					offset = Math.floor((now.getTime() - target.getTime()) / (7 * 24 * 3600 * 1000));
 				}
 				return json(await generateAndSaveProtocol(env, offset), 200);
+			}
+			if (path === "/verify") {
+				const text = url.searchParams.get("trace");
+				if (!text) return json({ error: "Missing ?trace= parameter" }, 400);
+				if (text.length > 10000) return json({ error: "Trace too long (max 10000 chars)" }, 400);
+				const result = detectCheating(text);
+				return json({ input_length: text.length, ...result }, 200);
 			}
 			return json({ error: "Not Found", path }, 404);
 		} catch (err) {
