@@ -19,6 +19,9 @@ function convertYamlSources(yamlSources: any, kind: "ai" | "human"): Source[] {
   // RSS источники
   if (yamlSources.rss && Array.isArray(yamlSources.rss)) {
     for (const src of yamlSources.rss) {
+      // Пропустить отключённые источники
+      if (src.enabled === false) continue;
+      
       sources.push({
         name: src.name,
         url: src.url,
@@ -34,6 +37,9 @@ function convertYamlSources(yamlSources: any, kind: "ai" | "human"): Source[] {
   // HTML источники
   if (yamlSources.html_sources && Array.isArray(yamlSources.html_sources)) {
     for (const src of yamlSources.html_sources) {
+      // Пропустить отключённые источники
+      if (src.enabled === false) continue;
+      
       sources.push({
         name: src.name,
         url: src.url,

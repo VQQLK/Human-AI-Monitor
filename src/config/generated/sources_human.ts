@@ -21,7 +21,9 @@ export default {
         "h1_agency",
         "h3_wellbeing",
         "h5_meaning"
-      ]
+      ],
+      "enabled": false,
+      "note": "Requires auth (HTTP 303 → idp.nature.com)"
     },
     {
       "name": "The Lancet — Public Health",
@@ -79,7 +81,9 @@ export default {
       "tier": 1,
       "axes": [
         "h6_democracy"
-      ]
+      ],
+      "enabled": false,
+      "note": "URL returns 404"
     },
     {
       "name": "Edelman Trust Barometer",
@@ -117,7 +121,9 @@ export default {
       "axes": [
         "h4_equity",
         "h5_meaning"
-      ]
+      ],
+      "enabled": false,
+      "note": "URL returns 404"
     },
     {
       "name": "Aeon Essays",

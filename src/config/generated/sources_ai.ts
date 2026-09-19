@@ -85,7 +85,9 @@ export default {
       "name": "VentureBeat — AI",
       "url": "https://venturebeat.com/category/ai/feed/",
       "lang": "en",
-      "tier": 2
+      "tier": 2,
+      "enabled": false,
+      "note": "Temporarily disabled: HTTP 429 rate limit"
     },
     {
       "name": "AI Alignment Forum",

@@ -13,6 +13,8 @@ rss:
   - h1_agency
   - h3_wellbeing
   - h5_meaning
+  enabled: false
+  note: Requires auth (HTTP 303 → idp.nature.com)
 - name: The Lancet — Public Health
   url: https://www.thelancet.com/rssfeed/lanpub_online.xml
   lang: en
@@ -53,6 +55,8 @@ rss:
   tier: 1
   axes:
   - h6_democracy
+  enabled: false
+  note: URL returns 404
 - name: Edelman Trust Barometer
   url: https://www.edelman.com/rss.xml
   lang: en
@@ -79,6 +83,8 @@ rss:
   axes:
   - h4_equity
   - h5_meaning
+  enabled: false
+  note: URL returns 404
 - name: Aeon Essays
   url: https://aeon.co/feed.rss
   lang: en
