@@ -111,6 +111,13 @@ way."
 > — *Irish Open, Doonbeg. Dismissed AI existential risks as a "hoax" and 
 "4D chess".*
 
+
+**Donald Trump — 19.09.2026**
+> "For this purpose, I am forming the AI Force, much like I did Space Force, 
+which has been a tremendous SUCCESS, in my First Term. To that end, I will 
+be announcing, in the near future, the AI 'Czar' — Only High I.Q. individuals 
+need apply!"
+> — *Truth Social post. Announced creation of AI Force and AI Czar position.*
 **Xi Jinping (President of the People's Republic of China) — 13.09.2026**
 > "First, the open source and inclusive AI initiative. China will be a 
 pioneer in establishing a BRICS AI open source community, support the 
