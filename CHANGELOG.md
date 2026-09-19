@@ -16,6 +16,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Web interface (Cloudflare Pages)
 - Multilingual support (EN / RU / ZH)
 
+## [0.9.5] - 2026-09-19
+
+### Fixed
+- `/verify` endpoint added to endpoints list in `/` response
+- SMD `level` set to 0.45 in `config/axes_ai.yaml`
+
+### Changed
+- Endpoints count: 9 → 10
+- Worker version 0.9.4 → 0.9.5
+
 ## [0.9.4] - 2026-09-19
 
 ### Added
