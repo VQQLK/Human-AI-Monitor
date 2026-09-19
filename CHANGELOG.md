@@ -16,6 +16,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Web interface (Cloudflare Pages)
 - Multilingual support (EN / RU / ZH)
 
+## [0.9.9] - 2026-09-19
+
+### Added
+- Unit tests for parser (decodeEntities, cleanTitle, extractTag, parseRSS): 14 tests
+- Unit tests for classifier (parseAIResponse, validateParsed): 15 tests
+- Unit tests for cheat-detector (harness + task categories): 7 tests
+- 8 pure functions exported from `src/index.ts` for testing
+
+### Fixed
+- `sha256Hex` modifier order (`async export` → `export async`)
+
+### Changed
+- Total tests: 8 → 44 (API + unit)
+- Test coverage: ~40% → ~60%
+- Worker version 0.9.8 → 0.9.9
+
 ## [0.9.8] - 2026-09-19
 
 ### Added
