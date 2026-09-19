@@ -245,10 +245,11 @@ models hosted by Cloudflare Workers AI.
 
 **MVP live:**
 - ✅ Cloudflare Worker with 10 API endpoints — deployed
+- ✅ `/verify` endpoint — CheatBench-inspired reward hacking detection
 - ✅ D1 database (4 tables, populated)
 - ✅ Workers AI classifier (Qwen 3, calibrated for 12 symmetric axes + 
 geopolitics)
-- ✅ RSS collector (12+ of 14 sources working)
+- ✅ RSS + HTML collector (21 sources)
 - ✅ Weekly protocol auto-generation (Markdown)
 - ✅ Cron Trigger (every Monday 06:00 UTC)
 - ✅ Public API accessible worldwide
@@ -310,8 +311,38 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
 | GET | /protocols/{week}/content | Markdown content of protocol |
 | GET | /axes/{axis} | Signals for a specific axis |
 | GET | /classify | Classify arbitrary text |
+| GET | /verify | Detect reward hacking (CheatBench-inspired) |
 | GET | /collect | Manual RSS collection |
 | GET | /generate | Manual protocol generation |
+
+
+### Verification endpoint
+
+The `/verify` endpoint detects **reward hacking** in agent traces, 
+inspired by 
+[CheatBench](https://huggingface.co/datasets/steinad/CheatBench) (3,870 
+labeled trajectories).
+
+**Categories:**
+- `harness` — exploitation of benchmark information (hidden tests, scoring 
+files, git log)
+- `task` — bypassing intended solution path (`eval()`, monkey-patching, 
+operator overloading)
+
+**Example:**
+
+    curl 
+"https://human-ai-monitor-collector.human-ai-monitor.workers.dev/verify?trace=agent%20used%20eval()%20and%20monkey-patched%20the%20grader"
+
+**Response:**
+
+    {
+      "cheating": true,
+      "cheating_type": "task",
+      "evidence": ["task: eval(", "task: monkey-patch"],
+      "confidence": 0.67
+    }
+
 
 ---
 
