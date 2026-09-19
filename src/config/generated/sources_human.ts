@@ -27,13 +27,14 @@ export default {
     },
     {
       "name": "The Lancet — Public Health",
-      "url": "https://www.thelancet.com/rssfeed/lanpub_online.xml",
+      "url": "https://www.thelancet.com/action/showFeed?type=etoc&feed=rss&jc=lanpub",
       "lang": "en",
       "tier": 1,
       "axes": [
         "h3_wellbeing",
         "h4_equity"
-      ]
+      ],
+      "note": "Fixed: using alternative etoc endpoint (RSS 1.0 RDF format, HTTP 200)"
     },
     {
       "name": "Pew Research — Internet & Tech",
@@ -87,12 +88,13 @@ export default {
     },
     {
       "name": "Edelman Trust Barometer",
-      "url": "https://www.edelman.com/rss.xml",
+      "url": "https://news.google.com/rss/search?q=Edelman+Trust+Barometer&hl=en-US&gl=US&ceid=US:en",
       "lang": "en",
       "tier": 2,
       "axes": [
         "h6_democracy"
-      ]
+      ],
+      "note": "Fallback: Google News RSS (official URL returns 403)"
     },
     {
       "name": "World Inequality Lab",
@@ -105,13 +107,14 @@ export default {
     },
     {
       "name": "OECD — Economy",
-      "url": "https://www.oecd.org/newsroom/rss.xml",
+      "url": "https://news.google.com/rss/search?q=OECD+economy+policy&hl=en-US&gl=US&ceid=US:en",
       "lang": "en",
       "tier": 2,
       "axes": [
         "h4_equity",
         "h5_meaning"
-      ]
+      ],
+      "note": "Fallback: Google News RSS (official URL returns 403 bot protection)"
     },
     {
       "name": "ILO News",
