@@ -2,6 +2,7 @@ import { detectCheating } from "./cheat-detector";
 import { SOURCES } from "./config/sources";
 import { AI_AXES, HUMAN_AXES, SMD_THRESHOLD } from "./config/axes";
 import { AI_PROMPT, HUMAN_PROMPT } from "./config/prompts";
+import { fetchWithRetry } from "./utils/fetch-with-retry";
 
 function parseAIResponse(response: any): any {
 	const content = response?.choices?.[0]?.message?.content
@@ -90,9 +91,7 @@ function parseRSS(xml: string, maxItems: number): any[] {
 }
 
 async function fetchFromHtml(src: any): Promise<any[]> {
-	const r = await fetch(src.url, {
-		headers: { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" },
-	});
+	const r = await fetchWithRetry(src.url);
 	if (!r.ok) throw new Error("HTTP " + r.status);
 
 	const items: any[] = [];
@@ -149,7 +148,7 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 	const startedAt = Date.now();
 	const stats: any = {
 		sources_processed: 0, items_fetched: 0,
-		items_classified: 0, items_saved: 0,
+		items_classified: 0, items_saved: 0, items_existing: 0,
 		errors: [], sample: [],
 	};
 	for (let i = offset; i < offset + limit && i < SOURCES.length; i++) {
@@ -160,7 +159,7 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 				items = await fetchFromHtml(src);
 				items = items.slice(0, maxPerSource);
 			} else {
-				const r = await fetch(src.url, { headers: { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" } });
+				const r = await fetchWithRetry(src.url);
 				if (!r.ok) { stats.errors.push(src.name + ": HTTP " + r.status); continue; }
 				const xml = await r.text();
 				items = parseRSS(xml, maxPerSource);
@@ -184,7 +183,14 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 					const hash = await sha256Hex(item.url || item.title);
 const existing = await env.DB.prepare("SELECT hash FROM items WHERE hash = ?").bind(hash).first();
 if (existing) {
-  stats.items_saved++;
+  stats.items_existing++;
+  if (stats.sample.length < 5 && Array.isArray(parsed.axes) && parsed.axes.length > 0) {
+    stats.sample.push({
+      source: src.name, title: item.title.slice(0, 120),
+      axes: parsed.axes, relevance: parsed.relevance, shift: parsed.shift,
+      existing: true,
+    });
+  }
   continue;
 }
 					const today = new Date().toISOString().slice(0, 10);
@@ -201,7 +207,7 @@ if (existing) {
 						new Date().toISOString()
 					).run();
 					stats.items_saved++;
-					if (stats.sample.length < 5) {
+					if (stats.sample.length < 5 && Array.isArray(parsed.axes) && parsed.axes.length > 0) {
 						stats.sample.push({
 							source: src.name, title: item.title.slice(0, 120),
 							axes: parsed.axes, relevance: parsed.relevance, shift: parsed.shift,
@@ -351,7 +357,7 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.9.5",
+					version: "0.9.8",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
@@ -442,19 +448,24 @@ export default {
 	},
 
 	async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
-		const isSecondBatch = event.cron === "30 6 * * 1";
-		const offset = isSecondBatch ? 13 : 0;
-		const limit = isSecondBatch ? 13 : 13;
-		const batchNumber = isSecondBatch ? 2 : 1;
+		// 4 batches to stay under 50-subrequest limit (31 sources x 3 subrequests = 93)
+		const batchConfig: Record<string, { offset: number; limit: number; batch: number }> = {
+			"0 6 * * 1":  { offset: 0,  limit: 8, batch: 1 },
+			"15 6 * * 1": { offset: 8,  limit: 8, batch: 2 },
+			"30 6 * * 1": { offset: 16, limit: 8, batch: 3 },
+			"45 6 * * 1": { offset: 24, limit: 8, batch: 4 },
+		};
+		const cfg = batchConfig[event.cron] ?? batchConfig["0 6 * * 1"];
+		const isLastBatch = cfg.batch === 4;
 
-		console.log("[cron] Batch " + batchNumber + " triggered at " + new Date(event.scheduledTime).toISOString());
-		console.log("[cron] offset=" + offset + " limit=" + limit + " maxPerSource=3");
+		console.log("[cron] Batch " + cfg.batch + "/4 triggered at " + new Date(event.scheduledTime).toISOString());
+		console.log("[cron] offset=" + cfg.offset + " limit=" + cfg.limit + " maxPerSource=3");
 
 		ctx.waitUntil((async () => {
-			const collectResult = await runCollection(env, limit, 3, offset);
+			const collectResult = await runCollection(env, cfg.limit, 3, cfg.offset);
 			console.log("[cron] collected: " + JSON.stringify(collectResult));
 
-			if (isSecondBatch) {
+			if (isLastBatch) {
 				const gen = await generateAndSaveProtocol(env, 1);
 				console.log("[cron] protocol: " + JSON.stringify(gen));
 			}
