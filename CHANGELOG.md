@@ -16,6 +16,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Web interface (Cloudflare Pages)
 - Multilingual support (EN / RU / ZH)
 
+## [0.9.4] - 2026-09-19
+
+### Added
+- `/verify` endpoint with CheatBench-inspired heuristics for reward hacking detection:
+  - `harness` category: hidden tests, scoring files, git log exploitation (683 traces in CheatBench)
+  - `task` category: eval/exec, monkey-patching, operator overloading (136 traces in CheatBench)
+- `src/cheat-detector.ts` — standalone module with 15+ regex patterns
+- SMD threshold updated based on Anthropic R&D Automation Index (Sep 2026):
+  - Anthropic reached 26% AL4 (AI-led tasks) and >90% AL3 (collaboration)
+  - First system with sustained L4; threshold remains "≥2 systems"
+  - Current SMD level: 0.30 → 0.45
+
+### Changed
+- Worker version 0.9.3 → 0.9.4
+- Endpoints count: 9 → 10
+- `config/axes_ai.yaml` updated with Anthropic AL4 data
+
 ## [0.9.3] - 2026-09-18
 
 ### Changed
