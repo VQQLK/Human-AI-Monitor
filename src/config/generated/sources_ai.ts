@@ -23,13 +23,13 @@ export default {
     },
     {
       "name": "Meta AI Blog",
-      "url": "https://ai.meta.com/blog/rss/",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml",
       "lang": "en",
       "tier": 1
     },
     {
       "name": "Mistral AI",
-      "url": "https://mistral.ai/news/feed.xml",
+      "url": "https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_mistral_news.xml",
       "lang": "en",
       "tier": 1
     },
