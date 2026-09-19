@@ -11,7 +11,7 @@ export default {
     },
     {
       "name": "Anthropic News",
-      "url": "https://www.anthropic.com/news/rss.xml",
+      "url": "https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_anthropic_news.xml",
       "lang": "en",
       "tier": 1
     },
