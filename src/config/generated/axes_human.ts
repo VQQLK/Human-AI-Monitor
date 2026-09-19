@@ -1,0 +1,128 @@
+// Auto-generated from axes_human.yaml
+// DO NOT EDIT MANUALLY — run: node scripts/yaml-to-ts.mjs
+
+export default {
+  "axes": {
+    "h1_agency": {
+      "name": "Human Agency",
+      "description": "Агентность человека: способность принимать решения, не делегируя их ИИ",
+      "threshold": "Устойчивое снижение агентности в ключевых сферах (работа, здоровье, образование)",
+      "current": "Стабильно; локальные признаки снижения",
+      "level": 0.55,
+      "keywords": [
+        "autonomy",
+        "decision-making",
+        "human control",
+        "deskilling",
+        "over-reliance",
+        "delegation"
+      ],
+      "sources": [
+        "Pew Research",
+        "Gallup",
+        "OECD Better Life Index"
+      ]
+    },
+    "h2_sovereignty": {
+      "name": "Cognitive Sovereignty",
+      "description": "Когнитивный суверенитет: критическое мышление, независимость суждений, устойчивость к манипуляции",
+      "threshold": "Рост доли людей, не способных отличить ИИ-контент от человеческого без инструментов верификации",
+      "current": "Снижение медиаграмотности; рост дипфейков",
+      "level": 0.5,
+      "keywords": [
+        "critical thinking",
+        "misinformation",
+        "deepfake",
+        "media literacy",
+        "polarization",
+        "echo chamber",
+        "epistemic"
+      ],
+      "sources": [
+        "PISA",
+        "Reuters Institute",
+        "исследования AI-зависимости"
+      ]
+    },
+    "h3_wellbeing": {
+      "name": "Wellbeing & Mental Health",
+      "description": "Благополучие: психическое здоровье, одиночество, тревожность, смысл жизни",
+      "threshold": "Устойчивый рост тревожности и одиночества среди молодёжи, коррелирующий с ростом использования ИИ",
+      "current": "Рост одиночества; корреляция с ИИ-компаньонами",
+      "level": 0.45,
+      "keywords": [
+        "mental health",
+        "loneliness",
+        "anxiety",
+        "depression",
+        "burnout",
+        "youth wellbeing"
+      ],
+      "sources": [
+        "WHO Mental Health Atlas",
+        "Gallup Wellbeing",
+        "CDC Youth Risk Behavior Survey"
+      ]
+    },
+    "h4_equity": {
+      "name": "Equity & Access",
+      "description": "Равенство и доступ: распределение благ ИИ, цифровое неравенство, доступ к вычислительным ресурсам",
+      "threshold": "Рост разрыва между странами/группами по доступу к фронтирным ИИ",
+      "current": "Compute divide растёт; Global South отстаёт",
+      "level": 0.4,
+      "keywords": [
+        "digital divide",
+        "inequality",
+        "access",
+        "compute divide",
+        "Global South",
+        "AI gap"
+      ],
+      "sources": [
+        "World Inequality Database",
+        "ITU Digital Development",
+        "World Bank"
+      ]
+    },
+    "h5_meaning": {
+      "name": "Meaning & Purpose",
+      "description": "Смысл и цель: наличие смысла в жизни, удовлетворённость работой, творческая самореализация",
+      "threshold": "Устойчивое снижение доли людей, находящих смысл в труде, по мере автоматизации",
+      "current": "Стабильно; признаки эрозии в автоматизируемых профессиях",
+      "level": 0.5,
+      "keywords": [
+        "purpose",
+        "meaning",
+        "job satisfaction",
+        "creativity",
+        "self-realization",
+        "alienation"
+      ],
+      "sources": [
+        "World Values Survey",
+        "Gallup Engagement",
+        "OECD Job Quality"
+      ]
+    },
+    "h6_democracy": {
+      "name": "Democratic Resilience",
+      "description": "Устойчивость институтов: доверие к институтам, качество демократии, устойчивость к дезинформации",
+      "threshold": "Устойчивое снижение доверия к институтам, коррелирующее с распространением ИИ-контента",
+      "current": "Снижение доверия; рост дезинформации; раскол элит",
+      "level": 0.45,
+      "keywords": [
+        "trust",
+        "institutions",
+        "democracy",
+        "governance",
+        "rule of law",
+        "disinformation"
+      ],
+      "sources": [
+        "V-Dem",
+        "Freedom House",
+        "Edelman Trust Barometer"
+      ]
+    }
+  }
+} as const;

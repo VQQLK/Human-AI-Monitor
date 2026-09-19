@@ -1,0 +1,153 @@
+// Auto-generated from sources_human.yaml
+// DO NOT EDIT MANUALLY — run: node scripts/yaml-to-ts.mjs
+
+export default {
+  "rss": [
+    {
+      "name": "WHO News",
+      "url": "https://www.who.int/rss-feeds/news-english.xml",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h3_wellbeing"
+      ]
+    },
+    {
+      "name": "Nature — Human Behaviour",
+      "url": "https://www.nature.com/nhumbehav.rss",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h1_agency",
+        "h3_wellbeing",
+        "h5_meaning"
+      ]
+    },
+    {
+      "name": "The Lancet — Public Health",
+      "url": "https://www.thelancet.com/rssfeed/lanpub_online.xml",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h3_wellbeing",
+        "h4_equity"
+      ]
+    },
+    {
+      "name": "Pew Research — Internet & Tech",
+      "url": "https://www.pewresearch.org/topic/internet-technology/feed/",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h1_agency",
+        "h2_sovereignty"
+      ]
+    },
+    {
+      "name": "Reuters Institute",
+      "url": "https://reutersinstitute.politics.ox.ac.uk/rss.xml",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h2_sovereignty",
+        "h6_democracy"
+      ]
+    },
+    {
+      "name": "Wired — Culture",
+      "url": "https://www.wired.com/feed/category/culture/latest/rss",
+      "lang": "en",
+      "tier": 2,
+      "axes": [
+        "h1_agency",
+        "h2_sovereignty"
+      ]
+    },
+    {
+      "name": "Freedom House",
+      "url": "https://freedomhouse.org/rss.xml",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h6_democracy"
+      ]
+    },
+    {
+      "name": "V-Dem Institute",
+      "url": "https://www.v-dem.net/news/rss.xml",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h6_democracy"
+      ]
+    },
+    {
+      "name": "Edelman Trust Barometer",
+      "url": "https://www.edelman.com/rss.xml",
+      "lang": "en",
+      "tier": 2,
+      "axes": [
+        "h6_democracy"
+      ]
+    },
+    {
+      "name": "World Inequality Lab",
+      "url": "https://wid.world/feed/",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h4_equity"
+      ]
+    },
+    {
+      "name": "OECD — Economy",
+      "url": "https://www.oecd.org/newsroom/rss.xml",
+      "lang": "en",
+      "tier": 2,
+      "axes": [
+        "h4_equity",
+        "h5_meaning"
+      ]
+    },
+    {
+      "name": "ILO News",
+      "url": "https://www.ilo.org/rss/news",
+      "lang": "en",
+      "tier": 2,
+      "axes": [
+        "h4_equity",
+        "h5_meaning"
+      ]
+    },
+    {
+      "name": "Aeon Essays",
+      "url": "https://aeon.co/feed.rss",
+      "lang": "en",
+      "tier": 2,
+      "axes": [
+        "h5_meaning"
+      ]
+    },
+    {
+      "name": "Noema Magazine",
+      "url": "https://www.noemamag.com/feed/",
+      "lang": "en",
+      "tier": 2,
+      "axes": [
+        "h5_meaning",
+        "h6_democracy"
+      ]
+    },
+    {
+      "name": "Meduza",
+      "url": "https://meduza.io/rss/all",
+      "lang": "ru",
+      "tier": 2,
+      "axes": [
+        "h6_democracy",
+        "h2_sovereignty"
+      ]
+    }
+  ],
+  "html_sources": []
+} as const;

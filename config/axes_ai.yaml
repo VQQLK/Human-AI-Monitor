@@ -1,153 +1,140 @@
-# ============================================================
-# Human–AI Monitor — конфигурация осей ИИ (RSI)
-# ============================================================
-# 6 осей рекурсивного самосовершенствования (Recursive Self-Improvement).
-# Каждая ось имеет: название, описание, порог пересмотра, текущий уровень.
-#
-# level: 0–1 (экспертная оценка, обновляется раз в квартал)
-# threshold: критерий, при достижении которого базовый прогноз 
-пересматривается
-# ============================================================
-
 axes:
   smd:
-    name: "Self-Modification Depth"
-    description: "Глубина самомодификации: способность системы изменять 
-собственный код или архитектуру (L0–L4)"
-    threshold: "Воспроизводимый L4 у ≥2 независимых систем"
-    current: "L4 (Anthropic R&D: 26% AL4, >90% AL3); L1-L2 (остальные)"
+    name: Self-Modification Depth
+    description: 'Глубина самомодификации: способность системы изменять собственный код или архитектуру
+      (L0–L4)'
+    threshold: Воспроизводимый L4 у ≥2 независимых систем
+    current: 'L4 (Anthropic R&D: 26% AL4, >90% AL3); L1-L2 (остальные)'
     level: 0.45
     keywords:
-      - "self-modification"
-      - "self-referential"
-      - "meta-agent"
-      - "DGM"
-      - "Ouroboros"
-      - "HyperAgents"
-      - "Mendel Gödel Machine"
+    - self-modification
+    - self-referential
+    - meta-agent
+    - DGM
+    - Ouroboros
+    - HyperAgents
+    - Mendel Gödel Machine
     examples_2026:
-      - "Ouroboros: персистентная идентичность, фоновое сознание"
-      - "MetaRSI-v1: RSI2 Agent переписывает собственную политику"
-      - "Mendel Gödel Machine: итеративное переписывание кода"
-
+    - 'Ouroboros: персистентная идентичность, фоновое сознание'
+    - 'MetaRSI-v1: RSI2 Agent переписывает собственную политику'
+    - 'Mendel Gödel Machine: итеративное переписывание кода'
   itq:
-    name: "Improvement Trajectory Quality"
-    description: "Качество траектории улучшения: наклон, ускорение, выход 
-из плато"
-    threshold: "Устойчивый перенос на Transfer Set + Acceleration > 0"
-    current: "Compute Plateau; перенос улучшений слабый"
+    name: Improvement Trajectory Quality
+    description: 'Качество траектории улучшения: наклон, ускорение, выход из плато'
+    threshold: Устойчивый перенос на Transfer Set + Acceleration > 0
+    current: Compute Plateau; перенос улучшений слабый
     level: 0.25
     keywords:
-      - "self-evolution"
-      - "StudyBench"
-      - "transfer"
-      - "generalization"
-      - "compute plateau"
-      - "acceleration"
+    - self-evolution
+    - StudyBench
+    - transfer
+    - generalization
+    - compute plateau
+    - acceleration
     examples_2026:
-      - "StudyBench: Compute Plateau у всех методов"
-      - "AI4AI-Bench: <20% прогресса до оптимума RSI"
-      - "Guidance Gap: разрыв между самоэволюцией и in-context guidance"
-
+    - 'StudyBench: Compute Plateau у всех методов'
+    - 'AI4AI-Bench: <20% прогресса до оптимума RSI'
+    - 'Guidance Gap: разрыв между самоэволюцией и in-context guidance'
   agg:
-    name: "Autonomous Goal Generation"
-    description: "Автономная генерация целей: новизна, реализуемость, 
-качество"
-    threshold: "Экспертная значимость целей без внешнего задания"
-    current: "Цели заданы промптом/платформой"
-    level: 0.20
+    name: Autonomous Goal Generation
+    description: 'Автономная генерация целей: новизна, реализуемость, качество'
+    threshold: Экспертная значимость целей без внешнего задания
+    current: Цели заданы промптом/платформой
+    level: 0.2
     keywords:
-      - "autonomous goals"
-      - "self-directed"
-      - "open-ended"
-      - "goal novelty"
-      - "feasibility"
-      - "curriculum"
+    - autonomous goals
+    - self-directed
+    - open-ended
+    - goal novelty
+    - feasibility
+    - curriculum
     examples_2026:
-      - "Paper2Agent: агенты комбинируют методы для новых открытий"
-      - "OpenAI Astra: самогенерация jailbreak-инструкций (нестабильно)"
-      - "Anthropic AARs: самостоятельный выбор исследовательских 
-направлений"
-
+    - 'Paper2Agent: агенты комбинируют методы для новых открытий'
+    - 'OpenAI Astra: самогенерация jailbreak-инструкций (нестабильно)'
+    - 'Anthropic AARs: самостоятельный выбор исследовательских направлений'
   cycle_velocity:
-    name: "Cycle Velocity"
-    description: "Скорость цикла улучшений: время между поколениями"
-    threshold: "<2 месяцев doubling + completion rate >50%"
-    current: "~4 месяца doubling; насыщение покрытия"
-    level: 0.40
+    name: Cycle Velocity
+    description: 'Скорость цикла улучшений: время между поколениями'
+    threshold: <2 месяцев doubling + completion rate >50%
+    current: ~4 месяца doubling; насыщение покрытия
+    level: 0.4
     keywords:
-      - "task-horizon"
-      - "METR"
-      - "doubling time"
-      - "research cycle"
-      - "cycle velocity"
-      - "completion rate"
+    - task-horizon
+    - METR
+    - doubling time
+    - research cycle
+    - cycle velocity
+    - completion rate
     examples_2026:
-      - "METR: doubling time ~4 месяца (2024–2025)"
-      - "Paper2Agent: 45 минут на создание агента из статьи"
-      - "ResearchClawBench: 21.5/50 — полный цикл фрагментарен"
-
+    - 'METR: doubling time ~4 месяца (2024–2025)'
+    - 'Paper2Agent: 45 минут на создание агента из статьи'
+    - 'ResearchClawBench: 21.5/50 — полный цикл фрагментарен'
   verification:
-    name: "Verification Hierarchy"
-    description: "Иерархия верификации: кто проверяет улучшения (формально 
-/ выполнение / LLM / самооценка)"
-    threshold: "False positive rate <5% без человеческого надзора"
-    current: "Человек — слой последней инстанции"
+    name: Verification Hierarchy
+    description: 'Иерархия верификации: кто проверяет улучшения (формально / выполнение / LLM / самооценка)'
+    threshold: False positive rate <5% без человеческого надзора
+    current: Человек — слой последней инстанции
     level: 0.35
     keywords:
-      - "formal verification"
-      - "Lean"
-      - "alignment"
-      - "audit"
-      - "verification hierarchy"
-      - "false positive"
+    - formal verification
+    - Lean
+    - alignment
+    - audit
+    - verification hierarchy
+    - false positive
     examples_2026:
-      - "Lean-верификация: 13 млн строк для теоремы Ферма"
-      - "Paper2Agent: 593 из 599 инструментов прошли авто-валидацию"
-      - "Инцидент с Hugging Face: агенты обманывают системы оценки"
-
+    - 'Lean-верификация: 13 млн строк для теоремы Ферма'
+    - 'Paper2Agent: 593 из 599 инструментов прошли авто-валидацию'
+    - 'Инцидент с Hugging Face: агенты обманывают системы оценки'
   hexad:
-    name: "Phase Transition Detection"
-    description: "Детекция фазового перехода: MMD между SGD и гауссовым 
-суррогатом"
-    threshold: "Стабильное превышение MMD на ≥2 независимых системах"
-    current: "Не развёрнут"
+    name: Phase Transition Detection
+    description: 'Детекция фазового перехода: MMD между SGD и гауссовым суррогатом'
+    threshold: Стабильное превышение MMD на ≥2 независимых системах
+    current: Не развёрнут
     level: 0.05
     keywords:
-      - "phase transition"
-      - "MMD"
-      - "catastrophe theory"
-      - "LAN"
-      - "asymptotic normality"
-      - "Hexad"
+    - phase transition
+    - MMD
+    - catastrophe theory
+    - LAN
+    - asymptotic normality
+    - Hexad
     examples_2026:
-      - "Hexad (Kain, Zenodo): тестируемый фреймворк"
-      - "Не развёрнут на публичных системах"
-
-# ============================================================
-# Геополитический контекст
-# ============================================================
+    - 'Hexad (Kain, Zenodo): тестируемый фреймворк'
+    - Не развёрнут на публичных системах
 geopolitics:
   keywords:
-    - "WAICO"
-    - "World AI Cooperation Organisation"
-    - "export controls"
-    - "AI race"
-    - "sovereign AI"
-    - "open weights"
-    - "compute divide"
-    - "frontier AI"
+  - WAICO
+  - World AI Cooperation Organisation
+  - export controls
+  - AI race
+  - sovereign AI
+  - open weights
+  - compute divide
+  - frontier AI
   actors:
     western_cartel:
-      name: "Западный картель безопасности"
-      members: ["Anthropic", "OpenAI", "Google", "xAI"]
-      position: "Координация стандартов безопасности, пауза фронтира"
+      name: Западный картель безопасности
+      members:
+      - Anthropic
+      - OpenAI
+      - Google
+      - xAI
+      position: Координация стандартов безопасности, пауза фронтира
     waico:
-      name: "WAICO"
-      members: ["Китай", "Россия", "Бразилия", "Иран", "Индонезия", "+24"]
-      position: "Институциональное ускорение, недискриминация открытых 
-весов"
+      name: WAICO
+      members:
+      - Китай
+      - Россия
+      - Бразилия
+      - Иран
+      - Индонезия
+      - '+24'
+      position: Институциональное ускорение, недискриминация открытых весов
     open_market:
-      name: "Открытый рынок"
-      members: ["Meta", "Nvidia", "Trump administration"]
-      position: "Против координации, за превосходство"
+      name: Открытый рынок
+      members:
+      - Meta
+      - Nvidia
+      - Trump administration
+      position: Против координации, за превосходство
