@@ -280,8 +280,8 @@ A comprehensive interdisciplinary analysis of 2026 empirical data on autonomous 
 **Key finding:** singularity in the classical sense has not arrived, but a qualitatively new paradigm has formed.
 
 **Available in two languages:**
-- 🇺🇸 [English](research/en/README.md) — full translation
-- 🇷🇺 [Русский](research/README.md) — оригинал
+- 🇺🇸 [English](research/en/README.md)
+- 🇷🇺 [Русский](research/README.md)
 
 **Structure:**
 - Part I: Introduction, Theoretical Foundations, Methodology (SAS scale)
