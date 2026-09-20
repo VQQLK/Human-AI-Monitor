@@ -357,7 +357,7 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "0.9.8",
+					version: "0.9.9",
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
