@@ -314,6 +314,8 @@
 ---
 
 ## Структура репозитория
+
+```
 ├── README.md ← English
 ├── README.ru.md ← Русский
 ├── MANIFESTO.md ← English
@@ -363,6 +365,7 @@
 └── .github/
 └── workflows/
 └── ci.yml ← CI: build + test on every push
+```
 
 ## Лицензия
 
