@@ -131,7 +131,17 @@ is happening — but disagrees on almost everything else.
 > which has been a tremendous SUCCESS, in my First Term. To that end, I will 
 > be announcing, in the near future, the AI 'Czar' — Only High I.Q. individuals 
 > need apply!"
-> — *Truth Social post. Announced creation of AI Force and AI Czar position.
+> — *Truth Social post. Announced plans to create AI Force and appoint AI Czar, 
+though did not provide details. If implemented, would be Trump's second AI czar 
+(David Sacks previously served in the role). Context: Former Anthropic researcher 
+Jacob Coxon said "people building AI earnestly believe that it could kill us all 
+by the end of the decade." Trump has repeatedly downplayed AI concerns and argued 
+additional regulation is unnecessary. Post comes ahead of scheduled meeting with 
+Chinese President Xi Jinping — Washington and Beijing competing for AI leadership.*
+> 
+> *Source: [Reuters, 19.09.2026](https://www.reuters.com/world/us/trump-says-he-will-create-ai-force-name-ai-czar-2026-09-19/)*
+
+
 
 **Xi Jinping (President of the People's Republic of China) — 13.09.2026**
 
