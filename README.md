@@ -264,7 +264,7 @@ models hosted by Cloudflare Workers AI.
 
 - **Transparency**: all prompts and sources are visible in the repo.
 - **Reproducibility**: every protocol links to data hashes.
-- **Extensibility**: adding a source = one line in the SOURCES array.
+- **Extensibility**: adding a source = one line in YAML config + regenerate TypeScript.
 - **Accessibility**: public API + planned Android app.
 - **Independence**: Cloudflare Workers AI with open-weight models.
 - **Free forever**: MIT License.
