@@ -300,6 +300,22 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 | GET   | /collect                  | Ручной сбор RSS                                     |
 | GET   | /generate                 | Ручная генерация протокола                          |
 
+### Эндпоинт экспорта
+
+Эндпоинт `/export-weekly` экспортирует все протоколы в двух форматах:
+
+- **JSON** (по умолчанию): `/export-weekly` — для парсинга и анализа
+- **Markdown**: `/export-weekly?format=md` — для чтения человеком
+
+Опциональные параметры:
+- `?weeks=N` — ограничить последними N протоколами (по умолчанию: 52)
+
+**Примеры:**
+
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?format=md > archive.md
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?weeks=10
+
 ### Эндпоинт верификации
 
 Эндпоинт `/verify` обнаруживает **reward hacking** в трейсах агентов, вдохновлённый [CheatBench](https://huggingface.co/datasets/steinad/CheatBench) (3870 размеченных траекторий).
@@ -371,7 +387,8 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 ├── data/protocols/
 │ └── 2026-09-07_2026-09-17.md
 ├── migrations/
-│ └── 0001_initial_schema.sql
+│ ├── 0001_initial_schema.sql
+│ └── 0002_add_content_column.sql
 ├── prompts/
 │ ├── classify_ai.txt
 │ └── classify_human.txt

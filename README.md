@@ -375,6 +375,22 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
 | GET    | /collect                  | Manual RSS collection                       |
 | GET    | /generate                 | Manual protocol generation                  |
 
+### Export endpoint
+
+The `/export-weekly` endpoint exports all protocols in two formats:
+
+- **JSON** (default): `/export-weekly` — for parsing and analysis
+- **Markdown**: `/export-weekly?format=md` — for human reading
+
+Optional parameters:
+- `?weeks=N` — limit to last N protocols (default: 52)
+
+**Examples:**
+
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?format=md > archive.md
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?weeks=10
+
 ### Verification endpoint
 
 The `/verify` endpoint detects **reward hacking** in agent traces, 
@@ -453,7 +469,8 @@ See CONTRIBUTING.md.
 ├── data/protocols/
 │ └── 2026-09-07_2026-09-17.md
 ├── migrations/
-│ └── 0001_initial_schema.sql
+│ ├── 0001_initial_schema.sql
+│ └── 0002_add_content_column.sql
 ├── prompts/
 │ ├── classify_ai.txt
 │ └── classify_human.txt

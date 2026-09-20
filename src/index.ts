@@ -3,6 +3,7 @@ import { SOURCES } from "./config/sources";
 import { AI_AXES, HUMAN_AXES, SMD_THRESHOLD } from "./config/axes";
 import { AI_PROMPT, HUMAN_PROMPT } from "./config/prompts";
 import { fetchWithRetry } from "./utils/fetch-with-retry";
+import { handleExport } from './handlers/export';
 
 export function parseAIResponse(response: any): any {
 	const content = response?.choices?.[0]?.message?.content
@@ -361,7 +362,7 @@ export default {
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/health", "/gap", "/protocols", "/protocols/{week}", "/protocols/{week}/content", "/axes/{axis}", "/classify", "/verify", "/collect", "/generate"],
+					endpoints: ["/health", "/gap", "/protocols", "/protocols/{week}", "/protocols/{week}/content", "/axes/{axis}", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
 				}, 200);
 			}
 			if (path === "/health") return json({ status: "ok", ts: Date.now() }, 200);
@@ -433,6 +434,11 @@ export default {
 				}
 				return json(await generateAndSaveProtocol(env, offset), 200);
 			}
+
+			if (path === "/export-weekly") {
+				return await handleExport(request, env);
+			}
+
 			if (path === "/verify") {
 				const text = url.searchParams.get("trace");
 				if (!text) return json({ error: "Missing ?trace= parameter" }, 400);
