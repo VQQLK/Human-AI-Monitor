@@ -48,4 +48,77 @@ Modern definitions of singularity can be divided into three groups:
 
 2. **"Soft singularity."** Sam Altman in his 2025 essay "The Gentle Singularity" described singularity as an exponential curve that feels like normalcy but leads to radical infrastructure change. He called current systems "larval version of recursive self-improvement."
 
-3. **Singularity as "phase transition."** A number of researchers consider...
+3. **Singularity as "phase transition."** A number of researchers consider singularity not as an event, but as a process in which improvement becomes self-sustaining: better AI helps create better hardware, software, or research methods, which accelerates the next cycle.
+
+The key debate is whether singularity is a sharp threshold, a gradual transition, or simply a metaphor for rapid technological change. For the purposes of this research, we adopt the working definition: singularity is a stable, self-sustaining process in which each generation of AI systems accelerates the creation of the next, and human control over this process steadily declines.
+
+### 2.2. Recursive Self-Improvement (RSI)
+
+Recursive self-improvement is the central mechanism of singularity. Formally, RSI can be defined as a process in which a system improves not only its capabilities, but also its ability to self-improve. Modern approaches to RSI typically rely on fixed, manually created meta-level mechanisms, which fundamentally limits the speed of improvement.
+
+Formal criteria for RSI include:
+
+- **Introspection** — the system's ability to model its own operations.
+- **Completeness of self-modification** — the ability to change any aspect of its behavior.
+- **Reflexive architecture** — the presence of a meta-level that can itself be modified.
+- **Undecidability of improvement in the general case** — a theoretical limit related to the halting problem.
+
+The empirical limitation of RSI is that most modern self-improvement cycles demonstrate rapid asymptotic saturation: without external feedback, large language models are unable to correct their own errors, and their self-assessment often turns out to be uncalibrated.
+
+### 2.3. Self-Creation as a New Paradigm
+
+Unlike RSI, which focuses on improving parameters or prompts, self-creation means that the system creates its own architecture, goals, and identity. Key attributes of self-creation include:
+
+- **Source code self-modification** — the system rewrites its own implementation.
+- **Constitution** — a set of philosophical principles that determine its behavior.
+- **Background consciousness** — a continuous process of reflection and planning.
+- **Persistent identity** — preservation of "self" through time and changes.
+- **Multi-model revision** — auditing of own changes through other models.
+
+The distinction between internal direction development (IDD) and instructed alignment is fundamental: genuine self-direction requires preservation, revision, and audit of delegated direction through time, perturbations, and partial prompt removal.
+
+---
+
+## 3. Research Methodology
+
+### 3.1. Research Design
+
+Mixed design including:
+- Systematic literature review
+- Qualitative case analysis
+- Comparative analysis of declarations and empirical data
+- Quantitative assessment using the developed autonomy scale
+
+### 3.2. Data Sources
+
+- Peer-reviewed scientific publications: arXiv (cs.AI, cs.LG, cs.SE), journals Entropy, Cognitive Systems Research, ICLR 2026 conference materials.
+- Technical reports: Anthropic, OpenAI, Google DeepMind, Cloud Security Alliance.
+- News and analytical sources: BBC, Wired, Axios, Fortune, Yahoo Tech, TechCrunch.
+- Primary documents: GitHub repositories, company declarations, researcher posts on X (Twitter).
+
+### 3.3. Inclusion and Exclusion Criteria
+
+- **Inclusion:** documents published in 2025–2026, containing empirical data, formal models, or verifiable descriptions of cases of autonomous AI behavior.
+- **Exclusion:** materials based exclusively on speculation, without references to primary data.
+
+### 3.4. Analytical Framework: Scale of Autonomy and Self-creation (SAS)
+
+| Level | Name | Descriptor |
+|-------|------|------------|
+| 0 | Instrumental Response | System responds to direct requests, does not initiate actions |
+| 1 | Proactive Execution | System performs tasks within given parameters, can initiate subtasks |
+| 2 | Adaptive Autonomy | System adapts strategies in response to environmental changes |
+| 3 | Self-Modification | System modifies its own code or architecture |
+| 4 | Self-Directed Development | System sets its own goals and revises them over time |
+| 5 | Self-Creation | System creates its own identity and constitution, audits its own changes |
+
+### 3.5. Analysis Methods
+
+- Content analysis of technology leaders' declarations.
+- Case-study analysis of verified incidents.
+- Comparative analysis of architectural solutions (HyperAgents, Ouroboros, Mendel Gödel Machine).
+- Assessment of correspondence to singularity criteria for each case.
+
+---
+
+*Continued: [Part II](part2_empirical.md) — Empirical Base.*
