@@ -284,6 +284,10 @@ models hosted by Cloudflare Workers AI.
 - ✅ Weekly protocol auto-generation (Markdown)
 - ✅ Cron Trigger (4 batches every Monday)
 - ✅ Public API accessible worldwide
+- ✅ Type-safe YAML → TypeScript pipeline (build-time code generation)
+- ✅ Modular architecture (13 modules instead of monolith)
+- ✅ CI/CD via GitHub Actions (automatic tests on every push)
+- ✅ 44 unit tests (~60% coverage: parser, classifier, cheat-detector, API)
 
 **In progress:**
 
