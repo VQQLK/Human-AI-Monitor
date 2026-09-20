@@ -304,9 +304,8 @@ models hosted by Cloudflare Workers AI.
 
 - ⚠️ RSS-only collection; HTML parsing not implemented yet
 - ⚠️ `shift` field may over-trigger on general news
-- ⚠️ YAML configs (axes_ai.yaml, axes_human.yaml, sources_*.yaml) exist 
-  but are NOT yet read by the Worker; axes and sources are hardcoded in 
-  `src/index.ts`
+- ⚠️ 5 sources disabled (VentureBeat 429, Nature 303, V-Dem 404, ILO 404, Lancet bot protection)
+- ⚠️ OECD and Edelman use Google News RSS as fallback (news *about* topics, not official press releases)
 - ⚠️ Methodological asymmetry: code implements 13 axes (7 AI + 6 Human). 
   The 12 symmetric axes are the core; `geopolitics` is a meta-layer 
   documented separately in `docs/methodology.md`.
@@ -430,9 +429,17 @@ See CONTRIBUTING.md.
 │ ├── classify_ai.txt
 │ └── classify_human.txt
 ├── src/
-│ └── index.ts ← Worker code (fetch + scheduled)
+│   ├── index.ts ← Minimal entry point (188 bytes)
+│   ├── config/ ← prompts, sources, axes
+│   ├── utils/ ← parsers, rss, html, crypto, retry
+│   ├── handlers/ ← api, cron
+│   ├── services/ ← collector, protocol
+│   └── cheat-detector.ts ← /verify endpoint
 ├── test/
-│ └── index.spec.ts ← Boilerplate (real tests in progress)
+│   ├── index.spec.ts ← API tests (8 tests)
+│   ├── parser.spec.ts ← 14 tests
+│   ├── classifier.spec.ts ← 15 tests
+│   └── cheat-detector.spec.ts ← 7 tests
 └── .github/
     └── workflows/
         └── ci.yml ← CI: build + test on every push

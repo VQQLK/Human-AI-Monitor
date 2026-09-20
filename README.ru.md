@@ -232,11 +232,10 @@
 
 **Известные ограничения:**
 
-- ⚠️ Тесты шаблонные (Vitest template); реальное покрытие в процессе
-- ⚠️ Монолитный `src/index.ts` (~420 строк) — рефакторинг запланирован
 - ⚠️ Только RSS-коллекция; HTML-парсинг ещё не реализован
 - ⚠️ Поле `shift` может срабатывать слишком часто на общих новостях
-- ⚠️ YAML-конфиги (axes_ai.yaml, axes_human.yaml, sources_*.yaml) существуют, но ПОКА НЕ читаются Worker'ом; оси и источники захардкожены в `src/index.ts`
+- ⚠️ 5 источников отключены (VentureBeat 429, Nature 303, V-Dem 404, ILO 404, Lancet bot protection)
+- ⚠️ OECD и Edelman используют Google News RSS как fallback (новости *о* темах, не официальные пресс-релизы)
 - ⚠️ Методологическая асимметрия: код реализует 13 осей (7 ИИ + 6 Человеческих). 12 симметричных осей — ядро; `geopolitics` — мета-слой, задокументированный отдельно в `docs/methodology.md`.
 
 ---
@@ -348,9 +347,17 @@
 │ ├── classify_ai.txt
 │ └── classify_human.txt
 ├── src/
-│ └── index.ts ← Worker code (fetch + scheduled)
+│   ├── index.ts ← Минимальный entry point (188 байт)
+│   ├── config/ ← prompts, sources, axes
+│   ├── utils/ ← parsers, rss, html, crypto, retry
+│   ├── handlers/ ← api, cron
+│   ├── services/ ← collector, protocol
+│   └── cheat-detector.ts ← /verify endpoint
 ├── test/
-│ └── index.spec.ts ← Boilerplate (real tests in progress)
+│   ├── index.spec.ts ← API тесты (8 тестов)
+│   ├── parser.spec.ts ← 14 тестов
+│   ├── classifier.spec.ts ← 15 тестов
+│   └── cheat-detector.spec.ts ← 7 тестов
 └── .github/
 └── workflows/
 └── ci.yml ← CI: build + test on every push
