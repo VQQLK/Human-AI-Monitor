@@ -314,7 +314,6 @@
 ---
 
 ## Структура репозитория
-
 ├── README.md ← English
 ├── README.ru.md ← Русский
 ├── MANIFESTO.md ← English
@@ -350,22 +349,20 @@
 │ ├── classify_ai.txt
 │ └── classify_human.txt
 ├── src/
-│   ├── index.ts ← Минимальный entry point (188 байт)
-│   ├── config/ ← prompts, sources, axes
-│   ├── utils/ ← parsers, rss, html, crypto, retry
-│   ├── handlers/ ← api, cron
-│   ├── services/ ← collector, protocol
-│   └── cheat-detector.ts ← /verify endpoint
+│ ├── index.ts ← Минимальный entry point (188 байт)
+│ ├── config/ ← prompts, sources, axes
+│ ├── utils/ ← parsers, rss, html, crypto, retry
+│ ├── handlers/ ← api, cron
+│ ├── services/ ← collector, protocol
+│ └── cheat-detector.ts ← /verify endpoint
 ├── test/
-│   ├── index.spec.ts ← API тесты (8 тестов)
-│   ├── parser.spec.ts ← 14 тестов
-│   ├── classifier.spec.ts ← 15 тестов
-│   └── cheat-detector.spec.ts ← 7 тестов
+│ ├── index.spec.ts ← API тесты (8 тестов)
+│ ├── parser.spec.ts ← 14 тестов
+│ ├── classifier.spec.ts ← 15 тестов
+│ └── cheat-detector.spec.ts ← 7 тестов
 └── .github/
 └── workflows/
 └── ci.yml ← CI: build + test on every push
-
----
 
 ## Лицензия
 
