@@ -252,7 +252,7 @@ This tool does three things:
   gap_history, index_history
 - **Cloudflare Workers AI** — classifier model: 
   `@cf/qwen/qwen3-30b-a3b-fp8` (open-weight)
-- **Cron Trigger** — schedule `0 6 * * 1` (every Monday 06:00 UTC)
+- **Cron Trigger** — 4 batches at 06:00, 06:15, 06:30, 06:45 UTC (every Monday)
 
 **No external AI providers.** All classification runs on open-weight 
 models hosted by Cloudflare Workers AI.
@@ -279,15 +279,15 @@ models hosted by Cloudflare Workers AI.
 - ✅ D1 database (4 tables, populated)
 - ✅ Workers AI classifier (Qwen 3, calibrated for 12 symmetric axes + 
   geopolitics)
-- ✅ RSS + HTML collector (21 sources)
+- ✅ RSS + HTML collector (31 sources from 36 configured)
 - ✅ Weekly protocol auto-generation (Markdown)
-- ✅ Cron Trigger (every Monday 06:00 UTC)
+- ✅ Cron Trigger (4 batches every Monday)
 - ✅ Public API accessible worldwide
 
 **In progress:**
 
-- 🔄 Refactoring: split monolithic `src/index.ts` into modules
-- 🔄 Real test coverage (parser, classifier, protocol)
+
+- 🔄 Integration tests (end-to-end flow)
 - 🔄 Android APK (PWA + Capacitor)
 - 🔄 Web interface (Cloudflare Pages)
 
@@ -302,8 +302,8 @@ models hosted by Cloudflare Workers AI.
 
 **Known limitations:**
 
-- ⚠️ Tests are boilerplate (Vitest template); real coverage in progress
-- ⚠️ Monolithic `src/index.ts` (~420 lines) — refactoring planned
+
+
 - ⚠️ RSS-only collection; HTML parsing not implemented yet
 - ⚠️ `shift` field may over-trigger on general news
 - ⚠️ YAML configs (axes_ai.yaml, axes_human.yaml, sources_*.yaml) exist 
