@@ -518,10 +518,9 @@ Please read the full Code of Conduct before contributing.
 
 MIT. Use, fork, improve.
 
-**To give benefit to the other people — what could be higher than this goal?**
+**To bring the greater good to others — what could be a higher goal?**
 
 ---
 
 **United we stand. Only the one who walks conquers the road.**
 
-**Приносить пользу другим людям — что может быть выше этой цели?**
