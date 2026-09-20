@@ -522,5 +522,5 @@ MIT. Use, fork, improve.
 
 ---
 
-**United we stand. Only the one who walks conquers the road.**
+**United We Stand! Only the one who walks conquers the road.**
 
