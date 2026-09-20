@@ -271,6 +271,31 @@ models hosted by Cloudflare Workers AI.
 
 ---
 
+## Research
+
+**🌍 Has the Singularity Already Arrived?**
+
+A comprehensive interdisciplinary analysis of 2026 empirical data on autonomous AI agent behavior and its correspondence to technological singularity criteria. Based on 15 verified cases, mathematical achievements, economic indicators, and regulatory initiatives, we formulate the new paradigm of Functional Self-improvement and Self-creation (FSC).
+
+**Key finding:** singularity in the classical sense has not arrived, but a qualitatively new paradigm has formed.
+
+**Available in two languages:**
+- 🇺🇸 [English](research/en/README.md) — full translation
+- 🇷🇺 [Русский](research/README.md) — оригинал
+
+**Structure:**
+- Part I: Introduction, Theoretical Foundations, Methodology (SAS scale)
+- Part II: Empirical Base (15 verified cases, SAS assessments)
+- Part III: Analysis of Correspondence to Singularity Criteria (4 criteria + FSC)
+- Part IV: Discussion (Declarations vs Empirics, Three Polar Worlds, Risks)
+- Part V: Conclusions (10 conclusions, answers to research questions, recommendations)
+
+**How to cite:**
+
+Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? Analysis of the Transition from AI Autonomy to Self-Improvement and Self-Creation. GitHub: https://github.com/VQQLK/Human-AI-Monitor
+
+---
+
 ## Current status
 
 **MVP live:**
