@@ -396,11 +396,11 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 │ ├── classify_ai.txt
 │ └── classify_human.txt
 ├── src/
-│ ├── index.ts ← Минимальный entry point (188 байт)
+│ ├── index.ts ← Entry point (20 350 байт, 522 строки)
 │ ├── config/ ← prompts, sources, axes
 │ ├── utils/ ← parsers, rss, html, crypto, retry
-│ ├── handlers/ ← api, cron
-│ ├── services/ ← collector, protocol
+│ ├── handlers/ ← export (еженедельный архив)
+│ ├── services/ ← gap-computation (исправление F6)
 │ └── cheat-detector.ts ← /verify endpoint
 ├── test/
 │ ├── index.spec.ts ← API тесты (8 тестов)
