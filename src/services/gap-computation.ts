@@ -30,10 +30,10 @@ function computeAxisLevel(signals: any[]): number {
   return Math.max(0, Math.min(1, sum / signals.length));
 }
 
-export async function computeGapIndex(env: Env, weekStart: string, weekEnd: string): Promise<GapResult> {
+export async function computeGapIndex(env: Env, range: any): Promise<GapResult> {
   const items = await env.DB.prepare(
     "SELECT axes, relevance, shift, direction FROM items WHERE date >= ? AND date <= ?"
-  ).bind(weekStart, weekEnd).all();
+  ).bind(range.filterStart, range.filterEnd).all();
 
   const buckets: { [axis: string]: any[] } = {};
   for (const it of items.results as any[]) {
