@@ -7,34 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
-- **Critical finding F6** from independent Technical & Source-Verification Report (2026-09-20): Gap Index now computed from collected signals instead of copying seed values
-  - Created `src/services/gap-computation.ts` (75 lines) with `computeGapIndex()` function
-  - Modified `generateAndSaveProtocol()` to call `computeGapIndex()` instead of copying last row
-  - Results persisted to `gap_history` AND `index_history` tables
-  - Verified: different weeks with different item counts now produce different scores
-  - Production deployment: Version ID 9b676bd3, then dc501a70, then e3de304
-
-- **Protocol naming confusion**: Changed week identifiers from Monday-based to Sunday-based
-  - Before: protocol "2026-09-14" (Monday) for week 14-20 September
-  - After: protocol "2026-09-20" (Sunday) for week 14-20 September
-  - Modified `getWeekRange()` to return Sunday as `start` (protocol identifier)
-  - Added `filterStart` and `filterEnd` fields for SQL WHERE clauses
-  - Migrated existing database records to new naming scheme
-
-### Changed
-- Database migration 0003: Updated SMD level from 0.30 to 0.45
-  - Reason: Anthropic reached AL4 (26% AI-led tasks, >90% AL3 collaboration)
-  - First system with sustained L4; threshold remains "≥2 systems"
-  - Updated both remote database and seed data in migrations/0001_initial_schema.sql
-  - Reference: Anthropic R&D Automation Index (September 2026)
-
-- Removed vestigial `wrangler.toml` (only contained `[site]` section, not used)
-- Updated `CITATION.cff` version from 0.6.0 to 0.9.9
-- Updated `CITATION.cff` date-released from 2026-09-18 to 2026-09-21
-
-
-
 ### Added
 - Trump AI Force announcement (19.09.2026) to Voices section in README.md and README.ru.md
 

@@ -1,6 +1,6 @@
-# Contributing to Human–AI Monitor
+# Contributing to Human-AI Monitor
 
-Спасибо за интерес к проекту! Мы приветствуем любой вклад — от исправления 
+Спасибо за интерес к проекту! Мы приветствуем любой вклад — от исправления
 опечаток до добавления новых источников данных.
 
 ## Как помочь
@@ -11,68 +11,107 @@
 - Что произошло
 - Что ожидалось
 - Шаги для воспроизведения
-- Окружение (OS, Python, Node.js)
+- Окружение (OS, Node.js, pnpm)
 
 ### 2. Предложить улучшение
 
-Откройте issue с меткой `enhancement`:
+Откройте issue с меткой enhancement:
 - Что хотите добавить
 - Зачем это нужно проекту
 - Как это соответствует миссии
 
 ### 3. Добавить источник данных
 
-Отредактируйте `config/sources_ai.yaml` или `config/sources_human.yaml`:
+Отредактируйте config/sources_ai.yaml или config/sources_human.yaml:
 
-```yaml
-rss:
-  - name: "Название источника"
-    url: "https://example.com/rss.xml"
-    lang: "en"
-    tier: 1
-```
+    rss:
+      - name: "Название источника"
+        url: "https://example.com/rss.xml"
+        lang: "en"
+        tier: 1
 
 ### 4. Улучшить классификатор
 
-Промпты для LLM находятся в `prompts/`:
-- `classify_ai.txt` — для 6 осей ИИ
-- `classify_human.txt` — для 6 осей Человечества
+Промпты для LLM находятся в src/config/prompts.ts:
+- CLASSIFY_PROMPT — единый промпт для всех 12 осей (7 AI + 6 Human)
+- Модель: Qwen 3 (через Cloudflare Workers AI)
 
 ### 5. Написать код
 
-```bash
-git clone https://github.com/your-username/human-ai-monitor.git
-cd human-ai-monitor
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-pytest
-```
+    git clone https://github.com/VQQLK/Human-AI-Monitor.git
+    cd Human-AI-Monitor/human-ai-monitor-collector
+    pnpm install
+    pnpm test
+    pnpm dev
+    pnpm deploy
 
-**Стиль:**
-- Python: PEP 8, type hints обязательны.
-- TypeScript: strict mode.
-- Коммиты: conventional commits (feat, fix, docs, refactor).
+Стек:
+- Runtime: Cloudflare Workers (TypeScript)
+- База данных: Cloudflare D1 (SQLite)
+- Тесты: Vitest
+- AI: Cloudflare Workers AI (Qwen 3)
+- Пакетный менеджер: pnpm
 
-**Процесс:**
-1. Fork → branch (`git checkout -b feature/amazing-idea`)
-2. Commit (`git commit -m "feat: add amazing feature"`)
-3. Push (`git push origin feature/amazing-idea`)
+Стиль:
+- TypeScript: strict mode (tsconfig.json)
+- Форматирование: Prettier (опционально)
+- Коммиты: conventional commits (feat, fix, docs, refactor, chore)
+
+Процесс:
+1. Fork -> branch (git checkout -b feature/amazing-idea)
+2. Commit (git commit -m "feat: add amazing feature")
+3. Push (git push origin feature/amazing-idea)
 4. Pull Request
+
+---
+
+## Структура проекта
+
+    human-ai-monitor-collector/
+    ├── src/
+    │   ├── index.ts                    # Главный worker
+    │   ├── services/
+    │   │   └── gap-computation.ts      # Вычисление Gap Index
+    │   └── config/
+    │       ├── axes.ts                 # Список 12 осей
+    │       ├── prompts.ts              # LLM промпты
+    │       └── generated/              # Типы из YAML
+    ├── config/
+    │   ├── axes_ai.yaml                # 7 AI осей
+    │   ├── axes_human.yaml             # 6 Human осей
+    │   ├── sources_ai.yaml             # 22 AI источника
+    │   └── sources_human.yaml          # 9 Human источников
+    ├── migrations/
+    │   ├── 0001_initial_schema.sql
+    │   ├── 0002_add_content_column.sql
+    │   └── 0003_update_smd_level.sql
+    ├── test/
+    │   └── cheat-detector.spec.ts
+    └── wrangler.jsonc
 
 ---
 
 ## Этический кодекс
 
-См. [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+См. CODE_OF_CONDUCT.md.
 
 ---
 
 ## Чего мы не принимаем
 
-- **Платные интеграции** — проект принципиально бесплатный.
-- **Скрытые данные** — все источники и промпты публичны.
-- **Реклама** — никакой коммерции.
-- **Политика** — проект вне политических партий.
+- Платные интеграции — проект принципиально бесплатный.
+- Скрытые данные — все источники и промпты публичны.
+- Реклама — никакой коммерции.
+- Политика — проект вне политических партий.
+
+---
+
+## Ссылки
+
+- README.md — описание проекта (EN)
+- README.ru.md — описание проекта (RU)
+- CHANGELOG.md — история изменений
+- MANIFESTO.md — манифест проекта
 
 ---
 
