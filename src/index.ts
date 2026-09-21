@@ -465,6 +465,29 @@ export default {
 				const result = detectCheating(text);
 				return json({ input_length: text.length, ...result }, 200);
 			}
+			// /axes-history — вернуть все записи из index_history (для прозрачности)
+			if (path === "/axes-history") {
+				const all = await env.DB.prepare(
+					"SELECT axis, level, date, note, recorded_at FROM index_history ORDER BY date DESC, axis"
+				).all();
+				const grouped: Record<string, any[]> = {};
+				for (const row of all.results) {
+					const date = row.date as string;
+					if (!grouped[date]) grouped[date] = [];
+					grouped[date].push({
+						axis: row.axis,
+						level: row.level,
+						note: row.note,
+						recorded_at: row.recorded_at,
+					});
+				}
+				return json({
+					total_entries: all.results.length,
+					dates: Object.keys(grouped).sort((a, b) => b.localeCompare(a)),
+					by_date: grouped,
+				}, 200);
+			}
+
 			return json({ error: "Not Found", path }, 404);
 		} catch (err) {
 			const message = err instanceof Error ? err.message : String(err);
