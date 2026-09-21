@@ -68,7 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `src/utils/fetch-with-retry.ts` — fetch with exponential backoff for 429/503
 - 10-second timeout per fetch (AbortController)
-- 3 retries with 2s/4s/8s backoff
+- 3 attempts with 2s/4s exponential backoff between them (no 8s wait: third attempt is final)
 - 4 Cron batches: 06:00 / 06:15 / 06:30 / 06:45 UTC
 - `items_existing` counter to distinguish new vs existing items
 
