@@ -235,19 +235,15 @@ export function getWeekRange(offsetWeeks: number): any {
 	const sunday = new Date(monday);
 	sunday.setUTCDate(monday.getUTCDate() + 6);
 	return {
-		// Protocol identifier: Sunday (end of week)
-		start: sunday.toISOString().slice(0, 10),
-		end: monday.toISOString().slice(0, 10),
-		// For SQL filtering: Monday through Sunday
-		filterStart: monday.toISOString().slice(0, 10),
-		filterEnd: sunday.toISOString().slice(0, 10),
+		start: monday.toISOString().slice(0, 10),
+		end: sunday.toISOString().slice(0, 10),
 	};
 }
 
-async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
+async function buildProtocolMarkdown(env: Env, weekStart: string, weekEnd: string): Promise<string> {
 	const res = await env.DB.prepare(
 		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning FROM items WHERE date >= ? AND date <= ? ORDER BY relevance DESC LIMIT 500"
-	).bind(range.filterStart, range.filterEnd).all();
+	).bind(weekStart, weekEnd).all();
 	const items: any[] = res.results ?? [];
 	const byAxis: any = {};
 	for (const it of items) {
@@ -265,7 +261,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	const shifts = items.filter((it) => it.shift === "да").length;
 	const lines: string[] = [];
 	lines.push("# Human-AI Monitor Protocol");
-	lines.push("## Week: " + range.filterStart + " — " + range.filterEnd + " (Protocol: " + range.start + ")");
+	lines.push("## Week: " + weekStart + " — " + weekEnd);
 	lines.push("");
 	lines.push("**Items collected:** " + items.length);
 	lines.push("**Shifts detected:** " + shifts);
@@ -315,15 +311,15 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 
 async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<any> {
 	const range = getWeekRange(offsetWeeks);
-	const markdown = await buildProtocolMarkdown(env, range);
+	const markdown = await buildProtocolMarkdown(env, range.start, range.end);
 	const itemsRes = await env.DB.prepare(
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ?"
-	).bind(range.filterStart, range.filterEnd).first();
+	).bind(range.start, range.end).first();
 	const shiftsRes = await env.DB.prepare(
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'да'"
-	).bind(range.filterStart, range.filterEnd).first();
+	).bind(range.start, range.end).first();
 	// F6 fix: compute real Gap Index from collected signals
-	const gapResult = await computeGapIndex(env, range);
+	const gapResult = await computeGapIndex(env, range.start, range.end);
 	
 	// Persist to gap_history (read by buildProtocolMarkdown and /gap endpoint)
 	await env.DB.prepare(
@@ -341,7 +337,7 @@ async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<a
 	
 	const itemsCount = (itemsRes as any)?.n ?? 0;
 	const shiftsCount = (shiftsRes as any)?.n ?? 0;
-	const path = "data/protocols/" + range.start + ".md";
+	const path = "data/protocols/" + range.start + "_" + range.end + ".md";
 	await env.DB.prepare(
 		"INSERT OR REPLACE INTO protocols (week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at, content) VALUES (?,?,?,?,?,?,?,?,?,?)"
 	).bind(
