@@ -247,7 +247,7 @@ This tool does three things:
 
 ## Architecture
 
-- **Cloudflare Workers** (TypeScript) — runtime, 10 API endpoints, Cron 
+- **Cloudflare Workers** (TypeScript) — runtime, 13 API endpoints, Cron 
   Trigger
 - **Cloudflare D1** (Serverless SQLite) — 4 tables: items, protocols, 
   gap_history, index_history
@@ -302,7 +302,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 
 **MVP live:**
 
-- ✅ Cloudflare Worker with 10 API endpoints — deployed
+- ✅ Cloudflare Worker with 13 API endpoints — deployed
 - ✅ `/verify` endpoint — CheatBench-inspired reward hacking detection
 - ✅ D1 database (4 tables, populated)
 - ✅ Workers AI classifier (Qwen 3, calibrated for 12 symmetric axes + 
@@ -333,7 +333,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 
 **Known limitations:**
 
-- ⚠️ RSS-only collection; HTML parsing not implemented yet
+- ⚠️ RSS-only collection; HTML parsing implemented (`fetchFromHtml()` in `src/index.ts`) but currently unused — no sources configured with `type: html`
 - ⚠️ `shift` field may over-trigger on general news
 - ⚠️ 5 sources disabled (VentureBeat 429, Nature 303, V-Dem 404, ILO 404, Lancet bot protection)
 - ⚠️ OECD and Edelman use Google News RSS as fallback (news *about* topics, not official press releases)
@@ -372,6 +372,7 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
 | GET    | /protocols/{week}         | Single protocol metadata                    |
 | GET    | /protocols/{week}/content | Markdown content of protocol                |
 | GET    | /axes/{axis}              | Signals for a specific axis                 |
+| GET    | /axes-history           | Historical axis levels (transparency)     |
 | GET    | /classify                 | Classify arbitrary text                     |
 | GET    | /verify                   | Detect reward hacking (CheatBench-inspired) |
 | GET    | /collect                  | Manual RSS collection                       |
@@ -478,11 +479,11 @@ See CONTRIBUTING.md.
 │ ├── classify_ai.txt
 │ └── classify_human.txt
 ├── src/
-│   ├── index.ts ← Minimal entry point (188 bytes)
+│   ├── index.ts ← Entry point (20,350 bytes, 522 lines)
 │   ├── config/ ← prompts, sources, axes
 │   ├── utils/ ← parsers, rss, html, crypto, retry
-│   ├── handlers/ ← api, cron
-│   ├── services/ ← collector, protocol
+│   ├── handlers/ ← export (weekly archival)
+│   ├── services/ ← gap-computation (F6 fix)
 │   └── cheat-detector.ts ← /verify endpoint
 ├── test/
 │   ├── index.spec.ts ← API tests (8 tests)
