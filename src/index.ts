@@ -4,6 +4,7 @@ import { AI_AXES, HUMAN_AXES, SMD_THRESHOLD } from "./config/axes";
 import { AI_PROMPT, HUMAN_PROMPT } from "./config/prompts";
 import { fetchWithRetry } from "./utils/fetch-with-retry";
 import { handleExport } from './handlers/export';
+import { computeGapIndex } from './services/gap-computation';
 
 export function parseAIResponse(response: any): any {
 	const content = response?.choices?.[0]?.message?.content
@@ -317,9 +318,23 @@ async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<a
 	const shiftsRes = await env.DB.prepare(
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'да'"
 	).bind(range.start, range.end).first();
-	const gap: any = await env.DB.prepare(
-		"SELECT * FROM gap_history ORDER BY week_start DESC LIMIT 1"
-	).first();
+	// F6 fix: compute real Gap Index from collected signals
+	const gapResult = await computeGapIndex(env, range.start, range.end);
+	
+	// Persist to gap_history (read by buildProtocolMarkdown and /gap endpoint)
+	await env.DB.prepare(
+		"INSERT OR REPLACE INTO gap_history (week_start, ai_score, human_score, gap, interpretation, recorded_at) VALUES (?,?,?,?,?,?)"
+	).bind(
+		range.start, gapResult.aiScore, gapResult.humanScore, gapResult.gap, gapResult.interpretation, new Date().toISOString()
+	).run();
+	
+	// Persist axis levels to index_history (fixes F6: table was never used)
+	for (const [axis, level] of Object.entries(gapResult.axisLevels)) {
+		await env.DB.prepare(
+			"INSERT OR REPLACE INTO index_history (axis, level, date, note, recorded_at) VALUES (?,?,?,?,?)"
+		).bind(axis, level, range.start, 'Computed from weekly signals', new Date().toISOString()).run();
+	}
+	
 	const itemsCount = (itemsRes as any)?.n ?? 0;
 	const shiftsCount = (shiftsRes as any)?.n ?? 0;
 	const path = "data/protocols/" + range.start + "_" + range.end + ".md";
@@ -327,7 +342,7 @@ async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<a
 		"INSERT OR REPLACE INTO protocols (week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at, content) VALUES (?,?,?,?,?,?,?,?,?,?)"
 	).bind(
 		range.start, range.end,
-		gap?.ai_score ?? 0, gap?.human_score ?? 0, gap?.gap ?? 0,
+		gapResult.aiScore, gapResult.humanScore, gapResult.gap,
 		itemsCount, shiftsCount, path, new Date().toISOString(), markdown
 	).run();
 	return {
