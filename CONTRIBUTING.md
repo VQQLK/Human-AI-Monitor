@@ -79,14 +79,17 @@
     ├── config/
     │   ├── axes_ai.yaml                # 7 AI осей
     │   ├── axes_human.yaml             # 6 Human осей
-    │   ├── sources_ai.yaml             # 22 AI источника
-    │   └── sources_human.yaml          # 9 Human источников
+    │   ├── sources_ai.yaml             # 21 источник ИИ (20 активных)
+    │   └── sources_human.yaml          # 15 источников человека (11 активных)
     ├── migrations/
     │   ├── 0001_initial_schema.sql
     │   ├── 0002_add_content_column.sql
     │   └── 0003_update_smd_level.sql
     ├── test/
-    │   └── cheat-detector.spec.ts
+    │   ├── cheat-detector.spec.ts      # 7 тестов: детектор читерства
+    │   ├── classifier.spec.ts          # 15 тестов: классификатор
+    │   ├── index.spec.ts               # 8 тестов: API эндпоинты
+    │   └── parser.spec.ts               # 14 тестов: парсер
     └── wrangler.jsonc
 
 ---
