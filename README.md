@@ -280,10 +280,12 @@ A comprehensive interdisciplinary analysis of 2026 empirical data on autonomous 
 **Key finding:** singularity in the classical sense has not arrived, but a qualitatively new paradigm has formed.
 
 **Available in two languages:**
+
 - 🇺🇸 [English](research/en/README.md)
 - 🇷🇺 [Русский](research/README.md)
 
 **Structure:**
+
 - Part I: Introduction, Theoretical Foundations, Methodology (SAS scale)
 - Part II: Empirical Base (15 verified cases, SAS assessments)
 - Part III: Analysis of Correspondence to Singularity Criteria (4 criteria + FSC)
@@ -383,6 +385,7 @@ The `/export-weekly` endpoint exports all protocols in two formats:
 - **Markdown**: `/export-weekly?format=md` — for human reading
 
 Optional parameters:
+
 - `?weeks=N` — limit to last N protocols (default: 52)
 
 **Examples:**
@@ -524,3 +527,4 @@ MIT. Use, fork, improve.
 
 **United We Stand! Only the one who walks conquers the road.**
 
+**Приносить благо другим людям — что может быть выше этой цели?**
