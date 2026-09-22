@@ -151,6 +151,7 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 	const stats: any = {
 		sources_processed: 0, items_fetched: 0,
 		items_classified: 0, items_saved: 0, items_existing: 0,
+		items_skipped_no_title: 0,
 		errors: [], sample: [],
 	};
 	for (let i = offset; i < offset + limit && i < SOURCES.length; i++) {
@@ -169,7 +170,7 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 			stats.items_fetched += items.length;
 			stats.sources_processed++;
 			for (const item of items) {
-				if (!item.title) continue;
+				if (!item.title) { stats.items_skipped_no_title++; continue; }
 				try {
 					const hash = await sha256Hex(item.url || item.title);
 					const existing: any = await env.DB.prepare(
