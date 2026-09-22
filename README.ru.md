@@ -392,9 +392,6 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 ├── migrations/
 │ ├── 0001_initial_schema.sql
 │ └── 0002_add_content_column.sql
-├── prompts/
-│ ├── classify_ai.txt
-│ └── classify_human.txt
 ├── src/
 │ ├── index.ts ← Entry point (20 350 байт, 522 строки)
 │ ├── config/ ← prompts, sources, axes

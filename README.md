@@ -475,9 +475,6 @@ See CONTRIBUTING.md.
 ├── migrations/
 │ ├── 0001_initial_schema.sql
 │ └── 0002_add_content_column.sql
-├── prompts/
-│ ├── classify_ai.txt
-│ └── classify_human.txt
 ├── src/
 │   ├── index.ts ← Entry point (20,350 bytes, 522 lines)
 │   ├── config/ ← prompts, sources, axes
