@@ -47,31 +47,31 @@ describe("validateParsed", () => {
 	});
 
 	it("sets shift to uncertain if relevance < 0.3", () => {
-		const result = validateParsed({ relevance: 0.2, shift: "да" });
-		expect(result.shift).toBe("неопределённо");
+		const result = validateParsed({ relevance: 0.2, shift: "yes" });
+		expect(result.shift).toBe("uncertain");
 	});
 
-	it("downgrades shift=да to нет if relevance < 0.5", () => {
-		const result = validateParsed({ relevance: 0.4, shift: "да" });
-		expect(result.shift).toBe("нет");
+	it("downgrades shift=yes to no if relevance < 0.5", () => {
+		const result = validateParsed({ relevance: 0.4, shift: "yes" });
+		expect(result.shift).toBe("no");
 	});
 
-	it("keeps shift=да if relevance >= 0.5", () => {
-		const result = validateParsed({ relevance: 0.8, shift: "да" });
-		expect(result.shift).toBe("да");
+	it("keeps shift=yes if relevance >= 0.5", () => {
+		const result = validateParsed({ relevance: 0.8, shift: "yes" });
+		expect(result.shift).toBe("yes");
 	});
 
 	it("normalizes invalid shift to uncertain", () => {
-		expect(validateParsed({ shift: "maybe" }).shift).toBe("неопределённо");
+		expect(validateParsed({ shift: "maybe" }).shift).toBe("uncertain");
 	});
 
 	it("normalizes invalid direction", () => {
-		expect(validateParsed({ direction: "up" }).direction).toBe("неопределённо");
+		expect(validateParsed({ direction: "maybe" }).direction).toBe("uncertain");
 	});
 
 	it("keeps valid direction", () => {
-		expect(validateParsed({ direction: "рост" }).direction).toBe("рост");
-		expect(validateParsed({ direction: "падение" }).direction).toBe("падение");
+		expect(validateParsed({ direction: "up" }).direction).toBe("up");
+		expect(validateParsed({ direction: "down" }).direction).toBe("down");
 	});
 
 	it("handles null input", () => {
@@ -82,7 +82,7 @@ describe("validateParsed", () => {
 		const result = validateParsed({});
 		expect(result.axes).toEqual([]);
 		expect(result.relevance).toBe(0.5);
-		expect(result.shift).toBe("неопределённо");
-		expect(result.direction).toBe("неопределённо");
+		expect(result.shift).toBe("uncertain");
+		expect(result.direction).toBe("uncertain");
 	});
 });

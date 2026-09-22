@@ -31,10 +31,10 @@ export function validateParsed(p: any): any {
 	if (rel < 0) rel = 0;
 	if (rel > 1) rel = 1;
 	p.relevance = rel;
-	if (rel < 0.3) p.shift = "неопределённо";
-	else if (rel < 0.5 && p.shift === "да") p.shift = "нет";
-	if (!["да","нет","неопределённо"].includes(p.shift)) p.shift = "неопределённо";
-	if (!["рост","падение","стабильно","неопределённо"].includes(p.direction)) p.direction = "неопределённо";
+	if (rel < 0.3) p.shift = "uncertain";
+	else if (rel < 0.5 && p.shift === "yes") p.shift = "no";
+	if (!["yes","no","uncertain"].includes(p.shift)) p.shift = "uncertain";
+	if (!["up","down","stable","uncertain"].includes(p.direction)) p.direction = "uncertain";
 	return p;
 }
 
@@ -213,8 +213,8 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 						item.url.slice(0, 500), src.name, today, "en",
 						JSON.stringify(parsed.axes ?? []),
 						typeof parsed.relevance === "number" ? parsed.relevance : 0.5,
-						String(parsed.shift ?? "неопределённо"),
-						String(parsed.direction ?? "неопределённо"),
+						String(parsed.shift ?? "uncertain"),
+						String(parsed.direction ?? "uncertain"),
 						String(parsed.reasoning ?? "").slice(0, 1000),
 						new Date().toISOString()
 					).run();
@@ -272,7 +272,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	const gap: any = await env.DB.prepare(
 		"SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1"
 	).first();
-	const shifts = items.filter((it) => it.shift === "да").length;
+	const shifts = items.filter((it) => it.shift === "yes").length;
 	const lines: string[] = [];
 	lines.push("# Human-AI Monitor Protocol");
 	lines.push("## Week: " + range.filterStart + " — " + range.filterEnd + " (Protocol: " + range.start + ")");
@@ -297,7 +297,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		const list = byAxis[axis] ?? [];
 		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
 		for (const it of list.slice(0, 5)) {
-			const marker = it.shift === "да" ? "🔴" : it.shift === "нет" ? "🟢" : "🟡";
+			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
 			lines.push("- " + marker + " [" + it.title + "](" + it.url + ") — " + it.source);
 			if (it.reasoning) lines.push("  - " + it.reasoning);
 		}
@@ -311,7 +311,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		const list = byAxis[axis] ?? [];
 		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
 		for (const it of list.slice(0, 5)) {
-			const marker = it.shift === "да" ? "🔴" : it.shift === "нет" ? "🟢" : "🟡";
+			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
 			lines.push("- " + marker + " [" + it.title + "](" + it.url + ") — " + it.source);
 			if (it.reasoning) lines.push("  - " + it.reasoning);
 		}
@@ -342,7 +342,7 @@ async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<a
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ?"
 	).bind(range.filterStart, range.filterEnd).first();
 	const shiftsRes = await env.DB.prepare(
-		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'да'"
+		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'yes'"
 	).bind(range.filterStart, range.filterEnd).first();
 	// F6 fix: compute real Gap Index from collected signals
 	const gapResult = await computeGapIndex(env, range);
