@@ -260,7 +260,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		} catch (e) {}
 	}
 	const gap: any = await env.DB.prepare(
-		"SELECT * FROM gap_history ORDER BY week_start DESC LIMIT 1"
+		"SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1"
 	).first();
 	const shifts = items.filter((it) => it.shift === "да").length;
 	const lines: string[] = [];
@@ -387,7 +387,7 @@ export default {
 			if (path === "/health") return json({ status: "ok", ts: Date.now() }, 200);
 
 			if (path === "/gap") {
-				const row = await env.DB.prepare("SELECT * FROM gap_history ORDER BY week_start DESC LIMIT 1").first();
+				const row = await env.DB.prepare("SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1").first();
 				if (!row) return json({ error: "No gap data" }, 404);
 				return json(row, 200);
 			}
