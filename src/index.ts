@@ -1,6 +1,6 @@
 import { detectCheating } from "./cheat-detector";
 import { SOURCES } from "./config/sources";
-import { AI_AXES, HUMAN_AXES, SMD_THRESHOLD } from "./config/axes";
+import { AI_AXES, HUMAN_AXES } from "./config/axes";
 import { AI_PROMPT, HUMAN_PROMPT } from "./config/prompts";
 import { fetchWithRetry } from "./utils/fetch-with-retry";
 import { handleExport } from './handlers/export';
