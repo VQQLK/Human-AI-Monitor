@@ -455,20 +455,27 @@ export default {
 			}
 			if (path === "/generate") {
 				const weekParam = url.searchParams.get("week");
-				let offset = 0;
+				// Default: previous (already closed) week, matching the weekly cron.
+				// Generating the current still-open week is disallowed (offset < 1).
+				let offset = 1;
 				if (weekParam) {
 					if (/^\d+$/.test(weekParam)) {
-						// Numeric offset: ?week=1 → 1 week back
+						// Numeric offset: ?week=1 → previous closed week
 						offset = parseInt(weekParam, 10);
 					} else {
 						// Date of Monday: ?week=2026-09-14
 						const target = new Date(weekParam + "T00:00:00Z");
 						if (isNaN(target.getTime())) {
-							return json({ error: "Invalid week format. Use numeric offset (0,1,2…) or ISO date (YYYY-MM-DD)" }, 400);
+							return json({ error: "Invalid week format. Use numeric offset (1,2,3…) or ISO date (YYYY-MM-DD)" }, 400);
 						}
 						const now = new Date();
 						offset = Math.floor((now.getTime() - target.getTime()) / (7 * 24 * 3600 * 1000));
 					}
+				}
+				if (offset < 1) {
+					return json({
+						error: "Cannot generate protocol for the current (still-open) week. Use offset >= 1 (previous closed week) or a past Monday date (YYYY-MM-DD)."
+					}, 400);
 				}
 				return json(await generateAndSaveProtocol(env, offset), 200);
 			}
