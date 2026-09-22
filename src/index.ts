@@ -71,10 +71,12 @@ export function parseRSS(xml: string, maxItems: number): any[] {
 	let m;
 	while ((m = rssRe.exec(xml)) !== null && items.length < maxItems) {
 		const block = m[0];
+		const pubDate = extractTag(block, "pubDate");
 		items.push({
 			title: extractTag(block, "title"),
 			summary: extractTag(block, "description").slice(0, 500),
 			url: extractTag(block, "link"),
+			pubDate: pubDate || null,
 		});
 	}
 	if (items.length === 0) {
@@ -82,14 +84,27 @@ export function parseRSS(xml: string, maxItems: number): any[] {
 		while ((m = atomRe.exec(xml)) !== null && items.length < maxItems) {
 			const block = m[0];
 			const lm = block.match(/<link[^>]*href="([^"]+)"/i);
+			const published = extractTag(block, "published") || extractTag(block, "updated");
 			items.push({
 				title: extractTag(block, "title"),
 				summary: extractTag(block, "summary").slice(0, 500),
 				url: lm ? lm[1] : "",
+				pubDate: published || null,
 			});
 		}
 	}
 	return items;
+}
+
+function parsePubDate(pubDate: string | null): string {
+	if (!pubDate) return new Date().toISOString().slice(0, 10);
+	try {
+		const d = new Date(pubDate);
+		if (isNaN(d.getTime())) return new Date().toISOString().slice(0, 10);
+		return d.toISOString().slice(0, 10);
+	} catch {
+		return new Date().toISOString().slice(0, 10);
+	}
 }
 
 async function fetchFromHtml(src: any): Promise<any[]> {
@@ -205,12 +220,12 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 					if (!parsed) continue;
 					stats.items_classified++;
 
-					const today = new Date().toISOString().slice(0, 10);
+					const itemDate = parsePubDate(item.pubDate);
 					await env.DB.prepare(
 						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, shift, direction, reasoning, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
 					).bind(
 						hash, item.title.slice(0, 500), item.summary.slice(0, 1000),
-						item.url.slice(0, 500), src.name, today, "en",
+						item.url.slice(0, 500), src.name, itemDate, "en",
 						JSON.stringify(parsed.axes ?? []),
 						typeof parsed.relevance === "number" ? parsed.relevance : 0.5,
 						String(parsed.shift ?? "uncertain"),
