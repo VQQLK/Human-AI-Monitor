@@ -324,6 +324,17 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 }
 
 async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<any> {
+	// Guard: refuse to generate protocol for the current (still-open) week.
+	// The cron uses offsetWeeks=1 (previous closed week). Direct calls with
+	// offsetWeeks=0 would write partial data (e.g., h1_agency=0, hexad=0 from
+	// incomplete item count). See /generate endpoint for user-facing message.
+	if (offsetWeeks < 1) {
+		throw new Error(
+			"Refusing to generate protocol for still-open week (offset=" + offsetWeeks + "). " +
+			"Use offset >= 1 (previous closed week). Cron uses offset=1."
+		);
+	}
+
 	const range = getWeekRange(offsetWeeks);
 	const markdown = await buildProtocolMarkdown(env, range);
 	const itemsRes = await env.DB.prepare(
