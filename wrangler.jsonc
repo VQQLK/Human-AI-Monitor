@@ -13,6 +13,8 @@
 		}
 	],
 	"ai": { "binding": "AI" },
-	"triggers": { "crons": ["0 6 * * 1", "15 6 * * 1", "30 6 * * 1", "45 6 * * 1"] },
+	// NOTE: Cloudflare treats day-of-week "1" as Sunday in cron (verified empirically
+	// 2026-09-22: "0 6 * * 1" fired on 2026-09-20, a Sunday). To run on Monday we use "2".
+	"triggers": { "crons": ["0 6 * * 2", "15 6 * * 2", "30 6 * * 2", "45 6 * * 2"] },
 	"vars": { "CLASSIFIER_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8" }
 }
