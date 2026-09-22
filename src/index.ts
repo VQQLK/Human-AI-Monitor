@@ -171,6 +171,27 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 			for (const item of items) {
 				if (!item.title) continue;
 				try {
+					const hash = await sha256Hex(item.url || item.title);
+					const existing: any = await env.DB.prepare(
+						"SELECT hash, axes, relevance, shift FROM items WHERE hash = ?"
+					).bind(hash).first();
+
+					if (existing) {
+						stats.items_existing++;
+						if (stats.sample.length < 5) {
+							let axes: any[] = [];
+							try { axes = JSON.parse(existing.axes ?? "[]"); } catch (e) {}
+							if (Array.isArray(axes) && axes.length > 0) {
+								stats.sample.push({
+									source: src.name, title: item.title.slice(0, 120),
+									axes: axes, relevance: existing.relevance, shift: existing.shift,
+									existing: true,
+								});
+							}
+						}
+						continue;
+					}
+
 					const text = (item.title + ". " + item.summary).slice(0, 800);
 					const systemPrompt = src.kind === "human" ? HUMAN_PROMPT : AI_PROMPT;
 					const ai: any = await env.AI.run(env.CLASSIFIER_MODEL, {
@@ -182,19 +203,7 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 					const parsed = validateParsed(parseAIResponse(ai));
 					if (!parsed) continue;
 					stats.items_classified++;
-					const hash = await sha256Hex(item.url || item.title);
-const existing = await env.DB.prepare("SELECT hash FROM items WHERE hash = ?").bind(hash).first();
-if (existing) {
-  stats.items_existing++;
-  if (stats.sample.length < 5 && Array.isArray(parsed.axes) && parsed.axes.length > 0) {
-    stats.sample.push({
-      source: src.name, title: item.title.slice(0, 120),
-      axes: parsed.axes, relevance: parsed.relevance, shift: parsed.shift,
-      existing: true,
-    });
-  }
-  continue;
-}
+
 					const today = new Date().toISOString().slice(0, 10);
 					await env.DB.prepare(
 						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, shift, direction, reasoning, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
