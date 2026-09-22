@@ -43,8 +43,8 @@ export async function computeGapIndex(env: Env, range: any): Promise<GapResult> 
     for (const a of axes) {
       (buckets[a] ??= []).push({
         relevance: it.relevance ?? 0.5,
-        shift: it.shift ?? 'неопределённо',
-        direction: it.direction ?? 'неопределённо'
+        shift: it.shift ?? 'uncertain',
+        direction: it.direction ?? 'uncertain'
       });
     }
   }
@@ -60,9 +60,9 @@ export async function computeGapIndex(env: Env, range: any): Promise<GapResult> 
   const gap = ai - human;
 
   let interpretation = 'Symmetric development';
-  if (gap < -0.3) interpretation = 'Человечество значительно опережает';
+  if (gap < -0.3) interpretation = 'Humanity is significantly ahead';
   else if (gap < -0.1) interpretation = 'Humanity is ahead';
-  else if (gap > 0.3) interpretation = 'ИИ значительно опережает';
+  else if (gap > 0.3) interpretation = 'AI is significantly ahead';
   else if (gap > 0.1) interpretation = 'AI is ahead';
 
   return {
