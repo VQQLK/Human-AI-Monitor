@@ -235,9 +235,9 @@ export function getWeekRange(offsetWeeks: number): any {
 	const sunday = new Date(monday);
 	sunday.setUTCDate(monday.getUTCDate() + 6);
 	return {
-		// Protocol identifier: Sunday (end of week)
-		start: sunday.toISOString().slice(0, 10),
-		end: monday.toISOString().slice(0, 10),
+		// Week range: Monday (start) through Sunday (end)
+		start: monday.toISOString().slice(0, 10),
+		end: sunday.toISOString().slice(0, 10),
 		// For SQL filtering: Monday through Sunday
 		filterStart: monday.toISOString().slice(0, 10),
 		filterEnd: sunday.toISOString().slice(0, 10),
@@ -260,7 +260,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		} catch (e) {}
 	}
 	const gap: any = await env.DB.prepare(
-		"SELECT * FROM gap_history ORDER BY week_start DESC LIMIT 1"
+		"SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1"
 	).first();
 	const shifts = items.filter((it) => it.shift === "да").length;
 	const lines: string[] = [];
@@ -387,7 +387,7 @@ export default {
 			if (path === "/health") return json({ status: "ok", ts: Date.now() }, 200);
 
 			if (path === "/gap") {
-				const row = await env.DB.prepare("SELECT * FROM gap_history ORDER BY week_start DESC LIMIT 1").first();
+				const row = await env.DB.prepare("SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1").first();
 				if (!row) return json({ error: "No gap data" }, 404);
 				return json(row, 200);
 			}
@@ -447,9 +447,18 @@ export default {
 				const weekParam = url.searchParams.get("week");
 				let offset = 0;
 				if (weekParam) {
-					const target = new Date(weekParam + "T00:00:00Z");
-					const now = new Date();
-					offset = Math.floor((now.getTime() - target.getTime()) / (7 * 24 * 3600 * 1000));
+					if (/^\d+$/.test(weekParam)) {
+						// Numeric offset: ?week=1 → 1 week back
+						offset = parseInt(weekParam, 10);
+					} else {
+						// Date of Monday: ?week=2026-09-14
+						const target = new Date(weekParam + "T00:00:00Z");
+						if (isNaN(target.getTime())) {
+							return json({ error: "Invalid week format. Use numeric offset (0,1,2…) or ISO date (YYYY-MM-DD)" }, 400);
+						}
+						const now = new Date();
+						offset = Math.floor((now.getTime() - target.getTime()) / (7 * 24 * 3600 * 1000));
+					}
 				}
 				return json(await generateAndSaveProtocol(env, offset), 200);
 			}
