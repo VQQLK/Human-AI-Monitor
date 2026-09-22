@@ -45,6 +45,18 @@ export default {
       "axes": [
         "h1_agency",
         "h2_sovereignty"
+      ],
+      "enabled": false,
+      "note": "Disabled: WAF blocks non-browser TLS fingerprint (JA3/JA4). Verified 2026-09-22: curl returned HTTP 403 both locally and from Worker."
+    },
+    {
+      "name": "Benton Institute for Broadband & Society",
+      "url": "https://www.benton.org/blog/feed",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h1_agency",
+        "h2_sovereignty"
       ]
     },
     {
