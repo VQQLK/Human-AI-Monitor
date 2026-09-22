@@ -447,9 +447,18 @@ export default {
 				const weekParam = url.searchParams.get("week");
 				let offset = 0;
 				if (weekParam) {
-					const target = new Date(weekParam + "T00:00:00Z");
-					const now = new Date();
-					offset = Math.floor((now.getTime() - target.getTime()) / (7 * 24 * 3600 * 1000));
+					if (/^\d+$/.test(weekParam)) {
+						// Numeric offset: ?week=1 → 1 week back
+						offset = parseInt(weekParam, 10);
+					} else {
+						// Date of Monday: ?week=2026-09-14
+						const target = new Date(weekParam + "T00:00:00Z");
+						if (isNaN(target.getTime())) {
+							return json({ error: "Invalid week format. Use numeric offset (0,1,2…) or ISO date (YYYY-MM-DD)" }, 400);
+						}
+						const now = new Date();
+						offset = Math.floor((now.getTime() - target.getTime()) / (7 * 24 * 3600 * 1000));
+					}
 				}
 				return json(await generateAndSaveProtocol(env, offset), 200);
 			}
