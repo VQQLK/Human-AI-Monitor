@@ -1,0 +1,60 @@
+name: Sync protocols from production API
+
+on:
+  schedule:
+    # Daily at 08:00 UTC — after Monday 06:00-06:45 cron has finished
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Fetch list of protocols
+        id: list
+        run: |
+          API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
+          curl -sSf "$API/protocols" -o /tmp/protocols.json
+          WEEKS=$(jq -r '.protocols[]?.week_start // empty' /tmp/protocols.json | tr '\n' ' ')
+          echo "weeks=$WEEKS" >> "$GITHUB_OUTPUT"
+          echo "Weeks found: $WEEKS"
+
+      - name: Sync protocol markdown files
+        run: |
+          API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
+          mkdir -p data/protocols
+          for week in ${{ steps.list.outputs.weeks }}; do
+            TARGET="data/protocols/${week}.md"
+            TMP="$(mktemp)"
+            if ! curl -sSf "$API/protocols/${week}/content" -o "$TMP"; then
+              echo "✗ Failed to fetch ${week}"
+              rm -f "$TMP"
+              continue
+            fi
+            if [ -f "$TARGET" ] && cmp -s "$TMP" "$TARGET"; then
+              echo "= ${week}.md unchanged"
+            else
+              mv "$TMP" "$TARGET"
+              echo "✓ ${week}.md updated"
+            fi
+            rm -f "$TMP"
+          done
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/protocols/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          CHANGED=$(git diff --cached --name-only | tr '\n' ' ')
+          git commit -m "chore(protocols): sync from API — ${CHANGED} [skip ci]"
+          git push
