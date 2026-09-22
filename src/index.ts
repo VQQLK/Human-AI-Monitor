@@ -235,9 +235,9 @@ export function getWeekRange(offsetWeeks: number): any {
 	const sunday = new Date(monday);
 	sunday.setUTCDate(monday.getUTCDate() + 6);
 	return {
-		// Protocol identifier: Sunday (end of week)
-		start: sunday.toISOString().slice(0, 10),
-		end: monday.toISOString().slice(0, 10),
+		// Week range: Monday (start) through Sunday (end)
+		start: monday.toISOString().slice(0, 10),
+		end: sunday.toISOString().slice(0, 10),
 		// For SQL filtering: Monday through Sunday
 		filterStart: monday.toISOString().slice(0, 10),
 		filterEnd: sunday.toISOString().slice(0, 10),
