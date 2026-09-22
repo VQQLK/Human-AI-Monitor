@@ -15,20 +15,32 @@ by `.github/workflows/sync-protocols.yml` (runs daily at 08:00 UTC).
 
 ## File naming
 
-`{week_start}.md`, where `week_start` is the **Monday** of the covered week.
-Covered period is `week_start` through `week_start + 6` (Sunday).
+**`{week_end}.md`**, where `week_end` is the **Sunday** of the covered week.
+The covered period runs from the **Monday** 6 days before `week_end` through
+the **Sunday** `week_end` itself.
 
-Example: `2026-09-14.md` covers Monday 2026-09-14 → Sunday 2026-09-20.
+Example: `2026-09-20.md` covers Monday 2026-09-14 → Sunday 2026-09-20.
 
-## Why this archive exists
+| File | Monday (API: `week_start`) | Sunday (file: `week_end`) | Coverage |
+|------|----------------------------|---------------------------|----------|
+| `2026-09-20.md` | 2026-09-14 | 2026-09-20 | Mon 14 Sep → Sun 20 Sep |
+| `2026-09-27.md` | 2026-09-21 | 2026-09-27 | Mon 21 Sep → Sun 27 Sep |
+| `2026-10-04.md` | 2026-09-28 | 2026-10-04 | Mon 28 Sep → Sun 04 Oct |
 
-- **Historical backup** — survives accidental D1 data loss
-- **Grep-able history** — search across years without hitting the API
-- **Public record** — anyone can browse protocol evolution on GitHub
+### Why Sunday-based naming for files?
 
-## Manual recovery
+- "The week ending September 20" is more intuitive for human readers than
+  "the week starting September 14"
+- Matches how people naturally think about "last week" (as a completed period)
 
-If D1 is ever lost, the archive alone is not sufficient to rebuild — the
-`items` table (with per-article axes, relevance, shift) is not mirrored
-here. But the markdown protocols give a full historical record of what
-the Gap Index looked like at each week, which is the primary output.
+### Note on API identifier
+
+The production API and database use the **Monday** (`week_start`) as the
+canonical identifier. For example:
+
+- API endpoint: `GET /protocols/2026-09-14/content`
+- Database: `protocols.week_start = '2026-09-14'`
+
+This archive uses **Sunday** (`week_end`) only for file names to be more
+human-readable. The mapping is straightforward:
+
