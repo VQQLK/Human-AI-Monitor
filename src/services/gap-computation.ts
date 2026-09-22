@@ -59,11 +59,11 @@ export async function computeGapIndex(env: Env, range: any): Promise<GapResult> 
   const human = avg(HUMAN_AXES);
   const gap = ai - human;
 
-  let interpretation = 'Симметричное развитие';
+  let interpretation = 'Symmetric development';
   if (gap < -0.3) interpretation = 'Человечество значительно опережает';
-  else if (gap < -0.1) interpretation = 'Человечество опережает';
+  else if (gap < -0.1) interpretation = 'Humanity is ahead';
   else if (gap > 0.3) interpretation = 'ИИ значительно опережает';
-  else if (gap > 0.1) interpretation = 'ИИ опережает';
+  else if (gap > 0.1) interpretation = 'AI is ahead';
 
   return {
     aiScore: Math.round(ai * 100) / 100,

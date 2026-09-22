@@ -319,7 +319,8 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	}
 	lines.push("---");
 	lines.push("");
-	lines.push("**Together — We Are Strong.**");
+	lines.push("**To bring the greater good to others — what could be a higher goal?**");
+	lines.push("**United We Stand! Only the one who walks conquers the road.**");
 	return lines.join("\n");
 }
 
