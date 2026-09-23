@@ -81,7 +81,7 @@ Each batch: 8 sources x 3 articles = ~24 items, ~48 subrequests (under 50 limit)
 - Purpose: snapshot for operational analysis mid-week
 
 **Draft preview**: /protocols/current endpoint (not saved to DB)
-**Publication**: Monday and Friday at 08:00 UTC via GitHub Actions
+- **Publication**: Monday 14:00 UTC (after final) + Saturday 08:00 UTC (after interim) via GitHub Actions
 
 ### File naming for interim protocols
 
