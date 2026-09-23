@@ -1,10 +1,8 @@
-name: Sync protocols from production API
+name: Sync protocols (dual-sync: collector + archive)
 
 on:
   schedule:
-    # Monday at 14:00 UTC — after final protocol generated at 13:45 UTC
     - cron: "0 14 * * 1"
-    # Saturday at 08:00 UTC — after Friday interim protocol generated at 13:45 Fri
     - cron: "0 8 * * 6"
   workflow_dispatch:
 
@@ -15,8 +13,17 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout repository
+      - name: Checkout collector repository
         uses: actions/checkout@v5
+        with:
+          path: collector
+
+      - name: Checkout archive repository
+        uses: actions/checkout@v5
+        with:
+          repository: VQQLK/human-ai-monitor-archive
+          token: ${{ secrets.DUAL_SYNC_TOKEN }}
+          path: archive
 
       - name: Fetch list of protocols
         id: list
@@ -28,16 +35,26 @@ jobs:
           echo "pairs=$PAIRS_ENCODED" >> "$GITHUB_OUTPUT"
           echo "Protocol pairs found:"
           echo "$PAIRS"
+          
+          LATEST_FINAL=$(echo "$PAIRS" | awk '$3 == "0" {print $1}' | sort -r | head -1)
+          LATEST_INTERIM=$(echo "$PAIRS" | awk '$3 == "1" {print $1}' | sort -r | head -1)
+          echo "Latest FINAL: $LATEST_FINAL"
+          echo "Latest INTERIM: $LATEST_INTERIM"
+          echo "latest_final=$LATEST_FINAL" >> "$GITHUB_OUTPUT"
+          echo "latest_interim=$LATEST_INTERIM" >> "$GITHUB_OUTPUT"
 
-      - name: Sync protocol markdown files (all 3 languages)
+      - name: Sync to archive (ALL protocols)
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
-          mkdir -p data/protocols
+          mkdir -p archive/protocols
+          cd archive/protocols
+          
+          echo "Syncing ALL protocols to archive..."
           PAIRS=$(echo "${{ steps.list.outputs.pairs }}" | base64 -d)
+          
           echo "$PAIRS" | while read -r week_start week_end is_interim; do
             [ -z "$week_start" ] && continue
             
-            # Determine base filename and type
             if [ "$is_interim" = "1" ]; then
               BASENAME="${week_end}.interim"
               TYPE="INTERIM"
@@ -46,61 +63,109 @@ jobs:
               TYPE="FINAL"
             fi
             
-            # Sync English
-            TMP_EN="$(mktemp)"
-            if curl -sSf "$API/protocols/${week_start}/content" -o "$TMP_EN"; then
-              TARGET_EN="data/protocols/${BASENAME}.md"
-              if [ -f "$TARGET_EN" ] && cmp -s "$TMP_EN" "$TARGET_EN"; then
-                echo "= ${BASENAME}.md ($TYPE, EN) unchanged"
+            for lang in "" ".ru" ".zh"; do
+              SUFFIX="${lang}.md"
+              if [ -z "$lang" ]; then
+                URL="$API/protocols/${week_start}/content"
               else
-                mv "$TMP_EN" "$TARGET_EN"
-                echo "✓ ${BASENAME}.md ($TYPE, EN) updated"
+                URL="$API/protocols/${week_start}/content${lang}"
               fi
-            else
-              echo "✗ Failed to fetch EN content for ${week_start}"
-              rm -f "$TMP_EN"
-            fi
-            
-            # Sync Russian
-            TMP_RU="$(mktemp)"
-            if curl -sSf "$API/protocols/${week_start}/content/ru" -o "$TMP_RU"; then
-              TARGET_RU="data/protocols/${BASENAME}.ru.md"
-              if [ -f "$TARGET_RU" ] && cmp -s "$TMP_RU" "$TARGET_RU"; then
-                echo "= ${BASENAME}.ru.md ($TYPE, RU) unchanged"
+              
+              TMP="$(mktemp)"
+              if curl -sSf "$URL" -o "$TMP"; then
+                TARGET="${BASENAME}${SUFFIX}"
+                if [ -f "$TARGET" ] && cmp -s "$TMP" "$TARGET"; then
+                  echo "= ${TARGET} (${TYPE}) unchanged"
+                else
+                  mv "$TMP" "$TARGET"
+                  echo "✓ ${TARGET} (${TYPE}) updated"
+                fi
               else
-                mv "$TMP_RU" "$TARGET_RU"
-                echo "✓ ${BASENAME}.ru.md ($TYPE, RU) updated"
+                echo "⚠ Failed to fetch ${lang:-EN} for ${week_start}"
+                rm -f "$TMP"
               fi
-            else
-              echo "⚠ RU not ready for ${week_start} (may not be translated yet)"
-              rm -f "$TMP_RU"
-            fi
-            
-            # Sync Chinese
-            TMP_ZH="$(mktemp)"
-            if curl -sSf "$API/protocols/${week_start}/content/zh" -o "$TMP_ZH"; then
-              TARGET_ZH="data/protocols/${BASENAME}.zh.md"
-              if [ -f "$TARGET_ZH" ] && cmp -s "$TMP_ZH" "$TARGET_ZH"; then
-                echo "= ${BASENAME}.zh.md ($TYPE, ZH) unchanged"
-              else
-                mv "$TMP_ZH" "$TARGET_ZH"
-                echo "✓ ${BASENAME}.zh.md ($TYPE, ZH) updated"
-              fi
-            else
-              echo "⚠ ZH not ready for ${week_start} (may not be translated yet)"
-              rm -f "$TMP_ZH"
-            fi
+            done
           done
 
-      - name: Commit and push if changed
+      - name: Sync to collector (latest 2 protocols only)
         run: |
-          git config user.name  "github-actions[bot]"
+          API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
+          mkdir -p collector/data/protocols
+          cd collector/data/protocols
+          
+          LATEST_FINAL="${{ steps.list.outputs.latest_final }}"
+          LATEST_INTERIM="${{ steps.list.outputs.latest_interim }}"
+          
+          echo "Syncing only latest protocols to collector..."
+          echo "Latest FINAL: $LATEST_FINAL"
+          echo "Latest INTERIM: $LATEST_INTERIM"
+          
+          # Remove ALL existing protocols (will re-add only latest)
+          rm -f *.md
+          
+          PAIRS=$(echo "${{ steps.list.outputs.pairs }}" | base64 -d)
+          
+          echo "$PAIRS" | while read -r week_start week_end is_interim; do
+            [ -z "$week_start" ] && continue
+            
+            # Skip if not latest FINAL or INTERIM
+            if [ "$week_start" != "$LATEST_FINAL" ] && [ "$week_start" != "$LATEST_INTERIM" ]; then
+              continue
+            fi
+            
+            if [ "$is_interim" = "1" ]; then
+              BASENAME="${week_end}.interim"
+              TYPE="INTERIM"
+            else
+              BASENAME="${week_end}"
+              TYPE="FINAL"
+            fi
+            
+            echo "=== Syncing $TYPE ($week_start) ==="
+            
+            for lang in "" ".ru" ".zh"; do
+              SUFFIX="${lang}.md"
+              if [ -z "$lang" ]; then
+                URL="$API/protocols/${week_start}/content"
+              else
+                URL="$API/protocols/${week_start}/content${lang}"
+              fi
+              
+              if curl -sSf "$URL" -o "${BASENAME}${SUFFIX}"; then
+                echo "✓ ${BASENAME}${SUFFIX} synced"
+              else
+                echo "⚠ Failed ${lang:-EN} for ${week_start}"
+              fi
+            done
+          done
+          
+          echo "=== Final collector state ==="
+          ls -la
+
+      - name: Commit and push archive
+        working-directory: archive
+        run: |
+          git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/protocols/
+          git add protocols/
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "No changes in archive"
             exit 0
           fi
           CHANGED=$(git diff --cached --name-only | tr '\n' ' ')
-          git commit -m "chore(protocols): sync from API (3 languages) — ${CHANGED} [skip ci]"
+          git commit -m "chore(protocols): archive update — ${CHANGED} [skip ci]"
+          git push
+
+      - name: Commit and push collector
+        working-directory: collector
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/protocols/
+          if git diff --cached --quiet; then
+            echo "No changes in collector"
+            exit 0
+          fi
+          CHANGED=$(git diff --cached --name-only | tr '\n' ' ')
+          git commit -m "chore(protocols): sync latest — ${CHANGED} [skip ci]"
           git push
