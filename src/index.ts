@@ -524,7 +524,7 @@ export default {
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/", "/health", "/gap", "/protocols", "/protocols/current", "/protocols/{week}", "/protocols/{week}/content", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
+					endpoints: ["/", "/health", "/gap", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
 				}, 200);
 			}
 			if (path === "/health") return json({ status: "ok", ts: Date.now() }, 200);
@@ -538,6 +538,17 @@ export default {
 				const range = getWeekRange(0);
 				const markdown = await buildDraftProtocolMarkdown(env, range);
 				return new Response(markdown, {
+					headers: { "Content-Type": "text/markdown; charset=utf-8", ...CORS },
+				});
+			}
+			// Phase 3: multilingual draft endpoints
+			const currentLangMatch = path.match(/^\/protocols\/current\/(ru|zh)$/);
+			if (currentLangMatch) {
+				const lang = currentLangMatch[1] as 'ru' | 'zh';
+				const range = getWeekRange(0);
+				const englishMarkdown = await buildDraftProtocolMarkdown(env, range);
+				const translatedMarkdown = await translateProtocolMarkdown(env, englishMarkdown, lang);
+				return new Response(translatedMarkdown, {
 					headers: { "Content-Type": "text/markdown; charset=utf-8", ...CORS },
 				});
 			}
