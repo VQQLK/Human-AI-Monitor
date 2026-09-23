@@ -2,9 +2,9 @@ name: Sync protocols from production API
 
 on:
   schedule:
-    # Monday and Friday at 08:00 UTC — publish main protocols to GitHub
-    - cron: '0 8 * * 1'  # Monday (weekend summary)
-    - cron: '0 8 * * 5'  # Friday (mid-week update)
+    # Monday and Friday at 08:00 UTC — publish protocols to GitHub
+    - cron: '0 8 * * 1'  # Monday (final protocol for previous week)
+    - cron: '0 8 * * 5'  # Friday (interim protocol for current week)
   workflow_dispatch:
 
 jobs:
@@ -22,9 +22,8 @@ jobs:
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
           curl -sSf "$API/protocols" -o /tmp/protocols.json
-          # Extract both week_start (for API URL) and week_end (for filename)
-          PAIRS=$(jq -r '.protocols[] | "\(.week_start) \(.week_end)"' /tmp/protocols.json)
-          # Encode as single line for GITHUB_OUTPUT
+          # Extract week_start, week_end, and is_interim
+          PAIRS=$(jq -r '.protocols[] | "\(.week_start) \(.week_end) \(.is_interim // 0)"' /tmp/protocols.json)
           PAIRS_ENCODED=$(echo "$PAIRS" | base64 -w 0)
           echo "pairs=$PAIRS_ENCODED" >> "$GITHUB_OUTPUT"
           echo "Protocol pairs found:"
@@ -34,13 +33,19 @@ jobs:
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
           mkdir -p data/protocols
-          # Decode pairs (each line: "week_start week_end")
           PAIRS=$(echo "${{ steps.list.outputs.pairs }}" | base64 -d)
-          echo "$PAIRS" | while read -r week_start week_end; do
+          echo "$PAIRS" | while read -r week_start week_end is_interim; do
             [ -z "$week_start" ] && continue
-            # Filename uses week_end (Sunday) for human readability
-            TARGET="data/protocols/${week_end}.md"
-            # API uses week_start (Monday) as canonical identifier
+            
+            # Determine filename based on is_interim flag
+            if [ "$is_interim" = "1" ]; then
+              TARGET="data/protocols/${week_end}.interim.md"
+              TYPE="INTERIM"
+            else
+              TARGET="data/protocols/${week_end}.md"
+              TYPE="FINAL"
+            fi
+            
             TMP="$(mktemp)"
             if ! curl -sSf "$API/protocols/${week_start}/content" -o "$TMP"; then
               echo "✗ Failed to fetch week_start=${week_start}"
@@ -48,10 +53,10 @@ jobs:
               continue
             fi
             if [ -f "$TARGET" ] && cmp -s "$TMP" "$TARGET"; then
-              echo "= ${week_end}.md unchanged (week ${week_start} → ${week_end})"
+              echo "= ${week_end}.md ($TYPE) unchanged"
             else
               mv "$TMP" "$TARGET"
-              echo "✓ ${week_end}.md updated (week ${week_start} → ${week_end})"
+              echo "✓ ${week_end}.md ($TYPE) updated"
             fi
             rm -f "$TMP"
           done

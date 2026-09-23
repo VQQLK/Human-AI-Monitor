@@ -464,6 +464,39 @@ async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<a
 		bytes: markdown.length,
 	};
 }
+// Generate INTERIM protocol for current (still-open) week — used on Fridays
+// This gives a "snapshot" of accumulated data mid-week (5 days: Mon-Fri)
+async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<any> {
+	const range = getWeekRange(offsetWeeks);
+	const markdown = await buildDraftProtocolMarkdown(env, range);
+	const itemsRes = await env.DB.prepare(
+		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ?"
+	).bind(range.filterStart, range.filterEnd).first();
+	const shiftsRes = await env.DB.prepare(
+		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'yes'"
+	).bind(range.filterStart, range.filterEnd).first();
+	const gapResult = await computeGapIndex(env, range);
+	
+	const itemsCount = (itemsRes as any)?.n ?? 0;
+	const shiftsCount = (shiftsRes as any)?.n ?? 0;
+	const path = "data/protocols/" + range.start + ".interim.md";
+	
+	await env.DB.prepare(
+		"INSERT OR REPLACE INTO protocols (week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at, content, is_interim) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+	).bind(
+		range.start, range.end,
+		gapResult.aiScore, gapResult.humanScore, gapResult.gap,
+		itemsCount, shiftsCount, path, new Date().toISOString(), markdown, 1
+	).run();
+	return {
+		week_start: range.start, week_end: range.end,
+		items_count: itemsCount, shifts_count: shiftsCount,
+		bytes: markdown.length,
+		is_interim: true,
+	};
+}
+
+
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -508,7 +541,7 @@ export default {
 				});
 			}
 			if (path === "/protocols") {
-				const res = await env.DB.prepare("SELECT week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at FROM protocols ORDER BY week_start DESC LIMIT 50").all();
+				const res = await env.DB.prepare("SELECT week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at, is_interim FROM protocols ORDER BY week_start DESC, is_interim ASC LIMIT 50").all();
 				return json({ count: res.results?.length ?? 0, protocols: res.results ?? [] }, 200);
 			}
 			const cm = path.match(/^\/protocols\/([0-9]{4}-[0-9]{2}-[0-9]{2})\/content$/);
@@ -645,13 +678,31 @@ export default {
 		console.log("[cron] Batch " + cfg.batch + "/4 triggered at " + new Date(event.scheduledTime).toISOString() + " cron=" + event.cron);
 		console.log("[cron] offset=" + cfg.offset + " limit=" + cfg.limit + " maxPerSource=3 generateProtocol=" + cfg.generateProtocol);
 
+		// Determine day of week: 0=Sunday, 1=Monday, 2=Tuesday, ..., 5=Friday, 6=Saturday
+		const dayOfWeek = new Date(event.scheduledTime).getUTCDay();
+		const isMonday = dayOfWeek === 1;
+		const isFriday = dayOfWeek === 5;
+
 		ctx.waitUntil((async () => {
 			const collectResult = await runCollection(env, cfg.limit, 3, cfg.offset);
 			console.log("[cron] collected: " + JSON.stringify(collectResult));
 
 			if (cfg.generateProtocol) {
-				const gen = await generateAndSaveProtocol(env, 1);
-				console.log("[cron] protocol: " + JSON.stringify(gen));
+				// Architecture v2: two protocols per week
+				// Monday: FINAL protocol for previous week (offset=1)
+				// Friday: INTERIM protocol for current week (offset=0)
+				// Other days: only collection, no generation
+				if (isMonday) {
+					console.log("[cron] Monday: generating FINAL protocol for previous week (offset=1)");
+					const gen = await generateAndSaveProtocol(env, 1);
+					console.log("[cron] final protocol: " + JSON.stringify(gen));
+				} else if (isFriday) {
+					console.log("[cron] Friday: generating INTERIM protocol for current week (offset=0)");
+					const gen = await generateInterimProtocol(env, 0);
+					console.log("[cron] interim protocol: " + JSON.stringify(gen));
+				} else {
+					console.log("[cron] Day " + dayOfWeek + ": collection only, no protocol generation");
+				}
 			}
 		})());
 	},
