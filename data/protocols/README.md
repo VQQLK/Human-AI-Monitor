@@ -55,13 +55,13 @@ So 2026-09-28.md corresponds to API endpoint /protocols/2026-09-22/content.
 
 Twice daily, 5 cron triggers within Cloudflare Free plan limits:
 
-| UTC time | London | New York | Moscow | Beijing | Action |
-|----------|--------|----------|--------|---------|--------|
-| 13:00 | 14:00 | 09:00 | 16:00 | 21:00 | Batch 1/4 |
-| 13:15 | 14:15 | 09:15 | 16:15 | 21:15 | Batch 2/4 |
-| 13:30 | 14:30 | 09:30 | 16:30 | 21:30 | Batch 3/4 |
-| 13:45 | 14:45 | 09:45 | 16:45 | 21:45 | Batch 4/4 |
-| 23:00 | 00:00+1 | 19:00 | 02:00+1 | 07:00+1 | Evening batch |
+| UTC time | New York | London | Moscow | Beijing | Action |
+|----------|----------|--------|--------|---------|--------|
+| 13:00 | 09:00 | 14:00 | 16:00 | 21:00 | Batch 1/4 |
+| 13:15 | 09:15 | 14:15 | 16:15 | 21:15 | Batch 2/4 |
+| 13:30 | 09:30 | 14:30 | 16:30 | 21:30 | Batch 3/4 |
+| 13:45 | 09:45 | 14:45 | 16:45 | 21:45 | Batch 4/4 |
+| 23:00 | 19:00 | 00:00+1 | 02:00+1 | 07:00+1 | Evening batch |
 
 Each batch: 8 sources x 3 articles = ~24 items, ~48 subrequests (under 50 limit).
 
