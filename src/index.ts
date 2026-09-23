@@ -269,6 +269,78 @@ export function getWeekRange(offsetWeeks: number): any {
 	};
 }
 
+// DRAFT protocol for current (still-open) week — read-only, not saved to DB
+// Used by /protocols/current endpoint for monitoring and debugging
+async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string> {
+	const res = await env.DB.prepare(
+		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning FROM items WHERE date >= ? AND date <= ? ORDER BY relevance DESC LIMIT 500"
+	).bind(range.filterStart, range.filterEnd).all();
+	const items: any[] = res.results ?? [];
+	const byAxis: any = {};
+	for (const it of items) {
+		try {
+			const axes = JSON.parse(it.axes ?? "[]");
+			for (const a of axes) {
+				if (!byAxis[a]) byAxis[a] = [];
+				byAxis[a].push(it);
+			}
+		} catch (e) {}
+	}
+	// Compute Gap Index directly (do NOT write to gap_history — this is draft only)
+	const gapResult = await computeGapIndex(env, range);
+	const shifts = items.filter((it) => it.shift === "yes").length;
+	const lines: string[] = [];
+	lines.push("# Human-AI Monitor Protocol (DRAFT)");
+	lines.push("## Week: " + range.filterStart + " — " + range.filterEnd + " (Protocol: " + range.start + ")");
+	lines.push("");
+	lines.push("**⚠️ DRAFT: This week is still open. This protocol is NOT saved to database.**");
+	lines.push("**Final version will be automatically generated on Monday at 13:45 UTC.**");
+	lines.push("");
+	lines.push("**Items collected:** " + items.length);
+	lines.push("**Shifts detected:** " + shifts);
+	lines.push("");
+	lines.push("### Gap Index");
+	lines.push("- AI score: " + gapResult.aiScore.toFixed(2));
+	lines.push("- Human score: " + gapResult.humanScore.toFixed(2));
+	lines.push("- **Gap: " + gapResult.gap.toFixed(2) + "** (" + gapResult.interpretation + ")");
+	lines.push("");
+	lines.push("---");
+	lines.push("");
+	lines.push("## AI Axes (RSI)");
+	lines.push("");
+	for (const axis of AI_AXES) {
+		lines.push("### " + axis);
+		lines.push("");
+		const list = byAxis[axis] ?? [];
+		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
+		for (const it of list.slice(0, 5)) {
+			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
+			lines.push("- " + marker + " [" + it.title + "](" + it.url + ") — " + it.source);
+			if (it.reasoning) lines.push("  - " + it.reasoning);
+		}
+		lines.push("");
+	}
+	lines.push("## Human Axes (HHI)");
+	lines.push("");
+	for (const axis of HUMAN_AXES) {
+		lines.push("### " + axis);
+		lines.push("");
+		const list = byAxis[axis] ?? [];
+		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
+		for (const it of list.slice(0, 5)) {
+			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
+			lines.push("- " + marker + " [" + it.title + "](" + it.url + ") — " + it.source);
+			if (it.reasoning) lines.push("  - " + it.reasoning);
+		}
+		lines.push("");
+	}
+	lines.push("---");
+	lines.push("");
+	lines.push("**To bring the greater good to others — what could be a higher goal?**");
+	lines.push("**United We Stand! Only the one who walks conquers the road.**");
+	return lines.join("\n");
+}
+
 async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	const res = await env.DB.prepare(
 		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning FROM items WHERE date >= ? AND date <= ? ORDER BY relevance DESC LIMIT 500"
@@ -418,7 +490,7 @@ export default {
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/", "/health", "/gap", "/protocols", "/protocols/{week}", "/protocols/{week}/content", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
+					endpoints: ["/", "/health", "/gap", "/protocols", "/protocols/current", "/protocols/{week}", "/protocols/{week}/content", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
 				}, 200);
 			}
 			if (path === "/health") return json({ status: "ok", ts: Date.now() }, 200);
@@ -427,6 +499,13 @@ export default {
 				const row = await env.DB.prepare("SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1").first();
 				if (!row) return json({ error: "No gap data" }, 404);
 				return json(row, 200);
+			}
+			if (path === "/protocols/current") {
+				const range = getWeekRange(0);
+				const markdown = await buildDraftProtocolMarkdown(env, range);
+				return new Response(markdown, {
+					headers: { "Content-Type": "text/markdown; charset=utf-8", ...CORS },
+				});
 			}
 			if (path === "/protocols") {
 				const res = await env.DB.prepare("SELECT week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at FROM protocols ORDER BY week_start DESC LIMIT 50").all();

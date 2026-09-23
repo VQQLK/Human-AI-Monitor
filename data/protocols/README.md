@@ -11,7 +11,7 @@ is the source of truth. The API reads directly from D1:
 - `GET /protocols/{week_start}/content` — markdown for a specific week
 
 Files in this directory are **read-only snapshots**, refreshed automatically
-by `.github/workflows/sync-protocols.yml` (runs daily at 08:00 UTC).
+by `.github/workflows/sync-protocols.yml` (runs Monday and Friday at 08:00 UTC).
 
 ## File naming
 
