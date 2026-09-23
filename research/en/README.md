@@ -1,5 +1,7 @@
 # Research: Has the Singularity Already Arrived?
 
+> **Languages:** [🇺🇸 English](README.md) • [🇷🇺 Русский](../ru/README.md) • [🇨🇳 中文](../zh/README.md)
+
 **Analysis of the Transition from AI Autonomy to Self-Improvement and Self-Creation**
 
 **Version:** 1.0  

@@ -1,5 +1,7 @@
 # Part I. Introduction, Theoretical Foundations, and Methodology
 
+> **Languages:** [🇺🇸 English](part1_intro.md) • [🇷🇺 Русский](../ru/part1_intro.md) • [🇨🇳 中文](../zh/part1_intro.md)
+
 ## 1. Introduction: Problem Statement
 
 ### 1.1. Relevance
