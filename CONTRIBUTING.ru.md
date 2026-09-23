@@ -1,9 +1,10 @@
-# Contributing to Human-AI Monitor
+> **Языки:** [🇺🇸 English](CONTRIBUTING.md) • [🇷🇺 Русский](CONTRIBUTING.ru.md) • [🇨🇳 中文](CONTRIBUTING.zh.md)
 
-> **Languages:** [🇺🇸 English](CONTRIBUTING.md) • [🇷🇺 Русский](CONTRIBUTING.ru.md) • [🇨🇳 中文](CONTRIBUTING.zh.md)
 
-Спасибо за интерес к проекту! Мы приветствуем любой вклад — от исправления
-опечаток до добавления новых источников данных.
+
+# Вклад в Human-AI Monitor
+
+Спасибо за интерес к проекту! Мы приветствуем любой вклад — от исправления опечаток до добавления новых источников данных.
 
 ## Как помочь
 
@@ -73,14 +74,14 @@
     ├── src/
     │   ├── index.ts                    # Главный worker
     │   ├── services/
-    │   │   └── gap-computation.ts      # Вычисление Gap Index
+    │   │   └── gap-computation.ts      # Вычисление Индекса разрыва
     │   └── config/
     │       ├── axes.ts                 # Список 12 осей
-    │       ├── prompts.ts              # LLM промпты
+    │       ├── prompts.ts              # Промпты LLM
     │       └── generated/              # Типы из YAML
     ├── config/
-    │   ├── axes_ai.yaml                # 7 AI осей
-    │   ├── axes_human.yaml             # 6 Human осей
+    │   ├── axes_ai.yaml                # 7 осей ИИ
+    │   ├── axes_human.yaml             # 6 человеческих осей
     │   ├── sources_ai.yaml             # 21 источник ИИ (20 активных)
     │   └── sources_human.yaml          # 15 источников человека (11 активных)
     ├── migrations/
@@ -120,4 +121,4 @@
 
 ---
 
-**Вместе — Мы Сила. Дорогу осилит идущий.**
+**Вместе — Мы Сила! Дорогу осилит идущий.**

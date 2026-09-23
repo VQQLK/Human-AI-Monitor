@@ -1,0 +1,275 @@
+> **语言:** [🇺🇸 English](CHANGELOG.md) • [🇷🇺 Русский](CHANGELOG.ru.md) • [🇨🇳 中文](CHANGELOG.zh.md)
+
+
+
+# 变更日志
+
+所有对Human-AI Monitor的重要更改都将记录在此文件中。
+
+格式基于[保持变更日志](https://keepachangelog.com/en/1.1.0/)，并且本项目遵循[语义化版本控制](https://semver.org/spec/v2.0.0.html)。
+
+## [未发布]
+
+### 修复
+- **关键发现F6** 来自独立技术与源验证报告（2026-09-20）：差距指数现在基于收集的信号计算，而不是复制种子值
+  - 创建了 `src/services/gap-computation.ts`（75行）并包含 `computeGapIndex()` 函数
+  - 修改了 `generateAndSaveProtocol()` 以调用 `computeGapIndex()` 而不是复制最后一行
+  - 结果保存到 `gap_history` 和 `index_history` 表中
+  - 验证：不同周数的不同项目数量现在会产生不同的分数
+  - 生产部署：版本ID 9b676bd3，然后是 dc501a70，然后是 e3de304
+
+- **协议命名混淆**：将周标识符从基于周一改为基于周日
+  - 之前：协议 "2026-09-14"（周一）对应9月14-20日的周
+  - 现在：协议 "2026-09-20"（周日）对应9月14-20日的周
+  - 修改 `getWeekRange()` 以将周日作为 `start`（协议标识符）
+  - 添加了 `filterStart` 和 `filterEnd` 字段用于SQL WHERE子句
+  - 将现有数据库记录迁移到新的命名方案
+
+### 更改
+- 数据库迁移0003：将SMD级别从0.30更新到0.45
+  - 原因：Anthropic达到AL4（26% AI主导任务，>90% AL3协作）
+  - 第一个具有持续L4的系统；阈值保持为“≥2系统”
+  - 更新了远程数据库和迁移/0001_initial_schema.sql中的种子数据
+  - 参考：Anthropic研发自动化指数（2026年9月）
+
+- 删除了多余的 `wrangler.toml`（仅包含 [site] 部分，未使用）
+- 将 `CITATION.cff` 版本从0.6.0更新到0.9.9
+- 将 `CITATION.cff` 的发布日期从2026-09-18更新到2026-09-21
+
+### 新增
+- 将特朗普AI力量公告（19.09.2026）添加到README.md和README.ru.md的“声音”部分
+
+### 计划中
+- 实际测试覆盖率（解析器、分类器、协议）
+- 重构：将单体src/index.ts拆分为模块
+- 非RSS源的HTML解析
+- HTML解析源的HTML实体解码（`&#39;` → `'`）
+- Android APK（PWA + Capacitor）
+- 网络界面（Cloudflare Pages）
+- 多语言支持（EN / RU / ZH）
+
+## [0.9.9] - 2026-09-19
+
+### 新增
+- 为解析器（decodeEntities, cleanTitle, extractTag, parseRSS）添加了14个单元测试
+- 为分类器（parseAIResponse, validateParsed）添加了15个单元测试
+- 为作弊检测器（harness + task categories）添加了7个单元测试
+- 从 `src/index.ts` 导出的8个纯函数用于测试
+
+### 修复
+- 修复 `sha256Hex` 修饰符顺序（`async export` → `export async`）
+
+### 更改
+- 总测试数：8 → 44（API + 单元测试）
+- 测试覆盖率：~40% → ~60%
+- 工作器版本 0.9.8 → 0.9.9
+
+## [0.9.8] - 2026-09-19
+
+### 新增
+- `src/utils/fetch-with-retry.ts` — 429/503错误时使用指数退避的fetch
+- 每次fetch的10秒超时（AbortController）
+- 3次尝试，每次间隔2秒/4秒（无8秒等待：第三次尝试为最终尝试）
+- 4个Cron批次：06:00 / 06:15 / 06:30 / 06:45 UTC
+- `items_existing` 计数器用于区分新项目和现有项目
+
+### 修复
+- `stats.sample` 在重复运行时为空
+- `items_saved` 对现有项目进行了错误计数
+- `sample` 现在仅包含非空轴的项目
+- Hugging Face博客：HTTP 429 — 现在会重试
+- Edelman信任指数：HTTP 503 — 现在会重试
+
+### 更改
+- 所有 `fetch()` 调用替换为 `fetchWithRetry()`（2次调用）
+- 工作器版本 0.9.5 → 0.9.8
+
+## [0.9.5] - 2026-09-19
+
+### 修复
+- 在 `/` 响应的端点列表中添加了 `/verify` 端点
+- 在 `config/axes_ai.yaml` 中将 SMD `level` 设置为 0.45
+
+### 更改
+- 端点数量：9 → 10
+- 工作器版本 0.9.4 → 0.9.5
+
+## [0.9.4] - 2026-09-19
+
+### 新增
+- `/verify` 端点，使用CheatBench启发式方法检测奖励黑客：
+  - `harness` 类别：隐藏测试、评分文件、git日志利用（CheatBench中有683个痕迹）
+  - `task` 类别：评估/执行、猴子补丁、操作符重载（CheatBench中有136个痕迹）
+- `src/cheat-detector.ts` — 独立模块，包含15+正则表达式模式
+- 根据Anthropic研发自动化指数（2026年9月）更新SMD阈值：
+  - Anthropic达到26% AL4（AI主导任务）和>90% AL3（协作）
+  - 第一个具有持续L4的系统；阈值保持为“≥2系统”
+  - 当前SMD级别：0.30 → 0.45
+
+### 更改
+- 工作器版本 0.9.3 → 0.9.4
+- 端点数量：9 → 10
+- `config/axes_ai.yaml` 更新了Anthropic AL4数据
+
+## [0.9.3] - 2026-09-18
+
+### 更改
+- 所有函数中将 `env: any` 替换为 `env: Env`（类型安全）
+- `fetch` 签名：`(request: Request, env: Env, ctx: ExecutionContext)`
+- `scheduled` 签名：`(event: ScheduledEvent, env: Env, ctx: ExecutionContext)`
+- 工作器版本 0.9.1 → 0.9.3
+
+## [0.9.2] - 2026-09-18
+
+### 修复
+- Cron触发器拆分为2个批次以避免Cloudflare 50次子请求限制：
+  - 批次1（06:00 UTC）：12个源 × 3个项目 = 48次子请求
+  - 批次2（06:30 UTC）：9个源 × 3个项目 = 36次子请求
+
+### 更改
+- `scheduled` 处理程序通过 `event.cron` 区分批次
+- 协议生成仅在批次2运行（所有源收集后）
+- Cron计划：`0 6 * * 1`（批次1） + `30 6 * * 1`（批次2）
+- 工作器版本 0.9.1 → 0.9.2
+
+## [0.9.1] - 2026-09-18
+
+### 修复
+- Anthropic研究RSS标题中的日期和类别前缀（`Sep 17, 2026ScienceHow Claude...` → `How Claude...`）
+
+### 更改
+- `cleanTitle()` 现在处理三种前缀格式：日期优先、类别优先、日期+类别
+- 工作器版本 0.9.0 → 0.9.1
+
+## [0.9.0] - 2026-09-18
+
+### 新增
+- Anthropic新闻源（通过0xSMW/rss-feeds代理）
+- Anthropic工程源（通过Olshansk/rss-feeds）
+- Anthropic研究源（通过Olshansk/rss-feeds）
+- Anthropic红队源（通过Olshansk/rss-feeds）
+
+### 更改
+- 源数量：17 → 21
+- 工作器版本 0.8.1 → 0.9.0
+
+### 已知问题
+- Pew Internet间歇性返回HTTP 403（来自他们自身的速率限制）
+- 建议使用批次：`?limit=12&offset=0` 和 `?limit=9&offset=12`
+
+## [0.9.0] - 2026-09-18
+
+### 新增
+- Anthropic新闻源（通过0xSMW/rss-feeds代理）
+- Anthropic工程源（通过Olshansk/rss-feeds）
+- Anthropic研究源（通过Olshansk/rss-feeds）
+- Anthropic红队源（通过Olshansk/rss-feeds）
+
+### 更改
+- 源数量：17 → 21
+- 工作器版本 0.8.1 → 0.9.0
+
+### 已知问题
+- Anthropic研究源标题有日期前缀（v0.9.1中修复）
+- Pew Internet间歇性返回HTTP 403
+
+## [0.8.1] - 2026-09-18
+
+### 新增
+- `/collect` 端点添加了 `offset` 参数用于分批收集
+- 浏览器User-Agent以绕过机器人检测（修复Pew Internet 403）
+
+### 修复
+- RSS标题中的CDATA部分解码（OpenAI博客、The Verge、AI对齐论坛）
+- 所有17个源现在成功收集
+
+### 已知问题
+- Cloudflare Workers 50次子请求限制：使用批次进行每周完整收集
+
+### 更改
+- 工作器版本 0.8.0 → 0.8.1
+
+## [0.8.0] - 2026-09-18
+
+### 新增
+- Cohere Labs社区博客（HTML源通过 `a.post-title` 选择器）
+- BAIR博客（RSS源：https://bair.berkeley.edu/blog/feed.xml）
+- HTMLRewriter现在支持两种标题提取模式：`aria-label` 和文本内容
+- HTML解析源的HTML实体解码
+
+### 更改
+- 源数量：15 → 17
+- User-Agent 更新为 v0.8
+
+## [0.7.0] - 2026-09-18
+
+### 新增
+- 通过Cloudflare `HTMLRewriter` 支持HTML解析
+- 首个HTML源：EleutherAI博客（`a.entry-link` 选择器）
+- SOURCES中的 `type` 字段：`rss`（默认）或 `html` 与 `htmlSelector`
+- `fetchFromHtml()` 函数用于静态HTML网站
+
+### 更改
+- 工作器版本 0.6.0 → 0.7.0
+- 源数量：14 → 15
+
+## [0.6.0] - 2026-09-18
+
+### 新增
+- 速率限制参数验证（文本长度 ≤ 1000字符）
+- CITATION.cff 用于学术引用
+- DATA_LICENSE（CC-BY 4.0）用于项目数据
+- GitHub Actions CI工作流
+
+### 更改
+- README：添加了“声音”部分（15条AI领袖的引言）
+- README：与实际代码库状态对齐
+- Meta AI博客和Mistral AI RSS源更新为有效URL
+
+### 移除
+- 速率限制绑定（免费版Cloudflare不支持）
+
+## [0.5.0] - 2026-09-18
+
+### 新增
+- 自动生成每周协议（Markdown）
+- 协议内容存储在D1（content列）
+- /generate 端点用于手动生成协议
+- /protocols/{week}/content 端点用于Markdown输出
+
+## [0.4.0] - 2026-09-17
+
+### 新增
+- RSS收集器，包含14个源
+- 通过Cloudflare Workers AI（Qwen 3）进行AI分类
+- 12个轴的分类提示（AI + 人类）
+- /collect 端点用于手动RSS收集
+- /classify 端点用于文本分类
+
+### 更改
+- 分类提示：每个项目1-3个轴，方向规则
+- 提示规则：仅在经验确认后才设置shift=yes
+
+## [0.3.0] - 2026-09-17
+
+### 新增
+- 公共API，包含6个端点
+- D1数据库集成（4张表）
+- Workers AI绑定
+- Cron触发器（周一06:00 UTC）
+
+## [0.2.0] - 2026-09-17
+
+### 新增
+- 数据库模式（items, protocols, gap_history, index_history）
+- D1的迁移
+- 配置文件（axes_ai.yaml, axes_human.yaml）
+- 源配置（sources_ai.yaml, sources_human.yaml）
+
+## [0.1.0] - 2026-09-17
+
+### 新增
+- 初始提交：概念、研究计划、第一份协议
+- README、MANIFESTO、LICENSE、CONTRIBUTING、CODE_OF_CONDUCT
+- 完整研究论文（5部分，俄语）
+- docs/（方法论、架构、math_brief、新闻稿）
