@@ -549,24 +549,28 @@ export default {
 	},
 
 	async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
-		// 4 batches to stay under 50-subrequest limit (31 sources x 3 subrequests = 93)
-		const batchConfig: Record<string, { offset: number; limit: number; batch: number }> = {
-			"0 6 * * 1":  { offset: 0,  limit: 8, batch: 1 },
-			"15 6 * * 1": { offset: 8,  limit: 8, batch: 2 },
-			"30 6 * * 1": { offset: 16, limit: 8, batch: 3 },
-			"45 6 * * 1": { offset: 24, limit: 8, batch: 4 },
+		// Architecture v2: 5 cron triggers (Cloudflare Free plan limit)
+		// 13:00-13:45 UTC: 4 batches (daytime collection, all 32 sources)
+		// 23:00 UTC: 1 batch (evening collection, 8 critical sources)
+		// Each batch runs as separate request to stay under 50-subrequest limit
+		// (8 sources x 3 articles x 2 subrequests = 48 subrequests per batch)
+		const batchConfig: Record<string, { offset: number; limit: number; batch: number; generateProtocol: boolean }> = {
+			"0 13 * * *":  { offset: 0,  limit: 8, batch: 1, generateProtocol: false },
+			"15 13 * * *": { offset: 8,  limit: 8, batch: 2, generateProtocol: false },
+			"30 13 * * *": { offset: 16, limit: 8, batch: 3, generateProtocol: false },
+			"45 13 * * *": { offset: 24, limit: 8, batch: 4, generateProtocol: true },
+			"0 23 * * *":  { offset: 0,  limit: 8, batch: 1, generateProtocol: false },
 		};
-		const cfg = batchConfig[event.cron] ?? batchConfig["0 6 * * 1"];
-		const isLastBatch = cfg.batch === 4;
+		const cfg = batchConfig[event.cron] ?? batchConfig["0 13 * * *"];
 
-		console.log("[cron] Batch " + cfg.batch + "/4 triggered at " + new Date(event.scheduledTime).toISOString());
-		console.log("[cron] offset=" + cfg.offset + " limit=" + cfg.limit + " maxPerSource=3");
+		console.log("[cron] Batch " + cfg.batch + "/4 triggered at " + new Date(event.scheduledTime).toISOString() + " cron=" + event.cron);
+		console.log("[cron] offset=" + cfg.offset + " limit=" + cfg.limit + " maxPerSource=3 generateProtocol=" + cfg.generateProtocol);
 
 		ctx.waitUntil((async () => {
 			const collectResult = await runCollection(env, cfg.limit, 3, cfg.offset);
 			console.log("[cron] collected: " + JSON.stringify(collectResult));
 
-			if (isLastBatch) {
+			if (cfg.generateProtocol) {
 				const gen = await generateAndSaveProtocol(env, 1);
 				console.log("[cron] protocol: " + JSON.stringify(gen));
 			}

@@ -13,8 +13,18 @@
 		}
 	],
 	"ai": { "binding": "AI" },
-	// NOTE: Cloudflare treats day-of-week "1" as Sunday in cron (verified empirically
-	// 2026-09-22: "0 6 * * 1" fired on 2026-09-20, a Sunday). To run on Monday we use "2".
-	"triggers": { "crons": ["0 6 * * 2", "15 6 * * 2", "30 6 * * 2", "45 6 * * 2"] },
+	// Architecture v2: 5 cron triggers (Cloudflare Free plan limit)
+	// 13:00-13:45 UTC: 4 batches (daytime collection, all 32 sources)
+	// 23:00 UTC: 1 batch (evening collection, 8 critical sources)
+	// Each batch runs as separate request to stay under 50-subrequest limit
+	"triggers": {
+		"crons": [
+			"0 13 * * *",
+			"15 13 * * *",
+			"30 13 * * *",
+			"45 13 * * *",
+			"0 23 * * *"
+		]
+	},
 	"vars": { "CLASSIFIER_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8" }
 }
