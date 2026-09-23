@@ -23,13 +23,13 @@ jobs:
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
           curl -sSf "$API/protocols" -o /tmp/protocols.json
-          PAIRS=$(jq -r ".protocols[] | "\(.week_start) \(.week_end) \(.is_interim // 0)"" /tmp/protocols.json)
+          PAIRS=$(jq -r '.protocols[] | "\(.week_start) \(.week_end) \(.is_interim // 0)"' /tmp/protocols.json)
           PAIRS_ENCODED=$(echo "$PAIRS" | base64 -w 0)
           echo "pairs=$PAIRS_ENCODED" >> "$GITHUB_OUTPUT"
           echo "Protocol pairs found:"
           echo "$PAIRS"
 
-      - name: Sync protocol markdown files
+      - name: Sync protocol markdown files (all 3 languages)
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
           mkdir -p data/protocols
@@ -37,27 +37,59 @@ jobs:
           echo "$PAIRS" | while read -r week_start week_end is_interim; do
             [ -z "$week_start" ] && continue
             
+            # Determine base filename and type
             if [ "$is_interim" = "1" ]; then
-              TARGET="data/protocols/${week_end}.interim.md"
+              BASENAME="${week_end}.interim"
               TYPE="INTERIM"
             else
-              TARGET="data/protocols/${week_end}.md"
+              BASENAME="${week_end}"
               TYPE="FINAL"
             fi
             
-            TMP="$(mktemp)"
-            if ! curl -sSf "$API/protocols/${week_start}/content" -o "$TMP"; then
-              echo "✗ Failed to fetch week_start=${week_start}"
-              rm -f "$TMP"
-              continue
-            fi
-            if [ -f "$TARGET" ] && cmp -s "$TMP" "$TARGET"; then
-              echo "= ${week_end} ($TYPE) unchanged"
+            # Sync English
+            TMP_EN="$(mktemp)"
+            if curl -sSf "$API/protocols/${week_start}/content" -o "$TMP_EN"; then
+              TARGET_EN="data/protocols/${BASENAME}.md"
+              if [ -f "$TARGET_EN" ] && cmp -s "$TMP_EN" "$TARGET_EN"; then
+                echo "= ${BASENAME}.md ($TYPE, EN) unchanged"
+              else
+                mv "$TMP_EN" "$TARGET_EN"
+                echo "✓ ${BASENAME}.md ($TYPE, EN) updated"
+              fi
             else
-              mv "$TMP" "$TARGET"
-              echo "✓ ${week_end} ($TYPE) updated"
+              echo "✗ Failed to fetch EN content for ${week_start}"
+              rm -f "$TMP_EN"
             fi
-            rm -f "$TMP"
+            
+            # Sync Russian
+            TMP_RU="$(mktemp)"
+            if curl -sSf "$API/protocols/${week_start}/content/ru" -o "$TMP_RU"; then
+              TARGET_RU="data/protocols/${BASENAME}.ru.md"
+              if [ -f "$TARGET_RU" ] && cmp -s "$TMP_RU" "$TARGET_RU"; then
+                echo "= ${BASENAME}.ru.md ($TYPE, RU) unchanged"
+              else
+                mv "$TMP_RU" "$TARGET_RU"
+                echo "✓ ${BASENAME}.ru.md ($TYPE, RU) updated"
+              fi
+            else
+              echo "⚠ RU not ready for ${week_start} (may not be translated yet)"
+              rm -f "$TMP_RU"
+            fi
+            
+            # Sync Chinese
+            TMP_ZH="$(mktemp)"
+            if curl -sSf "$API/protocols/${week_start}/content/zh" -o "$TMP_ZH"; then
+              TARGET_ZH="data/protocols/${BASENAME}.zh.md"
+              if [ -f "$TARGET_ZH" ] && cmp -s "$TMP_ZH" "$TARGET_ZH"; then
+                echo "= ${BASENAME}.zh.md ($TYPE, ZH) unchanged"
+              else
+                mv "$TMP_ZH" "$TARGET_ZH"
+                echo "✓ ${BASENAME}.zh.md ($TYPE, ZH) updated"
+              fi
+            else
+              echo "⚠ ZH not ready for ${week_start} (may not be translated yet)"
+              rm -f "$TMP_ZH"
+            fi
           done
 
       - name: Commit and push if changed
@@ -69,6 +101,6 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
-          CHANGED=$(git diff --cached --name-only | tr "\n" " ")
-          git commit -m "chore(protocols): sync from API — ${CHANGED} [skip ci]"
+          CHANGED=$(git diff --cached --name-only | tr '\n' ' ')
+          git commit -m "chore(protocols): sync from API (3 languages) — ${CHANGED} [skip ci]"
           git push
