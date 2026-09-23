@@ -4,7 +4,7 @@
 **Сингулярность уже наступила?**  
 **奇点已经到来了吗？**
 
-> **Languages:** [🇺🇸 English](en/README.md) • [🇷🇺 Русский](ru/README.md) • [🇨🇳 中文](zh/README.md) *(coming soon)*
+> **Languages:** [🇺🇸 English](en/README.md) • [🇷🇺 Русский](ru/README.md) • [🇨🇳 中文](zh/README.md)
 
 ---
 
@@ -49,5 +49,17 @@ the threshold from narrow autonomy to self-improvement and self-creation capabil
 
 ## 🇨🇳 中文
 
-*即将推出。中文翻译将在未来版本中提供。*  
-*Coming soon. Chinese translation will be available in a future version.*
+**从AI自主性到自我改进和自我创造的转变分析**
+
+一项全面的研究，考察当前AI系统是否已经跨越了从狭义自主性到
+自我改进和自我创造能力的门槛。
+
+**版本:** 1.0  
+**状态:** 已发布
+
+### 部分
+- [第一部分：介绍、理论基础和方法论](zh/part1_intro.md)
+- [第二部分：实证分析](zh/part2_empirical.md)
+- [第三部分：评估标准](zh/part3_criteria.md)
+- [第四部分：讨论](zh/part4_discussion.md)
+- [第五部分：结论](zh/part5_conclusions.md)
