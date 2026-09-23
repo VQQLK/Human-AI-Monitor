@@ -2,8 +2,9 @@ name: Sync protocols from production API
 
 on:
   schedule:
-    # Daily at 08:00 UTC — after Monday 06:00-06:45 cron has finished
-    - cron: '0 8 * * *'
+    # Monday and Friday at 08:00 UTC — publish main protocols to GitHub
+    - cron: '0 8 * * 1'  # Monday (weekend summary)
+    - cron: '0 8 * * 5'  # Friday (mid-week update)
   workflow_dispatch:
 
 jobs:
