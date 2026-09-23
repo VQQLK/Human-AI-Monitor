@@ -81,6 +81,10 @@ Each batch: 8 sources x 3 articles = ~24 items, ~48 subrequests (under 50 limit)
 - Purpose: snapshot for operational analysis mid-week
 
 **Draft preview**: /protocols/current endpoint (not saved to DB)
+- **Translation**: Monday and Friday at 13:50 UTC via GitHub Actions (translate-protocols.yml)
+  - Runs 5 minutes after protocol generation (13:45 UTC)
+  - Translates English protocol to Russian and Chinese
+  - Updates content_ru and content_zh columns in database
 - **Publication**: Monday 14:00 UTC (after final) + Saturday 08:00 UTC (after interim) via GitHub Actions
 
 ### File naming for interim protocols

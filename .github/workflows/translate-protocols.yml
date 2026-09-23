@@ -1,0 +1,68 @@
+name: Translate protocols to Russian and Chinese
+
+on:
+  schedule:
+    # Monday at 13:50 UTC — 5 minutes after FINAL protocol generation (13:45 UTC)
+    - cron: '50 13 * * 1'
+    # Friday at 13:50 UTC — 5 minutes after INTERIM protocol generation (13:45 UTC)
+    - cron: '50 13 * * 5'
+  workflow_dispatch:
+    inputs:
+      week:
+        description: 'Week to translate (YYYY-MM-DD format, Monday date). Leave empty for latest protocol.'
+        required: false
+        type: string
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Determine week to translate
+        id: week
+        run: |
+          API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
+          
+          if [ -n "${{ github.event.inputs.week }}" ]; then
+            # Manual trigger with specific week
+            WEEK="${{ github.event.inputs.week }}"
+            echo "week=$WEEK" >> "$GITHUB_OUTPUT"
+            echo "Using manually specified week: $WEEK"
+          else
+            # Scheduled trigger — get latest protocol from API
+            WEEK=$(curl -sSf "$API/protocols" | jq -r '.protocols[0].week_start')
+            echo "week=$WEEK" >> "$GITHUB_OUTPUT"
+            echo "Latest protocol week: $WEEK"
+          fi
+
+      - name: Trigger translation
+        run: |
+          API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
+          WEEK="${{ steps.week.outputs.week }}"
+          
+          echo "Triggering translation for week $WEEK..."
+          RESPONSE=$(curl -sSf "$API/translate/$WEEK")
+          echo "Response: $RESPONSE"
+          
+          # Verify translation succeeded
+          RU_BYTES=$(echo "$RESPONSE" | jq -r '.ru_bytes // 0')
+          ZH_BYTES=$(echo "$RESPONSE" | jq -r '.zh_bytes // 0')
+          
+          if [ "$RU_BYTES" -gt 0 ] && [ "$ZH_BYTES" -gt 0 ]; then
+            echo "✓ Translation successful: RU=$RU_BYTES bytes, ZH=$ZH_BYTES bytes"
+          else
+            echo "✗ Translation failed or incomplete"
+            exit 1
+          fi
+
+      - name: Verify translation in database
+        run: |
+          API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
+          WEEK="${{ steps.week.outputs.week }}"
+          
+          echo "Verifying Russian translation..."
+          curl -sSf "$API/protocols/$WEEK/content/ru" | head -5
+          
+          echo ""
+          echo "Verifying Chinese translation..."
+          curl -sSf "$API/protocols/$WEEK/content/zh" | head -5
