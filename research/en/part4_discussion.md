@@ -1,5 +1,7 @@
 # Part IV. Discussion: Declarations vs. Empirics, Risks, and Three Polar Worlds
 
+> **Languages:** [🇺🇸 English](part4_discussion.md) • [🇷🇺 Русский](../ru/part4_discussion.md) • [🇨🇳 中文](../zh/part4_discussion.md)
+
 This part of the research presents a critical discussion of the key contradiction revealed during the analysis: the gap between public declarations of technology leaders about the arrival of singularity and empirical data that do not confirm these claims in full. We will sequentially examine (1) declarations and their context, (2) empirical refutations, (3) internal contradictions in the positions of key actors, (4) formation of a three-polar world of AI governance, (5) risks and safety, (6) directions for further research.
 
 ---

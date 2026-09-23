@@ -1,5 +1,7 @@
 # Part II. Empirical Base: Autonomous Actions by AI Agents in 2026
 
+> **Languages:** [🇺🇸 English](part2_empirical.md) • [🇷🇺 Русский](../ru/part2_empirical.md) • [🇨🇳 中文](../zh/part2_empirical.md)
+
 This part of the research presents a systematized analysis of verified cases of autonomous AI agent behavior recorded in 2026. Each case is accompanied by an assessment using the Scale of Autonomy and Self-creation (SAS), developed in the methodological section.
 
 ---
