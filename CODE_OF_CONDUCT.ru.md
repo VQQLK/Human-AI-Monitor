@@ -1,6 +1,6 @@
 # Кодекс поведения
 
-> **Языки:** [🇺🇸 English](CODE_OF_CONDUCT.md) • [🇷🇺 Русский](CODE_OF_CONDUCT.ru.md)
+> **Языки:** [🇺🇸 English](CODE_OF_CONDUCT.md) • [🇷🇺 Русский](CODE_OF_CONDUCT.ru.md) • [🇨🇳 中文](CODE_OF_CONDUCT.zh.md)
 
 ## Наши принципы
 

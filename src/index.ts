@@ -556,7 +556,7 @@ export default {
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/", "/health", "/gap", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
+					endpoints: ["/", "/health", "/gap", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
 				}, 200);
 			}
 			if (path === "/health") return json({ status: "ok", ts: Date.now() }, 200);
@@ -650,6 +650,30 @@ export default {
 				const maxPerSource = Math.min(parseInt(url.searchParams.get("max") ?? "2", 10), 5);
 				const offset = Math.max(0, parseInt(url.searchParams.get("offset") ?? "0", 10));
 				return json(await runCollection(env, limit, maxPerSource, offset), 200);
+			}
+			// Translate arbitrary markdown document to ru or zh
+			if (path === "/translate-document" && request.method === "POST") {
+				let body: any;
+				try {
+					body = await request.json();
+				} catch {
+					return json({ error: "Invalid JSON" }, 400);
+				}
+				const markdown: string = body.markdown;
+				const lang: string = body.lang;
+				if (!markdown || typeof markdown !== "string") {
+					return json({ error: "Missing or invalid 'markdown' field" }, 400);
+				}
+				if (lang !== "ru" && lang !== "zh") {
+					return json({ error: "lang must be 'ru' or 'zh'" }, 400);
+				}
+				const translated = await translateProtocolMarkdown(env, markdown, lang as 'ru' | 'zh');
+				return json({
+					lang,
+					original_bytes: markdown.length,
+					translated_bytes: translated.length,
+					translated: translated,
+				}, 200);
 			}
 			if (path === "/translate" || path.startsWith("/translate/")) {
 				const weekParam = url.searchParams.get("week");
