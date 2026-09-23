@@ -1,4 +1,4 @@
-name: Sync protocols (dual-sync: collector + archive)
+name: Sync protocols (dual-sync)
 
 on:
   schedule:
@@ -13,12 +13,12 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout collector repository
+      - name: Checkout collector
         uses: actions/checkout@v5
         with:
           path: collector
 
-      - name: Checkout archive repository
+      - name: Checkout archive
         uses: actions/checkout@v5
         with:
           repository: VQQLK/human-ai-monitor-archive
@@ -33,139 +33,68 @@ jobs:
           PAIRS=$(jq -r '.protocols[] | "\(.week_start) \(.week_end) \(.is_interim // 0)"' /tmp/protocols.json)
           PAIRS_ENCODED=$(echo "$PAIRS" | base64 -w 0)
           echo "pairs=$PAIRS_ENCODED" >> "$GITHUB_OUTPUT"
-          echo "Protocol pairs found:"
-          echo "$PAIRS"
-          
           LATEST_FINAL=$(echo "$PAIRS" | awk '$3 == "0" {print $1}' | sort -r | head -1)
           LATEST_INTERIM=$(echo "$PAIRS" | awk '$3 == "1" {print $1}' | sort -r | head -1)
-          echo "Latest FINAL: $LATEST_FINAL"
-          echo "Latest INTERIM: $LATEST_INTERIM"
           echo "latest_final=$LATEST_FINAL" >> "$GITHUB_OUTPUT"
           echo "latest_interim=$LATEST_INTERIM" >> "$GITHUB_OUTPUT"
+          echo "Final: $LATEST_FINAL, Interim: $LATEST_INTERIM"
 
-      - name: Sync to archive (ALL protocols)
+      - name: Sync ALL to archive
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
           mkdir -p archive/protocols
           cd archive/protocols
-          
-          echo "Syncing ALL protocols to archive..."
           PAIRS=$(echo "${{ steps.list.outputs.pairs }}" | base64 -d)
-          
           echo "$PAIRS" | while read -r week_start week_end is_interim; do
             [ -z "$week_start" ] && continue
-            
-            if [ "$is_interim" = "1" ]; then
-              BASENAME="${week_end}.interim"
-              TYPE="INTERIM"
-            else
-              BASENAME="${week_end}"
-              TYPE="FINAL"
-            fi
-            
+            if [ "$is_interim" = "1" ]; then BASENAME="${week_end}.interim"; else BASENAME="${week_end}"; fi
             for lang in "" ".ru" ".zh"; do
-              SUFFIX="${lang}.md"
-              if [ -z "$lang" ]; then
-                URL="$API/protocols/${week_start}/content"
-              else
-                URL="$API/protocols/${week_start}/content${lang}"
-              fi
-              
+              [ -z "$lang" ] && URL="$API/protocols/${week_start}/content" || URL="$API/protocols/${week_start}/content${lang}"
               TMP="$(mktemp)"
               if curl -sSf "$URL" -o "$TMP"; then
-                TARGET="${BASENAME}${SUFFIX}"
-                if [ -f "$TARGET" ] && cmp -s "$TMP" "$TARGET"; then
-                  echo "= ${TARGET} (${TYPE}) unchanged"
-                else
-                  mv "$TMP" "$TARGET"
-                  echo "✓ ${TARGET} (${TYPE}) updated"
-                fi
-              else
-                echo "⚠ Failed to fetch ${lang:-EN} for ${week_start}"
-                rm -f "$TMP"
-              fi
+                TARGET="${BASENAME}${lang}.md"
+                if [ -f "$TARGET" ] && cmp -s "$TMP" "$TARGET"; then echo "= $TARGET unchanged"
+                else mv "$TMP" "$TARGET"; echo "✓ $TARGET updated"; fi
+              else rm -f "$TMP"; fi
             done
           done
 
-      - name: Sync to collector (latest 2 protocols only)
+      - name: Sync LATEST to collector
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
-          mkdir -p collector/data/protocols
           cd collector/data/protocols
-          
-          LATEST_FINAL="${{ steps.list.outputs.latest_final }}"
-          LATEST_INTERIM="${{ steps.list.outputs.latest_interim }}"
-          
-          echo "Syncing only latest protocols to collector..."
-          echo "Latest FINAL: $LATEST_FINAL"
-          echo "Latest INTERIM: $LATEST_INTERIM"
-          
-          # Remove ALL existing protocols (will re-add only latest)
-          rm -f *.md
-          
-          PAIRS=$(echo "${{ steps.list.outputs.pairs }}" | base64 -d)
-          
-          echo "$PAIRS" | while read -r week_start week_end is_interim; do
-            [ -z "$week_start" ] && continue
-            
-            # Skip if not latest FINAL or INTERIM
-            if [ "$week_start" != "$LATEST_FINAL" ] && [ "$week_start" != "$LATEST_INTERIM" ]; then
-              continue
-            fi
-            
-            if [ "$is_interim" = "1" ]; then
-              BASENAME="${week_end}.interim"
-              TYPE="INTERIM"
-            else
-              BASENAME="${week_end}"
-              TYPE="FINAL"
-            fi
-            
-            echo "=== Syncing $TYPE ($week_start) ==="
-            
+          LF="${{ steps.list.outputs.latest_final }}"
+          LI="${{ steps.list.outputs.latest_interim }}"
+          # Keep only README and latest protocols
+          find . -name "*.md" ! -name "README.md" -delete
+          for ws in "$LF" "$LI"; do
+            [ -z "$ws" ] && continue
+            PAIRS=$(echo "${{ steps.list.outputs.pairs }}" | base64 -d)
+            read -r _ we is_interim <<< "$(echo "$PAIRS" | grep "^$ws ")"
+            [ "$is_interim" = "1" ] && BASENAME="${we}.interim" || BASENAME="${we}"
             for lang in "" ".ru" ".zh"; do
-              SUFFIX="${lang}.md"
-              if [ -z "$lang" ]; then
-                URL="$API/protocols/${week_start}/content"
-              else
-                URL="$API/protocols/${week_start}/content${lang}"
-              fi
-              
-              if curl -sSf "$URL" -o "${BASENAME}${SUFFIX}"; then
-                echo "✓ ${BASENAME}${SUFFIX} synced"
-              else
-                echo "⚠ Failed ${lang:-EN} for ${week_start}"
-              fi
+              [ -z "$lang" ] && URL="$API/protocols/${ws}/content" || URL="$API/protocols/${ws}/content${lang}"
+              curl -sSf "$URL" -o "${BASENAME}${lang}.md" && echo "✓ ${BASENAME}${lang}.md"
             done
           done
-          
-          echo "=== Final collector state ==="
           ls -la
 
-      - name: Commit and push archive
+      - name: Commit archive
         working-directory: archive
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add protocols/
-          if git diff --cached --quiet; then
-            echo "No changes in archive"
-            exit 0
-          fi
-          CHANGED=$(git diff --cached --name-only | tr '\n' ' ')
-          git commit -m "chore(protocols): archive update — ${CHANGED} [skip ci]"
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: archive update [skip ci]"
           git push
 
-      - name: Commit and push collector
+      - name: Commit collector
         working-directory: collector
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/protocols/
-          if git diff --cached --quiet; then
-            echo "No changes in collector"
-            exit 0
-          fi
-          CHANGED=$(git diff --cached --name-only | tr '\n' ' ')
-          git commit -m "chore(protocols): sync latest — ${CHANGED} [skip ci]"
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: sync latest [skip ci]"
           git push
