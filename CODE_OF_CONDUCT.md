@@ -1,6 +1,6 @@
 # Code of Conduct
 
-> **Languages:** [🇺🇸 English](CODE_OF_CONDUCT.md) • [🇷🇺 Русский](CODE_OF_CONDUCT.ru.md)
+> **Languages:** [🇺🇸 English](CODE_OF_CONDUCT.md) • [🇷🇺 Русский](CODE_OF_CONDUCT.ru.md) • [🇨🇳 中文](CODE_OF_CONDUCT.zh.md)
 
 
 ## Our Principles

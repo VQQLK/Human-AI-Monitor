@@ -1,5 +1,7 @@
 # Манифест Human–AI Monitor
 
+> **Языки:** [🇺🇸 English](MANIFESTO.md) • [🇷🇺 Русский](MANIFESTO.ru.md) • [🇨🇳 中文](MANIFESTO.zh.md)
+
 ## Мы наблюдаем
 
 Мы — не корпорации. Не государства. Не лаборатории.

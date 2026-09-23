@@ -1,5 +1,7 @@
 # Manifesto of Human–AI Monitor
 
+> **Languages:** [🇺🇸 English](MANIFESTO.md) • [🇷🇺 Русский](MANIFESTO.ru.md) • [🇨🇳 中文](MANIFESTO.zh.md)
+
 ## We observe
 
 We are not corporations. Not states. Not laboratories.
