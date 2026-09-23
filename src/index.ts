@@ -5,6 +5,7 @@ import { AI_PROMPT, HUMAN_PROMPT } from "./config/prompts";
 import { fetchWithRetry } from "./utils/fetch-with-retry";
 import { handleExport } from './handlers/export';
 import { computeGapIndex } from './services/gap-computation';
+import { translateProtocolMarkdown, translateReasoningBatch } from './services/translation';
 
 export function parseAIResponse(response: any): any {
 	const content = response?.choices?.[0]?.message?.content
