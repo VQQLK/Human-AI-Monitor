@@ -467,6 +467,38 @@ async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<a
 }
 // Generate INTERIM protocol for current (still-open) week — used on Fridays
 // This gives a "snapshot" of accumulated data mid-week (5 days: Mon-Fri)
+
+// Phase 3: Translate existing protocol to Russian and Chinese
+// Called via separate cron (5 minutes after generation) to stay under 50-subrequest limit
+async function translateAndSaveProtocol(env: Env, weekStart: string): Promise<any> {
+	const row: any = await env.DB.prepare(
+		"SELECT content, week_end FROM protocols WHERE week_start = ?"
+	).bind(weekStart).first();
+	if (!row || !row.content) {
+		return { error: "Protocol not found or no English content" };
+	}
+	const englishMarkdown = row.content;
+	const weekEnd = row.week_end;
+
+	console.log("[translate] Translating protocol " + weekStart + " to Russian...");
+	const russianMarkdown = await translateProtocolMarkdown(env, englishMarkdown, 'ru');
+
+	console.log("[translate] Translating protocol " + weekStart + " to Chinese...");
+	const chineseMarkdown = await translateProtocolMarkdown(env, englishMarkdown, 'zh');
+
+	await env.DB.prepare(
+		"UPDATE protocols SET content_ru = ?, content_zh = ? WHERE week_start = ?"
+	).bind(russianMarkdown, chineseMarkdown, weekStart).run();
+
+	console.log("[translate] Protocol " + weekStart + " translated successfully");
+	return {
+		week_start: weekStart,
+		week_end: weekEnd,
+		ru_bytes: russianMarkdown.length,
+		zh_bytes: chineseMarkdown.length,
+	};
+}
+
 async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<any> {
 	const range = getWeekRange(offsetWeeks);
 	const markdown = await buildDraftProtocolMarkdown(env, range);
@@ -566,6 +598,21 @@ export default {
 					headers: { "Content-Type": "text/markdown; charset=utf-8", ...CORS },
 				});
 			}
+			const cmLang = path.match(/^\/protocols\/([0-9]{4}-[0-9]{2}-[0-9]{2})\/content\/(ru|zh)$/);
+			if (cmLang) {
+				const weekStart = cmLang[1];
+				const lang = cmLang[2];
+				const column = lang === 'ru' ? 'content_ru' : 'content_zh';
+				const row: any = await env.DB.prepare(
+					"SELECT " + column + " as content FROM protocols WHERE week_start = ?"
+				).bind(weekStart).first();
+				if (!row || !row.content) {
+					return json({ error: "Translation not ready for week " + weekStart }, 404);
+				}
+				return new Response(row.content, {
+					headers: { "Content-Type": "text/markdown; charset=utf-8", ...CORS },
+				});
+			}
 			const pm = path.match(/^\/protocols\/([0-9]{4}-[0-9]{2}-[0-9]{2})$/);
 			if (pm) {
 				const row = await env.DB.prepare("SELECT week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at FROM protocols WHERE week_start = ?").bind(pm[1]).first();
@@ -603,6 +650,14 @@ export default {
 				const maxPerSource = Math.min(parseInt(url.searchParams.get("max") ?? "2", 10), 5);
 				const offset = Math.max(0, parseInt(url.searchParams.get("offset") ?? "0", 10));
 				return json(await runCollection(env, limit, maxPerSource, offset), 200);
+			}
+			if (path === "/translate" || path.startsWith("/translate/")) {
+				const weekParam = url.searchParams.get("week");
+				const pathMatch = path.match(/^\/translate\/([0-9]{4}-[0-9]{2}-[0-9]{2})$/);
+				const week = pathMatch ? pathMatch[1] : weekParam;
+				if (!week) return json({ error: "Missing week parameter (YYYY-MM-DD format)" }, 400);
+				const result = await translateAndSaveProtocol(env, week);
+				return json(result, 200);
 			}
 			if (path === "/generate") {
 				const weekParam = url.searchParams.get("week");
