@@ -192,7 +192,7 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
 
 ## 架构
 
-- **Cloudflare Workers** (TypeScript) — 运行时，13个API端点，定时触发器
+- **Cloudflare Workers** (TypeScript) — 运行时，20个API端点，定时触发器
 - **Cloudflare D1** (无服务器SQLite) — 4个表：items、protocols、gap_history、index_history
 - **Cloudflare Workers AI** — 分类器模型：`@cf/qwen/qwen3-30b-a3b-fp8`（开放权重）
 - **定时触发器** — 每周一06:00、06:15、06:30、06:45 UTC的4批
@@ -241,20 +241,20 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
 
 ## 当前状态
 
-**MVP已上线：**
+**生产版本 (v1.0.0):**
 
-- ✅ 部署了13个API端点的Cloudflare Worker
+- ✅ 部署了20个API端点的Cloudflare Worker
 - ✅ `/verify`端点 — 基于CheatBench的奖励劫持检测
 - ✅ D1数据库（4个表，已填充）
 - ✅ Workers AI分类器（Qwen 3，校准为12个对称轴 + 地缘政治）
-- ✅ RSS + HTML收集器（31个来源，36个配置）
-- ✅ 每周协议自动生成（Markdown）
-- ✅ 定时触发器（每周一4批）
+- ✅ RSS + HTML收集器（41个来源，47个配置：25 AI + 16 Human）
+- ✅ 每周协议自动生成（Markdown，EN/RU/ZH）
+- ✅ 定时触发器（每天5批：13:00-13:45 + 23:00 UTC）
 - ✅ 全球公开API可访问
 - ✅ 类型安全YAML → TypeScript管道（构建时代码生成）
 - ✅ 模块化架构（13个模块而非单体）
 - ✅ GitHub Actions的CI/CD（每次推送自动测试）
-- ✅ 44个单元测试（约60%覆盖率：解析器、分类器、作弊检测器、API）
+- ✅ 62个单元测试（约75%覆盖率：解析器、分类器、作弊检测器、API、gap-computation、translation）
 
 **进行中：**
 
@@ -264,7 +264,7 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
 
 **路线图：**
 
-- [ ] 多语言支持（EN / RU / ZH）
+- [x] 多语言支持（EN / RU / ZH） ✅
 - [ ] 阈值变化的推送通知
 - [ ] 非RSS来源的HTML解析
 - [ ] 与全球指数（V-Dem、WHR、Pew）集成
@@ -275,7 +275,7 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
 
 - ⚠️ 仅RSS收集；HTML解析已实现（`fetchFromHtml()`在`src/index.ts`中）但目前未使用——没有配置`type: html`的来源
 - ⚠️ `shift`字段可能在一般新闻中过度触发
-- ⚠️ 5个来源已禁用（VentureBeat 429，Nature 303，V-Dem 404，ILO 404，Lancet机器人保护）
+- ⚠️ 6个来源已禁用（VentureBeat 429，Nature 303，Lancet 403，Benton 404，V-Dem 404，ILO 404）
 - ⚠️ OECD和Edelman使用Google News RSS作为备用（关于主题的新闻，而非官方新闻稿）
 - ⚠️ 方法论不对称：代码实现了13个轴（7个AI + 6个人类）。12个对称轴是核心；`geopolitics`是元层，单独记录在`docs/methodology.md`中。
 

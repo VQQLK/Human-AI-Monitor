@@ -230,20 +230,20 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 
 ## Текущий статус
 
-**MVP работает (v0.9.9):**
+**Производственная версия (v1.0.0):**
 
-- ✅ Cloudflare Worker с 10 API-эндпоинтами — развёрнут
+- ✅ Cloudflare Worker с 20 API-эндпоинтами — развёрнут
 - ✅ Эндпоинт `/verify` — обнаружение reward hacking, вдохновлённое CheatBench
 - ✅ База данных D1 (4 таблицы, заполнена)
 - ✅ Классификатор Workers AI (Qwen 3, откалиброван для 12 симметричных осей + геополитика)
-- ✅ RSS коллектор (31 активный источник из 36 настроенных)
-- ✅ Автогенерация еженедельного протокола (Markdown)
-- ✅ Cron Trigger — 4 batches (06:00, 06:15, 06:30, 06:45 UTC каждый понедельник)
+- ✅ RSS + HTML коллектор (41 источник из 47 настроенных: 25 AI + 16 Human)
+- ✅ Автогенерация еженедельного протокола (Markdown, EN/RU/ZH)
+- ✅ Cron Trigger — 5 batches ежедневно (13:00-13:45 + 23:00 UTC)
 - ✅ Публичный API доступен по всему миру
 - ✅ Type-safe pipeline: YAML → TypeScript (генерация кода при сборке)
 - ✅ Модульная архитектура (13 модулей вместо монолита)
 - ✅ CI/CD через GitHub Actions (автоматические тесты при каждом push)
-- ✅ 44 unit-теста (~60% покрытие: parser, classifier, cheat-detector, API)
+- ✅ 62 unit-теста (~75% покрытие: parser, classifier, cheat-detector, API, gap-computation, translation)
 
 **В процессе:**
 
@@ -253,7 +253,7 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 
 **Дорожная карта:**
 
-- [ ] Мультиязычная поддержка (EN / RU / ZH)
+- [x] Мультиязычная поддержка (EN / RU / ZH) ✅
 - [ ] Push-уведомления о пороговых сдвигах
 - [ ] HTML-парсинг для не-RSS источников
 - [ ] Интеграция с глобальными индексами (V-Dem, WHR, Pew)
@@ -264,7 +264,7 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 
 - ⚠️ Только RSS-коллекция; HTML-парсинг ещё не реализован
 - ⚠️ Поле `shift` может срабатывать слишком часто на общих новостях
-- ⚠️ 5 источников отключены (VentureBeat 429, Nature 303, V-Dem 404, ILO 404, Lancet bot protection)
+- ⚠️ 6 источников отключены (VentureBeat 429, Nature 303, Lancet 403, Benton 404, V-Dem 404, ILO 404)
 - ⚠️ OECD и Edelman используют Google News RSS как fallback (новости *о* темах, не официальные пресс-релизы)
 - ⚠️ Методологическая асимметрия: код реализует 13 осей (7 ИИ + 6 Человеческих). 12 симметричных осей — ядро; `geopolitics` — мета-слой, задокументированный отдельно в `docs/methodology.md`.
 
@@ -391,22 +391,33 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 │ └── 2026-09-07_2026-09-17.md
 ├── migrations/
 │ ├── 0001_initial_schema.sql
-│ └── 0002_add_content_column.sql
+│ ├── 0002_add_content_column.sql
+│ ├── 0003_update_smd_level.sql
+│ ├── 0004_add_geopolitics_seed.sql
+│ ├── 0005_fix_week_naming_duplicates.sql
+│ ├── 0006_translate_markers_to_english.sql
+│ ├── 0007_add_is_interim_column.sql
+│ └── 0008_add_multilingual_columns.sql
 ├── src/
-│ ├── index.ts ← Entry point (20 350 байт, 522 строки)
-│ ├── config/ ← prompts, sources, axes
-│ ├── utils/ ← parsers, rss, html, crypto, retry
+│ ├── index.ts ← Entry point (32 903 байт, 802 строки)
+│ ├── cheat-detector.ts ← /verify endpoint
+│ ├── config/ ← prompts, sources, axes (YAML → TypeScript)
 │ ├── handlers/ ← export (еженедельный архив)
-│ ├── services/ ← gap-computation (исправление F6)
-│ └── cheat-detector.ts ← /verify endpoint
+│ ├── services/ ← gap-computation, translation (EN→RU/ZH)
+│ └── utils/ ← parsers, rss, html, crypto, retry
 ├── test/
 │ ├── index.spec.ts ← API тесты (8 тестов)
 │ ├── parser.spec.ts ← 14 тестов
 │ ├── classifier.spec.ts ← 15 тестов
-│ └── cheat-detector.spec.ts ← 7 тестов
+│ ├── cheat-detector.spec.ts ← 7 тестов
+│ ├── gap-computation.spec.ts ← 8 тестов
+│ ├── generate-protocol.spec.ts ← 3 теста
+│ └── translation.spec.ts ← 7 тестов
 └── .github/
-└── workflows/
-└── ci.yml ← CI: build + test on every push
+    └── workflows/
+        ├── ci.yml ← CI: build + test on every push
+        ├── sync-protocols.yml ← Dual-sync (collector + archive)
+        └── translate-protocols.yml ← EN→RU/ZH translation
 ```
 
 ## Лицензия
