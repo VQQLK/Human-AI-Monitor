@@ -412,7 +412,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	return lines.join("\n");
 }
 
-async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<any> {
+export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<any> {
 	// Guard: refuse to generate protocol for the current (still-open) week.
 	// The cron uses offsetWeeks=1 (previous closed week). Direct calls with
 	// offsetWeeks=0 would write partial data (e.g., h1_agency=0, hexad=0 from
