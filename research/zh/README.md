@@ -119,4 +119,4 @@ https://github.com/VQQLK/Human-AI-Monitor/issues
 
 ---
 
-**我们在起 - 就很强大！只有行走者才能征服道路。**
+**我们在一起，就是力量！只有行走者才能征服道路。**
