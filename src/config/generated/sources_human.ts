@@ -161,16 +161,6 @@ export default {
       ]
     },
     {
-      "name": "Meduza",
-      "url": "https://meduza.io/rss/all",
-      "lang": "ru",
-      "tier": 2,
-      "axes": [
-        "h6_democracy",
-        "h2_sovereignty"
-      ]
-    },
-    {
       "name": "Politico — Politics",
       "url": "https://rss.politico.com/politics-news.xml",
       "lang": "en",
