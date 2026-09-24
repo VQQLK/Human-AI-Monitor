@@ -439,17 +439,22 @@ See CONTRIBUTING.md.
 ```
 ├── README.md ← English
 ├── README.ru.md ← Russian
+├── README.zh.md ← Chinese
 ├── MANIFESTO.md ← English
 ├── MANIFESTO.ru.md ← Russian
+├── MANIFESTO.zh.md ← Chinese
 ├── LICENSE ← MIT (code)
 ├── DATA_LICENSE ← CC-BY 4.0 (data)
 ├── CITATION.cff ← academic citation
 ├── CHANGELOG.md ← version history
+├── CHANGELOG.ru.md
+├── CHANGELOG.zh.md
 ├── CONTRIBUTING.md
+├── CONTRIBUTING.ru.md
+├── CONTRIBUTING.zh.md
 ├── CODE_OF_CONDUCT.md
 ├── CODE_OF_CONDUCT.ru.md
 ├── CODE_OF_CONDUCT.zh.md
-├── AGENTS.md
 ├── package.json
 ├── tsconfig.json
 ├── wrangler.jsonc
@@ -460,17 +465,26 @@ See CONTRIBUTING.md.
 │ └── PRESS_RELEASE.md
 ├── research/
 │ ├── README.md
-│ └── part1..part5.md ← Full research paper (Russian)
+│ ├── en/ ← full paper (English)
+│ ├── ru/ ← full paper (Russian)
+│ └── zh/ ← full paper (Chinese)
 ├── config/
 │ ├── axes_ai.yaml
 │ ├── axes_human.yaml
 │ ├── sources_ai.yaml
 │ └── sources_human.yaml
 ├── data/protocols/
-│ └── 2026-09-07_2026-09-17.md
+│ ├── README.md
+│ └── *.md ← weekly protocols (EN/RU/ZH)
 ├── migrations/
 │ ├── 0001_initial_schema.sql
-│ └── 0002_add_content_column.sql
+│ ├── 0002_add_content_column.sql
+│ ├── 0003_update_smd_level.sql
+│ ├── 0004_add_geopolitics_seed.sql
+│ ├── 0005_fix_week_naming_duplicates.sql
+│ ├── 0006_translate_markers_to_english.sql
+│ ├── 0007_add_is_interim_column.sql
+│ └── 0008_add_multilingual_columns.sql
 ├── src/
 │   ├── index.ts ← Entry point (32,903 bytes, 802 lines)
 │   ├── cheat-detector.ts ← /verify endpoint

@@ -364,17 +364,22 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 ```
 ├── README.md ← English
 ├── README.ru.md ← Русский
+├── README.zh.md ← 中文
 ├── MANIFESTO.md ← English
 ├── MANIFESTO.ru.md ← Русский
+├── MANIFESTO.zh.md ← 中文
 ├── LICENSE ← MIT (code)
 ├── DATA_LICENSE ← CC-BY 4.0 (data)
 ├── CITATION.cff ← академическое цитирование
 ├── CHANGELOG.md ← история версий
+├── CHANGELOG.ru.md
+├── CHANGELOG.zh.md
 ├── CONTRIBUTING.md
+├── CONTRIBUTING.ru.md
+├── CONTRIBUTING.zh.md
 ├── CODE_OF_CONDUCT.md
 ├── CODE_OF_CONDUCT.ru.md
 ├── CODE_OF_CONDUCT.zh.md
-├── AGENTS.md
 ├── package.json
 ├── tsconfig.json
 ├── wrangler.jsonc
@@ -385,14 +390,17 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 │ └── PRESS_RELEASE.md
 ├── research/
 │ ├── README.md
-│ └── part1..part5.md ← Полное исследование (русский)
+│ ├── en/ ← полное исследование (английский)
+│ ├── ru/ ← полное исследование (русский)
+│ └── zh/ ← полное исследование (китайский)
 ├── config/
 │ ├── axes_ai.yaml
 │ ├── axes_human.yaml
 │ ├── sources_ai.yaml
 │ └── sources_human.yaml
 ├── data/protocols/
-│ └── 2026-09-07_2026-09-17.md
+│ ├── README.md
+│ └── *.md ← еженедельные протоколы (EN/RU/ZH)
 ├── migrations/
 │ ├── 0001_initial_schema.sql
 │ ├── 0002_add_content_column.sql

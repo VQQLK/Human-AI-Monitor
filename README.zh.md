@@ -367,17 +367,22 @@
 ```
 ├── README.md ← 英语
 ├── README.ru.md ← 俄语
+├── README.zh.md ← 中文
 ├── MANIFESTO.md ← 英语
 ├── MANIFESTO.ru.md ← 俄语
+├── MANIFESTO.zh.md ← 中文
 ├── LICENSE ← MIT（代码）
 ├── DATA_LICENSE ← CC-BY 4.0（数据）
 ├── CITATION.cff ← 学术引用
 ├── CHANGELOG.md ← 版本历史
+├── CHANGELOG.ru.md
+├── CHANGELOG.zh.md
 ├── CONTRIBUTING.md
+├── CONTRIBUTING.ru.md
+├── CONTRIBUTING.zh.md
 ├── CODE_OF_CONDUCT.md
 ├── CODE_OF_CONDUCT.ru.md
 ├── CODE_OF_CONDUCT.zh.md
-├── AGENTS.md
 ├── package.json
 ├── tsconfig.json
 ├── wrangler.jsonc
@@ -388,14 +393,17 @@
 │ └── PRESS_RELEASE.md
 ├── research/
 │ ├── README.md
-│ └── part1..part5.md ← 完整研究论文（俄语）
+│ ├── en/ ← 完整研究论文（英语）
+│ ├── ru/ ← 完整研究论文（俄语）
+│ └── zh/ ← 完整研究论文（中文）
 ├── config/
 │ ├── axes_ai.yaml
 │ ├── axes_human.yaml
 │ ├── sources_ai.yaml
 │ └── sources_human.yaml
 ├── data/protocols/
-│ └── 2026-09-07_2026-09-17.md
+│ ├── README.md
+│ └── *.md ← 每周协议（EN/RU/ZH）
 ├── migrations/
 │ ├── 0001_initial_schema.sql
 │ ├── 0002_add_content_column.sql
