@@ -48,11 +48,11 @@ jobs:
           echo "$PAIRS" | while read -r week_start week_end is_interim; do
             [ -z "$week_start" ] && continue
             if [ "$is_interim" = "1" ]; then BASENAME="${week_end}.interim"; else BASENAME="${week_end}"; fi
-            for lang in "" ".ru" ".zh"; do
+            for lang in "" "ru" "zh"; do
               [ -z "$lang" ] && URL="$API/protocols/${week_start}/content" || URL="$API/protocols/${week_start}/content/${lang}"
               TMP="$(mktemp)"
               if curl -sSf "$URL" -o "$TMP"; then
-                TARGET="${BASENAME}${lang}.md"
+                TARGET="${BASENAME}${lang:+.$lang}.md"
                 if [ -f "$TARGET" ] && cmp -s "$TMP" "$TARGET"; then echo "= $TARGET unchanged"
                 else mv "$TMP" "$TARGET"; echo "✓ $TARGET updated"; fi
               else rm -f "$TMP"; fi
@@ -94,9 +94,9 @@ jobs:
             PAIRS=$(echo "${{ steps.list.outputs.pairs }}" | base64 -d)
             read -r _ we is_interim <<< "$(echo "$PAIRS" | grep "^$ws ")"
             [ "$is_interim" = "1" ] && BASENAME="${we}.interim" || BASENAME="${we}"
-            for lang in "" ".ru" ".zh"; do
+            for lang in "" "ru" "zh"; do
               [ -z "$lang" ] && URL="$API/protocols/${ws}/content" || URL="$API/protocols/${ws}/content/${lang}"
-              TARGET="${BASENAME}${lang}.md"
+              TARGET="${BASENAME}${lang:+.$lang}.md"
               TMP=$(mktemp)
               if curl -sSf "$URL" -o "$TMP" 2>/dev/null; then
                 mv "$TMP" "$TARGET"
