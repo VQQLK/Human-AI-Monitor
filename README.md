@@ -307,7 +307,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 
 **MVP live:**
 
-- ✅ Cloudflare Worker with 13 API endpoints — deployed
+- ✅ Cloudflare Worker with 20 API endpoints — deployed
 - ✅ `/verify` endpoint — CheatBench-inspired reward hacking detection
 - ✅ D1 database (4 tables, populated)
 - ✅ Workers AI classifier (Qwen 3, calibrated for 12 symmetric axes + 
@@ -320,7 +320,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ✅ Type-safe YAML → TypeScript pipeline (build-time code generation)
 - ✅ Modular architecture (13 modules instead of monolith)
 - ✅ CI/CD via GitHub Actions (automatic tests on every push)
-- ✅ 44 unit tests (~60% coverage: parser, classifier, cheat-detector, API)
+- ✅ 62 unit tests (~75% coverage: parser, classifier, cheat-detector, API, gap-computation, translation)
 
 **In progress:**
 
@@ -482,20 +482,25 @@ See CONTRIBUTING.md.
 │ ├── 0001_initial_schema.sql
 │ └── 0002_add_content_column.sql
 ├── src/
-│   ├── index.ts ← Entry point (20,350 bytes, 522 lines)
-│   ├── config/ ← prompts, sources, axes
-│   ├── utils/ ← parsers, rss, html, crypto, retry
+│   ├── index.ts ← Entry point (32,903 bytes, 802 lines)
+│   ├── cheat-detector.ts ← /verify endpoint
+│   ├── config/ ← prompts, sources, axes (YAML → TypeScript)
 │   ├── handlers/ ← export (weekly archival)
-│   ├── services/ ← gap-computation (F6 fix)
-│   └── cheat-detector.ts ← /verify endpoint
+│   ├── services/ ← gap-computation, translation (EN→RU/ZH)
+│   └── utils/ ← parsers, rss, html, crypto, retry
 ├── test/
 │   ├── index.spec.ts ← API tests (8 tests)
 │   ├── parser.spec.ts ← 14 tests
 │   ├── classifier.spec.ts ← 15 tests
-│   └── cheat-detector.spec.ts ← 7 tests
+│   ├── cheat-detector.spec.ts ← 7 tests
+│   ├── gap-computation.spec.ts ← 8 tests
+│   ├── generate-protocol.spec.ts ← 3 tests
+│   └── translation.spec.ts ← 7 tests
 └── .github/
     └── workflows/
-        └── ci.yml ← CI: build + test on every push
+        ├── ci.yml ← CI: build + test on every push
+        ├── sync-protocols.yml ← Dual-sync (collector + archive)
+        └── translate-protocols.yml ← EN→RU/ZH translation
 ```
 
 ---
