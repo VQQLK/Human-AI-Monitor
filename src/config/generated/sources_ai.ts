@@ -130,6 +130,34 @@ export default {
       "url": "https://habr.com/ru/rss/hubs/artificial_intelligence/all/?fl=ru",
       "lang": "ru",
       "tier": 2
+    },
+    {
+      "name": "Politico — Technology",
+      "url": "https://rss.politico.com/technology.xml",
+      "lang": "en",
+      "tier": 1,
+      "note": "US AI policy, Congress, Trump AI Force — replaces AP News (403)"
+    },
+    {
+      "name": "The Hill — Policy",
+      "url": "https://thehill.com/policy/feed/",
+      "lang": "en",
+      "tier": 1,
+      "note": "US tech policy, AI regulation, geopolitics"
+    },
+    {
+      "name": "CBS News — Technology",
+      "url": "https://www.cbsnews.com/latest/rss/main",
+      "lang": "en",
+      "tier": 2,
+      "note": "US news including AI policy — replaces AP News"
+    },
+    {
+      "name": "WSJ — World News",
+      "url": "https://feeds.a.dj.com/rss/RSSWorldNews.xml",
+      "lang": "en",
+      "tier": 1,
+      "note": "Geopolitics, global AI race, US-China — replaces Reuters (timeout)"
     }
   ],
   "html_sources": []

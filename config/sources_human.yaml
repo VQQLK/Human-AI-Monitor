@@ -119,7 +119,6 @@ rss:
   axes:
   - h6_democracy
   - h2_sovereignty
-html_sources: []
 - name: Politico — Politics
   url: https://rss.politico.com/politics-news.xml
   lang: en
@@ -169,3 +168,4 @@ html_sources: []
   - h6_democracy
   - h2_sovereignty
   note: 'Fallback: captures Trump AI Force, Xi BRICS AI, global AI governance'
+html_sources: []

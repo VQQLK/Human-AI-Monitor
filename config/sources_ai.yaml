@@ -85,7 +85,6 @@ rss:
   url: https://habr.com/ru/rss/hubs/artificial_intelligence/all/?fl=ru
   lang: ru
   tier: 2
-html_sources: []
 - name: Politico — Technology
   url: https://rss.politico.com/technology.xml
   lang: en
@@ -106,3 +105,4 @@ html_sources: []
   lang: en
   tier: 1
   note: 'Geopolitics, global AI race, US-China — replaces Reuters (timeout)'
+html_sources: []
