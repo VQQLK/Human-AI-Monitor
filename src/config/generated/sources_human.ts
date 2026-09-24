@@ -169,6 +169,73 @@ export default {
         "h6_democracy",
         "h2_sovereignty"
       ]
+    },
+    {
+      "name": "Politico — Politics",
+      "url": "https://rss.politico.com/politics-news.xml",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h6_democracy",
+        "h1_agency"
+      ],
+      "note": "US politics, Congress, democratic institutions"
+    },
+    {
+      "name": "The Hill — News",
+      "url": "https://thehill.com/feed/",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h6_democracy",
+        "h2_sovereignty"
+      ],
+      "note": "US politics, international summits (Xi/Trump)"
+    },
+    {
+      "name": "NPR — World",
+      "url": "https://feeds.npr.org/1004/rss.xml",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h6_democracy",
+        "h1_agency",
+        "h3_wellbeing"
+      ],
+      "note": "World news, UNGA, international relations"
+    },
+    {
+      "name": "CBS News — World",
+      "url": "https://www.cbsnews.com/latest/rss/world",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h6_democracy",
+        "h3_wellbeing"
+      ],
+      "note": "World news, geopolitics — replaces AP News"
+    },
+    {
+      "name": "CBS News — Politics",
+      "url": "https://www.cbsnews.com/latest/rss/politics",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h6_democracy",
+        "h1_agency"
+      ],
+      "note": "US politics, elections, democratic institutions"
+    },
+    {
+      "name": "Google News — Geopolitics AI",
+      "url": "https://news.google.com/rss/search?q=AI+geopolitics+OR+BRICS+AI+OR+AI+regulation&hl=en-US&gl=US&ceid=US:en",
+      "lang": "en",
+      "tier": 2,
+      "axes": [
+        "h6_democracy",
+        "h2_sovereignty"
+      ],
+      "note": "Fallback: captures Trump AI Force, Xi BRICS AI, global AI governance"
     }
   ],
   "html_sources": []
