@@ -247,13 +247,18 @@ This tool does three things:
 
 ## Architecture
 
-- **Cloudflare Workers** (TypeScript) — runtime, 13 API endpoints, Cron 
+- **Cloudflare Workers** (TypeScript) — runtime, 20 API endpoints, Cron 
   Trigger
-- **Cloudflare D1** (Serverless SQLite) — 4 tables: items, protocols, 
-  gap_history, index_history
+- **Cloudflare D1** (Serverless SQLite) — 6 tables: items, protocols, 
+  gap_history, index_history, axes_ai, axes_human
 - **Cloudflare Workers AI** — classifier model: 
   `@cf/qwen/qwen3-30b-a3b-fp8` (open-weight)
-- **Cron Trigger** — 4 batches at 06:00, 06:15, 06:30, 06:45 UTC (every Monday)
+- **Cron Trigger** — 5 batches daily:
+  - Daytime (13:00, 13:15, 13:30, 13:45 UTC): 8 sources each, maxPerSource=3
+  - Evening (23:00 UTC): 9 sources, maxPerSource=2
+  - Total: 41 sources covered across 5 batches
+- **Dual-sync workflow** — syncs latest 2 protocols to collector repo, 
+  archives all protocols to separate archive repo
 
 **No external AI providers.** All classification runs on open-weight 
 models hosted by Cloudflare Workers AI.
@@ -307,9 +312,10 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ✅ D1 database (4 tables, populated)
 - ✅ Workers AI classifier (Qwen 3, calibrated for 12 symmetric axes + 
   geopolitics)
-- ✅ RSS + HTML collector (31 sources from 36 configured)
-- ✅ Weekly protocol auto-generation (Markdown)
-- ✅ Cron Trigger (4 batches every Monday)
+- ✅ RSS + HTML collector (41 sources from 47 configured: 25 AI + 16 Human)
+- ✅ Weekly protocol auto-generation (Markdown, EN/RU/ZH)
+- ✅ Interim/Final protocol split (Friday draft → Monday final)
+- ✅ Cron Trigger (5 batches daily: 13:00-13:45 + 23:00 UTC)
 - ✅ Public API accessible worldwide
 - ✅ Type-safe YAML → TypeScript pipeline (build-time code generation)
 - ✅ Modular architecture (13 modules instead of monolith)
@@ -324,7 +330,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 
 **Roadmap:**
 
-- [ ] Multilingual support (EN / RU / ZH)
+- [x] Multilingual support (EN / RU / ZH) ✅
 - [ ] Push notifications for threshold shifts
 - [ ] HTML parsing for non-RSS sources
 - [ ] Integration with global indices (V-Dem, WHR, Pew)
@@ -335,7 +341,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 
 - ⚠️ RSS-only collection; HTML parsing implemented (`fetchFromHtml()` in `src/index.ts`) but currently unused — no sources configured with `type: html`
 - ⚠️ `shift` field may over-trigger on general news
-- ⚠️ 5 sources disabled (VentureBeat 429, Nature 303, V-Dem 404, ILO 404, Lancet bot protection)
+- ⚠️ 6 sources disabled (VentureBeat 429, Nature 303, Lancet 403, Benton 404, V-Dem 404, ILO 404)
 - ⚠️ OECD and Edelman use Google News RSS as fallback (news *about* topics, not official press releases)
 - ⚠️ Methodological asymmetry: code implements 13 axes (7 AI + 6 Human). 
   The 12 symmetric axes are the core; `geopolitics` is a meta-layer 
