@@ -471,8 +471,8 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
 
 MIT。使用、分叉、改进。
 
+**为他人带来更大的利益——还有什么比这更高的目标呢？**
+
 ---
 
 **我们在一起 - 就很强大！只有行走者才能征服道路。**
-
-**为他人带来更大的利益——还有什么比这更高的目标呢？**

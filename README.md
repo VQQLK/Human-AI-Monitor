@@ -141,7 +141,7 @@ is happening — but disagrees on almost everything else.
 > cooperation in developing and applying large language models, hold 
 > specialized AI seminars and training courses, and build an open ecosystem 
 > for AI."
-> — *At Session II of the 18th BRICS Summit, New Delhi".*
+> — *At Session II of the 18th BRICS Summit, New Delhi.*
 
 ### 🧮 Mathematics Community
 
@@ -249,8 +249,8 @@ This tool does three things:
 
 - **Cloudflare Workers** (TypeScript) — runtime, 20 API endpoints, Cron 
   Trigger
-- **Cloudflare D1** (Serverless SQLite) — 6 tables: items, protocols, 
-  gap_history, index_history, axes_ai, axes_human
+- **Cloudflare D1** (Serverless SQLite) — 4 tables: items, protocols, 
+  gap_history, index_history
 - **Cloudflare Workers AI** — classifier model: 
   `@cf/qwen/qwen3-30b-a3b-fp8` (open-weight)
 - **Cron Trigger** — 5 batches daily:
@@ -539,5 +539,3 @@ MIT. Use, fork, improve.
 ---
 
 **United We Stand! Only the one who walks conquers the road.**
-
-**Приносить благо другим людям — что может быть выше этой цели?**
