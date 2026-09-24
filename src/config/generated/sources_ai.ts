@@ -158,6 +158,17 @@ export default {
       "lang": "en",
       "tier": 1,
       "note": "Geopolitics, global AI race, US-China — replaces Reuters (timeout)"
+    },
+    {
+      "name": "AI Now Institute",
+      "url": "https://ainowinstitute.org/feed",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h1_agency",
+        "h4_equity",
+        "h6_democracy"
+      ]
     }
   ],
   "html_sources": []
