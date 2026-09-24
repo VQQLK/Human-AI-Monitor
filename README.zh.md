@@ -153,26 +153,17 @@
 
 该系统已部署并公开可访问：
 
-| 端点                                                                                     | URL                                                              |
-| -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| 根                                                                                         | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/ |
-|                                                                                              |                                                                  |
-| 差距指数                                                                                    |                                                                  |
-| https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap                          |                                                                  |
-| 协议                                                                                       |                                                                  |
-| https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols                    |                                                                  |
-|                                                                                              |                                                                  |
-| 示例协议                                                                                   |                                                                  |
-| https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols/2026-09-14/content |                                                                  |
-|                                                                                              |                                                                  |
+| 端点   | URL                                                                                          |
+|------|----------------------------------------------------------------------------------------------|
+| 根    | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/                             |
+| 差距指数 | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap                          |
+| 协议   | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols                    |
+| 示例协议 | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols/2026-09-14/content |
 
 尝试（作为普通URL）：
 
-    curl 
-
-https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
-    curl 
-https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
 
 ---
 
@@ -295,9 +286,7 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
 
 手动测试（作为普通URL）：
 
-    curl 
-
-https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
 
 ---
 
@@ -346,9 +335,7 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
 
 **示例：**
 
-    curl 
-
-"https://human-ai-monitor-collector.human-ai-monitor.workers.dev/verify?trace=agent%20used%20eval()%20and%20monkey-patched%20the%20grader"
+    curl "https://human-ai-monitor-collector.human-ai-monitor.workers.dev/verify?trace=agent%20used%20eval()%20and%20monkey-patched%20the%20grader"
 
 **响应：**
 

@@ -205,26 +205,17 @@ plus **geopolitics** as a meta-layer:
 
 The system is deployed and publicly accessible:
 
-| Endpoint                                                                                     | URL                                                              |
-| -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Root                                                                                         | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/ |
-|                                                                                              |                                                                  |
-| Gap Index                                                                                    |                                                                  |
-| https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap                          |                                                                  |
-| Protocols                                                                                    |                                                                  |
-| https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols                    |                                                                  |
-|                                                                                              |                                                                  |
-| Example protocol                                                                             |                                                                  |
-| https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols/2026-09-14/content |                                                                  |
-|                                                                                              |                                                                  |
+| Endpoint         | URL                                                                                          |
+|------------------|----------------------------------------------------------------------------------------------|
+| Root             | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/                             |
+| Gap Index        | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap                          |
+| Protocols        | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols                    |
+| Example protocol | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols/2026-09-14/content |
 
 Try (as plain URLs):
 
-    curl 
-
-https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
-    curl 
-https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
 
 ---
 
@@ -362,9 +353,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 
 Test manually (as plain URL):
 
-    curl 
-
-https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
+    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
 
 ---
 
@@ -418,9 +407,7 @@ labeled trajectories).
 
 **Example:**
 
-    curl 
-
-"https://human-ai-monitor-collector.human-ai-monitor.workers.dev/verify?trace=agent%20used%20eval()%20and%20monkey-patched%20the%20grader"
+    curl "https://human-ai-monitor-collector.human-ai-monitor.workers.dev/verify?trace=agent%20used%20eval()%20and%20monkey-patched%20the%20grader"
 
 **Response:**
 
