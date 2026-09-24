@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: VQQLK/human-ai-monitor-archive
-          token: ${{ secrets.DUAL_SYNC_TOKEN }}
+          token: ${{ secrets.HUMAN_AI_MONITOR_ARCHIVE_SYNC }}
           path: archive
 
       - name: Fetch list of protocols
