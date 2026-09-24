@@ -305,7 +305,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 
 ## Current status
 
-**MVP live:**
+**Production release (v1.0.0):**
 
 - ✅ Cloudflare Worker with 20 API endpoints — deployed
 - ✅ `/verify` endpoint — CheatBench-inspired reward hacking detection
@@ -318,7 +318,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ✅ Cron Trigger (5 batches daily: 13:00-13:45 + 23:00 UTC)
 - ✅ Public API accessible worldwide
 - ✅ Type-safe YAML → TypeScript pipeline (build-time code generation)
-- ✅ Modular architecture (13 modules instead of monolith)
+- ✅ Modular architecture (14 modules instead of monolith)
 - ✅ CI/CD via GitHub Actions (automatic tests on every push)
 - ✅ 62 unit tests (~75% coverage: parser, classifier, cheat-detector, API, gap-computation, translation)
 

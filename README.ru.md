@@ -181,10 +181,10 @@
 
 ## Архитектура
 
-- **Cloudflare Workers** (TypeScript) — среда выполнения, 10 API-эндпоинтов, Cron Trigger
+- **Cloudflare Workers** (TypeScript) — среда выполнения, 20 API-эндпоинтов, Cron Trigger
 - **Cloudflare D1** (Serverless SQLite) — 4 таблицы: items, protocols, gap_history, index_history
-- **Cloudflare Workers AI** — модель классификатора: `@cf/qwen/qwen3-30b-a3b-fp8` (открытые весаы)
-- **Cron Trigger** — расписание `0 6 * * 1` (каждый понедельник 06:00 UTC)
+- **Cloudflare Workers AI** — модель классификатора: `@cf/qwen/qwen3-30b-a3b-fp8` (открытые веса)
+- **Cron Trigger** — 5 batches ежедневно: 13:00, 13:15, 13:30, 13:45, 23:00 UTC
 
 **Никаких внешних ИИ-провайдеров.** Вся классификация выполняется на моделях с открытыми весами, размещённых в Cloudflare Workers AI.
 
@@ -239,9 +239,10 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 - ✅ RSS + HTML коллектор (41 источник из 47 настроенных: 25 AI + 16 Human)
 - ✅ Автогенерация еженедельного протокола (Markdown, EN/RU/ZH)
 - ✅ Cron Trigger — 5 batches ежедневно (13:00-13:45 + 23:00 UTC)
+- ✅ Interim/Final разделение протоколов (черновик в пятницу → финальный в понедельник)
 - ✅ Публичный API доступен по всему миру
 - ✅ Type-safe pipeline: YAML → TypeScript (генерация кода при сборке)
-- ✅ Модульная архитектура (13 модулей вместо монолита)
+- ✅ Модульная архитектура (14 модулей вместо монолита)
 - ✅ CI/CD через GitHub Actions (автоматические тесты при каждом push)
 - ✅ 62 unit-теста (~75% покрытие: parser, classifier, cheat-detector, API, gap-computation, translation)
 
@@ -262,7 +263,7 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 
 **Известные ограничения:**
 
-- ⚠️ Только RSS-коллекция; HTML-парсинг ещё не реализован
+- ⚠️ Только RSS-коллекция; HTML-парсинг реализован (`fetchFromHtml()` в `src/index.ts`), но не используется — нет источников с `type: html`
 - ⚠️ Поле `shift` может срабатывать слишком часто на общих новостях
 - ⚠️ 6 источников отключены (VentureBeat 429, Nature 303, Lancet 403, Benton 404, V-Dem 404, ILO 404)
 - ⚠️ OECD и Edelman используют Google News RSS как fallback (новости *о* темах, не официальные пресс-релизы)
