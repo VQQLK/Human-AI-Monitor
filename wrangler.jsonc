@@ -14,8 +14,8 @@
 	],
 	"ai": { "binding": "AI" },
 	// Architecture v2: 5 cron triggers (Cloudflare Free plan limit)
-	// 13:00-13:45 UTC: 4 batches (daytime collection, all 32 sources)
-	// 23:00 UTC: 1 batch (evening collection, 8 critical sources)
+	// 13:00-13:45 UTC: 4 batches (daytime collection, 32 of 41 sources)
+	// 23:00 UTC: 1 batch (evening collection, remaining 9 sources)
 	// Each batch runs as separate request to stay under 50-subrequest limit
 	"triggers": {
 		"crons": [
