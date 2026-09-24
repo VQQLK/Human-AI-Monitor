@@ -88,12 +88,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Stanford HAI source (all RSS URLs return HTML instead of XML)
 
 ### Planned
-- Real test coverage for gap-computation, generateInterimProtocol, translation
+- **Force reclassification parameter** (`?reclassify=true` for `/collect`)
+  - Allow manual re-classification of existing items when prompts change
+  - Hash check (sha256Hex + DB lookup) currently prevents re-processing
+  - Need bypass option: skip `if (existing)` check when force=true
+  - Referenced in verification report as priority item (not yet implemented)
+
+- **Metrics dashboard for Workers AI quota**
+  - Track `ai_calls_today`, `ai_calls_saved` (via hash check), `quota_usage_percent`
+  - Add to `/health` endpoint for monitoring
+  - Current: only `items_classified` counter exists, no quota tracking
+  - Referenced in verification report as priority item (not yet implemented)
+
+- **R2 caching for classification results**
+  - Cache parsed AI responses in Cloudflare R2 to reduce token usage
+  - Hash-based keys (sha256 of title+summary) → cached JSON response
+  - Fallback to AI Workers on cache miss
+  - Referenced in verification report as mid-term item (not yet implemented)
+
 - Refactoring: split monolithic src/index.ts into modules
 - HTML parsing for non-RSS sources
 - HTML entity decoding for HTML-parsed sources (`&#39;` → `'`)
 - Android APK (PWA + Capacitor)
 - Web interface (Cloudflare Pages)
+
 
 ## [0.9.9] - 2026-09-19
 
