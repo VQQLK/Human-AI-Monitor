@@ -753,21 +753,23 @@ export default {
 
 	async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
 		// Architecture v2: 5 cron triggers (Cloudflare Free plan limit)
-		// 13:00-13:45 UTC: 4 batches (daytime collection, all 32 sources)
-		// 23:00 UTC: 1 batch (evening collection, 8 critical sources)
+		// 13:00-13:45 UTC: 4 batches of 8 (daytime, covers 32 of the 41 currently-enabled sources)
+		// 23:00 UTC: 1 batch of 9 at reduced depth (evening, covers the remaining 9 sources)
 		// Each batch runs as separate request to stay under 50-subrequest limit
-		// (8 sources x 3 articles x 2 subrequests = 48 subrequests per batch)
-		const batchConfig: Record<string, { offset: number; limit: number; batch: number; generateProtocol: boolean }> = {
-			"0 13 * * *":  { offset: 0,  limit: 8, batch: 1, generateProtocol: false },
-			"15 13 * * *": { offset: 8,  limit: 8, batch: 2, generateProtocol: false },
-			"30 13 * * *": { offset: 16, limit: 8, batch: 3, generateProtocol: false },
-			"45 13 * * *": { offset: 24, limit: 8, batch: 4, generateProtocol: true },
-			"0 23 * * *":  { offset: 0,  limit: 8, batch: 1, generateProtocol: false },
+		// (sources x maxPerSource x 2 subrequests; 8x3x2=48, 9x2x2=36 - both under 50)
+		// NOTE: offsets/limit must be re-checked whenever a source is added or removed
+		// (SOURCES.length is currently 41 - see src/config/sources.ts)
+		const batchConfig: Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }> = {
+			"0 13 * * *":  { offset: 0,  limit: 8, batch: 1, maxPerSource: 3, generateProtocol: false },
+			"15 13 * * *": { offset: 8,  limit: 8, batch: 2, maxPerSource: 3, generateProtocol: false },
+			"30 13 * * *": { offset: 16, limit: 8, batch: 3, maxPerSource: 3, generateProtocol: false },
+			"45 13 * * *": { offset: 24, limit: 8, batch: 4, maxPerSource: 3, generateProtocol: true },
+			"0 23 * * *":  { offset: 32, limit: 9, batch: 5, maxPerSource: 2, generateProtocol: false },
 		};
 		const cfg = batchConfig[event.cron] ?? batchConfig["0 13 * * *"];
 
-		console.log("[cron] Batch " + cfg.batch + "/4 triggered at " + new Date(event.scheduledTime).toISOString() + " cron=" + event.cron);
-		console.log("[cron] offset=" + cfg.offset + " limit=" + cfg.limit + " maxPerSource=3 generateProtocol=" + cfg.generateProtocol);
+		console.log("[cron] Batch " + cfg.batch + "/5 triggered at " + new Date(event.scheduledTime).toISOString() + " cron=" + event.cron);
+		console.log("[cron] offset=" + cfg.offset + " limit=" + cfg.limit + " maxPerSource=" + cfg.maxPerSource + " generateProtocol=" + cfg.generateProtocol);
 
 		// Determine day of week: 0=Sunday, 1=Monday, 2=Tuesday, ..., 5=Friday, 6=Saturday
 		const dayOfWeek = new Date(event.scheduledTime).getUTCDay();
@@ -775,7 +777,7 @@ export default {
 		const isFriday = dayOfWeek === 5;
 
 		ctx.waitUntil((async () => {
-			const collectResult = await runCollection(env, cfg.limit, 3, cfg.offset);
+			const collectResult = await runCollection(env, cfg.limit, cfg.maxPerSource, cfg.offset);
 			console.log("[cron] collected: " + JSON.stringify(collectResult));
 
 			if (cfg.generateProtocol) {
