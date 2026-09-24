@@ -195,7 +195,7 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
 - **Cloudflare Workers** (TypeScript) — 运行时，20个API端点，定时触发器
 - **Cloudflare D1** (无服务器SQLite) — 4个表：items、protocols、gap_history、index_history
 - **Cloudflare Workers AI** — 分类器模型：`@cf/qwen/qwen3-30b-a3b-fp8`（开放权重）
-- **定时触发器** — 每周一06:00、06:15、06:30、06:45 UTC的4批
+- **定时触发器** — 每天5批：13:00、13:15、13:30、13:45、23:00 UTC
 
 **无外部AI提供商。** 所有分类都在Cloudflare Workers AI托管的开放权重模型上运行。
 
@@ -250,9 +250,10 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
 - ✅ RSS + HTML收集器（41个来源，47个配置：25 AI + 16 Human）
 - ✅ 每周协议自动生成（Markdown，EN/RU/ZH）
 - ✅ 定时触发器（每天5批：13:00-13:45 + 23:00 UTC）
+- ✅ 临时/最终协议分离（周五草稿 → 周一最终）
 - ✅ 全球公开API可访问
 - ✅ 类型安全YAML → TypeScript管道（构建时代码生成）
-- ✅ 模块化架构（13个模块而非单体）
+- ✅ 模块化架构（14个模块而非单体）
 - ✅ GitHub Actions的CI/CD（每次推送自动测试）
 - ✅ 62个单元测试（约75%覆盖率：解析器、分类器、作弊检测器、API、gap-computation、translation）
 
@@ -407,22 +408,36 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
 │ └── 2026-09-07_2026-09-17.md
 ├── migrations/
 │ ├── 0001_initial_schema.sql
-│ └── 0002_add_content_column.sql
+│ ├── 0002_add_content_column.sql
+│ ├── 0003_update_smd_level.sql
+│ ├── 0004_add_geopolitics_seed.sql
+│ ├── 0005_fix_week_naming_duplicates.sql
+│ ├── 0006_translate_markers_to_english.sql
+│ ├── 0007_add_is_interim_column.sql
+│ └── 0008_add_multilingual_columns.sql
 ├── src/
-│   ├── index.ts ← 入口点（20,350字节，522行）
-│   ├── config/ ← 提示，来源，轴线
+│   ├── index.ts ← 入口点（32,903字节，802行）
+│   ├── cheat-detector.ts ← /verify端点
+│   ├── config/ ← 提示，来源，轴线（YAML → TypeScript）
+│   │   └── generated/ ← 从YAML生成的TypeScript
 │   ├── utils/ ← 解析器，RSS，HTML，加密，重试
 │   ├── handlers/ ← 导出（每周归档）
-│   ├── services/ ← 差距计算（F6修复）
-│   └── cheat-detector.ts ← /verify端点
+│   ├── services/ ← 差距计算，翻译（EN→RU/ZH）
+│   │   ├── gap-computation.ts（F6修复）
+│   │   └── translation.ts（EN→RU/ZH）
 ├── test/
 │   ├── index.spec.ts ← API测试（8个测试）
 │   ├── parser.spec.ts ← 14个测试
 │   ├── classifier.spec.ts ← 15个测试
-│   └── cheat-detector.spec.ts ← 7个测试
+│   ├── cheat-detector.spec.ts ← 7个测试
+│   ├── gap-computation.spec.ts ← 8个测试
+│   ├── generate-protocol.spec.ts ← 3个测试
+│   └── translation.spec.ts ← 7个测试
 └── .github/
     └── workflows/
-        └── ci.yml ← CI：每次推送时构建+测试
+        ├── ci.yml ← CI：每次推送时构建+测试
+        ├── sync-protocols.yml ← 双同步（collector + archive）
+        └── translate-protocols.yml ← EN→RU/ZH翻译
 ```
 
 ---
