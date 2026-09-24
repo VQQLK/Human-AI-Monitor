@@ -220,10 +220,11 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes/itq
 
 **关键发现：** 经典意义上的奇点尚未到来，但一个质的新范式已经形成。
 
-**提供两种语言：**
+**提供三种语言：**
 
 - 🇺🇸 [英语](research/en/README.md)
 - 🇷🇺 [Русский](research/README.md)
+- 🇨🇳 [中文](research/zh/README.md)
 
 **结构：**
 
@@ -387,6 +388,8 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
 ├── CHANGELOG.md ← 版本历史
 ├── CONTRIBUTING.md
 ├── CODE_OF_CONDUCT.md
+├── CODE_OF_CONDUCT.ru.md
+├── CODE_OF_CONDUCT.zh.md
 ├── AGENTS.md
 ├── package.json
 ├── tsconfig.json
@@ -446,10 +449,11 @@ https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap
 
 本项目遵循[贡献者公约](https://www.contributor-covenant.org/) v2.0，以确保所有贡献者有一个欢迎和专业的环境。
 
-**🌐 可用两种语言：**
+**🌐 可用三种语言：**
 
 - [🇺🇸 英语](CODE_OF_CONDUCT.md)
 - [🇷🇺 俄语](CODE_OF_CONDUCT.ru.md)
+- [🇨🇳 中文](CODE_OF_CONDUCT.zh.md)
 
 ### 我们的5个核心原则
 

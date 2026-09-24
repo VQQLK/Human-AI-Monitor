@@ -284,10 +284,11 @@ A comprehensive interdisciplinary analysis of 2026 empirical data on autonomous 
 
 **Key finding:** singularity in the classical sense has not arrived, but a qualitatively new paradigm has formed.
 
-**Available in two languages:**
+**Available in three languages:**
 
 - 🇺🇸 [English](research/en/README.md)
 - 🇷🇺 [Русский](research/README.md)
+- 🇨🇳 [中文](research/zh/README.md)
 
 **Structure:**
 
@@ -459,6 +460,8 @@ See CONTRIBUTING.md.
 ├── CHANGELOG.md ← version history
 ├── CONTRIBUTING.md
 ├── CODE_OF_CONDUCT.md
+├── CODE_OF_CONDUCT.ru.md
+├── CODE_OF_CONDUCT.zh.md
 ├── AGENTS.md
 ├── package.json
 ├── tsconfig.json
@@ -509,10 +512,11 @@ See CONTRIBUTING.md.
 
 This project follows the [Contributor Covenant](https://www.contributor-covenant.org/) v2.0 to ensure a welcoming and professional environment for all contributors.
 
-**🌐 Available in two languages:**
+**🌐 Available in three languages:**
 
 - [🇺🇸 English](CODE_OF_CONDUCT.md)
 - [🇷🇺 Русский](CODE_OF_CONDUCT.ru.md)
+- [🇨🇳 中文](CODE_OF_CONDUCT.zh.md)
 
 ### Our 5 Core Principles
 

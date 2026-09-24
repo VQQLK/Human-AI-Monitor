@@ -209,10 +209,11 @@
 
 **Ключевой вывод:** сингулярность в классическом смысле не наступила, но сформировалась качественно новая парадигма.
 
-**Доступно на двух языках:**
+**Доступно на трёх языках:**
 
 - 🇷🇺 [Русский](research/README.md)
 - 🇺🇸 [English](research/en/README.md)
+- 🇨🇳 [中文](research/zh/README.md)
 
 **Структура:**
 
@@ -371,6 +372,8 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 ├── CHANGELOG.md ← история версий
 ├── CONTRIBUTING.md
 ├── CODE_OF_CONDUCT.md
+├── CODE_OF_CONDUCT.ru.md
+├── CODE_OF_CONDUCT.zh.md
 ├── AGENTS.md
 ├── package.json
 ├── tsconfig.json
