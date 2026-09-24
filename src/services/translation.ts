@@ -72,8 +72,8 @@ CRITICAL RULES:
 8. "No signals this week" → "本周无信号"
 9. Preserve all emoji (🔴🟢🟡) and numbers unchanged
 10. Translate final slogans:
-    - "To bring the greater good to others — what could be a higher goal?" → "为他人带来更大的利益——还有什么比这更高的目标呢？"
-    - "United We Stand! Only the one who walks conquers the road." → "我们在起 - 就很强大！只有行走者才能征服道路。"
+    - "To bring the greater good to others — what could be a higher goal?" → "为他人带来更大的福祉——还有什么比这更高的目标呢？"
+    - "United We Stand! Only the one who walks conquers the road." → "我们在一起，就是力量！只有行走者才能征服道路。"
 11. "Symmetric development" → "对称发展"
 12. "Humanity is ahead" → "人类领先"
 13. "AI is ahead" → "人工智能领先"
