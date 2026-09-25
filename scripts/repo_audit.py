@@ -103,18 +103,27 @@ if len(fps) == 3:
         t, h = next(iter(vals))
         ok(f"CHANGELOG fingerprint: {t} титулов / {h} секций ×3")
     vt = []
-    for v in fps.values():
+    for fname, v in fps.items():
         m = re.search(r"\[(\d+\.\d+\.\d+)", v[2])
+        if m is None and CHANGELOGS[fname] in v[2]:
+            # Ведущая секция — канонический Unreleased: версия из первой релизной секции
+            for s in changelog_sections(read(ROOT / fname))[1:]:
+                m2 = re.search(r"\[(\d+\.\d+\.\d+)", s["header"])
+                if m2:
+                    m = m2
+                    break
         vt.append(m.group(1) if m else None)
     if len({x for x in vt if x}) > 1:
-        fail(f"CHANGELOG: версии ведущей секции расходятся: {vt}")
+        fail(f"CHANGELOG: версии релизных секций расходятся: {vt}")
     if any(x is None for x in vt):
-        warn(f"CHANGELOG: ведущая секция не помечена версией: {vt}")
+        warn(f"CHANGELOG: не найдена релизная секция с версией: {vt}")
     else:
         ok(f"CHANGELOG: релизная секция {vt[0]} ×3")
 
-if len(set(sec_counts.values())) != 1:
-    warn(f"CHANGELOG: историческая глубина различается (только отчёт): {sec_counts}")
+if sec_counts["CHANGELOG.ru.md"] != sec_counts["CHANGELOG.zh.md"]:
+    warn(f"CHANGELOG: RU/ZH глубина различается: {sec_counts}")
+else:
+    ok(f"CHANGELOG: глубина согласована (RU/ZH={sec_counts['CHANGELOG.ru.md']}, EN={sec_counts['CHANGELOG.md']} минималистичен по дизайну)")
 
 # ---------- 4. Канонические пары ----------
 CANON = ["README", "CHANGELOG", "CONTRIBUTING", "MANIFESTO", "CODE_OF_CONDUCT"]
