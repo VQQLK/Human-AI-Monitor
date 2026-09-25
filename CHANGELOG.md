@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - **Single-source version**: `/` endpoint metadata now reads version from `package.json` (build-time import) instead of a hardcoded literal; repo_audit verifies package.json = CITATION.cff and release-date parity
+- **Cron batching hardening**: batch offsets/limits moved to exported `CRON_BATCH_CONFIG`; runtime guard logs a loud error on source-count drift; new `cron-batching` test suite (4 invariants: full coverage, contiguous offsets, batch numbering, subrequest budget); repo_audit verifies wrangler crons == config keys
 ## [1.0.0] - 2026-09-24
 
 ### Added
