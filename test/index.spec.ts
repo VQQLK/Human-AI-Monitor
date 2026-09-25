@@ -1,3 +1,4 @@
+import pkg from '../package.json';
 import { env, createExecutionContext, waitOnExecutionContext, SELF } from 'cloudflare:test';
 import { describe, it, expect } from 'vitest';
 import worker from '../src/index';
@@ -14,7 +15,7 @@ describe('Human-AI Monitor API', () => {
       
       const data: any = await response.json();
       expect(data.project).toBe('Human-AI Monitor');
-      expect(data.version).toBe('1.0.0');
+      expect(data.version).toBe(pkg.version);
       expect(data.sources_count).toBe(41);
       expect(data.endpoints).toBeInstanceOf(Array);
       expect(data.endpoints).toContain('/gap');

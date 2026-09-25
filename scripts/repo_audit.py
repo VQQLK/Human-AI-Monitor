@@ -128,13 +128,26 @@ else:
 # ---------- 5. Версия: единая истина ----------
 pkg = re.search(r'"version":\s*"([^"]+)"', read(ROOT / "package.json"))
 cit = re.search(r"^version:\s*(\S+)\s*$", read(ROOT / "CITATION.cff"), re.M)
-srcs = re.findall(r'version:\s*"(\d+\.\d+\.\d+)"', read(ROOT / "src" / "index.ts"))
-if not (pkg and cit and srcs):
-    fail("version: не извлеклась из всех трёх источников")
-elif len({pkg.group(1), cit.group(1), *srcs}) != 1:
-    fail(f"version: расходится: package.json={pkg.group(1)}, CITATION={cit.group(1)}, index.ts={sorted(set(srcs))}")
+cit_date = re.search(r"^date-released:\s*(\d{4}-\d{2}-\d{2})\s*$", read(ROOT / "CITATION.cff"), re.M)
+idx_src = read(ROOT / "src" / "index.ts")
+imports_pkg = ('from "../package.json"' in idx_src) or ("from '../package.json'" in idx_src)
+hard = re.findall(r'version:\s*"(\d+\.\d+\.\d+)"', idx_src)
+if not (pkg and cit):
+    fail("version: package.json/CITATION.cff не распарсились")
+elif hard:
+    fail(f"version: index.ts хардкодит {hard} — должен импортировать package.json")
+elif not imports_pkg:
+    fail("version: index.ts не импортирует package.json")
+elif pkg.group(1) != cit.group(1):
+    fail(f"version: расходится: package.json={pkg.group(1)}, CITATION={cit.group(1)}")
 else:
-    ok(f"version: {pkg.group(1)} согласована (package.json, CITATION.cff, index.ts ×{len(srcs)})")
+    ok(f"version: {pkg.group(1)} согласована (package.json = CITATION.cff; index.ts импортирует package.json)")
+m_cl = re.search(r"^## \[(\d+\.\d+\.\d+)\] - (\d{4}-\d{2}-\d{2})", read(ROOT / "CHANGELOG.md"), re.M)
+if cit_date and m_cl:
+    if cit_date.group(1) != m_cl.group(2):
+        fail(f"release date: CITATION={cit_date.group(1)} vs CHANGELOG {m_cl.group(1)}={m_cl.group(2)}")
+    else:
+        ok(f"release date: {cit_date.group(1)} согласована (CITATION.cff = CHANGELOG {m_cl.group(1)})")
 
 # ---------- 6. Ссылки CoC в каждом README ----------
 for f in READMES:
