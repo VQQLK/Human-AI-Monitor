@@ -41,11 +41,12 @@ Human–AI Monitor is built on a **decentralized Cloudflare infrastructure** —
    - `GET /generate?week=YYYY-MM-DD` — manual protocol generation.
 
 2. **`scheduled` handler** — Cron Trigger:
-   - Runs every Monday at 06:00 UTC.
-   - Collects fresh news from 14 RSS sources.
+   - Runs 5 batches daily (13:00, 13:15, 13:30, 13:45, 23:00 UTC).
+   - Each batch collects fresh news from 8-9 sources.
    - Classifies each item via Workers AI.
    - Saves to D1.
-   - Generates Markdown protocol for the past week.
+   - Friday 13:45 UTC: generates interim protocol for current week.
+   - Monday 13:45 UTC: generates final protocol for previous week.
 
 **Technology:** TypeScript, Wrangler CLI.
 
@@ -86,9 +87,18 @@ Human–AI Monitor is built on a **decentralized Cloudflare infrastructure** —
 
 ### 2.4. Cloudflare Cron Trigger — scheduler
 
-**Role:** Weekly automation.
+**Role:** Daily automation with batch processing.
 
-**Schedule:** `0 6 * * 1` (every Monday at 06:00 UTC).
+**Schedule:** 5 batches daily (UTC):
+- `0 13 * * *` — Batch 1 (sources 0-7)
+- `15 13 * * *` — Batch 2 (sources 8-15)
+- `30 13 * * *` — Batch 3 (sources 16-23)
+- `45 13 * * *` — Batch 4 (sources 24-31) + protocol generation
+- `0 23 * * *` — Batch 5 (sources 32-40)
+
+**Protocol generation:**
+- Friday 13:45 UTC: interim protocol for current week
+- Monday 13:45 UTC: final protocol for previous week
 
 **What it does:**
 1. Collects fresh RSS items.
@@ -100,7 +110,7 @@ Human–AI Monitor is built on a **decentralized Cloudflare infrastructure** —
 
 ## 3. Data Flow
 
-Cron Trigger (Monday 06:00 UTC)
+Cron Trigger (5 batches daily: 13:00, 13:15, 13:30, 13:45, 23:00 UTC)
 |
 v
 Worker.scheduled() <-- RSS, arXiv, News
@@ -115,7 +125,13 @@ v
 Protocol Generator (Markdown)
 |
 v
-GitHub (data/protocols/)
+D1 protocols table (EN/RU/ZH)
+|
+v
+GitHub Actions sync-protocols.yml
+|
+v
+GitHub (data/protocols/) -- appears after sync delay
 
 API endpoints <-- Android app / web / external
 
@@ -149,6 +165,39 @@ Stored in **Cloudflare Secrets** (not in code):
 
 ## 5. Deployment
 
+## 6. Protocol Synchronization
+
+### 6.1. Generation vs Visibility
+
+Protocols are generated into D1 database but **not immediately visible** in the repository. Synchronization is handled by GitHub Actions workflow `.github/workflows/sync-protocols.yml`.
+
+### 6.2. Schedule
+
+| Event | Generation time | Sync time | Visibility delay |
+|-------|----------------|-----------|------------------|
+| **Interim protocol** (Friday) | 13:45 UTC | Saturday 08:00 UTC | ~18 hours |
+| **Final protocol** (Monday) | 13:45 UTC | Monday 14:00 UTC | ~15 minutes |
+
+### 6.3. Why the delay?
+
+- **Interim:** generated Friday 13:45, synced Saturday 08:00 (allows weekend review)
+- **Final:** generated Monday 13:45, synced Monday 14:00 (immediate publication)
+
+### 6.4. Sync workflow details
+
+The workflow:
+1. Fetches latest 2 protocols from D1 API (`/export-weekly?weeks=2`)
+2. Writes to `data/protocols/` in collector repo
+3. Archives all protocols to `human-ai-monitor-archive` repo
+4. Triggers translation workflow (EN→RU/ZH)
+
+### 6.5. Manual sync
+
+```bash
+# Trigger sync manually via GitHub Actions UI
+gh workflow run sync-protocols.yml
+```
+
 ### 5.1. Local
 
 ```bash
@@ -170,9 +219,15 @@ Configured in wrangler.jsonc:
 
 jsonc
 "triggers": {
-  "crons": ["0 6 * * 1"]
+  "crons": [
+    "0 13 * * *",
+    "15 13 * * *",
+    "30 13 * * *",
+    "45 13 * * *",
+    "0 23 * * *"
+  ]
 }
-Runs every Monday at 06:00 UTC.
+Runs 5 batches daily: 13:00, 13:15, 13:30, 13:45, 23:00 UTC.
 
 6. Scaling
 6.1. By Load
