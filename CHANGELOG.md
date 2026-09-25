@@ -40,6 +40,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Reduced `index_history` from 65 to 26 rows
   - Added guard in `generateAndSaveProtocol()` to prevent still-open-week writes
 
+- **Voices expansion**
+  - Trump "AI Force" announcement (2026-09-19) added to the Voices section of README.md and README.ru.md
+
 ### Changed
 - **Architecture v2: Cron Schedule Expansion**
   - Old: 4 batches at 06:00/06:15/06:30/06:45 UTC (every Monday)
@@ -52,6 +55,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Removed Meduza from `sources_human.yaml` (meduza.io)
   - Sources count: 41 enabled (25 AI + 16 Human) out of 47 configured
   - 6 sources disabled (Nature 303, Lancet 403, Benton 404, ILO 404, V-Dem 404, VentureBeat 429)
+
+- **CITATION.cff metadata**
+  - Version 0.6.0 → 1.0.0
+  - Release date 2026-09-18 → 2026-09-21
 
 ### Fixed
 - **Protocol Week Naming** (Finding #1 from engineer review)
@@ -73,12 +80,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Created `src/services/gap-computation.ts` with `computeGapIndex()` function
   - `generateAndSaveProtocol()` now calls `computeGapIndex()` instead of copying last row
   - Results persisted to `gap_history` AND `index_history` tables
+  - Verified: weeks with different item counts now produce different Gap Index scores
   - Production deployment: Version IDs 9b676bd3 → dc501a70 → e3de304
 
 - **Database Migrations**
   - Migration 0003: Updated SMD level from 0.30 to 0.45
     - Reason: Anthropic reached AL4 (26% AI-led tasks, >90% AL3 collaboration)
     - First system with sustained L4; threshold remains "≥2 systems"
+    - Updated both the remote D1 database and seed data in `migrations/0001_initial_schema.sql`
+    - Reference: Anthropic Research Automation Index (September 2026)
   - Migration 0004: Added `recorded_at` column to `protocols` table
   - Migration 0007: Added `is_interim` column to `protocols` table
   - Migration 0008: Added `content_ru` and `content_zh` columns (nullable)
