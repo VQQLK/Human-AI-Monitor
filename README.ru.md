@@ -231,7 +231,7 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 
 ## Текущий статус
 
-**Производственная версия (v1.0.0):**
+**Производственная версия (v1.0.1):**
 
 - ✅ Cloudflare Worker с 20 API-эндпоинтами — развёрнут
 - ✅ Эндпоинт `/verify` — обнаружение reward hacking, вдохновлённое CheatBench
@@ -240,12 +240,13 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 - ✅ RSS + HTML коллектор (41 источник из 47 настроенных: 25 AI + 16 Human)
 - ✅ Автогенерация еженедельного протокола (Markdown, EN/RU/ZH)
 - ✅ Cron Trigger — 5 batches ежедневно (13:00-13:45 + 23:00 UTC)
+- ✅ Первый полностью автономный дневной цикл завершён (25 сентября 2026)
 - ✅ Interim/Final разделение протоколов (черновик в пятницу → финальный в понедельник)
 - ✅ Публичный API доступен по всему миру
 - ✅ Type-safe pipeline: YAML → TypeScript (генерация кода при сборке)
 - ✅ Модульная архитектура (14 модулей вместо монолита)
 - ✅ CI/CD через GitHub Actions (автоматические тесты при каждом push)
-- ✅ 60+ unit-тестов (~75% покрытие: parser, classifier, cheat-detector, API, gap-computation, translation, cron-batching)
+- ✅ 66 unit-тестов проходят (~75% покрытие: parser, classifier, cheat-detector, API, gap-computation, translation, cron-batching)
 
 **В процессе:**
 
