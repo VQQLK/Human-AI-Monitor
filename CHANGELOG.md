@@ -27,6 +27,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Single-source version**: `/` endpoint metadata now reads version from `package.json` (build-time import) instead of a hardcoded literal; repo_audit verifies package.json = CITATION.cff and release-date parity
 - **Cron batching hardening**: batch offsets/limits moved to exported `CRON_BATCH_CONFIG`; runtime guard logs a loud error on source-count drift; new `cron-batching` test suite (4 invariants: full coverage, contiguous offsets, batch numbering, subrequest budget); repo_audit verifies wrangler crons == config keys
 
+## [1.0.1] - 2026-09-25
+
+### Fixed
+- **Russian keys in gap-computation.ts**: multiplier dictionaries now use English keys matching classifier output, restoring full sensitivity to shift/direction in mathematical model
+- **Miniflare hang after tests**: added globalTeardown with process.exit(0) workaround, reducing test suite runtime from 24s to 8s
+
+### Changed
+- **Documentation synchronization**: all READMEs (EN/RU/ZH), math_brief (EN/RU), and architecture.md updated to reflect v1.0.1 critical fixes
+- **Protocol synchronization documented**: added §6 to architecture.md explaining 18h/15min delay between generation and git visibility
+
+### Infrastructure
+- **vitest.config.mts**: proper Cloudflare Workers integration via cloudflareTest() plugin
+- **test/global-teardown.ts**: graceful shutdown handling for Miniflare resources
+
 ## [1.0.0] - 2026-09-24
 
 ### Added
