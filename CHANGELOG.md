@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Protocol synchronization documentation** (docs/architecture.md §6):
+  - Interim protocol visibility: Saturday 08:00 UTC (~18h delay from Friday generation)
+  - Final protocol visibility: Monday 14:00 UTC (~15min delay from Monday generation)
+  - Sync workflow details and manual trigger instructions
+
+### Changed
+- **docs/architecture.md §2.4**: Cron Trigger schedule updated from weekly (Monday 06:00) to 5 batches daily
+- **docs/architecture.md §3**: Data Flow updated to show D1 → GitHub Actions → repository path with sync delay
+- **README.md**: Dual-sync workflow description expanded with schedule and visibility delay
+
+### Added
 - **AGENTS.md**: repository guidance for AI coding agents — 10 hard rules distilled from the 2026-09 consistency review (generated code, prompt-as-behavior, EN-canon mirroring, single-source version, cron invariants, protocol lifecycle, regeneration/translation interaction, deploy discipline, pre-push checks, commit discipline)
 
 ### Changed
