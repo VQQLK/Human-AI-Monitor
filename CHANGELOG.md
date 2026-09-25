@@ -8,9 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Added
+- **AGENTS.md**: repository guidance for AI coding agents — 10 hard rules distilled from the 2026-09 consistency review (generated code, prompt-as-behavior, EN-canon mirroring, single-source version, cron invariants, protocol lifecycle, regeneration/translation interaction, deploy discipline, pre-push checks, commit discipline)
+
 ### Changed
 - **Single-source version**: `/` endpoint metadata now reads version from `package.json` (build-time import) instead of a hardcoded literal; repo_audit verifies package.json = CITATION.cff and release-date parity
 - **Cron batching hardening**: batch offsets/limits moved to exported `CRON_BATCH_CONFIG`; runtime guard logs a loud error on source-count drift; new `cron-batching` test suite (4 invariants: full coverage, contiguous offsets, batch numbering, subrequest budget); repo_audit verifies wrangler crons == config keys
+
 ## [1.0.0] - 2026-09-24
 
 ### Added

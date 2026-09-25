@@ -453,6 +453,7 @@ See CONTRIBUTING.md.
 ├── CONTRIBUTING.ru.md
 ├── CONTRIBUTING.zh.md
 ├── CODE_OF_CONDUCT.md
+├── AGENTS.md
 ├── CODE_OF_CONDUCT.ru.md
 ├── CODE_OF_CONDUCT.zh.md
 ├── package.json
