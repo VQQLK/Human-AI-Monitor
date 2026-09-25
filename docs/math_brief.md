@@ -58,11 +58,13 @@ where:
     M_shift:  1.5 (yes),  1.0 (uncertain),  0.5 (no)
     M_dir:    1.2 (up),   1.0 (stable/uncertain),  0.8 (down)
 
-**⚠️ Critical note for reviewers:** the current code declares multipliers with **Russian keys** ('да'/'нет'/'рост'/'падение'), while the classifier returns **English keys** (yes/no/up/down). The lookup `SHIFT_MULT[s.shift]` returns `undefined`, and the `?? 1` fallback collapses everything to a **unit multiplier**. So in practice the model currently reduces to:
+**Implementation note:** the multipliers are keyed in English (`yes`/`no`/`uncertain` for shift; `up`/`down`/`stable` for direction) to match the classifier output exactly. The `?? 1` fallback handles any unexpected values gracefully.
 
-    ℓ(a) ≈ clamp_[0,1]((1/|S_a|) · Σ r_s)
-
-— i.e. the **mean relevance** per axis. The system does not crash, but the model **loses sensitivity** to shift/direction. Fix: either switch the multiplier keys to English, or add an explicit mapping. Tracked as technical debt for v1.0.1.
+This gives the model **full sensitivity** to threshold shifts and directional trends:
+- `shift: "yes"` → 50% boost (signal of genuine change)
+- `shift: "no"` → 50% penalty (signal of stagnation)
+- `direction: "up"` → 20% boost (positive trend)
+- `direction: "down"` → 20% penalty (negative trend)
 
 ### 2.4. Aggregation
 
