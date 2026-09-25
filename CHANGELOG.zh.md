@@ -9,7 +9,8 @@
 格式基于[保持变更日志](https://keepachangelog.com/en/1.1.0/)，并且本项目遵循[语义化版本控制](https://semver.org/spec/v2.0.0.html)。
 
 ## [未发布]
-
+### 更改
+- **版本单一来源**：`/` 端点元数据现在从 `package.json` 读取版本（构建时导入），而不是硬编码字面量；repo_audit 检查 package.json = CITATION.cff 以及发布日期一致性
 ## [1.0.0] - 2026-09-24
 ### 新增
 - **Architecture v2：中期/最终协议拆分**

@@ -1,3 +1,4 @@
+import pkg from "../package.json";
 import { detectCheating } from "./cheat-detector";
 import { SOURCES } from "./config/sources";
 import { AI_AXES, HUMAN_AXES } from "./config/axes";
@@ -552,7 +553,7 @@ export default {
 			if (path === "/") {
 				return json({
 					project: "Human-AI Monitor",
-					version: "1.0.0",
+					version: pkg.version,
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
