@@ -8,7 +8,7 @@
 
 ## 1. The Project in One Paragraph
 
-We are building an **open monitoring system** that simultaneously tracks the development of artificial intelligence (7 axes) and the state of humanity (6 axes), computes a **Gap Index** — a quantitative measure of divergence between them — and publishes weekly protocols. This is not journalism, and not forecasting. It is an **attempt to operationalize a question that has remained rhetorical**: is singularity arriving, and what is happening to humanity in the process?
+We are building an **open monitoring system** that simultaneously tracks the development of artificial intelligence (7 axes) and the state of Humanity (6 axes), computes a **Gap Index** — a quantitative measure of divergence between them — and publishes weekly protocols. This is not journalism, and not forecasting. It is an **attempt to operationalize a question that has remained rhetorical**: is singularity arriving, and what is happening to Humanity in the process?
 
 As of September 25, 2026, the system has completed its **first fully autonomous daily cycle** — 4 batches collected 33 items from 17 sources, classifier processed them, and an interim protocol for the current week was generated without human intervention.
 
@@ -181,7 +181,7 @@ This is **not a monitor of AI**. This is a **monitor of AI + Humanity**. We meas
 
 In 1957, **Sputnik** launched the space race. In 1969, **Apollo** landed humans on the Moon. In 2026, **frontier AI systems** are leaving sandboxes and solving problems that remained open for 87 years.
 
-**But who observes this?** Corporations publish releases. States — declarations. Scientists — papers. **No one publishes a weekly report on what is happening to humanity.**
+**But who observes this?** Corporations publish releases. States — declarations. Scientists — papers. **No one publishes a weekly report on what is happening to Humanity.**
 
 We do.
 
@@ -234,7 +234,7 @@ For the first time, the system ran **fully autonomously** for an entire day, wit
       "interpretation": "Humanity is ahead"
     }
 
-Gap sits on the edge of the neutral zone [−0.1, 0.1], indicating the early phase of an asymmetry in humanity's favor.
+Gap sits on the edge of the neutral zone [−0.1, 0.1], indicating the early phase of an asymmetry in Humanity's favor.
 
 ---
 
