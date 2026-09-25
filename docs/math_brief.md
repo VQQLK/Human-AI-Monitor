@@ -296,11 +296,9 @@ Full documentation: `docs/architecture.md` §6 "Protocol Synchronization".
 
 ---
 
-## 9. Technical Debt (known issues)
+## 9. Known Issues
 
-1. **Russian keys in multipliers** (`src/services/gap-computation.ts`): `SHIFT_MULT` and `DIR_MULT` use Russian keys while classifier returns English keys. The model currently collapses to mean-relevance-per-axis. Fix planned for v1.0.1.
-
-2. **Hang after vitest**: tests run and pass, but `Vite server` does not exit cleanly within 10s timeout. Non-blocking (tests pass), root cause to be investigated.
+1. **Hang after vitest**: tests run and pass, but `Vite server` does not exit cleanly within 10s timeout. Non-blocking (tests pass), root cause to be investigated.
 
 ---
 
