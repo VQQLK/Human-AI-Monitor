@@ -10,6 +10,17 @@
 
 ## [未发布]
 
+### 添加
+- **协议同步文档** (docs/architecture.md §6):
+  - 临时协议可见性：Saturday 08:00 UTC（从 Friday 生成延迟约18小时）
+  - 最终协议可见性：Monday 14:00 UTC（从 Monday 生成延迟约15分钟）
+  - 同步工作流详情和手动触发说明
+
+### 更改
+- **docs/architecture.md §2.4**: Cron Trigger 计划从每周（Monday 06:00）更新为每天5批次
+- **docs/architecture.md §3**: 数据流更新为显示 D1 → GitHub Actions → 仓库路径及同步延迟
+- **README.md**: 双同步工作流描述扩展了计划和可见性延迟
+
 ### Added
 - **AGENTS.md**：面向AI编码代理的仓库指南——从2026-09一致性评审提炼的10条硬规则（生成代码、提示词即行为、EN规范镜像、单一版本来源、cron不变量、协议生命周期、再生成与翻译交互、部署纪律、推送前检查、提交纪律）
 
