@@ -29,8 +29,8 @@ describe("computeGapIndex", () => {
 
 	it("computes AI score from AI axes", async () => {
 		const items = [
-			{ axes: '["smd"]', relevance: 0.8, shift: "да", direction: "рост" },
-			{ axes: '["itq"]', relevance: 0.9, shift: "нет", direction: "стабильно" },
+			{ axes: '["smd"]', relevance: 0.8, shift: "yes", direction: "up" },
+			{ axes: '["itq"]', relevance: 0.9, shift: "no", direction: "stable" },
 		];
 		const env = createMockEnv(items);
 		const range = { filterStart: "2026-09-01", filterEnd: "2026-09-30" };
@@ -48,8 +48,8 @@ describe("computeGapIndex", () => {
 
 	it("computes Human score from Human axes", async () => {
 		const items = [
-			{ axes: '["h1_agency"]', relevance: 0.7, shift: "да", direction: "рост" },
-			{ axes: '["h6_democracy"]', relevance: 0.6, shift: "неопределённо", direction: "падение" },
+			{ axes: '["h1_agency"]', relevance: 0.7, shift: "yes", direction: "up" },
+			{ axes: '["h6_democracy"]', relevance: 0.6, shift: "uncertain", direction: "down" },
 		];
 		const env = createMockEnv(items);
 		const range = { filterStart: "2026-09-01", filterEnd: "2026-09-30" };
@@ -67,8 +67,8 @@ describe("computeGapIndex", () => {
 
 	it("computes gap when both AI and Human have scores", async () => {
 		const items = [
-			{ axes: '["smd", "itq"]', relevance: 0.9, shift: "да", direction: "рост" },
-			{ axes: '["h1_agency"]', relevance: 0.5, shift: "нет", direction: "стабильно" },
+			{ axes: '["smd", "itq"]', relevance: 0.9, shift: "yes", direction: "up" },
+			{ axes: '["h1_agency"]', relevance: 0.5, shift: "no", direction: "stable" },
 		];
 		const env = createMockEnv(items);
 		const range = { filterStart: "2026-09-01", filterEnd: "2026-09-30" };
@@ -88,9 +88,9 @@ describe("computeGapIndex", () => {
 
 	it("skips items with invalid JSON in axes", async () => {
 		const items = [
-			{ axes: '["smd"]', relevance: 0.8, shift: "да", direction: "рост" },
-			{ axes: "invalid json", relevance: 0.9, shift: "да", direction: "рост" },
-			{ axes: null, relevance: 0.7, shift: "да", direction: "рост" },
+			{ axes: '["smd"]', relevance: 0.8, shift: "yes", direction: "up" },
+			{ axes: "invalid json", relevance: 0.9, shift: "yes", direction: "up" },
+			{ axes: null, relevance: 0.7, shift: "yes", direction: "up" },
 		];
 		const env = createMockEnv(items);
 		const range = { filterStart: "2026-09-01", filterEnd: "2026-09-30" };
@@ -123,8 +123,8 @@ describe("computeGapIndex", () => {
 				items.push({
 					axes: `["${axis}"]`,
 					relevance: aiTarget,
-					shift: "неопределённо",
-					direction: "стабильно"
+					shift: "uncertain",
+					direction: "stable"
 				});
 			}
 			
@@ -133,8 +133,8 @@ describe("computeGapIndex", () => {
 				items.push({
 					axes: `["${axis}"]`,
 					relevance: humanTarget,
-					shift: "неопределённо",
-					direction: "стабильно"
+					shift: "uncertain",
+					direction: "stable"
 				});
 			}
 			
@@ -149,7 +149,7 @@ describe("computeGapIndex", () => {
 
 	it("clamps axis levels to [0, 1] range", async () => {
 		const items = [
-			{ axes: '["smd"]', relevance: 0.9, shift: "да", direction: "рост" },
+			{ axes: '["smd"]', relevance: 0.9, shift: "yes", direction: "up" },
 		];
 		const env = createMockEnv(items);
 		const range = { filterStart: "2026-09-01", filterEnd: "2026-09-30" };

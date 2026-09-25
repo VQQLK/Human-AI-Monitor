@@ -12,10 +12,10 @@ interface GapResult {
 }
 
 const SHIFT_MULT: { [k: string]: number } = {
-  'да': 1.5, 'нет': 0.5, 'неопределённо': 1.0
+  'yes': 1.5, 'no': 0.5, 'uncertain': 1.0
 };
 const DIR_MULT: { [k: string]: number } = {
-  'рост': 1.2, 'падение': 0.8, 'стабильно': 1.0, 'неопределённо': 1.0
+  'up': 1.2, 'down': 0.8, 'stable': 1.0, 'uncertain': 1.0
 };
 
 const AI_AXES = ['smd', 'itq', 'agg', 'cycle_velocity', 'verification', 'hexad', 'geopolitics'];
