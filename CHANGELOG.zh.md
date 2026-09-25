@@ -9,43 +9,118 @@
 格式基于[保持变更日志](https://keepachangelog.com/en/1.1.0/)，并且本项目遵循[语义化版本控制](https://semver.org/spec/v2.0.0.html)。
 
 ## [未发布]
+### 新增
+- **Architecture v2：中期/最终协议拆分**
+  - 周五 13:45 UTC 为当前周生成草稿协议（`is_interim=1`）
+  - 周一 13:45 UTC 为上一周生成最终协议（`is_interim=0`）
+  - 只有最终协议会更新 `gap_history` 和 `index_history` 表
+  - 草稿协议提供早期可见性，而不影响差距指数计算
+
+- **翻译支持（EN → RU/ZH）**
+  - `/protocols/current/ru` 和 `/protocols/current/zh` 端点
+  - `/protocols/{week}/content/ru` 和 `/protocols/{week}/content/zh` 端点
+  - `/translate-document` 端点用于手动翻译
+  - `/translate/{week}` 端点用于每周翻译
+  - 数据库迁移0006：向 `protocols` 表添加 `content_ru` 和 `content_zh` 列
+  - GitHub Actions 工作流 `translate-protocols.yml`（协议生成后运行）
+
+- **双同步工作流**
+  - `.github/workflows/sync-protocols.yml` 将最新的2个协议同步到 collector 仓库
+  - 归档仓库（human-ai-monitor-archive）存储所有历史协议
+  - collector 仓库（human-ai-monitor-collector）仅保留最新的2个协议
+  - 为每个协议下载 EN/RU/ZH，使用安全的临时文件处理
+
+- **AI Now Institute**（https://ainowinstitute.org/feed）作为 tier 1 AI 来源
+  - 专注：AI治理、公平性、人类自主性
+  - 轴线：h1_agency、h4_equity、h6_democracy
+  - 替换 Stanford HAI（RSS不可用——所有URL返回HTML而非RSS）
+
+- **迁移0005**：从 `index_history` 中删除重复条目
+  - 修复了周命名方案变更导致重复记录的问题
+  - `index_history` 从65行减少到26行
+  - 在 `generateAndSaveProtocol()` 中添加防护，防止写入尚未结束的周
+
+- **声音部分扩展**
+  - 特朗普"AI力量"公告（2026-09-19）已添加到 README.md 和 README.ru.md 的"声音"部分
+
+### 更改
+- **Architecture v2：Cron 计划扩展**
+  - 旧：4个批次，06:00/06:15/06:30/06:45 UTC（每周一）
+  - 新：每日5个批次，13:00/13:15/13:30/13:45/23:00 UTC
+  - 日间批次（13:00–13:45）：每个8个来源，maxPerSource=3
+  - 晚间批次（23:00）：9个来源，maxPerSource=2
+  - 覆盖5个批次中的所有41个启用来源
+
+- **来源管理**
+  - 从 `sources_human.yaml` 中移除 Meduza（meduza.io）
+  - 来源数量：41个启用（25 AI + 16 人类），共47个已配置
+  - 6个来源已禁用（Nature 303、Lancet 403、Benton 404、ILO 404、V-Dem 404、VentureBeat 429）
+
+- **CITATION.cff 元数据**
+  - 版本 0.6.0 → 1.0.0
+  - 发布日期 2026-09-18 → 2026-09-21
 
 ### 修复
-- **关键发现F6** 来自独立技术与源验证报告（2026-09-20）：差距指数现在基于收集的信号计算，而不是复制种子值
-  - 创建了 `src/services/gap-computation.ts`（75行）并包含 `computeGapIndex()` 函数
-  - 修改了 `generateAndSaveProtocol()` 以调用 `computeGapIndex()` 而不是复制最后一行
-  - 结果保存到 `gap_history` 和 `index_history` 表中
-  - 验证：不同周数的不同项目数量现在会产生不同的分数
-  - 生产部署：版本ID 9b676bd3，然后是 dc501a70，然后是 e3de304
-
 - **协议周命名**（来自工程师评审的发现 #1）
   - `getWeekRange()` 现在返回周一作为 `start`（协议标识符）
   - 协议 "2026-09-22" = 9月22-28日的周（周一至周日）
   - 添加了 `filterStart` 和 `filterEnd` 字段用于SQL WHERE子句
   - `/gap` 和 markdown 生成现在按 `recorded_at DESC` 排序（配套修复）
 
-### 更改
-- 数据库迁移0003：将SMD级别从0.30更新到0.45
-  - 原因：Anthropic达到AL4（26% AI主导任务，>90% AL3协作）
-  - 第一个具有持续L4的系统；阈值保持为“≥2系统”
-  - 更新了远程数据库和迁移/0001_initial_schema.sql中的种子数据
-  - 参考：Anthropic研发自动化指数（2026年9月）
+- **重新分类浪费**（来自工程师评审的发现 #2）
+  - 哈希/存在性检查现在在 `env.AI.run()` 之前运行（而不是之后）
+  - 现有条目从数据库行读取轴线/相关性/变化，而不是重新分类
+  - 消除条目被不必要重新分类的"闪烁"现象
 
-- 删除了多余的 `wrangler.toml`（仅包含 [site] 部分，未使用）
-- 将 `CITATION.cff` 版本从0.6.0更新到0.9.9
-- 将 `CITATION.cff` 的发布日期从2026-09-18更新到2026-09-21
+- **静默跳过错误**（来自工程师评审的发现 #3）
+  - 在确切的丢弃点添加了 `items_skipped_no_title` 计数器
+  - 解决了收集统计中无法解释的24对22的差距
 
-### 新增
-- 将特朗普AI力量公告（19.09.2026）添加到README.md和README.ru.md的“声音”部分
+- **差距指数计算**（来自2026-09-20报告的关键发现F6）
+  - 创建了 `src/services/gap-computation.ts` 并包含 `computeGapIndex()` 函数
+  - `generateAndSaveProtocol()` 现在调用 `computeGapIndex()` 而不是复制最后一行
+  - 结果保存到 `gap_history` 和 `index_history` 表中
+  - 验证：具有不同项目数量的周现在产生不同的差距指数分数
+  - 生产部署：版本ID 9b676bd3 → dc501a70 → e3de304
+
+- **数据库迁移**
+  - 迁移0003：将SMD级别从0.30更新到0.45
+    - 原因：Anthropic达到AL4（26% AI主导任务，>90% AL3协作）
+    - 第一个具有持续L4的系统；阈值保持为"≥2系统"
+    - 同时更新了远程D1数据库和 `migrations/0001_initial_schema.sql` 中的种子数据
+    - 参考：Anthropic Research Automation Index（2026年9月）
+  - 迁移0004：向 `protocols` 表添加 `recorded_at` 列
+  - 迁移0007：向 `protocols` 表添加 `is_interim` 列
+  - 迁移0008：添加 `content_ru` 和 `content_zh` 列（可为空）
+
+### 移除
+- 遗留的 `wrangler.toml`（仅包含 `[site]` 部分，未使用）
+- Stanford HAI 来源（所有RSS URL返回HTML而非XML）
 
 ### 计划中
-- 实际测试覆盖率（解析器、分类器、协议）
-- 重构：将单体src/index.ts拆分为模块
+- **强制重新分类参数**（`?reclassify=true` 用于 `/collect`）
+  - 允许在提示词更改时手动重新分类现有条目
+  - 哈希检查（sha256Hex + 数据库查找）目前阻止重复处理
+  - 需要绕过选项：当 force=true 时跳过 `if (existing)` 检查
+  - 验证报告中引用为优先事项（尚未实现）
+
+- **Workers AI 配额指标仪表板**
+  - 跟踪 `ai_calls_today`、`ai_calls_saved`（通过哈希检查）、`quota_usage_percent`
+  - 添加到 `/health` 端点用于监控
+  - 当前：仅存在 `items_classified` 计数器，无配额跟踪
+  - 验证报告中引用为优先事项（尚未实现）
+
+- **分类结果的R2缓存**
+  - 将解析的AI响应缓存在Cloudflare R2中以减少token使用
+  - 基于哈希的键（title+summary 的 sha256）→ 缓存的JSON响应
+  - 缓存未命中时回退到 Workers AI
+  - 验证报告中引用为中期事项（尚未实现）
+
+- 重构：将单体 src/index.ts 拆分为模块
 - 非RSS源的HTML解析
 - HTML解析源的HTML实体解码（`&#39;` → `'`）
 - Android APK（PWA + Capacitor）
 - 网络界面（Cloudflare Pages）
-- 多语言支持（EN / RU / ZH）
 
 ## [0.9.9] - 2026-09-19
 
