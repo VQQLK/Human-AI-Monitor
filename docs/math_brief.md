@@ -1,6 +1,6 @@
 # Human–AI Monitor: A Brief for Mathematicians
 
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Date:** September 25, 2026  
 **Language:** [🇷🇺 Русский](math_brief.ru.md)
 
@@ -279,7 +279,7 @@ Full documentation: `docs/architecture.md` §6 "Protocol Synchronization".
 
 ---
 
-## 8. What Has Been Done (v1.0.0)
+## 8. What Has Been Done (v1.0.1)
 
 | Component | Status |
 |-----------|--------|
@@ -296,9 +296,29 @@ Full documentation: `docs/architecture.md` §6 "Protocol Synchronization".
 | Live API | https://human-ai-monitor-collector.human-ai-monitor.workers.dev |
 | Autonomy | ✅ First fully autonomous daily cycle completed (2026-09-25) |
 
+### v1.0.1 Critical Fixes (September 25, 2026)
+
+Two critical bugs were discovered and fixed in the initial v1.0.0 release:
+
+**1. Russian keys in gap-computation.ts (commit `13fa1c1`)**
+
+The multiplier dictionaries `SHIFT_MULT` and `DIR_MULT` were declared with Russian keys (`'да'`/`'нет'`/`'рост'`/`'падение'`), while the classifier returned English keys (`yes`/`no`/`up`/`down`). This caused the lookup to return `undefined`, falling back to `?? 1` (unit multiplier).
+
+**Impact:** The model lost sensitivity to threshold shifts and directional trends, effectively reducing to mean-relevance-per-axis.
+
+**Fix:** Translated all multiplier keys to English, restoring full mathematical model functionality.
+
+**2. Miniflare hang after tests (commit `5f5721d`)**
+
+After all 66 tests passed, Miniflare failed to close WebSocket, ZLIB streams, and FileHandle resources, causing a 10-second timeout hang (24s total runtime instead of ~5s).
+
+**Fix:** Added `test/global-teardown.ts` with 2-second grace period followed by `process.exit(0)`. Reduced `teardownTimeout` from 10s to 3s. Disabled `remoteBindings` in tests.
+
+**Result:** Test suite now completes in **8 seconds** instead of 24 seconds.
+
 ---
 
-## 10. Invitation
+## 9. Invitation
 
 If you are a mathematician, and any of the open problems (formalizing RSI, phase transition detection, verification without an oracle, Gap Index dynamics) interests you — we invite you to collaborate.
 
