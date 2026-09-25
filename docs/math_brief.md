@@ -298,12 +298,6 @@ Full documentation: `docs/architecture.md` §6 "Protocol Synchronization".
 
 ---
 
-## 9. Known Issues
-
-1. **Hang after vitest**: tests run and pass, but `Vite server` does not exit cleanly within 10s timeout. Non-blocking (tests pass), root cause to be investigated.
-
----
-
 ## 10. Invitation
 
 If you are a mathematician, and any of the open problems (formalizing RSI, phase transition detection, verification without an oracle, Gap Index dynamics) interests you — we invite you to collaborate.
