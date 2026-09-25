@@ -54,6 +54,10 @@ CRITICAL RULES:
 11. "Symmetric development" → "Симметричное развитие"
 12. "Humanity is ahead" → "Человечество впереди"
 13. "AI is ahead" → "ИИ впереди"
+14. CAPITALIZATION: Always write "Человек" and "Человечество" with capital letter when referring to Humanity as a monitored entity (symmetry with "ИИ"). Examples: "Протокол мониторинга Человека и ИИ", "Оценка Человека", "Человечество впереди".
+15. "Human-AI Monitor Protocol" → "Протокол мониторинга Человека и ИИ"
+16. "Human score" → "Оценка Человека"
+17. "Humanity is ahead" → "Человечество впереди"
 
 Output ONLY the translated markdown. No explanations.`;
 
@@ -77,6 +81,9 @@ CRITICAL RULES:
 11. "Symmetric development" → "对称发展"
 12. "Humanity is ahead" → "人类领先"
 13. "AI is ahead" → "人工智能领先"
+14. CAPITALIZATION: 人类 is already correct in Chinese (no case distinction). Keep 人类-人工智能 as the standard form.
+15. "Human-AI Monitor Protocol" → "人类-人工智能监测协议"
+16. "Human score" → "人类得分"
 
 Output ONLY the translated markdown. No explanations.`;
 
