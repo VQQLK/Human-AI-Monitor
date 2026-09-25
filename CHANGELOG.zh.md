@@ -9,9 +9,14 @@
 格式基于[保持变更日志](https://keepachangelog.com/en/1.1.0/)，并且本项目遵循[语义化版本控制](https://semver.org/spec/v2.0.0.html)。
 
 ## [未发布]
+
+### Added
+- **AGENTS.md**：面向AI编码代理的仓库指南——从2026-09一致性评审提炼的10条硬规则（生成代码、提示词即行为、EN规范镜像、单一版本来源、cron不变量、协议生命周期、再生成与翻译交互、部署纪律、推送前检查、提交纪律）
+
 ### 更改
 - **版本单一来源**：`/` 端点元数据现在从 `package.json` 读取版本（构建时导入），而不是硬编码字面量；repo_audit 检查 package.json = CITATION.cff 以及发布日期一致性
 - **Cron 批次加固**：批次偏移/限制移至导出的 `CRON_BATCH_CONFIG`；运行时防护在来源数量漂移时输出响亮错误；新增 `cron-batching` 测试套件（4个不变量：完全覆盖、连续偏移、批次编号、子请求预算）；repo_audit 验证 wrangler 的 crons 与配置键一致
+
 ## [1.0.0] - 2026-09-24
 ### 新增
 - **Architecture v2：中期/最终协议拆分**
