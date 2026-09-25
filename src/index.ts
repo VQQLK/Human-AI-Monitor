@@ -532,6 +532,17 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 
 
 
+// 5 cron triggers (Cloudflare Free plan limit).
+// Invariants (full coverage, contiguous offsets, batch numbering,
+// subrequest budget) are enforced by test/cron-batching.spec.ts
+// and scripts/repo_audit.py — do not edit offsets without them.
+export const CRON_BATCH_CONFIG: Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }> = {
+	"0 13 * * *":  { offset: 0,  limit: 8, batch: 1, maxPerSource: 3, generateProtocol: false },
+	"15 13 * * *": { offset: 8,  limit: 8, batch: 2, maxPerSource: 3, generateProtocol: false },
+	"30 13 * * *": { offset: 16, limit: 8, batch: 3, maxPerSource: 3, generateProtocol: false },
+	"45 13 * * *": { offset: 24, limit: 8, batch: 4, maxPerSource: 3, generateProtocol: true },
+	"0 23 * * *":  { offset: 32, limit: 9, batch: 5, maxPerSource: 2, generateProtocol: false },
+};
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		const url = new URL(request.url);
@@ -760,14 +771,12 @@ export default {
 		// (sources x maxPerSource x 2 subrequests; 8x3x2=48, 9x2x2=36 - both under 50)
 		// NOTE: offsets/limit must be re-checked whenever a source is added or removed
 		// (SOURCES.length is currently 41 - see src/config/sources.ts)
-		const batchConfig: Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }> = {
-			"0 13 * * *":  { offset: 0,  limit: 8, batch: 1, maxPerSource: 3, generateProtocol: false },
-			"15 13 * * *": { offset: 8,  limit: 8, batch: 2, maxPerSource: 3, generateProtocol: false },
-			"30 13 * * *": { offset: 16, limit: 8, batch: 3, maxPerSource: 3, generateProtocol: false },
-			"45 13 * * *": { offset: 24, limit: 8, batch: 4, maxPerSource: 3, generateProtocol: true },
-			"0 23 * * *":  { offset: 32, limit: 9, batch: 5, maxPerSource: 2, generateProtocol: false },
-		};
+		const batchConfig = CRON_BATCH_CONFIG;
 		const cfg = batchConfig[event.cron] ?? batchConfig["0 13 * * *"];
+		const plannedTotal = Object.values(CRON_BATCH_CONFIG).reduce((s, b) => s + b.limit, 0);
+		if (plannedTotal !== SOURCES.length) {
+			console.error("[cron] BATCH CONFIG DRIFT: batches cover " + plannedTotal + " sources, but SOURCES.length is " + SOURCES.length + " — update CRON_BATCH_CONFIG");
+		}
 
 		console.log("[cron] Batch " + cfg.batch + "/5 triggered at " + new Date(event.scheduledTime).toISOString() + " cron=" + event.cron);
 		console.log("[cron] offset=" + cfg.offset + " limit=" + cfg.limit + " maxPerSource=" + cfg.maxPerSource + " generateProtocol=" + cfg.generateProtocol);
