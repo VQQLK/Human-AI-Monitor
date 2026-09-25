@@ -233,7 +233,7 @@
 
 ## 当前状态
 
-**生产版本 (v1.0.0):**
+**生产版本 (v1.0.1):**
 
 - ✅ 部署了20个API端点的Cloudflare Worker
 - ✅ `/verify`端点 — 基于CheatBench的奖励劫持检测
@@ -242,12 +242,13 @@
 - ✅ RSS + HTML收集器（41个来源，47个配置：25 AI + 16 Human）
 - ✅ 每周协议自动生成（Markdown，EN/RU/ZH）
 - ✅ 定时触发器（每天5批：13:00-13:45 + 23:00 UTC）
+- ✅ 第一个完全自治日周期完成（2026年9月25日）
 - ✅ 临时/最终协议分离（周五草稿 → 周一最终）
 - ✅ 全球公开API可访问
 - ✅ 类型安全YAML → TypeScript管道（构建时代码生成）
 - ✅ 模块化架构（14个模块而非单体）
 - ✅ GitHub Actions的CI/CD（每次推送自动测试）
-- ✅ 60+个单元测试（约75%覆盖率：解析器、分类器、作弊检测器、API、gap-computation、translation、cron-batching）
+- ✅ 66个单元测试通过（约75%覆盖率：解析器、分类器、作弊检测器、API、gap-computation、translation、cron-batching）
 
 **进行中：**
 
