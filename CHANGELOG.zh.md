@@ -9,6 +9,8 @@
 格式基于[保持变更日志](https://keepachangelog.com/en/1.1.0/)，并且本项目遵循[语义化版本控制](https://semver.org/spec/v2.0.0.html)。
 
 ## [未发布]
+
+## [1.0.0] - 2026-09-24
 ### 新增
 - **Architecture v2：中期/最终协议拆分**
   - 周五 13:45 UTC 为当前周生成草稿协议（`is_interim=1`）
