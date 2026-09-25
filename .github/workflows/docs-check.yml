@@ -1,0 +1,22 @@
+name: docs-check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 4 * * 1" # пн 04:23 UTC — ловит дрейф от ботов с [skip ci]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Repository consistency audit
+        run: python3 scripts/repo_audit.py
