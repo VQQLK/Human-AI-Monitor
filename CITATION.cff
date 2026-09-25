@@ -3,7 +3,7 @@ message: "Please cite this repository."
 title: "Human-AI Monitor"
 authors:
   - name: "Human-AI Monitor Contributors"
-version: 1.0.0
+version: 1.0.1
 date-released: 2026-09-24
 url: "https://github.com/VQQLK/Human-AI-Monitor"
 license: MIT
