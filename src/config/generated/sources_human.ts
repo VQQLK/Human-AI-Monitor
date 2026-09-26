@@ -13,43 +13,6 @@ export default {
       ]
     },
     {
-      "name": "Nature — Human Behaviour",
-      "url": "https://www.nature.com/nhumbehav.rss",
-      "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h1_agency",
-        "h3_wellbeing",
-        "h5_meaning"
-      ],
-      "enabled": false,
-      "note": "Requires auth (HTTP 303 → idp.nature.com)"
-    },
-    {
-      "name": "The Lancet — Public Health",
-      "url": "https://www.thelancet.com/action/showFeed?type=etoc&feed=rss&jc=lanpub",
-      "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h3_wellbeing",
-        "h4_equity"
-      ],
-      "note": "Disabled: etoc endpoint returns HTTP 200 locally but 403 from Worker (Cloudflare bot protection checks TLS fingerprint)",
-      "enabled": false
-    },
-    {
-      "name": "Pew Research — Internet & Tech",
-      "url": "https://www.pewresearch.org/topic/internet-technology/feed/",
-      "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h1_agency",
-        "h2_sovereignty"
-      ],
-      "enabled": false,
-      "note": "Disabled: WAF blocks non-browser TLS fingerprint (JA3/JA4). Verified 2026-09-22: curl returned HTTP 403 both locally and from Worker."
-    },
-    {
       "name": "Benton Institute for Broadband & Society",
       "url": "https://www.benton.org/blog/feed",
       "lang": "en",
@@ -70,16 +33,6 @@ export default {
       ]
     },
     {
-      "name": "Wired — Culture",
-      "url": "https://www.wired.com/feed/category/culture/latest/rss",
-      "lang": "en",
-      "tier": 2,
-      "axes": [
-        "h1_agency",
-        "h2_sovereignty"
-      ]
-    },
-    {
       "name": "Freedom House",
       "url": "https://freedomhouse.org/rss.xml",
       "lang": "en",
@@ -87,17 +40,6 @@ export default {
       "axes": [
         "h6_democracy"
       ]
-    },
-    {
-      "name": "V-Dem Institute",
-      "url": "https://www.v-dem.net/news/rss.xml",
-      "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h6_democracy"
-      ],
-      "enabled": false,
-      "note": "URL returns 404"
     },
     {
       "name": "Edelman Trust Barometer",
@@ -128,27 +70,6 @@ export default {
         "h5_meaning"
       ],
       "note": "Fallback: Google News RSS (official URL returns 403 bot protection)"
-    },
-    {
-      "name": "ILO News",
-      "url": "https://www.ilo.org/rss/news",
-      "lang": "en",
-      "tier": 2,
-      "axes": [
-        "h4_equity",
-        "h5_meaning"
-      ],
-      "enabled": false,
-      "note": "URL returns 404"
-    },
-    {
-      "name": "Aeon Essays",
-      "url": "https://aeon.co/feed.rss",
-      "lang": "en",
-      "tier": 2,
-      "axes": [
-        "h5_meaning"
-      ]
     },
     {
       "name": "Noema Magazine",

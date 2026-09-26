@@ -5,35 +5,6 @@ rss:
   tier: 1
   axes:
   - h3_wellbeing
-- name: Nature — Human Behaviour
-  url: https://www.nature.com/nhumbehav.rss
-  lang: en
-  tier: 1
-  axes:
-  - h1_agency
-  - h3_wellbeing
-  - h5_meaning
-  enabled: false
-  note: Requires auth (HTTP 303 → idp.nature.com)
-- name: The Lancet — Public Health
-  url: https://www.thelancet.com/action/showFeed?type=etoc&feed=rss&jc=lanpub
-  lang: en
-  tier: 1
-  axes:
-  - h3_wellbeing
-  - h4_equity
-  note: 'Disabled: etoc endpoint returns HTTP 200 locally but 403 from Worker (Cloudflare bot protection
-    checks TLS fingerprint)'
-  enabled: false
-- name: Pew Research — Internet & Tech
-  url: https://www.pewresearch.org/topic/internet-technology/feed/
-  lang: en
-  tier: 1
-  axes:
-  - h1_agency
-  - h2_sovereignty
-  enabled: false
-  note: 'Disabled: WAF blocks non-browser TLS fingerprint (JA3/JA4). Verified 2026-09-22: curl returned HTTP 403 both locally and from Worker.'
 - name: Benton Institute for Broadband & Society
   url: https://www.benton.org/blog/feed
   lang: en
@@ -54,14 +25,6 @@ rss:
   tier: 1
   axes:
   - h6_democracy
-- name: V-Dem Institute
-  url: https://www.v-dem.net/news/rss.xml
-  lang: en
-  tier: 1
-  axes:
-  - h6_democracy
-  enabled: false
-  note: URL returns 404
 - name: Edelman Trust Barometer
   url: https://news.google.com/rss/search?q=Edelman+Trust+Barometer&hl=en-US&gl=US&ceid=US:en
   lang: en
@@ -83,15 +46,6 @@ rss:
   - h4_equity
   - h5_meaning
   note: 'Fallback: Google News RSS (official URL returns 403 bot protection)'
-- name: ILO News
-  url: https://www.ilo.org/rss/news
-  lang: en
-  tier: 2
-  axes:
-  - h4_equity
-  - h5_meaning
-  enabled: false
-  note: URL returns 404
 - name: Noema Magazine
   url: https://www.noemamag.com/feed/
   lang: en
@@ -106,7 +60,7 @@ rss:
   axes:
   - h6_democracy
   - h1_agency
-  note: 'US politics, Congress, democratic institutions'
+  note: US politics, Congress, democratic institutions
 - name: The Hill — News
   url: https://thehill.com/feed/
   lang: en
@@ -114,7 +68,7 @@ rss:
   axes:
   - h6_democracy
   - h2_sovereignty
-  note: 'US politics, international summits (Xi/Trump)'
+  note: US politics, international summits (Xi/Trump)
 - name: NPR — World
   url: https://feeds.npr.org/1004/rss.xml
   lang: en
@@ -123,7 +77,7 @@ rss:
   - h6_democracy
   - h1_agency
   - h3_wellbeing
-  note: 'World news, UNGA, international relations'
+  note: World news, UNGA, international relations
 - name: CBS News — World
   url: https://www.cbsnews.com/latest/rss/world
   lang: en
@@ -131,7 +85,7 @@ rss:
   axes:
   - h6_democracy
   - h3_wellbeing
-  note: 'World news, geopolitics — replaces AP News'
+  note: World news, geopolitics — replaces AP News
 - name: CBS News — Politics
   url: https://www.cbsnews.com/latest/rss/politics
   lang: en
@@ -139,7 +93,7 @@ rss:
   axes:
   - h6_democracy
   - h1_agency
-  note: 'US politics, elections, democratic institutions'
+  note: US politics, elections, democratic institutions
 - name: Google News — Geopolitics AI
   url: https://news.google.com/rss/search?q=AI+geopolitics+OR+BRICS+AI+OR+AI+regulation&hl=en-US&gl=US&ceid=US:en
   lang: en
