@@ -50,6 +50,12 @@ Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
    `data/protocols/*` — the next sync overwrites them. Manual edits are
    allowed only as a stopgap until deploy + regeneration. Canon fixes go
    through the glossary/prompt (rule 2), then regenerate.
+   **Naming (two conventions):** API URLs and the D1 key use the week's
+   START (Monday, `week_start`): `GET /protocols/2026-09-14/content`
+   covers 09-14..20. File names (sync/git/archive) use the week's END
+   (Sunday, `week_end`): `2026-09-20.md`. The legacy D1 `path` column is
+   week_start-based and does not match files — sync builds names itself;
+   do not trust `path`.
 
 7. **Protocol regeneration resets translations.** Regenerating a
    protocol week nulls `content_ru`/`content_zh` in D1. After any

@@ -307,6 +307,7 @@
 | GET | /verify | 检测奖励劫持（基于CheatBench） |
 | GET | /collect | 手动RSS收集 |
 | GET | /generate | 手动协议生成 |
+> **协议寻址**：API URL 和数据库键中的 `{week}` 是周的**开始**（周一）：覆盖 2026-09-14..20 的协议为 `GET /protocols/2026-09-14/content`。文件名使用周的**结束**（周日）：`2026-09-20.md`。遗留的 D1 `path` 字段基于 week_start——文件名由 sync 生成。
 
 ### 导出端点
 
