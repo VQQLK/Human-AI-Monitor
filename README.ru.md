@@ -246,7 +246,7 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 - ✅ Type-safe pipeline: YAML → TypeScript (генерация кода при сборке)
 - ✅ Модульная архитектура (14 модулей вместо монолита)
 - ✅ CI/CD через GitHub Actions (автоматические тесты при каждом push)
-- ✅ 66 unit-тестов проходят (~75% покрытие: parser, classifier, cheat-detector, API, gap-computation, translation, cron-batching)
+- ✅ 66 unit-тестов проходят (~60% покрытие: parser, classifier, cheat-detector, API, gap-computation, translation, cron-batching)
 
 **В процессе:**
 
