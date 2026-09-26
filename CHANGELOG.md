@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Dynamic cron batching**: offsets/limits computed at runtime from `SOURCES.length` by `computeBatches()` (property-tested for every N up to capacity 44; N=41 still distributes [8,8,8,8,9]); N > capacity refuses loudly via cron_drift_events — no manual re-check when sources change
 - **Registry policies encoded**: docs/ are EN+RU by design (audit-enforced docs-pairs check); CHANGELOG release-history policy (EN minimalistic, RU/ZH depth matched) documented in AGENTS.md rules 3/10
 - **Terminology clarity**: the repo_audit glossary-check message reworded — the ZH glossary holds the approved translations of the canonical EN phrases (EN is the canon, RU/ZH are mirrors); AGENTS.md rule 2 annotated with the same clarification
 - **Drift events observability** (finding #2, second implementation): cron drift guard now persists events to the `cron_drift_events` D1 table; new `/drift-events` endpoint returns the last 100 events — the runtime guard is observable, not just a log line

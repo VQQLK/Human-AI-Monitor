@@ -218,22 +218,22 @@ elif "我们在一起，就是力量！" not in tr or "为他人带来更大的�
 else:
     ok("translation.ts: ZH-глоссарий = утверждённые переводы каноничных EN-фраз (EN — канон, RU/ZH — зеркала)")
 
-# ---------- 8. Cron-батчи: wrangler == ключи CRON_BATCH_CONFIG ----------
+# ---------- 8. Cron-батчи: wrangler == ключи CRON_BATCH_META ----------
 w_clean = re.sub(r"/\*.*?\*/", "", read(ROOT / "wrangler.jsonc"), flags=re.S)
 w_clean = re.sub(r"^\s*//.*$", "", w_clean, flags=re.M)
 try:
     crons_wr = set(json.loads(w_clean)["triggers"]["crons"])
 except Exception as e:
     crons_wr = set(); fail(f"cron: wrangler.jsonc не распарсился: {e}")
-m_blk = re.search(r"export const CRON_BATCH_CONFIG[^=]*=\s*\{(.*?)\n\};", read(ROOT / "src" / "index.ts"), re.S)
+m_blk = re.search(r"export const CRON_BATCH_META[^=]*=\s*\{(.*?)\n\};", read(ROOT / "src" / "index.ts"), re.S)
 if not m_blk:
-    fail("cron: CRON_BATCH_CONFIG не найден в src/index.ts")
+    fail("cron: CRON_BATCH_META не найден в src/index.ts")
 else:
     crons_code = set(re.findall(r'"((?:[\d*/]+ ){4}[\d*/]+)"', m_blk.group(1)))
     if crons_wr != crons_code:
         fail(f"cron: триггеры расходятся: wrangler={sorted(crons_wr)} vs config={sorted(crons_code)}")
     else:
-        ok(f"cron: триггеры согласованы ({len(crons_wr)}) — wrangler.jsonc == CRON_BATCH_CONFIG")
+        ok(f"cron: триггеры согласованы ({len(crons_wr)}) — wrangler.jsonc == CRON_BATCH_META")
 
 # ---------- Отчёт ----------
 print("=" * 62)

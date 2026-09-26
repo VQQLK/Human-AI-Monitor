@@ -22,6 +22,7 @@
 - **README.md**: 双同步工作流描述扩展了计划和可见性延迟
 
 ### Added
+- **动态cron批次**：偏移/限制由 `computeBatches()` 在运行时从 `SOURCES.length` 计算（对容量44以内的每个N进行属性测试；N=41仍产生[8,8,8,8,9]）；N超过容量时通过 cron_drift_events 大声拒绝——来源变更时无需手动核对
 - **注册表策略已编码**：docs/ 设计为 EN+RU（审计强制 docs-pairs 检查）；CHANGELOG 发布历史策略（EN 保持精简，RU/ZH 深度一致）已记录在 AGENTS.md 规则 3/10 中
 - **术语清晰性**：repo_audit 的词汇表检查消息已重新措辞——ZH 词汇表包含规范 EN 短语的既定翻译（规范为 EN，RU/ZH 为镜像）；AGENTS.md 规则 2 已添加相同说明
 - **漂移事件可观测性**（发现#2，第二种实现）：cron漂移防护现在将事件持久化到D1表 `cron_drift_events`；新的 `/drift-events` 端点返回最近100条——运行时防护可观测，而非仅一行日志

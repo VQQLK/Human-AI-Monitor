@@ -38,12 +38,13 @@ Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
    truth; `src/index.ts` imports it; CITATION.cff and the CHANGELOG
    release date are verified against it. Never hardcode a version literal.
 
-5. **Cron batching is invariant-checked.** Adding/removing a source in
-   `config/sources_*.yaml` requires updating `CRON_BATCH_CONFIG` in
-   `src/index.ts` in the same commit. `test/cron-batching.spec.ts` and
-   `repo_audit.py` fail otherwise — that is intended. Constraints:
-   5 cron triggers max (Cloudflare Free plan), ≤50 subrequests per
-   invocation (sources × maxPerSource × 2).
+5. **Cron batching is computed, not maintained.** Offsets/limits are derived
+   at runtime from `SOURCES.length` by `computeBatches()`; `CRON_BATCH_META`
+   holds only batch numbers, maxPerSource and the protocol flag. Adding or
+   removing a source needs no manual re-check: property tests cover every N
+   up to capacity (44 at the current budget), and N > capacity refuses the
+   run loudly (cron_drift_events + throw). Constraints: 5 cron triggers max
+   (Cloudflare Free plan), ≤50 subrequests per invocation.
 
 6. **Weekly protocols are machine-generated.** Do not hand-edit
    `data/protocols/*` — the next sync overwrites them. Manual edits are

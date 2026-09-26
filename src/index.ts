@@ -532,17 +532,37 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 
 
 
-// 5 cron triggers (Cloudflare Free plan limit).
-// Invariants (full coverage, contiguous offsets, batch numbering,
-// subrequest budget) are enforced by test/cron-batching.spec.ts
-// and scripts/repo_audit.py — do not edit offsets without them.
-export const CRON_BATCH_CONFIG: Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }> = {
-	"0 13 * * *":  { offset: 0,  limit: 8, batch: 1, maxPerSource: 3, generateProtocol: false },
-	"15 13 * * *": { offset: 8,  limit: 8, batch: 2, maxPerSource: 3, generateProtocol: false },
-	"30 13 * * *": { offset: 16, limit: 8, batch: 3, maxPerSource: 3, generateProtocol: false },
-	"45 13 * * *": { offset: 24, limit: 8, batch: 4, maxPerSource: 3, generateProtocol: true },
-	"0 23 * * *":  { offset: 32, limit: 9, batch: 5, maxPerSource: 2, generateProtocol: false },
+// 5 cron triggers (Cloudflare Free plan limit). Offsets/limits are computed
+// at runtime by computeBatches() from SOURCES.length — no manual re-check
+// when sources change. Capacity (44) refuses loudly via cron_drift_events.
+// Enforced by test/cron-batching.spec.ts (property tests) + repo_audit.py.
+export const CRON_BATCH_META: Record<string, { batch: number; maxPerSource: number; generateProtocol: boolean }> = {
+	"0 13 * * *":  { batch: 1, maxPerSource: 3, generateProtocol: false },
+	"15 13 * * *": { batch: 2, maxPerSource: 3, generateProtocol: false },
+	"30 13 * * *": { batch: 3, maxPerSource: 3, generateProtocol: false },
+	"45 13 * * *": { batch: 4, maxPerSource: 3, generateProtocol: true },
+	"0 23 * * *":  { batch: 5, maxPerSource: 2, generateProtocol: false },
 };
+export const SUBREQUEST_LIMIT = 50;
+export const BATCH_MAX_SOURCES = Object.values(CRON_BATCH_META)
+	.reduce((s, m) => s + Math.floor(SUBREQUEST_LIMIT / (m.maxPerSource * 2)), 0);
+
+export function computeBatches(n: number): Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }> {
+	if (n > BATCH_MAX_SOURCES) {
+		throw new Error("SOURCES.length=" + n + " exceeds batching capacity " + BATCH_MAX_SOURCES + " (budget " + SUBREQUEST_LIMIT + ")");
+	}
+	const metas = Object.entries(CRON_BATCH_META).sort((a, b) => a[1].batch - b[1].batch);
+	const out: Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }> = {};
+	let offset = 0;
+	metas.forEach(([cron, m], idx) => {
+		const cap = Math.floor(SUBREQUEST_LIMIT / (m.maxPerSource * 2));
+		const remaining = metas.length - idx;
+		const take = Math.min(cap, Math.ceil((n - offset) / remaining), n - offset);
+		out[cron] = { offset, limit: take, batch: m.batch, maxPerSource: m.maxPerSource, generateProtocol: m.generateProtocol };
+		offset += take;
+	});
+	return out;
+}
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		const url = new URL(request.url);
@@ -572,13 +592,20 @@ export default {
 				}, 200);
 			}
 			if (path === "/health") {
+				let plan: Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }> | null = null;
+				try {
+					plan = computeBatches(SOURCES.length);
+				} catch {
+					plan = null; // capacity exceeded — /health stays 200, batches_ok=false is the alert
+				}
 				return json({
 					status: "ok",
 					ts: Date.now(),
 					version: pkg.version,
 					sources_count: SOURCES.length,
-					batches_planned: Object.values(CRON_BATCH_CONFIG).reduce((s, b) => s + b.limit, 0),
-					batches_ok: Object.values(CRON_BATCH_CONFIG).reduce((s, b) => s + b.limit, 0) === SOURCES.length,
+					batches_planned: plan ? Object.values(plan).reduce((s, b) => s + b.limit, 0) : 0,
+					batches_capacity: BATCH_MAX_SOURCES,
+					batches_ok: plan !== null,
 				}, 200);
 			}
 
@@ -791,30 +818,20 @@ export default {
 		// (sources x maxPerSource x 2 subrequests; 8x3x2=48, 9x2x2=36 - both under 50)
 		// NOTE: offsets/limit must be re-checked whenever a source is added or removed
 		// (SOURCES.length is currently 41 - see src/config/sources.ts)
-		const batchConfig = CRON_BATCH_CONFIG;
-		const cfg = batchConfig[event.cron] ?? batchConfig["0 13 * * *"];
-		const plannedTotal = Object.values(CRON_BATCH_CONFIG).reduce((s, b) => s + b.limit, 0);
-		if (plannedTotal !== SOURCES.length) {
-			console.error("[cron] BATCH CONFIG DRIFT: batches cover " + plannedTotal + " sources, but SOURCES.length is " + SOURCES.length + " — update CRON_BATCH_CONFIG");
-			// Persist drift event to D1 for observability (finding #2 from nightly audit)
+		let batchConfig: Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }>;
+		try {
+			batchConfig = computeBatches(SOURCES.length);
+		} catch (capErr) {
+			console.error("[cron] BATCH CAPACITY EXCEEDED: " + (capErr as Error).message + " — refusing partial coverage (rule 5)");
 			try {
-				await env.DB.prepare(`
-					INSERT INTO cron_drift_events
-						(cron_expr, expected_offset, computed_offset,
-						 expected_limit, computed_limit, sources_count, metadata)
-					VALUES (?, ?, ?, ?, ?, ?, ?)
-				`).bind(
-					event.cron,
-					cfg.offset, cfg.offset,
-					cfg.limit, plannedTotal,
-					SOURCES.length,
-					JSON.stringify({ batch: cfg.batch, planned_total: plannedTotal })
-				).run();
-			} catch (e) {
-				console.error("[cron] Failed to record drift event:", e);
+				await env.DB.prepare(`INSERT INTO cron_drift_events (cron_expr, sources_count, metadata) VALUES (?, ?, ?)`)
+					.bind(event.cron, SOURCES.length, JSON.stringify({ reason: "capacity_exceeded", capacity: BATCH_MAX_SOURCES }));
+			} catch (dbErr) {
+				console.error("[cron] Failed to record capacity event:", dbErr);
 			}
+			return; // better no data than silently incomplete
 		}
-
+		const cfg = batchConfig[event.cron] ?? batchConfig["0 13 * * *"];
 		console.log("[cron] Batch " + cfg.batch + "/5 triggered at " + new Date(event.scheduledTime).toISOString() + " cron=" + event.cron);
 		console.log("[cron] offset=" + cfg.offset + " limit=" + cfg.limit + " maxPerSource=" + cfg.maxPerSource + " generateProtocol=" + cfg.generateProtocol);
 
