@@ -1,5 +1,5 @@
-export const AI_PROMPT = [
-  "Today is 2026-09-26. You classify signals about AI self-improvement (RSI).",
+export const getAIPrompt = (today: string) => [
+  "You classify signals about AI self-improvement (RSI).",
   "Return STRICT JSON:",
   '{"axes":["smd"|"itq"|"agg"|"cycle_velocity"|"verification"|"hexad"|"geopolitics"],',
   '"temporal_status":"future_event"|"past_event"|"ongoing"|"stale_forecast"|"static_fact",',
@@ -24,12 +24,12 @@ export const AI_PROMPT = [
   "9. ongoing: process/trend currently happening (e.g. 'is developing').",
   "10. static_fact: timeless research finding or technical result.",
   "11. event_date: date of the event in YYYY-MM-DD format (or null if N/A).",
-  "12. If news says 'X will meet Y next week' but today is AFTER that meeting, mark as stale_forecast — it's an outdated prediction.",
+  `12. If the text mentions an event date in the PAST relative to today (${today}), mark as stale_forecast.`,
   "Return ONLY JSON, no markdown."
 ].join(" ");
 
-export const HUMAN_PROMPT = [
-  "Today is 2026-09-26. You classify signals about Humanity (HHI).",
+export const getHumanPrompt = (today: string) => [
+  "You classify signals about Humanity (HHI).",
   "Return STRICT JSON:",
   '{"axes":["h1_agency"|"h2_sovereignty"|"h3_wellbeing"|"h4_equity"|"h5_meaning"|"h6_democracy"],',
   '"temporal_status":"future_event"|"past_event"|"ongoing"|"stale_forecast"|"static_fact",',
@@ -53,7 +53,6 @@ export const HUMAN_PROMPT = [
   "8. ongoing: process/trend currently happening (e.g. 'is developing').",
   "9. static_fact: timeless research finding or technical result.",
   "10. event_date: date of the event in YYYY-MM-DD format (or null if N/A).",
-  "11. If news says 'X will meet Y next week' but today is AFTER that meeting, mark as stale_forecast — it's an outdated prediction.",
-  "12. Extract event_date from the text if mentioned (YYYY-MM-DD format). If event_date is in the PAST relative to today (2026-09-26), mark as stale_forecast.",
+  `11. If the text mentions an event date in the PAST relative to today (${today}), mark as stale_forecast.`,
   "Return ONLY JSON, no markdown."
 ].join(" ");
