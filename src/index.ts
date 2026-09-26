@@ -322,7 +322,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string>
 	const gapResult = await computeGapIndex(env, range);
 	const shifts = filteredItems.filter((it) => it.shift === "yes").length;
 	const lines: string[] = [];
-	lines.push("# Human-AI Monitor Protocol (DRAFT)");
+	lines.push("# Humanity-AI Monitor Protocol (DRAFT)");
 	lines.push("## Week: " + range.filterStart + " — " + range.filterEnd + " (Protocol ID: " + range.filterEnd + ")");
 	lines.push("");
 	lines.push("**⚠️ DRAFT: This week is still open. This protocol is NOT saved to database.**");
@@ -408,7 +408,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	).first();
 	const shifts = filteredItems.filter((it) => it.shift === "yes").length;
 	const lines: string[] = [];
-	lines.push("# Human-AI Monitor Protocol");
+	lines.push("# Humanity-AI Monitor Protocol");
 	lines.push("## Week: " + range.filterStart + " — " + range.filterEnd + " (Protocol ID: " + range.filterEnd + ")");
 	lines.push("");
 	lines.push("**Items collected:** " + filteredItems.length);
