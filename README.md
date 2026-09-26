@@ -376,6 +376,7 @@ Test manually (as plain URL):
 | GET    | /verify                   | Detect reward hacking (CheatBench-inspired) |
 | GET    | /collect                  | Manual RSS collection                       |
 | GET    | /generate                 | Manual protocol generation                  |
+> **Protocol addressing:** `{week}` in API URLs and the DB key on the week's **start** (Monday): the protocol covering 2026-09-14..20 is `GET /protocols/2026-09-14/content`. File names use the week's **end** (Sunday): `2026-09-20.md`. The legacy D1 `path` column is week_start-based — sync builds file names itself.
 
 ### Export endpoint
 
