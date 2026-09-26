@@ -1,34 +1,55 @@
 import { describe, expect, it } from "vitest";
-import { CRON_BATCH_CONFIG } from "../src/index";
+import { BATCH_MAX_SOURCES, computeBatches } from "../src/index";
 import { SOURCES } from "../src/config/sources";
 
-// Guards against silent source-list drift (audit finding: offsets/limit must
-// be re-checked whenever a source is added or removed — see scheduled()).
-describe("cron batching invariants", () => {
-    const batches = Object.entries(CRON_BATCH_CONFIG);
+// Dynamic batching: offsets/limits computed from SOURCES.length at runtime.
+// Property tests hold for EVERY N up to capacity — source changes cannot
+// silently break coverage.
+describe("dynamic cron batching invariants", () => {
+    const N_RANGE = Array.from({ length: BATCH_MAX_SOURCES + 1 }, (_, i) => i);
 
-    it("covers every enabled source exactly once", () => {
-        const planned = batches.reduce((sum, [, b]) => sum + b.limit, 0);
-        expect(planned).toBe(SOURCES.length);
+    it("N = SOURCES.length: covers every enabled source exactly once", () => {
+        const total = Object.values(computeBatches(SOURCES.length))
+            .reduce((s, b) => s + b.limit, 0);
+        expect(total).toBe(SOURCES.length);
     });
 
-    it("offsets are contiguous and start at 0 (no gaps, no overlaps)", () => {
-        const sorted = [...batches].sort((a, b) => a[1].batch - b[1].batch);
-        expect(sorted[0][1].offset).toBe(0);
-        for (let i = 1; i < sorted.length; i++) {
-            const prev = sorted[i - 1][1];
-            expect(sorted[i][1].offset).toBe(prev.offset + prev.limit);
+    it("every N in 0..capacity: offsets contiguous from 0, total = N", () => {
+        for (const n of N_RANGE) {
+            const entries = Object.values(computeBatches(n))
+                .sort((a, b) => a.batch - b.batch);
+            let cursor = 0;
+            for (const b of entries) {
+                expect(b.offset).toBe(cursor);
+                cursor += b.limit;
+            }
+            expect(cursor).toBe(n);
         }
     });
 
-    it("batch numbers are 1..N without gaps", () => {
-        const nums = batches.map(([, b]) => b.batch).sort((a, b) => a - b);
-        expect(nums).toEqual(nums.map((_, i) => i + 1));
+    it("every N in 0..capacity: subrequest budget holds per batch", () => {
+        for (const n of N_RANGE) {
+            for (const b of Object.values(computeBatches(n))) {
+                expect(b.limit * b.maxPerSource * 2).toBeLessThanOrEqual(50);
+            }
+        }
     });
 
-    it("subrequest budget per batch stays under the 50-request limit", () => {
-        for (const [, b] of batches) {
-            expect(b.limit * b.maxPerSource * 2).toBeLessThanOrEqual(50);
+    it("batch numbers are 1..5 without gaps for every N", () => {
+        for (const n of N_RANGE) {
+            const nums = Object.values(computeBatches(n))
+                .map((b) => b.batch).sort((a, b) => a - b);
+            expect(nums).toEqual([1, 2, 3, 4, 5]);
         }
+    });
+
+    it("N > capacity throws loudly (no silent partial coverage)", () => {
+        expect(() => computeBatches(BATCH_MAX_SOURCES + 1)).toThrow(/capacity/);
+    });
+
+    it("regression anchor: N = 41 distributes exactly [8, 8, 8, 8, 9]", () => {
+        const limits = Object.values(computeBatches(41))
+            .sort((a, b) => a.batch - b.batch).map((b) => b.limit);
+        expect(limits).toEqual([8, 8, 8, 8, 9]);
     });
 });
