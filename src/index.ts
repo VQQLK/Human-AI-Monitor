@@ -568,7 +568,7 @@ export default {
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/", "/health", "/gap", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
+					endpoints: ["/", "/health", "/drift-events", "/gap", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
 				}, 200);
 			}
 			if (path === "/health") {
@@ -743,7 +743,18 @@ export default {
 				return json({ input_length: text.length, ...result }, 200);
 			}
 			// /axes-history — вернуть все записи из index_history (для прозрачности)
-			if (path === "/axes-history") {
+			if (path === "/drift-events") {
+			const res = await env.DB.prepare(
+				"SELECT id, cron_expr, expected_offset, computed_offset, " +
+				"expected_limit, computed_limit, sources_count, detected_at, metadata " +
+				"FROM cron_drift_events ORDER BY detected_at DESC LIMIT 100"
+			).all();
+			return json({
+				count: res.results?.length ?? 0,
+				events: res.results ?? [],
+			}, 200);
+		}
+		if (path === "/axes-history") {
 				const all = await env.DB.prepare(
 					"SELECT axis, level, date, note, recorded_at FROM index_history ORDER BY date DESC, axis"
 				).all();
@@ -785,6 +796,23 @@ export default {
 		const plannedTotal = Object.values(CRON_BATCH_CONFIG).reduce((s, b) => s + b.limit, 0);
 		if (plannedTotal !== SOURCES.length) {
 			console.error("[cron] BATCH CONFIG DRIFT: batches cover " + plannedTotal + " sources, but SOURCES.length is " + SOURCES.length + " — update CRON_BATCH_CONFIG");
+			// Persist drift event to D1 for observability (finding #2 from nightly audit)
+			try {
+				await env.DB.prepare(`
+					INSERT INTO cron_drift_events
+						(cron_expr, expected_offset, computed_offset,
+						 expected_limit, computed_limit, sources_count, metadata)
+					VALUES (?, ?, ?, ?, ?, ?, ?)
+				`).bind(
+					event.cron,
+					cfg.offset, cfg.offset,
+					cfg.limit, plannedTotal,
+					SOURCES.length,
+					JSON.stringify({ batch: cfg.batch, planned_total: plannedTotal })
+				).run();
+			} catch (e) {
+				console.error("[cron] Failed to record drift event:", e);
+			}
 		}
 
 		console.log("[cron] Batch " + cfg.batch + "/5 triggered at " + new Date(event.scheduledTime).toISOString() + " cron=" + event.cron);
