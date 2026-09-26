@@ -134,6 +134,20 @@ if gap:
 else:
     ok("canon pairs: 5 документов × {ru,zh} на месте")
 
+# ---------- 4b. docs/: EN+RU по дизайну (AGENTS.md rule 3) ----------
+docs_gap = []
+for d in sorted((ROOT / "docs").glob("*.md")):
+    if d.name.endswith(".ru.md"):
+        continue
+    ru = d.with_name(d.stem + ".ru.md")
+    if not ru.exists() or ru.stat().st_size == 0:
+        docs_gap.append(d.name)
+if docs_gap:
+    fail(f"docs pairs: нет RU-зеркала: {docs_gap}")
+else:
+    en_n = sum(1 for d in (ROOT / "docs").glob("*.md") if not d.name.endswith(".ru.md"))
+    ok(f"docs pairs: {en_n} документов × {{en,ru}} (по дизайну; ZH по запросу)")
+
 # ---------- 5. Версия: единая истина ----------
 pkg = re.search(r'"version":\s*"([^"]+)"', read(ROOT / "package.json"))
 cit = re.search(r"^version:\s*(\S+)\s*$", read(ROOT / "CITATION.cff"), re.M)
