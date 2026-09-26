@@ -28,6 +28,8 @@ Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
    changes nothing.
 
 3. **EN is canon; RU/ZH are mirrors.** Structural changes to EN docs
+   **Scope:** top-5 documents ×3; `docs/` are EN+RU by design (ZH mirrors
+   by request only); `research/` are EN+RU+ZH (en/ru/zh folders).
    (headings, lists, file trees) must be mirrored into `.ru.md` /
    `.zh.md` siblings in the same change. Enforced by
    `python3 scripts/repo_audit.py`.
@@ -66,6 +68,8 @@ Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
    `npx vitest run` (66+ tests) and `python3 scripts/repo_audit.py`
    (17+ ok / 0 FAIL). CI runs the same — keep both green.
 
-10. **Commit discipline.** One logical change per commit; user-visible
+10. **Commit discipline.** CHANGELOG policy:
+    `[Unreleased]` parity ×3 is enforced; release history — EN stays
+    minimalistic by design, RU/ZH depth must match (audit-enforced). One logical change per commit; user-visible
     changes get a CHANGELOG entry under `[Unreleased]` in all three
     languages.
