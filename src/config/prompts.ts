@@ -1,7 +1,9 @@
 export const AI_PROMPT = [
-  "You classify signals about AI self-improvement (RSI).",
+  "Today is 2026-09-26. You classify signals about AI self-improvement (RSI).",
   "Return STRICT JSON:",
   '{"axes":["smd"|"itq"|"agg"|"cycle_velocity"|"verification"|"hexad"|"geopolitics"],',
+  '"temporal_status":"future_event"|"past_event"|"ongoing"|"stale_forecast"|"static_fact",',
+  '"event_date":"YYYY-MM-DD or null",',
   '"relevance":number 0.0-1.0,',
   '"shift":"yes"|"no"|"uncertain",',
   '"direction":"up"|"down"|"stable"|"uncertain",',
@@ -15,13 +17,23 @@ export const AI_PROMPT = [
   "3. shift=yes ONLY if a threshold is empirically confirmed.",
   "4. A general news item is NOT a threshold shift.",
   "5. DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic.",
+  "TEMPORAL RULES (CRITICAL):",
+  "6. future_event: event scheduled/planned for future (e.g. 'will meet', 'plans to').",
+  "7. past_event: event already happened (e.g. 'met', 'signed', 'announced').",
+  "8. stale_forecast: prediction about event that ALREADY HAPPENED by now.",
+  "9. ongoing: process/trend currently happening (e.g. 'is developing').",
+  "10. static_fact: timeless research finding or technical result.",
+  "11. event_date: date of the event in YYYY-MM-DD format (or null if N/A).",
+  "12. If news says 'X will meet Y next week' but today is AFTER that meeting, mark as stale_forecast — it's an outdated prediction.",
   "Return ONLY JSON, no markdown."
 ].join(" ");
 
 export const HUMAN_PROMPT = [
-  "You classify signals about Humanity (HHI).",
+  "Today is 2026-09-26. You classify signals about Humanity (HHI).",
   "Return STRICT JSON:",
   '{"axes":["h1_agency"|"h2_sovereignty"|"h3_wellbeing"|"h4_equity"|"h5_meaning"|"h6_democracy"],',
+  '"temporal_status":"future_event"|"past_event"|"ongoing"|"stale_forecast"|"static_fact",',
+  '"event_date":"YYYY-MM-DD or null",',
   '"relevance":number 0.0-1.0,',
   '"shift":"yes"|"no"|"uncertain",',
   '"direction":"up"|"down"|"stable"|"uncertain",',
@@ -34,5 +46,14 @@ export const HUMAN_PROMPT = [
   "2. If nothing fits, return empty array [].",
   "3. shift=yes ONLY if a threshold is empirically confirmed.",
   "4. DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic.",
+  "TEMPORAL RULES (CRITICAL):",
+  "5. future_event: event scheduled/planned for future (e.g. 'will meet', 'plans to').",
+  "6. past_event: event already happened (e.g. 'met', 'signed', 'announced').",
+  "7. stale_forecast: prediction about event that ALREADY HAPPENED by now.",
+  "8. ongoing: process/trend currently happening (e.g. 'is developing').",
+  "9. static_fact: timeless research finding or technical result.",
+  "10. event_date: date of the event in YYYY-MM-DD format (or null if N/A).",
+  "11. If news says 'X will meet Y next week' but today is AFTER that meeting, mark as stale_forecast — it's an outdated prediction.",
+  "12. Extract event_date from the text if mentioned (YYYY-MM-DD format). If event_date is in the PAST relative to today (2026-09-26), mark as stale_forecast.",
   "Return ONLY JSON, no markdown."
 ].join(" ");

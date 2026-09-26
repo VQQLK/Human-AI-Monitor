@@ -37,6 +37,19 @@ export function validateParsed(p: any): any {
 	else if (rel < 0.5 && p.shift === "yes") p.shift = "no";
 	if (!["yes","no","uncertain"].includes(p.shift)) p.shift = "uncertain";
 	if (!["up","down","stable","uncertain"].includes(p.direction)) p.direction = "uncertain";
+	// Validate temporal_status (added for temporal awareness)
+	const validTemporal = ["future_event", "past_event", "ongoing", "stale_forecast", "static_fact"];
+	if (!validTemporal.includes(p.temporal_status)) {
+		p.temporal_status = "static_fact";
+	}
+	// Validate event_date (YYYY-MM-DD or null)
+	if (p.event_date && typeof p.event_date === "string") {
+		if (!/^\d{4}-\d{2}-\d{2}$/.test(p.event_date)) {
+			p.event_date = null;
+		}
+	} else {
+		p.event_date = null;
+	}
 	return p;
 }
 
@@ -224,7 +237,7 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 
 					const itemDate = parsePubDate(item.pubDate);
 					await env.DB.prepare(
-						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, shift, direction, reasoning, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
+						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, shift, direction, reasoning, temporal_status, event_date, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 					).bind(
 						hash, item.title.slice(0, 500), item.summary.slice(0, 1000),
 						item.url.slice(0, 500), src.name, itemDate, "en",
@@ -233,6 +246,8 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 						String(parsed.shift ?? "uncertain"),
 						String(parsed.direction ?? "uncertain"),
 						String(parsed.reasoning ?? "").slice(0, 1000),
+						String(parsed.temporal_status ?? "static_fact"),
+						parsed.event_date || null,
 						new Date().toISOString()
 					).run();
 					stats.items_saved++;
@@ -278,8 +293,23 @@ async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string>
 		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning, temporal_status, event_date FROM items WHERE date >= ? AND date <= ? AND (temporal_status IS NULL OR temporal_status != 'stale_forecast') ORDER BY relevance DESC LIMIT 500"
 	).bind(range.filterStart, range.filterEnd).all();
 	const items: any[] = res.results ?? [];
+	
+	// Post-process: auto-detect stale_forecast based on event_date
+	const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+	for (const item of items) {
+		if (item.temporal_status === 'future_event' && item.event_date) {
+			// If event_date is in the past, it's actually a stale forecast
+			if (item.event_date < today) {
+				item.temporal_status = 'stale_forecast';
+			}
+		}
+	}
+	
+	// Filter out stale_forecast items
+	const filteredItems = items.filter(item => item.temporal_status !== 'stale_forecast');
+	
 	const byAxis: any = {};
-	for (const it of items) {
+	for (const it of filteredItems) {
 		try {
 			const axes = JSON.parse(it.axes ?? "[]");
 			for (const a of axes) {
@@ -290,7 +320,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string>
 	}
 	// Compute Gap Index directly (do NOT write to gap_history — this is draft only)
 	const gapResult = await computeGapIndex(env, range);
-	const shifts = items.filter((it) => it.shift === "yes").length;
+	const shifts = filteredItems.filter((it) => it.shift === "yes").length;
 	const lines: string[] = [];
 	lines.push("# Human-AI Monitor Protocol (DRAFT)");
 	lines.push("## Week: " + range.filterStart + " — " + range.filterEnd + " (Protocol ID: " + range.filterEnd + ")");
@@ -298,7 +328,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string>
 	lines.push("**⚠️ DRAFT: This week is still open. This protocol is NOT saved to database.**");
 	lines.push("**Final version will be automatically generated on Monday at 13:45 UTC.**");
 	lines.push("");
-	lines.push("**Items collected:** " + items.length);
+	lines.push("**Items collected:** " + filteredItems.length);
 	lines.push("**Shifts detected:** " + shifts);
 	lines.push("");
 	lines.push("### Gap Index");
@@ -348,6 +378,21 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning, temporal_status, event_date FROM items WHERE date >= ? AND date <= ? AND (temporal_status IS NULL OR temporal_status != 'stale_forecast') ORDER BY relevance DESC LIMIT 500"
 	).bind(range.filterStart, range.filterEnd).all();
 	const items: any[] = res.results ?? [];
+	
+	// Post-process: auto-detect stale_forecast based on event_date
+	const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+	for (const item of items) {
+		if (item.temporal_status === 'future_event' && item.event_date) {
+			// If event_date is in the past, it's actually a stale forecast
+			if (item.event_date < today) {
+				item.temporal_status = 'stale_forecast';
+			}
+		}
+	}
+	
+	// Filter out stale_forecast items
+	const filteredItems = items.filter(item => item.temporal_status !== 'stale_forecast');
+	
 	const byAxis: any = {};
 	for (const it of items) {
 		try {
@@ -361,12 +406,12 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	const gap: any = await env.DB.prepare(
 		"SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1"
 	).first();
-	const shifts = items.filter((it) => it.shift === "yes").length;
+	const shifts = filteredItems.filter((it) => it.shift === "yes").length;
 	const lines: string[] = [];
 	lines.push("# Human-AI Monitor Protocol");
 	lines.push("## Week: " + range.filterStart + " — " + range.filterEnd + " (Protocol ID: " + range.filterEnd + ")");
 	lines.push("");
-	lines.push("**Items collected:** " + items.length);
+	lines.push("**Items collected:** " + filteredItems.length);
 	lines.push("**Shifts detected:** " + shifts);
 	lines.push("");
 	if (gap) {
