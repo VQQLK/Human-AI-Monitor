@@ -2,7 +2,7 @@ import pkg from "../package.json";
 import { detectCheating } from "./cheat-detector";
 import { SOURCES } from "./config/sources";
 import { AI_AXES, HUMAN_AXES } from "./config/axes";
-import { AI_PROMPT, HUMAN_PROMPT } from "./config/prompts";
+import { getAIPrompt, getHumanPrompt } from './config/prompts';
 import { fetchWithRetry } from "./utils/fetch-with-retry";
 import { handleExport } from './handlers/export';
 import { computeGapIndex } from './services/gap-computation';
@@ -224,7 +224,8 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 					}
 
 					const text = (item.title + ". " + item.summary).slice(0, 800);
-					const systemPrompt = src.kind === "human" ? HUMAN_PROMPT : AI_PROMPT;
+					const today = new Date().toISOString().split('T')[0];
+					const systemPrompt = src.kind === 'human' ? getHumanPrompt(today) : getAIPrompt(today);
 					const ai: any = await env.AI.run(env.CLASSIFIER_MODEL, {
 						messages: [
 							{ role: "system", content: systemPrompt },
@@ -729,7 +730,8 @@ export default {
 				const kind = (url.searchParams.get("kind") ?? "ai").toLowerCase();
 				if (!text) return json({ error: "Missing text" }, 400);
 				if (text.length > 1000) return json({ error: "Text too long (max 1000 chars)" }, 400);
-				const systemPrompt = kind === "human" ? HUMAN_PROMPT : AI_PROMPT;
+				const today = new Date().toISOString().split('T')[0];
+				const systemPrompt = kind === 'human' ? getHumanPrompt(today) : getAIPrompt(today);
 				const response: any = await env.AI.run(env.CLASSIFIER_MODEL, {
 					messages: [
 						{ role: "system", content: systemPrompt },
