@@ -571,7 +571,16 @@ export default {
 					endpoints: ["/", "/health", "/gap", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
 				}, 200);
 			}
-			if (path === "/health") return json({ status: "ok", ts: Date.now() }, 200);
+			if (path === "/health") {
+				return json({
+					status: "ok",
+					ts: Date.now(),
+					version: pkg.version,
+					sources_count: SOURCES.length,
+					batches_planned: Object.values(CRON_BATCH_CONFIG).reduce((s, b) => s + b.limit, 0),
+					batches_ok: Object.values(CRON_BATCH_CONFIG).reduce((s, b) => s + b.limit, 0) === SOURCES.length,
+				}, 200);
+			}
 
 			if (path === "/gap") {
 				const row = await env.DB.prepare("SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1").first();

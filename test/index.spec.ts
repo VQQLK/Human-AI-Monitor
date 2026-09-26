@@ -2,6 +2,7 @@ import pkg from '../package.json';
 import { env, createExecutionContext, waitOnExecutionContext, SELF } from 'cloudflare:test';
 import { describe, it, expect } from 'vitest';
 import worker from '../src/index';
+import { SOURCES } from '../src/config/sources';
 
 const IncomingRequest = Request<unknown, IncomingRequestCfProperties>;
 
@@ -40,6 +41,9 @@ describe('Human-AI Monitor API', () => {
       expect(data.status).toBe('ok');
       expect(data.ts).toBeTypeOf('number');
       expect(data.ts).toBeGreaterThan(0);
+      expect(data.version).toBe(pkg.version);
+      expect(data.sources_count).toBe(SOURCES.length);
+      expect(data.batches_ok).toBe(true);
     });
   });
 
