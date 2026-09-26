@@ -663,7 +663,7 @@ export default {
 				const range = getWeekRange(0);
 				const markdown = await buildDraftProtocolMarkdown(env, range);
 				return new Response(markdown, {
-					headers: { "Content-Type": "text/markdown; charset=utf-8", ...CORS },
+					headers: { "Content-Type": "text/markdown; charset=utf-8", "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0", "CDN-Cache-Control": "no-store", ...CORS },
 				});
 			}
 			// Phase 3: multilingual draft endpoints
@@ -674,7 +674,7 @@ export default {
 				const englishMarkdown = await buildDraftProtocolMarkdown(env, range);
 				const translatedMarkdown = await translateProtocolMarkdown(env, englishMarkdown, lang);
 				return new Response(translatedMarkdown, {
-					headers: { "Content-Type": "text/markdown; charset=utf-8", ...CORS },
+					headers: { "Content-Type": "text/markdown; charset=utf-8", "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0", "CDN-Cache-Control": "no-store", ...CORS },
 				});
 			}
 			if (path === "/protocols") {
@@ -688,7 +688,7 @@ export default {
 				).bind(cm[1]).first();
 				if (!row || !row.content) return json({ error: "No content" }, 404);
 				return new Response(row.content, {
-					headers: { "Content-Type": "text/markdown; charset=utf-8", ...CORS },
+					headers: { "Content-Type": "text/markdown; charset=utf-8", "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0", "CDN-Cache-Control": "no-store", ...CORS },
 				});
 			}
 			const cmLang = path.match(/^\/protocols\/([0-9]{4}-[0-9]{2}-[0-9]{2})\/content\/(ru|zh)$/);
@@ -703,7 +703,7 @@ export default {
 					return json({ error: "Translation not ready for week " + weekStart }, 404);
 				}
 				return new Response(row.content, {
-					headers: { "Content-Type": "text/markdown; charset=utf-8", ...CORS },
+					headers: { "Content-Type": "text/markdown; charset=utf-8", "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0", "CDN-Cache-Control": "no-store", ...CORS },
 				});
 			}
 			const pm = path.match(/^\/protocols\/([0-9]{4}-[0-9]{2}-[0-9]{2})$/);
