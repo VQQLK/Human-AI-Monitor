@@ -275,7 +275,7 @@ export function getWeekRange(offsetWeeks: number): any {
 // Used by /protocols/current endpoint for monitoring and debugging
 async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string> {
 	const res = await env.DB.prepare(
-		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning FROM items WHERE date >= ? AND date <= ? ORDER BY relevance DESC LIMIT 500"
+		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning, temporal_status, event_date FROM items WHERE date >= ? AND date <= ? AND (temporal_status IS NULL OR temporal_status != 'stale_forecast') ORDER BY relevance DESC LIMIT 500"
 	).bind(range.filterStart, range.filterEnd).all();
 	const items: any[] = res.results ?? [];
 	const byAxis: any = {};
@@ -345,7 +345,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string>
 
 async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	const res = await env.DB.prepare(
-		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning FROM items WHERE date >= ? AND date <= ? ORDER BY relevance DESC LIMIT 500"
+		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning, temporal_status, event_date FROM items WHERE date >= ? AND date <= ? AND (temporal_status IS NULL OR temporal_status != 'stale_forecast') ORDER BY relevance DESC LIMIT 500"
 	).bind(range.filterStart, range.filterEnd).all();
 	const items: any[] = res.results ?? [];
 	const byAxis: any = {};
