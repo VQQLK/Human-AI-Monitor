@@ -315,7 +315,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ✅ Type-safe YAML → TypeScript pipeline (build-time code generation)
 - ✅ Modular architecture (14 modules instead of monolith)
 - ✅ CI/CD via GitHub Actions (automatic tests on every push)
-- ✅ 66 unit tests passing (~75% coverage: parser, classifier, cheat-detector, API, gap-computation, translation, cron-batching)
+- ✅ 66 unit tests passing (~60% coverage: parser, classifier, cheat-detector, API, gap-computation, translation, cron-batching)
 
 **In progress:**
 
