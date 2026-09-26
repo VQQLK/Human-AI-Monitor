@@ -22,6 +22,7 @@
 - **README.md**: 双同步工作流描述扩展了计划和可见性延迟
 
 ### Added
+- **术语清晰性**：repo_audit 的词汇表检查消息已重新措辞——ZH 词汇表包含规范 EN 短语的既定翻译（规范为 EN，RU/ZH 为镜像）；AGENTS.md 规则 2 已添加相同说明
 - **漂移事件可观测性**（发现#2，第二种实现）：cron漂移防护现在将事件持久化到D1表 `cron_drift_events`；新的 `/drift-events` 端点返回最近100条——运行时防护可观测，而非仅一行日志
 - **健康自报与实时监控**：`/health` 现在暴露 version、sources_count、batches_planned、batches_ok；新的每日 `live-monitor` 工作流将实时API与git对照（版本一致性、批次覆盖、翻译持久化）——解决夜间审计发现#2
 - **覆盖率诚实性**：README的覆盖率声明已加注（在7个可单元测试套件中测量的60%，API入口点除外）；添加了 `npm run coverage` 脚本
