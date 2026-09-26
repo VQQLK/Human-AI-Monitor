@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Health self-reporting & live monitoring**: `/health` now exposes version, sources_count, batches_planned, batches_ok; new daily `live-monitor` workflow asserts live API against git (version parity, batch coverage, translation persistence) — closes nightly-audit finding #2
+- **Coverage honesty**: README coverage claim annotated (60% measured across 7 unit-testable suites, API entry excluded); `npm run coverage` script added
 - **Protocol synchronization documentation** (docs/architecture.md §6):
   - Interim protocol visibility: Saturday 08:00 UTC (~18h delay from Friday generation)
   - Final protocol visibility: Monday 14:00 UTC (~15min delay from Monday generation)

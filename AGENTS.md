@@ -56,6 +56,8 @@ Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
    the cron schedule existed only in git while the worker ran old code).
    After any change to `src/` or `wrangler.jsonc`: `npx wrangler deploy`,
    then verify live behavior (`curl` the affected endpoint).
+   Enforced by the daily `live-monitor` workflow (version parity,
+   batch coverage, translation persistence).
 
 9. **Before every push:**
    `npx vitest run` (66+ tests) and `python3 scripts/repo_audit.py`

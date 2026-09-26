@@ -248,7 +248,7 @@
 - ✅ 类型安全YAML → TypeScript管道（构建时代码生成）
 - ✅ 模块化架构（14个模块而非单体）
 - ✅ GitHub Actions的CI/CD（每次推送自动测试）
-- ✅ 66个单元测试通过（约60%覆盖率：解析器、分类器、作弊检测器、API、gap-computation、translation、cron-batching）
+- ✅ 66个单元测试通过（约60%覆盖率，通过 `npm run coverage` 在7个可单元测试的套件中测量；API入口点除外）
 
 **进行中：**
 

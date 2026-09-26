@@ -1,0 +1,38 @@
+name: live-monitor
+
+on:
+  schedule:
+    - cron: "30 23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch live health
+        run: curl -sfS https://human-ai-monitor-collector.human-ai-monitor.workers.dev/health | tee /tmp/health.json
+      - name: Assert live invariants
+        run: |
+          set -e
+          VERSION_GIT=$(python3 -c "import json;print(json.load(open('package.json'))['version'])")
+          jq -e --arg v "$VERSION_GIT" '
+            .status == "ok" and
+            .version == $v and
+            (.sources_count | type == "number" and . > 0) and
+            .batches_ok == true
+          ' /tmp/health.json
+      - name: Assert translations persisted (both known weeks)
+        run: |
+          set -e
+          API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
+          for w in $(curl -sfS "$API/protocols" | jq -r '.protocols[].week_start' | sort -u | tail -2); do
+            for lang in ru zh; do
+              CODE=$(curl -s -o /dev/null -w '%{http_code}' "$API/protocols/$w/content/$lang")
+              test "$CODE" = "200" || { echo "FAIL: $w/$lang -> $CODE (rule 7: run translate-protocols)"; exit 1; }
+            done
+          done
+          echo "OK: translations persisted for latest weeks"
