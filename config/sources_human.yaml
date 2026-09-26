@@ -99,12 +99,6 @@ rss:
   - h5_meaning
   enabled: false
   note: URL returns 404
-- name: Aeon Essays
-  url: https://aeon.co/feed.rss
-  lang: en
-  tier: 2
-  axes:
-  - h5_meaning
 - name: Noema Magazine
   url: https://www.noemamag.com/feed/
   lang: en
