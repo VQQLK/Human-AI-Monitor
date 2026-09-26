@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Protocol addressing clarified**: API and DB key protocols by week_start (Monday); file names (sync/archive/git) use week_end (Sunday); README API-reference annotated x3, AGENTS.md rule 6 + data/protocols/README.md document the split and the legacy D1 `path` field (do not trust)
 - **Dynamic cron batching**: offsets/limits computed at runtime from `SOURCES.length` by `computeBatches()` (property-tested for every N up to capacity 44; N=41 still distributes [8,8,8,8,9]); N > capacity refuses loudly via cron_drift_events — no manual re-check when sources change
 - **Registry policies encoded**: docs/ are EN+RU by design (audit-enforced docs-pairs check); CHANGELOG release-history policy (EN minimalistic, RU/ZH depth matched) documented in AGENTS.md rules 3/10
 - **Terminology clarity**: the repo_audit glossary-check message reworded — the ZH glossary holds the approved translations of the canonical EN phrases (EN is the canon, RU/ZH are mirrors); AGENTS.md rule 2 annotated with the same clarification
