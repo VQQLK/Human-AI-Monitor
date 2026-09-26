@@ -17,7 +17,7 @@ describe('Human-AI Monitor API', () => {
       const data: any = await response.json();
       expect(data.project).toBe('Human-AI Monitor');
       expect(data.version).toBe(pkg.version);
-      expect(data.sources_count).toBe(41);
+      expect(data.sources_count).toBe(39);
       expect(data.endpoints).toBeInstanceOf(Array);
       expect(data.endpoints).toContain('/gap');
       expect(data.endpoints).toContain('/protocols');

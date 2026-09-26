@@ -51,12 +51,6 @@ rss:
   url: https://feeds.arstechnica.com/arstechnica/technology-lab
   lang: en
   tier: 2
-- name: VentureBeat — AI
-  url: https://venturebeat.com/category/ai/feed/
-  lang: en
-  tier: 2
-  enabled: false
-  note: 'Temporarily disabled: HTTP 429 rate limit'
 - name: AI Alignment Forum
   url: https://www.alignmentforum.org/feed.xml
   lang: en
@@ -89,22 +83,22 @@ rss:
   url: https://rss.politico.com/technology.xml
   lang: en
   tier: 1
-  note: 'US AI policy, Congress, Trump AI Force — replaces AP News (403)'
+  note: US AI policy, Congress, Trump AI Force — replaces AP News (403)
 - name: The Hill — Policy
   url: https://thehill.com/policy/feed/
   lang: en
   tier: 1
-  note: 'US tech policy, AI regulation, geopolitics'
+  note: US tech policy, AI regulation, geopolitics
 - name: CBS News — Technology
   url: https://www.cbsnews.com/latest/rss/main
   lang: en
   tier: 2
-  note: 'US news including AI policy — replaces AP News'
+  note: US news including AI policy — replaces AP News
 - name: WSJ — World News
   url: https://feeds.a.dj.com/rss/RSSWorldNews.xml
   lang: en
   tier: 1
-  note: 'Geopolitics, global AI race, US-China — replaces Reuters (timeout)'
+  note: Geopolitics, global AI race, US-China — replaces Reuters (timeout)
 - name: AI Now Institute
   url: https://ainowinstitute.org/feed
   lang: en
