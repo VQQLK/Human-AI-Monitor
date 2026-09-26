@@ -19,7 +19,10 @@ Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
    `src/services/translation.ts` is copied verbatim into every weekly
    translated protocol (one typo there propagated into four documents
    and multiple weekly protocols). Change glossary lines only via an
-   approved canon decision, then propagate the full chain: glossary →
+   approved canon decision ("canon" in this repo always means the
+   English source text; the RU/ZH glossary lines are approved
+   translations of that canon — derived from it, never a second
+   source of truth), then propagate the full chain: glossary →
    CHANGELOG `[Unreleased]` ×3 → **`npx wrangler deploy`** → regenerate
    affected documents. Git ≠ production: a glossary fix without a deploy
    changes nothing.
