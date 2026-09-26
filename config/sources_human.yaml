@@ -48,13 +48,6 @@ rss:
   axes:
   - h2_sovereignty
   - h6_democracy
-- name: Wired — Culture
-  url: https://www.wired.com/feed/category/culture/latest/rss
-  lang: en
-  tier: 2
-  axes:
-  - h1_agency
-  - h2_sovereignty
 - name: Freedom House
   url: https://freedomhouse.org/rss.xml
   lang: en
