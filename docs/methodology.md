@@ -15,7 +15,7 @@ Tech leaders proclaim singularity. Alignment researchers admit there is no plan.
 
 **But no one publishes a weekly report with numbers.**
 
-Human–AI Monitor proposes an **operationalized structure**: 12 axes with explicit thresholds, each of which is **falsifiable**. We do not predict the future — we **record the present**.
+Human–AI Monitor proposes an **operationalized structure**: 13 axes (12+1) with explicit thresholds, each of which is **falsifiable**. We do not predict the future — we **record the present**.
 
 ---
 
@@ -46,6 +46,17 @@ The monitoring system is built on a **symmetric structure**: 6 axes describe the
 | **H6 Democracy** | Democratic Resilience | Trust in institutions, resilience to disinformation | Sustained decline in trust |
 
 ---
+
+
+### 2.3. Geopolitical Axis (Geopolitics)
+
+An axis outside the symmetric 6+6 structure, describing global AI development dynamics:
+
+| Parameter | Description |
+|:---|:---|
+| **Keywords** | WAICO, export controls, AI race, sovereign AI, open weights, compute divide, frontier AI |
+| **Actors** | Western cartel (Anthropic, OpenAI, Google, xAI) · WAICO · Open market |
+| **Revision threshold** | Institutional entrenchment of one bloc as dominant |
 
 ## 3. Gap Index
 
