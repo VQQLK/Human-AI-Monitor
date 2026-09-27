@@ -19,7 +19,7 @@ Human–AI Monitor proposes an **operationalized structure**: 12 axes with expli
 
 ---
 
-## 2. Twelve Axes
+## 2. Thirteen Axes (12+1)
 
 The monitoring system is built on a **symmetric structure**: 6 axes describe the **artificial** (AI), 6 describe the **human** (Humanity). The symmetry is not accidental — it reflects a hypothesis: **AI development and Humanity's development are linked**, and the gap between them is the key variable.
 
@@ -111,7 +111,7 @@ The Gap Index is **not a scalar** but a **trajectory**. We record it weekly and 
    - Global indices (quarterly).
 
 2. **Classification** (LLM):
-   - Each item is classified along 12 axes.
+   - Each item is classified along 13 axes (12+1).
    - Model: Cloudflare Workers AI (`@cf/qwen/qwen3-30b-a3b-fp8`).
    - Prompts: open, in `prompts/`.
 
@@ -120,7 +120,7 @@ The Gap Index is **not a scalar** but a **trajectory**. We record it weekly and 
    - Storage of all items with dates.
 
 4. **Protocol generation** (Markdown):
-   - Sections for 12 axes + Gap Index.
+   - Sections for 13 axes (12+1) + Gap Index.
    - Threshold shift markers (yes/no/uncertain).
    - Links to primary sources.
 
