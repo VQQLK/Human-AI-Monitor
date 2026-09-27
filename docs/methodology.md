@@ -97,7 +97,7 @@ where:
 |--------------|----------------|
 | $G > 0.2$ | **Critical asymmetry:** AI ahead of Humanity |
 | $0.1 < G \leq 0.2$ | **Moderate asymmetry** |
-| $|G| \leq 0.1$ | **Symmetric development** (normal) |
+| $\|G\| \leq 0.1$ | Symmetric development (norm) |
 | $-0.2 \leq G < -0.1$ | Moderate asymmetry in favor of Humanity |
 | $G < -0.2$ | **Anomaly:** Humanity ahead of AI |
 
