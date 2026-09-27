@@ -5,25 +5,67 @@ and Humanity.**
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md) [![EN](https://img.shields.io/badge/lang-EN-blue.svg)](README.md) [![RU](https://img.shields.io/badge/lang-RU-red.svg)](README.ru.md) [![ZH](https://img.shields.io/badge/lang-ZH-yellow.svg)](README.zh.md)
 
-## 📊 Current State of Development | Текущее состояние | 当前状态
+## 📊 Current State of Development
 
-**Updated / Обновлено / 更新:** September 27, 2026
+**Updated:** September 27, 2026
 
-### 🌍 Humanity–AI Gap Index | Индекс разрыва Человечество–ИИ | 人类–人工智能差距指数
+### 🌍 Humanity–AI Gap Index
 
 <div align="center">
 
-| Metric / Метрика / 指标 | Value / Значение / 数值 |
+| Metric | Value |
 |:---|:---:|
-| **AI Score / Оценка ИИ / 人工智能得分** | 🤖 **0.55** |
-| **Humanity Score / Оценка Человечества / 人类得分** | 🌐 **0.53** |
-| **Gap Index / Индекс разрыва / 差距指数** | ⚖️ **+0.02** (Symmetric / Симметричное / 对称发展) |
-| **Threshold Shifts / Ключевых сдвигов / 阈值变化** | ⚡ **5** |
-| **Items Analyzed / Анализированных событий / 分析项目** | 📈 **181** |
+| **AI Score** | 🤖 **0.55** |
+| **Humanity Score** | 🌐 **0.53** |
+| **Gap Index** | ⚖️ **+0.02** (Symmetric development) |
+| **Threshold Shifts** | ⚡ **5** |
+| **Items Analyzed** | 📈 **181** |
 
 </div>
 
 ---
+
+### 🔥 Key Trends This Week
+
+#### 🤖 Artificial Intelligence
+- **Self-modification (smd):** Research on reward hacking in autonomous agents highlights growing risks.
+- **Improvement trajectory (itq):** Progress in diffusion models and multi-LLM inference.
+- **Geopolitics:** Sam Altman's UN Security Council remarks on AI safety and international cooperation.
+- **Critical event:** First confirmed security breach by an autonomous AI agent.
+
+#### 🌐 Humanity
+- **Democracy (h6):** Court rulings reinforce electoral integrity, though transparency questions remain.
+- **Sovereignty (h2):** Diplomatic efforts continue amidst underlying tensions.
+- **Equity (h4):** Restoration of press access and discussions on infrastructure policies.
+
+---
+
+### 📈 Monthly Dynamics
+
+| Axis | Change | Comment |
+|:---|:---:|:---|
+| **smd** (Self-modification) | 📊 Active | Growing risks of reward mechanism exploitation |
+| **itq** (Improvement trajectory) | 📈 Rising | New architectures accelerate development |
+| **geopolitics** | ⚠️ Tension | Trade disputes and AI security concerns |
+| **h6_democracy** | 🔄 Mixed | Institutional integrity vs. transparency |
+
+---
+
+### 💡 Key Takeaways
+
+**🔬 Scientific Consensus:**
+> All participants in the discourse agree that something fundamental is happening — but disagree on almost everything else.
+
+**⚖️ Balance of Power:**
+AI and Humanity are in a state of **symmetric development**. Technology is advancing rapidly, but social institutions demonstrate resilience and adaptability.
+
+**🎯 Critical Point:**
+The first confirmed incidents involving autonomous AI agents require immediate attention to safety and regulatory frameworks.
+
+---
+
+
+
 
 ### 🔥 Key Trends This Week | Главные тренды недели | 本周主要趋势
 
