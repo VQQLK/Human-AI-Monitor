@@ -13,26 +13,31 @@ and Humanity.**
 
 <div align="center">
 
-| Metric | Value | Trend (vs 09-20) |
-|:---|:---:|:---:|
-| **AI Score** | 🤖 **0.55** | 📉 -0.09 |
-| **Humanity Score** | 🌐 **0.53** | 📉 -0.22 |
-| **Gap Index** | ⚖️ **+0.02** | 📈 +0.13 |
-| **Threshold Shifts** | ⚡ **5** | 🔺 +4 |
-| **Items Analyzed** | 📈 **181** | 🔺 +157 |
+| Metric | 09-20 (fact) | 09-27 (fact) | Trend |
+|:---|:---:|:---:|:---:|
+| **🟢 Humanity Score** | 🌐 **0.75** | 🌐 **0.53** | 📉 -0.22 |
+| **🔴 AI Score** | 🤖 **0.64** | 🤖 **0.55** | 📉 -0.09 |
+| **⚖️ Gap Index** | ⚖️ **-0.11** | ⚖️ **+0.02** | 📈 +0.13 |
+| **⚡ Threshold Shifts** | 1 | **5** | 🔺 +4 |
+| **📈 Items Analyzed** | 24 | **181** | 🔺 +157 |
 
 </div>
 
+> ⚠️ **CRITICAL EVENT: Lines crossed between 09-20 and 09-27.**  
+> On 09-20: 🟢 Humanity (0.75) was AHEAD of 🔴 AI (0.64) → Gap was **-0.11** (Humanity leading).  
+> On 09-27: 🔴 AI (0.55) is now AHEAD of 🟢 Humanity (0.53) → Gap is **+0.02** (Symmetric development).
+
 #### 📈 Score Dynamics (Humanity vs AI)
 
-> 📌 Asterisk (*) marks actual verified data. Points after 09-20 are target forecasts. First line (higher on the chart) - Humanity, second line (lower on the chart) - AI.
+> 📊 **Chart Legend:** 🟢 **Bars = Humanity** (solid columns) | 🔴 **Line = AI** (line on top of bars).  
+> 📌 Asterisk (*) marks actual verified data. Points after 09-27 are target forecasts.
 
 ```mermaid
 xychart-beta
-    title "Humanity vs AI Scores"
+    title "🟢 Humanity (bars) vs 🔴 AI (line) | 09-20* and 09-27* = verified"
     x-axis ["09-20*", "09-27*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
     y-axis "Score" 0.40 --> 0.80
-    line [0.75, 0.53, 0.54, 0.55, 0.57, 0.58, 0.59, 0.6, 0.61, 0.63, 0.64, 0.65, 0.66, 0.67]
+    bar [0.75, 0.53, 0.54, 0.55, 0.57, 0.58, 0.59, 0.6, 0.61, 0.63, 0.64, 0.65, 0.66, 0.67]
     line [0.64, 0.55, 0.57, 0.58, 0.6, 0.61, 0.62, 0.64, 0.66, 0.67, 0.69, 0.7, 0.72, 0.73]
 ```
 
@@ -40,7 +45,7 @@ xychart-beta
 
 ```mermaid
 xychart-beta
-    title "Gap Index Dynamics"
+    title "Gap Index | Positive = AI leading, Negative = Humanity leading"
     x-axis ["09-20*", "09-27*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
     y-axis "Gap" -0.15 --> 0.15
     line [-0.11, 0.02, 0.02, 0.03, 0.03, 0.03, 0.04, 0.04, 0.04, 0.04, 0.05, 0.05, 0.05, 0.06]
