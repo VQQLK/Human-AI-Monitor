@@ -13,27 +13,41 @@ and Humanity.**
 
 <div align="center">
 
-| Metric | Value | Trend (Monthly) |
+| Metric | Value | Trend (vs Prev. Week) |
 |:---|:---:|:---:|
-| **AI Score** | 🤖 **0.55** | 📈 +0.04 |
-| **Humanity Score** | 🌐 **0.53** | 📈 +0.06 |
-| **Gap Index** | ⚖️ **+0.02** (Symmetric) | ➡️ Stabilizing |
+| **AI Score** | 🤖 **0.50** | 📈 +0.00 |
+| **Humanity Score** | 🌐 **0.50** | 📈 +0.00 |
+| **Gap Index** | ⚖️ **+0.00** | ➡️ +0.00 |
 | **Threshold Shifts** | ⚡ **5** | 🔺 +2 |
 | **Items Analyzed** | 📈 **181** | 🔺 +15 |
 
 </div>
 
-#### 📈 Gap Index Dynamics (Last 6 Months)
+#### 📈 Score Dynamics (Real Data vs Target Forecast)
+
+> 📌 **Asterisk (*)** marks **actual verified data**. All subsequent points are target forecasts.  
+> 🟢 **Humanity** (green) vs 🔴 **AI** (red).
 
 ```mermaid
 xychart-beta
-    title "Gap Index Dynamics (AI minus Humanity)"
-    x-axis ["Apr", "May", "Jun", "Jul", "Aug", "Sep"]
-    y-axis "Gap Index" -0.10 --> 0.15
-    line [0.08, 0.05, 0.01, -0.02, 0.00, 0.02]
+    title "Humanity vs AI Scores"
+    x-axis ["09-27*", "Curr*", "Oct26", "Nov26", "Dec26", "Jan27", "Feb27", "Mar27", "Apr27", "May27", "Jun27", "Jul27", "Aug27", "Sep27"]
+    y-axis "Score" 0.40 --> 0.80
+    line [0.5, 0.5, 0.51, 0.52, 0.54, 0.55, 0.56, 0.57, 0.58, 0.6, 0.61, 0.62, 0.63, 0.64]
+    line [0.5, 0.5, 0.52, 0.53, 0.55, 0.56, 0.57, 0.59, 0.6, 0.62, 0.64, 0.65, 0.67, 0.68]
 ```
 
-*Note: Positive values indicate AI leading, negative values indicate Humanity leading. Chart data updates monthly.*
+#### 📉 Gap Index Dynamics (AI minus Humanity)
+
+```mermaid
+xychart-beta
+    title "Gap Index Dynamics"
+    x-axis ["09-27*", "Curr*", "Oct26", "Nov26", "Dec26", "Jan27", "Feb27", "Mar27", "Apr27", "May27", "Jun27", "Jul27", "Aug27", "Sep27"]
+    y-axis "Gap" -0.05 --> 0.15
+    line [0.0, 0.0, 0.0, 0.01, 0.01, 0.01, 0.01, 0.02, 0.02, 0.02, 0.03, 0.03, 0.03, 0.04]
+```
+
+*Positive values = AI leading; Negative values = Humanity leading.*
 
 ---
 
