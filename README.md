@@ -13,54 +13,29 @@ and Humanity.**
 
 <div align="center">
 
-| Metric | Value |
-|:---|:---:|
-| **AI Score** | 🤖 **0.55** |
-| **Humanity Score** | 🌐 **0.53** |
-| **Gap Index** | ⚖️ **+0.02** (Symmetric development) |
-| **Threshold Shifts** | ⚡ **5** |
-| **Items Analyzed** | 📈 **181** |
+| Metric | Value | Trend (Monthly) |
+|:---|:---:|:---:|
+| **AI Score** | 🤖 **0.55** | 📈 +0.04 |
+| **Humanity Score** | 🌐 **0.53** | 📈 +0.06 |
+| **Gap Index** | ⚖️ **+0.02** (Symmetric) | ➡️ Stabilizing |
+| **Threshold Shifts** | ⚡ **5** | 🔺 +2 |
+| **Items Analyzed** | 📈 **181** | 🔺 +15 |
 
 </div>
 
----
+#### 📈 Gap Index Dynamics (Last 6 Months)
 
-### 🔥 Key Trends This Week
+```mermaid
+xychart-beta
+    title "Gap Index Dynamics (AI minus Humanity)"
+    x-axis ["Apr", "May", "Jun", "Jul", "Aug", "Sep"]
+    y-axis "Gap Index" -0.10 --> 0.15
+    line [0.08, 0.05, 0.01, -0.02, 0.00, 0.02]
+```
 
-#### 🤖 Artificial Intelligence
-- **Self-modification (smd):** Research on reward hacking in autonomous agents highlights growing risks.
-- **Improvement trajectory (itq):** Progress in diffusion models and multi-LLM inference.
-- **Geopolitics:** Sam Altman's UN Security Council remarks on AI safety and international cooperation.
-- **Critical event:** First confirmed security breach by an autonomous AI agent.
-
-#### 🌐 Humanity
-- **Democracy (h6):** Court rulings reinforce electoral integrity, though transparency questions remain.
-- **Sovereignty (h2):** Diplomatic efforts continue amidst underlying tensions.
-- **Equity (h4):** Restoration of press access and discussions on infrastructure policies.
+*Note: Positive values indicate AI leading, negative values indicate Humanity leading. Chart data updates monthly.*
 
 ---
-
-### 📈 Monthly Dynamics
-
-| Axis | Change | Comment |
-|:---|:---:|:---|
-| **smd** (Self-modification) | 📊 Active | Growing risks of reward mechanism exploitation |
-| **itq** (Improvement trajectory) | 📈 Rising | New architectures accelerate development |
-| **geopolitics** | ⚠️ Tension | Trade disputes and AI security concerns |
-| **h6_democracy** | 🔄 Mixed | Institutional integrity vs. transparency |
-
----
-
-### 💡 Key Takeaways
-
-**🔬 Scientific Consensus:**
-> All participants in the discourse agree that something fundamental is happening — but disagree on almost everything else.
-
-**⚖️ Balance of Power:**
-AI and Humanity are in a state of **symmetric development**. Technology is advancing rapidly, but social institutions demonstrate resilience and adaptability.
-
-**🎯 Critical Point:**
-The first confirmed incidents involving autonomous AI agents require immediate attention to safety and regulatory frameworks.
 
 
 
