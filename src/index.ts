@@ -7,6 +7,7 @@ import { fetchWithRetry } from "./utils/fetch-with-retry";
 import { handleExport } from './handlers/export';
 import { computeGapIndex } from './services/gap-computation';
 import { translateProtocolMarkdown, translateReasoningBatch } from './services/translation';
+import { isProtectedPath, verifyAuth } from './auth';
 
 export function parseAIResponse(response: any): any {
 	const content = response?.choices?.[0]?.message?.content
@@ -639,6 +640,20 @@ export default {
 				headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0", ...CORS },
 			});
 		if (request.method === "OPTIONS") return new Response(null, { headers: CORS });
+
+		// Authentication: protected paths require a valid Bearer token.
+		// See src/auth.ts — supports dual-phase secret rotation.
+		if (isProtectedPath(path)) {
+			const authResult = verifyAuth(request, env);
+			if (!authResult.ok) {
+				const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+				console.warn(`[auth] DENIED ${path} from ${ip}: ${authResult.reason}`);
+				return json({ error: "Unauthorized", reason: authResult.reason }, 401);
+			}
+			if (authResult.usedSecret === "previous") {
+				console.warn(`[auth] ${path} used PREVIOUS secret — update needed`);
+			}
+		}
 
 		try {
 			if (path === "/") {

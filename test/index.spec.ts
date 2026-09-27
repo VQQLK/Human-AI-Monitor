@@ -6,6 +6,20 @@ import { SOURCES } from '../src/config/sources';
 
 const IncomingRequest = Request<unknown, IncomingRequestCfProperties>;
 
+// Test-only admin secrets: makes /classify (and other protected paths)
+// work deterministically in tests, without depending on real .dev.vars.
+const TEST_ADMIN_SECRET = "test-admin-secret-current";
+const TEST_ADMIN_PREVIOUS = "test-admin-previous";
+
+// Extended env with test secrets — mirrors AuthEnv used at runtime.
+const testEnv = {
+  ...env,
+  ADMIN_SECRET_CURRENT: TEST_ADMIN_SECRET,
+  ADMIN_SECRET_PREVIOUS: TEST_ADMIN_PREVIOUS,
+};
+
+const authHeaders = { Authorization: `Bearer ${TEST_ADMIN_SECRET}` };
+
 describe('Human-AI Monitor API', () => {
   describe('GET /', () => {
     it('returns project metadata (unit style)', async () => {
@@ -48,16 +62,34 @@ describe('Human-AI Monitor API', () => {
   });
 
   describe('GET /classify', () => {
-    it('returns error when text parameter missing', async () => {
-      const response = await SELF.fetch('https://example.com/classify');
+    it('returns 401 without Authorization header', async () => {
+      const response = await SELF.fetch('https://example.com/classify?text=hello');
+      expect(response.status).toBe(401);
+      const data: any = await response.json();
+      expect(data.error).toBe('Unauthorized');
+    });
+
+    it('returns error when text parameter missing (with auth)', async () => {
+      const request = new IncomingRequest('http://example.com/classify', {
+        headers: authHeaders,
+      });
+      const ctx = createExecutionContext();
+      const response = await worker.fetch(request, testEnv, ctx);
+      await waitOnExecutionContext(ctx);
       const data: any = await response.json();
       
       expect(data.error).toBe('Missing text');
     });
 
-    it('returns error when text too long', async () => {
+    it('returns error when text too long (with auth)', async () => {
       const longText = 'a'.repeat(1500);
-      const response = await SELF.fetch(`https://example.com/classify?text=${encodeURIComponent(longText)}`);
+      const request = new IncomingRequest(
+        `http://example.com/classify?text=${encodeURIComponent(longText)}`,
+        { headers: authHeaders }
+      );
+      const ctx = createExecutionContext();
+      const response = await worker.fetch(request, testEnv, ctx);
+      await waitOnExecutionContext(ctx);
       const data: any = await response.json();
       
       expect(data.error).toContain('Text too long');
