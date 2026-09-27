@@ -170,9 +170,9 @@ xychart-beta
 
 ## 这是什么
 
-`human-ai-monitor` 是一个每周协议，跟踪 **12 个对称轴** 加上 **地缘政治** 作为元层：
+`human-ai-monitor` 是一个每周协议，跟踪 **13 个轴 (12+1)**：
 
-**6 个对称人工智能轴线 (RSI — 递归自我改进)** 加上 **地缘政治** (元层):
+**6 个 AI 轴 (RSI — 递归自我改进):**
 
 - **SMD** — 自我修改深度
 - **ITQ** — 改进轨迹质量
@@ -222,7 +222,7 @@ xychart-beta
 这个工具做了三件事：
 
 1. **收集** 来自RSS、arXiv、新闻来源的开放数据。
-2. **分类** 它沿12个轴使用LLM。
+2. **分类** 它沿13个轴 (12+1) 使用LLM。
 3. **发布** 每周协议和差距指数——免费、开放、可重复。
 
 ---
@@ -284,7 +284,7 @@ xychart-beta
 - ✅ 部署了20个API端点的Cloudflare Worker
 - ✅ `/verify`端点 — 基于CheatBench的奖励劫持检测
 - ✅ D1数据库（4个表，已填充）
-- ✅ Workers AI分类器（Qwen 3，校准为12个对称轴 + 地缘政治）
+- ✅ Workers AI分类器（Qwen 3，校准为13个轴 (12+1)）
 - ✅ RSS + HTML收集器（41个来源，47个配置：25 AI + 16 Human）
 - ✅ 每周协议自动生成（Markdown，EN/RU/ZH）
 - ✅ 定时触发器（每天5批：13:00-13:45 + 23:00 UTC）
@@ -317,7 +317,7 @@ xychart-beta
 - ⚠️ `shift`字段可能在一般新闻中过度触发
 - ⚠️ 6个来源已禁用（VentureBeat 429，Nature 303，Lancet 403，Benton 404，V-Dem 404，ILO 404）
 - ⚠️ OECD和Edelman使用Google News RSS作为备用（关于主题的新闻，而非官方新闻稿）
-- ⚠️ 方法论不对称：代码实现了13个轴（7个AI + 6个人类）。12个对称轴是核心；`geopolitics`是元层，单独记录在`docs/methodology.md`中。
+- ⚠️ 方法论结构：13 个轴 (12+1) = 6 个 AI (RSI) + 6 个人类 (HHI) + 1 个地缘政治元层。地缘政治被测量并发布，但**不包含**在 AI_score 或 Human_score 中。
 
 ---
 

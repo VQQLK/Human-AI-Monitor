@@ -2,7 +2,7 @@
 
 **Version:** 1.0.1  
 **Date:** September 27, 2026  
-**Language:** [🇷🇺 Русский](math_brief.ru.md) | [🇨🇳 中文](math_brief.zh.md)
+**Language:** [🇷🇺 Русский](math_brief.ru.md)
 
 ---
 

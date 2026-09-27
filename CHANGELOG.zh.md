@@ -8,7 +8,16 @@
 
 格式基于[保持变更日志](https://keepachangelog.com/en/1.1.0/)，并且本项目遵循[语义化版本控制](https://semver.org/spec/v2.0.0.html)。
 
-## [未发布]
+## [未发布] — BREAKING
+
+### 变更 (BREAKING)
+
+- **轴结构：** 13 个轴 = 12 个对称 (6 AI + 6 Humanity) + 1 个元层 (Geopolitics)。之前 Geopolitics 被计为第 7 个 AI 轴，导致 AI_score 偏高。
+- **Gap Index 公式：** AI_score 和 Human_score 现在均为 6 个轴的简单平均。Geopolitics 被测量并发布，但不计入任何一个分数。
+- **Gap 阈值：** 三级方案 ±0.1（噪声）和 ±0.3（显著）。
+- **所有协议重新计算**（项目尚未公开发布）。
+- **分类器提示：** 规则从 "NEVER return all 7" 更新为 "NEVER return all axes"。
+
 
 ### 添加
 - **协议同步文档** (docs/architecture.md §6):

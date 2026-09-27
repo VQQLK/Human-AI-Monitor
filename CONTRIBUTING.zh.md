@@ -36,7 +36,7 @@
 ### 4. 改进分类器
 
 LLM的提示信息位于src/config/prompts.ts：
-- CLASSIFY_PROMPT — 所有12个轴线（7个AI + 6个人类）的统一提示
+- CLASSIFY_PROMPT — 所有13个轴 (12+1) 的统一提示
 - 模型：Qwen 3（通过Cloudflare Workers AI）
 
 ### 5. 编写代码
@@ -76,11 +76,11 @@ LLM的提示信息位于src/config/prompts.ts：
     │   ├── services/
     │   │   └── gap-computation.ts      # 差距指数计算
     │   └── config/
-    │       ├── axes.ts                 # 12个轴线列表
+    │       ├── axes.ts                 # 13个轴 (12+1) 列表
     │       ├── prompts.ts              # LLM提示
     │       └── generated/              # YAML生成的类型
     ├── config/
-    │   ├── axes_ai.yaml                # 7个AI轴线
+    │   ├── axes_ai.yaml                # 6个AI轴 + 1个地缘政治元层
     │   ├── axes_human.yaml             # 6个人类轴线
     │   ├── sources_ai.yaml             # 21个AI源（20个活跃）
     │   └── sources_human.yaml          # 15个人类源（11个活跃）

@@ -6,7 +6,7 @@ English-only by convention: agents read this file; humans read README.md.
 ## What this project is
 
 Human–AI Monitor: a weekly-protocol system tracking AI vs. Humanity
-development across 12 symmetric axes + geopolitics. Built on Cloudflare
+development across 13 axes (12+1): 6 AI + 6 Humanity + 1 Geopolitical meta-layer. Built on Cloudflare
 Workers (TypeScript), D1, and Workers AI (open-weight Qwen 3).
 Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
 
