@@ -4,7 +4,7 @@
 **Дата:** 27 сентября 2026  
 **Статус:** рабочий документ, открыт для рецензирования
 
-**Language:** [🇬🇧 English](methodology.md)
+**Language:** [🇬🇧 English](methodology.md) | [🇨🇳 中文](methodology.zh.md)
 ---
 
 ## 1. Зачем нужна методология

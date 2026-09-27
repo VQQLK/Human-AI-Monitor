@@ -3,7 +3,7 @@
 **Version:** 1.0.1  
 **Date:** September 27, 2026  
 **Status:** working document, open for review  
-**Language:** [🇷🇺 Русский](methodology.ru.md)
+**Language:** [🇷🇺 Русский](methodology.ru.md) | [🇨🇳 中文](methodology.zh.md)
 
 ---
 
