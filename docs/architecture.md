@@ -1,9 +1,9 @@
 # Human–AI Monitor Architecture
 
-**Version:** 0.2.0  
-**Date:** September 18, 2026  
-**Status:** working document  
-**Language:** [🇷🇺 Русский](architecture.ru.md)
+**Version:** 1.0.1  
+**Date:** September 27, 2026  
+**Status:** working document, open for review  
+**Language:** [🇷🇺 Русский](architecture.ru.md) | [🇨🇳 中文](architecture.zh.md)
 
 ---
 
@@ -165,6 +165,45 @@ Stored in **Cloudflare Secrets** (not in code):
 
 ## 5. Deployment
 
+### 5.1. Local
+
+```bash
+git clone https://github.com/VQQLK/Human-AI-Monitor.git
+cd Human-AI-Monitor
+npm install
+cp .env.example .env
+# Add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID to .env
+npx wrangler deploy --dry-run
+```
+
+### 5.2. Production
+
+```bash
+# Apply migrations
+npx wrangler d1 migrations apply human-ai-monitor-db --remote
+
+# Deploy Worker
+npx wrangler deploy
+```
+
+### 5.3. Cron Trigger
+
+Configured in `wrangler.jsonc`:
+
+```jsonc
+"triggers": {
+  "crons": [
+    "0 13 * * *",
+    "15 13 * * *",
+    "30 13 * * *",
+    "45 13 * * *",
+    "0 23 * * *"
+  ]
+}
+```
+
+Runs 5 batches daily: 13:00, 13:15, 13:30, 13:45, 23:00 UTC.
+
 ## 6. Protocol Synchronization
 
 ### 6.1. Generation vs Visibility
@@ -198,67 +237,40 @@ The workflow:
 gh workflow run sync-protocols.yml
 ```
 
-### 5.1. Local
 
-```bash
-git clone https://github.com/VQQLK/Human-AI-Monitor.git
-cd Human-AI-Monitor
-npm install
-cp .env.example .env
-# Add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID to .env
-npx wrangler deploy --dry-run
-5.2. Production
-bash
-# Apply migrations
-npx wrangler d1 migrations apply human-ai-monitor-db --remote
+## 7. Scaling
 
-# Deploy Worker
-npx wrangler deploy
-5.3. Cron Trigger
-Configured in wrangler.jsonc:
-
-jsonc
-"triggers": {
-  "crons": [
-    "0 13 * * *",
-    "15 13 * * *",
-    "30 13 * * *",
-    "45 13 * * *",
-    "0 23 * * *"
-  ]
-}
-Runs 5 batches daily: 13:00, 13:15, 13:30, 13:45, 23:00 UTC.
-
-6. Scaling
-6.1. By Load
-Resource	Free tier	On excess
-Workers	100K requests/day	$5/month per 10M
-D1	5 GB, 5M reads/day	$0.75/GB
-Workers AI	10K neurons/day	$0.011 per 1K neurons
+### 7.1. By Load
+| Resource | Free tier | On excess |
+|----------|-----------|-----------|
+| Workers | 100K requests/day | $5/month per 10M |
+| D1 | 5 GB, 5M reads/day | $0.75/GB |
+| Workers AI | 10K neurons/day | $0.011 per 1K neurons |
 At launch — everything fits within the Free tier.
 
-6.2. By Geography
+### 7.2. By Geography
 Cloudflare has 300+ edge locations.
 
 Worker runs closer to the user.
 
 D1 has regional replicas.
 
-6.3. By Sources
+### 7.3. By Sources
 Adding a source — one line in the SOURCES array.
 
 Scaling collection — parallel fetch calls.
 
 Scaling classification — Workers AI handles bursts automatically.
 
-7. Alternatives (for comparison)
-Component	Our choice	Alternatives	Why our choice
-Runtime	Cloudflare Workers	AWS Lambda, Vercel	Zero cold start, global edge
-DB	D1	Postgres, MongoDB	Serverless, free, integrated
-LLM	Workers AI (Qwen 3)	OpenAI, Anthropic	Open-weight, free tier, no external
-Frontend	SvelteKit + Pages	Next.js, Astro	Lightweight, static export
-CI/CD	GitHub Actions	CircleCI	Free, integrated with repo
-8. Limitations
+## 8. Alternatives (for comparison)
+| Component | Our choice | Alternatives | Why our choice |
+|-----------|-----------|--------------|----------------|
+| Runtime | Cloudflare Workers | AWS Lambda, Vercel | Zero cold start, global edge |
+| DB | D1 | Postgres, MongoDB | Serverless, free, integrated |
+| LLM | Workers AI (Qwen 3) | OpenAI, Anthropic | Open-weight, free tier, no external |
+| Frontend | SvelteKit + Pages | Next.js, Astro | Lightweight, static export |
+| CI/CD | GitHub Actions | CircleCI | Free, integrated with repo |
+## 9. Limitations
 No rate limiting. Cloudflare's rate limiting binding is experimental and not available on the Free tier. Mitigation: parameter validation (text <= 1000 chars).
 
 RSS-only collection. HTML parsing not implemented yet. Some sources without RSS are inaccessible.
@@ -269,7 +281,7 @@ No automatic backups. Planned: weekly export of D1 to R2.
 
 Monolithic src/index.ts. Refactoring into modules is in the roadmap.
 
-9. Roadmap
+## 10. Roadmap
 □ Refactoring: split src/index.ts into 7 modules.
 □ Real test coverage (parser, classifier, protocol).
 □ Android APK (PWA + Capacitor).
@@ -280,7 +292,7 @@ Monolithic src/index.ts. Refactoring into modules is in the roadmap.
 □ Integration with global indices (V-Dem, WHR, Pew).
 □ Decentralized mirror (IPFS).
 □ Independent methodology audit.
-10. Invitation
+## 11. Invitation
 The architecture is open for improvement. If you see how to make it better — open an Issue or Pull Request.
 
 Together — We Are Strong. The road will be mastered by the one who walks it.
