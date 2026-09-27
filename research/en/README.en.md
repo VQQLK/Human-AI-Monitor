@@ -78,13 +78,13 @@ The main shift of the September 7–17, 2026 period:
 2. WAICO (China, Russia, 29+ countries) — institutional acceleration, own standards.
 3. "Open market" (Meta, Nvidia, Trump) — against coordination, for superiority.
 
-This is not an axis, but a meta-context affecting all 12 axes.
+This is not an axis, but a meta-context affecting all 13 axes (12+1).
 
 ---
 
 ## Methodology
 
-See docs/methodology.md — full description of 12 axes and Gap Index.
+See docs/methodology.md — full description of 13 axes (12+1) and Gap Index.
 
 Key principles:
 - Transparency: all prompts and sources are open.

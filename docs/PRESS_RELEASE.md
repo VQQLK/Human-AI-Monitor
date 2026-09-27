@@ -28,7 +28,7 @@ itself in this process.
 
 ### The solution
 
-Human–AI Monitor tracks 12 axes:
+Human–AI Monitor tracks 13 axes (12+1):
 
 6 AI axes (RSI):
 1. Self-Modification Depth

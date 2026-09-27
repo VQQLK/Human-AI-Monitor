@@ -1,5 +1,15 @@
 # Changelog
 
+## [Unreleased] — BREAKING
+
+### Changed
+- **Axis structure:** 13 axes now formally = 12 symmetric (6 AI + 6 Human) + 1 meta (Geopolitics). Previously Geopolitics was counted as 7th AI axis, biasing AI_score upward.
+- **Gap Index formula:** AI_score and Human_score now computed as simple means over 6 axes each. Geopolitics is measured and published but excluded from both scores.
+- **Gap thresholds:** three-level scheme ±0.1 (noise) and ±0.3 (significant).
+- **All protocols recalculated** under the new formula (project not yet public — no compatibility concerns).
+- **Classifier prompt:** rule updated from "NEVER return all 7" to "NEVER return all axes".
+
+
 > **Languages:** [🇺🇸 English](CHANGELOG.md) • [🇷🇺 Русский](CHANGELOG.ru.md) • [🇨🇳 中文](CHANGELOG.zh.md)
 
 All notable changes to Human-AI Monitor will be documented in this file.

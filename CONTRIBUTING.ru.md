@@ -36,7 +36,7 @@
 ### 4. Улучшить классификатор
 
 Промпты для LLM находятся в src/config/prompts.ts:
-- CLASSIFY_PROMPT — единый промпт для всех 12 осей (7 AI + 6 Human)
+- CLASSIFY_PROMPT — единый промпт для всех 13 осей (12+1)
 - Модель: Qwen 3 (через Cloudflare Workers AI)
 
 ### 5. Написать код
@@ -76,11 +76,11 @@
     │   ├── services/
     │   │   └── gap-computation.ts      # Вычисление Индекса разрыва
     │   └── config/
-    │       ├── axes.ts                 # Список 12 осей
+    │       ├── axes.ts                 # Список 13 осей (12+1)
     │       ├── prompts.ts              # Промпты LLM
     │       └── generated/              # Типы из YAML
     ├── config/
-    │   ├── axes_ai.yaml                # 7 осей ИИ
+    │   ├── axes_ai.yaml                # 6 осей ИИ + 1 Geo meta
     │   ├── axes_human.yaml             # 6 человеческих осей
     │   ├── sources_ai.yaml             # 21 источник ИИ (20 активных)
     │   └── sources_human.yaml          # 15 источников человека (11 активных)

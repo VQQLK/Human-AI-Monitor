@@ -220,11 +220,9 @@ an attempt to fill that gap.
 
 ## What is this
 
-`human-ai-monitor` is a weekly protocol that tracks **12 symmetric axes** 
-plus **geopolitics** as a meta-layer:
+`human-ai-monitor` is a weekly protocol that tracks **13 axes (12+1)**:
 
-**6 symmetric AI axes (RSI — Recursive Self-Improvement)** plus 
-**geopolitics** (meta-layer):
+**6 AI axes (RSI — Recursive Self-Improvement):**
 
 - **SMD** — Self-Modification Depth
 - **ITQ** — Improvement Trajectory Quality
@@ -232,7 +230,10 @@ plus **geopolitics** as a meta-layer:
 - **Cycle Velocity** — Speed of improvement cycles
 - **Verification** — Verification hierarchy
 - **Hexad** — Phase transition detection
-- **Geopolitics** — AI governance blocs (meta-layer)
+
+**1 Geopolitical meta-layer (measured, NOT in AI_score/Human_score):**
+
+- **Geopolitics** — AI governance blocs, WAICO, export controls
 
 **6 Humanity axes (HHI — Human Horizon Index):**
 
@@ -276,7 +277,7 @@ misaligned goals.
 This tool does three things:
 
 1. **Collects** open data from RSS, arXiv, news sources.
-2. **Classifies** it along 12 axes using LLMs.
+2. **Classifies** it along 13 axes (12+1) using LLMs.
 3. **Publishes** a weekly protocol and Gap Index — free, open, 
    reproducible.
 
@@ -350,8 +351,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ✅ Cloudflare Worker with 20 API endpoints — deployed
 - ✅ `/verify` endpoint — CheatBench-inspired reward hacking detection
 - ✅ D1 database (4 tables, populated)
-- ✅ Workers AI classifier (Qwen 3, calibrated for 12 symmetric axes + 
-  geopolitics)
+- ✅ Workers AI classifier (Qwen 3, calibrated for 13 axes (12+1))
 - ✅ RSS + HTML collector (41 sources from 47 configured: 25 AI + 16 Human)
 - ✅ Weekly protocol auto-generation (Markdown, EN/RU/ZH)
 - ✅ Interim/Final protocol split (Friday draft → Monday final)
@@ -384,9 +384,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ⚠️ `shift` field may over-trigger on general news
 - ⚠️ 6 sources disabled (VentureBeat 429, Nature 303, Lancet 403, Benton 404, V-Dem 404, ILO 404)
 - ⚠️ OECD and Edelman use Google News RSS as fallback (news *about* topics, not official press releases)
-- ⚠️ Methodological asymmetry: code implements 13 axes (7 AI + 6 Human). 
-  The 12 symmetric axes are the core; `geopolitics` is a meta-layer 
-  documented separately in `docs/methodology.md`.
+- ⚠️ Methodological structure: 13 axes (12+1) = 6 AI (RSI) + 6 Humanity (HHI) + 1 Geopolitical meta-layer. Geopolitics is measured and published but **NOT included** in AI_score or Human_score.
 
 ---
 

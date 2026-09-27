@@ -12,7 +12,7 @@ export const getAIPrompt = (today: string) => [
   "agg=autonomous goals, cycle_velocity=speed, verification=audit,",
   "hexad=phase transition, geopolitics=AI governance.",
   "RULES:",
-  "1. Select 1-3 MOST relevant axes. NEVER return all 7.",
+  "1. Select 1-3 MOST relevant axes. NEVER return all axes.",
   "2. If nothing fits, return empty array [].",
   "3. shift=yes ONLY if a threshold is empirically confirmed.",
   "4. A general news item is NOT a threshold shift.",

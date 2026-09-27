@@ -1,14 +1,14 @@
 # Human–AI Monitor: A Brief for Mathematicians
 
 **Version:** 1.0.1  
-**Date:** September 25, 2026  
-**Language:** [🇷🇺 Русский](math_brief.ru.md)
+**Date:** September 27, 2026  
+**Language:** [🇷🇺 Русский](math_brief.ru.md) | [🇨🇳 中文](math_brief.zh.md)
 
 ---
 
 ## 1. The Project in One Paragraph
 
-We are building an **open monitoring system** that simultaneously tracks the development of artificial intelligence (7 axes) and the state of Humanity (6 axes), computes a **Gap Index** — a quantitative measure of divergence between them — and publishes weekly protocols. This is not journalism, and not forecasting. It is an **attempt to operationalize a question that has remained rhetorical**: is singularity arriving, and what is happening to Humanity in the process?
+We are building an **open monitoring system** that simultaneously tracks the development of artificial intelligence (6 axes) and the state of Humanity (6 axes), plus one geopolitical meta-layer, computes a **Gap Index** — a quantitative measure of divergence between them — and publishes weekly protocols. This is not journalism, and not forecasting. It is an **attempt to operationalize a question that has remained rhetorical**: is singularity arriving, and what is happening to Humanity in the process?
 
 As of September 25, 2026, the system has completed its **first fully autonomous daily cycle** — 4 batches collected 33 items from 17 sources, classifier processed them, and an interim protocol for the current week was generated without human intervention.
 
@@ -26,9 +26,14 @@ As of September 25, 2026, the system has completed its **first fully autonomous 
 | Cycle Velocity | Cycle speed (doubling time) | <2 months + completion rate >50% |
 | Verification | Verification hierarchy | False positive rate <5% without oversight |
 | Hexad | Phase transition detection (MMD) | Sustained exceedance in 2+ systems |
-| **Geopolitics** | AI governance, state policy | Major treaty / export control / national strategy |
 
-> **Methodological asymmetry:** |A| = 7 ≠ 6 = |H|. The `geopolitics` axis is treated as a **meta-layer**, not a symmetric axis (documented in `docs/methodology.md`).
+### 2.1b. Geopolitical Axis (meta-layer)
+
+| Symbol | What Is Measured | Threshold for Reassessment |
+|--------|------------------|----------------------------|
+| Geopolitics | AI governance, state policy | Major treaty / export control / national strategy |
+
+> **Methodological symmetry:** |A| = 6 = |H|. The `geopolitics` axis is a **meta-layer** — measured and published, but **NOT included** in AI_score or Human_score (documented in `docs/methodology.md`).
 
 ### 2.2. Humanity Axes (HHI)
 
@@ -70,7 +75,7 @@ This gives the model **full sensitivity** to threshold shifts and directional tr
 
 AI-score and Human-score are plain arithmetic means over their respective axis sets:
 
-    AI_score    = (1/|A|) · Σ_{a∈A} ℓ(a)  = (1/7) · Σ_{a∈A} ℓ(a)
+    AI_score    = (1/|A|) · Σ_{a∈A} ℓ(a)  = (1/6) · Σ_{a∈A} ℓ(a)
     Human_score = (1/|H|) · Σ_{a∈H} ℓ(a)  = (1/6) · Σ_{a∈H} ℓ(a)
 
 **Normalization property:** both metrics lie in [0, 1] as means of values from [0,1].
@@ -118,13 +123,13 @@ where:
 
 ### 3.1. Formalizing the Unformalizable
 
-Singularity is a concept that has so far been defined **literarily** (Vinge, Good, Altman). We propose a **measurable structure**: 7 AI axes + 6 Human axes with explicit thresholds, each **falsifiable**.
+Singularity is a concept that has so far been defined **literarily** (Vinge, Good, Altman). We propose a **measurable structure**: 6 AI axes + 6 Human axes + 1 meta-axis (Geopolitics) with explicit thresholds, each **falsifiable**.
 
 This is an attempt to turn **speculation into hypothesis**, and hypothesis into **observable quantity**.
 
 ### 3.2. AI ↔ Human Symmetry
 
-The 13 axes form an **almost-symmetric structure**: 7 parameters describing the **artificial**, 6 describing the **human**. The asymmetry (`geopolitics` as meta-layer) is a conscious design choice. The symmetry hypothesis remains: **AI development and Humanity's development are linked**, and the gap between them is the key variable.
+The 13 axes form a **symmetric structure**: 6 parameters describing the **artificial** (AI), 6 describing the **human** (Humanity), plus **1 meta-layer** (`geopolitics`). The meta-layer is measured and published separately and does **NOT** enter AI_score or Human_score. The symmetry hypothesis remains: **AI development and Humanity's development are linked**, and the gap between them is the key variable.
 
 ### 3.3. Open Mathematical Problems
 

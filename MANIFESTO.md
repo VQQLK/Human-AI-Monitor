@@ -22,7 +22,7 @@ Not to blame anyone.
 
 But to **see clearly**.
 
-12 axes. 6 for AI. 6 for Humanity.
+13 axes (12+1). 6 for AI. 6 for Humanity. 1 Geopolitical meta-layer.
 Gap Index — the gap between them.
 
 If AI grows while Humanity does not, this is not singularity.

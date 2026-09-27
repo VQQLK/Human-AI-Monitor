@@ -18,7 +18,8 @@ const DIR_MULT: { [k: string]: number } = {
   'up': 1.2, 'down': 0.8, 'stable': 1.0, 'uncertain': 1.0
 };
 
-const AI_AXES = ['smd', 'itq', 'agg', 'cycle_velocity', 'verification', 'hexad', 'geopolitics'];
+const AI_AXES = ['smd', 'itq', 'agg', 'cycle_velocity', 'verification', 'hexad'];
+const META_AXES = ['geopolitics'];
 const HUMAN_AXES = ['h1_agency', 'h2_sovereignty', 'h3_wellbeing', 'h4_equity', 'h5_meaning', 'h6_democracy'];
 
 function computeAxisLevel(signals: any[]): number {
@@ -50,7 +51,7 @@ export async function computeGapIndex(env: Env, range: any): Promise<GapResult> 
   }
 
   const axisLevels: { [k: string]: number } = {};
-  for (const a of [...AI_AXES, ...HUMAN_AXES]) {
+  for (const a of [...AI_AXES, ...HUMAN_AXES, ...META_AXES]) {
     axisLevels[a] = computeAxisLevel(buckets[a] || []);
   }
 

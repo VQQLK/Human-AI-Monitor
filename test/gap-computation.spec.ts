@@ -40,9 +40,9 @@ describe("computeGapIndex", () => {
 		// smd: 0.8 * 1.5 * 1.2 = 1.44 → clamped to 1
 		// itq: 0.9 * 0.5 * 1.0 = 0.45
 		// avg AI: (1 + 0.45 + 0 + 0 + 0 + 0 + 0) / 7 = 0.207... → rounds to 0.21
-		expect(result.aiScore).toBeCloseTo(0.21, 2);
+		expect(result.aiScore).toBeCloseTo(0.24, 2);
 		expect(result.humanScore).toBe(0);
-		expect(result.gap).toBeCloseTo(0.21, 2);
+		expect(result.gap).toBeCloseTo(0.24, 2);
 		expect(result.interpretation).toBe("AI is ahead");
 	});
 
@@ -81,9 +81,9 @@ describe("computeGapIndex", () => {
 		// h1_agency: 0.5 * 0.5 * 1.0 = 0.25
 		// avg Human: (0.25 + 0 + 0 + 0 + 0 + 0) / 6 = 0.0416...
 		// gap: 0.2857... - 0.0416... = 0.244... → rounds to 0.24
-		expect(result.aiScore).toBeCloseTo(0.29, 2);
+		expect(result.aiScore).toBeCloseTo(0.33, 2);
 		expect(result.humanScore).toBeCloseTo(0.04, 2);
-		expect(result.gap).toBeCloseTo(0.24, 2);
+		expect(result.gap).toBeCloseTo(0.29, 2);
 	});
 
 	it("skips items with invalid JSON in axes", async () => {
@@ -100,7 +100,7 @@ describe("computeGapIndex", () => {
 		// Only first item should be processed
 		// smd: 0.8 * 1.5 * 1.2 = 1.44 → clamped to 1
 		// avg AI: (1 + 0 + 0 + 0 + 0 + 0 + 0) / 7 = 0.142... → rounds to 0.14
-		expect(result.aiScore).toBeCloseTo(0.14, 2);
+		expect(result.aiScore).toBeCloseTo(0.17, 2);
 	});
 
 	it("returns correct interpretation for all gap ranges", async () => {
@@ -119,7 +119,7 @@ describe("computeGapIndex", () => {
 			const items = [];
 			
 			// Добавляем AI сигналы
-			for (const axis of ['smd', 'itq', 'agg', 'cycle_velocity', 'verification', 'hexad', 'geopolitics']) {
+			for (const axis of ['smd', 'itq', 'agg', 'cycle_velocity', 'verification', 'hexad']) {
 				items.push({
 					axes: `["${axis}"]`,
 					relevance: aiTarget,

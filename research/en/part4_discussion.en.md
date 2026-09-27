@@ -185,7 +185,7 @@ Facts:
 
 ### 6.3.4. Significance for the Project
 
-Three polar worlds are not an axis, but a meta-context affecting all 12 axes:
+Three polar worlds are not an axis, but a meta-context affecting all 13 axes (12+1):
 - Axis 4 (Cycle Velocity): three poles = three vectors of acceleration/deceleration.
 - Axis 5 (Verification): fragmentation of standards = impossibility of unified verification.
 - H6 (Democracy): absence of a unified control center.
