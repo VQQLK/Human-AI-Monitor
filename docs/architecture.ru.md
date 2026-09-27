@@ -68,13 +68,13 @@ Human–AI Monitor построен на **децентрализованной 
 - `items` — классифицированные сигналы (hash, title, url, axes JSON, relevance, shift, direction, reasoning).
 - `protocols` — метаданные еженедельных протоколов + содержимое в Markdown.
 - `gap_history` — динамика Gap Index.
-- `index_history` — значения 12 осей во времени.
+- `index_history` — значения 13 осей (12+1) во времени.
 
 **Binding:** `DB` (в `wrangler.jsonc`).
 
 ### 2.3. Cloudflare Workers AI — классификатор
 
-**Роль:** Классификация сигналов по 12 осям.
+**Роль:** Классификация сигналов по 13 осям (12+1).
 
 **Модель:** `@cf/qwen/qwen3-30b-a3b-fp8` (open-weight, архитектура MoE).
 

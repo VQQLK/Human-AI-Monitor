@@ -65,13 +65,13 @@ Human–AI Monitor is built on a **decentralized Cloudflare infrastructure** —
 - `items` — classified signals (hash, title, url, axes JSON, relevance, shift, direction, reasoning).
 - `protocols` — weekly protocol metadata + Markdown content.
 - `gap_history` — Gap Index dynamics.
-- `index_history` — values of 12 axes over time.
+- `index_history` — values of 13 axes (12+1) over time.
 
 **Binding:** `DB` (in `wrangler.jsonc`).
 
 ### 2.3. Cloudflare Workers AI — classifier
 
-**Role:** Classification of signals along 12 axes.
+**Role:** Classification of signals along 13 axes (12+1).
 
 **Model:** `@cf/qwen/qwen3-30b-a3b-fp8` (open-weight, MoE architecture).
 

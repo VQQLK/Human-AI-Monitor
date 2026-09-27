@@ -68,13 +68,13 @@ Human–AI Monitor 构建在**去中心化的 Cloudflare 基础设施**之上—
 - `items` — 分类后的信号（hash、title、url、axes JSON、relevance、shift、direction、reasoning）。
 - `protocols` — 每周协议元数据 + Markdown 内容。
 - `gap_history` — Gap Index 动态。
-- `index_history` — 12 个轴的时间序列值。
+- `index_history` — 13 个轴 (12+1) 的时间序列值。
 
 **Binding：** `DB`（在 `wrangler.jsonc` 中）。
 
 ### 2.3. Cloudflare Workers AI — 分类器
 
-**作用：** 沿 12 个轴对信号分类。
+**作用：** 沿 13 个轴 (12+1) 对信号分类。
 
 **模型：** `@cf/qwen/qwen3-30b-a3b-fp8`（开放权重，MoE 架构）。
 
