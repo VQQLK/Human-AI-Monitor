@@ -20,7 +20,7 @@ def read(p):   return pathlib.Path(p).read_text(encoding="utf-8")
 
 READMES = ["README.md", "README.ru.md", "README.zh.md"]
 CHANGELOGS = {"CHANGELOG.md": "[Unreleased]",
-              "CHANGELOG.ru.md": "[Неопубликовано]",
+              "CHANGELOG.ru.md": "[Unreleased]",
               "CHANGELOG.zh.md": "[未发布]"}
 COC = ["CODE_OF_CONDUCT.md", "CODE_OF_CONDUCT.ru.md", "CODE_OF_CONDUCT.zh.md"]
 
@@ -90,10 +90,12 @@ for f in CHANGELOGS:
     secs = changelog_sections(read(ROOT / f))
     sec_counts[f] = len(secs)
     lead = [s for s in secs if s["titles"] > 0]
-    if not lead:
+    versioned = [s for s in lead if re.search(r"\[\d+\.\d+\.\d+\]", s["header"])]
+    ref = versioned[0] if versioned else (lead[0] if lead else None)
+    if ref is None:
         fail(f"CHANGELOG {f}: нет непустых секций")
         continue
-    fps[f] = (lead[0]["titles"], lead[0]["h3"], lead[0]["header"])
+    fps[f] = (ref["titles"], ref["h3"], ref["header"])
 
 if len(fps) == 3:
     vals = {v[:2] for v in fps.values()}
@@ -137,7 +139,7 @@ else:
 # ---------- 4b. docs/: EN+RU по дизайну (AGENTS.md rule 3) ----------
 docs_gap = []
 for d in sorted((ROOT / "docs").glob("*.md")):
-    if d.name.endswith(".ru.md"):
+    if d.name.endswith(".ru.md") or d.name.endswith(".zh.md"):
         continue
     ru = d.with_name(d.stem + ".ru.md")
     if not ru.exists() or ru.stat().st_size == 0:
