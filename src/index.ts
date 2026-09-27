@@ -622,7 +622,7 @@ export default {
 		const json = (data: unknown, status: number) =>
 			new Response(JSON.stringify(data, null, 2), {
 				status,
-				headers: { "Content-Type": "application/json; charset=utf-8", ...CORS },
+				headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0", ...CORS },
 			});
 		if (request.method === "OPTIONS") return new Response(null, { headers: CORS });
 
