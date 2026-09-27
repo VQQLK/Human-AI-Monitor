@@ -1,7 +1,7 @@
 # Human–AI Monitor Methodology
 
-**Version:** 0.1.0  
-**Date:** September 17, 2026  
+**Version:** 1.0.1  
+**Date:** September 27, 2026  
 **Status:** working document, open for review  
 **Language:** [🇷🇺 Русский](methodology.ru.md)
 
