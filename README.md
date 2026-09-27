@@ -62,51 +62,7 @@ AI and Humanity are in a state of **symmetric development**. Technology is advan
 **🎯 Critical Point:**
 The first confirmed incidents involving autonomous AI agents require immediate attention to safety and regulatory frameworks.
 
----
 
-
-
-
-### 🔥 Key Trends This Week | Главные тренды недели | 本周主要趋势
-
-#### 🤖 Artificial Intelligence | Искусственный интеллект | 人工智能
-- **Self-modification (smd):** Research on reward hacking in autonomous agents highlights growing risks.
-- **Improvement trajectory (itq):** Progress in diffusion models and multi-LLM inference.
-- **Geopolitics:** Sam Altman's UN Security Council remarks on AI safety and international cooperation.
-- **Critical event:** First confirmed security breach by an autonomous AI agent.
-
-#### 🌐 Humanity | Человечество | 人类
-- **Democracy (h6):** Court rulings reinforce electoral integrity, though transparency questions remain.
-- **Sovereignty (h2):** Diplomatic efforts continue amidst underlying tensions.
-- **Equity (h4):** Restoration of press access and discussions on infrastructure policies.
-
----
-
-### 📈 Monthly Dynamics | Динамика за месяц | 月度动态
-
-| Axis / Ось / 轴线 | Change / Изменение / 变化 | Comment / Комментарий / 评论 |
-|:---|:---:|:---|
-| **smd** (Self-modification) | 📊 Active | Growing risks of reward mechanism exploitation |
-| **itq** (Improvement trajectory) | 📈 Rising | New architectures accelerate development |
-| **geopolitics** | ⚠️ Tension | Trade disputes and AI security concerns |
-| **h6_democracy** | 🔄 Mixed | Institutional integrity vs. transparency |
-
----
-
-### 💡 Key Takeaways | Краткие выводы | 关键要点
-
-**🔬 Scientific Consensus:**
-> All participants in the discourse agree that something fundamental is happening — but disagree on almost everything else.
-
-**⚖️ Balance of Power:**
-AI and Humanity are in a state of **symmetric development**. Technology is advancing rapidly, but social institutions demonstrate resilience and adaptability.
-
-**🎯 Critical Point:**
-The first confirmed incidents involving autonomous AI agents require immediate attention to safety and regulatory frameworks.
-
----
-
----
 
 ## Voices
 
