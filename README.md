@@ -13,28 +13,27 @@ and Humanity.**
 
 <div align="center">
 
-| Metric | Value | Trend (vs Prev. Week) |
+| Metric | Value | Trend (vs 09-20) |
 |:---|:---:|:---:|
-| **AI Score** | 🤖 **0.55** | 📈 +0.00 |
-| **Humanity Score** | 🌐 **0.53** | 📈 +0.00 |
-| **Gap Index** | ⚖️ **+0.02** | ➡️ +0.00 |
-| **Threshold Shifts** | ⚡ **5** | 🔺 +2 |
-| **Items Analyzed** | 📈 **181** | 🔺 +15 |
+| **AI Score** | 🤖 **0.55** | 📉 -0.09 |
+| **Humanity Score** | 🌐 **0.53** | 📉 -0.22 |
+| **Gap Index** | ⚖️ **+0.02** | 📈 +0.13 |
+| **Threshold Shifts** | ⚡ **5** | 🔺 +4 |
+| **Items Analyzed** | 📈 **181** | 🔺 +157 |
 
 </div>
 
 #### 📈 Score Dynamics (Humanity vs AI)
 
-> 📌 **Asterisk (*)** marks **actual verified data**. Points after 09-27 are target forecasts.  
-> ⚠️ *Note: GitHub's Mermaid engine renders lines as solid by default. The first line is typically blue/green (Humanity), the second is orange/red (AI).*
+> 📌 Asterisk (*) marks actual verified data. Points after 09-20 are target forecasts. First line (higher on the chart) - Humanity, second line (lower on the chart) - AI.
 
 ```mermaid
 xychart-beta
     title "Humanity vs AI Scores"
-    x-axis ["09-27*", "09-27*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
+    x-axis ["09-20*", "09-27*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
     y-axis "Score" 0.40 --> 0.80
-    line [0.53, 0.53, 0.54, 0.55, 0.57, 0.58, 0.59, 0.6, 0.61, 0.63, 0.64, 0.65, 0.66, 0.67]
-    line [0.55, 0.55, 0.57, 0.58, 0.6, 0.61, 0.62, 0.64, 0.66, 0.67, 0.69, 0.7, 0.72, 0.73]
+    line [0.75, 0.53, 0.54, 0.55, 0.57, 0.58, 0.59, 0.6, 0.61, 0.63, 0.64, 0.65, 0.66, 0.67]
+    line [0.64, 0.55, 0.57, 0.58, 0.6, 0.61, 0.62, 0.64, 0.66, 0.67, 0.69, 0.7, 0.72, 0.73]
 ```
 
 #### 📉 Gap Index Dynamics (AI minus Humanity)
@@ -42,9 +41,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index Dynamics"
-    x-axis ["09-27*", "09-27*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
-    y-axis "Gap" -0.05 --> 0.15
-    line [0.02, 0.02, 0.02, 0.03, 0.03, 0.03, 0.04, 0.04, 0.04, 0.04, 0.05, 0.05, 0.05, 0.06]
+    x-axis ["09-20*", "09-27*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
+    y-axis "Gap" -0.15 --> 0.15
+    line [-0.11, 0.02, 0.02, 0.03, 0.03, 0.03, 0.04, 0.04, 0.04, 0.04, 0.05, 0.05, 0.05, 0.06]
 ```
 
 ---
