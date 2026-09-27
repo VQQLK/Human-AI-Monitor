@@ -7,38 +7,35 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** September 27, 2026
+**Updated:** September 27, 2026  
+**Baseline:** First scientifically valid protocol based on 182 analyzed events from September 21-27, 2026.
 
 ### 🌍 Humanity–AI Gap Index
 
 <div align="center">
 
-| Metric | 09-20 (fact) | 09-27 (fact) | Trend |
-|:---|:---:|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.75** | 🌐 **0.53** | 📉 -0.22 |
-| **🔴 AI Score** | 🤖 **0.64** | 🤖 **0.55** | 📉 -0.09 |
-| **⚖️ Gap Index** | ⚖️ **-0.11** | ⚖️ **+0.02** | 📈 +0.13 |
-| **⚡ Threshold Shifts** | 1 | **5** | 🔺 +4 |
-| **📈 Items Analyzed** | 24 | **181** | 🔺 +157 |
+| Metric | Value (09-27) | Status |
+|:---|:---:|:---:|
+| **🟢 Humanity Score** | 🌐 **0.53** | Baseline established |
+| **🔴 AI Score** | 🤖 **0.55** | Baseline established |
+| **⚖️ Gap Index** | ⚖️ **+0.02** | Symmetric development |
+| **⚡ Threshold Shifts** | **5** | Critical events detected |
+| **📈 Items Analyzed** | **182** | Statistically valid sample |
 
 </div>
-
-> ⚠️ **CRITICAL EVENT: Lines crossed between 09-20 and 09-27.**  
-> On 09-20: 🟢 Humanity (0.75) was AHEAD of 🔴 AI (0.64) → Gap was **-0.11** (Humanity leading).  
-> On 09-27: 🔴 AI (0.55) is now AHEAD of 🟢 Humanity (0.53) → Gap is **+0.02** (Symmetric development).
 
 #### 📈 Score Dynamics (Humanity vs AI)
 
 > 📊 **Chart Legend:** 🟢 **Bars = Humanity** (solid columns) | 🔴 **Line = AI** (line on top of bars).  
-> 📌 Asterisk (*) marks actual verified data. Points after 09-27 are target forecasts.
+> 📌 Asterisk (*) marks the verified baseline data point. All subsequent points are target forecasts.
 
 ```mermaid
 xychart-beta
-    title "🟢 Humanity (bars) vs 🔴 AI (line) | 09-20* and 09-27* = verified"
-    x-axis ["09-20*", "09-27*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
+    title "🟢 Humanity (bars) vs 🔴 AI (line) | Baseline: 09-27* | Forecast: Oct+"
+    x-axis ["09-27*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"]
     y-axis "Score" 0.40 --> 0.80
-    bar [0.75, 0.53, 0.54, 0.55, 0.57, 0.58, 0.59, 0.6, 0.61, 0.63, 0.64, 0.65, 0.66, 0.67]
-    line [0.64, 0.55, 0.57, 0.58, 0.6, 0.61, 0.62, 0.64, 0.66, 0.67, 0.69, 0.7, 0.72, 0.73]
+    bar [0.53, 0.54, 0.55, 0.57, 0.58, 0.59, 0.6, 0.61, 0.63, 0.64, 0.65, 0.66]
+    line [0.55, 0.57, 0.58, 0.6, 0.61, 0.62, 0.64, 0.66, 0.67, 0.69, 0.7, 0.72]
 ```
 
 #### 📉 Gap Index Dynamics (AI minus Humanity)
@@ -46,9 +43,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index | Positive = AI leading, Negative = Humanity leading"
-    x-axis ["09-20*", "09-27*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
-    y-axis "Gap" -0.15 --> 0.15
-    line [-0.11, 0.02, 0.02, 0.03, 0.03, 0.03, 0.04, 0.04, 0.04, 0.04, 0.05, 0.05, 0.05, 0.06]
+    x-axis ["09-27*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"]
+    y-axis "Gap" -0.05 --> 0.15
+    line [0.02, 0.02, 0.03, 0.03, 0.03, 0.04, 0.04, 0.04, 0.04, 0.05, 0.05, 0.05]
 ```
 
 ---
