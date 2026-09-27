@@ -1,6 +1,6 @@
 # Part I. Introduction, Theoretical Foundations, and Methodology
 
-> **Languages:** [🇺🇸 English](part1_intro.md) • [🇷🇺 Русский](../ru/part1_intro.md) • [🇨🇳 中文](../zh/part1_intro.md)
+> **Languages:** [🇺🇸 English](part1_intro.en.md) • [🇷🇺 Русский](../ru/part1_intro.ru.md) • [🇨🇳 中文](../zh/part1_intro.zh.md)
 
 ## 1. Introduction: Problem Statement
 
@@ -123,4 +123,4 @@ Mixed design including:
 
 ---
 
-*Continued: [Part II](part2_empirical.md) — Empirical Base.*
+*Continued: [Part II](part2_empirical.en.md) — Empirical Base.*

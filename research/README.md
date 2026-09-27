@@ -19,11 +19,11 @@ the threshold from narrow autonomy to self-improvement and self-creation capabil
 **Status:** Published
 
 ### Parts
-- [Part I. Introduction, Theoretical Foundations, and Methodology](en/part1_intro.md)
-- [Part II. Empirical Analysis](en/part2_empirical.md)
-- [Part III. Evaluation Criteria](en/part3_criteria.md)
-- [Part IV. Discussion](en/part4_discussion.md)
-- [Part V. Conclusions](en/part5_conclusions.md)
+- [Part I. Introduction, Theoretical Foundations, and Methodology](en/part1_intro.en.md)
+- [Part II. Empirical Analysis](en/part2_empirical.en.md)
+- [Part III. Evaluation Criteria](en/part3_criteria.en.md)
+- [Part IV. Discussion](en/part4_discussion.en.md)
+- [Part V. Conclusions](en/part5_conclusions.en.md)
 
 ---
 
@@ -39,11 +39,11 @@ the threshold from narrow autonomy to self-improvement and self-creation capabil
 **Статус:** Опубликовано
 
 ### Части
-- [Часть I. Введение, теоретические основы и методология](ru/part1_intro.md)
-- [Часть II. Эмпирический анализ](ru/part2_empirical.md)
-- [Часть III. Критерии оценки](ru/part3_criteria.md)
-- [Часть IV. Обсуждение](ru/part4_discussion.md)
-- [Часть V. Выводы](ru/part5_conclusions.md)
+- [Часть I. Введение, теоретические основы и методология](ru/part1_intro.ru.md)
+- [Часть II. Эмпирический анализ](ru/part2_empirical.ru.md)
+- [Часть III. Критерии оценки](ru/part3_criteria.ru.md)
+- [Часть IV. Обсуждение](ru/part4_discussion.ru.md)
+- [Часть V. Выводы](ru/part5_conclusions.ru.md)
 
 ---
 
@@ -58,8 +58,8 @@ the threshold from narrow autonomy to self-improvement and self-creation capabil
 **状态:** 已发布
 
 ### 部分
-- [第一部分：介绍、理论基础和方法论](zh/part1_intro.md)
-- [第二部分：实证分析](zh/part2_empirical.md)
-- [第三部分：评估标准](zh/part3_criteria.md)
-- [第四部分：讨论](zh/part4_discussion.md)
-- [第五部分：结论](zh/part5_conclusions.md)
+- [第一部分：介绍、理论基础和方法论](zh/part1_intro.zh.md)
+- [第二部分：实证分析](zh/part2_empirical.zh.md)
+- [第三部分：评估标准](zh/part3_criteria.zh.md)
+- [第四部分：讨论](zh/part4_discussion.zh.md)
+- [第五部分：结论](zh/part5_conclusions.zh.md)

@@ -2,7 +2,7 @@
 
 # 第一部分：引言、理论基础与方法论
 
-> **语言:** [🇺🇸 English](../en/part1_intro.md) • [🇷🇺 Русский](../ru/part1_intro.md) • [🇨🇳 中文](part1_intro.md)
+> **语言:** [🇺🇸 English](../en/part1_intro.en.md) • [🇷🇺 Русский](../ru/part1_intro.ru.md) • [🇨🇳 中文](part1_intro.zh.md)
 
 ## 1. 引言：问题陈述
 
@@ -125,4 +125,4 @@ RSI的实证限制在于，大多数现代自我改进周期表现出快速的�
 
 ---
 
-*继续：[第二部分](part2_empirical.md) — 实证基础。*
+*继续：[第二部分](part2_empirical.zh.md) — 实证基础。*

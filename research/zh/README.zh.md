@@ -24,11 +24,11 @@
 
 | 部分 | 标题 | 内容 |
 |------|-------|---------|
-| [第I部分](part1_intro.md) | 引言、理论基础、方法论 | 问题陈述，奇点和RSI的定义，SAS量表 |
-| [第II部分](part2_empirical.md) | 实证基础 | 15个经验证据的自主AI行为 |
-| [第III部分](part3_criteria.md) | 与奇点标准的对应分析 | 四个标准，数学成就，差距指数 |
-| [第IV部分](part4_discussion.md) | 讨论 | 声称与实证，风险，三种极化世界 |
-| [第V部分](part5_conclusions.md) | 结论 | 研究问题的答案，发展方向 |
+| [第I部分](part1_intro.zh.md) | 引言、理论基础、方法论 | 问题陈述，奇点和RSI的定义，SAS量表 |
+| [第II部分](part2_empirical.zh.md) | 实证基础 | 15个经验证据的自主AI行为 |
+| [第III部分](part3_criteria.zh.md) | 与奇点标准的对应分析 | 四个标准，数学成就，差距指数 |
+| [第IV部分](part4_discussion.zh.md) | 讨论 | 声称与实证，风险，三种极化世界 |
+| [第V部分](part5_conclusions.zh.md) | 结论 | 研究问题的答案，发展方向 |
 
 ---
 

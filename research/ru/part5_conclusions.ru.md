@@ -1,6 +1,6 @@
 # Часть V. Выводы и заключение
 
-> **Языки:** [🇺🇸 English](../en/part5_conclusions.md) • [🇷🇺 Русский](part5_conclusions.md) • [🇨🇳 中文](../zh/part5_conclusions.md)
+> **Языки:** [🇺🇸 English](../en/part5_conclusions.en.md) • [🇷🇺 Русский](part5_conclusions.ru.md) • [🇨🇳 中文](../zh/part5_conclusions.zh.md)
 
 Данная часть завершает исследование, подводя итоги проведённого анализа, 
 формулируя ответы на поставленные исследовательские вопросы, определяя 

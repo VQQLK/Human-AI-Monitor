@@ -2,7 +2,7 @@
 
 # 第三部分：与奇点标准的对应分析
 
-> **语言:** [🇺🇸 English](../en/part3_criteria.md) • [🇷🇺 Русский](../ru/part3_criteria.md) • [🇨🇳 中文](part3_criteria.md)
+> **语言:** [🇺🇸 English](../en/part3_criteria.en.md) • [🇷🇺 Русский](../ru/part3_criteria.ru.md) • [🇨🇳 中文](part3_criteria.zh.md)
 
 本研究的这一部分对15个经过验证的自主AI代理行为案例（见第二部分）进行了系统评估，并补充了2026年AI数学成就的分析，以评估技术奇点的四个关键标准：(1) 递归性，(2) 超越人类，(3) 人类无法控制，(4) 自我创造。每个标准都通过"支持"和"反对"的论点进行分析，基于原始资料。
 
@@ -339,4 +339,4 @@ MetaRSI-v1系统中的RSI2 Agent-v1垂直重写每个操作符的自身提案策
 
 ---
 
-*继续：[第IV部分](part4_discussion.md) — 讨论。*
+*继续：[第IV部分](part4_discussion.zh.md) — 讨论。*

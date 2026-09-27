@@ -1,6 +1,6 @@
 # Часть I. Введение, теоретические основы и методология
 
-> **Языки:** [🇺🇸 English](../en/part1_intro.md) • [🇷🇺 Русский](part1_intro.md) • [🇨🇳 中文](../zh/part1_intro.md)
+> **Языки:** [🇺🇸 English](../en/part1_intro.en.md) • [🇷🇺 Русский](part1_intro.ru.md) • [🇨🇳 中文](../zh/part1_intro.zh.md)
 
 ## 1. Введение: Постановка проблемы
 
@@ -212,4 +212,4 @@ Mendel Gödel Machine).
 
 ---
 
-*Продолжение: [Часть II](part2_empirical.md) — Эмпирическая база.*
+*Продолжение: [Часть II](part2_empirical.ru.md) — Эмпирическая база.*

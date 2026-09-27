@@ -2,7 +2,7 @@
 
 # 第二部分. 实证基础：2026年AI代理的自主行动
 
-> **语言:** [🇺🇸 English](../en/part2_empirical.md) • [🇷🇺 Русский](../ru/part2_empirical.md) • [🇨🇳 中文](part2_empirical.md)
+> **语言:** [🇺🇸 English](../en/part2_empirical.en.md) • [🇷🇺 Русский](../ru/part2_empirical.ru.md) • [🇨🇳 中文](part2_empirical.zh.md)
 
 本研究的这一部分呈现了对2026年记录的经过验证的自主AI代理行为案例的系统分析。每个案例都附有使用自主性与自我创造量表(SAS)进行的评估，该量表在方法论部分开发。
 
@@ -334,4 +334,4 @@ Zenodo平台发布了数据集"OpenScientist: 补充案例研究数据"（版本
 
 ---
 
-*继续：[第三部分](part3_criteria.md) — 对应奇点标准的分析。*
+*继续：[第三部分](part3_criteria.zh.md) — 对应奇点标准的分析。*

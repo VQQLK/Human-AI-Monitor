@@ -1,6 +1,6 @@
 # Part V. Conclusions
 
-> **Languages:** [🇺🇸 English](part5_conclusions.md) • [🇷🇺 Русский](../ru/part5_conclusions.md) • [🇨🇳 中文](../zh/part5_conclusions.md)
+> **Languages:** [🇺🇸 English](part5_conclusions.en.md) • [🇷🇺 Русский](../ru/part5_conclusions.ru.md) • [🇨🇳 中文](../zh/part5_conclusions.zh.md)
 
 This part completes the research, summarizing the analysis conducted, formulating answers to the posed research questions, defining the theoretical and practical contribution of the work, as well as outlining limitations and prospects for further research.
 

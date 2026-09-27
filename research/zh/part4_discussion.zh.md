@@ -2,7 +2,7 @@
 
 # 第四部分 讨论：声明与实证、风险和三个极地世界
 
-> **语言:** [🇺🇸 English](../en/part4_discussion.md) • [🇷🇺 Русский](../ru/part4_discussion.md) • [🇨🇳 中文](part4_discussion.md)
+> **语言:** [🇺🇸 English](../en/part4_discussion.en.md) • [🇷🇺 Русский](../ru/part4_discussion.ru.md) • [🇨🇳 中文](part4_discussion.zh.md)
 
 本研究的这一部分对分析中揭示的关键矛盾进行了批判性讨论：技术领袖关于奇点到来的公开声明与未完全证实这些声明的实证数据之间的差距。我们将依次检查(1)声明及其背景，(2)实证反驳，(3)关键行为者的立场内部矛盾，(4)人工智能治理的三极世界形成，(5)风险与安全，(6)进一步研究的方向。
 
@@ -259,4 +259,4 @@ Andrew Sutherland（MIT）："数学家可能是许多其他职业的预警信�
 
 ---
 
-*继续：[第五部分](part5_conclusions.md) —— 结论。*
+*继续：[第五部分](part5_conclusions.zh.md) —— 结论。*

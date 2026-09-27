@@ -2,7 +2,7 @@
 
 # 第五部分 结论
 
-> **语言:** [🇺🇸 English](../en/part5_conclusions.md) • [🇷🇺 Русский](../ru/part5_conclusions.md) • [🇨🇳 中文](part5_conclusions.md)
+> **语言:** [🇺🇸 English](../en/part5_conclusions.en.md) • [🇷🇺 Русский](../ru/part5_conclusions.ru.md) • [🇨🇳 中文](part5_conclusions.zh.md)
 
 本部分完成研究，总结了所进行的分析，提出对提出的研究问题的回答，定义了工作的理论和实践贡献，以及概述了局限性和进一步研究的前景。
 

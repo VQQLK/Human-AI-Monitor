@@ -22,11 +22,11 @@ This research presents a comprehensive interdisciplinary analysis of empirical d
 
 | Part | Title | Content |
 |------|-------|---------|
-| [Part I](part1_intro.md) | Introduction, Theoretical Foundations, Methodology | Problem statement, definitions of singularity and RSI, SAS scale |
-| [Part II](part2_empirical.md) | Empirical Base | 15 verified cases of autonomous AI behavior |
-| [Part III](part3_criteria.md) | Analysis of Correspondence to Singularity Criteria | Four criteria, mathematical achievements, Gap Index |
-| [Part IV](part4_discussion.md) | Discussion | Declarations vs. empirics, risks, three polar worlds |
-| [Part V](part5_conclusions.md) | Conclusions | Answers to research questions, development directions |
+| [Part I](part1_intro.en.md) | Introduction, Theoretical Foundations, Methodology | Problem statement, definitions of singularity and RSI, SAS scale |
+| [Part II](part2_empirical.en.md) | Empirical Base | 15 verified cases of autonomous AI behavior |
+| [Part III](part3_criteria.en.md) | Analysis of Correspondence to Singularity Criteria | Four criteria, mathematical achievements, Gap Index |
+| [Part IV](part4_discussion.en.md) | Discussion | Declarations vs. empirics, risks, three polar worlds |
+| [Part V](part5_conclusions.en.md) | Conclusions | Answers to research questions, development directions |
 
 ---
 

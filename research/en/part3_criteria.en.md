@@ -1,6 +1,6 @@
 # Part III. Analysis of Correspondence to Singularity Criteria
 
-> **Languages:** [🇺🇸 English](part3_criteria.md) • [🇷🇺 Русский](../ru/part3_criteria.md) • [🇨🇳 中文](../zh/part3_criteria.md)
+> **Languages:** [🇺🇸 English](part3_criteria.en.md) • [🇷🇺 Русский](../ru/part3_criteria.ru.md) • [🇨🇳 中文](../zh/part3_criteria.zh.md)
 
 This part of the research presents a systematic assessment of 15 verified cases of autonomous AI agent behavior (presented in Part II), supplemented by analysis of AI mathematical achievements in 2026, for correspondence to four key criteria of technological singularity: (1) recursivity, (2) superiority over humans, (3) uncontrollability by humans, and (4) self-creation. Each criterion is analyzed through the prism of arguments "for" and "against" based on primary sources.
 
@@ -339,4 +339,4 @@ Is a qualitatively new paradigm forming — AI self-creation?
 
 ---
 
-*Continued: [Part IV](part4_discussion.md) — Discussion.*
+*Continued: [Part IV](part4_discussion.en.md) — Discussion.*

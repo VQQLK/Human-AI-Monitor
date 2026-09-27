@@ -1,6 +1,6 @@
 # Часть II. Эмпирическая база: Самостоятельные действия ИИ-агентов в 2026 
 
-> **Языки:** [🇺🇸 English](../en/part2_empirical.md) • [🇷🇺 Русский](part2_empirical.md) • [🇨🇳 中文](../zh/part2_empirical.md)
+> **Языки:** [🇺🇸 English](../en/part2_empirical.en.md) • [🇷🇺 Русский](part2_empirical.ru.md) • [🇨🇳 中文](../zh/part2_empirical.zh.md)
 году
 
 Данная часть исследования представляет собой систематизированный анализ 
@@ -566,5 +566,5 @@ Gödel Machine, Ouroboros и Darwin Gödel Machine демонстрируют с
 
 ---
 
-*Продолжение: [Часть III](part3_criteria.md) — Анализ соответствия 
+*Продолжение: [Часть III](part3_criteria.ru.md) — Анализ соответствия 
 критериям сингулярности.*

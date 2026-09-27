@@ -1,6 +1,6 @@
 # Часть IV. Обсуждение: Декларации vs. эмпирика, риски и три полярных мира
 
-> **Языки:** [🇺🇸 English](../en/part4_discussion.md) • [🇷🇺 Русский](part4_discussion.md) • [🇨🇳 中文](../zh/part4_discussion.md)
+> **Языки:** [🇺🇸 English](../en/part4_discussion.en.md) • [🇷🇺 Русский](part4_discussion.ru.md) • [🇨🇳 中文](../zh/part4_discussion.zh.md)
 
 Данная часть исследования представляет собой критическое обсуждение 
 ключевого противоречия, выявленного в ходе анализа: разрыва между 
@@ -415,4 +415,4 @@ RSI), StudyBench (Compute Plateau), экономические данные, 25 
 
 ---
 
-*Продолжение: [Часть V](part5_conclusions.md) — Выводы и заключение.*
+*Продолжение: [Часть V](part5_conclusions.ru.md) — Выводы и заключение.*
