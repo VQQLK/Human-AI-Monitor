@@ -1,5 +1,12 @@
 # Changelog
 
+> **Languages:** [🇺🇸 English](CHANGELOG.md) • [🇷🇺 Русский](CHANGELOG.ru.md) • [🇨🇳 中文](CHANGELOG.zh.md)
+
+All notable changes to Human-AI Monitor will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 ## [Unreleased] — BREAKING
 
 ### Changed
@@ -8,16 +15,6 @@
 - **Gap thresholds:** three-level scheme ±0.1 (noise) and ±0.3 (significant).
 - **All protocols recalculated** under the new formula (project not yet public — no compatibility concerns).
 - **Classifier prompt:** rule updated from "NEVER return all 7" to "NEVER return all axes".
-
-
-> **Languages:** [🇺🇸 English](CHANGELOG.md) • [🇷🇺 Русский](CHANGELOG.ru.md) • [🇨🇳 中文](CHANGELOG.zh.md)
-
-All notable changes to Human-AI Monitor will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [Unreleased]
 
 ### Added
 - **Protocol addressing clarified**: API and DB key protocols by week_start (Monday); file names (sync/archive/git) use week_end (Sunday); README API-reference annotated x3, AGENTS.md rule 6 + data/protocols/README.md document the split and the legacy D1 `path` field (do not trust)
