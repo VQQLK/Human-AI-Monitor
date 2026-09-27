@@ -556,7 +556,21 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'yes'"
 	).bind(range.filterStart, range.filterEnd).first();
 	const gapResult = await computeGapIndex(env, range);
-	
+
+	// Persist to gap_history (read by /gap and /protocols/current)
+	await env.DB.prepare(
+		"INSERT OR REPLACE INTO gap_history (week_start, ai_score, human_score, gap, interpretation, recorded_at) VALUES (?,?,?,?,?,?)"
+	).bind(
+		range.start, gapResult.aiScore, gapResult.humanScore, gapResult.gap, gapResult.interpretation, new Date().toISOString()
+	).run();
+
+	// Persist axis levels to index_history
+	for (const [axis, level] of Object.entries(gapResult.axisLevels)) {
+		await env.DB.prepare(
+			"INSERT OR REPLACE INTO index_history (axis, level, date, note, recorded_at) VALUES (?,?,?,?,?)"
+		).bind(axis, level, range.start, 'Computed from weekly signals', new Date().toISOString()).run();
+	}
+
 	const itemsCount = (itemsRes as any)?.n ?? 0;
 	const shiftsCount = (shiftsRes as any)?.n ?? 0;
 	const path = "data/protocols/" + range.start + ".interim.md";
@@ -796,6 +810,13 @@ export default {
 						const now = new Date();
 						offset = Math.floor((now.getTime() - target.getTime()) / (7 * 24 * 3600 * 1000));
 					}
+				}
+				// Interim mode: ?interim=1 generates a draft for the CURRENT (open) week.
+				// Same code path as the Friday cron job (generateInterimProtocol, offset=0).
+				// The Monday cron will later overwrite this row with the final protocol
+				// (same week_start, is_interim=0) via INSERT OR REPLACE.
+				if (url.searchParams.get("interim") === "1") {
+					return json(await generateInterimProtocol(env, 0), 200);
 				}
 				if (offset < 1) {
 					return json({
