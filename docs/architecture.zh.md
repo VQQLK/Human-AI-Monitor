@@ -219,32 +219,57 @@ npx wrangler deploy
 
 ### 6.2. 时间表
 
-| 事件 | 生成时间 | 同步时间 | 可见性延迟 |
-|------|---------|---------|-----------|
-| **中间协议**（周五） | 13:45 UTC | 周六 08:00 UTC | ~18 小时 |
-| **最终协议**（周一） | 13:45 UTC | 周一 14:00 UTC | ~15 分钟 |
+协议由 Cloudflare Worker 在周一/周五 13:45 UTC 生成。生成后，Worker 立即
+通过 GitHub API（`workflow_dispatch`）并行触发两个 GitHub Actions workflow：
 
-### 6.3. 为什么有延迟？
+| Workflow | 触发方式 | 用途 | 可见性 |
+|----------|---------|------|--------|
+| `sync-protocols.yml` | Worker dispatch（周一/周五 ~13:53 UTC） | 将 EN/RU/ZH 文件同步到 git | 生成后 ~5–10 分钟 |
+| `translate-protocols.yml` | Worker dispatch（周一/周五 ~13:53 UTC） | 在 D1 中重新生成 RU/ZH | 下一个 sync 周期 |
 
-- **中间协议：** 周五 13:45 生成，周六 08:00 同步（允许周末审核）。
-- **最终协议：** 周一 13:45 生成，周一 14:00 同步（立即发布）。
+> **历史说明：**两个 workflow 仍保留 `schedule:` 触发器，但 GitHub 的
+> 定时任务不可靠（延迟可达 4 小时以上、可能跳过）。Worker 的 dispatch
+> 是主要且可靠的路径。
 
-### 6.4. 同步 workflow 详情
+### 6.3. 翻译延迟
 
-Workflow：
+英语是主要语言。RU/ZH 翻译由 `translate-protocols.yml` 异步重新生成，
+与 sync 并行。结果：
+
+- **EN 文件**在生成后 ~5–10 分钟出现在 git 中。
+- **RU/ZH 文件**可能滞后一个 sync 周期（最多 ~3–4 天）：`sync` 会拉取
+  运行时刻 D1 中已有的翻译，而 `translate` 在并行更新 D1。
+
+这是有意的权衡：让翻译不在关键路径上，从而避免在生成协议的 Worker 上
+超出 Cloudflare Free 层级限制（subrequests、CPU time）。
+
+### 6.4. Workflow 详情
+
+`sync-protocols.yml`：
 1. 从 D1 API 获取最近 2 个协议（`/export-weekly?weeks=2`）。
 2. 写入 collector 仓库的 `data/protocols/`。
 3. 将所有协议归档到 `human-ai-monitor-archive` 仓库。
-4. 触发翻译 workflow（EN→RU/ZH）。
+4. 提交两个仓库的变更。
 
-### 6.5. 手动同步
+`translate-protocols.yml`：
+1. 通过 `/protocols` 确定最新的一周。
+2. 调用 `GET /translate/{week}`（Bearer 认证）以重新生成 D1 中的 RU/ZH。
+3. 通过 `/protocols/{week}/content/ru` 和 `/zh` 验证翻译。
+
+两个 workflow 由 Worker 并行触发。`sync` **不会**调用 `translate`。
+
+### 6.5. 紧急同步（故障排查）
+
+正常运行时，两个 workflow 都由 Worker 在协议生成后自动触发。仅在紧急
+情况下才需要手动触发：自动 dispatch 失败，或部分失败后需要重新运行。
 
 ```bash
-# Trigger sync manually via GitHub Actions UI
 gh workflow run sync-protocols.yml
+gh workflow run translate-protocols.yml
 ```
 
----
+这些命令不属于日常运行的一部分。
+
 
 ## 7. 扩展
 

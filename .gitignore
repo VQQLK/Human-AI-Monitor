@@ -184,3 +184,4 @@ dist
 *.swp
 *.swo
 src/*.bak*
+docs/*.bak*
