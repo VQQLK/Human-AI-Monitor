@@ -517,8 +517,8 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 	// UPSERT: preserve content_ru / content_zh across regenerations.
 	// INSERT OR REPLACE would DELETE+INSERT, wiping translations (both columns unlisted).
 	await env.DB.prepare(
-		`INSERT INTO protocols (week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at, content)
-		 VALUES (?,?,?,?,?,?,?,?,?,?)
+		`INSERT INTO protocols (week_start, week_end, ai_score, human_score, gap_index, items_count, shifts_count, path, generated_at, content, is_interim)
+		 VALUES (?,?,?,?,?,?,?,?,?,?,?)
 		 ON CONFLICT(week_start) DO UPDATE SET
 		   week_end      = excluded.week_end,
 		   ai_score      = excluded.ai_score,
@@ -528,12 +528,13 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 		   shifts_count  = excluded.shifts_count,
 		   path          = excluded.path,
 		   generated_at  = excluded.generated_at,
-		   content       = excluded.content
+		   content       = excluded.content,
+		   is_interim    = excluded.is_interim
 		   -- content_ru and content_zh intentionally NOT touched: preserved across regenerations`
 	).bind(
 		range.start, range.end,
 		gapResult.aiScore, gapResult.humanScore, gapResult.gap,
-		itemsCount, shiftsCount, path, new Date().toISOString(), markdown
+		itemsCount, shiftsCount, path, new Date().toISOString(), markdown, 0
 	).run();
 	return {
 		week_start: range.start, week_end: range.end,
