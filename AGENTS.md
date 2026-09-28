@@ -57,11 +57,17 @@ Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
    week_start-based and does not match files — sync builds names itself;
    do not trust `path`.
 
-7. **Protocol regeneration resets translations.** Regenerating a
-   protocol week nulls `content_ru`/`content_zh` in D1. After any
-   protocol regeneration, trigger `translate-protocols.yml` and verify
-   `length(content_zh) > 0` — otherwise `/protocols/{week}/content/{lang}`
-   returns "not ready" until someone notices.
+7. **Protocol regeneration makes translations stale.** Regenerating a
+   protocol week overwrites `content` (EN) in D1 but preserves
+   `content_ru`/`content_zh` (see UPSERT comment in
+   `generateInterimProtocol`). The RU/ZH text therefore lags behind the
+   new EN until translated.
+   **Cron regeneration** (Mon/Fri 13:45 UTC): the Worker dispatches
+   `translate-protocols.yml` automatically via GitHub API — no manual
+   action needed.
+   **Manual regeneration** (`/generate`): trigger translation yourself —
+   `gh workflow run translate-protocols.yml`, then verify
+   `length(content_zh) > 0`.
 
 8. **Deploy after merging behavior changes.** Today's review found a
    2-day / ~20-commit gap between git and production (a glossary fix and
