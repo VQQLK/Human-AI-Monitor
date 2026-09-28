@@ -72,6 +72,27 @@ else:
     h2, h3 = next(iter(heads.values()))
     ok(f"README headings: H2={h2} H3={h3} ×3")
 
+# ---------- 2b. Parity of headings in trilingual docs/ families ----------
+TRILINGUAL_DOCS = ["architecture", "methodology", "math_brief", "bayesian_framework"]
+for base in TRILINGUAL_DOCS:
+    local = {}
+    for suffix in ("md", "ru.md", "zh.md"):
+        f = ROOT / "docs" / f"{base}.{suffix}"
+        if not f.exists():
+            fail(f"docs/{base}.{suffix}: not found")
+            continue
+        tt = read(f)
+        local[suffix] = (len(re.findall(r"^## ", tt, re.M)),
+                         len(re.findall(r"^### ", tt, re.M)))
+    if not local:
+        continue
+    vals = set(local.values())
+    if len(vals) != 1:
+        fail(f"docs/{base}.*.md headings: H2/H3 mismatch: {local}")
+    else:
+        h2, h3 = next(iter(vals))
+        ok(f"docs/{base}.*.md headings: H2={h2} H3={h3} x3")
+
 # ---------- 3. Отпечаток релизной секции CHANGELOG ----------
 def changelog_sections(text):
     lines = text.split("\n")
