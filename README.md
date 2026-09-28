@@ -257,7 +257,7 @@ The system is deployed and publicly accessible:
 | Root             | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/                             |
 | Gap Index        | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap                          |
 | Protocols        | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols                    |
-| Example protocol | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols/2026-09-14/content |
+| Example protocol | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols/2026-09-28/content |
 
 Try (as plain URLs):
 
@@ -427,7 +427,7 @@ Test manually (as plain URL):
 | GET    | /translate-document                   | Bearer   | Translate arbitrary Markdown                |
 
 **Authentication.** Endpoints marked **Bearer** require an `Authorization: Bearer <token>` header. The token is set as a Cloudflare Worker Secret (`ADMIN_SECRET_CURRENT`) and rotated weekly, with a 24-hour `ADMIN_SECRET_PREVIOUS` overlap for zero-downtime rotation. See `.env.example` for local-dev setup. Endpoints marked **public** are anonymous.
-> **Protocol addressing:** `{week}` in API URLs and the DB key on the week's **start** (Monday): the protocol covering 2026-09-14..20 is `GET /protocols/2026-09-14/content`. File names use the week's **end** (Sunday): `2026-09-20.md`. The legacy D1 `path` column is week_start-based — sync builds file names itself.
+> **Protocol addressing:** `{week}` in API URLs and the DB key on the week's **start** (Monday): the protocol covering 2026-09-28..10-04 is `GET /protocols/2026-09-28/content`. File names use the week's **end** (Sunday): `2026-10-04.md`. The legacy D1 `path` column is week_start-based — sync builds file names itself.
 
 ### Export endpoint
 

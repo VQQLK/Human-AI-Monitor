@@ -204,7 +204,7 @@ xychart-beta
 | 根    | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/                             |
 | 差距指数 | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap                          |
 | 协议   | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols                    |
-| 示例协议 | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols/2026-09-14/content |
+| 示例协议 | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols/2026-09-28/content |
 
 尝试（作为普通URL）：
 
@@ -360,7 +360,7 @@ xychart-beta
 | GET | /translate-document | Bearer | 翻译任意 Markdown |
 
 **身份验证。** 标记为 **Bearer** 的端点需要 `Authorization: Bearer <token>` 请求头。令牌作为 Cloudflare Worker Secret（`ADMIN_SECRET_CURRENT`）设置，每周轮换一次，并有 24 小时的 `ADMIN_SECRET_PREVIOUS` 重叠期，实现零停机轮换。本地开发设置见 `.env.example`。标记为 **public** 的端点无需认证。
-> **协议寻址**：API URL 和数据库键中的 `{week}` 是周的**开始**（周一）：覆盖 2026-09-14..20 的协议为 `GET /protocols/2026-09-14/content`。文件名使用周的**结束**（周日）：`2026-09-20.md`。遗留的 D1 `path` 字段基于 week_start——文件名由 sync 生成。
+> **协议寻址**：API URL 和数据库键中的 `{week}` 是周的**开始**（周一）：覆盖 2026-09-28..10-04 的协议为 `GET /protocols/2026-09-28/content`。文件名使用周的**结束**（周日）：`2026-10-04.md`。遗留的 D1 `path` 字段基于 week_start——文件名由 sync 生成。
 
 ### 导出端点
 

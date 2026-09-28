@@ -205,7 +205,7 @@ xychart-beta
 | Корень           | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/                             |
 | Индекс разрыва   | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap                          |
 | Протоколы        | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols                    |
-| Пример протокола | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols/2026-09-14/content |
+| Пример протокола | https://human-ai-monitor-collector.human-ai-monitor.workers.dev/protocols/2026-09-28/content |
 
 Попробуйте (как обычные URL):
 
@@ -361,7 +361,7 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 | GET   | /translate-document                   | Bearer   | Перевод произвольного Markdown                      |
 
 **Аутентификация.** Эндпоинты с пометкой **Bearer** требуют заголовок `Authorization: Bearer <token>`. Токен задан как Cloudflare Worker Secret (`ADMIN_SECRET_CURRENT`) и ротируется раз в неделю, с 24-часовым перекрытием `ADMIN_SECRET_PREVIOUS` для ротации без даунтайма. См. `.env.example` для локальной настройки. Эндпоинты с пометкой **public** — анонимные.
-> **Адресация протоколов:** `{week}` в API-URL и ключ БД — **начало** недели (понедельник): протокол за 2026-09-14..20 — это `GET /protocols/2026-09-14/content`. Имена файлов — по **окончанию** недели (воскресенье): `2026-09-20.md`. Legacy-поле D1 `path` основано на week_start — имена файлов строит sync.
+> **Адресация протоколов:** `{week}` в API-URL и ключ БД — **начало** недели (понедельник): протокол за 2026-09-28..10-04 — это `GET /protocols/2026-09-28/content`. Имена файлов — по **окончанию** недели (воскресенье): `2026-10-04.md`. Legacy-поле D1 `path` основано на week_start — имена файлов строит sync.
 
 ### Эндпоинт экспорта
 

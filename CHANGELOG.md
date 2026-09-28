@@ -41,6 +41,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Single-source version**: `/` endpoint metadata now reads version from `package.json` (build-time import) instead of a hardcoded literal; repo_audit verifies package.json = CITATION.cff and release-date parity
 - **Cron batching hardening**: batch offsets/limits moved to exported `CRON_BATCH_CONFIG`; runtime guard logs a loud error on source-count drift; new `cron-batching` test suite (4 invariants: full coverage, contiguous offsets, batch numbering, subrequest budget); repo_audit verifies wrangler crons == config keys
 
+### 2026-09-28 — Bayesian reformulation of Gap Index
+
+#### Changed
+- **Bayesian reformulation of Gap Index.** Project restart: first Bayesian
+  protocol for week 2026-09-28 (method='bayesian'). Legacy point-estimate
+  protocols (2026-09-14, 2026-09-21) removed — not comparable.
+- §3 of methodology rewritten: Beta posterior + Monte Carlo Gap distribution.
+- `gap-computation.ts` migrated to `bayesian-gap.ts` (Beta posterior,
+  95% credible intervals, two-sided significance test).
+- `gap_history` extended with 11 columns: CI bounds, std, sample size,
+  statistical significance, stability, method.
+- README examples updated: `2026-09-14` → `2026-09-28`.
+
+#### Tests
+- `bayesian-gap.spec.ts` — 39 tests on pure math.
+- `gap-computation.spec.ts` — 11 tests rewritten for Bayesian formulation.
+- Total: 111/111 passing.
+
 ## [1.0.1] - 2026-09-25
 
 ### Fixed

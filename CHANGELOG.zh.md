@@ -44,6 +44,22 @@
 - **版本单一来源**：`/` 端点元数据现在从 `package.json` 读取版本（构建时导入），而不是硬编码字面量；repo_audit 检查 package.json = CITATION.cff 以及发布日期一致性
 - **Cron 批次加固**：批次偏移/限制移至导出的 `CRON_BATCH_CONFIG`；运行时防护在来源数量漂移时输出响亮错误；新增 `cron-batching` 测试套件（4个不变量：完全覆盖、连续偏移、批次编号、子请求预算）；repo_audit 验证 wrangler 的 crons 与配置键一致
 
+### 2026-09-28 — Gap Index 的贝叶斯重构
+
+#### 变更
+- **Gap Index 的贝叶斯重构。** 项目重启：2026-09-28 周的第一个贝叶斯协议
+  (method='bayesian')。遗留点估计协议 (2026-09-14, 2026-09-21) 已移除——不可比较。
+- §3 方法论重写：Beta 后验 + Gap 的蒙特卡洛。
+- `gap-computation.ts` 迁移到 `bayesian-gap.ts`（Beta 后验、95% 可信区间、
+  双侧显著性检验）。
+- `gap_history` 扩展了 11 列：CI 边界、std、样本量、统计显著性、稳定性、method。
+- README 示例已更新：`2026-09-14` → `2026-09-28`。
+
+#### 测试
+- `bayesian-gap.spec.ts` — 39 个纯数学测试。
+- `gap-computation.spec.ts` — 11 个测试针对贝叶斯表述重写。
+- 总计：111/111 通过。
+
 ## [1.0.1] - 2026-09-25
 
 ### 修复
