@@ -1002,6 +1002,35 @@ export default {
 					console.log("[cron] Day " + dayOfWeek + ": collection only, no protocol generation");
 				}
 			}
+
+			// Trigger sync-protocols workflow via GitHub API.
+			// GitHub's native scheduled triggers are unreliable — Worker acts as an external scheduler.
+			if (cfg.generateProtocol && (isMonday || isFriday)) {
+				ctx.waitUntil((async () => {
+					try {
+						const res = await fetch(
+							"https://api.github.com/repos/VQQLK/Human-AI-Monitor/actions/workflows/sync-protocols.yml/dispatches",
+							{
+								method: "POST",
+								headers: {
+									"Accept": "application/vnd.github+json",
+									"Authorization": "Bearer " + env.GITHUB_PAT,
+									"User-Agent": "human-ai-monitor-worker",
+									"X-GitHub-Api-Version": "2022-11-28",
+								},
+								body: JSON.stringify({ ref: "main" }),
+							}
+						);
+						console.log("[cron] sync-protocols dispatch: HTTP " + res.status);
+						if (!res.ok) {
+							const txt = await res.text();
+							console.error("[cron] sync-protocols dispatch body: " + txt.slice(0, 300));
+						}
+					} catch (e) {
+						console.error("[cron] sync-protocols dispatch error: " + (e as Error).message);
+					}
+				})());
+			}
 		})());
 	},
 };

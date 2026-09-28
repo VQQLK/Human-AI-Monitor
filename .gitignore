@@ -183,3 +183,4 @@ dist
 .idea/
 *.swp
 *.swo
+src/*.bak*
