@@ -36,12 +36,14 @@ jobs:
           fi
 
       - name: Trigger translation
+        env:
+          ADMIN_TOKEN: ${{ secrets.ADMIN_SECRET_CURRENT }}
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
           WEEK="${{ steps.week.outputs.week }}"
           
           echo "Triggering translation for week $WEEK..."
-          RESPONSE=$(curl -sSf "$API/translate/$WEEK")
+          RESPONSE=$(curl -sSf -H "Authorization: Bearer $ADMIN_TOKEN" "$API/translate/$WEEK")
           echo "Response: $RESPONSE"
           
           # Verify translation succeeded
