@@ -120,7 +120,7 @@ Each weekly value carries a 95% credible interval, which makes the trend statist
 
 ### 3.5. Implementation status
 
-This document describes the project's **canonical Bayesian methodology**. The current implementation in `src/services/gap-computation.ts` still uses point estimates; migration to the Bayesian model is scheduled (§7). Detailed mathematical treatment: [`docs/bayesian_framework.md`](bayesian_framework.md).
+This document describes the project's **canonical Bayesian methodology**. The implementation in `src/services/gap-computation.ts` follows this formulation. See `migrations/0011_bayesian_gap.sql` for the extended `gap_history` schema. Detailed mathematical treatment: [`docs/bayesian_framework.md`](bayesian_framework.md).
 
 ---
 
@@ -218,7 +218,7 @@ MIT License. Use, fork, improve — **free**.
 - [ ] **Independent methodology audit** — inviting mathematicians and philosophers.
 - [x] **Multilingual support** — EN / RU / ZH.
 - [x] **Bayesian methodology documentation** — canonical formulation (see [`docs/bayesian_framework.md`](bayesian_framework.md)).
-- [ ] **Code migration to Bayesian model** — `gap-computation.ts` still uses point estimates.
+- [x] **Code migration to Bayesian model** — `gap-computation.ts` implements the Beta posterior + Monte Carlo framework.
 - [ ] **Public API** — for researchers and journalists.
 
 ---

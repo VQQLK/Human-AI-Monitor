@@ -121,7 +121,7 @@ $$
 
 ### 3.5. 实施状态
 
-本文档描述项目的 **规范贝叶斯方法论**。`src/services/gap-computation.ts` 中的当前实现仍使用点估计；向贝叶斯模型的迁移已列入计划（§7）。详细数学处理见 [`docs/bayesian_framework.zh.md`](bayesian_framework.zh.md)。
+本文档描述项目的 **规范贝叶斯方法论**。`src/services/gap-computation.ts` 中的实现遵循此表述。扩展的 `gap_history` 模式见 `migrations/0011_bayesian_gap.sql`。详细数学处理见 [`docs/bayesian_framework.zh.md`](bayesian_framework.zh.md)。
 
 ---
 
@@ -219,7 +219,7 @@ MIT License。使用、分叉、改进——**免费**。
 - [ ] 独立方法论审计——邀请数学家和哲学家
 - [x] **多语言支持** — EN / RU / ZH
 - [x] **贝叶斯方法论文档** — 规范表述（见 [`docs/bayesian_framework.zh.md`](bayesian_framework.zh.md)）。
-- [ ] **代码迁移到贝叶斯模型** — `gap-computation.ts` 仍使用点估计。
+- [x] **代码迁移到贝叶斯模型** — `gap-computation.ts` 实现了 Beta 后验 + 蒙特卡洛框架。
 - [ ] 公共API — 供研究人员和记者使用
 
 ---

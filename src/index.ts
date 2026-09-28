@@ -484,17 +484,31 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 	const gapResult = await computeGapIndex(env, range);
 	
 	// Persist to gap_history (read by buildProtocolMarkdown and /gap endpoint)
+	// Bayesian v2: point estimate + 95% credible interval + significance + stability
 	await env.DB.prepare(
-		"INSERT OR REPLACE INTO gap_history (week_start, ai_score, human_score, gap, interpretation, recorded_at) VALUES (?,?,?,?,?,?)"
+		"INSERT OR REPLACE INTO gap_history ("
+		+ "week_start, ai_score, human_score, gap, interpretation, recorded_at, "
+		+ "gap_ci95_low, gap_ci95_high, gap_std, "
+		+ "ai_score_ci95_low, ai_score_ci95_high, "
+		+ "human_score_ci95_low, human_score_ci95_high, "
+		+ "sample_size, statistically_significant, stability, method"
+		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 	).bind(
-		range.start, gapResult.aiScore, gapResult.humanScore, gapResult.gap, gapResult.interpretation, new Date().toISOString()
+		range.start,
+		gapResult.aiScore, gapResult.humanScore, gapResult.gap,
+		gapResult.interpretation, new Date().toISOString(),
+		gapResult.gapCi95[0], gapResult.gapCi95[1], gapResult.gapStd,
+		gapResult.aiScoreCi95[0], gapResult.aiScoreCi95[1],
+		gapResult.humanScoreCi95[0], gapResult.humanScoreCi95[1],
+		gapResult.sampleSize, gapResult.statisticallySignificant ? 1 : 0,
+		gapResult.stability, gapResult.method
 	).run();
 	
-	// Persist axis levels to index_history (fixes F6: table was never used)
+	// Persist axis levels (posterior means) to index_history
 	for (const [axis, level] of Object.entries(gapResult.axisLevels)) {
 		await env.DB.prepare(
 			"INSERT OR REPLACE INTO index_history (axis, level, date, note, recorded_at) VALUES (?,?,?,?,?)"
-		).bind(axis, level, range.start, 'Computed from weekly signals', new Date().toISOString()).run();
+		).bind(axis, level, range.start, 'Bayesian posterior mean (Beta)', new Date().toISOString()).run();
 	}
 	
 	const itemsCount = (itemsRes as any)?.n ?? 0;
@@ -573,17 +587,31 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 	const gapResult = await computeGapIndex(env, range);
 
 	// Persist to gap_history (read by /gap and /protocols/current)
+	// Bayesian v2: point estimate + 95% credible interval + significance + stability
 	await env.DB.prepare(
-		"INSERT OR REPLACE INTO gap_history (week_start, ai_score, human_score, gap, interpretation, recorded_at) VALUES (?,?,?,?,?,?)"
+		"INSERT OR REPLACE INTO gap_history ("
+		+ "week_start, ai_score, human_score, gap, interpretation, recorded_at, "
+		+ "gap_ci95_low, gap_ci95_high, gap_std, "
+		+ "ai_score_ci95_low, ai_score_ci95_high, "
+		+ "human_score_ci95_low, human_score_ci95_high, "
+		+ "sample_size, statistically_significant, stability, method"
+		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 	).bind(
-		range.start, gapResult.aiScore, gapResult.humanScore, gapResult.gap, gapResult.interpretation, new Date().toISOString()
+		range.start,
+		gapResult.aiScore, gapResult.humanScore, gapResult.gap,
+		gapResult.interpretation, new Date().toISOString(),
+		gapResult.gapCi95[0], gapResult.gapCi95[1], gapResult.gapStd,
+		gapResult.aiScoreCi95[0], gapResult.aiScoreCi95[1],
+		gapResult.humanScoreCi95[0], gapResult.humanScoreCi95[1],
+		gapResult.sampleSize, gapResult.statisticallySignificant ? 1 : 0,
+		gapResult.stability, gapResult.method
 	).run();
 
-	// Persist axis levels to index_history
+	// Persist axis levels (posterior means) to index_history
 	for (const [axis, level] of Object.entries(gapResult.axisLevels)) {
 		await env.DB.prepare(
 			"INSERT OR REPLACE INTO index_history (axis, level, date, note, recorded_at) VALUES (?,?,?,?,?)"
-		).bind(axis, level, range.start, 'Computed from weekly signals', new Date().toISOString()).run();
+		).bind(axis, level, range.start, 'Bayesian posterior mean (Beta)', new Date().toISOString()).run();
 	}
 
 	const itemsCount = (itemsRes as any)?.n ?? 0;
