@@ -46,32 +46,30 @@ As of September 25, 2026, the system has completed its **first fully autonomous 
 | H5 Meaning | Meaning and purpose in work | Decline in share finding meaning in work |
 | H6 Democracy | Institutional resilience, trust | Sustained decline in trust |
 
-### 2.3. Axis Level Function
+### 2.3. Bayesian Axis Level
 
-For each axis a ∈ A ∪ H and signal set S_a = {s₁, …, s_n} that landed on this axis during a week, the axis level is:
+Each axis level is a latent random variable on [0, 1] with a posterior Beta distribution. For axis a with signal set S_a = {s₁, …, s_n}:
 
-    ℓ(a) = clamp_[0,1]((1/|S_a|) · Σ_{s ∈ S_a} r_s · M_shift(σ_s) · M_dir(d_s))
+    ℓ(a) | S_a ~ Beta( α₀ + Σ_{s ∈ S_a} v_s⁺ ,  β₀ + Σ_{s ∈ S_a} v_s⁻ )
 
 where:
-- r_s ∈ [0, 1] — relevance (classifier confidence),
-- σ_s ∈ {yes, no, uncertain} — shift flag,
-- d_s ∈ {up, down, stable, uncertain} — direction,
-- clamp_[0,1](x) = max(0, min(1, x)) — projection onto [0,1].
+- α₀ = β₀ = 1/2 — non-informative **Jeffreys prior**,
+- v_s = r_s · π(σ_s, d_s) — signal voice,
+- v_s⁺ = max(0, v_s),  v_s⁻ = max(0, −v_s).
 
-**Fallback.** For `|S_a| = 0` (no items), set `ℓ(a) := 0`.
+**Voice table** π(σ, d) ∈ [−1, 1]:
 
-**Multipliers** (empirical weights from `src/services/gap-computation.ts`):
+| π | up | stable | down | uncertain |
+|---|---|---|---|---|
+| **yes** | +1.0 | +0.5 | −1.0 | +0.5 |
+| **no** | +0.3 | 0.0 | −0.3 | 0.0 |
+| **uncertain** | 0.0 | 0.0 | 0.0 | 0.0 |
 
-    M_shift:  1.5 (yes),  1.0 (uncertain),  0.5 (no)
-    M_dir:    1.2 (up),   1.0 (stable/uncertain),  0.8 (down)
+Point estimate:  ℓ̂(a) = (α₀ + Σv_s⁺) / (α₀ + β₀ + Σv_s⁺ + Σv_s⁻).
 
-**Implementation note:** the multipliers are keyed in English (`yes`/`no`/`uncertain` for shift; `up`/`down`/`stable` for direction) to match the classifier output exactly. The `?? 1` fallback handles any unexpected values gracefully.
+**Fallback.** For |S_a| = 0, posterior = prior = Beta(0.5, 0.5), mean 0.5, wide credible interval (previously a false zero).
 
-This gives the model **full sensitivity** to threshold shifts and directional trends:
-- `shift: "yes"` → 50% boost (signal of genuine change)
-- `shift: "no"` → 50% penalty (signal of stagnation)
-- `direction: "up"` → 20% boost (positive trend)
-- `direction: "down"` → 20% penalty (negative trend)
+Full Bayesian treatment: [`docs/bayesian_framework.md`](bayesian_framework.md) §3.2.
 
 ### 2.4. Aggregation
 
@@ -81,6 +79,13 @@ AI-score and Human-score are plain arithmetic means over their respective axis s
     Human_score = (1/|H|) · Σ_{a∈H} ℓ(a)  = (1/6) · Σ_{a∈H} ℓ(a)
 
 **Normalization property:** both metrics lie in [0, 1] as means of values from [0,1].
+
+**Gap distribution.** The Gap is constructed by Monte Carlo (M = 10,000 samples):
+
+    ℓ^(k)(aᵢ) ~ Beta(αᵢ, βᵢ),  ℓ^(k)(hⱼ) ~ Beta(αⱼ, βⱼ)   for k = 1..M
+    Gap^(k) = AI^(k) − Human^(k)
+
+Point estimate: Ĝap = mean({Gap^(k)}).  95% credible interval: [q₀.₀₂₅, q₀.₉₇₅].
 
 ### 2.5. Gap Index
 
@@ -97,6 +102,8 @@ AI-score and Human-score are plain arithmetic means over their respective axis s
     Gap > 0.3           → AI significantly ahead
 
 The **neutral zone** [−0.1, 0.1] of width 0.2 corresponds to statistical noise for small samples (analogous to a dead band).
+
+The interpretation is **stable** when the 95% credible interval of Gap lies entirely within one row, and **unstable** when the interval crosses a threshold.
 
 ### 2.6. Classifier (LLM interface)
 
@@ -117,8 +124,8 @@ where:
 
 - **Hash-check before classify:** SHA-256 of URL/title → DB lookup → classify only new items. Empirical saving: ~90% of LLM calls avoided.
 - **Batch processing:** 5 batches per day × ~8 sources × ~2-3 items/source ≈ 80-120 classifications/day.
-- **Gap standard error.** Each signal contributes a value v_s = r_s · M_shift · M_dir ∈ [0, 1.8] with variance σ_v². Under the homogeneity assumption (equal axis sizes n_i = n/6, equal signal variances), the standard error of the Gap is:
-    SE(Gap) = σ_v · √(2/n).
+- **Gap standard error.** Each signal contributes a voice v_s = r_s · π(σ_s, d_s) ∈ [−1, 1] with variance σ_v². Under the homogeneity assumption (equal axis sizes n_i = n/6, equal signal variances), the standard error of the Gap is:
+    SE(Gap) = σ_v · √(2/n),   CI₉₅ width ≈ 3.92 · σ_v · √(2/n)  (for n ≥ 30).
   Derivation: Var(AI_score) = (1/36) Σ_i Var(ℓ(a_i)) = (1/36) · 6 · σ_v²/(n/6) = σ_v²/n. Similarly for Human_score. With independence, Var(Gap) = 2 σ_v²/n, so SE(Gap) = σ_v · √(2/n).
   With the conservative bound σ_v ≤ 0.5 (for [0, 1]-valued signals), SE(Gap) ≤ √(1/(2n)) ≈ 0.707 / √n. Consequences:
     - n = 10:  SE(Gap) ≤ 0.22  (exceeds neutral-zone half-width 0.1 — interpretation unreliable)
