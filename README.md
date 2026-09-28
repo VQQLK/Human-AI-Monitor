@@ -406,20 +406,27 @@ Test manually (as plain URL):
 
 ## API reference
 
-| Method | Path                      | Description                                 |
-| ------ | ------------------------- | ------------------------------------------- |
-| GET    | /                         | Project metadata                            |
-| GET    | /health                   | Health check                                |
-| GET    | /gap                      | Current Gap Index                           |
-| GET    | /protocols                | List of weekly protocols                    |
-| GET    | /protocols/{week}         | Single protocol metadata                    |
-| GET    | /protocols/{week}/content | Markdown content of protocol                |
-| GET    | /axes/{axis}              | Signals for a specific axis                 |
-| GET    | /axes-history           | Historical axis levels (transparency)     |
-| GET    | /classify                 | Classify arbitrary text                     |
-| GET    | /verify                   | Detect reward hacking (CheatBench-inspired) |
-| GET    | /collect                  | Manual RSS collection                       |
-| GET    | /generate                 | Manual protocol generation                  |
+| Method | Path                                  | Auth     | Description                                 |
+| ------ | ------------------------------------- | -------- | ------------------------------------------- |
+| GET    | /                                     | public   | Project metadata                            |
+| GET    | /health                               | public   | Health check                                |
+| GET    | /gap                                  | public   | Current Gap Index                           |
+| GET    | /protocols                            | public   | List of weekly protocols                    |
+| GET    | /protocols/{week}                     | public   | Single protocol metadata                    |
+| GET    | /protocols/{week}/content             | public   | Markdown content (EN)                       |
+| GET    | /protocols/{week}/content/ru          | public   | Markdown content (RU)                       |
+| GET    | /protocols/{week}/content/zh          | public   | Markdown content (ZH)                       |
+| GET    | /axes/{axis}                          | public   | Signals for a specific axis                 |
+| GET    | /axes-history                         | public   | Historical axis levels (transparency)       |
+| GET    | /verify                               | public   | Detect reward hacking (CheatBench-inspired) |
+| GET    | /classify                             | Bearer   | Classify arbitrary text                     |
+| GET    | /collect                              | Bearer   | Manual RSS collection                       |
+| GET    | /generate                             | Bearer   | Manual protocol generation                  |
+| GET    | /export-weekly                        | Bearer   | Bulk export of all protocols                |
+| GET    | /translate/{week}                     | Bearer   | Translate protocol to RU + ZH               |
+| GET    | /translate-document                   | Bearer   | Translate arbitrary Markdown                |
+
+**Authentication.** Endpoints marked **Bearer** require an `Authorization: Bearer <token>` header. The token is set as a Cloudflare Worker Secret (`ADMIN_SECRET_CURRENT`) and rotated weekly, with a 24-hour `ADMIN_SECRET_PREVIOUS` overlap for zero-downtime rotation. See `.env.example` for local-dev setup. Endpoints marked **public** are anonymous.
 > **Protocol addressing:** `{week}` in API URLs and the DB key on the week's **start** (Monday): the protocol covering 2026-09-14..20 is `GET /protocols/2026-09-14/content`. File names use the week's **end** (Sunday): `2026-09-20.md`. The legacy D1 `path` column is week_start-based — sync builds file names itself.
 
 ### Export endpoint
@@ -433,11 +440,18 @@ Optional parameters:
 
 - `?weeks=N` — limit to last N protocols (default: 52)
 
-**Examples:**
+**Examples** (requires Bearer token — see Authentication above):
 
-    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly
-    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?format=md > archive.md
-    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?weeks=10
+    export ADMIN_TOKEN="<your-ADMIN_SECRET_CURRENT>"
+
+    curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+      https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly
+
+    curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+      "https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?format=md" > archive.md
+
+    curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+      "https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?weeks=10"
 
 ### Verification endpoint
 

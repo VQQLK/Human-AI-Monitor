@@ -339,20 +339,27 @@ xychart-beta
 
 ## API参考
 
-| 方法 | 路径 | 描述 |
-|------|------|------|
-| GET | / | 项目元数据 |
-| GET | /health | 健康检查 |
-| GET | /gap | 当前差距指数 |
-| GET | /protocols | 每周协议列表 |
-| GET | /protocols/{week} | 单个协议元数据 |
-| GET | /protocols/{week}/content | 协议的Markdown内容 |
-| GET | /axes/{axis} | 特定轴的信号 |
-| GET | /axes-history | 历史轴级别（透明度） |
-| GET | /classify | 分类任意文本 |
-| GET | /verify | 检测奖励劫持（基于CheatBench） |
-| GET | /collect | 手动RSS收集 |
-| GET | /generate | 手动协议生成 |
+| 方法 | 路径 | Auth | 描述 |
+|------|------|------|------|
+| GET | / | public | 项目元数据 |
+| GET | /health | public | 健康检查 |
+| GET | /gap | public | 当前差距指数 |
+| GET | /protocols | public | 每周协议列表 |
+| GET | /protocols/{week} | public | 单个协议元数据 |
+| GET | /protocols/{week}/content | public | Markdown 内容 (EN) |
+| GET | /protocols/{week}/content/ru | public | Markdown 内容 (RU) |
+| GET | /protocols/{week}/content/zh | public | Markdown 内容 (ZH) |
+| GET | /axes/{axis} | public | 特定轴的信号 |
+| GET | /axes-history | public | 历史轴级别（透明度） |
+| GET | /verify | public | 检测奖励劫持（基于CheatBench） |
+| GET | /classify | Bearer | 分类任意文本 |
+| GET | /collect | Bearer | 手动RSS收集 |
+| GET | /generate | Bearer | 手动协议生成 |
+| GET | /export-weekly | Bearer | 批量导出所有协议 |
+| GET | /translate/{week} | Bearer | 将协议翻译为 RU + ZH |
+| GET | /translate-document | Bearer | 翻译任意 Markdown |
+
+**身份验证。** 标记为 **Bearer** 的端点需要 `Authorization: Bearer <token>` 请求头。令牌作为 Cloudflare Worker Secret（`ADMIN_SECRET_CURRENT`）设置，每周轮换一次，并有 24 小时的 `ADMIN_SECRET_PREVIOUS` 重叠期，实现零停机轮换。本地开发设置见 `.env.example`。标记为 **public** 的端点无需认证。
 > **协议寻址**：API URL 和数据库键中的 `{week}` 是周的**开始**（周一）：覆盖 2026-09-14..20 的协议为 `GET /protocols/2026-09-14/content`。文件名使用周的**结束**（周日）：`2026-09-20.md`。遗留的 D1 `path` 字段基于 week_start——文件名由 sync 生成。
 
 ### 导出端点
@@ -366,11 +373,18 @@ xychart-beta
 
 - `?weeks=N` — 限制为最后N个协议（默认：52）
 
-**示例：**
+**示例**（需要 Bearer 令牌 —— 参见上文的身份验证）：
 
-    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly
-    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?format=md > archive.md
-    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?weeks=10
+    export ADMIN_TOKEN="<your-ADMIN_SECRET_CURRENT>"
+
+    curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+      https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly
+
+    curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+      "https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?format=md" > archive.md
+
+    curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+      "https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?weeks=10"
 
 ### 验证端点
 

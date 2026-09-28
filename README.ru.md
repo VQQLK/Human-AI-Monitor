@@ -340,19 +340,27 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 
 ## Справочник API
 
-| Метод | Путь                      | Описание                                            |
-| ----- | ------------------------- | --------------------------------------------------- |
-| GET   | /                         | Метаданные проекта                                  |
-| GET   | /health                   | Проверка работоспособности                          |
-| GET   | /gap                      | Текущий Индекс разрыва                              |
-| GET   | /protocols                | Список еженедельных протоколов                      |
-| GET   | /protocols/{week}         | Метаданные одного протокола                         |
-| GET   | /protocols/{week}/content | Markdown-содержимое протокола                       |
-| GET   | /axes/{axis}              | Сигналы для конкретной оси                          |
-| GET   | /classify                 | Классификация произвольного текста                  |
-| GET   | /verify                   | Обнаружение reward hacking (вдохновлено CheatBench) |
-| GET   | /collect                  | Ручной сбор RSS                                     |
-| GET   | /generate                 | Ручная генерация протокола                          |
+| Метод | Путь                                  | Auth     | Описание                                            |
+| ----- | ------------------------------------- | -------- | --------------------------------------------------- |
+| GET   | /                                     | public   | Метаданные проекта                                  |
+| GET   | /health                               | public   | Проверка работоспособности                          |
+| GET   | /gap                                  | public   | Текущий Индекс разрыва                              |
+| GET   | /protocols                            | public   | Список еженедельных протоколов                      |
+| GET   | /protocols/{week}                     | public   | Метаданные одного протокола                         |
+| GET   | /protocols/{week}/content             | public   | Markdown-содержимое (EN)                            |
+| GET   | /protocols/{week}/content/ru          | public   | Markdown-содержимое (RU)                            |
+| GET   | /protocols/{week}/content/zh          | public   | Markdown-содержимое (ZH)                            |
+| GET   | /axes/{axis}                          | public   | Сигналы для конкретной оси                          |
+| GET   | /axes-history                         | public   | Исторические уровни осей (прозрачность)             |
+| GET   | /verify                               | public   | Обнаружение reward hacking (вдохновлено CheatBench) |
+| GET   | /classify                             | Bearer   | Классификация произвольного текста                  |
+| GET   | /collect                              | Bearer   | Ручной сбор RSS                                     |
+| GET   | /generate                             | Bearer   | Ручная генерация протокола                          |
+| GET   | /export-weekly                        | Bearer   | Массовый экспорт всех протоколов                    |
+| GET   | /translate/{week}                     | Bearer   | Перевод протокола на RU + ZH                        |
+| GET   | /translate-document                   | Bearer   | Перевод произвольного Markdown                      |
+
+**Аутентификация.** Эндпоинты с пометкой **Bearer** требуют заголовок `Authorization: Bearer <token>`. Токен задан как Cloudflare Worker Secret (`ADMIN_SECRET_CURRENT`) и ротируется раз в неделю, с 24-часовым перекрытием `ADMIN_SECRET_PREVIOUS` для ротации без даунтайма. См. `.env.example` для локальной настройки. Эндпоинты с пометкой **public** — анонимные.
 > **Адресация протоколов:** `{week}` в API-URL и ключ БД — **начало** недели (понедельник): протокол за 2026-09-14..20 — это `GET /protocols/2026-09-14/content`. Имена файлов — по **окончанию** недели (воскресенье): `2026-09-20.md`. Legacy-поле D1 `path` основано на week_start — имена файлов строит sync.
 
 ### Эндпоинт экспорта
@@ -366,11 +374,18 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 
 - `?weeks=N` — ограничить последними N протоколами (по умолчанию: 52)
 
-**Примеры:**
+**Примеры** (требуется Bearer-токен — см. «Аутентификация» выше):
 
-    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly
-    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?format=md > archive.md
-    curl https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?weeks=10
+    export ADMIN_TOKEN="<ваш-ADMIN_SECRET_CURRENT>"
+
+    curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+      https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly
+
+    curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+      "https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?format=md" > archive.md
+
+    curl -H "Authorization: Bearer $ADMIN_TOKEN" \
+      "https://human-ai-monitor-collector.human-ai-monitor.workers.dev/export-weekly?weeks=10"
 
 ### Эндпоинт верификации
 
