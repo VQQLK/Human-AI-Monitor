@@ -65,41 +65,39 @@ An axis outside the symmetric 6+6 structure, describing global AI development dy
 The Gap Index is the **key metric** of the project. It measures the **gap** between AI development and the state of Humanity:
 
 $$
-G = \sum_{i=1}^{6} w_i^{AI} \cdot a_i - \sum_{j=1}^{6} w_j^{H} \cdot h_j
+G = \frac{1}{6}\sum_{i=1}^{6} a_i - \frac{1}{6}\sum_{j=1}^{6} h_j
 $$
 
 where:
 - $a_i \in [0, 1]$ — level of the i-th AI axis;
-- $h_j \in [0, 1]$ — level of the j-th Humanity axis;
-- $w_i^{AI}, w_j^H$ — weights (normalized, $\sum w = 1$).
+- $h_j \in [0, 1]$ — level of the j-th Humanity axis.
 
-### 3.2. Weights (current version)
+By the **symmetry hypothesis** (§2), both groups are equivalent — 6 AI axes and 6 Humanity axes describe measurements of comparable significance. Therefore aggregation is a **simple arithmetic mean**: it is the only function invariant under permutation of axes within a group.
 
-**AI axes:**
-- SMD: 0.20
-- ITQ: 0.15
-- AGG: 0.15
-- Cycle Velocity: 0.20
-- Verification: 0.20
-- Hexad: 0.10
+### 3.2. Aggregation
 
-**Humanity axes:**
-- H1 Agency: 0.20
-- H2 Sovereignty: 0.15
-- H3 Wellbeing: 0.20
-- H4 Equity: 0.15
-- H5 Meaning: 0.15
-- H6 Democracy: 0.15
+Aggregation is a **simple arithmetic mean** within each group:
+
+$$
+\text{AI\_score} = \frac{1}{6}\sum_{i=1}^{6} \ell(a_i), \qquad
+\text{Human\_score} = \frac{1}{6}\sum_{j=1}^{6} \ell(h_j)
+$$
+
+The geopolitical axis $g$ is measured and published in `index_history`, but is **not included** in either $\text{AI\_score}$ or $\text{Human\_score}$.
+
+This formulation matches the current implementation in `src/services/gap-computation.ts`.
+
+**Evolution to Bayesian inference.** A Bayesian reformulation — with posterior distributions on each axis level and 95% credible intervals for the Gap — is described in [`docs/bayesian_framework.md`](bayesian_framework.md). It preserves the same simple-mean aggregation and the same axis structure, replacing point estimates with distributions.
 
 ### 3.3. Interpretation
 
 | Value of $G$ | Interpretation |
 |--------------|----------------|
-| $G > 0.2$ | **Critical asymmetry:** AI ahead of Humanity |
-| $0.1 < G \leq 0.2$ | **Moderate asymmetry** |
+| $G > 0.3$ | **Critical asymmetry:** AI significantly ahead |
+| $0.1 < G \leq 0.3$ | **Moderate asymmetry:** AI ahead |
 | $\|G\| \leq 0.1$ | Symmetric development (norm) |
-| $-0.2 \leq G < -0.1$ | Moderate asymmetry in favor of Humanity |
-| $G < -0.2$ | **Anomaly:** Humanity ahead of AI |
+| $-0.3 \leq G < -0.1$ | Moderate asymmetry in favor of Humanity |
+| $G < -0.3$ | **Anomaly:** Humanity significantly ahead |
 
 ### 3.4. Dynamics $G(t)$
 
@@ -109,6 +107,8 @@ The Gap Index is **not a scalar** but a **trajectory**. We record it weekly and 
 - **Attractors:** where the system is heading.
 
 **Key hypothesis:** sustained growth of $G$ with no threshold shifts on AI axes is **not singularity**, but **divergence**. It is the main risk.
+
+The Bayesian reformulation ([`docs/bayesian_framework.md`](bayesian_framework.md)) adds a 95% credible interval to each weekly value, which makes the trend statistically interpretable even at small weekly sample sizes.
 
 ---
 
@@ -191,7 +191,7 @@ MIT License. Use, fork, improve — **free**.
 
 3. **Sample limitation.** Analysis covers verified cases; others may exist outside the public field.
 
-4. **Weight subjectivity.** Weights $w_i$ are expert estimates. They can be revised through PR.
+4. **Signal independence.** Within an axis, items are assumed independent, though a single source may produce correlated items (a series of news items about one event). This may inflate confidence at small weekly sample sizes.
 
 5. **LLM classification.** The model may err. All results are open for verification.
 
@@ -204,7 +204,8 @@ MIT License. Use, fork, improve — **free**.
 - [ ] **Long-term dynamics** of RSI cycles: saturation vs. acceleration.
 - [ ] **Integration with global indices** (V-Dem, WHR, Pew) — automation.
 - [ ] **Independent methodology audit** — inviting mathematicians and philosophers.
-- [ ] **Multilingual support** — EN / RU / ZH.
+- [x] **Multilingual support** — EN / RU / ZH.
+- [ ] **Bayesian inference** — posterior distributions on axis levels + 95% credible intervals for the Gap (see [`docs/bayesian_framework.md`](bayesian_framework.md)).
 - [ ] **Public API** — for researchers and journalists.
 
 ---
