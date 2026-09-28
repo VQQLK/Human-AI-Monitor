@@ -44,6 +44,41 @@
 - **版本单一来源**：`/` 端点元数据现在从 `package.json` 读取版本（构建时导入），而不是硬编码字面量；repo_audit 检查 package.json = CITATION.cff 以及发布日期一致性
 - **Cron 批次加固**：批次偏移/限制移至导出的 `CRON_BATCH_CONFIG`；运行时防护在来源数量漂移时输出响亮错误；新增 `cron-batching` 测试套件（4个不变量：完全覆盖、连续偏移、批次编号、子请求预算）；repo_audit 验证 wrangler 的 crons 与配置键一致
 
+### 2026-09-28 — Worker-dispatch sync + translate
+
+#### 变更
+- **sync-protocols.yml 与 translate-protocols.yml** 现在由 Cloudflare
+  Worker 在协议生成后立即通过 GitHub API `workflow_dispatch` 触发
+  （周一/周五 ~13:53 UTC）。这**取代**了之前记录的基于时间表的同步
+  （Saturday 08:00 / Monday 14:00 UTC）——GitHub 原生调度器被证明不可靠
+  （延迟 4+ 小时，偶尔跳过）。
+- **Worker 新增 `GITHUB_PAT` 机密**（fine-grained PAT，`Actions: Read
+  and write` 权限），用于向 GitHub API 发送 dispatch。
+
+#### 新增
+- **`scheduled()` 中的 `dispatch` 块**——协议生成后，Worker 通过
+  `ctx.waitUntil()` 发起两个非阻塞的 `fetch()` 调用（sync + translate
+  并行）。错误通过 `[cron] {sync,translate}-protocols dispatch` 日志行
+  暴露。
+
+#### 文档
+- **`docs/architecture.md` §6**（EN/RU/ZH）：重写为 Worker-dispatch
+  模型。新增 §6.3「翻译延迟」记录 EN→RU/ZH 的滞后，并说明为什么翻译
+  不在关键路径上。§6.5 改名为「紧急同步（故障排查）」。
+- **`README.md`**：删除过时的 dual-sync bullet（详情见
+  `architecture.md` §6）。EN README 现已与 RU/ZH 结构对齐。
+- **`docs/math_brief.md` §6–§7**（EN/RU/ZH）：§6 描述贝叶斯基线
+  （周 2026-09-28）；§7 重写为 Worker-dispatch 模型。
+- **`.gitignore`**：全局添加 `*.bak` 规则——原本只有 `src/*.bak*` 和
+  `docs/*.bak*`。
+
+#### 基线
+- **第一个贝叶斯协议**——周 2026-09-28。`AI_score=0.62`,
+  `Human_score=0.50`, `Gap=+0.12`（95% CI： [−0.261, +0.4935]），
+  `sample_size=22`, `items_count=20`。Gap 位于中等不对称区间
+  （0.1 < G ≤ 0.3），但 CI 跨越中性区——早期阶段，统计上脆弱的信号，
+  而非稳定趋势。
+
 ### 2026-09-28 — Gap Index 的贝叶斯重构
 
 #### 变更

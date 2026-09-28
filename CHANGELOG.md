@@ -41,6 +41,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Single-source version**: `/` endpoint metadata now reads version from `package.json` (build-time import) instead of a hardcoded literal; repo_audit verifies package.json = CITATION.cff and release-date parity
 - **Cron batching hardening**: batch offsets/limits moved to exported `CRON_BATCH_CONFIG`; runtime guard logs a loud error on source-count drift; new `cron-batching` test suite (4 invariants: full coverage, contiguous offsets, batch numbering, subrequest budget); repo_audit verifies wrangler crons == config keys
 
+### 2026-09-28 — Worker-dispatched sync + translate
+
+#### Changed
+- **sync-protocols.yml and translate-protocols.yml** are now dispatched by
+  the Cloudflare Worker via GitHub API `workflow_dispatch` immediately
+  after protocol generation (Mon/Fri ~13:53 UTC). This **replaces** the
+  previously documented schedule-based sync (Saturday 08:00 / Monday 14:00
+  UTC) — GitHub's native scheduler proved unreliable (delays of 4+ hours,
+  occasional skipped runs).
+- **Worker gains `GITHUB_PAT`** secret (fine-grained PAT, `Actions: Read
+  and write` scope) for outbound GitHub API dispatch.
+
+#### Added
+- **`dispatch` block in `scheduled()`** — after protocol generation, the
+  Worker fires two non-blocking `fetch()` calls via `ctx.waitUntil()`
+  (sync + translate in parallel). Errors surface as
+  `[cron] {sync,translate}-protocols dispatch` log lines.
+
+#### Documentation
+- **`docs/architecture.md` §6** (EN/RU/ZH): rewritten for Worker-dispatch
+  model. New §6.3 "Translation lag" documents the EN→RU/ZH lag and why
+  translation is off the critical path. §6.5 renamed to "Emergency sync
+  (troubleshooting)".
+- **`README.md`**: removed obsolete dual-sync bullet (details live in
+  `architecture.md` §6). EN README now aligns with RU/ZH structure.
+- **`docs/math_brief.md` §6–§7** (EN/RU/ZH): §6 describes the Bayesian
+  baseline (week 2026-09-28); §7 rewritten for Worker-dispatch model.
+- **`.gitignore`**: `*.bak` rule added globally — was `src/*.bak*` and
+  `docs/*.bak*` only.
+
+#### Baseline
+- **First Bayesian protocol** — week 2026-09-28. `AI_score=0.62`,
+  `Human_score=0.50`, `Gap=+0.12` (95% CI: [−0.261, +0.4935]),
+  `sample_size=22`, `items_count=20`. Gap sits inside the
+  moderate-asymmetry band (0.1 < G ≤ 0.3), but the CI crosses the neutral
+  zone — early-phase, statistically fragile signal rather than a stable
+  trend.
+
 ### 2026-09-28 — Bayesian reformulation of Gap Index
 
 #### Changed
