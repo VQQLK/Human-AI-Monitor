@@ -52,7 +52,7 @@ Over a week, `|S| ≈ 100–200` items accumulate, distributed across axes. The 
 
 ---
 
-## 2. Current Methodology (v1.0.1)
+## 2. Previous Point-Estimate Methodology (v1.0.1)
 
 This is the operative version implemented in the code `src/services/gap-computation.ts` and partially reflected in `docs/methodology.md`.
 
@@ -96,39 +96,6 @@ Human_score = (1/6) · Σ_{j=1}^{6} ℓ(h_j)
 
 The geopolitical axis `g`: `ℓ(g)` is computed and published in `index_history`, but is not included in either `AI_score` or `Human_score`.
 
-### 2.3 Alternative Formulation in methodology.md
-
-The document `docs/methodology.md` (section 3.1–3.2) contains **a different formula** — a weighted sum with fixed weights:
-
-```
-AI_score    = Σ_{i=1}^{6} w_i^AI · a_i,     Σ w_i^AI = 1
-Human_score = Σ_{j=1}^{6} w_j^H  · h_j,     Σ w_j^H  = 1
-```
-
-**AI axis weights:**
-
-| Axis | Weight |
-|---|---|
-| SMD | 0.20 |
-| ITQ | 0.15 |
-| AGG | 0.15 |
-| Cycle Velocity | 0.20 |
-| Verification | 0.20 |
-| Hexad | 0.10 |
-
-**Human axis weights:**
-
-| Axis | Weight |
-|---|---|
-| H1 Agency | 0.20 |
-| H2 Sovereignty | 0.15 |
-| H3 Wellbeing | 0.20 |
-| H4 Equity | 0.15 |
-| H5 Meaning | 0.15 |
-| H6 Democracy | 0.15 |
-
-**This formula is not implemented in the code.** The code uses a simple mean. The divergence between document and code has not yet been recorded in the methodology.
-
 ### 2.4 Interpretation Thresholds
 
 | Range of `G` | Interpretation |
@@ -138,8 +105,6 @@ Human_score = Σ_{j=1}^{6} w_j^H  · h_j,     Σ w_j^H  = 1
 | `−0.1 ≤ G ≤ 0.1` | Symmetric development (norm) |
 | `−0.3 ≤ G < −0.1` | Humanity ahead |
 | `G < −0.3` | Humanity significantly ahead |
-
-(In `methodology.md` the symmetric thresholds `±0.1` and `±0.2` are recorded; in the code — `±0.1` and `±0.3`. Another divergence.)
 
 ### 2.5 Limitations of the Current Approach
 
@@ -165,7 +130,7 @@ The hypothesis in §1.3 requires invariance under axis permutation within each g
 
 ## 3. Bayesian Methodology (v2.0)
 
-The proposed model replaces the heuristic with a probabilistic formulation. The axis level becomes a latent quantity with a posterior distribution; the Gap becomes a distribution, not a scalar.
+The Bayesian model is now the project's canonical formulation (see `methodology.md` §3). It replaces the earlier point-estimate heuristic. The axis level becomes a latent quantity with a posterior distribution; the Gap becomes a distribution, not a scalar.
 
 ### 3.1 Problem Statement
 
@@ -375,7 +340,7 @@ The Bayesian model corresponds to the five principles stated in `methodology.md`
 
 ## 4. Comparison of Approaches
 
-| Criterion | Current v1.0.1 | Bayesian v2.0 |
+| Criterion | Previous v1.0.1 (point estimates) | Canonical v2.0 (Bayesian) |
 |---|---|---|
 | Axis level | Multiplicative heuristic | Posterior Beta |
 | Parameters | 4 unjustified numbers | 2 non-informative priors |
