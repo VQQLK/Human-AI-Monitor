@@ -227,9 +227,9 @@ G(t) 不是标量而是轨迹。能否找到**不变量**？**吸引子**是否�
 
 ---
 
-## 6. 第一个自主日——2026 年 9 月 25 日
+## 6. 第一个自主日与贝叶斯基线
 
-系统首次**完全自主**运行了一整天，无人为干预：
+**2026 年 9 月 25 日**，系统首次**完全自主**运行了一整天，无人为干预：
 
 | UTC 时间 | 事件 | 结果 |
 |----------|-------|--------|
@@ -248,17 +248,25 @@ G(t) 不是标量而是轨迹。能否找到**不变量**？**吸引子**是否�
       - is_interim:      1
       - generated_at:    2026-09-25T13:46:38Z
 
-**当前 Gap Index（week 2026-09-14）：**
+**2026 年 9 月 28 日**，项目转为以 **贝叶斯公式（v2.0）** 为规范方法。更早的点估计协议已从仓库和 D1 数据库中移除——它们在新方法下不具有代表性。第一个完全贝叶斯协议于同一天由 Cloudflare Worker 生成。
+
+**当前 Gap Index（贝叶斯基线——周 2026-09-28）：**
 
     {
-      "week_start": "2026-09-14",
-      "ai_score": 0.64,
-      "human_score": 0.75,
-      "gap": -0.1,
-      "interpretation": "Humanity is ahead"
+      "week_start": "2026-09-28",
+      "week_end":   "2026-10-04",
+      "ai_score":   0.62,
+      "human_score": 0.50,
+      "gap":        0.12,
+      "method":     "bayesian",
+      "gap_ci95":   [-0.261, 0.4935],
+      "sample_size": 22,
+      "items_count": 20,
+      "shifts_count": 0,
+      "interpretation": "AI ahead"
     }
 
-Gap 位于中性区 [−0.1, 0.1] 的边缘，表明处于有利于人类的非对称早期阶段。
+Gap 位于**中等不对称区间**（0.1 < G ≤ 0.3）内。但 95% 可信区间延伸到中性区——这表明处于早期阶段，是统计上脆弱的信号，而非稳定趋势。
 
 ---
 
@@ -266,42 +274,61 @@ Gap 位于中性区 [−0.1, 0.1] 的边缘，表明处于有利于人类的非�
 
 ### 7.1. 生成 vs 可见性
 
-协议生成到 **D1 数据库**，但**延迟**出现在 **git 仓库**（`data/protocols/`）。这不是 bug——同步由单独的 GitHub Actions workflow 按计划处理。
+协议生成到 **D1 数据库**，并由 Cloudflare Worker 本身调度到 **git 仓库**（`data/protocols/`）。同步**不是**单独的计划任务——生成后（周一/周五 13:45 UTC），Worker 立即通过 GitHub API（`workflow_dispatch`）并行触发两个 GitHub Actions workflow：
+
+- `sync-protocols.yml` —— 将协议文件复制到 git
+- `translate-protocols.yml` —— 在 D1 中重新生成 RU/ZH
+
+此设计消除了对 GitHub 不可靠的原生调度器的依赖。
 
 ### 7.2. 延迟表
 
-| 协议类型 | 生成 (D1) | 可见 (git) | 延迟 |
-|---------------|----------------|---------------|-------|
-| **中间**（草案） | 周五 13:45 UTC | **周六 08:00 UTC** | ~18 小时 |
-| **最终** | 周一 13:45 UTC | **周一 14:00 UTC** | ~15 分钟 |
+| 协议类型 | Dispatch (D1) | 可见 (git) | 延迟 |
+|----------|---------------|-----------|------|
+| **中间**（周五） | 周五 ~13:53 UTC | 周五 ~14:00 UTC | ~5–10 分钟 |
+| **最终**（周一） | 周一 ~13:53 UTC | 周一 ~14:00 UTC | ~5–10 分钟 |
+| **RU/ZH 翻译** | 周一/周五 ~13:53 UTC | 下一个 sync 周期 | 最多 ~3–4 天 |
 
-### 7.3. 为什么有延迟？
+EN 文件在生成后几分钟内出现在 git 中。RU/ZH 翻译异步重新生成，可能滞后一个 sync 周期。
 
-- **中间：** 周五 13:45 生成，周六 08:00 同步——允许发布前周末审核。
-- **最终：** 周一 13:45 生成，周一 14:00 同步——近乎立即发布。
+### 7.3. 翻译延迟
+
+英语是主要语言。RU/ZH 翻译由 `translate-protocols.yml` 异步重新生成，与 `sync-protocols.yml` 并行。结果：
+
+- **EN 文件**在生成后 ~5–10 分钟出现在 git 中。
+- **RU/ZH 文件**可能滞后一个 sync 周期：`sync` 复制运行时 D1 中已有的翻译，而 `translate` 并行更新 D1。
+
+这是有意的权衡——让翻译不在关键路径上，从而避免在生成协议的 Worker 上超出 Cloudflare Free 层级限制（subrequests、CPU time）。
 
 ### 7.4. 同步 Workflow
 
-在 `.github/workflows/sync-protocols.yml` 中定义：
+在 `.github/workflows/sync-protocols.yml` 中定义，由 Cloudflare Worker 在协议生成后立即触发：
 
     on:
       schedule:
-        - cron: "0 14 * * 1"   # 周一 14:00 UTC — 同步最终
-        - cron: "0 8 * * 6"    # 周六 08:00 UTC — 同步中间
+        - cron: "0 14 * * 1"   # Monday 14:00 UTC — legacy schedule
+        - cron: "0 8 * * 6"    # Saturday 08:00 UTC — legacy schedule
+      workflow_dispatch:        # Primary trigger (from Worker)
 
 Workflow：
 1. 从 D1 API 获取最近 2 个协议（`/export-weekly?weeks=2`）。
 2. 写入 collector 仓库的 `data/protocols/`。
 3. 将所有协议归档到 `human-ai-monitor-archive` 仓库。
-4. 触发翻译 workflow（EN→RU/ZH）。
+4. 提交两个仓库的变更。
 
-### 7.5. 手动同步
+翻译由单独的 workflow `translate-protocols.yml` 处理，同样由 Worker 并行触发。它使用 Bearer 令牌调用 `GET /translate/{week}` 在 D1 中重新生成 RU/ZH，然后通过 `/protocols/{week}/content/ru` 和 `/zh` 验证结果。
+
+### 7.5. 紧急同步（故障排查）
+
+正常运行时，两个 workflow 都由 Worker 自动触发。仅在紧急情况下才需要手动触发——如果自动 dispatch 失败，或部分失败后需要重新运行：
 
     gh workflow run sync-protocols.yml
+    gh workflow run translate-protocols.yml
 
-完整文档：`docs/architecture.md` §6 "Protocol Synchronization"。
+这些命令不属于日常运行的一部分。
 
----
+完整文档：`docs/architecture.md` §6「协议同步」。
+
 
 ## 8. 已完成的工作（v1.0.1）
 
