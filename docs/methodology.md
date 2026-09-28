@@ -58,7 +58,7 @@ An axis outside the symmetric 6+6 structure, describing global AI development dy
 | **Actors** | Western cartel (Anthropic, OpenAI, Google, xAI) · WAICO · Open market |
 | **Revision threshold** | Institutional entrenchment of one bloc as dominant |
 
-## 3. Gap Index
+## 3. Gap Index (Bayesian formulation)
 
 ### 3.1. Formula
 
@@ -72,9 +72,17 @@ where:
 - $a_i \in [0, 1]$ — level of the i-th AI axis;
 - $h_j \in [0, 1]$ — level of the j-th Humanity axis.
 
-By the **symmetry hypothesis** (§2), both groups are equivalent — 6 AI axes and 6 Humanity axes describe measurements of comparable significance. Therefore aggregation is a **simple arithmetic mean**: it is the only function invariant under permutation of axes within a group.
+Each axis level is a **random variable** with a posterior Beta distribution (§3.2). By the **symmetry hypothesis** (§2), both groups are equivalent — 6 AI axes and 6 Humanity axes describe measurements of comparable significance. Therefore aggregation is a **simple arithmetic mean**: it is the only function invariant under permutation of axes within a group.
 
-### 3.2. Aggregation
+### 3.2. Aggregation and Uncertainty
+
+Axis levels are estimated as posterior distributions. For each axis $a$, the level is modeled as:
+
+$$
+\ell(a) \mid S_a \sim \mathrm{Beta}\left(\alpha_0 + \sum_{s \in S_a} v_s^{+},\ \beta_0 + \sum_{s \in S_a} v_s^{-}\right)
+$$
+
+with a non-informative **Jeffreys prior** ($\alpha_0 = \beta_0 = 1/2$). Each signal contributes a voice $v_s = r_s \cdot \pi(\sigma_s, d_s)$, split into positive and negative parts.
 
 Aggregation is a **simple arithmetic mean** within each group:
 
@@ -85,9 +93,7 @@ $$
 
 The geopolitical axis $g$ is measured and published in `index_history`, but is **not included** in either $\text{AI\_score}$ or $\text{Human\_score}$.
 
-This formulation matches the current implementation in `src/services/gap-computation.ts`.
-
-**Evolution to Bayesian inference.** A Bayesian reformulation — with posterior distributions on each axis level and 95% credible intervals for the Gap — is described in [`docs/bayesian_framework.md`](bayesian_framework.md). It preserves the same simple-mean aggregation and the same axis structure, replacing point estimates with distributions.
+The **Gap distribution** $G = \text{AI\_score} - \text{Human\_score}$ is constructed by Monte Carlo ($M = 10{,}000$ samples), yielding a mean and a 95% credible interval. Full mathematical treatment: [`docs/bayesian_framework.md`](bayesian_framework.md).
 
 ### 3.3. Interpretation
 
@@ -99,6 +105,8 @@ This formulation matches the current implementation in `src/services/gap-computa
 | $-0.3 \leq G < -0.1$ | Moderate asymmetry in favor of Humanity |
 | $G < -0.3$ | **Anomaly:** Humanity significantly ahead |
 
+The interpretation is **stable** when the 95% credible interval of $G$ lies entirely within one row, and **unstable** when the interval crosses a threshold.
+
 ### 3.4. Dynamics $G(t)$
 
 The Gap Index is **not a scalar** but a **trajectory**. We record it weekly and analyze:
@@ -108,7 +116,11 @@ The Gap Index is **not a scalar** but a **trajectory**. We record it weekly and 
 
 **Key hypothesis:** sustained growth of $G$ with no threshold shifts on AI axes is **not singularity**, but **divergence**. It is the main risk.
 
-The Bayesian reformulation ([`docs/bayesian_framework.md`](bayesian_framework.md)) adds a 95% credible interval to each weekly value, which makes the trend statistically interpretable even at small weekly sample sizes.
+Each weekly value carries a 95% credible interval, which makes the trend statistically interpretable even at small weekly sample sizes.
+
+### 3.5. Implementation status
+
+This document describes the project's **canonical Bayesian methodology**. The current implementation in `src/services/gap-computation.ts` still uses point estimates; migration to the Bayesian model is scheduled (§7). Detailed mathematical treatment: [`docs/bayesian_framework.md`](bayesian_framework.md).
 
 ---
 
@@ -205,7 +217,8 @@ MIT License. Use, fork, improve — **free**.
 - [ ] **Integration with global indices** (V-Dem, WHR, Pew) — automation.
 - [ ] **Independent methodology audit** — inviting mathematicians and philosophers.
 - [x] **Multilingual support** — EN / RU / ZH.
-- [ ] **Bayesian inference** — posterior distributions on axis levels + 95% credible intervals for the Gap (see [`docs/bayesian_framework.md`](bayesian_framework.md)).
+- [x] **Bayesian methodology documentation** — canonical formulation (see [`docs/bayesian_framework.md`](bayesian_framework.md)).
+- [ ] **Code migration to Bayesian model** — `gap-computation.ts` still uses point estimates.
 - [ ] **Public API** — for researchers and journalists.
 
 ---
