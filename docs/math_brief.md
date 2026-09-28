@@ -37,14 +37,14 @@ As of September 25, 2026, the system has completed its **first fully autonomous 
 
 ### 2.2. Humanity Axes (HHI)
 
-| Symbol | What Is Measured | Baseline ℓ₀ |
-|--------|------------------|-------------|
-| H1 Agency | Human agency, decision autonomy | 0.55 |
-| H2 Sovereignty | Cognitive sovereignty, critical thinking | 0.50 |
-| H3 Wellbeing | Wellbeing, mental health, loneliness | 0.45 |
-| H4 Equity | Equity and access, compute divide | 0.40 |
-| H5 Meaning | Meaning and purpose in work | 0.50 |
-| H6 Democracy | Institutional resilience, trust | 0.45 |
+| Symbol | What Is Measured | Alarm Threshold |
+|--------|------------------|-----------------|
+| H1 Agency | Human agency, decision autonomy | Sustained decline in key domains |
+| H2 Sovereignty | Cognitive sovereignty, critical thinking | Growing share unable to distinguish AI content |
+| H3 Wellbeing | Wellbeing, mental health, loneliness | Rising anxiety and loneliness among youth |
+| H4 Equity | Equity and access, compute divide | Growing compute divide |
+| H5 Meaning | Meaning and purpose in work | Decline in share finding meaning in work |
+| H6 Democracy | Institutional resilience, trust | Sustained decline in trust |
 
 ### 2.3. Axis Level Function
 
@@ -57,6 +57,8 @@ where:
 - σ_s ∈ {yes, no, uncertain} — shift flag,
 - d_s ∈ {up, down, stable, uncertain} — direction,
 - clamp_[0,1](x) = max(0, min(1, x)) — projection onto [0,1].
+
+**Fallback.** For `|S_a| = 0` (no items), set `ℓ(a) := 0`.
 
 **Multipliers** (empirical weights from `src/services/gap-computation.ts`):
 
@@ -94,11 +96,11 @@ AI-score and Human-score are plain arithmetic means over their respective axis s
     0.1 < Gap ≤ 0.3     → AI ahead
     Gap > 0.3           → AI significantly ahead
 
-The **neutral zone** [−0.1, 0.1] of width 0.2 corresponds to statistical noise for small samples (analogous to a hysteresis dead band).
+The **neutral zone** [−0.1, 0.1] of width 0.2 corresponds to statistical noise for small samples (analogous to a dead band).
 
 ### 2.6. Classifier (LLM interface)
 
-The classifier is a model f: T → Y, where T is the space of texts (title + summary, ≤800 chars), and the output space is:
+The classifier is a model f: T* → Y*, applied to a batch of items. For a single item, T is the space of texts (title + summary, ≤800 chars), and the output space is:
 
     Y = {(A, r, σ, d, ρ)}
 
@@ -115,7 +117,13 @@ where:
 
 - **Hash-check before classify:** SHA-256 of URL/title → DB lookup → classify only new items. Empirical saving: ~90% of LLM calls avoided.
 - **Batch processing:** 5 batches per day × ~8 sources × ~2-3 items/source ≈ 80-120 classifications/day.
-- **Gap robustness:** for |S| < 10, standard error ~ 1/√|S| ≈ 0.3, which exceeds the neutral-zone width (0.2) — interpretation becomes unreliable. Today's n=170 signals yield SE ≈ 0.08 (acceptable).
+- **Gap standard error.** Each signal contributes a value v_s = r_s · M_shift · M_dir ∈ [0, 1.8] with variance σ_v². Under the homogeneity assumption (equal axis sizes n_i = n/6, equal signal variances), the standard error of the Gap is:
+    SE(Gap) = σ_v · √(2/n).
+  Derivation: Var(AI_score) = (1/36) Σ_i Var(ℓ(a_i)) = (1/36) · 6 · σ_v²/(n/6) = σ_v²/n. Similarly for Human_score. With independence, Var(Gap) = 2 σ_v²/n, so SE(Gap) = σ_v · √(2/n).
+  With the conservative bound σ_v ≤ 0.5 (for [0, 1]-valued signals), SE(Gap) ≤ √(1/(2n)) ≈ 0.707 / √n. Consequences:
+    - n = 10:  SE(Gap) ≤ 0.22  (exceeds neutral-zone half-width 0.1 — interpretation unreliable)
+    - n = 50:  SE(Gap) ≤ 0.10  (borderline)
+    - n = 170: SE(Gap) ≤ 0.054 (acceptable; consistent with current week)
 
 ---
 
@@ -137,25 +145,29 @@ The 13 axes form a **symmetric structure**: 6 parameters describing the **artifi
 
 When is a system's self-modification **sustained improvement**, and when is it **saturation**? Related to computability theory (Kleene's recursion theorem, halting problem) and information theory (Kolmogorov complexity).
 
-**Formalization:** let S be a self-improving system, S_t its state at time t. RSI is the process S_{t+1} = f(S_t), where f is the system itself (reflexivity). Sustainability means: lim_{t→∞} (d/dt) Capability(S_t) > 0. Question: under what conditions on f is this satisfied?
+**Formalization:** let S be a self-improving system, S_t its state at time t. RSI is the process S_{t+1} = f(S_t), where f is the system itself (reflexivity). Sustainability means strict monotone improvement with a positive lower bound on the step size:
+
+    ∃ ε > 0 : ∀t, Capability(S_{t+1}) − Capability(S_t) ≥ ε.
+
+This requires Capability to be unbounded. If Capability is bounded (e.g., on [0, 1]), strict monotone improvement is still possible but the step size must vanish, and «sustained growth» is ill-defined. Question: under what conditions on f does the unbounded case hold?
 
 **Problem 2. Phase Transition Detection.**
 
 The MMD detector (Hexad) is a heuristic. A rigorous theory is needed: **how to distinguish a phase transition from noise** in a self-improving system?
 
-**Formalization:** let X_t be the trajectory of SGD iterations. We compute MMD(X_t, N(0, I)) — distance to a Gaussian surrogate. Question: does there exist a threshold τ such that MMD > τ statistically significantly indicates violation of local asymptotic normality (LAN)?
+**Formalization:** let X_t be the trajectory of SGD iterations. We compute MMD(X_t, N(0, I)) — distance to a Gaussian surrogate. Question: does there exist a threshold τ such that MMD > τ statistically significantly indicates that X_t departs from the Gaussian surrogate?
 
 **Problem 3. Verification Without an Oracle.**
 
 The verification hierarchy (formal verifiers → execution → LLM judges → self-assessment) is a **partial order**. When can the system **close the loop without a human**? This is a question about the **computational complexity of self-reference**.
 
-**Formalization:** let V = {v₁, ..., v_n} be a hierarchy of verifiers, where v_i < v_j means "v_i is less reliable than v_j". The system can close the loop without a human if there exists v_i such that false_positive_rate(v_i) < 5% and v_i is autonomously applicable. Question: what is the minimum complexity of v_i?
+**Formalization:** let V = {v₁, ..., v_n} be a hierarchy of verifiers, where v_i < v_j means "v_i is less reliable than v_j". The system can close the loop without a human if there exists v_i such that false_positive_rate(v_i) < 5% and v_i is autonomously applicable. Question: what is the minimum Kolmogorov complexity K(v_i) of such a verifier?
 
 **Problem 4. Gap Index as a Dynamical System.**
 
-G(t) is not a scalar but a trajectory. Can one find **invariants**? Do **attractors** exist? What happens as G → ∞?
+G(t) is not a scalar but a trajectory. Can one find **invariants**? Do **attractors** exist? What happens as G → ±1?
 
-**Formalization:** let G(t) = F(A(t), H(t)), where A(t) is the vector of AI levels, H(t) is the vector of Humanity levels. Question: is G(t) an integrable system? Do conserved quantities exist?
+**Formalization:** let G(t) = F(A(t), H(t)), where A(t) is the vector of AI levels, H(t) is the vector of Humanity levels. Question: are there conserved quantities along trajectories of G(t)? Are there attractors within [−1, 1]?
 
 ---
 
@@ -184,7 +196,7 @@ This is **not a monitor of AI**. This is a **monitor of AI + Humanity**. We meas
 
 ### 5.1. Historical Analogy
 
-In 1957, **Sputnik** launched the space race. In 1969, **Apollo** landed humans on the Moon. In 2026, **frontier AI systems** are leaving sandboxes and solving problems that remained open for 87 years.
+In 1957, **Sputnik** launched the space race. In 1969, **Apollo** landed humans on the Moon. In 2026, **frontier AI systems** are leaving sandboxes and solving problems that remained open for decades.
 
 **But who observes this?** Corporations publish releases. States — declarations. Scientists — papers. **No one publishes a weekly report on what is happening to Humanity.**
 
