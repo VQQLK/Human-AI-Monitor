@@ -454,6 +454,7 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 │ ├── methodology.md
 │ ├── architecture.md
 │ ├── math_brief.md
+│ ├── bayesian_framework.md
 │ └── PRESS_RELEASE.md
 ├── research/
 │ ├── README.md

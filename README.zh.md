@@ -453,6 +453,7 @@ xychart-beta
 │ ├── methodology.md
 │ ├── architecture.md
 │ ├── math_brief.md
+│ ├── bayesian_framework.md
 │ └── PRESS_RELEASE.md
 ├── research/
 │ ├── README.md
