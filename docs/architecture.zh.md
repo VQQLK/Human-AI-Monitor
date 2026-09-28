@@ -110,6 +110,7 @@ Human–AI Monitor 构建在**去中心化的 Cloudflare 基础设施**之上—
 2. 通过 Workers AI 分类。
 3. 保存到 D1。
 4. 生成上一周的 Markdown 协议。
+5. 通过 GitHub API 触发 `sync-protocols.yml` 和 `translate-protocols.yml`（仅周一/周五）。
 
 ---
 
@@ -133,10 +134,9 @@ v
 D1 protocols table (EN/RU/ZH)
 |
 v
-GitHub Actions sync-protocols.yml
-|
-v
-GitHub (data/protocols/) -- 同步延迟后出现
+Worker 通过 GitHub API 并行触发两个 workflow（仅周一/周五）：
+  |- sync-protocols.yml       -->  GitHub (data/protocols/) -- EN/RU/ZH 文件
+  '- translate-protocols.yml -->  D1（重新生成 RU/ZH 翻译）
 
 API endpoints <-- Android app / web / external
 

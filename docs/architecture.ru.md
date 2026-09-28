@@ -110,6 +110,7 @@ Human–AI Monitor построен на **децентрализованной 
 2. Классифицирует через Workers AI.
 3. Сохраняет в D1.
 4. Генерирует Markdown-протокол за прошедшую неделю.
+5. Запускает `sync-protocols.yml` и `translate-protocols.yml` через GitHub API (только пн/пт).
 
 ---
 
@@ -133,10 +134,9 @@ v
 D1 protocols table (EN/RU/ZH)
 |
 v
-GitHub Actions sync-protocols.yml
-|
-v
-GitHub (data/protocols/) -- появляется после задержки синхронизации
+Worker параллельно запускает два workflow через GitHub API (только пн/пт):
+  |- sync-protocols.yml       -->  GitHub (data/protocols/) -- файлы EN/RU/ZH
+  '- translate-protocols.yml -->  D1 (перегенерация RU/ZH переводов)
 
 API endpoints <-- Android app / web / external
 

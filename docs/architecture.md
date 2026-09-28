@@ -105,6 +105,7 @@ Human–AI Monitor is built on a **decentralized Cloudflare infrastructure** —
 2. Classifies via Workers AI.
 3. Saves to D1.
 4. Generates Markdown protocol for the past week.
+5. Dispatches `sync-protocols.yml` and `translate-protocols.yml` via GitHub API (Mon/Fri only).
 
 ---
 
@@ -128,10 +129,9 @@ v
 D1 protocols table (EN/RU/ZH)
 |
 v
-GitHub Actions sync-protocols.yml
-|
-v
-GitHub (data/protocols/) -- appears after sync delay
+Worker dispatches two workflows in parallel via GitHub API (Mon/Fri only):
+  |- sync-protocols.yml       -->  GitHub (data/protocols/) -- EN/RU/ZH files
+  '- translate-protocols.yml -->  D1 (regenerate RU/ZH translations)
 
 API endpoints <-- Android app / web / external
 
