@@ -296,10 +296,6 @@ This tool does three things:
   - Daytime (13:00, 13:15, 13:30, 13:45 UTC): 8 sources each, maxPerSource=3
   - Evening (23:00 UTC): 9 sources, maxPerSource=2
   - Total: 41 sources covered across 5 batches
-- **Dual-sync workflow** — syncs latest 2 protocols to collector repo, 
-  archives all protocols to separate archive repo
-  - Schedule: Saturday 08:00 UTC (interim), Monday 14:00 UTC (final)
-  - Visibility delay: interim ~18h, final ~15min
 
 **No external AI providers.** All classification runs on open-weight 
 models hosted by Cloudflare Workers AI.
