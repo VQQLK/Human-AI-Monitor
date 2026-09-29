@@ -73,6 +73,18 @@ export function cryptoRng(): number {
   return buf[0] / 4294967296;
 }
 
+// ----- Deterministic seed from a string ----------------------
+// FNV-1a hash. Used in production so that a given week_start
+// always produces the same Monte Carlo run (bit-for-bit reproducible).
+export function seedFromString(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
 // ----- Gamma sampler (Marsaglia-Tsang with boost) ------------
 // For alpha < 1 use the boost identity:
 //   Gamma(alpha) = Gamma(alpha + 1) * U^(1/alpha),  U ~ Uniform(0,1)

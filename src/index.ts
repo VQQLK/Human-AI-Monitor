@@ -6,6 +6,7 @@ import { getAIPrompt, getHumanPrompt } from './config/prompts';
 import { fetchWithRetry } from "./utils/fetch-with-retry";
 import { handleExport } from './handlers/export';
 import { computeGapIndex } from './services/gap-computation';
+import { mulberry32, seedFromString } from './services/bayesian-gap';
 import { translateProtocolMarkdown, translateReasoningBatch } from './services/translation';
 import { isProtectedPath, verifyAuth } from './auth';
 
@@ -500,7 +501,8 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'yes'"
 	).bind(range.filterStart, range.filterEnd).first();
 	// Compute Gap BEFORE building markdown, so buildProtocolMarkdown reads fresh gap_history
-	const gapResult = await computeGapIndex(env, range);
+	// Reproducible Monte Carlo: seed from week_start (bayesian_framework.md §3.9)
+	const gapResult = await computeGapIndex(env, range, mulberry32(seedFromString(range.start)));
 	
 	// Persist to gap_history (read by buildProtocolMarkdown and /gap endpoint)
 	// Bayesian v2: point estimate + 95% credible interval + significance + stability
@@ -618,7 +620,8 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'yes'"
 	).bind(range.filterStart, range.filterEnd).first();
 	// Compute Gap BEFORE building markdown, so buildDraftProtocolMarkdown reads fresh gap_history
-	const gapResult = await computeGapIndex(env, range);
+	// Reproducible Monte Carlo: seed from week_start (bayesian_framework.md §3.9)
+	const gapResult = await computeGapIndex(env, range, mulberry32(seedFromString(range.start)));
 
 	// Persist to gap_history (read by /gap and /protocols/current)
 	// Bayesian v2: point estimate + 95% credible interval + significance + stability
