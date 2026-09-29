@@ -426,8 +426,8 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		} catch (e) {}
 	}
 	const gap: any = await env.DB.prepare(
-		"SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1"
-	).first();
+		"SELECT * FROM gap_history WHERE week_start = ? LIMIT 1"
+	).bind(range.start).first();
 	const shifts = filteredItems.filter((it) => it.shift === "yes").length;
 	const lines: string[] = [];
 	lines.push("# Humanity-AI Monitor Protocol");
@@ -493,14 +493,13 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 	}
 
 	const range = getWeekRange(offsetWeeks);
-	const markdown = await buildProtocolMarkdown(env, range);
 	const itemsRes = await env.DB.prepare(
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ?"
 	).bind(range.filterStart, range.filterEnd).first();
 	const shiftsRes = await env.DB.prepare(
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'yes'"
 	).bind(range.filterStart, range.filterEnd).first();
-	// F6 fix: compute real Gap Index from collected signals
+	// Compute Gap BEFORE building markdown, so buildProtocolMarkdown reads fresh gap_history
 	const gapResult = await computeGapIndex(env, range);
 	
 	// Persist to gap_history (read by buildProtocolMarkdown and /gap endpoint)
@@ -542,6 +541,9 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 		).run();
 	}
 	
+	// Build markdown AFTER gap_history + index_history are written,
+	// so the Gap section reads the fresh row for THIS week.
+	const markdown = await buildProtocolMarkdown(env, range);
 	const itemsCount = (itemsRes as any)?.n ?? 0;
 	const shiftsCount = (shiftsRes as any)?.n ?? 0;
 	const path = "data/protocols/" + range.start + ".md";
@@ -609,13 +611,13 @@ async function translateAndSaveProtocol(env: Env, weekStart: string): Promise<an
 
 async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<any> {
 	const range = getWeekRange(offsetWeeks);
-	const markdown = await buildDraftProtocolMarkdown(env, range, true);
 	const itemsRes = await env.DB.prepare(
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ?"
 	).bind(range.filterStart, range.filterEnd).first();
 	const shiftsRes = await env.DB.prepare(
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'yes'"
 	).bind(range.filterStart, range.filterEnd).first();
+	// Compute Gap BEFORE building markdown, so buildDraftProtocolMarkdown reads fresh gap_history
 	const gapResult = await computeGapIndex(env, range);
 
 	// Persist to gap_history (read by /gap and /protocols/current)
@@ -657,6 +659,9 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 		).run();
 	}
 
+	// Build markdown AFTER gap_history + index_history are written,
+	// so the Gap section reads the fresh row for THIS week.
+	const markdown = await buildDraftProtocolMarkdown(env, range, true);
 	const itemsCount = (itemsRes as any)?.n ?? 0;
 	const shiftsCount = (shiftsRes as any)?.n ?? 0;
 	const path = "data/protocols/" + range.start + ".interim.md";
