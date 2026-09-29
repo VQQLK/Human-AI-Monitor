@@ -183,8 +183,6 @@ dist
 .idea/
 *.swp
 *.swo
-src/*.bak*
-docs/*.bak*
 *.bak
+*.bak[0-9]*
 *.bak-v102
-docs/*.bak-v102
