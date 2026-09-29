@@ -42,8 +42,12 @@ canonical identifier. For example:
 - API endpoint: GET /protocols/2026-09-22/content
 - Database: protocols.week_start = "2026-09-22"
 
-This archive uses **Sunday** (week_end) only for file names to be more
-human-readable. The mapping is straightforward:
+This archive uses **Sunday** (week_end) for file names **and for the
+`Protocol ID` shown in the markdown title** — both are human-facing, and
+identifying the week by its end date avoids the "Monday = previous week"
+ambiguity. This is deliberate, not a bug: API/D1 keys use `week_start`
+(Monday); the title and file names shown to readers use `week_end`
+(Sunday). The mapping is straightforward:
 
     file_date (Sunday) = api_date (Monday) + 6 days
 

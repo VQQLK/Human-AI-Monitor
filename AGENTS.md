@@ -56,6 +56,10 @@ Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
    (Sunday, `week_end`): `2026-09-20.md`. The legacy D1 `path` column is
    week_start-based and does not match files — sync builds names itself;
    do not trust `path`.
+   **Protocol ID in markdown title** uses `week_end` (Sunday) — human-facing
+   ID that identifies the week by its end date, avoiding the "Monday =
+   previous week" ambiguity. This is deliberate: API/D1 keys use
+   `week_start`, but the title shown to readers uses `week_end`.
 
 7. **Protocol regeneration makes translations stale.** Regenerating a
    protocol week overwrites `content` (EN) in D1 but preserves
