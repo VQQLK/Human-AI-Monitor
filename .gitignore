@@ -186,3 +186,5 @@ dist
 src/*.bak*
 docs/*.bak*
 *.bak
+*.bak-v102
+docs/*.bak-v102
