@@ -1,9 +1,9 @@
-# Human–AI Monitor: Current Methodology and Bayesian Alternative
+# Human–AI Monitor: Canonical Bayesian Methodology
 
-**Document version:** v2.0-draft  
+**Document version:** v2.0  
 **Date:** September 28, 2026  
-**Purpose:** systematic statement of the current methodology (v1.0.1) and justification of the Bayesian model for axis aggregation and Gap Index computation (v2.0)  
-**Status:** working document, open for review
+**Purpose:** systematic statement of the canonical Bayesian methodology (v2.0) currently in production, with a historical outline of the previous point-estimate approach (v1.0.1) it replaced  
+**Status:** canonical reference. Open for review.
 
 ---
 
@@ -54,7 +54,7 @@ Over a week, `|S| ≈ 100–200` items accumulate, distributed across axes. The 
 
 ## 2. Previous Point-Estimate Methodology (v1.0.1)
 
-This is the operative version implemented in the code `src/services/gap-computation.ts` and partially reflected in `docs/methodology.md`.
+This was the operative version before 28 September 2026. It is preserved here for historical context; the code in `src/services/gap-computation.ts` has been rewritten to the Bayesian model (§3).
 
 ### 2.1 Axis Level
 
@@ -112,7 +112,7 @@ The geopolitical axis `g`: `ℓ(g)` is computed and published in `index_history`
 The values `M_shift ∈ {1.5, 1.0, 0.5}` and `M_dir ∈ {1.2, 1.0, 0.8}` are not derived from theory or from calibration on labeled data. This is a set of expert numbers without a documented protocol for obtaining them. As a consequence, the metric is not reproducible: the reader cannot verify why exactly 1.5 and not 1.3.
 
 **Limitation 2. Inconsistency between document and code.**
-The code uses a simple mean; `methodology.md` §3.1–3.2 describes a weighted formula. Two documents describe different metrics, both declared as current.
+At the time, code and documentation disagreed: the code used a simple mean, while `methodology.md` (v1.0.1) described a weighted formula. This inconsistency was one of the reasons for the migration to the Bayesian model (§3).
 
 **Limitation 3. Multiplicativity on a bounded interval.**
 For `r_s = 1`, `σ_s = yes`, `d_s = up` we get `1 · 1.5 · 1.2 = 1.8`. Before `clamp` is applied, the value exceeds `[0, 1]` by a factor of 1.8. The `clamp` operation becomes dominant over aggregation: the nonlinearity at the boundaries erases the difference between items with high relevance.
@@ -338,7 +338,7 @@ The Bayesian model corresponds to the five principles stated in `methodology.md`
 
 ---
 
-## 4. Comparison of Approaches
+## 4. Historical Transition: v1.0.1 → v2.0
 
 | Criterion | Previous v1.0.1 (point estimates) | Canonical v2.0 (Bayesian) |
 |---|---|---|
