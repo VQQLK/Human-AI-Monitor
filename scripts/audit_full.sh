@@ -70,7 +70,13 @@ for tool in git node npx python3 curl gh; do
     have "$tool" && ok "$tool present" || bad "$tool MISSING"
 done
 npx --no-install wrangler --version >/dev/null 2>&1 && ok "wrangler via npx" || bad "wrangler not resolvable"
-[ -n "${CLOUDFLARE_API_TOKEN:-}" ] && ok "CLOUDFLARE_API_TOKEN set" || warn "CLOUDFLARE_API_TOKEN empty (using stored session)"
+if [ -n "${CLOUDFLARE_API_TOKEN:-}" ]; then
+    ok "Cloudflare auth: CLOUDFLARE_API_TOKEN env"
+elif npx --no-install wrangler whoami >/dev/null 2>&1; then
+    ok "Cloudflare auth: stored session (macOS keychain)"
+else
+    warn "Cloudflare auth: not detected (wrangler may still work)"
+fi
 
 if have gh; then
     gh auth status >/dev/null 2>&1 && ok "gh authenticated" || bad "gh NOT authenticated"
