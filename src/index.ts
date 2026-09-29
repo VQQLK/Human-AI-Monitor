@@ -320,8 +320,19 @@ async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string>
 			}
 		} catch (e) {}
 	}
-	// Compute Gap Index directly (do NOT write to gap_history — this is draft only)
-	const gapResult = await computeGapIndex(env, range);
+	// Read Gap from gap_history (read-only; do NOT recompute — Monte Carlo is expensive).
+	// Same source as /gap endpoint. Draft is a view, not a compute step.
+	const gapRow: any = await env.DB.prepare(
+		"SELECT ai_score, human_score, gap, interpretation FROM gap_history WHERE week_start = ? LIMIT 1"
+	).bind(range.start).first();
+	const gapResult = gapRow
+		? {
+			aiScore: gapRow.ai_score,
+			humanScore: gapRow.human_score,
+			gap: gapRow.gap,
+			interpretation: gapRow.interpretation ?? "no data",
+		}
+		: null;
 	const shifts = filteredItems.filter((it) => it.shift === "yes").length;
 	const lines: string[] = [];
 	lines.push("# Humanity-AI Monitor Protocol (DRAFT)");
@@ -333,11 +344,13 @@ async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string>
 	lines.push("**Items collected:** " + filteredItems.length);
 	lines.push("**Shifts detected:** " + shifts);
 	lines.push("");
-	lines.push("### Gap Index");
-	lines.push("- AI score: " + gapResult.aiScore.toFixed(2));
-	lines.push("- Human score: " + gapResult.humanScore.toFixed(2));
-	lines.push("- **Gap: " + gapResult.gap.toFixed(2) + "** (" + gapResult.interpretation + ")");
-	lines.push("");
+	if (gapResult) {
+		lines.push("### Gap Index");
+		lines.push("- AI score: " + gapResult.aiScore);
+		lines.push("- Human score: " + gapResult.humanScore);
+		lines.push("- **Gap: " + gapResult.gap + "** (" + gapResult.interpretation + ")");
+		lines.push("");
+	}
 	lines.push("---");
 	lines.push("");
 	lines.push("## AI Axes (RSI)");
