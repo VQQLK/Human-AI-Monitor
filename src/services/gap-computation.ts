@@ -19,6 +19,7 @@ import {
   BetaParams,
   betaParamsFromSignals,
   betaMean,
+  sampleBeta,
   sampleGapDistribution,
   summarize,
   interpretGap,
@@ -39,6 +40,17 @@ export interface GapResult {
 
   // Full Bayesian information
   axisPosteriors: { [axis: string]: BetaParams };
+  axisSummaries: {
+    [axis: string]: {
+      mean: number;
+      std: number;
+      ci95Low: number;
+      ci95High: number;
+      alpha: number;
+      beta: number;
+      sampleSize: number;
+    };
+  };
   aiScoreCi95: [number, number];
   humanScoreCi95: [number, number];
   gapMean: number;
@@ -98,6 +110,32 @@ export async function computeGapIndex(
     axisLevels[a] = betaMean(posteriors[a]);
   }
 
+  // 4b. Per-axis posterior summary (mean, std, CI95 via Monte Carlo).
+  // Uses the same summarize() as the Gap, so uncertainty quantification
+  // is consistent across axes and Gap. Per-axis sample size = number of
+  // signals assigned to that axis (item × axis pairs).
+  const axisSummaries: {
+    [axis: string]: {
+      mean: number; std: number; ci95Low: number; ci95High: number;
+      alpha: number; beta: number; sampleSize: number;
+    };
+  } = {};
+  for (const a of allAxes) {
+    const p = posteriors[a];
+    const samples: number[] = new Array(mcSamples);
+    for (let i = 0; i < mcSamples; i++) samples[i] = sampleBeta(p.alpha, p.beta, rng);
+    const sum = summarize(samples);
+    axisSummaries[a] = {
+      mean: sum.mean,
+      std: sum.std,
+      ci95Low: sum.ci95Low,
+      ci95High: sum.ci95High,
+      alpha: p.alpha,
+      beta: p.beta,
+      sampleSize: (buckets[a] || []).length,
+    };
+  }
+
   // 5. Monte Carlo sampling of the Gap distribution
   const aiParams = AI_AXES.map(a => posteriors[a]);
   const humanParams = HUMAN_AXES.map(a => posteriors[a]);
@@ -123,6 +161,7 @@ export async function computeGapIndex(
 
     // Bayesian extensions
     axisPosteriors: posteriors,
+    axisSummaries,
     aiScoreCi95: [round4(aiSummary.ci95Low), round4(aiSummary.ci95High)],
     humanScoreCi95: [round4(humanSummary.ci95Low), round4(humanSummary.ci95High)],
     gapMean: round4(gapSummary.mean),

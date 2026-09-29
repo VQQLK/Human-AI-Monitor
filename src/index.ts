@@ -504,11 +504,22 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 		gapResult.stability, gapResult.method
 	).run();
 	
-	// Persist axis levels (posterior means) to index_history
-	for (const [axis, level] of Object.entries(gapResult.axisLevels)) {
+	// Persist axis posteriors to index_history
+	// (mean + CI95 + std + α + β + per-axis sample size).
+	// See migration 0012. Legacy rows: these columns are NULL.
+	for (const [axis, s] of Object.entries(gapResult.axisSummaries)) {
 		await env.DB.prepare(
-			"INSERT OR REPLACE INTO index_history (axis, level, date, note, recorded_at) VALUES (?,?,?,?,?)"
-		).bind(axis, level, range.start, 'Bayesian posterior mean (Beta)', new Date().toISOString()).run();
+			"INSERT OR REPLACE INTO index_history " +
+			"(axis, level, date, note, recorded_at, " +
+			" level_ci95_low, level_ci95_high, level_std, alpha, beta, sample_size) " +
+			"VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+		).bind(
+			axis, s.mean, range.start,
+			'Bayesian posterior (Beta)',
+			new Date().toISOString(),
+			s.ci95Low, s.ci95High, s.std,
+			s.alpha, s.beta, s.sampleSize
+		).run();
 	}
 	
 	const itemsCount = (itemsRes as any)?.n ?? 0;
@@ -608,11 +619,22 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 		gapResult.stability, gapResult.method
 	).run();
 
-	// Persist axis levels (posterior means) to index_history
-	for (const [axis, level] of Object.entries(gapResult.axisLevels)) {
+	// Persist axis posteriors to index_history
+	// (mean + CI95 + std + α + β + per-axis sample size).
+	// See migration 0012. Legacy rows: these columns are NULL.
+	for (const [axis, s] of Object.entries(gapResult.axisSummaries)) {
 		await env.DB.prepare(
-			"INSERT OR REPLACE INTO index_history (axis, level, date, note, recorded_at) VALUES (?,?,?,?,?)"
-		).bind(axis, level, range.start, 'Bayesian posterior mean (Beta)', new Date().toISOString()).run();
+			"INSERT OR REPLACE INTO index_history " +
+			"(axis, level, date, note, recorded_at, " +
+			" level_ci95_low, level_ci95_high, level_std, alpha, beta, sample_size) " +
+			"VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+		).bind(
+			axis, s.mean, range.start,
+			'Bayesian posterior (Beta)',
+			new Date().toISOString(),
+			s.ci95Low, s.ci95High, s.std,
+			s.alpha, s.beta, s.sampleSize
+		).run();
 	}
 
 	const itemsCount = (itemsRes as any)?.n ?? 0;
@@ -924,7 +946,9 @@ export default {
 		}
 		if (path === "/axes-history") {
 				const all = await env.DB.prepare(
-					"SELECT axis, level, date, note, recorded_at FROM index_history ORDER BY date DESC, axis"
+					"SELECT axis, level, date, note, recorded_at, " +
+					"       level_ci95_low, level_ci95_high, level_std, alpha, beta, sample_size " +
+					"FROM index_history ORDER BY date DESC, axis"
 				).all();
 				const grouped: Record<string, any[]> = {};
 				for (const row of all.results) {
@@ -935,6 +959,12 @@ export default {
 						level: row.level,
 						note: row.note,
 						recorded_at: row.recorded_at,
+						level_ci95_low: row.level_ci95_low,
+						level_ci95_high: row.level_ci95_high,
+						level_std: row.level_std,
+						alpha: row.alpha,
+						beta: row.beta,
+						sample_size: row.sample_size,
 					});
 				}
 				return json({
