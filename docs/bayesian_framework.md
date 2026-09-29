@@ -331,7 +331,7 @@ This addition does not change the scale but makes its application statistically 
 The Bayesian model corresponds to the five principles stated in `methodology.md` (section 5):
 
 - **Transparency.** All model parameters (`α₀`, `β₀`, the table `π`) are published; the Monte Carlo procedure is reproducible.
-- **Reproducibility.** With identical input data, the result is deterministic up to `1/√M` (with a fixed seed — exactly).
+- **Reproducibility.** With identical input data and the same seed, the result is bit-for-bit identical. The Monte Carlo estimate itself carries a statistical error of ~`1/√M` relative to the true posterior. In production, the seed is `FNV-1a(week_start)` (see `src/services/bayesian-gap.ts:seedFromString`) — re-running any given week yields exactly the same numbers.
 - **Falsifiability.** Every statement about the Gap has an explicit statistical meaning through `CI₉₅` and `P(Gap > 0 | data)`.
 - **Independence.** The model relies on an open-weight LLM and open data; the probabilistic apparatus is standard.
 - **Free forever.** Monte Carlo at `M = 10 000` fits within the free tier of Cloudflare Workers.
