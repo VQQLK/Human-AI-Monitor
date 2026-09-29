@@ -290,7 +290,7 @@ export function getWeekRange(offsetWeeks: number): any {
 
 // DRAFT protocol for current (still-open) week — read-only, not saved to DB
 // Used by /protocols/current endpoint for monitoring and debugging
-async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string> {
+async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boolean = false): Promise<string> {
 	const res = await env.DB.prepare(
 		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning, temporal_status, event_date FROM items WHERE date >= ? AND date <= ? AND (temporal_status IS NULL OR temporal_status != 'stale_forecast') ORDER BY relevance DESC LIMIT 500"
 	).bind(range.filterStart, range.filterEnd).all();
@@ -335,11 +335,18 @@ async function buildDraftProtocolMarkdown(env: Env, range: any): Promise<string>
 		: null;
 	const shifts = filteredItems.filter((it) => it.shift === "yes").length;
 	const lines: string[] = [];
-	lines.push("# Humanity-AI Monitor Protocol (DRAFT)");
+	lines.push(isInterim
+		? "# Humanity-AI Monitor Protocol (INTERIM)"
+		: "# Humanity-AI Monitor Protocol (DRAFT)");
 	lines.push("## Week: " + range.filterStart + " — " + range.filterEnd + " (Protocol ID: " + range.filterEnd + ")");
 	lines.push("");
-	lines.push("**⚠️ DRAFT: This week is still open. This protocol is NOT saved to database.**");
-	lines.push("**Final version will be automatically generated on Monday at 13:45 UTC.**");
+	if (isInterim) {
+		lines.push("**ℹ️ INTERIM: Interim protocol for the current week. Final version will be generated on Monday at 13:45 UTC.**");
+		lines.push("**This protocol IS saved to database (is_interim = 1).**");
+	} else {
+		lines.push("**⚠️ DRAFT: This week is still open. This protocol is NOT saved to database.**");
+		lines.push("**Final version will be automatically generated on Monday at 13:45 UTC.**");
+	}
 	lines.push("");
 	lines.push("**Items collected:** " + filteredItems.length);
 	lines.push("**Shifts detected:** " + shifts);
@@ -602,7 +609,7 @@ async function translateAndSaveProtocol(env: Env, weekStart: string): Promise<an
 
 async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<any> {
 	const range = getWeekRange(offsetWeeks);
-	const markdown = await buildDraftProtocolMarkdown(env, range);
+	const markdown = await buildDraftProtocolMarkdown(env, range, true);
 	const itemsRes = await env.DB.prepare(
 		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ?"
 	).bind(range.filterStart, range.filterEnd).first();
