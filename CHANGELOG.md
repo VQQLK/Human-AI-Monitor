@@ -7,6 +7,25 @@ All notable changes to Human-AI Monitor will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2026-09-29
+
+### Changed
+- **`docs/bayesian_framework.{md,ru.md,zh.md}`**: marked canonical (v2.0), not alternative; §4 renamed to "Historical Transition: v1.0.1 → v2.0"; §3.9 reproducibility reformulated (bit-for-bit with seed + MC error ~`1/√M`).
+- **`docs/architecture.{md,ru.md,zh.md}` §2.4/§3/§6**: Worker-dispatched sync and translate; §6.5 renamed to "Emergency sync (troubleshooting)".
+- **`docs/methodology.{md,ru.md,zh.md}` §4.1**: daily collection (5 batches), weekly protocol cycle.
+- **Docs version bumped to 1.0.2**, dates to 2026-09-29 (architecture, math_brief, methodology).
+
+### Added
+- **Per-axis posterior in `index_history`** (migration 0012): `alpha`, `beta`, `level_ci95_low`, `level_ci95_high`, `level_std`, `sample_size` per axis. `/axes-history` returns the full posterior, not a point estimate. Pre-migration rows keep `NULL` — honest, not backfilled.
+- **Bit-for-bit reproducible Monte Carlo**: production `computeGapIndex` seeds from `FNV-1a(week_start)` (`src/services/bayesian-gap.ts:seedFromString`).
+- **`isInterim` flag in `buildDraftProtocolMarkdown`**: saved interim protocols marked `(INTERIM)`; live `/protocols/current` stays `(DRAFT)`.
+
+### Fixed
+- **`exceededCpu` on `/protocols/current{,/ru,/zh}`**: draft no longer recomputes the Gap — reads `gap_history` (same source as `/gap`). Before: 1/10 requests HTTP 200. After: 10/10.
+- **Ordering in cron generation**: `computeGapIndex` + `INSERT` now run **before** `buildProtocolMarkdown` — a fresh week no longer reads an empty Gap section.
+- **`buildProtocolMarkdown` week scope**: `SELECT ... WHERE week_start = ?` (was `ORDER BY recorded_at DESC LIMIT 1` — could return the wrong week).
+- **Gap format consistency**: dropped `.toFixed(2)` in draft — `0.5` everywhere (`/gap`, DB, final, draft).
+
 ## [Unreleased] — BREAKING
 
 ### Changed

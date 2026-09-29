@@ -8,6 +8,25 @@
 
 格式基于[保持变更日志](https://keepachangelog.com/en/1.1.0/)，并且本项目遵循[语义化版本控制](https://semver.org/spec/v2.0.0.html)。
 
+## [1.0.2] - 2026-09-29
+
+### 变更
+- **`docs/bayesian_framework.{md,ru.md,zh.md}`**：标记为规范（v2.0），而非替代；§4 重命名为「历史过渡：v1.0.1 → v2.0」；§3.9 可复现性重新表述（同种子逐位相同 + MC 误差约 `1/√M`）。
+- **`docs/architecture.{md,ru.md,zh.md}` §2.4/§3/§6**：Worker 派发 sync 和 translate；§6.5 重命名为「紧急同步（故障排查）」。
+- **`docs/methodology.{md,ru.md,zh.md}` §4.1**：每日采集（5 批），每周协议周期。
+- **文档版本提升至 1.0.2**，日期更新为 2026-09-29（architecture、math_brief、methodology）。
+
+### 新增
+- **`index_history` 中每轴后验**（migration 0012）：每轴存储 `alpha`、`beta`、`level_ci95_low`、`level_ci95_high`、`level_std`、`sample_size`。`/axes-history` 返回完整后验而非点估计。迁移前的行保留 `NULL`——诚实，未回填。
+- **逐位可重现的蒙特卡洛**：生产 `computeGapIndex` 从 `FNV-1a(week_start)` 播种（`src/services/bayesian-gap.ts:seedFromString`）。
+- **`buildDraftProtocolMarkdown` 中的 `isInterim` 标志**：保存的中间协议标记为 `(INTERIM)`；实时 `/protocols/current` 仍为 `(DRAFT)`。
+
+### 修复
+- **`/protocols/current{,/ru,/zh}` 上的 `exceededCpu`**：draft 不再重算 Gap——从 `gap_history` 读取（与 `/gap` 相同来源）。此前：1/10 请求 HTTP 200。现在：10/10。
+- **cron 生成中的顺序**：`computeGapIndex` + `INSERT` 现在在 `buildProtocolMarkdown` **之前**运行——新生成的一周不再读取空的 Gap 部分。
+- **`buildProtocolMarkdown` 周范围**：`SELECT ... WHERE week_start = ?`（原为 `ORDER BY recorded_at DESC LIMIT 1`——可能返回错误的一周）。
+- **Gap 格式一致性**：草稿中删除 `.toFixed(2)`——所有位置均为 `0.5`（`/gap`、数据库、final、draft）。
+
 ## [未发布] — BREAKING
 
 ### 变更 (BREAKING)

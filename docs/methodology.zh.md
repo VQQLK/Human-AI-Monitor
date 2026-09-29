@@ -1,7 +1,7 @@
 # Human–AI Monitor 方法论
 
-**版本：** 1.0.1  
-**日期：** 2026年9月27日  
+**版本：** 1.0.2  
+**日期：** 2026年9月29日  
 **状态：** 工作文档，开放审查
 
 **Language:** [🇬🇧 English](methodology.md) | [🇷🇺 Русский](methodology.ru.md)

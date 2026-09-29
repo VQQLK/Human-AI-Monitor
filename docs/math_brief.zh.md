@@ -1,7 +1,7 @@
 # Human–AI Monitor：面向数学家的简报
 
-**版本：** 1.0.1  
-**日期：** 2026年9月27日  
+**版本：** 1.0.2  
+**日期：** 2026年9月29日  
 **Language:** [🇬🇧 English](math_brief.md) | [🇷🇺 Русский](math_brief.ru.md)
 
 ---

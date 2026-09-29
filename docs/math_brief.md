@@ -1,7 +1,7 @@
 # Human–AI Monitor: A Brief for Mathematicians
 
-**Version:** 1.0.1  
-**Date:** September 27, 2026  
+**Version:** 1.0.2  
+**Date:** September 29, 2026  
 **Language:** [🇷🇺 Русский](math_brief.ru.md) | [🇨🇳 中文](math_brief.zh.md)
 
 ---

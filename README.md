@@ -343,7 +343,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 
 ## Current status
 
-**Production release (v1.0.1):**
+**Current release (v1.0.2):**
 
 - ✅ Cloudflare Worker with 20 API endpoints — deployed
 - ✅ `/verify` endpoint — CheatBench-inspired reward hacking detection

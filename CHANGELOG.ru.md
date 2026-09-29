@@ -7,6 +7,25 @@
 Формат основан на [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),  
 и этот проект соблюдает [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2026-09-29
+
+### Изменено
+- **`docs/bayesian_framework.{md,ru.md,zh.md}`**: отмечен как канонический (v2.0), не альтернатива; §4 переименован в «Исторический переход: v1.0.1 → v2.0»; §3.9 воспроизводимость переформулирована (bit-for-bit с seed + ошибка MC ~`1/√M`).
+- **`docs/architecture.{md,ru.md,zh.md}` §2.4/§3/§6**: Worker-dispatch sync и translate; §6.5 переименован в «Синхронизация в чрезвычайных обстоятельствах».
+- **`docs/methodology.{md,ru.md,zh.md}` §4.1**: ежедневный сбор (5 батчей), недельный цикл протокола.
+- **Версия документации поднята до 1.0.2**, даты до 2026-09-29 (architecture, math_brief, methodology).
+
+### Добавлено
+- **Posterior по каждой оси в `index_history`** (миграция 0012): `alpha`, `beta`, `level_ci95_low`, `level_ci95_high`, `level_std`, `sample_size` по каждой оси. `/axes-history` возвращает полный posterior, а не точечную оценку. Старые записи сохраняют `NULL` — честно, без backfill.
+- **Bit-for-bit воспроизводимый Monte Carlo**: production `computeGapIndex` сидируется из `FNV-1a(week_start)` (`src/services/bayesian-gap.ts:seedFromString`).
+- **Флаг `isInterim` в `buildDraftProtocolMarkdown`**: сохранённые interim помечены `(INTERIM)`; live `/protocols/current` остаётся `(DRAFT)`.
+
+### Исправлено
+- **`exceededCpu` на `/protocols/current{,/ru,/zh}`**: draft больше не пересчитывает Gap — читает `gap_history` (тот же источник, что `/gap`). Было: 1/10 запросов HTTP 200. Стало: 10/10.
+- **Порядок в cron-генерации**: `computeGapIndex` + `INSERT` теперь **до** `buildProtocolMarkdown` — свежая неделя больше не читает пустую Gap-секцию.
+- **`buildProtocolMarkdown` — охват недели**: `SELECT ... WHERE week_start = ?` (было `ORDER BY recorded_at DESC LIMIT 1` — мог вернуть не ту неделю).
+- **Консистентность формата Gap**: убран `.toFixed(2)` в draft — `0.5` везде (`/gap`, БД, final, draft).
+
 ## [Неопубликовано] — BREAKING
 
 ### Изменено

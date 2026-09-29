@@ -283,7 +283,7 @@ xychart-beta
 
 ## 当前状态
 
-**生产版本 (v1.0.1):**
+**当前版本 (v1.0.2):**
 
 - ✅ 部署了20个API端点的Cloudflare Worker
 - ✅ `/verify`端点 — 基于CheatBench的奖励劫持检测
