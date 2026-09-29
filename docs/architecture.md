@@ -42,7 +42,7 @@ Human–AI Monitor is built on a **decentralized Cloudflare infrastructure** —
 
 2. **`scheduled` handler** — Cron Trigger:
    - Runs 5 batches daily (13:00, 13:15, 13:30, 13:45, 23:00 UTC).
-   - Each batch collects fresh news from 8-9 sources.
+   - Each batch collects fresh news from 8 sources (batches 1–4) or 7 (evening batch 5).
    - Classifies each item via Workers AI.
    - Saves to D1.
    - Friday 13:45 UTC: generates interim protocol for current week.

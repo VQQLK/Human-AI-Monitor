@@ -338,7 +338,7 @@ Full documentation: `docs/architecture.md` §6 "Protocol Synchronization".
 | Classifier | Qwen 3 (open-weight) on Cloudflare Workers AI |
 | Configuration | `wrangler.jsonc` with D1 binding, 5 cron batches |
 | Infrastructure | D1 created (EEUR), 4 tables populated |
-| Code | TypeScript, 20 API endpoints, 41 sources |
+| Code | TypeScript, 20 API endpoints, 39 sources |
 | Tests | **66/66 passing** (~75% coverage) |
 | Audit | **19/19 ok, 0 warn, 0 FAIL** (`scripts/repo_audit.py`) |
 | CI/CD | GitHub Actions: CI, docs-check, sync, translate |

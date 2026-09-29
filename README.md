@@ -294,8 +294,8 @@ This tool does three things:
   `@cf/qwen/qwen3-30b-a3b-fp8` (open-weight)
 - **Cron Trigger** — 5 batches daily:
   - Daytime (13:00, 13:15, 13:30, 13:45 UTC): 8 sources each, maxPerSource=3
-  - Evening (23:00 UTC): 9 sources, maxPerSource=2
-  - Total: 41 sources covered across 5 batches
+  - Evening (23:00 UTC): 7 sources, maxPerSource=2
+  - Total: 39 sources covered across 5 batches
 
 **No external AI providers.** All classification runs on open-weight 
 models hosted by Cloudflare Workers AI.
@@ -349,7 +349,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ✅ `/verify` endpoint — CheatBench-inspired reward hacking detection
 - ✅ D1 database (4 tables, populated)
 - ✅ Workers AI classifier (Qwen 3, calibrated for 13 axes (12+1))
-- ✅ RSS + HTML collector (41 sources from 47 configured: 25 AI + 16 Human)
+- ✅ RSS + HTML collector (39 sources: 25 AI + 14 Human)
 - ✅ Weekly protocol auto-generation (Markdown, EN/RU/ZH)
 - ✅ Interim/Final protocol split (Friday draft → Monday final)
 - ✅ Cron Trigger (5 batches daily: 13:00-13:45 + 23:00 UTC)

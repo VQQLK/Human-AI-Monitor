@@ -338,7 +338,7 @@ Workflow：
 | 分类器 | Qwen 3（开放权重）在 Cloudflare Workers AI 上 |
 | 配置 | `wrangler.jsonc` 带 D1 绑定，5 个 cron 批次 |
 | 基础设施 | D1 已创建（EEUR），4 张表已填充 |
-| 代码 | TypeScript，20 个 API 端点，41 个源 |
+| 代码 | TypeScript，20 个 API 端点，39 个源 |
 | 测试 | **66/66 通过**（~75% 覆盖率） |
 | 审计 | **19/19 ok，0 warn，0 FAIL**（`scripts/repo_audit.py`） |
 | CI/CD | GitHub Actions：CI、docs-check、sync、translate |

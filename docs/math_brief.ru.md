@@ -338,7 +338,7 @@ Workflow:
 | Классификатор | Qwen 3 (открытые веса) на Cloudflare Workers AI |
 | Конфигурация | `wrangler.jsonc` с D1 binding, 5 cron batches |
 | Инфраструктура | D1 создана (EEUR), 4 таблицы заполнены |
-| Код | TypeScript, 20 API endpoints, 41 источник |
+| Код | TypeScript, 20 API endpoints, 39 источников |
 | Тесты | **66/66 проходят** (~75% покрытие) |
 | Аудит | **19/19 ok, 0 warn, 0 FAIL** (`scripts/repo_audit.py`) |
 | CI/CD | GitHub Actions: CI, docs-check, sync, translate |

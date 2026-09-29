@@ -289,7 +289,7 @@ xychart-beta
 - ✅ `/verify`端点 — 基于CheatBench的奖励劫持检测
 - ✅ D1数据库（4个表，已填充）
 - ✅ Workers AI分类器（Qwen 3，校准为13个轴 (12+1)）
-- ✅ RSS + HTML收集器（41个来源，47个配置：25 AI + 16 Human）
+- ✅ RSS + HTML收集器（39个来源：25 AI + 14 Human）
 - ✅ 每周协议自动生成（Markdown，EN/RU/ZH）
 - ✅ 定时触发器（每天5批：13:00-13:45 + 23:00 UTC）
 - ✅ 第一个完全自治日周期完成（2026年9月25日）
