@@ -3,7 +3,8 @@
 **Document version:** v2.0  
 **Date:** September 28, 2026  
 **Purpose:** systematic statement of the canonical Bayesian methodology (v2.0) currently in production, with a historical outline of the previous point-estimate approach (v1.0.1) it replaced  
-**Status:** canonical reference. Open for review.
+**Status:** canonical reference. Open for review.  
+**Language:** [🇷🇺 Русский](bayesian_framework.ru.md) | [🇨🇳 中文](bayesian_framework.zh.md)
 
 ---
 

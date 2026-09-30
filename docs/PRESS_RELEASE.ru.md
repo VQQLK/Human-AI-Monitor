@@ -7,7 +7,8 @@
 - GitHub: https://github.com/VQQLK/Human-AI-Monitor
 - Issues: https://github.com/VQQLK/Human-AI-Monitor/issues
 
-**Дата:** 17 сентября 2026
+**Дата:** 17 сентября 2026  
+**Language:** [🇬🇧 English](PRESS_RELEASE.md) | [🇨🇳 中文](PRESS_RELEASE.zh.md)
 
 ---
 

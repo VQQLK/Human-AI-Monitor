@@ -7,7 +7,8 @@ Artificial Intelligence and Humanity
 - GitHub: https://github.com/VQQLK/Human-AI-Monitor
 - Issues: https://github.com/VQQLK/Human-AI-Monitor/issues
 
-**Date:** September 17, 2026
+**Date:** September 17, 2026  
+**Language:** [🇷🇺 Русский](PRESS_RELEASE.ru.md) | [🇨🇳 中文](PRESS_RELEASE.zh.md)
 
 ---
 
