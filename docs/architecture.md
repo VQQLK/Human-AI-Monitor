@@ -310,7 +310,7 @@ RSS-only collection. HTML parsing not implemented yet. Some sources without RSS 
 
 Single region D1. Currently EEUR. On growth — replicas.
 
-No automatic backups. Planned: weekly export of D1 to R2.
+No automatic backups.
 
 Monolithic src/index.ts. Refactoring into modules is in the roadmap.
 
