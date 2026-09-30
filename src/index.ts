@@ -271,6 +271,64 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 	return { duration_ms: Date.now() - startedAt, ...stats };
 }
 
+
+// ═══════════════════════════════════════════════════════════
+// HTML view helpers for /protocols/*/view routes
+// ═══════════════════════════════════════════════════════════
+// Minimal markdown → HTML conversion (no deps) for human-readable
+// in-browser viewing. Existing /protocols/* endpoints continue to
+// serve text/markdown for API clients.
+
+function escapeHtml(s: string): string {
+	return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function renderInline(text: string): string {
+	let s = escapeHtml(text);
+	s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+	s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+	s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+	return s;
+}
+
+function renderMarkdownToHtml(md: string): string {
+	const lines = md.split('\n');
+	const out: string[] = [];
+	let inList = false, inCode = false;
+	let codeBuf: string[] = [];
+	for (const line of lines) {
+		if (line.startsWith('```')) {
+			if (inCode) { out.push('<pre><code>' + escapeHtml(codeBuf.join('\n')) + '</code></pre>'); codeBuf = []; inCode = false; }
+			else { inCode = true; }
+			continue;
+		}
+		if (inCode) { codeBuf.push(line); continue; }
+		const h = line.match(/^(#{1,6})\s+(.*)$/);
+		if (h) {
+			if (inList) { out.push('</ul>'); inList = false; }
+			const lvl = h[1].length;
+			out.push('<h' + lvl + '>' + renderInline(h[2]) + '</h' + lvl + '>');
+			continue;
+		}
+		if (/^\s*[-*]\s+/.test(line)) {
+			if (!inList) { out.push('<ul>'); inList = true; }
+			out.push('<li>' + renderInline(line.replace(/^\s*[-*]\s+/, '')) + '</li>');
+			continue;
+		}
+		if (inList) { out.push('</ul>'); inList = false; }
+		if (line.trim() === '') { out.push(''); continue; }
+		if (line.trim() === '---') { out.push('<hr>'); continue; }
+		out.push('<p>' + renderInline(line) + '</p>');
+	}
+	if (inList) out.push('</ul>');
+	if (inCode) out.push('<pre><code>' + escapeHtml(codeBuf.join('\n')) + '</code></pre>');
+	return out.join('\n');
+}
+
+function htmlPage(title: string, bodyHtml: string, lang: string = 'en'): string {
+	return '<!DOCTYPE html>\n<html lang="' + lang + '">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>' + escapeHtml(title) + '</title>\n<style>\n:root{color-scheme:light dark}\nbody{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;max-width:860px;margin:0 auto;padding:24px;line-height:1.6;color:#1a1a1a;background:#fafafa}\n@media(prefers-color-scheme:dark){body{color:#e8e8e8;background:#121212}a{color:#6cb6ff}}\nh1,h2,h3,h4{border-bottom:1px solid rgba(127,127,127,.2);padding-bottom:.3em}\na{color:#0066cc;text-decoration:none}\na:hover{text-decoration:underline}\ncode{background:rgba(127,127,127,.15);padding:2px 5px;border-radius:3px;font-size:.9em}\npre{background:rgba(127,127,127,.1);padding:12px;border-radius:6px;overflow-x:auto}\npre code{background:none;padding:0}\nhr{border:0;border-top:1px solid rgba(127,127,127,.3);margin:24px 0}\nul{padding-left:1.4em}\n</style>\n</head>\n<body>\n' + bodyHtml + '\n<hr>\n<p style="font-size:.85em;color:#888"><a href="https://github.com/VQQLK/Human-AI-Monitor">Human-AI Monitor</a></p>\n</body>\n</html>';
+}
+
 export function getWeekRange(offsetWeeks: number): any {
 	const now = new Date();
 	const day = now.getUTCDay();
@@ -778,7 +836,7 @@ export default {
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/", "/health", "/drift-events", "/gap", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
+					endpoints: ["/", "/health", "/drift-events", "/gap", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/current/view", "/protocols/current/view/ru", "/protocols/current/view/zh", "/protocols/latest/view", "/protocols/latest/view/ru", "/protocols/latest/view/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
 				}, 200);
 			}
 			if (path === "/health") {
@@ -820,6 +878,30 @@ export default {
 				const translatedMarkdown = await translateProtocolMarkdown(env, englishMarkdown, lang);
 				return new Response(translatedMarkdown, {
 					headers: { "Content-Type": "text/markdown; charset=utf-8", "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0", "CDN-Cache-Control": "no-store", ...CORS },
+				});
+			}
+			// ── HTML view for draft protocol (live, human-readable) ──
+			const currentViewMatch = path.match(/^\/protocols\/current\/view(\/(ru|zh))?$/);
+			if (currentViewMatch) {
+				const lang = (currentViewMatch[2] || "en") as "en" | "ru" | "zh";
+				const range = getWeekRange(0);
+				const enMd = await buildDraftProtocolMarkdown(env, range);
+				const md = lang === "en" ? enMd : await translateProtocolMarkdown(env, enMd, lang);
+				const html = htmlPage("Live Protocol (DRAFT) — " + lang.toUpperCase(), renderMarkdownToHtml(md), lang);
+				return new Response(html, {
+					headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "public, max-age=300", ...SECURITY_HEADERS, ...CORS },
+				});
+			}
+			// ── HTML view for latest stored protocol (final) ──
+			const latestViewMatch = path.match(/^\/protocols\/latest\/view(\/(ru|zh))?$/);
+			if (latestViewMatch) {
+				const lang = (latestViewMatch[2] || "en") as "en" | "ru" | "zh";
+				const col = lang === "en" ? "content" : ("content_" + lang);
+				const row: any = await env.DB.prepare("SELECT " + col + " AS content, week_start FROM protocols WHERE is_interim = 0 ORDER BY week_start DESC LIMIT 1").first();
+				if (!row || !row.content) return json({ error: "No stored protocol" }, 404);
+				const html = htmlPage("Protocol " + row.week_start + " — " + lang.toUpperCase(), renderMarkdownToHtml(row.content), lang);
+				return new Response(html, {
+					headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "public, max-age=3600", ...SECURITY_HEADERS, ...CORS },
 				});
 			}
 			if (path === "/protocols") {
