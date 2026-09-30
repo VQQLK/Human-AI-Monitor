@@ -99,7 +99,7 @@ The **Gap distribution** $G = \text{AI\_score} - \text{Human\_score}$ is constru
 **Bayesian implementation.** In the production code (`src/services/bayesian-gap.ts`),
 each axis level $a_i$ and $h_j$ is modeled as a **Beta posterior distribution**
 $\text{Beta}(\alpha, \beta)$ with Jeffreys prior $(\alpha_0, \beta_0) = (0.5, 0.5)$.
-The weighted sum above is computed via **Monte Carlo sampling** (M = 10,000 draws):
+In the production implementation, axis weights are applied and the sum is computed via **Monte Carlo sampling** (M = 10,000 draws):
 
 $$
 AI\_score^{(k)} = \sum_{i=1}^{6} w_i^{AI} \cdot s_i^{(k)}, \quad

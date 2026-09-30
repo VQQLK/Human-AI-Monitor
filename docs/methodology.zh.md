@@ -99,7 +99,7 @@ $$
 **贝叶斯实现。** 在生产代码（`src/services/bayesian-gap.ts`）中，
 每个轴的水平 $a_i$ 和 $h_j$ 被建模为具有Jeffreys先验 $(\alpha_0, \beta_0) = (0.5, 0.5)$ 的
 **Beta后验分布** $\text{Beta}(\alpha, \beta)$。
-上述加权和通过**蒙特卡洛采样**（M = 10,000次抽样）计算：
+在生产实现中，应用轴权重并通过**蒙特卡洛采样**（M = 10,000次抽样）计算：
 
 $$
 AI\_score^{(k)} = \sum_{i=1}^{6} w_i^{AI} \cdot s_i^{(k)}, \quad
