@@ -58,7 +58,7 @@ not singularity, but divergence. And it is the main risk.
 - Android app (PWA + Capacitor) with offline mode.
 - Weekly protocols generated automatically via GitHub Actions.
 - Multilingual: EN / RU / ZH.
-- Independence: local LLM (Ollama + Qwen), no external APIs.
+- Independence: serverless LLM (Cloudflare Workers AI + Qwen), no external APIs.
 
 ### Philosophy
 

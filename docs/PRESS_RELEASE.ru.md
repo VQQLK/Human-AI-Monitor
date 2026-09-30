@@ -59,7 +59,7 @@ Gap Index — ключевая метрика: если ИИ растёт, а Ч
 - Android-приложение (PWA + Capacitor) с оффлайн-режимом.
 - Еженедельные протоколы с автогенерацией через GitHub Actions.
 - Многоязычность: EN / RU / ZH.
-- Независимость: локальная LLM (Ollama + Qwen), без внешних API.
+- Независимость: serverless-LLM (Cloudflare Workers AI + Qwen), без внешних API.
 
 ### Философия
 
