@@ -198,3 +198,9 @@ id_ed25519*
 # Rotation state — local, not for git
 .secret-rotation-state
 *.bak-*
+
+# Editor artifacts
+*.save
+*.swp
+*.swo
+*~
