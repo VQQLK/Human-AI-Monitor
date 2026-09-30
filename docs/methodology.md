@@ -72,7 +72,12 @@ where:
 - $a_i \in [0, 1]$ — level of the i-th AI axis;
 - $h_j \in [0, 1]$ — level of the j-th Humanity axis.
 
-Each axis level is a **random variable** with a posterior Beta distribution (§3.2). By the **symmetry hypothesis** (§2), both groups are equivalent — 6 AI axes and 6 Humanity axes describe measurements of comparable significance. Therefore aggregation is a **simple arithmetic mean**: it is the only function invariant under permutation of axes within a group.
+Each axis level is a **random variable** with a posterior Beta distribution (§3.2). By the **symmetry hypothesis** (§2), AI and Humanity axes are treated as **comparable in scale**, but not necessarily in weight. Two aggregation modes are supported:
+
+- **Baseline (equal weights):** $\text{AI\_score} = \frac{1}{6}\sum_{i=1}^{6} \ell(a_i)$ — the simple arithmetic mean, invariant under permutation of axes within a group.
+- **Production (expert weights):** $\text{AI\_score} = \sum_{i=1}^{6} w_i^{AI} \cdot \ell(a_i)$ with $\sum_i w_i^{AI} = 1$. See §3.2 for the weight table and §6 for the rationale.
+
+The choice of mode is documented; results are reproducible either way.
 
 ### 3.2. Aggregation and Uncertainty
 
@@ -84,7 +89,7 @@ $$
 
 with a non-informative **Jeffreys prior** ($\alpha_0 = \beta_0 = 1/2$). Each signal contributes a voice $v_s = r_s \cdot \pi(\sigma_s, d_s)$, split into positive and negative parts.
 
-Aggregation is a **simple arithmetic mean** within each group:
+In the baseline case (equal weights), aggregation is a **simple arithmetic mean** within each group:
 
 $$
 \text{AI\_score} = \frac{1}{6}\sum_{i=1}^{6} \ell(a_i), \qquad
@@ -109,6 +114,28 @@ $$
 where $s_i^{(k)} \sim \text{Beta}(\alpha_i, \beta_i)$. The final Gap Index is the
 posterior mean of $G^{(k)}$ with a 95% credible interval. This provides a
 statistically rigorous quantification of uncertainty.
+
+**Expert weights (production).** Axis weights are expert estimates, not derived from labeled data:
+
+| AI axis | Weight | Rationale |
+|---------|--------|-----------|
+| SMD | 0.20 | Self-modification depth — core RSI signal |
+| ITQ | 0.15 | Improvement trajectory quality |
+| AGG | 0.15 | Autonomous goal generation |
+| Cycle Velocity | 0.20 | Rate of improvement cycles |
+| Verification | 0.20 | Verification hierarchy |
+| Hexad | 0.10 | Phase transition detection |
+
+| Humanity axis | Weight | Rationale |
+|---------------|--------|-----------|
+| H1 Agency | 0.20 | Human agency |
+| H2 Sovereignty | 0.15 | Cognitive sovereignty |
+| H3 Wellbeing | 0.20 | Wellbeing & mental health |
+| H4 Equity | 0.15 | Equity & access |
+| H5 Meaning | 0.15 | Meaning & purpose |
+| H6 Democracy | 0.15 | Democratic resilience |
+
+$\sum_i w_i^{AI} = \sum_j w_j^{H} = 1.0$. Weights are open for calibration; see §6 for limitations.
 
 ### 3.3. Interpretation
 
@@ -221,6 +248,8 @@ MIT License. Use, fork, improve — **free**.
 4. **Signal independence.** Within an axis, items are assumed independent, though a single source may produce correlated items (a series of news items about one event). This may inflate confidence at small weekly sample sizes.
 
 5. **LLM classification.** The model may err. All results are open for verification.
+
+6. **Expert weights.** Axis weights in §3.2 are expert estimates, not derived from labeled data or theoretical first principles. Alternative weightings are possible. Changing weights affects the magnitudes of $\text{AI\_score}$ and $\text{Human\_score}$, but not their qualitative interpretation (§3.3), which remains stable as long as the sign of $G$ is unchanged.
 
 ---
 
