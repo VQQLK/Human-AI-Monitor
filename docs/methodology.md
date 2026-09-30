@@ -95,6 +95,21 @@ The geopolitical axis $g$ is measured and published in `index_history`, but is *
 
 The **Gap distribution** $G = \text{AI\_score} - \text{Human\_score}$ is constructed by Monte Carlo ($M = 10{,}000$ samples), yielding a mean and a 95% credible interval. Full mathematical treatment: [`docs/bayesian_framework.md`](bayesian_framework.md).
 
+
+**Bayesian implementation.** In the production code (`src/services/bayesian-gap.ts`),
+each axis level $a_i$ and $h_j$ is modeled as a **Beta posterior distribution**
+$\text{Beta}(\alpha, \beta)$ with Jeffreys prior $(\alpha_0, \beta_0) = (0.5, 0.5)$.
+The weighted sum above is computed via **Monte Carlo sampling** (M = 10,000 draws):
+
+$$
+AI\_score^{(k)} = \sum_{i=1}^{6} w_i^{AI} \cdot s_i^{(k)}, \quad
+G^{(k)} = AI\_score^{(k)} - Human\_score^{(k)}, \quad k = 1, \dots, M
+$$
+
+where $s_i^{(k)} \sim \text{Beta}(\alpha_i, \beta_i)$. The final Gap Index is the
+posterior mean of $G^{(k)}$ with a 95% credible interval. This provides a
+statistically rigorous quantification of uncertainty.
+
 ### 3.3. Interpretation
 
 | Value of $G$ | Interpretation |
@@ -102,7 +117,7 @@ The **Gap distribution** $G = \text{AI\_score} - \text{Human\_score}$ is constru
 | $G > 0.3$ | **Critical asymmetry:** AI significantly ahead |
 | $0.1 < G \leq 0.3$ | **Moderate asymmetry:** AI ahead |
 | $\|G\| \leq 0.1$ | Symmetric development (norm) |
-| $-0.3 \leq G < -0.1$ | Moderate asymmetry in favor of Humanity |
+| $-0.3 \leq G < -0.1$ | Moderate asymmetry: Humanity is ahead |
 | $G < -0.3$ | **Anomaly:** Humanity significantly ahead |
 
 The interpretation is **stable** when the 95% credible interval of $G$ lies entirely within one row, and **unstable** when the interval crosses a threshold.

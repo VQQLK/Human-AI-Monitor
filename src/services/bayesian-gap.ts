@@ -163,21 +163,39 @@ export function sampleGapDistribution(
   aiParams: BetaParams[],
   humanParams: BetaParams[],
   M: number,
-  rng: () => number
+  rng: () => number,
+  aiWeights?: number[],
+  humanWeights?: number[]
 ): MCRun {
   const nAI = aiParams.length;
   const nH = humanParams.length;
+
+  // Weights are optional for backward compatibility.
+  // If not provided, fall back to equal weights (uniform mean).
+  // When provided, weights MUST be normalized (sum to 1.0).
+  const wAI = aiWeights ?? aiParams.map(() => 1 / nAI);
+  const wH = humanWeights ?? humanParams.map(() => 1 / nH);
+
+  // Defensive normalization: guard against non-normalized input.
+  const sumAI = wAI.reduce((a, b) => a + b, 0);
+  const sumH = wH.reduce((a, b) => a + b, 0);
+
   const aiSamples = new Array<number>(M);
   const humanSamples = new Array<number>(M);
   const gapSamples = new Array<number>(M);
+
   for (let k = 0; k < M; k++) {
     let ai = 0;
-    for (const p of aiParams) ai += sampleBeta(p.alpha, p.beta, rng);
-    ai /= nAI;
+    for (let i = 0; i < nAI; i++) {
+      ai += wAI[i] * sampleBeta(aiParams[i].alpha, aiParams[i].beta, rng);
+    }
+    ai /= sumAI;
 
     let human = 0;
-    for (const p of humanParams) human += sampleBeta(p.alpha, p.beta, rng);
-    human /= nH;
+    for (let j = 0; j < nH; j++) {
+      human += wH[j] * sampleBeta(humanParams[j].alpha, humanParams[j].beta, rng);
+    }
+    human /= sumH;
 
     aiSamples[k] = ai;
     humanSamples[k] = human;

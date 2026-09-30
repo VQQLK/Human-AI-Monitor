@@ -14,6 +14,7 @@
 // ============================================================
 
 import { AI_AXES, HUMAN_AXES, META_AXES } from '../config/axes';
+import { AI_WEIGHTS, HUMAN_WEIGHTS } from '../config/weights';
 import {
   Signal,
   BetaParams,
@@ -136,10 +137,14 @@ export async function computeGapIndex(
     };
   }
 
-  // 5. Monte Carlo sampling of the Gap distribution
+  // 5. Monte Carlo sampling of the Gap distribution (WEIGHTED).
+  // Weights from src/config/weights.ts are applied to each axis.
+  // This matches the documented formula: G = Σ(w_i * a_i) − Σ(w_j * h_j)
   const aiParams = AI_AXES.map(a => posteriors[a]);
   const humanParams = HUMAN_AXES.map(a => posteriors[a]);
-  const run = sampleGapDistribution(aiParams, humanParams, mcSamples, rng);
+  const aiWeights = AI_AXES.map(a => AI_WEIGHTS[a]);
+  const humanWeights = HUMAN_AXES.map(a => HUMAN_WEIGHTS[a]);
+  const run = sampleGapDistribution(aiParams, humanParams, mcSamples, rng, aiWeights, humanWeights);
 
   const aiSummary = summarize(run.aiSamples);
   const humanSummary = summarize(run.humanSamples);
