@@ -186,3 +186,14 @@ dist
 *.bak
 *.bak[0-9]*
 *.bak-v102
+
+# Keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# Rotation state — local, not for git
+.secret-rotation-state

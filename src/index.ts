@@ -737,6 +737,13 @@ export default {
 		const url = new URL(request.url);
 		const path = url.pathname;
 
+		const SECURITY_HEADERS = {
+			"X-Content-Type-Options": "nosniff",
+			"X-Frame-Options": "DENY",
+			"Referrer-Policy": "strict-origin-when-cross-origin",
+			"Permissions-Policy": "geolocation=(), microphone=(), camera=()",
+			"Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+		};
 		const CORS = {
 			"Access-Control-Allow-Origin": "*",
 			"Access-Control-Allow-Methods": "GET, OPTIONS",
@@ -745,9 +752,9 @@ export default {
 		const json = (data: unknown, status: number) =>
 			new Response(JSON.stringify(data, null, 2), {
 				status,
-				headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0", ...CORS },
+				headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0", ...SECURITY_HEADERS, ...CORS },
 			});
-		if (request.method === "OPTIONS") return new Response(null, { headers: CORS });
+		if (request.method === "OPTIONS") return new Response(null, { headers: { ...SECURITY_HEADERS, ...CORS } });
 
 		// Authentication: protected paths require a valid Bearer token.
 		// See src/auth.ts — supports dual-phase secret rotation.
