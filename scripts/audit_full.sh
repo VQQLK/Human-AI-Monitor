@@ -133,9 +133,14 @@ else
     bad "wrangler.jsonc cron count = $CRON_COUNT (expected 5)"
 fi
 
+# Extract the UUID that follows the '(100%)' marker on Version(s): line.
+# Do NOT rely on output order — it varies between wrangler versions.
+# Strategy: capture all "(100%) <uuid>" pairs, take the last one (newest
+# in current wrangler; robust because we filter by the distinctive marker).
 LAST_VER=$(npx --no-install wrangler deployments list 2>/dev/null \
-    | grep -oE '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}' \
-    | head -1)
+    | grep -oE '\(100%\) [a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}' \
+    | tail -1 \
+    | awk '{print $2}')
 [ -n "$LAST_VER" ] && ok "active worker version: $LAST_VER" || warn "cannot determine active worker version"
 
 MIG=$(npx --no-install wrangler d1 migrations list "$DB" --remote 2>/dev/null)
@@ -187,10 +192,25 @@ done
 hdr "PHASE 5 — D1 data"
 ITEMS_MAX=$(d1_scalar "SELECT MAX(date) AS m FROM items" "m")
 TODAY=$(date -u +%Y-%m-%d)
-if [ "$ITEMS_MAX" = "$TODAY" ]; then
-    ok "items max_date = today ($ITEMS_MAX)"
+
+# Collection cron chain: 13:00, 13:15, 13:30, 13:45 UTC, then 23:00 UTC.
+# Data for "today" becomes available only after ~14:00 UTC.
+# Before 14:00 UTC the expected max_date is yesterday (not stale).
+UTC_HOUR=$(date -u +%H | sed 's/^0//'); [ -z "$UTC_HOUR" ] && UTC_HOUR=0
+if [ "$UTC_HOUR" -ge 14 ]; then
+    MIN_EXPECTED="$TODAY"
+    WINDOW_NOTE="after 14:00 UTC (post-collection window)"
 else
-    warn "items max_date = $ITEMS_MAX (today = $TODAY)"
+    MIN_EXPECTED=$(date -u -v-1d +%Y-%m-%d 2>/dev/null \
+                || date -u -d 'yesterday' +%Y-%m-%d)
+    WINDOW_NOTE="before 14:00 UTC (pre-collection window)"
+fi
+
+# ISO-8601 date strings compare correctly with lexicographic >=.
+if [[ "$ITEMS_MAX" > "$MIN_EXPECTED" || "$ITEMS_MAX" == "$MIN_EXPECTED" ]]; then
+    ok "items max_date = $ITEMS_MAX ≥ $MIN_EXPECTED ($WINDOW_NOTE)"
+else
+    warn "items max_date = $ITEMS_MAX < $MIN_EXPECTED (STALE — $WINDOW_NOTE)"
 fi
 
 ITEMS_TOTAL=$(d1_count "SELECT COUNT(*) AS n FROM items")
