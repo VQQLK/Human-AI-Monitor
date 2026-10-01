@@ -39,6 +39,14 @@
 
 
 ### 添加
+- **协议寻址已明确**：API 与数据库以 week_start（周一）为键；文件名（sync/归档/git）使用 week_end（周日）；README API 参考已加注 x3，AGENTS.md 规则 6 与 data/protocols/README.md 记录该区分及遗留 D1 字段 `path`（不可信）
+- **动态cron批次**：偏移/限制由 `computeBatches()` 在运行时从 `SOURCES.length` 计算（对容量44以内的每个N进行属性测试；N=41仍产生[8,8,8,8,9]）；N超过容量时通过 cron_drift_events 大声拒绝——来源变更时无需手动核对
+- **注册表策略已编码**：docs/ 设计为 EN+RU（审计强制 docs-pairs 检查）；CHANGELOG 发布历史策略（EN 保持精简，RU/ZH 深度一致）已记录在 AGENTS.md 规则 3/10 中
+- **术语清晰性**：repo_audit 的词汇表检查消息已重新措辞——ZH 词汇表包含规范 EN 短语的既定翻译（规范为 EN，RU/ZH 为镜像）；AGENTS.md 规则 2 已添加相同说明
+- **漂移事件可观测性**（发现#2，第二种实现）：cron漂移防护现在将事件持久化到D1表 `cron_drift_events`；新的 `/drift-events` 端点返回最近100条——运行时防护可观测，而非仅一行日志
+- **健康自报与实时监控**：`/health` 现在暴露 version、sources_count、batches_planned、batches_ok；新的每日 `live-monitor` 工作流将实时API与git对照（版本一致性、批次覆盖、翻译持久化）——解决夜间审计发现#2
+- **覆盖率诚实性**：README的覆盖率声明已加注（在7个可单元测试套件中测量的60%，API入口点除外）；添加了 `npm run coverage` 脚本
+
 - **协议同步文档** (docs/architecture.md §6):
   - 临时协议可见性：Saturday 08:00 UTC（从 Friday 生成延迟约18小时）
   - 最终协议可见性：Monday 14:00 UTC（从 Monday 生成延迟约15分钟）
@@ -49,14 +57,7 @@
 - **docs/architecture.md §3**: 数据流更新为显示 D1 → GitHub Actions → 仓库路径及同步延迟
 - **README.md**: 双同步工作流描述扩展了计划和可见性延迟
 
-### Added
-- **协议寻址已明确**：API 与数据库以 week_start（周一）为键；文件名（sync/归档/git）使用 week_end（周日）；README API 参考已加注 x3，AGENTS.md 规则 6 与 data/protocols/README.md 记录该区分及遗留 D1 字段 `path`（不可信）
-- **动态cron批次**：偏移/限制由 `computeBatches()` 在运行时从 `SOURCES.length` 计算（对容量44以内的每个N进行属性测试；N=41仍产生[8,8,8,8,9]）；N超过容量时通过 cron_drift_events 大声拒绝——来源变更时无需手动核对
-- **注册表策略已编码**：docs/ 设计为 EN+RU（审计强制 docs-pairs 检查）；CHANGELOG 发布历史策略（EN 保持精简，RU/ZH 深度一致）已记录在 AGENTS.md 规则 3/10 中
-- **术语清晰性**：repo_audit 的词汇表检查消息已重新措辞——ZH 词汇表包含规范 EN 短语的既定翻译（规范为 EN，RU/ZH 为镜像）；AGENTS.md 规则 2 已添加相同说明
-- **漂移事件可观测性**（发现#2，第二种实现）：cron漂移防护现在将事件持久化到D1表 `cron_drift_events`；新的 `/drift-events` 端点返回最近100条——运行时防护可观测，而非仅一行日志
-- **健康自报与实时监控**：`/health` 现在暴露 version、sources_count、batches_planned、batches_ok；新的每日 `live-monitor` 工作流将实时API与git对照（版本一致性、批次覆盖、翻译持久化）——解决夜间审计发现#2
-- **覆盖率诚实性**：README的覆盖率声明已加注（在7个可单元测试套件中测量的60%，API入口点除外）；添加了 `npm run coverage` 脚本
+### 添加
 - **AGENTS.md**：面向AI编码代理的仓库指南——从2026-09一致性评审提炼的10条硬规则（生成代码、提示词即行为、EN规范镜像、单一版本来源、cron不变量、协议生命周期、再生成与翻译交互、部署纪律、推送前检查、提交纪律）
 
 ### 更改
