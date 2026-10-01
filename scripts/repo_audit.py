@@ -8,7 +8,7 @@ CI: .github/workflows/docs-check.yml (push / PR / еженедельно).
 
 Коды выхода: 0 = ок (warn допустимы), 1 = есть FAIL.
 """
-import pathlib, re, sys, json
+import pathlib, re, sys, json, fnmatch, subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 FAILS, WARNS, OKS = [], [], []
@@ -257,6 +257,146 @@ else:
         fail(f"cron: триггеры расходятся: wrangler={sorted(crons_wr)} vs config={sorted(crons_code)}")
     else:
         ok(f"cron: триггеры согласованы ({len(crons_wr)}) — wrangler.jsonc == CRON_BATCH_META")
+
+# ---------- 9. Language navigation ----------
+NAV_WHITELIST_GLOBS = (
+    ".agents/*",
+    "data/protocols/README.md",
+    "data/protocols/*.interim.*",
+    "data/protocols/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]*.md",
+)
+NAV_RE = re.compile(
+    r"(Language|language|Язык|язык|Языки|языки|语言|"
+    r"shields\.io/static/v1|img\.shields\.io|badge/lang-)"
+)
+
+def nav_whitelisted(rel: str) -> bool:
+    return any(fnmatch.fnmatch(rel, pat) for pat in NAV_WHITELIST_GLOBS)
+
+missing_nav = []
+for p_ in MD_FILES:
+    rel = str(p_.relative_to(ROOT))
+    if nav_whitelisted(rel):
+        continue
+    if not NAV_RE.search(p_.read_text(encoding="utf-8")):
+        missing_nav.append(rel)
+if missing_nav:
+    fail(f"language nav: отсутствует в {len(missing_nav)} файлах: {missing_nav[:5]}")
+else:
+    ok(f"language nav: все {len(MD_FILES)} .md с навигацией ({len(NAV_WHITELIST_GLOBS)} в whitelist)")
+
+# ---------- 10. Cross-references ----------
+LINK_RE = re.compile(r"\]\(([^)]+)\)")
+MATH_CHARS = set("{}^\\")
+
+broken_refs = []
+for p_ in MD_FILES:
+    dirp = p_.parent
+    for i, line in enumerate(p_.read_text(encoding="utf-8").split("\n"), 1):
+        for m in LINK_RE.finditer(line):
+            link = m.group(1).strip()
+            if link.startswith(("http://", "https://", "mailto:", "#")):
+                continue
+            if len(link) == 1 or any(c in MATH_CHARS for c in link):
+                continue
+            target = link.split("#", 1)[0]
+            if not target:
+                continue
+            if not (dirp / target).exists() and not (ROOT / target).exists():
+                broken_refs.append(f"{p_.relative_to(ROOT)}:{i} -> {link}")
+if broken_refs:
+    fail(f"cross-refs: {len(broken_refs)} битых: {broken_refs[:5]}")
+else:
+    ok("cross-refs: все markdown-ссылки валидны")
+
+# ---------- 11. Security ----------
+def git_ls_files():
+    try:
+        r = subprocess.run(["git", "ls-files"], cwd=ROOT,
+                           capture_output=True, text=True, check=True)
+        return r.stdout.splitlines()
+    except Exception:
+        return []
+
+tracked = git_ls_files()
+if not tracked:
+    warn("security: git ls-files недоступен — проверки секретов пропущены")
+else:
+    SENS_RE = re.compile(
+        r"(^|/)\.env(\.|$)|(^|/)\.dev\.vars$|\.pem$|\.key$|\.p12$|\.pfx$|"
+        r"(^|/)secrets\.(json|ya?ml)$|(^|/)credentials\.(json|ya?ml)$|"
+        r"(^|/)id_(rsa|dsa|ecdsa|ed25519)$"
+    )
+    sens = [f for f in tracked
+            if SENS_RE.search(f)
+            and not f.endswith((".example", ".sample", ".template"))]
+    if sens:
+        fail(f"security: чувствительные файлы в git: {sens}")
+    else:
+        ok("security: нет чувствительных файлов в git")
+
+    PLACE_RE = re.compile(
+        r"YOUR_|EXAMPLE|CHANGEME|CHANGE_ME|[xX]{4,}|placeholder|dummy|"
+        r"fake|sample|redacted|\*\*\*|<[^>]+>|sk-xxx|api[_-]?key-here"
+    )
+    SEC_PATS = [
+        re.compile(r"AKIA[0-9A-Z]{16}"),
+        re.compile(r"gh[pousr]_[A-Za-z0-9]{36,}"),
+        re.compile(r"sk-ant-[A-Za-z0-9_-]{20,}"),
+        re.compile(r"sk-[A-Za-z0-9]{32,}"),
+        re.compile(r"BEGIN (RSA|OPENSSH|EC|DSA|PGP) PRIVATE KEY"),
+        re.compile(r"api[_-]?key\s*[:=]\s*[A-Za-z0-9_-]{24,}"),
+        re.compile(r"secret[_-]?key\s*[:=]\s*[A-Za-z0-9_-]{24,}"),
+        re.compile(r"access[_-]?token\s*[:=]\s*[A-Za-z0-9_-]{24,}"),
+        re.compile(r"bearer\s+[A-Za-z0-9._-]{30,}", re.I),
+    ]
+    SKIP_SUFFIX = {".png", ".jpg", ".jpeg", ".svg", ".ico",
+                   ".woff", ".woff2", ".ttf", ".lock", ".min.js"}
+    secrets_hits = []
+    for f in tracked:
+        if f.endswith("package-lock.json") or pathlib.Path(f).suffix in SKIP_SUFFIX:
+            continue
+        fp = ROOT / f
+        if not fp.exists():
+            continue
+        try:
+            text = fp.read_text(encoding="utf-8", errors="ignore")
+        except Exception:
+            continue
+        for ln in text.split("\n"):
+            for pat in SEC_PATS:
+                if pat.search(ln) and not PLACE_RE.search(ln):
+                    secrets_hits.append(f"{f}: {ln.strip()[:80]}")
+                    break
+    if secrets_hits:
+        fail(f"security: {len(secrets_hits)} hardcoded secrets: {secrets_hits[:3]}")
+    else:
+        ok("security: нет hardcoded secrets")
+
+    gi = ROOT / ".gitignore"
+    if gi.exists():
+        gi_text = read(gi)
+        required = [".env", ".dev.vars", "node_modules", "*.key", "*.pem", ".wrangler"]
+        miss = [x for x in required if x not in gi_text]
+        if miss:
+            warn(f"security: .gitignore не содержит: {miss}")
+        else:
+            ok(f"security: .gitignore покрывает {len(required)} шаблонов")
+    else:
+        fail("security: .gitignore отсутствует")
+
+    if (ROOT / "node_modules").exists() and (ROOT / "package.json").exists():
+        try:
+            r = subprocess.run(["npm", "audit", "--omit=dev", "--json"],
+                               cwd=ROOT, capture_output=True, text=True, timeout=90)
+            data = json.loads(r.stdout or "{}")
+            total = data.get("metadata", {}).get("vulnerabilities", {}).get("total", 0)
+            if total:
+                fail(f"security: npm audit — {total} уязвимостей (production)")
+            else:
+                ok("security: npm audit — 0 уязвимостей (production)")
+        except Exception as e:
+            warn(f"security: npm audit не выполнен: {e}")
 
 # ---------- Отчёт ----------
 print("=" * 62)
