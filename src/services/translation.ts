@@ -58,6 +58,7 @@ CRITICAL RULES:
 15. "Humanity-AI Monitor Protocol" → "Протокол мониторинга Человечества и ИИ"
 16. "Human score" → "Оценка Человека"
 17. "Humanity is ahead" → "Человечество впереди"
+18. The two closing slogan lines MUST be adjacent (no blank line, no --- between them) and MUST NOT have trailing whitespace.
 
 Output ONLY the translated markdown. No explanations.`;
 
@@ -84,6 +85,7 @@ CRITICAL RULES:
 14. CAPITALIZATION: 人类 is already correct in Chinese (no case distinction). Keep 人类-人工智能 as the standard form.
 15. "Humanity-AI Monitor Protocol" → "全人类与人工智能监测协议"
 16. "Human score" → "人类得分"
+17. The two closing slogan lines MUST be adjacent (no blank line, no --- between them) and MUST NOT have trailing whitespace.
 
 Output ONLY the translated markdown. No explanations.`;
 
@@ -184,7 +186,10 @@ export async function translateProtocolMarkdown(
 			temperature: 0.3,
 			max_tokens: 16384,
 		});
-		return (response as any).response || englishMarkdown;
+		const raw = (response as any).response || englishMarkdown;
+		// Normalize: strip trailing spaces/tabs at end of each line (LLM sometimes
+		// adds markdown hard-breaks after bold closing lines).
+		return raw.replace(/[ \t]+$/gm, "");
 	} catch (err) {
 		console.error(`[translate] protocol translation failed:`, err);
 		return englishMarkdown;
