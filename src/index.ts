@@ -828,6 +828,39 @@ export default {
 			}
 		}
 
+		// ═══════════════════════════════════════════════════════════
+		// HTTP Method Guard — reject unauthorized methods
+		// ═══════════════════════════════════════════════════════════
+		// Public API is read-only: only GET, HEAD, OPTIONS are allowed.
+		// POST is permitted solely for /translate-document (protected,
+		// behind auth — returns 401 without a valid Bearer token).
+		// PUT / DELETE / PATCH and any other method → 405 Method Not Allowed.
+		{
+			const isMethodAllowed =
+				request.method === "GET" ||
+				request.method === "HEAD" ||
+				request.method === "OPTIONS" ||
+				(request.method === "POST" && path === "/translate-document");
+
+			if (!isMethodAllowed) {
+				return new Response(JSON.stringify({
+					error: "Method Not Allowed",
+					method: request.method,
+					path: path,
+					allowed: ["GET", "HEAD", "OPTIONS"],
+					hint: "POST is allowed only on /translate-document",
+				}, null, 2), {
+					status: 405,
+					headers: {
+						"Allow": "GET, HEAD, OPTIONS",
+						"Content-Type": "application/json; charset=utf-8",
+						...SECURITY_HEADERS,
+						...CORS,
+					},
+				});
+			}
+		}
+
 		try {
 			if (path === "/") {
 				return json({
