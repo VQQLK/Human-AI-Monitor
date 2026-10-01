@@ -10,7 +10,7 @@
 
 ## [1.0.2] - 2026-09-29
 
-### 变更
+### 更改
 - **`docs/bayesian_framework.{md,ru.md,zh.md}`**：标记为规范（v2.0），而非替代；§4 重命名为「历史过渡：v1.0.1 → v2.0」；§3.9 可复现性重新表述（同种子逐位相同 + MC 误差约 `1/√M`）。
 - **`docs/architecture.{md,ru.md,zh.md}` §2.4/§3/§6**：Worker 派发 sync 和 translate；§6.5 重命名为「紧急同步（故障排查）」。
 - **`docs/methodology.{md,ru.md,zh.md}` §4.1**：每日采集（5 批），每周协议周期。
@@ -29,7 +29,7 @@
 
 ## [未发布] — BREAKING
 
-### 变更 (BREAKING)
+### 更改 (BREAKING)
 
 - **轴结构：** 13 个轴 = 12 个对称 (6 AI + 6 Humanity) + 1 个元层 (Geopolitics)。之前 Geopolitics 被计为第 7 个 AI 轴，导致 AI_score 偏高。
 - **Gap Index 公式：** AI_score 和 Human_score 现在均为 6 个轴的简单平均。Geopolitics 被测量并发布，但不计入任何一个分数。
@@ -38,7 +38,7 @@
 - **分类器提示：** 规则从 "NEVER return all 7" 更新为 "NEVER return all axes"。
 
 
-### 添加
+### 新增
 - **协议寻址已明确**：API 与数据库以 week_start（周一）为键；文件名（sync/归档/git）使用 week_end（周日）；README API 参考已加注 x3，AGENTS.md 规则 6 与 data/protocols/README.md 记录该区分及遗留 D1 字段 `path`（不可信）
 - **动态cron批次**：偏移/限制由 `computeBatches()` 在运行时从 `SOURCES.length` 计算（对容量44以内的每个N进行属性测试；N=41仍产生[8,8,8,8,9]）；N超过容量时通过 cron_drift_events 大声拒绝——来源变更时无需手动核对
 - **注册表策略已编码**：docs/ 设计为 EN+RU（审计强制 docs-pairs 检查）；CHANGELOG 发布历史策略（EN 保持精简，RU/ZH 深度一致）已记录在 AGENTS.md 规则 3/10 中
@@ -57,7 +57,7 @@
 - **docs/architecture.md §3**: 数据流更新为显示 D1 → GitHub Actions → 仓库路径及同步延迟
 - **README.md**: 双同步工作流描述扩展了计划和可见性延迟
 
-### 添加
+### 新增
 - **AGENTS.md**：面向AI编码代理的仓库指南——从2026-09一致性评审提炼的10条硬规则（生成代码、提示词即行为、EN规范镜像、单一版本来源、cron不变量、协议生命周期、再生成与翻译交互、部署纪律、推送前检查、提交纪律）
 
 ### 更改
@@ -66,7 +66,7 @@
 
 ### 2026-09-28 — Worker-dispatch sync + translate
 
-#### 变更
+#### 更改
 - **sync-protocols.yml 与 translate-protocols.yml** 现在由 Cloudflare
   Worker 在协议生成后立即通过 GitHub API `workflow_dispatch` 触发
   （周一/周五 ~13:53 UTC）。这**取代**了之前记录的基于时间表的同步
@@ -101,7 +101,7 @@
 
 ### 2026-09-28 — Gap Index 的贝叶斯重构
 
-#### 变更
+#### 更改
 - **Gap Index 的贝叶斯重构。** 项目重启：2026-09-28 周的第一个贝叶斯协议
   (method='bayesian')。遗留点估计协议 (2026-09-14, 2026-09-21) 已移除——不可比较。
 - §3 方法论重写：Beta 后验 + Gap 的蒙特卡洛。
