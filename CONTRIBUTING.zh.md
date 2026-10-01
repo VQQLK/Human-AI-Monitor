@@ -112,6 +112,12 @@ LLM的提示信息位于src/config/prompts.ts：
 
 ---
 
+## 提交前审计
+
+运行 `python3 scripts/repo_audit.py` — 预期 `30 ok / 0 warn / 0 FAIL`。
+
+检查内容：git 同步、语言导航、交叉引用、安全性（密钥、`.gitignore`、`npm audit`）。
+
 ## 链接
 
 - README.md — 项目描述（英文）

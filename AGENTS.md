@@ -83,7 +83,7 @@ Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
 
 9. **Before every push:**
    `npx vitest run` (66+ tests) and `python3 scripts/repo_audit.py`
-   (17+ ok / 0 FAIL). CI runs the same — keep both green.
+   (30+ ok / 0 FAIL). CI runs the same — keep both green.
 
 10. **Commit discipline.** CHANGELOG policy:
     `[Unreleased]` parity ×3 is enforced; release history — EN stays
