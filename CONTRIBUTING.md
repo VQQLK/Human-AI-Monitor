@@ -111,6 +111,13 @@
 
 ---
 
+## Проверка перед PR
+
+Запустите `python3 scripts/repo_audit.py` — ожидается `30 ok / 0 warn / 0 FAIL`.
+
+Проверяет: git sync, языковую навигацию, cross-references, безопасность 
+(секреты, `.gitignore`, `npm audit`).
+
 ## Ссылки
 
 - README.md — описание проекта (EN)
