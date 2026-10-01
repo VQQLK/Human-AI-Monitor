@@ -600,5 +600,8 @@ Please read the full Code of Conduct before contributing.
 
 MIT. Use, fork, improve.
 
+---
+
 **To bring the greater good to others — what could be a higher goal?**
+
 **United We Stand! Only the one who walks conquers the road.**
