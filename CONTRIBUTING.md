@@ -127,5 +127,5 @@ Checks: git sync, language navigation, cross-references, security
 
 ---
 
-**To bring the greater good to others — what could be a higher goal?**
+**To bring the greater good to others — what could be a higher goal!**\
 **United We Stand! Only the one who walks conquers the road.**
