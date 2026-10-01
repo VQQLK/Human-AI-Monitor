@@ -324,7 +324,7 @@ A comprehensive interdisciplinary analysis of 2026 empirical data on autonomous 
 **Available in three languages:**
 
 - 🇺🇸 [English](research/en/README.md)
-- 🇷🇺 [Русский](research/README.md)
+- 🇷🇺 [Русский](research/ru/README.md)
 - 🇨🇳 [中文](research/zh/README.md)
 
 **Structure:**

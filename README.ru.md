@@ -261,7 +261,7 @@ xychart-beta
 
 **Доступно на трёх языках:**
 
-- 🇷🇺 [Русский](research/README.md)
+- 🇷🇺 [Русский](research/ru/README.md)
 - 🇺🇸 [English](research/en/README.md)
 - 🇨🇳 [中文](research/zh/README.md)
 
