@@ -275,3 +275,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `stats.sample` was empty on repeat runs
 - `items_saved` was incorrectly incremented for existing items
 - `sample` now only includes items with non-empty axes
+
+---
+
+**To bring the greater good to others — what could be a higher goal!**\
+**United We Stand! Only the one who walks conquers the road.**

@@ -468,3 +468,8 @@
 - README、MANIFESTO、LICENSE、CONTRIBUTING、CODE_OF_CONDUCT
 - 完整研究论文（5部分，俄语）
 - docs/（方法论、架构、math_brief、新闻稿）
+
+---
+
+**为他人带来更大的福祉——还有什么比这更高的目标呢！**\
+**我们在一起，就是力量！只有行走者才能征服道路。**
