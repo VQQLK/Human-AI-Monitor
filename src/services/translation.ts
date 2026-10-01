@@ -49,7 +49,7 @@ CRITICAL RULES:
 8. "No signals this week" → "Нет сигналов на этой неделе"
 9. Preserve all emoji (🔴🟢🟡) and numbers unchanged
 10. Translate final slogans:
-    - "To bring the greater good to others — what could be a higher goal?" → "Приносить благо другим людям — что может быть выше этой цели?"
+    - "To bring the greater good to others — what could be a higher goal!" → "Приносить благо другим людям — что может быть выше этой цели!"
     - "United We Stand! Only the one who walks conquers the road." → "Вместе — Мы Сила! Дорогу осилит идущий."
 11. "Symmetric development" → "Симметричное развитие"
 12. "Humanity is ahead" → "Человечество впереди"
@@ -77,7 +77,7 @@ CRITICAL RULES:
 8. "No signals this week" → "本周无信号"
 9. Preserve all emoji (🔴🟢🟡) and numbers unchanged
 10. Translate final slogans:
-    - "To bring the greater good to others — what could be a higher goal?" → "为他人带来更大的福祉——还有什么比这更高的目标呢？"
+    - "To bring the greater good to others — what could be a higher goal!" → "为他人带来更大的福祉——还有什么比这更高的目标呢！"
     - "United We Stand! Only the one who walks conquers the road." → "我们在一起，就是力量！只有行走者才能征服道路。"
 11. "Symmetric development" → "对称发展"
 12. "Humanity is ahead" → "人类领先"
@@ -170,6 +170,19 @@ ${numbered}`;
 /**
  * Translate entire protocol markdown document.
  */
+/**
+ * Force a hard-break between the two bold closing slogan lines at end of file.
+ * The LLM may omit the backslash or insert blank lines between them.
+ */
+function ensureClosingHardBreak(text: string): string {
+	// Match two bold lines at the very end of the file, allowing whitespace between.
+	const re = /(\*\*[^\n*]+\*\*)(\s*\n\s*)(\*\*[^\n*]+\*\*)(\s*)$/;
+	const m = text.match(re);
+	if (!m) return text;
+	const line1 = m[1].replace(/\\+$/, "") + "\\";
+	return text.slice(0, m.index) + line1 + "\n" + m[3] + m[4];
+}
+
 export async function translateProtocolMarkdown(
 	env: Env,
 	englishMarkdown: string,
@@ -189,7 +202,9 @@ export async function translateProtocolMarkdown(
 		const raw = (response as any).response || englishMarkdown;
 		// Normalize: strip trailing spaces/tabs at end of each line (LLM sometimes
 		// adds markdown hard-breaks after bold closing lines).
-		return raw.replace(/[ \t]+$/gm, "");
+		const cleaned = raw.replace(/[ \t]+$/gm, "");
+		// Force a hard-break between the two bold closing lines at end of file.
+		return ensureClosingHardBreak(cleaned);
 	} catch (err) {
 		console.error(`[translate] protocol translation failed:`, err);
 		return englishMarkdown;
