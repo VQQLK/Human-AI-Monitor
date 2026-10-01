@@ -20,7 +20,7 @@ def read(p):   return pathlib.Path(p).read_text(encoding="utf-8")
 
 READMES = ["README.md", "README.ru.md", "README.zh.md"]
 CHANGELOGS = {"CHANGELOG.md": "[Unreleased]",
-              "CHANGELOG.ru.md": "[Unreleased]",
+              "CHANGELOG.ru.md": "[Неопубликовано]",
               "CHANGELOG.zh.md": "[未发布]"}
 COC = ["CODE_OF_CONDUCT.md", "CODE_OF_CONDUCT.ru.md", "CODE_OF_CONDUCT.zh.md"]
 
@@ -397,6 +397,26 @@ else:
                 ok("security: npm audit — 0 уязвимостей (production)")
         except Exception as e:
             warn(f"security: npm audit не выполнен: {e}")
+
+# ---------- 12. [Unreleased] header localization ----------
+for fname, marker in CHANGELOGS.items():
+    txt = read(ROOT / fname)
+    if marker not in txt:
+        fail(f"{fname}: localized [Unreleased] marker {marker!r} not found")
+
+FORBIDDEN = [
+    ("CHANGELOG.ru.md", "[Unreleased]"),
+    ("CHANGELOG.ru.md", "[未发布]"),
+    ("CHANGELOG.zh.md", "[Unreleased]"),
+    ("CHANGELOG.zh.md", "[Неопубликовано]"),
+    ("CHANGELOG.md",    "[Неопубликовано]"),
+    ("CHANGELOG.md",    "[未发布]"),
+]
+for fname, bad in FORBIDDEN:
+    if bad in read(ROOT / fname):
+        fail(f"{fname}: forbidden marker {bad!r} found")
+
+ok("[Unreleased] localization: 3 markers correct, no cross-language leakage")
 
 # ---------- Отчёт ----------
 print("=" * 62)
