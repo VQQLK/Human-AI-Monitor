@@ -2,43 +2,43 @@
 
 > **Languages:** [🇺🇸 English](CONTRIBUTING.md) • [🇷🇺 Русский](CONTRIBUTING.ru.md) • [🇨🇳 中文](CONTRIBUTING.zh.md)
 
-Спасибо за интерес к проекту! Мы приветствуем любой вклад — от исправления
-опечаток до добавления новых источников данных.
+Thank you for your interest in the project! We welcome any contribution — from
+fixing typos to adding new data sources.
 
-## Как помочь
+## How to help
 
-### 1. Сообщить об ошибке
+### 1. Report a bug
 
-Откройте issue с описанием:
-- Что произошло
-- Что ожидалось
-- Шаги для воспроизведения
-- Окружение (OS, Node.js, pnpm)
+Open an issue describing:
+- What happened
+- What was expected
+- Steps to reproduce
+- Environment (OS, Node.js, pnpm)
 
-### 2. Предложить улучшение
+### 2. Suggest an improvement
 
-Откройте issue с меткой enhancement:
-- Что хотите добавить
-- Зачем это нужно проекту
-- Как это соответствует миссии
+Open an issue with the `enhancement` label:
+- What you want to add
+- Why the project needs it
+- How it aligns with the mission
 
-### 3. Добавить источник данных
+### 3. Add a data source
 
-Отредактируйте config/sources_ai.yaml или config/sources_human.yaml:
+Edit `config/sources_ai.yaml` or `config/sources_human.yaml`:
 
     rss:
-      - name: "Название источника"
+      - name: "Source name"
         url: "https://example.com/rss.xml"
         lang: "en"
         tier: 1
 
-### 4. Улучшить классификатор
+### 4. Improve the classifier
 
-Промпты для LLM находятся в src/config/prompts.ts:
-- CLASSIFY_PROMPT — единый промпт для всех 13 осей (12+1)
-- Модель: Qwen 3 (через Cloudflare Workers AI)
+LLM prompts live in `src/config/prompts.ts`:
+- `CLASSIFY_PROMPT` — single prompt for all 13 axes (12+1)
+- Model: Qwen 3 (via Cloudflare Workers AI)
 
-### 5. Написать код
+### 5. Write code
 
     git clone https://github.com/VQQLK/Human-AI-Monitor.git
     cd Human-AI-Monitor/human-ai-monitor-collector
@@ -47,84 +47,85 @@
     pnpm dev
     pnpm deploy
 
-Стек:
+Stack:
 - Runtime: Cloudflare Workers (TypeScript)
-- База данных: Cloudflare D1 (SQLite)
-- Тесты: Vitest
+- Database: Cloudflare D1 (SQLite)
+- Tests: Vitest
 - AI: Cloudflare Workers AI (Qwen 3)
-- Пакетный менеджер: pnpm
+- Package manager: pnpm
 
-Стиль:
+Style:
 - TypeScript: strict mode (tsconfig.json)
-- Форматирование: Prettier (опционально)
-- Коммиты: conventional commits (feat, fix, docs, refactor, chore)
+- Formatting: Prettier (optional)
+- Commits: conventional commits (feat, fix, docs, refactor, chore)
 
-Процесс:
-1. Fork -> branch (git checkout -b feature/amazing-idea)
+Process:
+1. Fork → branch (git checkout -b feature/amazing-idea)
 2. Commit (git commit -m "feat: add amazing feature")
 3. Push (git push origin feature/amazing-idea)
 4. Pull Request
 
 ---
 
-## Структура проекта
+## Project structure
 
     human-ai-monitor-collector/
     ├── src/
-    │   ├── index.ts                    # Главный worker
+    │   ├── index.ts                    # Main worker
     │   ├── services/
-    │   │   └── gap-computation.ts      # Вычисление Gap Index
+    │   │   └── gap-computation.ts      # Gap Index computation
     │   └── config/
-    │       ├── axes.ts                 # Список 13 осей (12+1)
-    │       ├── prompts.ts              # LLM промпты
-    │       └── generated/              # Типы из YAML
+    │       ├── axes.ts                 # List of 13 axes (12+1)
+    │       ├── prompts.ts              # LLM prompts
+    │       └── generated/              # Types from YAML
     ├── config/
     │   ├── axes_ai.yaml                # 6 AI + 1 Geo meta
-    │   ├── axes_human.yaml             # 6 Human осей
-    │   ├── sources_ai.yaml             # 21 источник ИИ (20 активных)
-    │   └── sources_human.yaml          # 15 источников человека (11 активных)
+    │   ├── axes_human.yaml             # 6 Human axes
+    │   ├── sources_ai.yaml             # 21 AI sources (20 active)
+    │   └── sources_human.yaml          # 15 human sources (11 active)
     ├── migrations/
     │   ├── 0001_initial_schema.sql
     │   ├── 0002_add_content_column.sql
     │   └── 0003_update_smd_level.sql
     ├── test/
-    │   ├── cheat-detector.spec.ts      # 7 тестов: детектор читерства
-    │   ├── classifier.spec.ts          # 15 тестов: классификатор
-    │   ├── index.spec.ts               # 8 тестов: API эндпоинты
-    │   └── parser.spec.ts               # 14 тестов: парсер
+    │   ├── cheat-detector.spec.ts      # 7 tests: cheat detector
+    │   ├── classifier.spec.ts          # 15 tests: classifier
+    │   ├── index.spec.ts               # 8 tests: API endpoints
+    │   └── parser.spec.ts              # 14 tests: parser
     └── wrangler.jsonc
 
 ---
 
-## Этический кодекс
+## Code of ethics
 
-См. CODE_OF_CONDUCT.md.
-
----
-
-## Чего мы не принимаем
-
-- Платные интеграции — проект принципиально бесплатный.
-- Скрытые данные — все источники и промпты публичны.
-- Реклама — никакой коммерции.
-- Политика — проект вне политических партий.
+See CODE_OF_CONDUCT.md.
 
 ---
 
-## Проверка перед PR
+## What we do not accept
 
-Запустите `python3 scripts/repo_audit.py` — ожидается `30 ok / 0 warn / 0 FAIL`.
-
-Проверяет: git sync, языковую навигацию, cross-references, безопасность 
-(секреты, `.gitignore`, `npm audit`).
-
-## Ссылки
-
-- README.md — описание проекта (EN)
-- README.ru.md — описание проекта (RU)
-- CHANGELOG.md — история изменений
-- MANIFESTO.md — манифест проекта
+- Paid integrations — the project is fundamentally free.
+- Hidden data — all sources and prompts are public.
+- Advertising — no commercial content.
+- Politics — the project stays out of political parties.
 
 ---
 
-**Вместе — Мы Сила. Дорогу осилит идущий.**
+## Pre-PR audit
+
+Run `python3 scripts/repo_audit.py` — expected: `31 ok / 0 warn / 0 FAIL`.
+
+Checks: git sync, language navigation, cross-references, security 
+(secrets, `.gitignore`, `npm audit`).
+
+## Links
+
+- README.md — project description (EN)
+- README.ru.md — project description (RU)
+- CHANGELOG.md — change history
+- MANIFESTO.md — project manifesto
+
+---
+
+**To bring the greater good to others — what could be a higher goal?**
+**United We Stand! Only the one who walks conquers the road.**
