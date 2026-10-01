@@ -34,7 +34,23 @@ Human–AI Monitor is built on a **decentralized Cloudflare infrastructure** —
    - `GET /gap` — current Gap Index.
    - `GET /protocols` — list of weekly protocols.
    - `GET /protocols/{week}` — single protocol metadata.
-   - `GET /protocols/{week}/content` — Markdown content.
+   - `GET /protocols/{week}/content` — Markdown content (EN).
+   - `GET /protocols/{week}/content/ru` — Markdown content (RU).
+   - `GET /protocols/{week}/content/zh` — Markdown content (ZH).
+   - `GET /protocols/current` — live draft of the current (still-open) week (EN, Markdown).
+   - `GET /protocols/current/ru` — live draft (RU, Markdown).
+   - `GET /protocols/current/zh` — live draft (ZH, Markdown).
+   - `GET /protocols/current/view` — HTML view of the live draft (EN).
+   - `GET /protocols/current/view/ru` — HTML view of the live draft (RU).
+   - `GET /protocols/current/view/zh` — HTML view of the live draft (ZH).
+   - `GET /protocols/latest/view` — HTML view of the latest final protocol (EN).
+   - `GET /protocols/latest/view/ru` — HTML view (RU).
+   - `GET /protocols/latest/view/zh` — HTML view (ZH).
+   - `GET /axes-history` — historical axis data.
+   - `GET /drift-events` — cron drift events.
+   - `GET /verify` — reward-hacking detection.
+   - `GET /translate-document` — translate arbitrary Markdown (POST, Bearer auth).
+   - `GET /export-weekly` — export protocol data (Bearer auth).
    - `GET /axes/{axis}` — signals for a specific axis.
    - `GET /classify?text=...&kind=ai|human` — classify arbitrary text.
    - `GET /collect?limit=N&max=M` — manual RSS collection.

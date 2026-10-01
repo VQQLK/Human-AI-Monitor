@@ -35,7 +35,23 @@ Human–AI Monitor построен на **децентрализованной 
    - `GET /gap` — текущий Gap Index.
    - `GET /protocols` — список еженедельных протоколов.
    - `GET /protocols/{week}` — метаданные одного протокола.
-   - `GET /protocols/{week}/content` — содержимое в Markdown.
+   - `GET /protocols/{week}/content` — содержимое в Markdown (EN).
+   - `GET /protocols/{week}/content/ru` — содержимое на русском.
+   - `GET /protocols/{week}/content/zh` — содержимое на китайском.
+   - `GET /protocols/current` — живой черновик текущей (ещё открытой) недели (EN, Markdown).
+   - `GET /protocols/current/ru` — живой черновик (RU, Markdown).
+   - `GET /protocols/current/zh` — живой черновик (ZH, Markdown).
+   - `GET /protocols/current/view` — HTML-представление живого черновика (EN).
+   - `GET /protocols/current/view/ru` — HTML-представление (RU).
+   - `GET /protocols/current/view/zh` — HTML-представление (ZH).
+   - `GET /protocols/latest/view` — HTML-представление последнего финального протокола (EN).
+   - `GET /protocols/latest/view/ru` — HTML-представление (RU).
+   - `GET /protocols/latest/view/zh` — HTML-представление (ZH).
+   - `GET /axes-history` — исторические данные по осям.
+   - `GET /drift-events` — события дрейфа cron-задач.
+   - `GET /verify` — детекция reward hacking.
+   - `GET /translate-document` — перевод произвольного Markdown (POST, Bearer auth).
+   - `GET /export-weekly` — экспорт данных протоколов (Bearer auth).
    - `GET /axes/{axis}` — сигналы по конкретной оси.
    - `GET /classify?text=...&kind=ai|human` — классификация произвольного текста.
    - `GET /collect?limit=N&max=M` — ручной сбор RSS.

@@ -35,7 +35,23 @@ Human–AI Monitor 构建在**去中心化的 Cloudflare 基础设施**之上—
    - `GET /gap` — 当前 Gap Index。
    - `GET /protocols` — 每周协议列表。
    - `GET /protocols/{week}` — 单个协议元数据。
-   - `GET /protocols/{week}/content` — Markdown 内容。
+   - `GET /protocols/{week}/content` — Markdown 内容（EN）。
+   - `GET /protocols/{week}/content/ru` — 俄语内容。
+   - `GET /protocols/{week}/content/zh` — 中文内容。
+   - `GET /protocols/current` — 当前（未关闭）周的实时草稿（EN，Markdown）。
+   - `GET /protocols/current/ru` — 实时草稿（RU，Markdown）。
+   - `GET /protocols/current/zh` — 实时草稿（ZH，Markdown）。
+   - `GET /protocols/current/view` — 实时草稿的 HTML 视图（EN）。
+   - `GET /protocols/current/view/ru` — HTML 视图（RU）。
+   - `GET /protocols/current/view/zh` — HTML 视图（ZH）。
+   - `GET /protocols/latest/view` — 最新最终协议的 HTML 视图（EN）。
+   - `GET /protocols/latest/view/ru` — HTML 视图（RU）。
+   - `GET /protocols/latest/view/zh` — HTML 视图（ZH）。
+   - `GET /axes-history` — 各轴的历史数据。
+   - `GET /drift-events` — Cron 漂移事件。
+   - `GET /verify` — 奖励黑客检测。
+   - `GET /translate-document` — 翻译任意 Markdown（POST，Bearer 认证）。
+   - `GET /export-weekly` — 导出协议数据（Bearer 认证）。
    - `GET /axes/{axis}` — 特定轴的信号。
    - `GET /classify?text=...&kind=ai|human` — 对任意文本进行分类。
    - `GET /collect?limit=N&max=M` — 手动 RSS 采集。
