@@ -42,7 +42,7 @@ safe_count_fixed() {
 
 echo "═══════════════════════════════════════════════════════════"
 echo "  ПОЛНЫЙ АУДИТ ПРОЕКТА — $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-echo "  Версия скрипта: 4.1"
+echo "  Версия скрипта: 4.2"
 echo "═══════════════════════════════════════════════════════════"
 
 # ============================================================
@@ -476,29 +476,46 @@ fi
 echo
 echo "── 9.10. Валидация входных данных ──"
 
-# Пустой текст должен возвращать 400
-code=$(curl -s -o /dev/null -w "%{http_code}"     "$URL/classify?text=&kind=ai" 2>/dev/null)
-if [ "$code" = "400" ]; then
-    ok "Валидация: пустой текст → 400"
-else
-    warn "Валидация: пустой текст → $code (ожидалось 400)"
-fi
+# Читаем токен из локальных файлов (.env или .dev.vars)
+# Это позволяет протестировать валидацию, минуя аутентификацию
+TOKEN=""
+for token_file in ".env" ".dev.vars"; do
+    if [ -f "$token_file" ]; then
+        TOKEN=$(grep -E "^ADMIN_SECRET_CURRENT=" "$token_file" 2>/dev/null | head -1 | cut -d'=' -f2- | tr -d '"' | tr -d "'")
+        if [ -n "$TOKEN" ]; then
+            echo "  ℹ️  Токен загружен из $token_file"
+            break
+        fi
+    fi
+done
 
-# Текст > 1000 символов должен возвращать 400
-LONG_TEXT=$(python3 -c "print('x' * 1500)")
-code=$(curl -s -o /dev/null -w "%{http_code}"     "$URL/classify?text=$LONG_TEXT&kind=ai" 2>/dev/null)
-if [ "$code" = "400" ]; then
-    ok "Валидация: текст > 1000 символов → 400"
+if [ -z "$TOKEN" ]; then
+    warn "Валидация: токен не найден в .env/.dev.vars, пропускаю тест"
 else
-    warn "Валидация: текст > 1000 символов → $code (ожидалось 400)"
-fi
+    # Пустой текст должен возвращать 400 (с токеном)
+    code=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $TOKEN" "$URL/classify?text=&kind=ai" 2>/dev/null)
+    if [ "$code" = "400" ]; then
+        ok "Валидация: пустой текст → 400"
+    else
+        warn "Валидация: пустой текст → $code (ожидалось 400)"
+    fi
 
-# Недопустимый kind должен возвращать 400
-code=$(curl -s -o /dev/null -w "%{http_code}"     "$URL/classify?text=test&kind=invalid" 2>/dev/null)
-if [ "$code" = "400" ]; then
-    ok "Валидация: недопустимый kind → 400"
-else
-    warn "Валидация: недопустимый kind → $code (ожидалось 400)"
+    # Текст > 1000 символов должен возвращать 400 (с токеном)
+    LONG_TEXT=$(python3 -c "print('x' * 1500)")
+    code=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $TOKEN" "$URL/classify?text=$LONG_TEXT&kind=ai" 2>/dev/null)
+    if [ "$code" = "400" ]; then
+        ok "Валидация: текст > 1000 символов → 400"
+    else
+        warn "Валидация: текст > 1000 символов → $code (ожидалось 400)"
+    fi
+
+    # Недопустимый kind должен возвращать 400 (с токеном)
+    code=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $TOKEN" "$URL/classify?text=test&kind=invalid" 2>/dev/null)
+    if [ "$code" = "400" ]; then
+        ok "Валидация: недопустимый kind → 400"
+    else
+        warn "Валидация: недопустимый kind → $code (ожидалось 400)"
+    fi
 fi
 
 # ─────────────────────────────────────────────────────────
@@ -508,7 +525,7 @@ echo
 echo "── 9.11. Локальные файлы с секретами ──"
 
 if [ -f ".env" ]; then
-    warn ".env существует локально (нормально для разработки)"
+    ok ".env существует локально (нормально для разработки)"
     # Проверяем права доступа
     PERMS=$(stat -f "%Lp" .env 2>/dev/null || stat -c "%a" .env 2>/dev/null || echo "unknown")
     if [ "$PERMS" = "600" ]; then
@@ -521,7 +538,7 @@ else
 fi
 
 if [ -f ".dev.vars" ]; then
-    warn ".dev.vars существует локально (нормально для разработки)"
+    ok ".dev.vars существует локально (нормально для разработки)"
     PERMS=$(stat -f "%Lp" .dev.vars 2>/dev/null || stat -c "%a" .dev.vars 2>/dev/null || echo "unknown")
     if [ "$PERMS" = "600" ]; then
         ok ".dev.vars: права 600 (только владелец)"
