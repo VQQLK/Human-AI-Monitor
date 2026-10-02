@@ -839,7 +839,7 @@ export default {
 		// Authentication: protected paths require a valid Bearer token.
 		// See src/auth.ts — supports dual-phase secret rotation.
 		if (isProtectedPath(path)) {
-			const authResult = verifyAuth(request, env);
+			const authResult = await verifyAuth(request, env);
 			if (!authResult.ok) {
 				const ip = request.headers.get("CF-Connecting-IP") || "unknown";
 				console.warn(`[auth] DENIED ${path} from ${ip}: ${authResult.reason}`);
