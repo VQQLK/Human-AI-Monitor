@@ -42,8 +42,10 @@ export async function timingSafeEqual(a: string, b: string): Promise<boolean> {
  *   - consume LLM neurons (/classify, /translate)
  *   - expose bulk data (/export-weekly)
  *
- * All other endpoints stay public: /, /health, /gap, /protocols,
- * /protocols/{week}, /protocols/{week}/content, /axes/{axis}, /axes-history.
+ * All other endpoints stay public: /, /health, /gap, /gap-history,
+ * /protocols, /protocols/current*, /protocols/latest/view*,
+ * /protocols/{week}(/content)(/ru|/zh), /axes/{axis}, /axes-history,
+ * /drift-events, /verify.
  */
 const PROTECTED_PREFIXES = [
   "/collect",
