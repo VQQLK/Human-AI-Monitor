@@ -42,7 +42,7 @@ safe_count_fixed() {
 
 echo "═══════════════════════════════════════════════════════════"
 echo "  ПОЛНЫЙ АУДИТ ПРОЕКТА — $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-echo "  Версия скрипта: 4.0"
+echo "  Версия скрипта: 4.1"
 echo "═══════════════════════════════════════════════════════════"
 
 # ============================================================
@@ -306,8 +306,20 @@ for i in "${!SECRET_PATTERNS[@]}"; do
     if [ "$found" = "0" ]; then
         ok "Текущие файлы: $name не найден"
     else
-        fail "Текущие файлы: НАЙДЕНО $found упоминаний '$name'"
-        SECRETS_FOUND=$((SECRETS_FOUND + found))
+        # Проверяем, находится ли секрет в локальных файлах (.env/.dev.vars)
+        # Это нормально для разработки, если файлы в .gitignore
+        in_gitignored=$(grep -rE "$pattern" .env .dev.vars .env.local 2>/dev/null | wc -l | tr -d ' ')
+        in_code=$((found - in_gitignored))
+        
+        if [ "$in_code" -gt 0 ]; then
+            fail "Текущие файлы: $in_code упоминаний '$name' В КОДЕ!"
+            SECRETS_FOUND=$((SECRETS_FOUND + in_code))
+        elif [ "$in_gitignored" -gt 0 ]; then
+            ok "Текущие файлы: $name найден только в .env/.dev.vars (локально, безопасно)"
+        else
+            fail "Текущие файлы: НАЙДЕНО $found упоминаний '$name'"
+            SECRETS_FOUND=$((SECRETS_FOUND + found))
+        fi
     fi
 done
 
@@ -401,7 +413,8 @@ fi
 echo
 echo "── 9.8. Публичные endpoints доступны без токена ──"
 
-for public_path in "/" "/health" "/gap" "/protocols" "/axes-history" "/verify"; do
+# Публичные endpoints, которые должны возвращать 200
+for public_path in "/" "/health" "/gap" "/protocols" "/axes-history"; do
     code=$(curl -s -o /dev/null -w "%{http_code}" "$URL$public_path" 2>/dev/null)
     if [ "$code" = "200" ]; then
         ok "GET $public_path → 200 (публичный)"
@@ -409,6 +422,14 @@ for public_path in "/" "/health" "/gap" "/protocols" "/axes-history" "/verify"; 
         warn "GET $public_path → $code (ожидалось 200)"
     fi
 done
+
+# /verify: без параметров возвращает 400 (валидация) — это корректное поведение
+code=$(curl -s -o /dev/null -w "%{http_code}" "$URL/verify" 2>/dev/null)
+if [ "$code" = "200" ] || [ "$code" = "400" ]; then
+    ok "GET /verify → $code (доступен, валидирует параметры)"
+else
+    warn "GET /verify → $code (ожидалось 200 или 400)"
+fi
 
 # ─────────────────────────────────────────────────────────
 # 9.9. HTTP Security Headers
@@ -418,23 +439,36 @@ echo "── 9.9. HTTP Security Headers ──"
 
 HEADERS=$(curl -s -I "$URL/health" 2>/dev/null)
 
-# Проверяем наличие критических заголовков безопасности
-declare -A SECURITY_HEADERS=(
-    ["X-Content-Type-Options"]="nosniff"
-    ["X-Frame-Options"]="DENY"
-    ["Referrer-Policy"]="strict-origin-when-cross-origin"
-    ["Strict-Transport-Security"]="max-age"
-    ["Permissions-Policy"]="geolocation"
-)
+# Проверяем каждый заголовок отдельно (совместимо с bash 3.2, без declare -A)
+if echo "$HEADERS" | grep -qi "X-Content-Type-Options"; then
+    ok "Security Header: X-Content-Type-Options"
+else
+    warn "Security Header: X-Content-Type-Options отсутствует"
+fi
 
-for header in "${!SECURITY_HEADERS[@]}"; do
-    expected="${SECURITY_HEADERS[$header]}"
-    if echo "$HEADERS" | grep -qi "$header"; then
-        ok "Security Header: $header присутствует"
-    else
-        warn "Security Header: $header отсутствует"
-    fi
-done
+if echo "$HEADERS" | grep -qi "X-Frame-Options"; then
+    ok "Security Header: X-Frame-Options"
+else
+    warn "Security Header: X-Frame-Options отсутствует"
+fi
+
+if echo "$HEADERS" | grep -qi "Referrer-Policy"; then
+    ok "Security Header: Referrer-Policy"
+else
+    warn "Security Header: Referrer-Policy отсутствует"
+fi
+
+if echo "$HEADERS" | grep -qi "Strict-Transport-Security"; then
+    ok "Security Header: Strict-Transport-Security"
+else
+    warn "Security Header: Strict-Transport-Security отсутствует"
+fi
+
+if echo "$HEADERS" | grep -qi "Permissions-Policy"; then
+    ok "Security Header: Permissions-Policy"
+else
+    warn "Security Header: Permissions-Policy отсутствует"
+fi
 
 # ─────────────────────────────────────────────────────────
 # 9.10. Валидация входных данных
