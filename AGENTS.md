@@ -90,3 +90,10 @@ Public API: https://human-ai-monitor-collector.human-ai-monitor.workers.dev/
     minimalistic by design, RU/ZH depth must match (audit-enforced). One logical change per commit; user-visible
     changes get a CHANGELOG entry under `[Unreleased]` in all three
     languages.
+
+11. **Privacy & logging.** The Worker logs denial events via
+    `console.warn` — path, `CF-Connecting-IP`, and auth reason. IP is
+    PII under GDPR. Logs are retained by Cloudflare per the account's
+    log retention policy (default ~30 days). Never log request bodies,
+    tokens, or full headers. Apply the same rule when adding new
+    `console.*` calls.
