@@ -446,7 +446,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
 		for (const it of list.slice(0, 5)) {
 			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
-			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + it.source);
+			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + sanitizeLinkLabel(it.source));
 			if (it.reasoning) lines.push("  - " + it.reasoning);
 		}
 		lines.push("");
@@ -460,7 +460,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
 		for (const it of list.slice(0, 5)) {
 			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
-			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + it.source);
+			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + sanitizeLinkLabel(it.source));
 			if (it.reasoning) lines.push("  - " + it.reasoning);
 		}
 		lines.push("");
@@ -493,7 +493,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	const filteredItems = items.filter(item => item.temporal_status !== 'stale_forecast');
 	
 	const byAxis: any = {};
-	for (const it of items) {
+	for (const it of filteredItems) {
 		try {
 			const axes = JSON.parse(it.axes ?? "[]");
 			for (const a of axes) {
@@ -531,7 +531,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
 		for (const it of list.slice(0, 5)) {
 			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
-			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + it.source);
+			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + sanitizeLinkLabel(it.source));
 			if (it.reasoning) lines.push("  - " + it.reasoning);
 		}
 		lines.push("");
@@ -545,7 +545,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
 		for (const it of list.slice(0, 5)) {
 			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
-			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + it.source);
+			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + sanitizeLinkLabel(it.source));
 			if (it.reasoning) lines.push("  - " + it.reasoning);
 		}
 		lines.push("");
@@ -1029,6 +1029,10 @@ export default {
 			}
 			// Translate arbitrary markdown document to ru or zh
 			if (path === "/translate-document" && request.method === "POST") {
+				const ct = request.headers.get("Content-Type") ?? "";
+				if (!ct.includes("application/json")) {
+					return json({ error: "Content-Type must be application/json" }, 415);
+				}
 				let body: any;
 				try {
 					body = await request.json();
@@ -1048,10 +1052,11 @@ export default {
 					return json({ error: "lang must be 'ru' or 'zh'" }, 400);
 				}
 				const translated = await translateProtocolMarkdown(env, markdown, lang as 'ru' | 'zh');
+				const encoder = new TextEncoder();
 				return json({
 					lang,
-					original_bytes: markdown.length,
-					translated_bytes: translated.length,
+					original_bytes: encoder.encode(markdown).length,
+					translated_bytes: encoder.encode(translated).length,
 					translated: translated,
 				}, 200);
 			}
