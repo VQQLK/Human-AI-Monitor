@@ -44,6 +44,7 @@ STRINGS = {
         "hist_col_type": "Type",
         "type_interim": "INTERIM", "type_final": "FINAL",
         "interim_note": "Last point is INTERIM — will be replaced by FINAL on Monday.",
+        "interim_ref_prefix": "📌 Interim (reference, not on chart):",
     },
     "ru": {
         "path": "README.ru.md",
@@ -65,6 +66,7 @@ STRINGS = {
         "hist_col_type": "Тип",
         "type_interim": "ПРОМЕЖУТОЧНЫЙ", "type_final": "ФИНАЛЬНЫЙ",
         "interim_note": "Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.",
+        "interim_ref_prefix": "📌 Промежуточный протокол (справочно, не на графике):",
     },
     "zh": {
         "path": "README.zh.md",
@@ -86,6 +88,7 @@ STRINGS = {
         "hist_col_type": "类型",
         "type_interim": "临时版", "type_final": "最终版",
         "interim_note": "最后一点为临时版，将于周一替换为最终版。",
+        "interim_ref_prefix": "📌 临时协议（仅供参考，不在图表上）：",
     },
 }
 
@@ -161,13 +164,23 @@ def fmt_gap(g):
 
 
 def build_score_mermaid(weeks, lang):
-    """Build mermaid block for Score Dynamics (history, no forecast)."""
-    labels = [week_end_to_ddmm(w["week_end"]) for w in weeks]
-    human_data = [f"{w['human']:.2f}" for w in weeks]
-    ai_data = [f"{w['ai']:.2f}" for w in weeks]
-    x_axis = ", ".join(f'"{l}"' for l in labels)
-    bar_line = ", ".join(human_data)
-    ai_line = ", ".join(ai_data)
+    """Build mermaid block for Score Dynamics (finals only, history)."""
+    finals = [w for w in weeks if not w.get("is_interim")]
+    if len(finals) == 0:
+        x_axis, bar_line, ai_line = '""', "0", "0"
+    elif len(finals) == 1:
+        w = finals[0]
+        lbl = week_end_to_ddmm(w["week_end"])
+        x_axis = f'"{lbl}", "{lbl}"'
+        bar_line = f"{w['human']:.2f}, {w['human']:.2f}"
+        ai_line = f"{w['ai']:.2f}, {w['ai']:.2f}"
+    else:
+        labels = [week_end_to_ddmm(w["week_end"]) for w in finals]
+        human_data = [f"{w['human']:.2f}" for w in finals]
+        ai_data = [f"{w['ai']:.2f}" for w in finals]
+        x_axis = ", ".join(f'"{l}"' for l in labels)
+        bar_line = ", ".join(human_data)
+        ai_line = ", ".join(ai_data)
     L = STRINGS[lang]
     title = L["score_title"]
     y_axis_label = L["y_score"]
@@ -180,13 +193,20 @@ xychart-beta
     line [{ai_line}]
 ```'''
 
-
 def build_gap_mermaid(weeks, lang):
-    """Build mermaid block for Gap Index Dynamics (history, no forecast)."""
-    labels = [week_end_to_ddmm(w["week_end"]) for w in weeks]
-    gap_data = [f"{w['gap']:.2f}" for w in weeks]
-    x_axis = ", ".join(f'"{l}"' for l in labels)
-    gap_line = ", ".join(gap_data)
+    """Build mermaid block for Gap Index Dynamics (finals only, history)."""
+    finals = [w for w in weeks if not w.get("is_interim")]
+    if len(finals) == 0:
+        x_axis, gap_line = '""', "0"
+    elif len(finals) == 1:
+        w = finals[0]
+        lbl = week_end_to_ddmm(w["week_end"])
+        x_axis = f'"{lbl}", "{lbl}"'
+        gap_line = f"{w['gap']:.2f}, {w['gap']:.2f}"
+    else:
+        labels = [week_end_to_ddmm(w["week_end"]) for w in finals]
+        gap_line = ", ".join(f"{w['gap']:.2f}" for w in finals)
+        x_axis = ", ".join(f'"{l}"' for l in labels)
     titles = {
         "en": "Gap Index | Positive = AI leading, Negative = Humanity leading",
         "ru": "Индекс разрыва | Положительный = ИИ впереди, Отрицательный = Человечество впереди",
@@ -200,7 +220,6 @@ xychart-beta
     y-axis "{y_axis_label}" -0.15 --> 0.25
     line [{gap_line}]
 ```'''
-
 
 def build_history_table(weeks, lang):
     """Build markdown table with all weeks (finals + current interim)."""
@@ -224,6 +243,23 @@ def build_history_table(weeks, lang):
 
 def is_last_interim(weeks):
     return bool(weeks) and weeks[-1].get("is_interim") == 1
+
+def build_interim_reference(interims, lang):
+    """Build reference blockquote for the current interim (not on chart)."""
+    if not interims:
+        return ""
+    w = interims[-1]
+    lbl = week_end_to_ddmm(w["week_end"])
+    items = w["items"] if w["items"] is not None else "—"
+    sample = w["sample"] if w["sample"] is not None else "—"
+    L = STRINGS[lang]
+    return (
+        f"\n\n> {L['interim_ref_prefix']} {lbl} — "
+        f"AI {w['ai']:.2f} · Humanity {w['human']:.2f} · Gap {fmt_gap(w['gap'])} · "
+        f"{items} / {sample} items.\n"
+        f"> {L['interim_note']}"
+    )
+
 
 def update_readme(path, lang, weeks, dry=False):
     text = path.read_text(encoding="utf-8")
@@ -336,12 +372,12 @@ def update_readme(path, lang, weeks, dry=False):
     parts[3] = build_gap_mermaid(weeks, lang)
     text = "".join(parts)
 
-    # ── 5. Insert history table before separator after graphs ──
-    history_md = build_history_table(weeks, lang)
-    note = ""
-    if is_last_interim(weeks):
-        note = f"\n\n> ℹ️ {L['interim_note']}"
-    insert_block = f"\n\n{history_md}{note}\n"
+    # ── 5. History table (finals only) + interim reference blockquote ──
+    finals = [w for w in weeks if not w.get("is_interim")]
+    interims = [w for w in weeks if w.get("is_interim")]
+    history_md = build_history_table(finals, lang)
+    interim_ref = build_interim_reference(interims, lang)
+    insert_block = f"\n\n{history_md}{interim_ref}\n"
 
     m2 = list(re.finditer(r"```mermaid\n.*?\n```", text, flags=re.DOTALL))
     if len(m2) < 2:
