@@ -42,7 +42,7 @@ safe_count_fixed() {
 
 echo "═══════════════════════════════════════════════════════════"
 echo "  ПОЛНЫЙ АУДИТ ПРОЕКТА — $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-echo "  Версия скрипта: 3.5"
+echo "  Версия скрипта: 3.6"
 echo "═══════════════════════════════════════════════════════════"
 
 # ============================================================
@@ -294,50 +294,62 @@ echo "$GAP" | grep -q '"gap_ci95_low"' && ok "gap имеет CI95" || warn "gap 
 # ============================================================
 # ФАЗА 11: БАЗА ДАННЫХ (D1)
 # ============================================================
+# ============================================================
+# ФАЗА 11: БАЗА ДАННЫХ (D1) — используем --json для надёжного парсинга
+# ============================================================
 hdr "ФАЗА 11: БАЗА ДАННЫХ (D1)"
 
 if command -v npx > /dev/null 2>&1; then
     echo "── Протоколы ──"
-    PROTO_OUT=$(npx wrangler d1 execute human-ai-monitor-db --remote --command "SELECT COUNT(*) as count FROM protocols" 2>/dev/null)
-    PROTO_COUNT=$(echo "$PROTO_OUT" | grep -oE '│[[:space:]]*[0-9]+[[:space:]]*│' | grep -oE '[0-9]+' | head -1)
+    PROTO_JSON=$(npx wrangler d1 execute human-ai-monitor-db --remote --json --command "SELECT COUNT(*) as count FROM protocols" 2>/dev/null)
+    PROTO_COUNT=$(echo "$PROTO_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d[0]['results'][0]['count'] if d and d[0].get('results') else 0)" 2>/dev/null || echo "0")
     PROTO_COUNT=${PROTO_COUNT:-0}
     if [ "$PROTO_COUNT" -ge 1 ] 2>/dev/null; then
         ok "protocols: $PROTO_COUNT записей"
     else
-        warn "protocols: не удалось получить количество"
+        warn "protocols: $PROTO_COUNT записей (или не удалось получить)"
     fi
     
     echo
     echo "── Gap history ──"
-    GAP_OUT=$(npx wrangler d1 execute human-ai-monitor-db --remote --command "SELECT COUNT(*) as count FROM gap_history" 2>/dev/null)
-    GAP_COUNT=$(echo "$GAP_OUT" | grep -oE '│[[:space:]]*[0-9]+[[:space:]]*│' | grep -oE '[0-9]+' | head -1)
+    GAP_JSON=$(npx wrangler d1 execute human-ai-monitor-db --remote --json --command "SELECT COUNT(*) as count FROM gap_history" 2>/dev/null)
+    GAP_COUNT=$(echo "$GAP_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d[0]['results'][0]['count'] if d and d[0].get('results') else 0)" 2>/dev/null || echo "0")
     GAP_COUNT=${GAP_COUNT:-0}
     if [ "$GAP_COUNT" -ge 1 ] 2>/dev/null; then
         ok "gap_history: $GAP_COUNT записей"
     else
-        warn "gap_history: не удалось получить количество"
+        warn "gap_history: $GAP_COUNT записей (или не удалось получить)"
     fi
     
     echo
-    echo "── Index history (количество осей) ──"
-    AXES_OUT=$(npx wrangler d1 execute human-ai-monitor-db --remote --command "SELECT date, COUNT(*) as axes FROM index_history GROUP BY date ORDER BY date DESC LIMIT 1" 2>/dev/null)
-    # Парсим: ищем строку с датой и извлекаем второе число (количество осей)
-    AXES_COUNT=$(echo "$AXES_OUT" | grep -E '│[[:space:]]*[0-9]{4}-[0-9]{2}-[0-9]{2}[[:space:]]*│' | sed -E 's/.*│[[:space:]]*[0-9]{4}-[0-9]{2}-[0-9]{2}[[:space:]]*│[[:space:]]*([0-9]+)[[:space:]]*│.*/\1/')
+    echo "── Index history (количество осей за последнюю дату) ──"
+    AXES_JSON=$(npx wrangler d1 execute human-ai-monitor-db --remote --json --command "SELECT date, COUNT(*) as axes FROM index_history GROUP BY date ORDER BY date DESC LIMIT 1" 2>/dev/null)
+    AXES_COUNT=$(echo "$AXES_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d[0]['results'][0]['axes'] if d and d[0].get('results') else 0)" 2>/dev/null || echo "0")
     AXES_COUNT=${AXES_COUNT:-0}
+    AXES_DATE=$(echo "$AXES_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d[0]['results'][0]['date'] if d and d[0].get('results') else 'N/A')" 2>/dev/null || echo "N/A")
+    
     if [ "$AXES_COUNT" = "13" ]; then
-        ok "index_history: 13 осей за последнюю дату"
+        ok "index_history: 13 осей за $AXES_DATE"
     elif [ "$AXES_COUNT" != "0" ] && [ -n "$AXES_COUNT" ]; then
-        warn "index_history: $AXES_COUNT осей (ожидалось 13)"
+        warn "index_history: $AXES_COUNT осей за $AXES_DATE (ожидалось 13)"
     else
         warn "index_history: не удалось получить количество осей"
+    fi
+    
+    echo
+    echo "── Items за последние 7 дней ──"
+    ITEMS_JSON=$(npx wrangler d1 execute human-ai-monitor-db --remote --json --command "SELECT COUNT(*) as count FROM items WHERE recorded_at >= datetime('now', '-7 days')" 2>/dev/null)
+    ITEMS_COUNT=$(echo "$ITEMS_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d[0]['results'][0]['count'] if d and d[0].get('results') else 0)" 2>/dev/null || echo "0")
+    ITEMS_COUNT=${ITEMS_COUNT:-0}
+    if [ "$ITEMS_COUNT" -ge 1 ] 2>/dev/null; then
+        ok "items (7 дней): $ITEMS_COUNT записей"
+    else
+        warn "items (7 дней): $ITEMS_COUNT записей"
     fi
 else
     warn "wrangler не найден — пропускаю проверку D1"
 fi
 
-# ============================================================
-# ФАЗА 12: МАТЕМАТИКА И ФОРМУЛЫ
-# ============================================================
 hdr "ФАЗА 12: МАТЕМАТИКА И ФОРМУЛЫ"
 
 grep -q "ALPHA_0 = 0.5" src/services/bayesian-gap.ts && ok "ALPHA_0 = 0.5 (Jeffreys prior)" || fail "ALPHA_0 НЕ 0.5"
