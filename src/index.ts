@@ -239,6 +239,9 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 					stats.items_classified++;
 
 					const itemDate = parsePubDate(item.pubDate);
+					if (item.url && item.url.length > 500) {
+						console.warn("[collect] URL truncated: " + item.url.length + " -> 500 chars (" + item.url.slice(0, 80) + "…)");
+					}
 					await env.DB.prepare(
 						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, shift, direction, reasoning, temporal_status, event_date, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 					).bind(
@@ -874,7 +877,7 @@ export default {
 				}, null, 2), {
 					status: 405,
 					headers: {
-						"Allow": "GET, HEAD, OPTIONS",
+						"Allow": "GET, HEAD, OPTIONS, POST (only /translate-document)",
 						"Content-Type": "application/json; charset=utf-8",
 						...SECURITY_HEADERS,
 						...CORS,
