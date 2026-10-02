@@ -658,7 +658,7 @@ if command -v npx > /dev/null 2>&1; then
     ITEMS_TOTAL=${ITEMS_TOTAL:-0}
 
     # Записи за последние 7 дней
-    ITEMS_7D_JSON=$(npx wrangler d1 execute human-ai-monitor-db --remote --json --command "SELECT COUNT(*) as count FROM items WHERE recorded_at >= datetime('now', '-7 days')" 2>/dev/null)
+    ITEMS_7D_JSON=$(npx wrangler d1 execute human-ai-monitor-db --remote --json --command "SELECT COUNT(*) as count FROM items WHERE collected_at >= datetime('now', '-7 days')" 2>/dev/null)
     ITEMS_7D=$(echo "$ITEMS_7D_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d[0]['results'][0]['count'] if d and d[0].get('results') else 0)" 2>/dev/null || echo "0")
     ITEMS_7D=${ITEMS_7D:-0}
 
