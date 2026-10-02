@@ -894,7 +894,7 @@ export default {
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/", "/health", "/drift-events", "/gap", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/current/view", "/protocols/current/view/ru", "/protocols/current/view/zh", "/protocols/latest/view", "/protocols/latest/view/ru", "/protocols/latest/view/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
+					endpoints: ["/", "/health", "/drift-events", "/gap", "/gap-history", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/current/view", "/protocols/current/view/ru", "/protocols/current/view/zh", "/protocols/latest/view", "/protocols/latest/view/ru", "/protocols/latest/view/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
 				}, 200);
 			}
 			if (path === "/health") {
@@ -919,6 +919,34 @@ export default {
 				const row = await env.DB.prepare("SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1").first();
 				if (!row) return json({ error: "No gap data" }, 404);
 				return json(row, 200);
+			}
+			if (path === "/gap-history") {
+				// Full history of gap values, one row per week_start (finals + current interim).
+				// Joined with protocols to include week_end, items_count, is_interim.
+				const histRows = await env.DB.prepare(
+					"SELECT g.week_start, p.week_end, p.is_interim, " +
+					"       g.ai_score, g.human_score, g.gap, g.interpretation, " +
+					"       g.sample_size, p.items_count, p.shifts_count, " +
+					"       g.recorded_at, p.generated_at " +
+					"FROM gap_history g " +
+					"LEFT JOIN protocols p ON g.week_start = p.week_start " +
+					"ORDER BY g.week_start ASC"
+				).all();
+				const weeks = (histRows.results ?? []).map((r: any) => ({
+					week_start: r.week_start,
+					week_end: r.week_end,
+					is_interim: r.is_interim,
+					ai: r.ai_score,
+					human: r.human_score,
+					gap: r.gap,
+					interpretation: r.interpretation,
+					items: r.items_count,
+					sample: r.sample_size,
+					shifts: r.shifts_count,
+					recorded_at: r.recorded_at,
+					generated_at: r.generated_at,
+				}));
+				return json({ count: weeks.length, weeks }, 200);
 			}
 			if (path === "/protocols/current") {
 				const range = getWeekRange(0);
