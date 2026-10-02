@@ -7,21 +7,21 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** September 28, 2026  
-**Baseline:** First Bayesian protocol — week 2026-09-28, based on 20 items analyzed (Bayesian sample size: 22 axis-signal pairs).
+**Updated:** October 2, 2026  
+**Baseline:** Updated on October 2, 2026 — based on 165 items (sample size: 175).
 
 ### 🌍 Humanity–AI Gap Index
 
 <div align="center">
 
-| Metric | Value (09-28) | Status |
+| Metric | Value (10-02) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.50** | Bayesian baseline |
-| **🔴 AI Score** | 🤖 **0.62** | Bayesian baseline |
-| **⚖️ Gap Index** | ⚖️ **+0.12** | AI is ahead |
-| **⚡ Threshold Shifts** | **0** | No critical events |
-| **📈 Items Analyzed** | **20** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **22** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.63** | Current value |
+| **🔴 AI Score** | 🤖 **0.73** | Current value |
+| **⚖️ Gap Index** | ⚖️ **+0.09** | Symmetric development |
+| **⚡ Threshold Shifts** | **2** | Critical events detected |
+| **📈 Items Analyzed** | **165** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **175** | Axis-signal pairs |
 
 </div>
 
@@ -32,11 +32,11 @@ and Humanity.**
 
 ```mermaid
 xychart-beta
-    title "🟢 Humanity (bars) vs 🔴 AI (line) | Verified: 09-28* | Forecast: Oct+"
-    x-axis ["09-28*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"]
+    title "🟢 Humanity (bars) vs 🔴 AI (line) | Verified: 10-02* | Forecast: Oct+"
+    x-axis ["10-02*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"]
     y-axis "Score" 0.40 --> 0.80
-    bar [0.50, 0.51, 0.52, 0.53, 0.54, 0.55, 0.56, 0.57, 0.58, 0.59, 0.60, 0.61]
-    line [0.62, 0.63, 0.64, 0.65, 0.66, 0.67, 0.68, 0.69, 0.70, 0.71, 0.72, 0.73]
+    bar [0.63, 0.51, 0.52, 0.53, 0.54, 0.55, 0.56, 0.57, 0.58, 0.59, 0.60, 0.61]
+    line [0.73, 0.63, 0.64, 0.65, 0.66, 0.67, 0.68, 0.69, 0.70, 0.71, 0.72, 0.73]
 ```
 
 #### 📉 Gap Index Dynamics (AI minus Humanity)
@@ -44,9 +44,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index | Positive = AI leading, Negative = Humanity leading"
-    x-axis ["09-28*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"]
+    x-axis ["10-02*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"]
     y-axis "Gap" -0.15 --> 0.25
-    line [0.12, 0.12, 0.13, 0.13, 0.13, 0.14, 0.14, 0.14, 0.14, 0.15, 0.15, 0.15]
+    line [0.09, 0.12, 0.13, 0.13, 0.13, 0.14, 0.14, 0.14, 0.14, 0.15, 0.15, 0.15]
 ```
 
 ---
