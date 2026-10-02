@@ -253,8 +253,9 @@ def build_interim_reference(interims, lang):
     items = w["items"] if w["items"] is not None else "—"
     sample = w["sample"] if w["sample"] is not None else "—"
     L = STRINGS[lang]
+    sep = "" if lang == "zh" else " "
     return (
-        f"> {L['interim_ref_prefix']} {lbl} — "
+        f"> {L['interim_ref_prefix']}{sep}{lbl} — "
         f"{L['hist_col_ai']} {w['ai']:.2f} · {L['hist_col_human']} {w['human']:.2f} · {L['hist_col_gap']} {fmt_gap(w['gap'])} · "
         f"{items} / {sample} items.\n"
         f"> {L['interim_note']}"
