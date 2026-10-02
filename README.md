@@ -27,16 +27,15 @@ and Humanity.**
 
 #### 📈 Score Dynamics (Humanity vs AI)
 
-> 📊 **Chart Legend:** 🟢 **Bars = Humanity** (solid columns) | 🔴 **Line = AI** (line on top of bars).  
-> 📌 Asterisk (*) marks the verified baseline data point. All subsequent points are target forecasts.
+> 📊 **Chart Legend:** 🟢 **Bars = Humanity** | 🔴 **Line = AI**. History since first final protocol.
 
 ```mermaid
 xychart-beta
-    title "🟢 Humanity (bars) vs 🔴 AI (line) | Verified: 10-02* | Forecast: Oct+"
-    x-axis ["10-02*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"]
+    title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
+    x-axis ["04/10"]
     y-axis "Score" 0.40 --> 0.80
-    bar [0.63, 0.51, 0.52, 0.53, 0.54, 0.55, 0.56, 0.57, 0.58, 0.59, 0.60, 0.61]
-    line [0.73, 0.63, 0.64, 0.65, 0.66, 0.67, 0.68, 0.69, 0.70, 0.71, 0.72, 0.73]
+    bar [0.63]
+    line [0.73]
 ```
 
 #### 📉 Gap Index Dynamics (AI minus Humanity)
@@ -44,10 +43,19 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index | Positive = AI leading, Negative = Humanity leading"
-    x-axis ["10-02*", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"]
+    x-axis ["04/10"]
     y-axis "Gap" -0.15 --> 0.25
-    line [0.09, 0.12, 0.13, 0.13, 0.13, 0.14, 0.14, 0.14, 0.14, 0.15, 0.15, 0.15]
+    line [0.09]
 ```
+
+
+#### 📚 Historical Protocols
+
+| Week | AI | Humanity | Gap | Items | Sample | Type |
+|---|---|---|---|---|---|---|
+| 04/10 | 0.73 | 0.63 | +0.09 | 165 | 175 | INTERIM |
+
+> ℹ️ Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
 
