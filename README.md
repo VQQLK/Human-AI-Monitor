@@ -8,7 +8,7 @@ and Humanity.**
 ## 📊 Current State of Development
 
 **Updated:** October 2, 2026  
-**Baseline:** Updated on October 2, 2026 — based on 165 items (sample size: 175).
+**Baseline:** Updated on October 2, 2026 — based on 179 items (sample size: 175).
 
 ### 🌍 Humanity–AI Gap Index
 
@@ -20,7 +20,7 @@ and Humanity.**
 | **🔴 AI Score** | 🤖 **0.73** | Current value |
 | **⚖️ Gap Index** | ⚖️ **+0.09** | Symmetric development |
 | **⚡ Threshold Shifts** | **2** | Critical events detected |
-| **📈 Items Analyzed** | **165** | Weekly sample |
+| **📈 Items Analyzed** | **179** | Weekly sample |
 | **🔬 Sample Size (Bayesian)** | **175** | Axis-signal pairs |
 
 </div>
@@ -48,12 +48,11 @@ xychart-beta
     line [0.09]
 ```
 
-
 #### 📚 Historical Protocols
 
 | Week | AI | Humanity | Gap | Items | Sample | Type |
 |---|---|---|---|---|---|---|
-| 04/10 | 0.73 | 0.63 | +0.09 | 165 | 175 | INTERIM |
+| 04/10 | 0.73 | 0.63 | +0.09 | 179 | 175 | INTERIM |
 
 > ℹ️ Last point is INTERIM — will be replaced by FINAL on Monday.
 

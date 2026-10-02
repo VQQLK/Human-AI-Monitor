@@ -353,6 +353,16 @@ def update_readme(path, lang, weeks, dry=False):
         print(f"  {path.name}: '---' separator not found after graphs")
         return False
     sep_pos = after_m2 + m_sep.start()
+
+    # Idempotent: strip previous history section between graphs and separator.
+    segment = text[after_m2:sep_pos]
+    idx = segment.find(L["hist_header"])
+    if idx != -1:
+        head = segment[:idx].rstrip("\n")
+        text = text[:after_m2] + head + text[sep_pos:]
+        m_sep = re.search(r"\n---\n", text[after_m2:])
+        sep_pos = after_m2 + m_sep.start()
+
     text = text[:sep_pos] + insert_block + text[sep_pos:]
 
     if text == original:
