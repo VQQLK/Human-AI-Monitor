@@ -5,16 +5,18 @@ on:
     - cron: "30 23 * * *"
   workflow_dispatch:
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Fetch live health
-        run: curl -sfS https://human-ai-monitor-collector.human-ai-monitor.workers.dev/health | tee /tmp/health.json
+        run: curl -sfS --max-time 30 --retry 2 --retry-delay 5 https://human-ai-monitor-collector.human-ai-monitor.workers.dev/health | tee /tmp/health.json
       - name: Assert live invariants
         run: |
           set -e
@@ -29,9 +31,14 @@ jobs:
         run: |
           set -e
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
-          for w in $(curl -sfS "$API/protocols" | jq -r '.protocols[].week_start' | sort -u | tail -2); do
+          WEEKS=$(curl -sfS --max-time 30 --retry 2 --retry-delay 5 "$API/protocols" | jq -r '.protocols[].week_start' | sort -u | tail -2)
+          if [ -z "$WEEKS" ]; then
+            echo "FAIL: no protocols returned from $API/protocols"
+            exit 1
+          fi
+          for w in $WEEKS; do
             for lang in ru zh; do
-              CODE=$(curl -s -o /dev/null -w '%{http_code}' "$API/protocols/$w/content/$lang")
+              CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 --retry 2 --retry-delay 5 "$API/protocols/$w/content/$lang")
               test "$CODE" = "200" || { echo "FAIL: $w/$lang -> $CODE (rule 7: run translate-protocols)"; exit 1; }
             done
           done

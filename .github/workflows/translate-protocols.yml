@@ -13,43 +13,53 @@ on:
         required: false
         type: string
 
+permissions: {}
+
 jobs:
   translate:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
 
     steps:
       - name: Determine week to translate
         id: week
+        env:
+          WEEK_INPUT: ${{ github.event.inputs.week }}
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
-          
-          if [ -n "${{ github.event.inputs.week }}" ]; then
-            # Manual trigger with specific week
-            WEEK="${{ github.event.inputs.week }}"
-            echo "week=$WEEK" >> "$GITHUB_OUTPUT"
+
+          if [ -n "$WEEK_INPUT" ]; then
+            # Manual trigger with specific week — validate format before use.
+            if ! echo "$WEEK_INPUT" | grep -qE '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
+              echo "Invalid week format: $WEEK_INPUT (expected YYYY-MM-DD)" >&2
+              exit 1
+            fi
+            WEEK="$WEEK_INPUT"
             echo "Using manually specified week: $WEEK"
           else
-            # Scheduled trigger — get latest protocol from API
-            WEEK=$(curl -sSf "$API/protocols" | jq -r '.protocols[0].week_start')
-            echo "week=$WEEK" >> "$GITHUB_OUTPUT"
+            # Scheduled trigger — get latest protocol from API.
+            WEEK=$(curl -sSf --max-time 30 --retry 2 --retry-delay 5 "$API/protocols" | jq -r '.protocols[0].week_start')
             echo "Latest protocol week: $WEEK"
           fi
+          echo "week=$WEEK" >> "$GITHUB_OUTPUT"
 
       - name: Trigger translation
         env:
           ADMIN_TOKEN: ${{ secrets.ADMIN_SECRET_CURRENT }}
+          WEEK: ${{ steps.week.outputs.week }}
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
-          WEEK="${{ steps.week.outputs.week }}"
-          
+
           echo "Triggering translation for week $WEEK..."
-          RESPONSE=$(curl -sSf -H "Authorization: Bearer $ADMIN_TOKEN" "$API/translate/$WEEK")
+          RESPONSE=$(curl -sSf --max-time 60 --retry 2 --retry-delay 5 -H "Authorization: Bearer $ADMIN_TOKEN" "$API/translate/$WEEK")
           echo "Response: $RESPONSE"
-          
-          # Verify translation succeeded
+
+          # Verify translation succeeded.
           RU_BYTES=$(echo "$RESPONSE" | jq -r '.ru_bytes // 0')
           ZH_BYTES=$(echo "$RESPONSE" | jq -r '.zh_bytes // 0')
-          
+
           if [ "$RU_BYTES" -gt 0 ] && [ "$ZH_BYTES" -gt 0 ]; then
             echo "✓ Translation successful: RU=$RU_BYTES bytes, ZH=$ZH_BYTES bytes"
           else
@@ -58,13 +68,14 @@ jobs:
           fi
 
       - name: Verify translation in database
+        env:
+          WEEK: ${{ steps.week.outputs.week }}
         run: |
           API="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
-          WEEK="${{ steps.week.outputs.week }}"
-          
+
           echo "Verifying Russian translation..."
-          curl -sSf "$API/protocols/$WEEK/content/ru" | head -5
-          
+          curl -sSf --max-time 30 --retry 2 --retry-delay 5 "$API/protocols/$WEEK/content/ru" | head -5
+
           echo ""
           echo "Verifying Chinese translation..."
-          curl -sSf "$API/protocols/$WEEK/content/zh" | head -5
+          curl -sSf --max-time 30 --retry 2 --retry-delay 5 "$API/protocols/$WEEK/content/zh" | head -5
