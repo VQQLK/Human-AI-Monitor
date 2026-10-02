@@ -42,7 +42,7 @@ safe_count_fixed() {
 
 echo "═══════════════════════════════════════════════════════════"
 echo "  ПОЛНЫЙ АУДИТ ПРОЕКТА — $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-echo "  Версия скрипта: 3.6"
+echo "  Версия скрипта: 3.7"
 echo "═══════════════════════════════════════════════════════════"
 
 # ============================================================
@@ -245,24 +245,36 @@ git check-ignore .dev.vars > /dev/null 2>&1 && ok ".dev.vars в .gitignore" || f
 
 echo
 echo "── Поиск секретов в истории Git ──"
-# Ищем РЕАЛЬНЫЕ токены (длинный паттерн), исключаем audit scripts
-CFUT_REAL=$(git log --all -p 2>/dev/null | grep -E "cfut_[a-zA-Z0-9]{20,}"     | grep -v "audit_project.sh"     | grep -v "audit_full.sh"     | grep -v "security_audit.sh"     | grep -v "audit.sh"     | wc -l | tr -d ' ')
+# Ищем РЕАЛЬНЫЕ ключи по формату, а не любые упоминания 'sk-'.
+# Реальный ключ OpenAI: sk- + минимум 32 алфавитно-цифровых символа.
+# Шаблонные строки вида 'sk-xxx', 'sk-[A-Za-z0-9]{32,}' исключаются.
+SK_REAL_KEYS=$(git log --all -p 2>/dev/null \
+    | grep -oE "sk-[A-Za-z0-9]{32,}" \
+    | grep -v "sk-\[A-Za-z" \
+    | grep -v "sk-xxx" \
+    | grep -v "audit" \
+    | sort -u \
+    | wc -l | tr -d ' ')
+SK_REAL_KEYS=${SK_REAL_KEYS:-0}
+
+if [ "$SK_REAL_KEYS" = "0" ]; then
+    ok "Реальные ключи sk-[32+] не найдены в истории"
+else
+    fail "НАЙДЕНО $SK_REAL_KEYS реальных ключей в истории!"
+fi
+
+# Реальные токены Cloudflare: cfut_ + минимум 20 алфавитно-цифровых символов.
+CFUT_REAL=$(git log --all -p 2>/dev/null \
+    | grep -oE "cfut_[a-zA-Z0-9]{20,}" \
+    | grep -v "audit" \
+    | sort -u \
+    | wc -l | tr -d ' ')
 CFUT_REAL=${CFUT_REAL:-0}
 
 if [ "$CFUT_REAL" = "0" ]; then
-    ok "cfut_* (Cloudflare tokens) не найден в истории"
+    ok "Реальные токены cfut_[20+] не найдены в истории"
 else
-    fail "НАЙДЕНО $CFUT_REAL реальных токенов cfut_* в истории"
-fi
-
-# Ищем sk-*, исключаем ложные срабатывания и audit scripts
-SK_REAL=$(git log --all -p 2>/dev/null | grep "sk-"     | grep -v "re\.compile"     | grep -v "sk-xxx"     | grep -v "sk-ant-"     | grep -v "sk-\[A-Za-z"     | grep -v "task-agent"     | grep -v "task-horizon"     | grep -v "disk->tree"     | grep -v "top-level"     | grep -v "PLACE_RE"     | grep -v "SEC_PATS"     | grep -v "fake|sample|redacted"     | grep -v "audit_project.sh"     | grep -v "audit_full.sh"     | grep -v "security_audit.sh"     | grep -v "audit.sh"     | wc -l | tr -d ' ')
-SK_REAL=${SK_REAL:-0}
-
-if [ "$SK_REAL" = "0" ]; then
-    ok "sk-* (OpenAI keys) не найден в истории"
-else
-    warn "Найдено $SK_REAL подозрительных упоминаний sk-* (проверьте вручную)"
+    fail "НАЙДЕНО $CFUT_REAL реальных токенов в истории!"
 fi
 
 # ============================================================
@@ -338,13 +350,25 @@ if command -v npx > /dev/null 2>&1; then
     
     echo
     echo "── Items за последние 7 дней ──"
-    ITEMS_JSON=$(npx wrangler d1 execute human-ai-monitor-db --remote --json --command "SELECT COUNT(*) as count FROM items WHERE recorded_at >= datetime('now', '-7 days')" 2>/dev/null)
-    ITEMS_COUNT=$(echo "$ITEMS_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d[0]['results'][0]['count'] if d and d[0].get('results') else 0)" 2>/dev/null || echo "0")
-    ITEMS_COUNT=${ITEMS_COUNT:-0}
-    if [ "$ITEMS_COUNT" -ge 1 ] 2>/dev/null; then
-        ok "items (7 дней): $ITEMS_COUNT записей"
+# Общее количество записей за всё время
+    ITEMS_TOTAL_JSON=$(npx wrangler d1 execute human-ai-monitor-db --remote --json --command "SELECT COUNT(*) as count FROM items" 2>/dev/null)
+    ITEMS_TOTAL=$(echo "$ITEMS_TOTAL_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d[0]['results'][0]['count'] if d and d[0].get('results') else 0)" 2>/dev/null || echo "0")
+    ITEMS_TOTAL=${ITEMS_TOTAL:-0}
+
+    # Записи за последние 7 дней
+    ITEMS_7D_JSON=$(npx wrangler d1 execute human-ai-monitor-db --remote --json --command "SELECT COUNT(*) as count FROM items WHERE recorded_at >= datetime('now', '-7 days')" 2>/dev/null)
+    ITEMS_7D=$(echo "$ITEMS_7D_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d[0]['results'][0]['count'] if d and d[0].get('results') else 0)" 2>/dev/null || echo "0")
+    ITEMS_7D=${ITEMS_7D:-0}
+
+    if [ "$ITEMS_TOTAL" -ge 1 ] 2>/dev/null; then
+        ok "items всего: $ITEMS_TOTAL записей"
+        if [ "$ITEMS_7D" -ge 1 ] 2>/dev/null; then
+            ok "items (7 дней): $ITEMS_7D записей"
+        else
+            echo "  ℹ️  items (7 дней): 0 записей (нет новых за неделю)"
+        fi
     else
-        warn "items (7 дней): $ITEMS_COUNT записей"
+        warn "items: 0 записей за всё время"
     fi
 else
     warn "wrangler не найден — пропускаю проверку D1"
