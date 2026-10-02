@@ -280,12 +280,30 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 // serve text/markdown for API clients.
 
 function escapeHtml(s: string): string {
-	return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+	return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+/**
+ * Strip markdown-link structure characters from an arbitrary label
+ * (e.g. an RSS title) before embedding it into a markdown link.
+ * Prevents titles like "Foo](javascript:...)" from injecting hrefs.
+ */
+function sanitizeLinkLabel(s: string): string {
+	return String(s ?? "").replace(/[\[\]()]/g, "");
 }
 
 function renderInline(text: string): string {
 	let s = escapeHtml(text);
-	s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+	s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, txt, href) => {
+		try {
+			const u = new URL(href);
+			if (u.protocol !== 'http:' && u.protocol !== 'https:') return txt;
+		} catch {
+			return txt;
+		}
+		return '<a href="' + href + '" target="_blank" rel="noopener noreferrer">' + txt + '</a>';
+	});
 	s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 	s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
 	return s;
@@ -428,7 +446,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
 		for (const it of list.slice(0, 5)) {
 			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
-			lines.push("- " + marker + " [" + it.title + "](" + it.url + ") — " + it.source);
+			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + it.source);
 			if (it.reasoning) lines.push("  - " + it.reasoning);
 		}
 		lines.push("");
@@ -442,7 +460,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
 		for (const it of list.slice(0, 5)) {
 			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
-			lines.push("- " + marker + " [" + it.title + "](" + it.url + ") — " + it.source);
+			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + it.source);
 			if (it.reasoning) lines.push("  - " + it.reasoning);
 		}
 		lines.push("");
@@ -513,7 +531,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
 		for (const it of list.slice(0, 5)) {
 			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
-			lines.push("- " + marker + " [" + it.title + "](" + it.url + ") — " + it.source);
+			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + it.source);
 			if (it.reasoning) lines.push("  - " + it.reasoning);
 		}
 		lines.push("");
@@ -527,7 +545,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		if (list.length === 0) { lines.push("_No signals this week._"); lines.push(""); continue; }
 		for (const it of list.slice(0, 5)) {
 			const marker = it.shift === "yes" ? "🔴" : it.shift === "no" ? "🟢" : "🟡";
-			lines.push("- " + marker + " [" + it.title + "](" + it.url + ") — " + it.source);
+			lines.push("- " + marker + " [" + sanitizeLinkLabel(it.title) + "](" + it.url + ") — " + it.source);
 			if (it.reasoning) lines.push("  - " + it.reasoning);
 		}
 		lines.push("");
@@ -801,6 +819,10 @@ export default {
 			"Referrer-Policy": "strict-origin-when-cross-origin",
 			"Permissions-Policy": "geolocation=(), microphone=(), camera=()",
 			"Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+			// Second layer against XSS: even if a javascript: URL slips through
+			// escapeHtml, the browser refuses to execute it. No <script> in the
+			// generated HTML, so script-src 'none' is safe.
+			"Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src https: data:; script-src 'none'; connect-src 'none'; frame-ancestors 'none'",
 		};
 		const CORS = {
 			"Access-Control-Allow-Origin": "*",
@@ -922,7 +944,7 @@ export default {
 				const md = lang === "en" ? enMd : await translateProtocolMarkdown(env, enMd, lang);
 				const html = htmlPage("Live Protocol (DRAFT) — " + lang.toUpperCase(), renderMarkdownToHtml(md), lang);
 				return new Response(html, {
-					headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "public, max-age=300", ...SECURITY_HEADERS, ...CORS },
+					headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store, must-revalidate", ...SECURITY_HEADERS, ...CORS },
 				});
 			}
 			// ── HTML view for latest stored protocol (final) ──
@@ -934,7 +956,7 @@ export default {
 				if (!row || !row.content) return json({ error: "No stored protocol" }, 404);
 				const html = htmlPage("Protocol " + row.week_start + " — " + lang.toUpperCase(), renderMarkdownToHtml(row.content), lang);
 				return new Response(html, {
-					headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "public, max-age=3600", ...SECURITY_HEADERS, ...CORS },
+					headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "public, max-age=600", ...SECURITY_HEADERS, ...CORS },
 				});
 			}
 			if (path === "/protocols") {
@@ -1017,6 +1039,10 @@ export default {
 				const lang: string = body.lang;
 				if (!markdown || typeof markdown !== "string") {
 					return json({ error: "Missing or invalid 'markdown' field" }, 400);
+				}
+				const MAX_MARKDOWN_CHARS = 200_000;
+				if (markdown.length > MAX_MARKDOWN_CHARS) {
+					return json({ error: `markdown too large (max ${MAX_MARKDOWN_CHARS} chars)` }, 413);
 				}
 				if (lang !== "ru" && lang !== "zh") {
 					return json({ error: "lang must be 'ru' or 'zh'" }, 400);
