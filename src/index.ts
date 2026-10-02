@@ -1051,6 +1051,10 @@ export default {
 				const kind = (url.searchParams.get("kind") ?? "ai").toLowerCase();
 				if (!text) return json({ error: "Missing text" }, 400);
 				if (text.length > 1000) return json({ error: "Text too long (max 1000 chars)" }, 400);
+				const VALID_KINDS = ['ai', 'human'];
+				if (!VALID_KINDS.includes(kind)) {
+					return json({ error: "Invalid kind", valid_kinds: VALID_KINDS, received: kind }, 400);
+				}
 				const today = new Date().toISOString().split('T')[0];
 				const systemPrompt = kind === 'human' ? getHumanPrompt(today) : getAIPrompt(today);
 				const response: any = await env.AI.run(env.CLASSIFIER_MODEL, {

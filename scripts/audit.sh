@@ -42,7 +42,7 @@ safe_count_fixed() {
 
 echo "═══════════════════════════════════════════════════════════"
 echo "  ПОЛНЫЙ АУДИТ ПРОЕКТА — $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-echo "  Версия скрипта: 4.3"
+echo "  Версия скрипта: 4.5"
 echo "═══════════════════════════════════════════════════════════"
 
 # ============================================================
@@ -509,15 +509,12 @@ else
         warn "Валидация: текст > 1000 символов → $code (ожидалось 400)"
     fi
 
-    # Недопустимый kind: сервер принимает любое значение и возвращает JSON
-    # Проверяем, что ответ корректный (200 с валидным JSON)
-    RESPONSE=$(curl -s -H "Authorization: Bearer $TOKEN" "$URL/classify?text=test&kind=invalid" 2>/dev/null)
-    code=$(echo "$RESPONSE" | head -1 | grep -oE '"kind"' | head -1)
-    
-    if echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); assert 'input' in d and 'kind' in d" 2>/dev/null; then
-        ok "Валидация: недопустимый kind → 200 с корректным JSON"
+    # Недопустимый kind должен возвращать 400 (с токеном)
+    code=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $TOKEN" "$URL/classify?text=test&kind=invalid" 2>/dev/null)
+    if [ "$code" = "400" ]; then
+        ok "Валидация: недопустимый kind → 400"
     else
-        warn "Валидация: недопустимый kind вернул некорректный ответ"
+        warn "Валидация: недопустимый kind → $code (ожидалось 400)"
     fi
 fi
 
