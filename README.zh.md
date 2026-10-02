@@ -319,7 +319,6 @@ xychart-beta
 
 - ⚠️ 仅RSS收集；HTML解析已实现（`fetchFromHtml()`在`src/index.ts`中）但目前未使用——没有配置`type: html`的来源
 - ⚠️ `shift`字段可能在一般新闻中过度触发
-- ⚠️ 6个来源已禁用（VentureBeat 429，Nature 303，Lancet 403，Benton 404，V-Dem 404，ILO 404）
 - ⚠️ OECD和Edelman使用Google News RSS作为备用（关于主题的新闻，而非官方新闻稿）
 - ⚠️ 方法论结构：13 个轴 (12+1) = 6 个 AI (RSI) + 6 个人类 (HHI) + 1 个地缘政治元层。地缘政治被测量并发布，但**不包含**在 AI_score 或 Human_score 中。
 
