@@ -116,6 +116,7 @@ INTERP = {
     },
 }
 
+
 def _curl(url, max_time):
     r = subprocess.run(
         ["curl", "-sSf", "--max-time", str(max_time), url],
@@ -193,6 +194,7 @@ xychart-beta
     line [{ai_line}]
 ```'''
 
+
 def build_gap_mermaid(weeks, lang):
     """Build mermaid block for Gap Index Dynamics (finals only, history)."""
     finals = [w for w in weeks if not w.get("is_interim")]
@@ -221,8 +223,9 @@ xychart-beta
     line [{gap_line}]
 ```'''
 
+
 def build_history_table(weeks, lang):
-    """Build markdown table with all weeks (finals + current interim)."""
+    """Build markdown table for finals only (chart history)."""
     L = STRINGS[lang]
     header = (f"| {L['hist_col_week']} | {L['hist_col_ai']} | {L['hist_col_human']} "
               f"| {L['hist_col_gap']} | {L['hist_col_items']} | {L['hist_col_sample']} "
@@ -241,9 +244,6 @@ def build_history_table(weeks, lang):
     return f"{L['hist_header']}\n\n{header}\n{sep}\n" + "\n".join(rows)
 
 
-def is_last_interim(weeks):
-    return bool(weeks) and weeks[-1].get("is_interim") == 1
-
 def build_interim_reference(interims, lang):
     """Build reference blockquote for the current interim (not on chart)."""
     if not interims:
@@ -254,8 +254,8 @@ def build_interim_reference(interims, lang):
     sample = w["sample"] if w["sample"] is not None else "—"
     L = STRINGS[lang]
     return (
-        f"\n\n> {L['interim_ref_prefix']} {lbl} — "
-        f"AI {w['ai']:.2f} · Humanity {w['human']:.2f} · Gap {fmt_gap(w['gap'])} · "
+        f"> {L['interim_ref_prefix']} {lbl} — "
+        f"{L['hist_col_ai']} {w['ai']:.2f} · {L['hist_col_human']} {w['human']:.2f} · {L['hist_col_gap']} {fmt_gap(w['gap'])} · "
         f"{items} / {sample} items.\n"
         f"> {L['interim_note']}"
     )
@@ -377,7 +377,10 @@ def update_readme(path, lang, weeks, dry=False):
     interims = [w for w in weeks if w.get("is_interim")]
     history_md = build_history_table(finals, lang)
     interim_ref = build_interim_reference(interims, lang)
-    insert_block = f"\n\n{history_md}{interim_ref}\n"
+    blocks = [history_md.rstrip()]
+    if interim_ref:
+        blocks.append(interim_ref.rstrip())
+    insert_block = "\n\n" + "\n\n".join(blocks) + "\n"
 
     m2 = list(re.finditer(r"```mermaid\n.*?\n```", text, flags=re.DOTALL))
     if len(m2) < 2:
