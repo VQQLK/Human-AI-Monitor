@@ -560,6 +560,29 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	return lines.join("\n");
 }
 
+async function countProtocolItems(env: Env, range: any): Promise<{ items: number; shifts: number }> {
+	// Same filter + JS post-processing as build*ProtocolMarkdown, so that
+	// protocols.items_count matches the "Items collected" line in the
+	// generated markdown. Two-level filter:
+	//   1. SQL: exclude temporal_status = 'stale_forecast'
+	//   2. JS:  reclassify future_event with past event_date as stale
+	const res = await env.DB.prepare(
+		"SELECT temporal_status, event_date, shift FROM items " +
+		"WHERE date >= ? AND date <= ? " +
+		"AND (temporal_status IS NULL OR temporal_status != 'stale_forecast')"
+	).bind(range.filterStart, range.filterEnd).all();
+	const rows: any[] = res.results ?? [];
+	const today = new Date().toISOString().split('T')[0];
+	let items = 0;
+	let shifts = 0;
+	for (const r of rows) {
+		if (r.temporal_status === 'future_event' && r.event_date && r.event_date < today) continue;
+		items++;
+		if (r.shift === 'yes') shifts++;
+	}
+	return { items, shifts };
+}
+
 export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<any> {
 	// Guard: refuse to generate protocol for the current (still-open) week.
 	// The cron uses offsetWeeks=1 (previous closed week). Direct calls with
@@ -573,12 +596,6 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 	}
 
 	const range = getWeekRange(offsetWeeks);
-	const itemsRes = await env.DB.prepare(
-		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ?"
-	).bind(range.filterStart, range.filterEnd).first();
-	const shiftsRes = await env.DB.prepare(
-		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'yes'"
-	).bind(range.filterStart, range.filterEnd).first();
 	// Compute Gap BEFORE building markdown, so buildProtocolMarkdown reads fresh gap_history
 	// Reproducible Monte Carlo: seed from week_start (bayesian_framework.md §3.9)
 	const gapResult = await computeGapIndex(env, range, mulberry32(seedFromString(range.start)));
@@ -624,9 +641,8 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 	
 	// Build markdown AFTER gap_history + index_history are written,
 	// so the Gap section reads the fresh row for THIS week.
+	const { items: itemsCount, shifts: shiftsCount } = await countProtocolItems(env, range);
 	const markdown = await buildProtocolMarkdown(env, range);
-	const itemsCount = (itemsRes as any)?.n ?? 0;
-	const shiftsCount = (shiftsRes as any)?.n ?? 0;
 	const path = "data/protocols/" + range.start + ".md";
 	// UPSERT: preserve content_ru / content_zh across regenerations.
 	// INSERT OR REPLACE would DELETE+INSERT, wiping translations (both columns unlisted).
@@ -692,12 +708,6 @@ async function translateAndSaveProtocol(env: Env, weekStart: string): Promise<an
 
 async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<any> {
 	const range = getWeekRange(offsetWeeks);
-	const itemsRes = await env.DB.prepare(
-		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ?"
-	).bind(range.filterStart, range.filterEnd).first();
-	const shiftsRes = await env.DB.prepare(
-		"SELECT COUNT(*) as n FROM items WHERE date >= ? AND date <= ? AND shift = 'yes'"
-	).bind(range.filterStart, range.filterEnd).first();
 	// Compute Gap BEFORE building markdown, so buildDraftProtocolMarkdown reads fresh gap_history
 	// Reproducible Monte Carlo: seed from week_start (bayesian_framework.md §3.9)
 	const gapResult = await computeGapIndex(env, range, mulberry32(seedFromString(range.start)));
@@ -743,9 +753,8 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 
 	// Build markdown AFTER gap_history + index_history are written,
 	// so the Gap section reads the fresh row for THIS week.
+	const { items: itemsCount, shifts: shiftsCount } = await countProtocolItems(env, range);
 	const markdown = await buildDraftProtocolMarkdown(env, range, true);
-	const itemsCount = (itemsRes as any)?.n ?? 0;
-	const shiftsCount = (shiftsRes as any)?.n ?? 0;
 	const path = "data/protocols/" + range.start + ".interim.md";
 	
 	// UPSERT: preserve content_ru / content_zh across regenerations.
