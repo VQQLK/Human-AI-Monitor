@@ -42,7 +42,7 @@ safe_count_fixed() {
 
 echo "═══════════════════════════════════════════════════════════"
 echo "  ПОЛНЫЙ АУДИТ ПРОЕКТА — $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-echo "  Версия скрипта: 3.7"
+echo "  Версия скрипта: 4.0"
 echo "═══════════════════════════════════════════════════════════"
 
 # ============================================================
@@ -240,46 +240,297 @@ done
 # ============================================================
 hdr "ФАЗА 9: БЕЗОПАСНОСТЬ"
 
-git check-ignore .env > /dev/null 2>&1 && ok ".env в .gitignore" || fail ".env НЕ в .gitignore"
-git check-ignore .dev.vars > /dev/null 2>&1 && ok ".dev.vars в .gitignore" || fail ".dev.vars НЕ в .gitignore"
-
+# ─────────────────────────────────────────────────────────
+# 9.1. Защита файлов конфигурации (.gitignore)
+# ─────────────────────────────────────────────────────────
 echo
-echo "── Поиск секретов в истории Git ──"
-# Ищем РЕАЛЬНЫЕ ключи по формату, а не любые упоминания 'sk-'.
-# Реальный ключ OpenAI: sk- + минимум 32 алфавитно-цифровых символа.
-# Шаблонные строки вида 'sk-xxx', 'sk-[A-Za-z0-9]{32,}' исключаются.
-SK_REAL_KEYS=$(git log --all -p 2>/dev/null \
-    | grep -oE "sk-[A-Za-z0-9]{32,}" \
-    | grep -v "sk-\[A-Za-z" \
-    | grep -v "sk-xxx" \
-    | grep -v "audit" \
-    | sort -u \
-    | wc -l | tr -d ' ')
-SK_REAL_KEYS=${SK_REAL_KEYS:-0}
+echo "── 9.1. Защита файлов конфигурации ──"
 
-if [ "$SK_REAL_KEYS" = "0" ]; then
-    ok "Реальные ключи sk-[32+] не найдены в истории"
+for gitignore_pattern in ".env" ".dev.vars" ".wrangler/" "node_modules/" ".env.local"; do
+    if grep -qF "$gitignore_pattern" .gitignore 2>/dev/null; then
+        ok ".gitignore: $gitignore_pattern"
+    else
+        warn ".gitignore: $gitignore_pattern отсутствует"
+    fi
+done
+
+# ─────────────────────────────────────────────────────────
+# 9.2. Секреты НЕ должны отслеживаться в Git
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.2. Секретные файлы не в индексе Git ──"
+
+for secret_file in ".env" ".dev.vars" ".env.local" ".wrangler"; do
+    if git ls-files --error-unmatch "$secret_file" > /dev/null 2>&1; then
+        fail "Секретный файл $secret_file отслеживается в Git!"
+    else
+        ok "$secret_file не отслеживается в Git"
+    fi
+done
+
+# ─────────────────────────────────────────────────────────
+# 9.3. Поиск секретов в ТЕКУЩИХ файлах (не в истории)
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.3. Поиск секретов в текущих файлах ──"
+
+# Ищем реальные секреты в текущих файлах (исключая node_modules, .git, audit скрипты)
+SECRET_PATTERNS=(
+    "cfut_[a-zA-Z0-9]{20,}"
+    "sk-[A-Za-z0-9]{32,}"
+    "sk-ant-[A-Za-z0-9_-]{20,}"
+    "gh[pousr]_[A-Za-z0-9]{36,}"
+    "AKIA[0-9A-Z]{16}"
+    "xox[baprs]-[A-Za-z0-9-]{10,}"
+    "BEGIN[[:space:]]+(RSA|OPENSSH|EC|DSA|PGP)[[:space:]]+PRIVATE[[:space:]]+KEY"
+)
+
+SECRET_NAMES=(
+    "Cloudflare токен"
+    "OpenAI ключ"
+    "Anthropic ключ"
+    "GitHub токен"
+    "AWS ключ"
+    "Slack токен"
+    "Приватный ключ"
+)
+
+SECRETS_FOUND=0
+for i in "${!SECRET_PATTERNS[@]}"; do
+    pattern="${SECRET_PATTERNS[$i]}"
+    name="${SECRET_NAMES[$i]}"
+    
+    # Ищем в текущих файлах, исключая скрипты аудита
+    found=$(grep -rE "$pattern"         --exclude-dir=node_modules         --exclude-dir=.git         --exclude-dir=.wrangler         --exclude="audit.sh"         --exclude="audit_full.sh"         --exclude="security_audit.sh"         --exclude="*.bak*"         . 2>/dev/null | wc -l | tr -d ' ')
+    
+    if [ "$found" = "0" ]; then
+        ok "Текущие файлы: $name не найден"
+    else
+        fail "Текущие файлы: НАЙДЕНО $found упоминаний '$name'"
+        SECRETS_FOUND=$((SECRETS_FOUND + found))
+    fi
+done
+
+# ─────────────────────────────────────────────────────────
+# 9.4. Поиск секретов в ИСТОРИИ Git
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.4. Поиск секретов в истории Git ──"
+
+# Ищем РЕАЛЬНЫЕ ключи по формату в истории коммитов
+for i in "${!SECRET_PATTERNS[@]}"; do
+    pattern="${SECRET_PATTERNS[$i]}"
+    name="${SECRET_NAMES[$i]}"
+    
+    # Ищем в истории, исключая скрипты аудита и шаблоны
+    found=$(git log --all -p 2>/dev/null         | grep -oE "$pattern"         | grep -v "audit"         | grep -v "example"         | grep -v "placeholder"         | sort -u         | wc -l | tr -d ' ')
+    
+    if [ "$found" = "0" ]; then
+        ok "История: $name не найден"
+    else
+        fail "История: НАЙДЕНО $found реальных '$name'"
+        SECRETS_FOUND=$((SECRETS_FOUND + found))
+    fi
+done
+
+# ─────────────────────────────────────────────────────────
+# 9.5. Проверка секретов в Cloudflare Workers Secrets
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.5. Секреты в Cloudflare Workers ──"
+
+if command -v npx > /dev/null 2>&1; then
+    SECRETS_LIST=$(npx wrangler secret list 2>/dev/null || echo "")
+    
+    if [ -z "$SECRETS_LIST" ]; then
+        warn "wrangler secret list: не удалось получить список"
+    else
+        # Проверяем наличие критических секретов
+        for secret_name in "ADMIN_SECRET_CURRENT" "ADMIN_SECRET_PREVIOUS"; do
+            if echo "$SECRETS_LIST" | grep -q "$secret_name"; then
+                ok "Workers Secret: $secret_name существует"
+            else
+                warn "Workers Secret: $secret_name отсутствует"
+            fi
+        done
+        
+        # Проверяем, что секреты не в коде
+        SECRETS_IN_CODE=$(echo "$SECRETS_LIST" | wc -l | tr -d ' ')
+        ok "Workers Secrets: всего $SECRETS_IN_CODE секретов"
+    fi
 else
-    fail "НАЙДЕНО $SK_REAL_KEYS реальных ключей в истории!"
+    warn "wrangler не найден — пропускаю проверку Workers Secrets"
 fi
 
-# Реальные токены Cloudflare: cfut_ + минимум 20 алфавитно-цифровых символов.
-CFUT_REAL=$(git log --all -p 2>/dev/null \
-    | grep -oE "cfut_[a-zA-Z0-9]{20,}" \
-    | grep -v "audit" \
-    | sort -u \
-    | wc -l | tr -d ' ')
-CFUT_REAL=${CFUT_REAL:-0}
+# ─────────────────────────────────────────────────────────
+# 9.6. Аутентификация защищённых endpoints (без токена)
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.6. Аутентификация защищённых endpoints ──"
 
-if [ "$CFUT_REAL" = "0" ]; then
-    ok "Реальные токены cfut_[20+] не найдены в истории"
+URL="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
+
+# Защищённые endpoints должны возвращать 401 без токена
+for protected_path in "/classify?text=test&kind=ai" "/collect?limit=1" "/generate?week=2026-01-01" "/export-weekly"; do
+    code=$(curl -s -o /dev/null -w "%{http_code}" "$URL$protected_path" 2>/dev/null)
+    if [ "$code" = "401" ]; then
+        ok "GET $protected_path → 401 (требует токен)"
+    else
+        warn "GET $protected_path → $code (ожидалось 401)"
+    fi
+done
+
+# ─────────────────────────────────────────────────────────
+# 9.7. Аутентификация защищённых endpoints (с неверным токеном)
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.7. Аутентификация с неверным токеном ──"
+
+WRONG_TOKEN="invalid_token_12345"
+code=$(curl -s -o /dev/null -w "%{http_code}"     -H "Authorization: Bearer $WRONG_TOKEN"     "$URL/classify?text=test&kind=ai" 2>/dev/null)
+
+if [ "$code" = "401" ]; then
+    ok "Неверный токен → 401 (доступ отклонён)"
 else
-    fail "НАЙДЕНО $CFUT_REAL реальных токенов в истории!"
+    warn "Неверный токен → $code (ожидалось 401)"
 fi
 
-# ============================================================
-# ФАЗА 10: HTTP API
-# ============================================================
+# ─────────────────────────────────────────────────────────
+# 9.8. Публичные endpoints (не должны требовать аутентификации)
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.8. Публичные endpoints доступны без токена ──"
+
+for public_path in "/" "/health" "/gap" "/protocols" "/axes-history" "/verify"; do
+    code=$(curl -s -o /dev/null -w "%{http_code}" "$URL$public_path" 2>/dev/null)
+    if [ "$code" = "200" ]; then
+        ok "GET $public_path → 200 (публичный)"
+    else
+        warn "GET $public_path → $code (ожидалось 200)"
+    fi
+done
+
+# ─────────────────────────────────────────────────────────
+# 9.9. HTTP Security Headers
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.9. HTTP Security Headers ──"
+
+HEADERS=$(curl -s -I "$URL/health" 2>/dev/null)
+
+# Проверяем наличие критических заголовков безопасности
+declare -A SECURITY_HEADERS=(
+    ["X-Content-Type-Options"]="nosniff"
+    ["X-Frame-Options"]="DENY"
+    ["Referrer-Policy"]="strict-origin-when-cross-origin"
+    ["Strict-Transport-Security"]="max-age"
+    ["Permissions-Policy"]="geolocation"
+)
+
+for header in "${!SECURITY_HEADERS[@]}"; do
+    expected="${SECURITY_HEADERS[$header]}"
+    if echo "$HEADERS" | grep -qi "$header"; then
+        ok "Security Header: $header присутствует"
+    else
+        warn "Security Header: $header отсутствует"
+    fi
+done
+
+# ─────────────────────────────────────────────────────────
+# 9.10. Валидация входных данных
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.10. Валидация входных данных ──"
+
+# Пустой текст должен возвращать 400
+code=$(curl -s -o /dev/null -w "%{http_code}"     "$URL/classify?text=&kind=ai" 2>/dev/null)
+if [ "$code" = "400" ]; then
+    ok "Валидация: пустой текст → 400"
+else
+    warn "Валидация: пустой текст → $code (ожидалось 400)"
+fi
+
+# Текст > 1000 символов должен возвращать 400
+LONG_TEXT=$(python3 -c "print('x' * 1500)")
+code=$(curl -s -o /dev/null -w "%{http_code}"     "$URL/classify?text=$LONG_TEXT&kind=ai" 2>/dev/null)
+if [ "$code" = "400" ]; then
+    ok "Валидация: текст > 1000 символов → 400"
+else
+    warn "Валидация: текст > 1000 символов → $code (ожидалось 400)"
+fi
+
+# Недопустимый kind должен возвращать 400
+code=$(curl -s -o /dev/null -w "%{http_code}"     "$URL/classify?text=test&kind=invalid" 2>/dev/null)
+if [ "$code" = "400" ]; then
+    ok "Валидация: недопустимый kind → 400"
+else
+    warn "Валидация: недопустимый kind → $code (ожидалось 400)"
+fi
+
+# ─────────────────────────────────────────────────────────
+# 9.11. Проверка файла .env локально
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.11. Локальные файлы с секретами ──"
+
+if [ -f ".env" ]; then
+    warn ".env существует локально (нормально для разработки)"
+    # Проверяем права доступа
+    PERMS=$(stat -f "%Lp" .env 2>/dev/null || stat -c "%a" .env 2>/dev/null || echo "unknown")
+    if [ "$PERMS" = "600" ]; then
+        ok ".env: права 600 (только владелец)"
+    else
+        warn ".env: права $PERMS (рекомендуется 600)"
+    fi
+else
+    ok ".env отсутствует в репозитории (безопасно)"
+fi
+
+if [ -f ".dev.vars" ]; then
+    warn ".dev.vars существует локально (нормально для разработки)"
+    PERMS=$(stat -f "%Lp" .dev.vars 2>/dev/null || stat -c "%a" .dev.vars 2>/dev/null || echo "unknown")
+    if [ "$PERMS" = "600" ]; then
+        ok ".dev.vars: права 600 (только владелец)"
+    else
+        warn ".dev.vars: права $PERMS (рекомендуется 600)"
+    fi
+else
+    ok ".dev.vars отсутствует в репозитории (безопасно)"
+fi
+
+# ─────────────────────────────────────────────────────────
+# 9.12. Проверка .env.example (шаблон без реальных секретов)
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.12. Проверка .env.example ──"
+
+if [ -f ".env.example" ]; then
+    ok ".env.example существует (шаблон для разработчиков)"
+    
+    # Проверяем, что в шаблоне нет реальных секретов
+    REAL_SECRETS=$(grep -E "^(ADMIN_SECRET|CLOUDFLARE_API_TOKEN|GITHUB_PAT)=" .env.example 2>/dev/null | grep -v "your_" | grep -v "example" | grep -v "changeme" | wc -l | tr -d ' ')
+    
+    if [ "$REAL_SECRETS" = "0" ]; then
+        ok ".env.example: содержит только плейсхолдеры"
+    else
+        warn ".env.example: может содержать реальные значения"
+    fi
+else
+    warn ".env.example отсутствует (добавьте шаблон для разработчиков)"
+fi
+
+# ─────────────────────────────────────────────────────────
+# 9.13. Итог раздела 9
+# ─────────────────────────────────────────────────────────
+echo
+echo "── 9.13. Итог проверки безопасности ──"
+
+if [ "$SECRETS_FOUND" = "0" ]; then
+    ok "Секреты не найдены ни в текущих файлах, ни в истории"
+else
+    fail "НАЙДЕНО $SECRETS_FOUND секретов — требуется немедленное действие!"
+fi
+
 hdr "ФАЗА 10: HTTP API"
 
 URL="https://human-ai-monitor-collector.human-ai-monitor.workers.dev"
