@@ -17,12 +17,12 @@ jobs:
 
     steps:
       - name: Checkout collector
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09  # v5
         with:
           path: collector
 
       - name: Checkout archive
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09  # v5
         with:
           repository: VQQLK/human-ai-monitor-archive
           token: ${{ secrets.HUMAN_AI_MONITOR_ARCHIVE_SYNC }}
