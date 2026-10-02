@@ -204,3 +204,6 @@ id_ed25519*
 *.swp
 *.swo
 *~
+
+# Diagnostic folders (temporary audit reports)
+diagnose-*/
