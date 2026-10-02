@@ -32,7 +32,7 @@ and Humanity.**
 ```mermaid
 xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
-    x-axis [""]
+    x-axis ["—"]
     y-axis "Score" 0.40 --> 0.80
     bar [0]
     line [0]
@@ -43,7 +43,7 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index | Positive = AI leading, Negative = Humanity leading"
-    x-axis [""]
+    x-axis ["—"]
     y-axis "Gap" -0.15 --> 0.25
     line [0]
 ```

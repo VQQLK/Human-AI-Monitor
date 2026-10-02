@@ -33,7 +33,7 @@
 ```mermaid
 xychart-beta
     title "🟢 人类 (柱状) vs 🔴 人工智能 (折线) | 历史"
-    x-axis [""]
+    x-axis ["—"]
     y-axis "得分" 0.40 --> 0.80
     bar [0]
     line [0]
@@ -44,7 +44,7 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "差距指数 | 正值 = 人工智能领先，负值 = 人类领先"
-    x-axis [""]
+    x-axis ["—"]
     y-axis "差距" -0.15 --> 0.25
     line [0]
 ```

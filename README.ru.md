@@ -31,7 +31,7 @@
 ```mermaid
 xychart-beta
     title "🟢 Человечество (столбики) vs 🔴 ИИ (линия) | История"
-    x-axis [""]
+    x-axis ["—"]
     y-axis "Оценка" 0.40 --> 0.80
     bar [0]
     line [0]
@@ -42,7 +42,7 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Индекс разрыва | Положительный = ИИ впереди, Отрицательный = Человечество впереди"
-    x-axis [""]
+    x-axis ["—"]
     y-axis "Разрыв" -0.15 --> 0.25
     line [0]
 ```

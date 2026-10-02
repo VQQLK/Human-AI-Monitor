@@ -167,7 +167,7 @@ def build_score_mermaid(weeks, lang):
     """Build mermaid block for Score Dynamics (finals only, history)."""
     finals = [w for w in weeks if not w.get("is_interim")]
     if len(finals) == 0:
-        x_axis, bar_line, ai_line = '""', "0", "0"
+        x_axis, bar_line, ai_line = '"—"', "0", "0"
     elif len(finals) == 1:
         w = finals[0]
         lbl = week_end_to_ddmm(w["week_end"])
@@ -197,7 +197,7 @@ def build_gap_mermaid(weeks, lang):
     """Build mermaid block for Gap Index Dynamics (finals only, history)."""
     finals = [w for w in weeks if not w.get("is_interim")]
     if len(finals) == 0:
-        x_axis, gap_line = '""', "0"
+        x_axis, gap_line = '"—"', "0"
     elif len(finals) == 1:
         w = finals[0]
         lbl = week_end_to_ddmm(w["week_end"])
