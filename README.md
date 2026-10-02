@@ -379,7 +379,6 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 
 - ⚠️ RSS-only collection; HTML parsing implemented (`fetchFromHtml()` in `src/index.ts`) but currently unused — no sources configured with `type: html`
 - ⚠️ `shift` field may over-trigger on general news
-- ⚠️ 6 sources disabled (VentureBeat 429, Nature 303, Lancet 403, Benton 404, V-Dem 404, ILO 404)
 - ⚠️ OECD and Edelman use Google News RSS as fallback (news *about* topics, not official press releases)
 - ⚠️ Methodological structure: 13 axes (12+1) = 6 AI (RSI) + 6 Humanity (HHI) + 1 Geopolitical meta-layer. Geopolitics is measured and published but **NOT included** in AI_score or Human_score.
 
