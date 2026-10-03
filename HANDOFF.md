@@ -2,6 +2,7 @@
 
 > Documentation for an engineer continuing this work.
 > Last updated: 2026-10-03 (after re-classification).
+> Languages: [English](HANDOFF.md) | [Русский](HANDOFF.ru.md)
 
 ## 1. Project overview
 
