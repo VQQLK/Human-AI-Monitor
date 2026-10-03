@@ -265,7 +265,6 @@ def build_interim_reference(interims, lang):
 def update_readme(path, lang, weeks, dry=False):
     text = path.read_text(encoding="utf-8")
     original = text
-    dt = datetime.now(timezone.utc)
     L = STRINGS[lang]
 
     if not weeks:
@@ -273,6 +272,14 @@ def update_readme(path, lang, weeks, dry=False):
         return False
 
     latest = weeks[-1]
+
+    # Дата берётся из протокола (generated_at), а не из «сейчас».
+    # Так Updated/Baseline/Value меняются только при новом протоколе.
+    if latest.get("generated_at"):
+        dt = datetime.fromisoformat(latest["generated_at"].replace("Z", "+00:00"))
+    else:
+        dt = datetime.now(timezone.utc)
+
     ai = latest["ai"]
     human = latest["human"]
     gap_val = latest["gap"]
