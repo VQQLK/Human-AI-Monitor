@@ -22,6 +22,7 @@ hdr() { echo; echo "════════════════════
 ok()   { echo "  ✅ $1"; PASS=$((PASS+1)); }
 warn() { echo "  ⚠️  $1"; WARN=$((WARN+1)); }
 fail() { echo "  ❌ $1"; FAIL=$((FAIL+1)); }
+info() { echo "  ℹ️  $1"; }
 
 # Безопасный подсчёт: grep | wc -l (всегда возвращает число)
 safe_count() {
@@ -42,7 +43,7 @@ safe_count_fixed() {
 
 echo "═══════════════════════════════════════════════════════════"
 echo "  ПОЛНЫЙ АУДИТ ПРОЕКТА — $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-echo "  Версия скрипта: 4.7"
+echo "  Версия скрипта: 4.8"
 echo "═══════════════════════════════════════════════════════════"
 
 # ============================================================
@@ -239,6 +240,25 @@ for pattern in "Ollama" "R2" "Queues"; do
         fail "Найдено $total упоминаний '$pattern'"
     fi
 done
+
+# ── Баланс источников AI/Human ──
+AI_COUNT=$(awk '/^- name:/{n++} END{print n+0}' config/sources_ai.yaml 2>/dev/null)
+AI_COUNT=${AI_COUNT:-0}
+H_COUNT=$(awk '/^- name:/{n++} END{print n+0}' config/sources_human.yaml 2>/dev/null)
+H_COUNT=${H_COUNT:-0}
+
+if [ "$H_COUNT" -eq 0 ]; then
+    fail "0 Human-источников в config/sources_human.yaml"
+elif [ "$AI_COUNT" -eq 0 ]; then
+    fail "0 AI-источников в config/sources_ai.yaml"
+else
+    BALANCE=$(python3 -c "print(f'{$AI_COUNT / $H_COUNT:.2f}')" 2>/dev/null || echo "?")
+    if python3 -c "import sys; sys.exit(0 if $AI_COUNT / $H_COUNT < 1.5 else 1)" 2>/dev/null; then
+        ok "Баланс источников: AI=$AI_COUNT / Human=$H_COUNT (ratio $BALANCE)"
+    else
+        warn "Перекос источников: AI=$AI_COUNT / Human=$H_COUNT (ratio $BALANCE > 1.5)"
+    fi
+fi
 
 # ============================================================
 # ФАЗА 9: БЕЗОПАСНОСТЬ
@@ -705,6 +725,48 @@ echo "── Протоколы ──"
     else
         warn "items: 0 записей за всё время"
     fi
+
+    # Sample size по осям за 7 дней
+    echo
+    echo "── Sample size по осям (7 дней) ──"
+    AXES_JSON=$(npx wrangler d1 execute human-ai-monitor-db --remote --json --command "SELECT axes FROM items WHERE collected_at >= datetime('now','-7 days') AND axes IS NOT NULL AND axes != '[]'" 2>/dev/null)
+
+    AXIS_COUNTS=$(echo "$AXES_JSON" | python3 -c "
+import sys, json
+from collections import Counter
+try:
+    d = json.load(sys.stdin)
+    rows = d[0]['results'] if d and d[0].get('results') else []
+    c = Counter()
+    for r in rows:
+        try:
+            for a in json.loads(r['axes']):
+                c[a] += 1
+        except: pass
+    for axis, n in c.most_common():
+        print(f'{axis}:{n}')
+except: pass
+" 2>/dev/null)
+
+    for axis in smd itq agg cycle_velocity verification hexad h1_agency h2_sovereignty h3_wellbeing h4_equity h5_meaning h6_democracy; do
+        n=$(echo "$AXIS_COUNTS" | grep "^${axis}:" | cut -d: -f2)
+        n=${n:-0}
+        if [ "$n" -eq 0 ]; then
+            fail "axis $axis: 0 items (мёртвая ось)"
+        elif [ "$n" -lt 5 ]; then
+            warn "axis $axis: $n items (<5, широкий CI)"
+        else
+            ok "axis $axis: $n items"
+        fi
+    done
+
+    echo
+    echo "── META-оси (не влияют на gap) ──"
+    for axis in geopolitics; do
+        n=$(echo "$AXIS_COUNTS" | grep "^${axis}:" | cut -d: -f2)
+        n=${n:-0}
+        echo "  ℹ️  $axis: $n items (META)"
+    done
 else
     warn "wrangler не найден — пропускаю проверку D1"
 fi
@@ -727,6 +789,37 @@ for val in "+1.0" "0.5" "0.3" "0.0"; do
 done
 
 grep -q -- "-1.0" src/services/bayesian-gap.ts && ok "PI_TABLE содержит -1.0" || fail "PI_TABLE НЕ содержит -1.0"
+
+echo
+echo "── Веса осей ──"
+AI_W_SUM=$(sed -n '/^export const AI_WEIGHTS/,/^};/p' src/config/weights.ts | grep -oE '[0-9]+\.[0-9]+' | awk '{s+=$1} END {printf "%.4f", s}')
+H_W_SUM=$(sed -n '/^export const HUMAN_WEIGHTS/,/^};/p' src/config/weights.ts | grep -oE '[0-9]+\.[0-9]+' | awk '{s+=$1} END {printf "%.4f", s}')
+
+if [ -n "$AI_W_SUM" ] && python3 -c "import sys; sys.exit(0 if abs($AI_W_SUM - 1.0) < 0.01 else 1)" 2>/dev/null; then
+    ok "AI_WEIGHTS sum = $AI_W_SUM"
+else
+    fail "AI_WEIGHTS sum = ${AI_W_SUM:-?}, ожидалось 1.0"
+fi
+
+if [ -n "$H_W_SUM" ] && python3 -c "import sys; sys.exit(0 if abs($H_W_SUM - 1.0) < 0.01 else 1)" 2>/dev/null; then
+    ok "HUMAN_WEIGHTS sum = $H_W_SUM"
+else
+    fail "HUMAN_WEIGHTS sum = ${H_W_SUM:-?}, ожидалось 1.0"
+fi
+
+echo
+echo "── Оси в промптах ──"
+PROMPT_MISSING=""
+for axis in smd itq agg cycle_velocity verification hexad h1_agency h2_sovereignty h3_wellbeing h4_equity h5_meaning h6_democracy; do
+    if ! grep -q "\"$axis\"" src/config/prompts.ts 2>/dev/null; then
+        PROMPT_MISSING="$PROMPT_MISSING $axis"
+    fi
+done
+if [ -z "$PROMPT_MISSING" ]; then
+    ok "Все 12 осей присутствуют в prompts.ts"
+else
+    warn "Оси отсутствуют в prompts.ts:$PROMPT_MISSING"
+fi
 
 # ============================================================
 # ФАЗА 13: CRON И АВТОМАТИЗАЦИЯ
