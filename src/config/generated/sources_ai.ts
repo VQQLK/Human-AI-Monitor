@@ -118,12 +118,6 @@ export default {
       "tier": 2
     },
     {
-      "name": "Хабр — ИИ",
-      "url": "https://habr.com/ru/rss/hubs/artificial_intelligence/all/?fl=ru",
-      "lang": "ru",
-      "tier": 2
-    },
-    {
       "name": "Politico — Technology",
       "url": "https://rss.politico.com/technology.xml",
       "lang": "en",
@@ -161,6 +155,20 @@ export default {
         "h4_equity",
         "h6_democracy"
       ]
+    },
+    {
+      "name": "Latent Space",
+      "url": "https://latent.space/feed",
+      "lang": "en",
+      "tier": 1,
+      "note": "Техническая аналитика по AI, агенты, инфраструктура"
+    },
+    {
+      "name": "Ahead of AI (Sebastian Raschka)",
+      "url": "https://magazine.sebastianraschka.com/feed",
+      "lang": "en",
+      "tier": 1,
+      "note": "Глубокий анализ архитектур LLM, математика, обзоры статей"
     }
   ],
   "html_sources": []

@@ -33,15 +33,6 @@ export default {
       ]
     },
     {
-      "name": "Freedom House",
-      "url": "https://freedomhouse.org/rss.xml",
-      "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h6_democracy"
-      ]
-    },
-    {
       "name": "Edelman Trust Barometer",
       "url": "https://news.google.com/rss/search?q=Edelman+Trust+Barometer&hl=en-US&gl=US&ceid=US:en",
       "lang": "en",
@@ -147,6 +138,16 @@ export default {
         "h2_sovereignty"
       ],
       "note": "Fallback: captures Trump AI Force, Xi BRICS AI, global AI governance"
+    },
+    {
+      "name": "CPJ (Committee to Protect Journalists)",
+      "url": "https://cpj.org/feed/",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h6_democracy"
+      ],
+      "note": "Свобода прессы, безопасность журналистов"
     }
   ],
   "html_sources": []

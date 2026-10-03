@@ -120,7 +120,7 @@ export default {
       ],
       "sources": [
         "V-Dem",
-        "Freedom House",
+        "CPJ",
         "Edelman Trust Barometer"
       ]
     }
