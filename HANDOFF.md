@@ -61,16 +61,18 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
   - No further re-classification until §14 protocol is followed
 - Backups retained for analysis: /tmp/reclass_backup/
 
-### 🟢 h1_agency, h5_meaning coverage — RESOLVED
+### 🟡 h1_agency, h5_meaning coverage — sources added, verify after Monday cron
 - Added: Aeon, Psyche (h5_meaning), Oxfam, HRW (h4_equity)
-- Verify sample size on Monday after cron runs
+- Baseline WARN for h1_agency (4 items < 5) expected to clear after
+  Monday cron (new sources added after last collection)
 
 ### 🟢 Non-English sources — RESOLVED
 - Added: TASS (ru), FT Chinese (zh), Al Jazeera, The Hindu (en, Global South)
 
-### 🟢 META axis geopolitics not exposed in API
-- Computed (49 items, level 0.847) but not returned to consumers
-- Fix: add geopolitics_score to /gap response
+### 🟢 META axis geopolitics — intentionally not in /gap
+- Computed (49 items, level 0.847) but not returned in /gap
+- **Decision:** do NOT expose in /gap (see §13 — scientific integrity rule)
+- Currently accessible only via /axes-history
 
 ### ⚠️ Snapshot not recomputed
 - /gap and /axes-history still serve snapshot from 2026-10-02T13:46
@@ -332,8 +334,9 @@ This rule operationalizes the project's scientific-truth principle:
 
 - Do NOT change AI_WEIGHTS or HUMAN_WEIGHTS
 - Do NOT modify the Gap formula
-- DO expose geopolitics_score as a separate field in /gap
-- DO record the reasoning above in any PR that touches this
+- Do NOT expose geopolitics_score in /gap until Tests A/B/C pass
+- Do expose it via /axes-history (already implemented)
+- Do record the reasoning above in any PR that touches this
 
 *Reference: Cronbach & Meehl (1955) construct validity; Campbell & Fiske (1959)
 multitrait-multimethod matrix.*
