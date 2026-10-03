@@ -276,6 +276,25 @@ Hypothesis H3: `geopolitics` at week t predicts AI_score at week t+1.
 | pass   | fail   | fail   | **Keep standalone (current)** |
 | fail   | —      | —      | Merge geopolitics into AI_WEIGHTS |
 
+### Publication rule (scientific integrity)
+
+**Do NOT expose geopolitics_score in /gap until Tests A/B/C pass.
+Currently only in /axes-history.**
+
+Rationale: N = 1 week of data. Posterior Beta(2.735, 0.5) has effective
+sample size ≈ 2.2 — dominated by prior. CI95 = [0.372, 0.9998] spans
+almost [0, 1]. Publishing this in /gap would create false precision and
+mix validated quantities (Capability − Impact) with an unvalidated
+experimental observable.
+
+The Gap formula stays: Gap = AI_score − Human_score (6 axes each, sum
+of weights = 1.0). geopolitics is exposed as a separate axis via
+/axes-history only. Promotion to /gap requires all three tests to pass
+first.
+
+This rule operationalizes the project's scientific-truth principle:
+**a metric is published only after it has been validated.**
+
 ### Until tests are run
 
 - Do NOT change AI_WEIGHTS or HUMAN_WEIGHTS
