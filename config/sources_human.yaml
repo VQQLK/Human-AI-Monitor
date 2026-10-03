@@ -103,4 +103,30 @@ rss:
   axes:
   - h6_democracy
   note: Свобода прессы, безопасность журналистов
+- name: Pew Research Center
+  url: https://www.pewresearch.org/feed/
+  lang: en
+  tier: 1
+  axes:
+  - h1_agency
+  - h6_democracy
+  note: Исследования общественного мнения, доверие, технологии
+
+- name: EFF (Electronic Frontier Foundation)
+  url: https://www.eff.org/rss/updates.xml
+  lang: en
+  tier: 1
+  axes:
+  - h2_sovereignty
+  note: Цифровые права, приватность, свобода выражения
+
+- name: Our World in Data
+  url: https://ourworldindata.org/feed
+  lang: en
+  tier: 1
+  axes:
+  - h3_wellbeing
+  - h4_equity
+  note: Глобальные данные о здоровье, неравенстве, благополучии
+
 html_sources: []

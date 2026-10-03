@@ -169,6 +169,13 @@ export default {
       "lang": "en",
       "tier": 1,
       "note": "Глубокий анализ архитектур LLM, математика, обзоры статей"
+    },
+    {
+      "name": "BAIR Blog (Berkeley AI Research)",
+      "url": "https://bair.berkeley.edu/blog/feed.xml",
+      "lang": "en",
+      "tier": 2,
+      "note": "Академические исследования UC Berkeley — CV, ML, NLP, робототехника"
     }
   ],
   "html_sources": []
