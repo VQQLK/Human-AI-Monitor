@@ -454,6 +454,8 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 ├── CODE_OF_CONDUCT.ru.md
 ├── CODE_OF_CONDUCT.zh.md
 ├── AGENTS.md
+├── HANDOFF.md ← engineering handoff
+├── HANDOFF.ru.md
 ├── package.json
 ├── tsconfig.json
 ├── wrangler.jsonc
