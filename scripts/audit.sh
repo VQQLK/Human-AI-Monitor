@@ -43,7 +43,7 @@ safe_count_fixed() {
 
 echo "═══════════════════════════════════════════════════════════"
 echo "  ПОЛНЫЙ АУДИТ ПРОЕКТА — $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-echo "  Версия скрипта: 4.8"
+echo "  Версия скрипта: 4.9"
 echo "═══════════════════════════════════════════════════════════"
 
 # ============================================================
@@ -860,6 +860,33 @@ if command -v gh > /dev/null 2>&1; then
     done
 else
     warn "gh CLI не найден — пропускаю проверку"
+fi
+
+# ============================================================
+# ФАЗА 15: МАТЕМАТИЧЕСКАЯ ВЕРИФИКАЦИЯ
+# ============================================================
+hdr "ФАЗА 15: МАТЕМАТИЧЕСКАЯ ВЕРИФИКАЦИЯ"
+
+if [ -f scripts/math_verification.py ]; then
+    MATH_OUT=$(python3 scripts/math_verification.py 2>&1)
+    MATH_EXIT=$?
+
+    MATH_PASS=$(echo "$MATH_OUT" | grep -oE "PASS: [0-9]+" | grep -oE "[0-9]+" | head -1)
+    MATH_WARN=$(echo "$MATH_OUT" | grep -oE "WARN: [0-9]+" | grep -oE "[0-9]+" | head -1)
+    MATH_FAIL=$(echo "$MATH_OUT" | grep -oE "FAIL: [0-9]+" | grep -oE "[0-9]+" | head -1)
+    MATH_PASS=${MATH_PASS:-0}
+    MATH_WARN=${MATH_WARN:-0}
+    MATH_FAIL=${MATH_FAIL:-0}
+
+    if [ "$MATH_FAIL" -eq 0 ] && [ "$MATH_WARN" -eq 0 ]; then
+        ok "Математическая верификация: $MATH_PASS/$MATH_PASS (все зелёные)"
+    elif [ "$MATH_FAIL" -eq 0 ]; then
+        warn "Математическая верификация: $MATH_PASS PASS / $MATH_WARN WARN"
+    else
+        fail "Математическая верификация: $MATH_PASS PASS / $MATH_WARN WARN / $MATH_FAIL FAIL"
+    fi
+else
+    info "scripts/math_verification.py отсутствует — пропущено"
 fi
 
 # ============================================================
