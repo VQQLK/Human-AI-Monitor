@@ -47,15 +47,19 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - Source languages: en + ru (TASS) + zh (FT Chinese)
 - Batch capacity: 60 (maxPerSource=2 × 5 cron slots)
 - CF token: 3 permissions (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
+- **Items classification:** 448/448 use prompt v1 (single instrument, consistent)
+- **Re-classification experiment:** attempted on 2026-10-03, then **rolled back** (see §12)
 
 ## 4. Known issues (by priority)
 
-### 🔴 Re-classification of old items — PARTIAL
-- Done: 292 / 448 items (65%)
-- Per-item changes: 47.6% (139 of 292 got new axes)
-- Remaining: 156 items — Cloudflare AI quota (4006: daily free allocation)
-- Backup: /tmp/reclass_backup/
-- Resume: after 24h, run `python3 -u /tmp/reclass.py`
+### 🔴 Re-classification experiment — REJECTED (rolled back)
+- See §12 for the full case. Summary:
+  - 2026-10-03: 292/448 items were re-classified with prompt v2 (037942d)
+  - Same day: decision reversed on methodological grounds (data mixture,
+    exchangeability violation, time confounding, missing provenance)
+  - Rollback verified: 448/448 items restored, 0 mismatches
+  - No further re-classification until §14 protocol is followed
+- Backups retained for analysis: /tmp/reclass_backup/
 
 ### 🟢 h1_agency, h5_meaning coverage — RESOLVED
 - Added: Aeon, Psyche (h5_meaning), Oxfam, HRW (h4_equity)
@@ -178,44 +182,72 @@ The bot pushed README — rebase resolves cleanly.
 
 ---
 
-## 12. Update log — 2026-10-03 (after re-classification)
+## 12. Rejected experiment: re-classification (2026-10-03)
 
-### Done
-- Re-classification of 292 / 448 items via new prompt (037942d)
-- Per-item changes: 47.6% (139 of 292 received new axes)
-- SQL applied: /tmp/reclass_backup/updates.sql
-- Remaining 156 items blocked by Cloudflare AI quota (4006: daily free allocation)
+**Status: attempted and rolled back. Do not repeat without following §14.**
 
-### Key insight
-Aggregate axis distribution barely shifted (changes cancelled each other out),
-BUT per-item accuracy improved: 47.6% of items got a more accurate
-classification. Per-item delta is the correct metric to evaluate the prompt.
+### What was attempted
+Replace the LLM classification of 448 items using an updated prompt (037942d)
+that narrowed `itq` and `geopolitics` definitions. 292 items were processed
+before Cloudflare AI quota (4006) halted the run.
 
-### Check on Monday
-    curl -s "https://human-ai-monitor-collector.human-ai-monitor.workers.dev/gap"
-    # Look for: fresh recorded_at, new ai_score / human_score / gap
+### Why it was rejected
+Strict methodological review identified multiple independent failures:
 
-    curl -s "https://human-ai-monitor-collector.human-ai-monitor.workers.dev/axes-history"
-    # Look for: itq level < 0.93, geopolitics sample < 26
+1. **Data mixture / exchangeability violation.** 292 items measured with
+   instrument M2, 156 with M1, mixed in a single `axes` column. Bayesian
+   posterior assumes exchangeable observations; a mixture of two
+   instruments violates this and biases posterior mean plus inflates CI
+   via between-instrument variance that is not modeled.
 
-### Remaining 156 items
-After 24 hours (AI quota resets):
-    python3 -u /tmp/reclass.py
-Resumes from the same point (progress.json).
+2. **Time confound.** Items processed in chronological order — early items
+   → M2, late items → M1. Any real temporal trend in world events is now
+   confounded with instrument assignment.
 
-### Backup files
+3. **Missing provenance.** No `prompt_version` column. Consumers cannot
+   distinguish which items were classified by which instrument.
+
+4. **Unvalidated improvement.** Claim "47.6% per-item changes = improvement"
+   is a logical error: confusing uniformity with validity. No Cohen's kappa,
+   no criterion validity, no test-retest. A random classifier also produces
+   a uniform distribution.
+
+5. **Violated our own §13 principle.** "Publish only after validation" was
+   not applied to changes of the measurement instrument itself.
+
+### What was done
+- Rollback SQL generated from `items_before.json` (the pre-change backup)
+- 448 UPDATE statements applied to D1
+- Verification: `Match: 448 / 448`, `Mismatch: 0` — `ROLLBACK VERIFIED`
+- Axis distribution restored to pre-experiment state:
+  `[]=94, itq=70, h6_democracy=51, geopolitics=47, verification=46, ...`
+
+### What was NOT done
+- `temporal_status` and `event_date` fields were not in the original
+  pre-change SELECT, so those columns were not rolled back. This is a
+  known minor inconsistency — likely benign (the fields did not exist for
+  most items in v1 anyway), but should be verified if the change is
+  reattempted.
+
+### Backups retained (do not delete)
     /tmp/reclass_backup/
-      items_before.json         — 448 items BEFORE re-classification
-      items_new.json            — 292 new (raw /classify responses)
-      updates.sql               — UPDATE statements
-      progress.json             — per-hash status
-      gap_history_before.json   — snapshot before /generate
-      index_history_before.json — snapshot before /generate
+      items_before.json               — 448 items (state before experiment)
+      items_new.json                  — 292 items (raw v2 responses)
+      updates.sql                     — 292 forward UPDATEs (not applied)
+      rollback.sql                    — 448 reverse UPDATEs (applied)
+      progress.json                   — per-hash status
+      items_current_before_rollback.json — state at rollback time
+      gap_history_before.json
+      index_history_before.json
 
-### Known issues after re-classification
-- 104 items with axes='[]' — LLM found no matching axis (expected)
-- geopolitics 49 items — META axis, does not affect gap
-- itq 73 items — still high, but every item reclassified with new wording
+### Correct next steps (deferred)
+1. Validate prompt v2 on a **hold-out sample** with human annotation:
+   - 30 items, blinded, 2 raters
+   - Cohen's kappa vs human, test-retest on same items
+2. Only if validation passes: introduce `axes_v2` as a **separate column**
+   (never overwrite `axes`), backfill via versioned script
+3. Update `gap-computation.ts` to read from one explicitly named column
+4. Preregister the switch (methodology.md update + version bump)
 
 ---
 
@@ -305,3 +337,58 @@ This rule operationalizes the project's scientific-truth principle:
 
 *Reference: Cronbach & Meehl (1955) construct validity; Campbell & Fiske (1959)
 multitrait-multimethod matrix.*
+
+
+---
+
+## 14. Measurement instrument change protocol
+
+Any change to LLM prompts that produce `axes`, `relevance`, `shift`,
+`direction`, or `reasoning` is a **change of the measurement instrument**.
+It is not a code refactor. It must follow this protocol.
+
+### Rules
+
+1. **Never overwrite an existing measurement column.**
+   `axes` (v1) stays intact. New instrument writes to `axes_v2`.
+   Same for any other derived column.
+
+2. **Record provenance for every item.**
+   Add (or reuse) columns: `classified_by` (e.g. `"prompt_v1"`),
+   `classified_at` (ISO timestamp). Set at classification time.
+
+3. **Validate before switching.**
+   Required, all on a hold-out set of at least 30 items:
+   - **Test-retest reliability**: same prompt, two runs, Cohen's kappa ≥ 0.8
+   - **Inter-rater agreement**: prompt vs human annotator, Cohen's kappa ≥ 0.6
+   - **Criterion validity**: if possible, correlate with external ground truth
+   - **Convergent validity**: correlate with structurally similar axes
+
+4. **Preregister the switch.**
+   Update `docs/methodology.md` (all 3 language versions) with:
+   - New prompt version ID
+   - Date of switch
+   - Validation results (kappa, sample sizes)
+   - Rationale and expected effect
+
+5. **Backfill atomically, not incrementally.**
+   Either all items are migrated to the new column or none. Avoids
+   time confounds and mid-migration mixed states.
+
+6. **Switch the reader, not the data.**
+   `gap-computation.ts` reads from one explicit column name
+   (`axes` → `axes_v2` in a single commit). Rollback = revert that commit.
+
+### Anti-patterns (do not do)
+
+- Overwriting `axes` with a new prompt's output (what was done on 2026-10-03)
+- Processing items in chronological order without stratification
+- Claiming improvement from distribution shifts alone
+- Re-classifying "as we go" while quota or rate limits interrupt
+- Applying changes without backup + verified rollback path
+
+### Enforcement
+
+- Any PR that modifies `src/config/prompts.ts` must cite this section
+- Any DB migration touching `axes` (or successors) must follow this protocol
+- Audit script (`scripts/audit.sh`) may later enforce column presence
