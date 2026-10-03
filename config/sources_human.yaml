@@ -165,4 +165,40 @@ rss:
   - h6_democracy
   note: Индийская газета, Global South perspective
 
+- name: Aeon
+  url: https://aeon.co/feed.rss
+  lang: en
+  tier: 1
+  axes:
+  - h5_meaning
+  - h2_sovereignty
+  note: Философия, культура, смысл жизни, критическое мышление
+
+- name: Psyche
+  url: https://psyche.co/feed.rss
+  lang: en
+  tier: 1
+  axes:
+  - h5_meaning
+  - h3_wellbeing
+  note: Психология, внутренняя жизнь, смысл
+
+- name: Oxfam
+  url: https://www.oxfam.org/en/rss.xml
+  lang: en
+  tier: 1
+  axes:
+  - h4_equity
+  - h1_agency
+  note: Глобальное неравенство, бедность, справедливость
+
+- name: Human Rights Watch
+  url: https://www.hrw.org/rss/news
+  lang: en
+  tier: 1
+  axes:
+  - h4_equity
+  - h6_democracy
+  note: Права человека, Global South, конфликты
+
 html_sources: []
