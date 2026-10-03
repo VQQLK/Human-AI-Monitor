@@ -180,6 +180,50 @@ export default {
         "h4_equity"
       ],
       "note": "Глобальные данные о здоровье, неравенстве, благополучии"
+    },
+    {
+      "name": "ТАСС",
+      "url": "https://tass.ru/rss/v2.xml",
+      "lang": "ru",
+      "tier": 1,
+      "axes": [
+        "h1_agency",
+        "h6_democracy"
+      ],
+      "note": "Российское информагентство, экономика, политика"
+    },
+    {
+      "name": "FT Chinese (FT中文网)",
+      "url": "https://www.ftchinese.com/rss/news",
+      "lang": "zh",
+      "tier": 1,
+      "axes": [
+        "h1_agency",
+        "h4_equity"
+      ],
+      "note": "Китайская версия Financial Times — экономика, неравенство"
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/xml/rss/all.xml",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "h3_wellbeing",
+        "h6_democracy"
+      ],
+      "note": "Global South perspective, конфликты, права"
+    },
+    {
+      "name": "The Hindu — International",
+      "url": "https://www.thehindu.com/news/international/feeder/default.rss",
+      "lang": "en",
+      "tier": 2,
+      "axes": [
+        "h4_equity",
+        "h6_democracy"
+      ],
+      "note": "Индийская газета, Global South perspective"
     }
   ],
   "html_sources": []
