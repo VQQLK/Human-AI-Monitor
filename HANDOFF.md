@@ -219,3 +219,69 @@ Resumes from the same point (progress.json).
 ---
 
 *For questions — see docs/methodology.md (Gap math) and scripts/audit.sh (what is checked).*
+
+---
+
+## 13. Formal falsification criteria for geopolitics_score
+
+**Status: working hypothesis, not established truth.**
+
+Decision to expose `geopolitics_score` as a standalone observable
+(not a component of AI_score) rests on **parsimony** under lack of
+validation data. It is falsifiable. The following tests must be run
+once sufficient history is available (≥ 8 weeks of weekly snapshots).
+
+### Test A — discriminant validity (Campbell & Fiske, 1959)
+
+Hypothesis H1: `geopolitics` is a distinct construct from AI capability.
+
+    # 13x13 correlation matrix across all axes and all weeks
+    corr_matrix = compute_correlations(all_axes, all_weeks)
+
+    # H1 acceptance: |Corr(geopolitics, mean(AI_axes))| < 0.4
+    # H1 rejection: |Corr| >= 0.4 → geopolitics overlaps AI latent,
+    #               should be merged as a component instead of standalone
+
+### Test B — external validation against METR doubling time
+
+Hypothesis H2: adding `geopolitics` improves prediction of an
+external capability ground truth (METR doubling time series).
+
+    # METR doubling time per week (external, independent source)
+    corr_no_g   = corr(AI_score_without_geopolitics, METR_series)
+    corr_with_g = corr(AI_score_with_geopolitics,    METR_series)
+
+    # H2 acceptance: corr_with_g > corr_no_g + 0.05 (statistically significant)
+    # H2 rejection:  no significant improvement → geopolitics adds noise
+    #                to AI_score, keep standalone
+
+### Test C — predictive lag (leading indicator check)
+
+Hypothesis H3: `geopolitics` at week t predicts AI_score at week t+1.
+
+    # Cross-correlation with lag 1
+    corr_lag1 = corr(theta_geopolitics[t], AI_score[t+1])
+
+    # If corr_lag1 > 0.5: geopolitics is a leading indicator.
+    #   → may justify inclusion as a predictive term (with appropriate lag)
+    # If corr_lag1 < 0.3: geopolitics is contemporaneous / not predictive.
+    #   → standalone observable confirmed
+
+### Decision matrix
+
+| Test A | Test B | Test C | Action |
+| ------ | ------ | ------ | ------ |
+| pass   | pass   | pass   | Include as leading component with lag |
+| pass   | pass   | fail   | Merge as component in AI_score |
+| pass   | fail   | fail   | **Keep standalone (current)** |
+| fail   | —      | —      | Merge geopolitics into AI_WEIGHTS |
+
+### Until tests are run
+
+- Do NOT change AI_WEIGHTS or HUMAN_WEIGHTS
+- Do NOT modify the Gap formula
+- DO expose geopolitics_score as a separate field in /gap
+- DO record the reasoning above in any PR that touches this
+
+*Reference: Cronbach & Meehl (1955) construct validity; Campbell & Fiske (1959)
+multitrait-multimethod matrix.*
