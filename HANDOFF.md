@@ -259,72 +259,6 @@ Strict methodological review identified multiple independent failures:
 
 ---
 
-## 16. Anti-patterns for external contributors
-
-If you are working with this project for the first time — read this
-before making changes. It addresses the most common misunderstandings.
-
-### Do NOT re-open settled scientific decisions
-
-- **Test G** (empirical FWER) — **deliberately removed in v3** of
-  `math_verification.py`. The old design (per-axis CI with n=10) was
-  conceptually wrong; correct design is Gap-based with n≥100 (§15.4).
-  Do not re-add the old version.
-
-- **Re-classification of items** — **rejected** (§12). 448/448 items
-  were restored. Do not repeat without following §14 protocol
-  (versioned column `axes_v2`, hold-out validation, preregistration).
-
-- **`geopolitics_score` in `/gap`** — **forbidden** (§13) until
-  Tests A/B/C pass. Currently accessible only via `/axes-history`.
-
-- **AI_WEIGHTS / HUMAN_WEIGHTS** — do not change without preregistered
-  methodology update. Sum must be exactly 1.0 (validated at module load).
-
-### Common technical mistakes
-
-- **`items` schema**: columns `collected_at`, `date`, `event_date`.
-  NO `week_start` (that is only in `gap_history`).
-  NO `recorded_at`, NO `created_at` (historical bug — was fixed).
-
-- **64-bit RNG (xoshiro256)**: requires `BigInt`; incompatible with
-  `Uint32Array`. `<< 45` in JS shifts modulo 32 — does NOT work as
-  intended. If you need a better RNG, use a tested library
-  (`pure-rand`, `seedrandom`) or implement with `BigInt`.
-
-- **`sources_ai.yaml` does NOT control axes**: the LLM does the mapping
-  via `src/config/prompts.ts`. Adding `axes:` in YAML has no effect
-  on classification.
-
-- **Test F already automated**: it is section 8 of
-  `scripts/math_verification.py`, called from Phase 15 in `audit.sh`.
-  Do not duplicate.
-
-### Information gaps to be aware of
-
-- **Baseline numbers change**: they reflect the last audit run, not a
-  fixed state. Always verify against `bash scripts/run-audit.sh`, not
-  against numbers written in this document.
-
-- **WARN `h1_agency` is temporary**: it reflects the state right after
-  new sources were added, before the next cron run. Not a defect.
-
-- **Snapshot (`/gap`) may lag behind `items`**: recomputation happens
-  on Monday cron (14:00 UTC). If `/gap` shows an old `recorded_at`,
-  that is expected until the next scheduled generation.
-
-### When in doubt
-
-Run `bash scripts/run-audit.sh` — it includes Phase 15 (math verification)
-and reflects the real current state of the project. Do not trust
-hand-written statuses without verification.
-
----
-
-*For questions — see docs/methodology.md (Gap math) and scripts/audit.sh (what is checked).*
-
----
-
 ## 13. Formal falsification criteria for geopolitics_score
 
 **Status: working hypothesis, not established truth.**
@@ -666,3 +600,69 @@ Absolute CI values should be read as nominal with widening under
 correlation. This is documented, not hidden.
 
 **No immediate action is required. Tests D–G are for future validation.**
+
+---
+
+## 16. Anti-patterns for external contributors
+
+If you are working with this project for the first time — read this
+before making changes. It addresses the most common misunderstandings.
+
+### Do NOT re-open settled scientific decisions
+
+- **Test G** (empirical FWER) — **deliberately removed in v3** of
+  `math_verification.py`. The old design (per-axis CI with n=10) was
+  conceptually wrong; correct design is Gap-based with n≥100 (§15.4).
+  Do not re-add the old version.
+
+- **Re-classification of items** — **rejected** (§12). 448/448 items
+  were restored. Do not repeat without following §14 protocol
+  (versioned column `axes_v2`, hold-out validation, preregistration).
+
+- **`geopolitics_score` in `/gap`** — **forbidden** (§13) until
+  Tests A/B/C pass. Currently accessible only via `/axes-history`.
+
+- **AI_WEIGHTS / HUMAN_WEIGHTS** — do not change without preregistered
+  methodology update. Sum must be exactly 1.0 (validated at module load).
+
+### Common technical mistakes
+
+- **`items` schema**: columns `collected_at`, `date`, `event_date`.
+  NO `week_start` (that is only in `gap_history`).
+  NO `recorded_at`, NO `created_at` (historical bug — was fixed).
+
+- **64-bit RNG (xoshiro256)**: requires `BigInt`; incompatible with
+  `Uint32Array`. `<< 45` in JS shifts modulo 32 — does NOT work as
+  intended. If you need a better RNG, use a tested library
+  (`pure-rand`, `seedrandom`) or implement with `BigInt`.
+
+- **`sources_ai.yaml` does NOT control axes**: the LLM does the mapping
+  via `src/config/prompts.ts`. Adding `axes:` in YAML has no effect
+  on classification.
+
+- **Test F already automated**: it is section 8 of
+  `scripts/math_verification.py`, called from Phase 15 in `audit.sh`.
+  Do not duplicate.
+
+### Information gaps to be aware of
+
+- **Baseline numbers change**: they reflect the last audit run, not a
+  fixed state. Always verify against `bash scripts/run-audit.sh`, not
+  against numbers written in this document.
+
+- **WARN `h1_agency` is temporary**: it reflects the state right after
+  new sources were added, before the next cron run. Not a defect.
+
+- **Snapshot (`/gap`) may lag behind `items`**: recomputation happens
+  on Monday cron (14:00 UTC). If `/gap` shows an old `recorded_at`,
+  that is expected until the next scheduled generation.
+
+### When in doubt
+
+Run `bash scripts/run-audit.sh` — it includes Phase 15 (math verification)
+and reflects the real current state of the project. Do not trust
+hand-written statuses without verification.
+
+---
+
+*For questions — see docs/methodology.md (Gap math) and scripts/audit.sh (what is checked).*

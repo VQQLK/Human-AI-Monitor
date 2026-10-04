@@ -346,11 +346,6 @@ multitrait-multimethod matrix.*
 
 ---
 
-*По вопросам — см. docs/methodology.md (математика Gap) и scripts/audit.sh (что проверяется).*
-
-
----
-
 ## 14. Протокол изменения инструмента измерения
 
 Любое изменение LLM-промптов, порождающих `axes`, `relevance`, `shift`,
