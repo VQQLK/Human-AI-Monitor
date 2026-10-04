@@ -83,7 +83,7 @@ for name, path in files.items():
 combined = "\n".join(contents.values())
 
 # 2. Weights
-print("\n── 2. Веса осей (HANDOFF §15.1) ──")
+print("\n── 2. Веса осей (HANDOFF §14.1) ──")
 weights_content = contents.get("weights.ts", "")
 for var_name in ("AI_WEIGHTS", "HUMAN_WEIGHTS"):
     block = extract_object(weights_content, var_name)
@@ -108,7 +108,7 @@ for var_name in ("AI_WEIGHTS", "HUMAN_WEIGHTS"):
         log("fail", f"{var_name}: вес вне (0, 1)")
 
 # 3. PI_TABLE — directional symmetry
-print("\n── 3. PI_TABLE: directional symmetry (HANDOFF §15.2.3) ──")
+print("\n── 3. PI_TABLE: directional symmetry (HANDOFF §14.2.3) ──")
 pi_block = extract_object(combined, "PI_TABLE")
 if not pi_block:
     log("warn", "PI_TABLE не найдена")
@@ -285,13 +285,13 @@ except Exception as e:
     log("warn", f"Numeric test skipped: {e}")
 
 # 7. Limitations
-print("\n── 7. Проверка ограничений §15.2 ──")
+print("\n── 7. Проверка ограничений §14.2 ──")
 for name, pattern, msg in [
-    ("§15.2.1", r"source.*correlation|hierarchical|random.?effect",
+    ("§14.2.1", r"source.*correlation|hierarchical|random.?effect",
      "Source correlation НЕ моделируется"),
-    ("§15.2.2", r"bonferroni|benjamini|hochberg|FDR|holm",
+    ("§14.2.2", r"bonferroni|benjamini|hochberg|FDR|holm",
      "Нет multiple comparisons correction"),
-    ("§15.2.3", r"PI_TABLE.*calibrat|empirical.*PI",
+    ("§14.2.3", r"PI_TABLE.*calibrat|empirical.*PI",
      "PI_TABLE не калибрована эмпирически"),
 ]:
     if re.search(pattern, combined, re.IGNORECASE):
@@ -300,7 +300,7 @@ for name, pattern, msg in [
         log("pass", f"{name}: {msg} ✓")
 
 # 8. MC convergence
-print("\n── 8. MC convergence (HANDOFF §15.4, Test F) ──")
+print("\n── 8. MC convergence (HANDOFF §14.4, Test F) ──")
 mc_conv_code = '''
 function mulberry32(a) {
     return function() {

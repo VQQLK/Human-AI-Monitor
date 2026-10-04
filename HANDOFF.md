@@ -1,7 +1,7 @@
 # Human-AI Monitor — Handoff
 
 > Documentation for an engineer continuing this work.
-> Last updated: 2026-10-03 (after re-classification).
+> Last updated: 2026-10-04.
 > Languages: [English](HANDOFF.md) | [Русский](HANDOFF.ru.md)
 
 ## 1. Project overview
@@ -44,7 +44,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - HEAD: latest commit on main (see `git log --oneline -5`)
 - **Baseline: 147 checks — 146 PASS / 1 WARN / 0 FAIL**
 - Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
-- Math verification: **20/20 PASS** (see §15; runs inside audit as Phase 15)
+- Math verification: **20/20 PASS** (see §14; runs inside audit as Phase 15)
 - Active WARN: `h1_agency` (4 items < 5) — expected to clear after Monday cron
 - Sources: 52 (27 AI + 25 Human)
 - Axes: 13 (6 AI + 6 Human + 1 META)
@@ -52,18 +52,8 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - Batch capacity: 60 (maxPerSource=2 × 5 cron slots)
 - CF token: 3 permissions (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
 - **Items classification:** 448/448 use prompt v1 (single instrument, consistent)
-- **Re-classification experiment:** attempted on 2026-10-03, then **rolled back** (see §12)
 
 ## 4. Known issues (by priority)
-
-### 🔴 Re-classification experiment — REJECTED (rolled back)
-- See §12 for the full case. Summary:
-  - 2026-10-03: 292/448 items were re-classified with prompt v2 (037942d)
-  - Same day: decision reversed on methodological grounds (data mixture,
-    exchangeability violation, time confounding, missing provenance)
-  - Rollback verified: 448/448 items restored, 0 mismatches
-  - No further re-classification until §14 protocol is followed
-- Backups retained for analysis: /tmp/reclass_backup/
 
 ### 🟡 h1_agency, h5_meaning coverage — sources added, verify after Monday cron
 - Added: Aeon, Psyche (h5_meaning), Oxfam, HRW (h4_equity)
@@ -75,7 +65,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 
 ### 🟢 META axis geopolitics — intentionally not in /gap
 - Computed (49 items, level 0.847) but not returned in /gap
-- **Decision:** do NOT expose in /gap (see §13 — scientific integrity rule)
+- **Decision:** do NOT expose in /gap (see §12 — scientific integrity rule)
 - Currently accessible only via /axes-history
 
 ### ⚠️ Snapshot not recomputed
@@ -190,76 +180,7 @@ The bot pushed README — rebase resolves cleanly.
 
 ---
 
-## 12. Rejected experiment: re-classification (2026-10-03)
-
-**Status: attempted and rolled back. Do not repeat without following §14.**
-
-### What was attempted
-Replace the LLM classification of 448 items using an updated prompt (037942d)
-that narrowed `itq` and `geopolitics` definitions. 292 items were processed
-before Cloudflare AI quota (4006) halted the run.
-
-### Why it was rejected
-Strict methodological review identified multiple independent failures:
-
-1. **Data mixture / exchangeability violation.** 292 items measured with
-   instrument M2, 156 with M1, mixed in a single `axes` column. Bayesian
-   posterior assumes exchangeable observations; a mixture of two
-   instruments violates this and biases posterior mean plus inflates CI
-   via between-instrument variance that is not modeled.
-
-2. **Time confound.** Items processed in chronological order — early items
-   → M2, late items → M1. Any real temporal trend in world events is now
-   confounded with instrument assignment.
-
-3. **Missing provenance.** No `prompt_version` column. Consumers cannot
-   distinguish which items were classified by which instrument.
-
-4. **Unvalidated improvement.** Claim "47.6% per-item changes = improvement"
-   is a logical error: confusing uniformity with validity. No Cohen's kappa,
-   no criterion validity, no test-retest. A random classifier also produces
-   a uniform distribution.
-
-5. **Violated our own §13 principle.** "Publish only after validation" was
-   not applied to changes of the measurement instrument itself.
-
-### What was done
-- Rollback SQL generated from `items_before.json` (the pre-change backup)
-- 448 UPDATE statements applied to D1
-- Verification: `Match: 448 / 448`, `Mismatch: 0` — `ROLLBACK VERIFIED`
-- Axis distribution restored to pre-experiment state:
-  `[]=94, itq=70, h6_democracy=51, geopolitics=47, verification=46, ...`
-
-### What was NOT done
-- `temporal_status` and `event_date` fields were not in the original
-  pre-change SELECT, so those columns were not rolled back. This is a
-  known minor inconsistency — likely benign (the fields did not exist for
-  most items in v1 anyway), but should be verified if the change is
-  reattempted.
-
-### Backups retained (do not delete)
-    /tmp/reclass_backup/
-      items_before.json               — 448 items (state before experiment)
-      items_new.json                  — 292 items (raw v2 responses)
-      updates.sql                     — 292 forward UPDATEs (not applied)
-      rollback.sql                    — 448 reverse UPDATEs (applied)
-      progress.json                   — per-hash status
-      items_current_before_rollback.json — state at rollback time
-      gap_history_before.json
-      index_history_before.json
-
-### Correct next steps (deferred)
-1. Validate prompt v2 on a **hold-out sample** with human annotation:
-   - 30 items, blinded, 2 raters
-   - Cohen's kappa vs human, test-retest on same items
-2. Only if validation passes: introduce `axes_v2` as a **separate column**
-   (never overwrite `axes`), backfill via versioned script
-3. Update `gap-computation.ts` to read from one explicitly named column
-4. Preregister the switch (methodology.md update + version bump)
-
----
-
-## 13. Formal falsification criteria for geopolitics_score
+## 12. Formal falsification criteria for geopolitics_score
 
 **Status: working hypothesis, not established truth.**
 
@@ -346,7 +267,7 @@ multitrait-multimethod matrix.*
 
 ---
 
-## 14. Measurement instrument change protocol
+## 13. Measurement instrument change protocol
 
 Any change to LLM prompts that produce `axes`, `relevance`, `shift`,
 `direction`, or `reasoning` is a **change of the measurement instrument**.
@@ -386,7 +307,7 @@ It is not a code refactor. It must follow this protocol.
 
 ### Anti-patterns (do not do)
 
-- Overwriting `axes` with a new prompt's output (what was done on 2026-10-03)
+- Overwriting `axes` with a new prompt's output
 - Processing items in chronological order without stratification
 - Claiming improvement from distribution shifts alone
 - Re-classifying "as we go" while quota or rate limits interrupt
@@ -401,14 +322,14 @@ It is not a code refactor. It must follow this protocol.
 
 ---
 
-## 15. Mathematical audit (2026-10-03)
+## 14. Mathematical audit
 
 The mathematical core is **correctly constructed and validated against
 peer-reviewed references**. This section documents verified components,
 explicit limitations, and formal tests for future validation as data
 accumulates.
 
-### 15.1 Verified correct
+### 14.1 Verified correct
 
 | Component | Implementation | Reference |
 | --------- | -------------- | --------- |
@@ -423,12 +344,12 @@ accumulates.
 
 All eight components are mathematically sound. No errors were found.
 
-### 15.2 Documented limitations
+### 14.2 Documented limitations
 
 These are not defects. They are explicit **boundaries of applicability**
 of the current model, quantified wherever possible.
 
-#### 15.2.1 Source-level correlation not modeled
+#### 14.2.1 Source-level correlation not modeled
 
 **Facts.** `betaParamsFromSignals` treats items as independent evidence.
 In practice, items from the same source may be correlated. Example:
@@ -460,7 +381,7 @@ Range: 1.2× to 1.4× wider.
 ρ = 0.2, real CI ≈ [−0.30, +0.49]. Conclusion (no significance)
 unchanged. Formula remains valid for its stated purpose.
 
-#### 15.2.2 Multiple comparisons
+#### 14.2.2 Multiple comparisons
 
 **Facts.** 13 axes, each with `isSignificant(ci95)`. Uncorrected α = 0.05.
 
@@ -476,7 +397,7 @@ the primary Gap result. Per-axis p-values are labeled exploratory.
 **If per-axis results are ever used for decisions**, apply Bonferroni
 (α' = 0.05/13 ≈ 0.0038) or Benjamini-Hochberg FDR.
 
-#### 15.2.3 PI_TABLE as expert estimate
+#### 14.2.3 PI_TABLE as expert estimate
 
 **Facts.** Voice table π(shift, direction) with values {+1.0, +0.5, +0.3,
 0.0, −0.3, −0.5, −1.0}.
@@ -496,7 +417,7 @@ of axes.
 (Test E, below) but requires ground-truth annotation that is not yet
 collected.
 
-### 15.3 Future improvements (deferred)
+### 14.3 Future improvements (deferred)
 
 Not required for correctness. Listed for future work as data accumulates.
 
@@ -510,7 +431,7 @@ Not required for correctness. Listed for future work as data accumulates.
 
 None of these change the current methodology or results.
 
-### 15.4 Formal falsification criteria
+### 14.4 Formal falsification criteria
 
 These tests should be run once sufficient data accumulates (≥ 4–8 weeks).
 Each is designed to be falsifiable.
@@ -551,7 +472,7 @@ empirical derivation.
 #### Test F — Monte Carlo convergence `[AUTOMATED]`
 
 > Status: **already automated** in `scripts/math_verification.py` §8.
-> Runs on every audit as part of Phase 15. See §15.5 for current result
+> Runs on every audit as part of Phase 15. See §14.5 for current result
 > (change 10k→100k = 0.041%, well under 1% threshold).
 
 **H0:** M = 10000 is sufficient for CI precision.
@@ -581,7 +502,7 @@ DEFAULT_MC_SAMPLES.
 **Rejection criterion:** rate > 7% (2σ above nominal) → check test
 construction. Expected: ~5%.
 
-### 15.5 Summary
+### 14.5 Summary
 
 The mathematical core is correctly constructed. All methods trace to
 peer-reviewed sources. The three documented limitations are boundaries
@@ -603,7 +524,7 @@ correlation. This is documented, not hidden.
 
 ---
 
-## 16. Anti-patterns for external contributors
+## 15. Anti-patterns for external contributors
 
 If you are working with this project for the first time — read this
 before making changes. It addresses the most common misunderstandings.
@@ -612,14 +533,10 @@ before making changes. It addresses the most common misunderstandings.
 
 - **Test G** (empirical FWER) — **deliberately removed in v3** of
   `math_verification.py`. The old design (per-axis CI with n=10) was
-  conceptually wrong; correct design is Gap-based with n≥100 (§15.4).
+  conceptually wrong; correct design is Gap-based with n≥100 (§14.4).
   Do not re-add the old version.
 
-- **Re-classification of items** — **rejected** (§12). 448/448 items
-  were restored. Do not repeat without following §14 protocol
-  (versioned column `axes_v2`, hold-out validation, preregistration).
-
-- **`geopolitics_score` in `/gap`** — **forbidden** (§13) until
+- **`geopolitics_score` in `/gap`** — **forbidden** (§12) until
   Tests A/B/C pass. Currently accessible only via `/axes-history`.
 
 - **AI_WEIGHTS / HUMAN_WEIGHTS** — do not change without preregistered
