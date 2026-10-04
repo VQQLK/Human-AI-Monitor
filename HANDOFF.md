@@ -32,8 +32,9 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 | config/sources_human.yaml         | 25 Human sources                             |
 | config/axes_ai.yaml               | 6 AI axes + META geopolitics                 |
 | config/axes_human.yaml            | 6 Human axes                                 |
-| scripts/audit.sh                  | Main audit (v4.8, 146 checks)                |
-| scripts/run-audit.sh              | Launcher                                     |
+| scripts/audit.sh                  | Main audit (v4.9, 147 checks, 15 phases)     |
+| scripts/run-audit.sh              | Launcher for audit.sh                        |
+| scripts/math_verification.py      | Independent math verification (Phase 15)     |
 | scripts/yaml-to-ts.mjs            | YAML → TS generator                          |
 | scripts/update_readme.py          | Update README from live API                  |
 | HANDOFF.md                        | This file                                    |
@@ -41,7 +42,10 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 ## 3. Current state
 
 - HEAD: latest commit on main (see `git log --oneline -5`)
-- Baseline: 146 PASS / 1 WARN / 0 FAIL
+- **Baseline: 147 checks — 146 PASS / 1 WARN / 0 FAIL**
+- Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
+- Math verification: **20/20 PASS** (see §15; runs inside audit as Phase 15)
+- Active WARN: `h1_agency` (4 items < 5) — expected to clear after Monday cron
 - Sources: 52 (27 AI + 25 Human)
 - Axes: 13 (6 AI + 6 Human + 1 META)
 - Source languages: en + ru (TASS) + zh (FT Chinese)
@@ -161,8 +165,10 @@ The bot pushed README — rebase resolves cleanly.
 
 ## 9. Dangerous spots
 
-- D1 schema `items`: columns collected_at, date, event_date.
-  NOT recorded_at, NOT created_at (that was a real bug).
+- D1 schema `items`: columns hash, title, summary, url, source, date, lang,
+  axes, relevance, shift, direction, reasoning, collected_at, temporal_status,
+  event_date. NOT `recorded_at`, NOT `created_at` (historical bug).
+  NOT `week_start` — that column exists only in `gap_history`, not in `items`.
 - sources_ai.yaml does NOT control axes — the LLM does the mapping.
 - weights.ts: AI and Human weights must sum to 1.0 (validated on load).
 - prompts.ts: edit the AI prompt, do not touch Human (tests depend on it).
@@ -250,6 +256,68 @@ Strict methodological review identified multiple independent failures:
    (never overwrite `axes`), backfill via versioned script
 3. Update `gap-computation.ts` to read from one explicitly named column
 4. Preregister the switch (methodology.md update + version bump)
+
+---
+
+## 16. Anti-patterns for external contributors
+
+If you are working with this project for the first time — read this
+before making changes. It addresses the most common misunderstandings.
+
+### Do NOT re-open settled scientific decisions
+
+- **Test G** (empirical FWER) — **deliberately removed in v3** of
+  `math_verification.py`. The old design (per-axis CI with n=10) was
+  conceptually wrong; correct design is Gap-based with n≥100 (§15.4).
+  Do not re-add the old version.
+
+- **Re-classification of items** — **rejected** (§12). 448/448 items
+  were restored. Do not repeat without following §14 protocol
+  (versioned column `axes_v2`, hold-out validation, preregistration).
+
+- **`geopolitics_score` in `/gap`** — **forbidden** (§13) until
+  Tests A/B/C pass. Currently accessible only via `/axes-history`.
+
+- **AI_WEIGHTS / HUMAN_WEIGHTS** — do not change without preregistered
+  methodology update. Sum must be exactly 1.0 (validated at module load).
+
+### Common technical mistakes
+
+- **`items` schema**: columns `collected_at`, `date`, `event_date`.
+  NO `week_start` (that is only in `gap_history`).
+  NO `recorded_at`, NO `created_at` (historical bug — was fixed).
+
+- **64-bit RNG (xoshiro256)**: requires `BigInt`; incompatible with
+  `Uint32Array`. `<< 45` in JS shifts modulo 32 — does NOT work as
+  intended. If you need a better RNG, use a tested library
+  (`pure-rand`, `seedrandom`) or implement with `BigInt`.
+
+- **`sources_ai.yaml` does NOT control axes**: the LLM does the mapping
+  via `src/config/prompts.ts`. Adding `axes:` in YAML has no effect
+  on classification.
+
+- **Test F already automated**: it is section 8 of
+  `scripts/math_verification.py`, called from Phase 15 in `audit.sh`.
+  Do not duplicate.
+
+### Information gaps to be aware of
+
+- **Baseline numbers change**: they reflect the last audit run, not a
+  fixed state. Always verify against `bash scripts/run-audit.sh`, not
+  against numbers written in this document.
+
+- **WARN `h1_agency` is temporary**: it reflects the state right after
+  new sources were added, before the next cron run. Not a defect.
+
+- **Snapshot (`/gap`) may lag behind `items`**: recomputation happens
+  on Monday cron (14:00 UTC). If `/gap` shows an old `recorded_at`,
+  that is expected until the next scheduled generation.
+
+### When in doubt
+
+Run `bash scripts/run-audit.sh` — it includes Phase 15 (math verification)
+and reflects the real current state of the project. Do not trust
+hand-written statuses without verification.
 
 ---
 
@@ -513,7 +581,10 @@ None of these change the current methodology or results.
 These tests should be run once sufficient data accumulates (≥ 4–8 weeks).
 Each is designed to be falsifiable.
 
-#### Test D — Intra-source correlation
+#### Test D — Intra-source correlation `[MANUAL]`
+
+> Status: **not automated**. Requires ≥ 4 weeks of data (gate condition).
+> Implementation pending — do NOT assume it runs inside audit.sh.
 
 **H0:** Items within a source are independent evidence.
 
@@ -528,7 +599,10 @@ Each is designed to be falsifiable.
 **Rejection criterion:** >30% of sources with avg_corr > 0.3 → model
 assumption significantly violated; consider hierarchical model.
 
-#### Test E — PI_TABLE calibration
+#### Test E — PI_TABLE calibration `[MANUAL]`
+
+> Status: **not automated**. Requires ≥ 100 annotated items (manual work).
+> Deferred until annotation data is collected.
 
 **H0:** v_s = relevance · π(shift, direction) predicts true axis shift.
 
@@ -540,7 +614,11 @@ assumption significantly violated; consider hierarchical model.
 **Rejection criterion:** R² < 0.3 → PI_TABLE is too coarse; needs
 empirical derivation.
 
-#### Test F — Monte Carlo convergence
+#### Test F — Monte Carlo convergence `[AUTOMATED]`
+
+> Status: **already automated** in `scripts/math_verification.py` §8.
+> Runs on every audit as part of Phase 15. See §15.5 for current result
+> (change 10k→100k = 0.041%, well under 1% threshold).
 
 **H0:** M = 10000 is sufficient for CI precision.
 
@@ -551,7 +629,13 @@ empirical derivation.
 **Rejection criterion:** >1% change from M=10000 to M=100000 → increase
 DEFAULT_MC_SAMPLES.
 
-#### Test G — Empirical FWER
+#### Test G — Empirical FWER `[REJECTED in v3]`
+
+> Status: **removed from math_verification.py in v3.** The v1/v2 design
+> checked per-axis CI (not Gap CI), and with n=10 the per-axis
+> false-positive rate is ≈11%, not the nominal 5%. Any future
+> implementation MUST use Gap-based simulation with n ≥ 100.
+> **Do not re-add the old design.**
 
 **H0:** α = 0.05 for each per-axis significance test.
 
