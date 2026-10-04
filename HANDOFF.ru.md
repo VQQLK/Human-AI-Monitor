@@ -645,6 +645,13 @@ multitrait-multimethod matrix.*
   `src/config/prompts.ts`. Добавление `axes:` в YAML не влияет на
   классификацию.
 
+- **CI success ≠ задеплоено.** `ci.yml` выполняет только
+  `wrangler deploy --dry-run` — это валидация компиляции, а НЕ деплой.
+  Реальный деплой — вручную: `npx wrangler deploy`. После изменений в
+  `config/sources_*.yaml`, `src/config/prompts.ts` или `src/index.ts` —
+  проверяйте прод через `/health` (`sources_count`, `batches_capacity`)
+  и сравнивайте с локальным конфигом. Расхождение = устаревший деплой.
+
 - **Test F уже автоматизирован**: раздел 8 в `scripts/math_verification.py`,
   вызывается из фазы 15 в `audit.sh`. Не дублировать.
 

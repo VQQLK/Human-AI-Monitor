@@ -640,6 +640,13 @@ before making changes. It addresses the most common misunderstandings.
   via `src/config/prompts.ts`. Adding `axes:` in YAML has no effect
   on classification.
 
+- **CI success ≠ deployed.** `ci.yml` runs `wrangler deploy --dry-run`
+  only — it validates compilation, it does NOT deploy. Real deployment
+  is manual: `npx wrangler deploy`. After changes to
+  `config/sources_*.yaml`, `src/config/prompts.ts`, or `src/index.ts` —
+  verify production via `/health` (`sources_count`, `batches_capacity`)
+  matches local config. Mismatch = stale deployment.
+
 - **Test F already automated**: it is section 8 of
   `scripts/math_verification.py`, called from Phase 15 in `audit.sh`.
   Do not duplicate.
