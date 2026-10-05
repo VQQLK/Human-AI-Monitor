@@ -7,21 +7,21 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** October 2, 2026  
-**Baseline:** Updated on October 2, 2026 — based on 165 items (sample size: 175).
+**Updated:** October 5, 2026  
+**Baseline:** Updated on October 5, 2026 — based on 237 items (sample size: 247).
 
 ### 🌍 Humanity–AI Gap Index
 
 <div align="center">
 
-| Metric | Value (10-02) | Status |
+| Metric | Value (10-05) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.63** | Current value |
-| **🔴 AI Score** | 🤖 **0.73** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.09** | Symmetric development |
-| **⚡ Threshold Shifts** | **2** | Critical events detected |
-| **📈 Items Analyzed** | **165** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **175** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.50** | Current value |
+| **🔴 AI Score** | 🤖 **0.76** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.26** | AI is ahead |
+| **⚡ Threshold Shifts** | **3** | Critical events detected |
+| **📈 Items Analyzed** | **237** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **247** | Axis-signal pairs |
 
 </div>
 
@@ -32,10 +32,10 @@ and Humanity.**
 ```mermaid
 xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
-    x-axis ["—"]
+    x-axis ["04/10", "04/10"]
     y-axis "Score" 0.40 --> 0.80
-    bar [0]
-    line [0]
+    bar [0.50, 0.50]
+    line [0.76, 0.76]
 ```
 
 #### 📉 Gap Index Dynamics (Humanity minus AI)
@@ -43,18 +43,16 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["—"]
+    x-axis ["04/10", "04/10"]
     y-axis "Gap" -0.15 --> 0.25
-    line [0]
+    line [-0.26, -0.26]
 ```
 
 #### 📚 Historical Protocols
 
 | Week | AI | Humanity | Gap | Items | Sample | Type |
 |---|---|---|---|---|---|---|
-
-> 📌 Interim (reference, not on chart): 04/10 — AI 0.73 · Humanity 0.63 · Gap −0.09 · 165 / 175 items.
-> Last point is INTERIM — will be replaced by FINAL on Monday.
+| 04/10 | 0.76 | 0.50 | −0.26 | 237 | 247 | FINAL |
 
 ---
 
