@@ -9,7 +9,7 @@
 Cloudflare Worker, который:
 - Собирает RSS-сигналы из 52 источников (27 AI + 25 Human)
 - Классифицирует items через LLM (@cf/qwen/qwen3-30b-a3b-fp8)
-- Считает Bayesian Gap Index: Gap = AI_score − Human_score
+- Считает Bayesian Gap Index: Gap = Human_score − AI_score
 - API: /gap, /axes-history, /protocols, /health, /classify
 
 Стек: TypeScript, Cloudflare Workers, D1 (SQLite), GitHub Actions, Vitest.
@@ -42,10 +42,9 @@ Cloudflare Worker, который:
 ## 3. Текущее состояние
 
 - HEAD: последний коммит в main (см. git log --oneline -5)
-- **Baseline: 147 проверок — 146 PASS / 1 WARN / 0 FAIL**
+- **Baseline: 147 проверок — 147 PASS / 0 WARN / 0 FAIL**
 - Версия скрипта аудита: **v4.9** (15 фаз; фаза 15 = математическая верификация)
 - Математическая верификация: **20/20 PASS** (см. §14; запускается в аудите как фаза 15)
-- Активный WARN: `h1_agency` (4 item'а < 5) — ожидается закрытие после понедельничного cron
 - Источников: 52 (27 AI + 25 Human)
 - Осей: 13 (6 AI + 6 Human + 1 META)
 - Языки источников: en + ru (ТАСС) + zh (FT Chinese)
@@ -243,7 +242,7 @@ CI95 = [0.372, 0.9998] покрывает почти весь [0, 1]. Публи
 в /gap создаст ложную точность и смешает валидированные величины
 (Capability − Impact) с невалидированным экспериментальным observable.
 
-Формула Gap остаётся: Gap = AI_score − Human_score (6 осей каждая,
+Формула Gap остаётся: Gap = Human_score − AI_score (6 осей каждая,
 сумма весов = 1.0). geopolitics выставляется как отдельная ось через
 /axes-history. Продвижение в /gap требует сначала прохождения всех
 трёх тестов.
@@ -386,7 +385,7 @@ multitrait-multimethod matrix.*
 
 **FWER.** Если все 13 нулевых гипотез истинны: 1 − 0.95¹³ ≈ 0.49.
 
-**Контекст.** Основной output — **один** тест Gap (`Gap = AI − Human`),
+**Контекст.** Основной output — **один** тест Gap (`Gap = Human − AI`),
 единая подтверждающая гипотеза. Per-axis значимость — exploratory
 диагностика, не семейство подтверждающих тестов.
 

@@ -9,7 +9,7 @@
 Cloudflare Worker that:
 - Collects RSS signals from 52 sources (27 AI + 25 Human)
 - Classifies items via LLM (@cf/qwen/qwen3-30b-a3b-fp8)
-- Computes Bayesian Gap Index: Gap = AI_score − Human_score
+- Computes Bayesian Gap Index: Gap = Human_score − AI_score
 - Exposes API: /gap, /axes-history, /protocols, /health, /classify
 
 Stack: TypeScript, Cloudflare Workers, D1 (SQLite), GitHub Actions, Vitest.
@@ -42,10 +42,9 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 ## 3. Current state
 
 - HEAD: latest commit on main (see `git log --oneline -5`)
-- **Baseline: 147 checks — 146 PASS / 1 WARN / 0 FAIL**
+- **Baseline: 147 checks — 147 PASS / 0 WARN / 0 FAIL**
 - Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
 - Math verification: **20/20 PASS** (see §14; runs inside audit as Phase 15)
-- Active WARN: `h1_agency` (4 items < 5) — expected to clear after Monday cron
 - Sources: 52 (27 AI + 25 Human)
 - Axes: 13 (6 AI + 6 Human + 1 META)
 - Source languages: en + ru (TASS) + zh (FT Chinese)
@@ -245,7 +244,7 @@ almost [0, 1]. Publishing this in /gap would create false precision and
 mix validated quantities (Capability − Impact) with an unvalidated
 experimental observable.
 
-The Gap formula stays: Gap = AI_score − Human_score (6 axes each, sum
+The Gap formula stays: Gap = Human_score − AI_score (6 axes each, sum
 of weights = 1.0). geopolitics is exposed as a separate axis via
 /axes-history only. Promotion to /gap requires all three tests to pass
 first.
@@ -387,7 +386,7 @@ unchanged. Formula remains valid for its stated purpose.
 
 **FWER.** If all 13 null hypotheses are true: 1 − 0.95¹³ ≈ 0.49.
 
-**Context.** The main output is **one** Gap test (`Gap = AI − Human`),
+**Context.** The main output is **one** Gap test (`Gap = Human − AI`),
 a single confirmatory hypothesis. Per-axis significance is exploratory
 diagnostic output, not a family of confirmatory tests.
 
