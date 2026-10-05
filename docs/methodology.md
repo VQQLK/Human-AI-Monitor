@@ -21,7 +21,7 @@ Human–AI Monitor proposes an **operationalized structure**: 13 axes (12+1) wit
 
 ## 2. Thirteen Axes (12+1)
 
-The monitoring system is built on a **symmetric structure**: 6 axes describe the **artificial** (AI), 6 describe the **human** (Humanity). The symmetry is not accidental — it reflects a hypothesis: **AI development and Humanity's development are linked**, and the gap between them is the key variable.
+The monitoring system has **two parallel groups of axes**: 6 describe the **artificial** (AI), 6 describe the **human** (Humanity). Both groups are monitored weekly.
 
 ### 2.1. AI Axes (RSI — Recursive Self-Improvement)
 
@@ -62,17 +62,17 @@ An axis outside the symmetric 6+6 structure, describing global AI development dy
 
 ### 3.1. Formula
 
-The Gap Index is the **key metric** of the project. It measures the **gap** between AI development and the state of Humanity:
-
 $$
-G = \frac{1}{6}\sum_{i=1}^{6} a_i - \frac{1}{6}\sum_{j=1}^{6} h_j
+G = \frac{1}{6}\sum_{j=1}^{6} h_j - \frac{1}{6}\sum_{i=1}^{6} a_i
 $$
 
 where:
 - $a_i \in [0, 1]$ — level of the i-th AI axis;
 - $h_j \in [0, 1]$ — level of the j-th Humanity axis.
 
-Each axis level is a **random variable** with a posterior Beta distribution (§3.2). By the **symmetry hypothesis** (§2), AI and Humanity axes are treated as **comparable in scale**, but not necessarily in weight. Two aggregation modes are supported:
+Sign convention: **$G > 0$ — Humanity accelerating faster; $G < 0$ — AI accelerating faster.**
+
+Each axis level is a **random variable** with a posterior Beta distribution (§3.2). Two aggregation modes are supported:
 
 - **Baseline (equal weights):** $\text{AI\_score} = \frac{1}{6}\sum_{i=1}^{6} \ell(a_i)$ — the simple arithmetic mean, invariant under permutation of axes within a group.
 - **Production (expert weights):** $\text{AI\_score} = \sum_{i=1}^{6} w_i^{AI} \cdot \ell(a_i)$ with $\sum_i w_i^{AI} = 1$. See §3.2 for the weight table and §6 for the rationale.
@@ -98,7 +98,7 @@ $$
 
 The geopolitical axis $g$ is measured and published in `index_history`, but is **not included** in either $\text{AI\_score}$ or $\text{Human\_score}$.
 
-The **Gap distribution** $G = \text{AI\_score} - \text{Human\_score}$ is constructed by Monte Carlo ($M = 10{,}000$ samples), yielding a mean and a 95% credible interval. Full mathematical treatment: [`docs/bayesian_framework.md`](bayesian_framework.md).
+The **Gap distribution** $G = \text{Human\_score} - \text{AI\_score}$ is constructed by Monte Carlo ($M = 10{,}000$ samples), yielding a mean and a 95% credible interval. Full mathematical treatment: [`docs/bayesian_framework.md`](bayesian_framework.md).
 
 
 **Bayesian implementation.** In the production code (`src/services/bayesian-gap.ts`),
@@ -108,7 +108,7 @@ In the production implementation, axis weights are applied and the sum is comput
 
 $$
 AI\_score^{(k)} = \sum_{i=1}^{6} w_i^{AI} \cdot s_i^{(k)}, \quad
-G^{(k)} = AI\_score^{(k)} - Human\_score^{(k)}, \quad k = 1, \dots, M
+G^{(k)} = Human\_score^{(k)} - AI\_score^{(k)}, \quad k = 1, \dots, M
 $$
 
 where $s_i^{(k)} \sim \text{Beta}(\alpha_i, \beta_i)$. The final Gap Index is the
@@ -141,11 +141,11 @@ $\sum_i w_i^{AI} = \sum_j w_j^{H} = 1.0$. Weights are open for calibration; see 
 
 | Value of $G$ | Interpretation |
 |--------------|----------------|
-| $G > 0.3$ | **Critical asymmetry:** AI significantly ahead |
-| $0.1 < G \leq 0.3$ | **Moderate asymmetry:** AI ahead |
+| $G > 0.3$ | **Critical asymmetry:** Humanity significantly ahead |
+| $0.1 < G \leq 0.3$ | **Moderate asymmetry:** Humanity ahead |
 | $\|G\| \leq 0.1$ | Symmetric development (norm) |
-| $-0.3 \leq G < -0.1$ | Moderate asymmetry: Humanity is ahead |
-| $G < -0.3$ | **Anomaly:** Humanity significantly ahead |
+| $-0.3 \leq G < -0.1$ | Moderate asymmetry: AI is ahead |
+| $G < -0.3$ | **Anomaly:** AI significantly ahead |
 
 The interpretation is **stable** when the 95% credible interval of $G$ lies entirely within one row, and **unstable** when the interval crosses a threshold.
 
@@ -156,7 +156,7 @@ The Gap Index is **not a scalar** but a **trajectory**. We record it weekly and 
 - **Acceleration:** second derivative.
 - **Attractors:** where the system is heading.
 
-**Key hypothesis:** sustained growth of $G$ with no threshold shifts on AI axes is **not singularity**, but **divergence**. It is the main risk.
+**Key hypothesis:** sustained negative trend of $G$ — that is, AI levels rising faster than Humanity levels, with no threshold shifts on AI axes — is **not singularity**, but **divergence**. It is the main risk.
 
 Each weekly value carries a 95% credible interval, which makes the trend statistically interpretable even at small weekly sample sizes.
 
@@ -250,6 +250,8 @@ MIT License. Use, fork, improve — **free**.
 5. **LLM classification.** The model may err. All results are open for verification.
 
 6. **Expert weights.** Axis weights in §3.2 are expert estimates, not derived from labeled data or theoretical first principles. Alternative weightings are possible. Changing weights affects the magnitudes of $\text{AI\_score}$ and $\text{Human\_score}$, but not their qualitative interpretation (§3.3), which remains stable as long as the sign of $G$ is unchanged.
+
+7. **Construct validity.** AI axes reflect news about AI benchmarks (extraction); Humanity axes reflect news discourse about human development (interpretation). Both are classified by the same pipeline, but describe different types of evidence. Direct comparability of scales is **not** assumed.
 
 ---
 
