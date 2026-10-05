@@ -38,7 +38,7 @@ xychart-beta
     line [0]
 ```
 
-#### 📉 Gap Index Dynamics (AI minus Humanity)
+#### 📉 Gap Index Dynamics (Humanity minus AI)
 
 ```mermaid
 xychart-beta
