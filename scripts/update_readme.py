@@ -210,7 +210,7 @@ def build_gap_mermaid(weeks, lang):
         gap_line = ", ".join(f"{w['gap']:.2f}" for w in finals)
         x_axis = ", ".join(f'"{l}"' for l in labels)
     titles = {
-        "en": "Gap Index | Positive = AI leading, Negative = Humanity leading",
+        "en": "Gap Index | Positive = Humanity leading, Negative = AI leading",
         "ru": "Индекс разрыва | Положительный = ИИ впереди, Отрицательный = Человечество впереди",
         "zh": "差距指数 | 正值 = 人工智能领先，负值 = 人类领先",
     }

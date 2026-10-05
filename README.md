@@ -18,7 +18,7 @@ and Humanity.**
 |:---|:---:|:---:|
 | **🟢 Humanity Score** | 🌐 **0.63** | Current value |
 | **🔴 AI Score** | 🤖 **0.73** | Current value |
-| **⚖️ Gap Index** | ⚖️ **+0.09** | Symmetric development |
+| **⚖️ Gap Index** | ⚖️ **−0.09** | Symmetric development |
 | **⚡ Threshold Shifts** | **2** | Critical events detected |
 | **📈 Items Analyzed** | **165** | Weekly sample |
 | **🔬 Sample Size (Bayesian)** | **175** | Axis-signal pairs |
@@ -42,7 +42,7 @@ xychart-beta
 
 ```mermaid
 xychart-beta
-    title "Gap Index | Positive = AI leading, Negative = Humanity leading"
+    title "Gap Index | Positive = Humanity leading, Negative = AI leading"
     x-axis ["—"]
     y-axis "Gap" -0.15 --> 0.25
     line [0]

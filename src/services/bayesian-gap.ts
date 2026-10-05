@@ -199,7 +199,7 @@ export function sampleGapDistribution(
 
     aiSamples[k] = ai;
     humanSamples[k] = human;
-    gapSamples[k] = ai - human;
+    gapSamples[k] = human - ai;
   }
   return { aiSamples, humanSamples, gapSamples };
 }
@@ -241,10 +241,10 @@ export function summarize(samples: number[]): Summary {
 //   0.1 < G <= 0.3 -> moderate AI
 //   G > 0.3 -> significant AI
 export function interpretGap(mean: number): string {
-  if (mean < -0.3) return 'Humanity is significantly ahead';
-  if (mean < -0.1) return 'Humanity is ahead';
-  if (mean > 0.3) return 'AI is significantly ahead';
-  if (mean > 0.1) return 'AI is ahead';
+  if (mean < -0.3) return 'AI is significantly ahead';
+  if (mean < -0.1) return 'AI is ahead';
+  if (mean > 0.3) return 'Humanity is significantly ahead';
+  if (mean > 0.1) return 'Humanity is ahead';
   return 'Symmetric development';
 }
 

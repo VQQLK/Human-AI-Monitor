@@ -109,7 +109,7 @@ describe("computeGapIndex (Bayesian)", () => {
     }
     const env = createMockEnv(items);
     const r = await computeGapIndex(env, RANGE, mulberry32(6));
-    expect(r.gap).toBeGreaterThan(0.3);
+    expect(r.gap).toBeLessThan(-0.3);
     expect(r.interpretation).toBe("AI is significantly ahead");
     expect(r.statisticallySignificant).toBe(true);
   });

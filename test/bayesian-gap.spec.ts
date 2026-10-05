@@ -252,15 +252,15 @@ describe("summarize", () => {
 // =================================================================
 describe("interpretGap", () => {
   it("boundaries match methodology.md §3.3", () => {
-    expect(interpretGap(-0.31)).toBe("Humanity is significantly ahead");
-    expect(interpretGap(-0.30)).toBe("Humanity is ahead");
-    expect(interpretGap(-0.11)).toBe("Humanity is ahead");
+    expect(interpretGap(-0.31)).toBe("AI is significantly ahead");
+    expect(interpretGap(-0.30)).toBe("AI is ahead");
+    expect(interpretGap(-0.11)).toBe("AI is ahead");
     expect(interpretGap(-0.10)).toBe("Symmetric development");
     expect(interpretGap( 0.00)).toBe("Symmetric development");
     expect(interpretGap( 0.10)).toBe("Symmetric development");
-    expect(interpretGap( 0.11)).toBe("AI is ahead");
-    expect(interpretGap( 0.30)).toBe("AI is ahead");
-    expect(interpretGap( 0.31)).toBe("AI is significantly ahead");
+    expect(interpretGap( 0.11)).toBe("Humanity is ahead");
+    expect(interpretGap( 0.30)).toBe("Humanity is ahead");
+    expect(interpretGap( 0.31)).toBe("Humanity is significantly ahead");
   });
 });
 
@@ -364,8 +364,8 @@ describe("sampleGapDistribution", () => {
     const rng = mulberry32(107);
     const run = sampleGapDistribution(aiParams, humanParams, 10000, rng);
     const gap = summarize(run.gapSamples);
-    // AI mean = 0.8, Human mean = 0.2, gap mean = 0.6
-    expect(gap.mean).toBeGreaterThan(0.55);
-    expect(gap.mean).toBeLessThan(0.65);
+    // AI mean = 0.8, Human mean = 0.2, gap = Human - AI = -0.6
+    expect(gap.mean).toBeLessThan(-0.55);
+    expect(gap.mean).toBeGreaterThan(-0.65);
   });
 });
