@@ -1,7 +1,7 @@
 # Human-AI Monitor — Handoff
 
 > Documentation for an engineer continuing this work.
-> Last updated: 2026-10-04.
+> Last updated: 2026-10-06.
 > Languages: [English](HANDOFF.md) | [Русский](HANDOFF.ru.md)
 
 ## 1. Project overview
@@ -48,16 +48,14 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - Sources: 52 (27 AI + 25 Human)
 - Axes: 13 (6 AI + 6 Human + 1 META)
 - Source languages: en + ru (TASS) + zh (FT Chinese)
-- Batch capacity: 60 (maxPerSource=2 × 5 cron slots)
+- Batch capacity per run: 60 (planned: 52)
 - CF token: 3 permissions (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
 - **Items classification:** 448/448 use prompt v1 (single instrument, consistent)
 
 ## 4. Known issues (by priority)
 
-### 🟡 h1_agency, h5_meaning coverage — sources added, verify after Monday cron
+### 🟢 h1_agency, h5_meaning coverage — RESOLVED
 - Added: Aeon, Psyche (h5_meaning), Oxfam, HRW (h4_equity)
-- Baseline WARN for h1_agency (4 items < 5) expected to clear after
-  Monday cron (new sources added after last collection)
 
 ### 🟢 Non-English sources — RESOLVED
 - Added: TASS (ru), FT Chinese (zh), Al Jazeera, The Hindu (en, Global South)
@@ -583,8 +581,8 @@ before making changes. It addresses the most common misunderstandings.
   fixed state. Always verify against `bash scripts/run-audit.sh`, not
   against numbers written in this document.
 
-- **WARN `h1_agency` is temporary**: it reflects the state right after
-  new sources were added, before the next cron run. Not a defect.
+- **A WARN on any axis may be temporary**: it reflects the state right after
+  new sources were added, before the next cron run. Not necessarily a defect.
 
 - **Snapshot (`/gap`) may lag behind `items`**: recomputation happens
   on Monday cron (14:00 UTC). If `/gap` shows an old `recorded_at`,
