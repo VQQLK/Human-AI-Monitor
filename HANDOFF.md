@@ -73,7 +73,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 
 **Hypothesis:** axis name dominates the definition `critical thinking` in the LLM prompt. AI prompt already guards against this (`itq=... NOT general AI progress`, `geopolitics=... NOT general tech policy`); Human prompt does not.
 
-**Deferred action (follow §14):** wait one more week to confirm chronicity; if confirmed, apply §14 protocol — add `prompt_version` column, hold-out validation (30 items, Cohen's kappa >= 0.8), add guard clauses mirroring AI prompt style. Do NOT fix in place (see §12 lesson).
+**Deferred action (follow §13):** wait one more week to confirm chronicity; if confirmed, apply §13 protocol — add `prompt_version` column, hold-out validation (30 items, Cohen's kappa >= 0.8), add guard clauses mirroring AI prompt style. Do NOT fix in place (see §13 anti-patterns).
 
 ### 🟢 Snapshot recomputed — RESOLVED (2026-10-05)
 - /gap and /axes-history serve the first FINAL protocol for week 2026-09-28 (recorded_at 2026-10-05, gap = −0.26, AI is ahead)
@@ -343,7 +343,7 @@ accumulates.
 | Gamma sampler | Marsaglia-Tsang with boost for α<1 | Marsaglia & Tsang (2000) |
 | Beta sampler | Γ(a)/(Γ(a)+Γ(b)) ratio | Robert & Casella (2004) §2.3 |
 | Prior | Jeffreys Beta(0.5, 0.5) | Jeffreys (1946) |
-| Posterior update | Generalized evidence accumulation | Valid pseudo-likelihood (see 15.2.1) |
+| Posterior update | Generalized evidence accumulation | Valid pseudo-likelihood (see 14.2.1) |
 | Weighted-sum MC | Linearity of expectation preserved | Standard MC theory |
 | Equal-tailed CI | Empirical quantiles (not normal approx) | Correct for U-shaped Beta |
 | Two-sided significance | CI95 does not contain 0 | Bayesian credible interval test |
@@ -384,7 +384,7 @@ Range: 1.2× to 1.4× wider.
 - Absolute CI width (nominal, not exact)
 - Significance of marginal results
 
-**For the 2026-10-02 snapshot (AI-positive, historical):** Gap = 0.09, CI95 = [−0.213, +0.400]. Under
+**For the 2026-10-02 snapshot (historical):** Gap = 0.09, CI95 = [−0.213, +0.400]. Under
 ρ = 0.2, real CI ≈ [−0.30, +0.49]. Conclusion (no significance)
 unchanged. Formula remains valid for its stated purpose.
 
