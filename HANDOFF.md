@@ -67,6 +67,16 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - **Decision:** do NOT expose in /gap (see §12 — scientific integrity rule)
 - Currently accessible only via /axes-history
 
+### 🟡 h2_sovereignty semantic drift
+
+**Date recorded:** 2026-10-05 · **Status:** deferred to follow-up
+
+~60% of items tagged `h2_sovereignty` concern **national/territorial sovereignty** (Hong Kong, Taiwan, Ukraine, Iraq, Iran, Okinawa), not **cognitive sovereignty** (critical thinking, independence of judgment). The pattern is chronic — pre-2026-10-02 items show the same drift, not a regression.
+
+**Hypothesis:** axis name dominates the definition `critical thinking` in the LLM prompt. AI prompt already guards against this (`itq=... NOT general AI progress`, `geopolitics=... NOT general tech policy`); Human prompt does not.
+
+**Deferred action (follow §14):** wait one more week to confirm chronicity; if confirmed, apply §14 protocol — add `prompt_version` column, hold-out validation (30 items, Cohen's kappa >= 0.8), add guard clauses mirroring AI prompt style. Do NOT fix in place (see §12 lesson).
+
 ### ⚠️ Snapshot not recomputed
 - /gap and /axes-history still serve snapshot from 2026-10-02T13:46
 - Recomputation happens automatically on Monday 14:00 UTC
