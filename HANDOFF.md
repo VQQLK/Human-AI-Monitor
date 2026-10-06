@@ -75,6 +75,8 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 
 **Deferred action (follow §13):** wait one more week to confirm chronicity; if confirmed, apply §13 protocol — add `prompt_version` column, hold-out validation (30 items, Cohen's kappa >= 0.8), add guard clauses mirroring AI prompt style. Do NOT fix in place (see §13 anti-patterns).
 
+**Status of §13 protocol:** not yet applied — instrument unchanged. Triggered only if drift confirmed next week.
+
 ### 🟢 Snapshot recomputed — RESOLVED (2026-10-05)
 - /gap and /axes-history serve the first FINAL protocol for week 2026-09-28 (recorded_at 2026-10-05, gap = −0.26, AI is ahead)
 - Recomputation happens automatically on Monday 14:00 UTC
