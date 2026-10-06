@@ -42,7 +42,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 ## 3. Current state
 
 - HEAD: latest commit on main (see `git log --oneline -5`)
-- **Baseline: 147 checks — 147 PASS / 0 WARN / 0 FAIL**
+- **Baseline: 147 checks — 146 PASS / 1 WARN / 0 FAIL** (WARN = transient axis coverage, e.g. `hexad`; always verify via `bash scripts/run-audit.sh`)
 - Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
 - Math verification: **20/20 PASS** (see §14; runs inside audit as Phase 15)
 - Sources: 52 (27 AI + 25 Human)
@@ -50,7 +50,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - Source languages: en + ru (TASS) + zh (FT Chinese)
 - Batch capacity per run: 60 (planned: 52)
 - CF token: 3 permissions (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
-- **Items classification:** 448/448 use prompt v1 (single instrument, consistent)
+- **Items classification:** ~530 items, classified with prompt v1 (no per-item version tracking)
 
 ## 4. Known issues (by priority)
 
@@ -75,8 +75,8 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 
 **Deferred action (follow §14):** wait one more week to confirm chronicity; if confirmed, apply §14 protocol — add `prompt_version` column, hold-out validation (30 items, Cohen's kappa >= 0.8), add guard clauses mirroring AI prompt style. Do NOT fix in place (see §12 lesson).
 
-### ⚠️ Snapshot not recomputed
-- /gap and /axes-history still serve snapshot from 2026-10-02T13:46
+### 🟢 Snapshot recomputed — RESOLVED (2026-10-05)
+- /gap and /axes-history serve the first FINAL protocol for week 2026-09-28 (recorded_at 2026-10-05, gap = −0.26, AI is ahead)
 - Recomputation happens automatically on Monday 14:00 UTC
   (cron sync-protocols.yml → generateProtocol: true)
 
@@ -384,7 +384,7 @@ Range: 1.2× to 1.4× wider.
 - Absolute CI width (nominal, not exact)
 - Significance of marginal results
 
-**For our current data:** Gap = 0.09, CI95 = [−0.213, +0.400]. Under
+**For the 2026-10-02 snapshot (AI-positive, historical):** Gap = 0.09, CI95 = [−0.213, +0.400]. Under
 ρ = 0.2, real CI ≈ [−0.30, +0.49]. Conclusion (no significance)
 unchanged. Formula remains valid for its stated purpose.
 
