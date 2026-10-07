@@ -1,187 +1,202 @@
-# ============================================================
-# Curated list of key voices for the Voices section
-# ============================================================
-# This file defines speakers whose quotes are automatically
-# extracted from items and displayed in README.md/ru/zh.
-#
-# To add a new speaker:
-# 1. Add a new entry under the appropriate category
-# 2. Fill all required fields: name, affiliation, category, keywords
-# 3. Test extraction: check if items with this speaker are detected
-# 4. Commit and deploy
-#
-# Selection criteria (applied in Worker):
-# - relevance >= 0.8
-# - axes includes 'geopolitics' OR 'h2_sovereignty'
-# - speaker name found in title/summary OR source in sources list
-# ============================================================
-
 version: 1
-updated: 2026-10-07
-
-# Minimum relevance threshold for voice extraction
+updated: 2026-10-07-v2
 min_relevance: 0.8
-
-# Axes that trigger voice extraction (at least one must match)
 target_axes:
-  - geopolitics
-  - h2_sovereignty
-
+- geopolitics
+- h2_sovereignty
 voices:
-  # ────────────────────────────────────────────────────────────
-  # 🧠 Frontier Labs
-  # ────────────────────────────────────────────────────────────
-
-  - name: "Dario Amodei"
-    affiliation: "Anthropic"
-    category: "frontier_labs"
-    keywords:
-      - "Dario Amodei"
-      - "Amodei"
-    sources:
-      - "anthropic.com"
-      - "anthropic"
-    note: "CEO of Anthropic, author of 'We Must Pace the Frontier' essay"
-
-  - name: "Sam Altman"
-    affiliation: "OpenAI"
-    category: "frontier_labs"
-    keywords:
-      - "Sam Altman"
-      - "Altman"
-    sources:
-      - "openai.com"
-      - "openai"
-    note: "CEO of OpenAI"
-
-  - name: "Elon Musk"
-    affiliation: "xAI"
-    category: "frontier_labs"
-    keywords:
-      - "Elon Musk"
-      - "Musk"
-    sources:
-      - "x.ai"
-      - "xai"
-    note: "CEO of xAI, Tesla, SpaceX"
-
-  - name: "Jensen Huang"
-    affiliation: "Nvidia"
-    category: "frontier_labs"
-    keywords:
-      - "Jensen Huang"
-      - "Huang"
-    sources:
-      - "nvidia.com"
-      - "nvidia"
-    note: "CEO of Nvidia"
-
-  - name: "Mark Zuckerberg"
-    affiliation: "Meta"
-    category: "frontier_labs"
-    keywords:
-      - "Mark Zuckerberg"
-      - "Zuckerberg"
-    sources:
-      - "meta.com"
-      - "meta"
-    note: "CEO of Meta"
-
-  # ────────────────────────────────────────────────────────────
-  # 🧪 AI Researchers & Safety Experts
-  # ────────────────────────────────────────────────────────────
-
-  - name: "Demis Hassabis"
-    affiliation: "Google DeepMind"
-    category: "researchers"
-    keywords:
-      - "Demis Hassabis"
-      - "Hassabis"
-    sources:
-      - "deepmind.com"
-      - "deepmind"
-    note: "CEO of Google DeepMind, Nobel Prize in Chemistry 2024"
-
-  - name: "Geoffrey Hinton"
-    affiliation: "ex-Google, Nobel Laureate"
-    category: "researchers"
-    keywords:
-      - "Geoffrey Hinton"
-      - "Hinton"
-    sources: []
-    note: "Godfather of AI, Nobel Prize in Physics 2024"
-
-  - name: "Stuart Russell"
-    affiliation: "UC Berkeley"
-    category: "researchers"
-    keywords:
-      - "Stuart Russell"
-      - "Russell"
-    sources: []
-    note: "Professor at UC Berkeley, author of 'Human Compatible'"
-
-  - name: "Yann LeCun"
-    affiliation: "Meta, Chief AI Scientist"
-    category: "researchers"
-    keywords:
-      - "Yann LeCun"
-      - "LeCun"
-    sources: []
-    note: "Chief AI Scientist at Meta, Turing Award 2018"
-
-  # ────────────────────────────────────────────────────────────
-  # 🇺🇳 International Institutions & Policymakers
-  # ────────────────────────────────────────────────────────────
-
-  - name: "António Guterres"
-    affiliation: "UN Secretary-General"
-    category: "institutions"
-    keywords:
-      - "António Guterres"
-      - "Guterres"
-    sources:
-      - "un.org"
-    note: "UN Secretary-General"
-
-  - name: "Donald Trump"
-    affiliation: "US President"
-    category: "institutions"
-    keywords:
-      - "Donald Trump"
-      - "Trump"
-    sources: []
-    note: "45th and 47th President of the United States"
-
-  - name: "Xi Jinping"
-    affiliation: "President of the People's Republic of China"
-    category: "institutions"
-    keywords:
-      - "Xi Jinping"
-      - "Xi"
-    sources: []
-    note: "President of China, General Secretary of the CPC"
-
-  # ────────────────────────────────────────────────────────────
-  # 🧮 Mathematics Community
-  # ────────────────────────────────────────────────────────────
-
-  - name: "Fields Medal Winners"
-    affiliation: "25 Fields Medal Winners"
-    category: "mathematics"
-    keywords:
-      - "Fields Medal"
-      - "Fields medalists"
-    sources: []
-    note: "Joint declaration 'A Severe Misalignment of AI in Mathematics'"
-
-  # ────────────────────────────────────────────────────────────
-  # 🌏 Philosophy
-  # ────────────────────────────────────────────────────────────
-
-  - name: "Yuk Hui"
-    affiliation: "Philosopher of Technology, Hong Kong"
-    category: "philosophy"
-    keywords:
-      - "Yuk Hui"
-    sources: []
-    note: "Philosopher of technology, author of 'The Question Concerning Technology in China'"
+- name: Dario Amodei
+  affiliation: Anthropic
+  category: frontier_labs
+  keywords:
+  - Dario Amodei
+  - Amodei
+  sources:
+  - Anthropic News
+  note: CEO of Anthropic
+- name: Sam Altman
+  affiliation: OpenAI
+  category: frontier_labs
+  keywords:
+  - Sam Altman
+  - Altman
+  sources:
+  - OpenAI Blog
+  note: CEO of OpenAI
+- name: Elon Musk
+  affiliation: xAI
+  category: frontier_labs
+  keywords:
+  - Elon Musk
+  - Musk
+  sources:
+  - The Verge — AI
+  - Ars Technica — AI
+  - The Hill — News
+  note: CEO of xAI, Tesla, SpaceX
+- name: Jensen Huang
+  affiliation: Nvidia
+  category: frontier_labs
+  keywords:
+  - Jensen Huang
+  - Huang
+  sources:
+  - The Verge — AI
+  - Ars Technica — AI
+  note: CEO of Nvidia
+- name: Mark Zuckerberg
+  affiliation: Meta
+  category: frontier_labs
+  keywords:
+  - Mark Zuckerberg
+  - Zuckerberg
+  sources:
+  - The Verge — AI
+  - Politico — Technology
+  note: CEO of Meta
+- name: Demis Hassabis
+  affiliation: Google DeepMind
+  category: researchers
+  keywords:
+  - Demis Hassabis
+  - Hassabis
+  sources:
+  - Google DeepMind Blog
+  note: CEO of Google DeepMind, Nobel Prize 2024
+- name: Geoffrey Hinton
+  affiliation: ex-Google, Nobel Laureate
+  category: researchers
+  keywords:
+  - Geoffrey Hinton
+  - Hinton
+  sources:
+  - The Verge — AI
+  - Ars Technica — AI
+  note: Godfather of AI, Nobel Prize 2024
+- name: Stuart Russell
+  affiliation: UC Berkeley
+  category: researchers
+  keywords:
+  - Stuart Russell
+  - Russell
+  sources:
+  - LessWrong — AI
+  - AI Alignment Forum
+  note: Professor at UC Berkeley
+- name: Yann LeCun
+  affiliation: Meta, Chief AI Scientist
+  category: researchers
+  keywords:
+  - Yann LeCun
+  - LeCun
+  sources:
+  - The Verge — AI
+  - MIT Technology Review — AI
+  note: Chief AI Scientist at Meta
+- name: António Guterres
+  affiliation: UN Secretary-General
+  category: institutions
+  keywords:
+  - António Guterres
+  - Guterres
+  sources:
+  - Al Jazeera
+  - NPR — World
+  - CBS News — World
+  note: UN Secretary-General
+- name: Donald Trump
+  affiliation: US President
+  category: institutions
+  keywords:
+  - Donald Trump
+  - Trump
+  sources:
+  - The Hill — News
+  - The Hill — Policy
+  - Politico — Politics
+  - Politico — Technology
+  - NPR — World
+  - CBS News — Politics
+  note: 45th and 47th President of the United States
+- name: Xi Jinping
+  affiliation: President of the People's Republic of China
+  category: institutions
+  keywords:
+  - Xi Jinping
+  - Xi
+  sources:
+  - Al Jazeera
+  - The Hindu — International
+  note: President of China
+- name: Fields Medal Winners
+  affiliation: 25 Fields Medal Winners
+  category: mathematics
+  keywords:
+  - Fields Medal
+  - Fields medalists
+  sources: []
+  note: Joint declaration 'A Severe Misalignment of AI in Mathematics'
+- name: Yuk Hui
+  affiliation: Philosopher of Technology, Hong Kong
+  category: philosophy
+  keywords:
+  - Yuk Hui
+  sources:
+  - Noema Magazine
+  note: Philosopher of technology
+- name: Jay Clayton
+  affiliation: Director of National Intelligence, Head of SIF
+  category: us_administration
+  keywords:
+  - Jay Clayton
+  - Clayton
+  sources:
+  - The Hill — News
+  - The Hill — Policy
+  - Politico — Politics
+  - NPR — World
+  - CBS News — Politics
+  note: Head of Super Intelligence Force (SIF)
+- name: Andrew Ferguson
+  affiliation: FTC Chairman
+  category: us_administration
+  keywords:
+  - Andrew Ferguson
+  - Ferguson
+  sources:
+  - Politico — Technology
+  - The Verge — AI
+  - The Hill — Policy
+  note: FTC Chairman, SIF leadership
+- name: Emil Michael
+  affiliation: Deputy Secretary of Defense for R&D
+  category: us_administration
+  keywords:
+  - Emil Michael
+  sources:
+  - Politico — Politics
+  - The Hill — Policy
+  - CBS News — Politics
+  note: Deputy Secretary of Defense, SIF leadership
+- name: Scott Kupor
+  affiliation: Director of Office of Personnel Management
+  category: us_administration
+  keywords:
+  - Scott Kupor
+  - Kupor
+  sources:
+  - Politico — Technology
+  - The Hill — Policy
+  note: OPM Director, SIF leadership
+- name: Susie Wiles
+  affiliation: White House Chief of Staff
+  category: us_administration
+  keywords:
+  - Susie Wiles
+  - Wiles
+  sources:
+  - The Hill — News
+  - The Hill — Policy
+  - Politico — Politics
+  - NPR — World
+  note: White House Chief of Staff

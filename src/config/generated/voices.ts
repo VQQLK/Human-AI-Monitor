@@ -3,7 +3,7 @@
 
 export default {
   "version": 1,
-  "updated": "2026-10-07",
+  "updated": "2026-10-07-v2",
   "min_relevance": 0.8,
   "target_axes": [
     "geopolitics",
@@ -19,10 +19,9 @@ export default {
         "Amodei"
       ],
       "sources": [
-        "anthropic.com",
-        "anthropic"
+        "Anthropic News"
       ],
-      "note": "CEO of Anthropic, author of 'We Must Pace the Frontier' essay"
+      "note": "CEO of Anthropic"
     },
     {
       "name": "Sam Altman",
@@ -33,8 +32,7 @@ export default {
         "Altman"
       ],
       "sources": [
-        "openai.com",
-        "openai"
+        "OpenAI Blog"
       ],
       "note": "CEO of OpenAI"
     },
@@ -47,8 +45,9 @@ export default {
         "Musk"
       ],
       "sources": [
-        "x.ai",
-        "xai"
+        "The Verge — AI",
+        "Ars Technica — AI",
+        "The Hill — News"
       ],
       "note": "CEO of xAI, Tesla, SpaceX"
     },
@@ -61,8 +60,8 @@ export default {
         "Huang"
       ],
       "sources": [
-        "nvidia.com",
-        "nvidia"
+        "The Verge — AI",
+        "Ars Technica — AI"
       ],
       "note": "CEO of Nvidia"
     },
@@ -75,8 +74,8 @@ export default {
         "Zuckerberg"
       ],
       "sources": [
-        "meta.com",
-        "meta"
+        "The Verge — AI",
+        "Politico — Technology"
       ],
       "note": "CEO of Meta"
     },
@@ -89,10 +88,9 @@ export default {
         "Hassabis"
       ],
       "sources": [
-        "deepmind.com",
-        "deepmind"
+        "Google DeepMind Blog"
       ],
-      "note": "CEO of Google DeepMind, Nobel Prize in Chemistry 2024"
+      "note": "CEO of Google DeepMind, Nobel Prize 2024"
     },
     {
       "name": "Geoffrey Hinton",
@@ -102,8 +100,11 @@ export default {
         "Geoffrey Hinton",
         "Hinton"
       ],
-      "sources": [],
-      "note": "Godfather of AI, Nobel Prize in Physics 2024"
+      "sources": [
+        "The Verge — AI",
+        "Ars Technica — AI"
+      ],
+      "note": "Godfather of AI, Nobel Prize 2024"
     },
     {
       "name": "Stuart Russell",
@@ -113,8 +114,11 @@ export default {
         "Stuart Russell",
         "Russell"
       ],
-      "sources": [],
-      "note": "Professor at UC Berkeley, author of 'Human Compatible'"
+      "sources": [
+        "LessWrong — AI",
+        "AI Alignment Forum"
+      ],
+      "note": "Professor at UC Berkeley"
     },
     {
       "name": "Yann LeCun",
@@ -124,8 +128,11 @@ export default {
         "Yann LeCun",
         "LeCun"
       ],
-      "sources": [],
-      "note": "Chief AI Scientist at Meta, Turing Award 2018"
+      "sources": [
+        "The Verge — AI",
+        "MIT Technology Review — AI"
+      ],
+      "note": "Chief AI Scientist at Meta"
     },
     {
       "name": "António Guterres",
@@ -136,7 +143,9 @@ export default {
         "Guterres"
       ],
       "sources": [
-        "un.org"
+        "Al Jazeera",
+        "NPR — World",
+        "CBS News — World"
       ],
       "note": "UN Secretary-General"
     },
@@ -148,7 +157,14 @@ export default {
         "Donald Trump",
         "Trump"
       ],
-      "sources": [],
+      "sources": [
+        "The Hill — News",
+        "The Hill — Policy",
+        "Politico — Politics",
+        "Politico — Technology",
+        "NPR — World",
+        "CBS News — Politics"
+      ],
       "note": "45th and 47th President of the United States"
     },
     {
@@ -159,8 +175,11 @@ export default {
         "Xi Jinping",
         "Xi"
       ],
-      "sources": [],
-      "note": "President of China, General Secretary of the CPC"
+      "sources": [
+        "Al Jazeera",
+        "The Hindu — International"
+      ],
+      "note": "President of China"
     },
     {
       "name": "Fields Medal Winners",
@@ -180,8 +199,86 @@ export default {
       "keywords": [
         "Yuk Hui"
       ],
-      "sources": [],
-      "note": "Philosopher of technology, author of 'The Question Concerning Technology in China'"
+      "sources": [
+        "Noema Magazine"
+      ],
+      "note": "Philosopher of technology"
+    },
+    {
+      "name": "Jay Clayton",
+      "affiliation": "Director of National Intelligence, Head of SIF",
+      "category": "us_administration",
+      "keywords": [
+        "Jay Clayton",
+        "Clayton"
+      ],
+      "sources": [
+        "The Hill — News",
+        "The Hill — Policy",
+        "Politico — Politics",
+        "NPR — World",
+        "CBS News — Politics"
+      ],
+      "note": "Head of Super Intelligence Force (SIF)"
+    },
+    {
+      "name": "Andrew Ferguson",
+      "affiliation": "FTC Chairman",
+      "category": "us_administration",
+      "keywords": [
+        "Andrew Ferguson",
+        "Ferguson"
+      ],
+      "sources": [
+        "Politico — Technology",
+        "The Verge — AI",
+        "The Hill — Policy"
+      ],
+      "note": "FTC Chairman, SIF leadership"
+    },
+    {
+      "name": "Emil Michael",
+      "affiliation": "Deputy Secretary of Defense for R&D",
+      "category": "us_administration",
+      "keywords": [
+        "Emil Michael"
+      ],
+      "sources": [
+        "Politico — Politics",
+        "The Hill — Policy",
+        "CBS News — Politics"
+      ],
+      "note": "Deputy Secretary of Defense, SIF leadership"
+    },
+    {
+      "name": "Scott Kupor",
+      "affiliation": "Director of Office of Personnel Management",
+      "category": "us_administration",
+      "keywords": [
+        "Scott Kupor",
+        "Kupor"
+      ],
+      "sources": [
+        "Politico — Technology",
+        "The Hill — Policy"
+      ],
+      "note": "OPM Director, SIF leadership"
+    },
+    {
+      "name": "Susie Wiles",
+      "affiliation": "White House Chief of Staff",
+      "category": "us_administration",
+      "keywords": [
+        "Susie Wiles",
+        "Wiles"
+      ],
+      "sources": [
+        "The Hill — News",
+        "The Hill — Policy",
+        "Politico — Politics",
+        "NPR — World"
+      ],
+      "note": "White House Chief of Staff"
     }
   ]
 } as const;

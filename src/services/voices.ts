@@ -29,12 +29,8 @@ export function extractVoice(item: {
   relevance: number;
   axes: string[];
 }): ExtractedVoice | null {
-  // Criterion 1: high relevance + target axes
+  // Criterion 1: minimum relevance
   if (item.relevance < voicesConfig.min_relevance) return null;
-  
-  const targetAxes: readonly string[] = voicesConfig.target_axes;
-  const hasTargetAxis = item.axes.some(axis => targetAxes.includes(axis));
-  if (!hasTargetAxis) return null;
   
   // Criterion 2: speaker name in title/summary
   const textToSearch = `${item.title || ''} ${item.summary || ''}`.toLowerCase();
