@@ -50,7 +50,7 @@ The monitoring system has **two parallel groups of axes**: 6 describe the **arti
 
 ### 2.3. Geopolitical Axis (Geopolitics)
 
-An axis outside the symmetric 6+6 structure, describing global AI development dynamics:
+An axis outside the 6+6 structure, describing global AI development dynamics:
 
 | Parameter | Description |
 |:---|:---|
