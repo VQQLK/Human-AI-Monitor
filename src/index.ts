@@ -1108,7 +1108,7 @@ export default {
 				const column = lang === "ru" ? "quote_ru" : "quote_zh";
 
 				const items = await env.DB.prepare(
-					`SELECT id, quote FROM voices WHERE (\${column} IS NULL OR \${column} = '') AND quote IS NOT NULL AND quote != '' ORDER BY created_at DESC LIMIT ?`
+					`SELECT id, quote FROM voices WHERE (${column} IS NULL OR ${column} = '') AND quote IS NOT NULL AND quote != '' ORDER BY created_at DESC LIMIT ?`
 				).bind(limit).all();
 
 				let translatedCount = 0;
@@ -1125,7 +1125,7 @@ export default {
 				}
 
 				const remaining = await env.DB.prepare(
-					`SELECT COUNT(*) as count FROM voices WHERE (\${column} IS NULL OR \${column} = '') AND quote IS NOT NULL AND quote != ''`
+					`SELECT COUNT(*) as count FROM voices WHERE (${column} IS NULL OR ${column} = '') AND quote IS NOT NULL AND quote != ''`
 				).first<{ count: number }>();
 
 				return json({ 
