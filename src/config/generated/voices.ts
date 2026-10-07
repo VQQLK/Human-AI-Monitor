@@ -396,8 +396,7 @@ export default {
       "category": "enterprise",
       "keywords": [
         "Alex Karp",
-        "Karp",
-        "Palantir"
+        "Karp"
       ],
       "sources": [
         "Politico — Technology",

@@ -20,6 +20,10 @@ export interface ExtractedVoice {
   axes: string[];
 }
 
+function escapeRegex(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 export function extractVoice(item: {
   title?: string;
   summary?: string;
@@ -27,16 +31,18 @@ export function extractVoice(item: {
   date: string;
   relevance: number;
   axes: string[];
-}): ExtractedVoice | null {
+}): ExtractedVoice[] {
   // Criterion: minimum relevance AND speaker name in title/summary
-  if (item.relevance < voicesConfig.min_relevance) return null;
+  if (item.relevance < voicesConfig.min_relevance) return [];
 
   const textToSearch = `${item.title || ''} ${item.summary || ''}`.toLowerCase();
+  const matches: ExtractedVoice[] = [];
 
   for (const voice of voicesConfig.voices) {
     for (const keyword of voice.keywords) {
-      if (textToSearch.includes(keyword.toLowerCase())) {
-        return {
+      const re = new RegExp(`\\b${escapeRegex(keyword.toLowerCase())}\\b`);
+      if (re.test(textToSearch)) {
+        matches.push({
           speaker: voice.name,
           affiliation: voice.affiliation,
           category: voice.category,
@@ -45,12 +51,13 @@ export function extractVoice(item: {
           source: item.source,
           relevance: item.relevance,
           axes: item.axes,
-        };
+        });
+        break; // one quote per speaker per item
       }
     }
   }
 
-  return null;
+  return matches;
 }
 
 export async function saveVoice(

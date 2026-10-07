@@ -258,8 +258,8 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 						new Date().toISOString()
 					).run();
 
-					// Extract voice if item matches curated speakers
-					const voice = extractVoice({
+					// Extract voices if item matches curated speakers
+					const voices = extractVoice({
 						title: item.title,
 						summary: item.summary,
 						source: src.name,
@@ -267,9 +267,9 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 						relevance: typeof parsed.relevance === 'number' ? parsed.relevance : 0.5,
 						axes: Array.isArray(parsed.axes) ? parsed.axes : [],
 					});
-					if (voice) {
-						await saveVoice(env.DB, hash, voice);
-						console.log(`[collect] Voice extracted: ${voice.speaker} from ${src.name}`);
+					for (const v of voices) {
+						await saveVoice(env.DB, hash, v);
+						console.log(`[collect] Voice extracted: ${v.speaker} from ${src.name}`);
 					}
 
 					stats.items_saved++;
@@ -1071,10 +1071,11 @@ export default {
 					"SELECT hash, title, summary, source, date, relevance, axes FROM items"
 				).all();
 				
-				let extracted = 0;
+				let extractedItems = 0;
+				let savedVoices = 0;
 				for (const rawItem of items.results ?? []) {
 					const item = rawItem as any;
-					const voice = extractVoice({
+					const voices = extractVoice({
 						title: item.title,
 						summary: item.summary,
 						source: item.source,
@@ -1083,13 +1084,16 @@ export default {
 						axes: JSON.parse((item.axes as string) || "[]"),
 					});
 					
-					if (voice) {
-						await saveVoice(env.DB, item.hash, voice);
-						extracted++;
+					if (voices.length > 0) {
+						extractedItems++;
+						for (const v of voices) {
+							await saveVoice(env.DB, item.hash, v);
+							savedVoices++;
+						}
 					}
 				}
 				
-				return json({ extracted, total: items.results?.length ?? 0 }, 200);
+				return json({ extracted: extractedItems, voices_saved: savedVoices, total: items.results?.length ?? 0 }, 200);
 			}
 			if (path === "/translate-voices") {
 				if (!verifyAuth(request, env)) {
