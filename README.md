@@ -78,169 +78,309 @@ xychart-beta
 
 ## Voices
 
-The project tracks a debate where every actor agrees something fundamental 
-is happening — but disagrees on almost everything else.
-
 ### 🧠 Frontier Labs
 
-**Dario Amodei (Anthropic) — 12.09.2026**
+**Dario Amodei (Anthropic) — 2026-09-27**
 
-> "We must slow the pace at which we improve the capabilities of AI 
-> models. Progress will still seem fast, and we must make wise use of the 
-> time we gain."
-> — *Essay "We Must Pace the Frontier"*
+> Anthropic CEO Dario Amodei to have private White House dinner with Trump
 
-**Sam Altman (OpenAI) — 15.09.2026**
+— *The Hill — News*
 
-> "The world should trust that we are going to do the right thing because 
-> it's the right thing and we feel the magnitude of this. It doesn't take as 
-> much imagination as it used to for [us] to imagine how this could go 
-> wrong. I think the world is right to be afraid of this."
-> — *Salesforce event, San Francisco*
+**Sam Altman (OpenAI) — 2026-09-29**
 
-**Sam Altman — 25.07.2026**
+> Altman unveils 'always-on' AI agent after OpenAI shelves model over safety concerns
 
-> "We are now, like, in the singularity. This is the moment. I've been 
-> waiting for this my whole life, and I think it's going to be incredible, 
-> hugely positive, awesome for the world."
-> — *"Relentless" podcast*
+— *The Hill — Policy*
 
-**Elon Musk (xAI) — 15.09.2026**
+**Sam Altman (OpenAI) — 2026-09-23**
 
-> "I don't want to disappoint you, but one day we're all going to die 
-> anyway. If AI takes control of military systems and, for example, gives 
-> the order to launch a nuclear weapon, that would be bad."
-> — *All-In Summit 2026, Los Angeles*
+> Sam Altman’s remarks at the United Nations Security Council
 
-**Jensen Huang (Nvidia) — 15.09.2026**
+— *OpenAI Blog*
 
-> "We don't need new laws. We don't need new regulations. Choosing between 
-> innovation and safety is a false choice. You could definitely have both at 
-> the same time. So run as fast as you can."
-> — *Dreamforce 2026, San Francisco*
+**Sam Altman (OpenAI) — 2026-09-30**
 
-**Mark Zuckerberg (Meta) — 15.09.2026**
+> Sam Altman says OpenAI won’t go public until its models are safe
 
-> "People won't want to use agents that are misaligned with them and that 
-> don't do what they ask, so labs have a strong natural incentive to make 
-> their models more aligned. Any lab that doesn't focus on alignment will 
-> fall behind."
-> — *Post on X, rejecting calls for an industry-wide slowdown*
+— *The Verge — AI*
 
-**Mark Zuckerberg — 10.08.2026**
+**Jensen Huang (Nvidia) — 2026-09-30**
 
-> "This is not a technological principle. It is about the balance of 
-> power. There is no such thing as a singular benevolent superintelligence."
-> — *Essay "The Future is for Everyone"*
+> Inside Zuckerberg, Huang’s push for White House AI pact
 
-### 🧪 AI Researchers & Safety Experts
-
-**Demis Hassabis (Google DeepMind) — 13.09.2026**
-
-> "Dario's essay points towards the right path forward. The details need 
-> working through, but the direction is correct for meeting this critical 
-> moment. This is also why we recently put out our proposal for an 
-> industry-wide standards body for frontier AI."
-> — *Post on X, endorsing Amodei's slowdown call*
-
-**Geoffrey Hinton (ex-Google, Nobel Laureate) — 10.09.2026**
-
-> "We've never created beings that may soon be smarter than us. We don't 
-> know what's going to happen. A 10% chance seems not an unreasonable 
-> estimate to me. But nobody really knows how to give a sensible estimate."
-> — *BBC Newsnight interview*
-
-**Geoffrey Hinton — 16.09.2026**
-
-> "A kill switch is no good for that, because the AI will be much better 
-> than people at persuading people of things. It will be able to persuade 
-> the people in charge of the switch not to pull the switch."
-> — *CNN interview on why a "kill switch" won't work*
-
-**Stuart Russell (UC Berkeley) — 16.09.2026**
-
-> "So this is a barrier across the track. This is not the track marshals 
-> waving a flag and saying slow down. And you only get to cross that barrier 
-> when you demonstrate that your system has the necessary safety 
-> properties."
-> — *NDTV exclusive, arguing for mandatory safety thresholds*
-
-**Yann LeCun (Meta, Chief AI Scientist) — 13.09.2026**
-
-> Existential fearmongering is "complete nonsense" designed to orchestrate 
-> regulatory capture and kill open-source AI. The push to slow AI 
-> development is a "regulatory capture" exercise by closed-source labs.
-> — *Reported in "The Frontier Split" analysis*
+— *Politico — Technology*
 
 ### 🇺🇳 International Institutions & Policymakers
 
-**António Guterres (UN Secretary-General) — 16.09.2026**
+**Donald Trump (US President) — 2026-09-24**
 
-> "The world cannot afford a race to the bottom on AI safety. We need 
-> guardrails to build trust — and that make AI safe, transparent, 
-> accountable, with human dignity at the center."
-> — *UN Headquarters, ahead of General Assembly*
+> Judge tosses Trump’s suit against Iowa pollster
 
-**António Guterres — 19.02.2026**
+— *The Hill — News*
 
-> "The future of AI cannot be decided by a handful of countries — or left 
-> to the whims of a few billionaires."
-> — *India AI Impact Summit, New Delhi*
+**Donald Trump (US President) — 2026-09-24**
 
-**Donald Trump (US President) — 13.09.2026**
+> Judge restores journalists' White House access. And, Tucker Carlson on his MAGA split
 
-> "Whoever wins AI, wins. We're leading China in AI. We're the most 
-> sophisticated country in the world, and frankly I want to keep it that 
-> way."
-> — *Irish Open, Doonbeg. Dismissed AI existential risks as a "hoax" and 
-> "4D chess".*
+— *NPR — World*
 
-**Donald Trump (US President) — 19.09.2026**
+**Donald Trump (US President) — 2026-09-26**
 
-> "For this purpose, I am forming the AI Force, much like I did Space Force, 
-> which has been a tremendous SUCCESS, in my First Term. To that end, I will 
-> be announcing, in the near future, the AI 'Czar' — Only High I.Q. individuals 
-> need apply!"
-> — *Truth Social post. Announced plans to create AI Force and appoint AI Czar, 
-> though did not provide details.*
+> Poll: Trump’s MAGA loyalists don’t think he has an affordability problem
 
-**Xi Jinping (President of the People's Republic of China) — 13.09.2026**
+— *Politico — Politics*
 
-> "First, the open source and inclusive AI initiative. China will be a 
-> pioneer in establishing a BRICS AI open source community, support the 
-> cooperation in developing and applying large language models, hold 
-> specialized AI seminars and training courses, and build an open ecosystem 
-> for AI."
-> — *At Session II of the 18th BRICS Summit, New Delhi.*
+**Donald Trump (US President) — 2026-09-26**
 
-### 🧮 Mathematics Community
+> Sunday shows preview: Trump rejects Iran deal after week of high-stakes meetings; GOP clammers to keep Congress
 
-**25 Fields Medal Winners — 11.09.2026**
+— *The Hill — News*
 
-> "The goals of the AI companies and the goals of the mathematical 
-> community are severely misaligned."
-> — *Joint declaration "A Severe Misalignment of AI in Mathematics"*
+**Donald Trump (US President) — 2026-09-26**
 
-### 🌏 Philosophy
+> Trump and Xi to set up AI safety channel as military, trade talks continue
 
-**Yuk Hui (Philosopher of Technology, Hong Kong) — 29.07.2026**
+— *CBS News — Politics*
 
-> "They will not get flesh and blood. That would be more of a limitation 
-> for them than an added value." / "Judgement cannot be outsourced: not to 
-> weapons systems that select targets, and not to chatbots that tell us what 
-> we want to hear."
-> — *Interview on "Kant Machine" (2026), on the limits of AI and why 
-> alignment is the wrong question*
+**Donald Trump (US President) — 2026-09-28**
 
----
+> Thune: Ads promoting Trump political message “shouldn’t be paid for by taxpayer dollars”
 
-**Why this matters:** These voices disagree on almost everything — speed 
-vs. pause, open vs. closed, regulation vs. markets, anthropomorphism vs. 
-mechanism. The one thing they agree on: *something fundamental is 
-happening, and no one is measuring it systematically.* Human–AI Monitor is 
-an attempt to fill that gap.
+— *The Hill — News*
 
----
+**Donald Trump (US President) — 2026-09-28**
+
+> Iran says it's up to Trump to choose between war and diplomacy
+
+— *CBS News — World*
+
+**Donald Trump (US President) — 2026-09-28**
+
+> Trump announces plans for largest steel plant in U.S. history to be built in Iowa
+
+— *CBS News — Politics*
+
+**Donald Trump (US President) — 2026-09-29**
+
+> Will Chinese AI companies slow down? A top House Democrat wants answers
+
+— *The Verge — AI*
+
+**Donald Trump (US President) — 2026-09-29**
+
+> Watch live: Trump to tout AI push with America.gov launch
+
+— *The Hill — Policy*
+
+**Donald Trump (US President) — 2026-09-29**
+
+> Potential Taiwan tension sparked 'last minute' change in Trump-Xi National Archives visit
+
+— *NPR — World*
+
+**Donald Trump (US President) — 2026-10-01**
+
+> ‘These guys are in a pickle’: Some Republicans spurn Trump on the campaign trail
+
+— *Politico — Politics*
+
+**Donald Trump (US President) — 2026-10-01**
+
+> Judge blocks Trump's firing of top federal prosecutor in Seattle
+
+— *CBS News — Politics*
+
+**Donald Trump (US President) — 2026-10-01**
+
+> Trump’s AI rebrand may stop at the White House
+
+— *Politico — Technology*
+
+**Donald Trump (US President) — 2026-10-02**
+
+> How did the beltway take Trump’s AI accord?
+
+— *The Hill — News*
+
+**Donald Trump (US President) — 2026-10-02**
+
+> Trump vows Iran war to end "very quickly" as more troops head to Mideast
+
+— *CBS News — World*
+
+**Donald Trump (US President) — 2026-10-04**
+
+> Live updates: Trump set for Nebraska trip after Ohio rally; Alito, Cornell victim’s attorney to appear on Sunday shows
+
+— *The Hill — News*
+
+**Donald Trump (US President) — 2026-10-04**
+
+> Trump announces AI "Super Intelligence Force"
+
+— *CBS News — Politics*
+
+**Donald Trump (US President) — 2026-10-02**
+
+> CPJ joins legal effort to restore White House press access
+
+— *CPJ (Committee to Protect Journalists)*
+
+**Donald Trump (US President) — 2026-10-04**
+
+> Trump’s gains among Latino voters slip ahead of midterms
+
+— *Politico — Politics*
+
+**Donald Trump (US President) — 2026-09-28**
+
+> Trump and Johnson to meet with tech CEOs on AI risk
+
+— *Politico — Technology*
+
+**Donald Trump (US President) — 2026-09-24**
+
+> Judge orders White House to immediately restore access to CNN, MS NOW, Politico
+
+— *The Hill — News*
+
+**Donald Trump (US President) — 2026-09-27**
+
+> Anthropic CEO to attend White House dinner with Trump
+
+— *Politico — Technology*
+
+**Donald Trump (US President) — 2026-09-30**
+
+> Here’s how tech leaders will self-police AI safety under Trump’s deal
+
+— *The Verge — AI*
+
+**Donald Trump (US President) — 2026-10-02**
+
+> Hawley tests Trump’s hands-off approach to AI
+
+— *Politico — Technology*
+
+**Donald Trump (US President) — 2026-10-03**
+
+> For some Brazilians, this election is a vote on Trump
+
+— *NPR — World*
+
+**Donald Trump (US President) — 2026-10-05**
+
+> Trump’s approval hits new low among Hispanic voters ahead of midterms
+
+— *Al Jazeera*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> RBS-Attention: Radius-Bounded Sparse Prefill for Long-Context Large Language Models
+
+— *arXiv cs.AI*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> Attention-Aware Routing: Coupling Routing and Attention in MoEs
+
+— *arXiv cs.AI*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> PRQuant: Permutation Residual Quantization for Low-Overhead Inference
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> Generalized Multimodal Foundation Model
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> Correcting Learning-based Perception for Safety
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> Recognition, Simulation, and Refusal: A Contamination-Aware Study of Classic Psychological Effects in LLM Agents
+
+— *arXiv cs.CL*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> Memory That Looks Forward: A Zero-Inference Prospective Term for Personal Memory Retrieval
+
+— *arXiv cs.CL*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> Summarize, Judge, Refine: Decoupled Content Understanding and Policy Learning for Multimodal Content Moderation
+
+— *arXiv cs.CL*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> Identity or Prompt Noise? A Calibrated Invariance Audit of LLM Code Generation
+
+— *arXiv cs.SE*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
+
+> Didactic knowledge or Clinical Cases? How Data Types Shape Medical Large Language Models
+
+— *arXiv cs.AI*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
+
+> PAANI : On Device Visual Evidence Fusion and Explainable Guidance for River Robot Simulation
+
+— *arXiv cs.AI*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
+
+> TRACTOR Benchmark for Evaluating C to Rust Translators
+
+— *arXiv cs.SE*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
+
+> Harness as a Language: A Minimalist Agent Framework With Maximal Expressivity
+
+— *arXiv cs.AI*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
+
+> Signal2Symbol: Neuro-Symbolic Temporal Reasoning for Explainable Physiological Time-Series Anomaly Detection
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
+
+> HARN: Hierarchical Associative Resonance Network for Event-Driven Multi-Timeframe Forecasting
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
+
+> Who Finishes the Job? A Study of Follow-Up Fixes and Commit Authorship on AI Coding Agent Pull Requests
+
+— *arXiv cs.SE*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-25**
+
+> SMILESGNN: Interpretable Clinical Toxicity Prediction via SMILES-Graph Cross-Attention Fusion
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-25**
+
+> Framing by Wording, Framing by Selection: A Large-Scale Two-Dimensional Audit of French News Headlines, 2022-2025
+
+— *arXiv cs.CL*
 
 ## What is this
 
