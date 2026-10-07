@@ -9,6 +9,7 @@ import { computeGapIndex, type GapResult } from './services/gap-computation';
 import { mulberry32, seedFromString } from './services/bayesian-gap';
 import { translateProtocolMarkdown, translateReasoningBatch } from './services/translation';
 import { isProtectedPath, verifyAuth } from './auth';
+import { extractVoice, saveVoice } from './services/voices';
 
 export function parseAIResponse(response: any): any {
 	const content = response?.choices?.[0]?.message?.content
@@ -256,6 +257,21 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 						parsed.event_date || null,
 						new Date().toISOString()
 					).run();
+
+					// Extract voice if item matches curated speakers
+					const voice = extractVoice({
+						title: item.title,
+						summary: item.summary,
+						source: src.name,
+						date: itemDate,
+						relevance: typeof parsed.relevance === 'number' ? parsed.relevance : 0.5,
+						axes: Array.isArray(parsed.axes) ? parsed.axes : [],
+					});
+					if (voice) {
+						await saveVoice(env.DB, hash, voice);
+						console.log(`[collect] Voice extracted: ${voice.speaker} from ${src.name}`);
+					}
+
 					stats.items_saved++;
 					if (stats.sample.length < 5 && Array.isArray(parsed.axes) && parsed.axes.length > 0) {
 						stats.sample.push({
@@ -937,7 +953,7 @@ export default {
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/", "/health", "/drift-events", "/gap", "/gap-history", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/current/view", "/protocols/current/view/ru", "/protocols/current/view/zh", "/protocols/latest/view", "/protocols/latest/view/ru", "/protocols/latest/view/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
+					endpoints: ["/", "/health", "/drift-events", "/gap", "/gap-history", "/voices", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/current/view", "/protocols/current/view/ru", "/protocols/current/view/zh", "/protocols/latest/view", "/protocols/latest/view/ru", "/protocols/latest/view/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
 				}, 200);
 			}
 			if (path === "/health") {
@@ -1008,6 +1024,42 @@ export default {
 					generated_at: r.generated_at,
 				}));
 				return json({ count: weeks.length, weeks }, 200);
+			}
+
+			if (path === "/voices") {
+				const limitParam = url.searchParams.get("limit");
+				const categoryParam = url.searchParams.get("category");
+				const limit = Math.min(Math.max(parseInt(limitParam || "20", 10) || 20, 1), 100);
+
+				let query = "SELECT id, item_hash, speaker, affiliation, category, quote, quote_ru, quote_zh, date, source, relevance, axes, created_at FROM voices ";
+				const params: any[] = [];
+
+				if (categoryParam) {
+					query += "WHERE category = ? ";
+					params.push(categoryParam);
+				}
+
+				query += "ORDER BY created_at DESC LIMIT ?";
+				params.push(limit);
+
+				const rows = await env.DB.prepare(query).bind(...params).all();
+				const voices = (rows.results ?? []).map((r: any) => ({
+					id: r.id,
+					item_hash: r.item_hash,
+					speaker: r.speaker,
+					affiliation: r.affiliation,
+					category: r.category,
+					quote: r.quote,
+					quote_ru: r.quote_ru,
+					quote_zh: r.quote_zh,
+					date: r.date,
+					source: r.source,
+					relevance: r.relevance,
+					axes: JSON.parse(r.axes || "[]"),
+					created_at: r.created_at,
+				}));
+
+				return json({ count: voices.length, voices }, 200);
 			}
 			if (path === "/protocols/current") {
 				const range = getWeekRange(0);
