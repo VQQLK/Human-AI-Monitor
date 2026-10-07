@@ -117,6 +117,14 @@ xychart-beta
 
 — *OpenAI Blog*
 
+### 💼 投资人与科技领袖
+
+**Bill Gates (Gates Foundation) — 2026-09-27**
+
+> “比尔·盖茨称AI的‘紧急关闭装置’还不够”
+
+— *Politico — Technology*
+
 ## 这是什么
 
 `human-ai-monitor` 是一个每周协议，跟踪 **13 个轴 (12+1)**：

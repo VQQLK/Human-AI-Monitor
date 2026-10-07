@@ -80,29 +80,11 @@ xychart-beta
 
 ### 🧠 Frontier Labs
 
-**Dario Amodei (Anthropic) — 2026-09-27**
+**Mark Zuckerberg (Meta) — 2026-09-30**
 
-> Anthropic CEO Dario Amodei to have private White House dinner with Trump
+> Inside Zuckerberg, Huang’s push for White House AI pact
 
-— *The Hill — News*
-
-**Sam Altman (OpenAI) — 2026-09-29**
-
-> Altman unveils 'always-on' AI agent after OpenAI shelves model over safety concerns
-
-— *The Hill — Policy*
-
-**Sam Altman (OpenAI) — 2026-09-23**
-
-> Sam Altman’s remarks at the United Nations Security Council
-
-— *OpenAI Blog*
-
-**Sam Altman (OpenAI) — 2026-09-30**
-
-> Sam Altman says OpenAI won’t go public until its models are safe
-
-— *The Verge — AI*
+— *Politico — Technology*
 
 **Jensen Huang (Nvidia) — 2026-09-30**
 
@@ -110,277 +92,37 @@ xychart-beta
 
 — *Politico — Technology*
 
-### 🇺🇳 International Institutions & Policymakers
+**Sam Altman (OpenAI) — 2026-09-29**
 
-**Donald Trump (US President) — 2026-09-24**
-
-> Judge tosses Trump’s suit against Iowa pollster
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-24**
-
-> Judge restores journalists' White House access. And, Tucker Carlson on his MAGA split
-
-— *NPR — World*
-
-**Donald Trump (US President) — 2026-09-26**
-
-> Poll: Trump’s MAGA loyalists don’t think he has an affordability problem
-
-— *Politico — Politics*
-
-**Donald Trump (US President) — 2026-09-26**
-
-> Sunday shows preview: Trump rejects Iran deal after week of high-stakes meetings; GOP clammers to keep Congress
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-26**
-
-> Trump and Xi to set up AI safety channel as military, trade talks continue
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> Thune: Ads promoting Trump political message “shouldn’t be paid for by taxpayer dollars”
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> Iran says it's up to Trump to choose between war and diplomacy
-
-— *CBS News — World*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> Trump announces plans for largest steel plant in U.S. history to be built in Iowa
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-09-29**
-
-> Will Chinese AI companies slow down? A top House Democrat wants answers
-
-— *The Verge — AI*
-
-**Donald Trump (US President) — 2026-09-29**
-
-> Watch live: Trump to tout AI push with America.gov launch
+> Altman unveils 'always-on' AI agent after OpenAI shelves model over safety concerns
 
 — *The Hill — Policy*
 
-**Donald Trump (US President) — 2026-09-29**
+**Sam Altman (OpenAI) — 2026-09-30**
 
-> Potential Taiwan tension sparked 'last minute' change in Trump-Xi National Archives visit
-
-— *NPR — World*
-
-**Donald Trump (US President) — 2026-10-01**
-
-> ‘These guys are in a pickle’: Some Republicans spurn Trump on the campaign trail
-
-— *Politico — Politics*
-
-**Donald Trump (US President) — 2026-10-01**
-
-> Judge blocks Trump's firing of top federal prosecutor in Seattle
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-10-01**
-
-> Trump’s AI rebrand may stop at the White House
-
-— *Politico — Technology*
-
-**Donald Trump (US President) — 2026-10-02**
-
-> How did the beltway take Trump’s AI accord?
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-10-02**
-
-> Trump vows Iran war to end "very quickly" as more troops head to Mideast
-
-— *CBS News — World*
-
-**Donald Trump (US President) — 2026-10-04**
-
-> Live updates: Trump set for Nebraska trip after Ohio rally; Alito, Cornell victim’s attorney to appear on Sunday shows
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-10-04**
-
-> Trump announces AI "Super Intelligence Force"
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-10-02**
-
-> CPJ joins legal effort to restore White House press access
-
-— *CPJ (Committee to Protect Journalists)*
-
-**Donald Trump (US President) — 2026-10-04**
-
-> Trump’s gains among Latino voters slip ahead of midterms
-
-— *Politico — Politics*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> Trump and Johnson to meet with tech CEOs on AI risk
-
-— *Politico — Technology*
-
-**Donald Trump (US President) — 2026-09-24**
-
-> Judge orders White House to immediately restore access to CNN, MS NOW, Politico
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-27**
-
-> Anthropic CEO to attend White House dinner with Trump
-
-— *Politico — Technology*
-
-**Donald Trump (US President) — 2026-09-30**
-
-> Here’s how tech leaders will self-police AI safety under Trump’s deal
+> Sam Altman says OpenAI won’t go public until its models are safe
 
 — *The Verge — AI*
 
-**Donald Trump (US President) — 2026-10-02**
+**Dario Amodei (Anthropic) — 2026-09-27**
 
-> Hawley tests Trump’s hands-off approach to AI
+> Anthropic CEO Dario Amodei to have private White House dinner with Trump
+
+— *The Hill — News*
+
+**Sam Altman (OpenAI) — 2026-09-23**
+
+> Sam Altman’s remarks at the United Nations Security Council
+
+— *OpenAI Blog*
+
+### 💼 Investors & Tech Leaders
+
+**Bill Gates (Gates Foundation) — 2026-09-27**
+
+> Bill Gates says an AI ‘kill switch’ isn’t enough
 
 — *Politico — Technology*
-
-**Donald Trump (US President) — 2026-10-03**
-
-> For some Brazilians, this election is a vote on Trump
-
-— *NPR — World*
-
-**Donald Trump (US President) — 2026-10-05**
-
-> Trump’s approval hits new low among Hispanic voters ahead of midterms
-
-— *Al Jazeera*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> RBS-Attention: Radius-Bounded Sparse Prefill for Long-Context Large Language Models
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Attention-Aware Routing: Coupling Routing and Attention in MoEs
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> PRQuant: Permutation Residual Quantization for Low-Overhead Inference
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Generalized Multimodal Foundation Model
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Correcting Learning-based Perception for Safety
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Recognition, Simulation, and Refusal: A Contamination-Aware Study of Classic Psychological Effects in LLM Agents
-
-— *arXiv cs.CL*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Memory That Looks Forward: A Zero-Inference Prospective Term for Personal Memory Retrieval
-
-— *arXiv cs.CL*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Summarize, Judge, Refine: Decoupled Content Understanding and Policy Learning for Multimodal Content Moderation
-
-— *arXiv cs.CL*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Identity or Prompt Noise? A Calibrated Invariance Audit of LLM Code Generation
-
-— *arXiv cs.SE*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
-
-> Didactic knowledge or Clinical Cases? How Data Types Shape Medical Large Language Models
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
-
-> PAANI : On Device Visual Evidence Fusion and Explainable Guidance for River Robot Simulation
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
-
-> TRACTOR Benchmark for Evaluating C to Rust Translators
-
-— *arXiv cs.SE*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> Harness as a Language: A Minimalist Agent Framework With Maximal Expressivity
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> Signal2Symbol: Neuro-Symbolic Temporal Reasoning for Explainable Physiological Time-Series Anomaly Detection
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> HARN: Hierarchical Associative Resonance Network for Event-Driven Multi-Timeframe Forecasting
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> Who Finishes the Job? A Study of Follow-Up Fixes and Commit Authorship on AI Coding Agent Pull Requests
-
-— *arXiv cs.SE*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-25**
-
-> SMILESGNN: Interpretable Clinical Toxicity Prediction via SMILES-Graph Cross-Attention Fusion
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-25**
-
-> Framing by Wording, Framing by Selection: A Large-Scale Two-Dimensional Audit of French News Headlines, 2022-2025
-
-— *arXiv cs.CL*
 
 ## What is this
 
