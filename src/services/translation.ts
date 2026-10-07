@@ -263,7 +263,7 @@ export async function translateVoiceQuote(
 
 		const column = lang === 'ru' ? 'quote_ru' : 'quote_zh';
 		await env.DB.prepare(
-			`UPDATE voices SET ${column} = ? WHERE id = ?`
+			"UPDATE voices SET " + column + " = ? WHERE id = ?"
 		).bind(translated, voiceId).run();
 
 		return translated;
