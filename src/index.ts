@@ -5,7 +5,7 @@ import { AI_AXES, HUMAN_AXES } from "./config/axes";
 import { getAIPrompt, getHumanPrompt } from './config/prompts';
 import { fetchWithRetry } from "./utils/fetch-with-retry";
 import { handleExport } from './handlers/export';
-import { computeGapIndex } from './services/gap-computation';
+import { computeGapIndex, type GapResult } from './services/gap-computation';
 import { mulberry32, seedFromString } from './services/bayesian-gap';
 import { translateProtocolMarkdown, translateReasoningBatch } from './services/translation';
 import { isProtectedPath, verifyAuth } from './auth';
@@ -583,6 +583,34 @@ async function countProtocolItems(env: Env, range: any): Promise<{ items: number
 	return { items, shifts };
 }
 
+// Persist a daily snapshot row (idempotent on snapshot_date).
+// Written by both generateInterimProtocol (is_interim=1) and
+// generateAndSaveProtocol (is_interim=0).
+async function persistDailySnapshot(
+	env: Env,
+	gapResult: GapResult,
+	range: { start: string; end: string },
+	isInterim: boolean,
+): Promise<void> {
+	const snapshotDate = new Date().toISOString().slice(0, 10);
+	const recordedAt = new Date().toISOString();
+	await env.DB.prepare(
+		"INSERT OR REPLACE INTO daily_snapshots ("
+		+ "snapshot_date, week_start, week_end, "
+		+ "ai_score, human_score, gap, "
+		+ "gap_ci95_low, gap_ci95_high, gap_std, "
+		+ "sample_size, is_interim, method, recorded_at"
+		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?"
+		+ ")"
+	).bind(
+		snapshotDate, range.start, range.end,
+		gapResult.aiScore, gapResult.humanScore, gapResult.gap,
+		gapResult.gapCi95[0], gapResult.gapCi95[1], gapResult.gapStd,
+		gapResult.sampleSize, isInterim ? 1 : 0,
+		gapResult.method, recordedAt,
+	).run();
+}
+
 export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Promise<any> {
 	// Guard: refuse to generate protocol for the current (still-open) week.
 	// The cron uses offsetWeeks=1 (previous closed week). Direct calls with
@@ -620,6 +648,9 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 		gapResult.sampleSize, gapResult.statisticallySignificant ? 1 : 0,
 		gapResult.stability, gapResult.method
 	).run();
+
+	// Persist daily snapshot (is_interim = 0, FINAL)
+	await persistDailySnapshot(env, gapResult, range, false);
 	
 	// Persist axis posteriors to index_history
 	// (mean + CI95 + std + α + β + per-axis sample size).
@@ -732,6 +763,9 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 		gapResult.sampleSize, gapResult.statisticallySignificant ? 1 : 0,
 		gapResult.stability, gapResult.method
 	).run();
+
+	// Persist daily snapshot (is_interim = 1, INTERIM)
+	await persistDailySnapshot(env, gapResult, range, true);
 
 	// Persist axis posteriors to index_history
 	// (mean + CI95 + std + α + β + per-axis sample size).
@@ -929,6 +963,24 @@ export default {
 				if (!row) return json({ error: "No gap data" }, 404);
 				return json(row, 200);
 			}
+			if (path === "/daily-snapshots") {
+				const limitParam = url.searchParams.get("limit");
+				const limit = Math.min(Math.max(parseInt(limitParam || "90", 10) || 90, 1), 365);
+				const rows = await env.DB.prepare(
+					"SELECT snapshot_date, week_start, week_end, "
+					+ "       ai_score, human_score, gap, "
+					+ "       gap_ci95_low, gap_ci95_high, gap_std, "
+					+ "       sample_size, is_interim, method, recorded_at "
+					+ "FROM daily_snapshots "
+					+ "ORDER BY snapshot_date DESC "
+					+ "LIMIT ?"
+				).bind(limit).all();
+				return json({
+					count: rows.results?.length ?? 0,
+					snapshots: rows.results ?? [],
+				}, 200);
+			}
+
 			if (path === "/gap-history") {
 				// Full history of gap values, one row per week_start (finals + current interim).
 				// Joined with protocols to include week_end, items_count, is_interim.
