@@ -249,7 +249,10 @@ def build_interim_reference(interims, lang):
     if not interims:
         return ""
     w = interims[-1]
-    lbl = week_end_to_ddmm(w["week_end"])
+    # Interim regenerates daily; week_end is always in the future.
+    # Show the actual generation date instead.
+    gen = w.get("generated_at") or w.get("recorded_at") or w["week_end"]
+    lbl = week_end_to_ddmm(gen[:10])
     items = w["items"] if w["items"] is not None else "—"
     sample = w["sample"] if w["sample"] is not None else "—"
     L = STRINGS[lang]
