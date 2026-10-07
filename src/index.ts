@@ -953,7 +953,7 @@ export default {
 					github: "https://github.com/VQQLK/Human-AI-Monitor",
 					model: env.CLASSIFIER_MODEL,
 					sources_count: SOURCES.length,
-					endpoints: ["/", "/health", "/drift-events", "/gap", "/gap-history", "/voices", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/current/view", "/protocols/current/view/ru", "/protocols/current/view/zh", "/protocols/latest/view", "/protocols/latest/view/ru", "/protocols/latest/view/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly"],
+					endpoints: ["/", "/health", "/drift-events", "/gap", "/gap-history", "/voices", "/protocols", "/protocols/current", "/protocols/current/ru", "/protocols/current/zh", "/protocols/current/view", "/protocols/current/view/ru", "/protocols/current/view/zh", "/protocols/latest/view", "/protocols/latest/view/ru", "/protocols/latest/view/zh", "/protocols/{week}", "/protocols/{week}/content", "/protocols/{week}/content/ru", "/protocols/{week}/content/zh", "/translate-document", "/translate/{week}", "/axes/{axis}", "/axes-history", "/classify", "/verify", "/collect", "/generate", "/export-weekly", "/backfill-voices"],
 				}, 200);
 			}
 			if (path === "/health") {
@@ -1060,6 +1060,36 @@ export default {
 				}));
 
 				return json({ count: voices.length, voices }, 200);
+			}
+
+			if (path === "/backfill-voices") {
+				const auth = request.headers.get("Authorization");
+				if (!auth || !verifyAuth(auth, env)) {
+					return json({ error: "Unauthorized" }, 401);
+				}
+				
+				const items = await env.DB.prepare(
+					"SELECT hash, title, summary, source, date, relevance, axes FROM items"
+				).all();
+				
+				let extracted = 0;
+				for (const item of items.results ?? []) {
+					const voice = extractVoice({
+						title: item.title,
+						summary: item.summary,
+						source: item.source,
+						date: item.date,
+						relevance: item.relevance,
+						axes: JSON.parse(item.axes || "[]"),
+					});
+					
+					if (voice) {
+						await saveVoice(env.DB, item.hash, voice);
+						extracted++;
+					}
+				}
+				
+				return json({ extracted, total: items.results?.length ?? 0 }, 200);
 			}
 			if (path === "/protocols/current") {
 				const range = getWeekRange(0);
