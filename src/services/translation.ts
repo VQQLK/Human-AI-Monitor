@@ -272,3 +272,83 @@ export async function translateVoiceQuote(
 		return null;
 	}
 }
+
+/**
+ * Translate a batch of voice quotes in a single LLM call to save time.
+ */
+export async function translateVoicesBatch(
+	env: Env,
+	lang: TranslationLang,
+	limit: number = 10
+): Promise<{ translated: number; remaining: number; errors: string[] }> {
+	const column = lang === 'ru' ? 'quote_ru' : 'quote_zh';
+	const targetLangName = lang === 'ru' ? 'Russian' : 'Simplified Chinese';
+
+	// 1. Get untranslated quotes
+	const items = await env.DB.prepare(
+		"SELECT id, quote FROM voices WHERE (" + column + " IS NULL OR " + column + " = '') AND quote IS NOT NULL AND quote != '' ORDER BY created_at DESC LIMIT ?"
+	).bind(limit).all<{ id: number; quote: string }>();
+
+	if (!items.results || items.results.length === 0) {
+		return { translated: 0, remaining: 0, errors: [] };
+	}
+
+	// 2. Format prompt for batch translation
+	const numberedQuotes = items.results.map((it, idx) => `[${idx + 1}] "${it.quote}"`).join('\n\n');
+	const systemPrompt = `You are a professional translator. Translate the following quotes to ${targetLangName}.
+Preserve names, technical terms, and URLs. Output ONLY the translated quotes in the exact same numbered format:
+[1] translated quote 1
+[2] translated quote 2
+...`;
+
+	const errors: string[] = [];
+	let translatedCount = 0;
+
+	try {
+		// 3. Single LLM call for the whole batch
+		const response = await env.AI.run(env.CLASSIFIER_MODEL, {
+			messages: [
+				{ role: 'system', content: systemPrompt },
+				{ role: 'user', content: `Translate these ${items.results.length} quotes:\n\n${numberedQuotes}` },
+			],
+			temperature: 0.3,
+			max_tokens: 2048,
+		});
+
+		const translatedText = (response as any).response || '';
+		
+		// 4. Parse and save
+		const matches = translatedText.match(/\[\d+\]\s*([\s\S]*?)(?=\[\d+\]|$)/g) || [];
+		
+		for (let i = 0; i < items.results.length; i++) {
+			const match = matches[i];
+			let cleanQuote = items.results[i].quote; // fallback
+			if (match) {
+				cleanQuote = match.replace(/^\[\d+\]\s*"?|"?\s*$/g, '').trim();
+			}
+			
+			try {
+				await env.DB.prepare(
+					"UPDATE voices SET " + column + " = ? WHERE id = ?"
+				).bind(cleanQuote, items.results[i].id).run();
+				translatedCount++;
+			} catch (err) {
+				errors.push(`DB save failed for id ${items.results[i].id}`);
+			}
+		}
+	} catch (err) {
+		console.error(`[translateVoicesBatch] LLM call failed:`, err);
+		errors.push("LLM translation failed");
+	}
+
+	// 5. Check remaining
+	const remainingRes = await env.DB.prepare(
+		"SELECT COUNT(*) as count FROM voices WHERE (" + column + " IS NULL OR " + column + " = '') AND quote IS NOT NULL AND quote != ''"
+	).first<{ count: number }>();
+
+	return { 
+		translated: translatedCount, 
+		remaining: remainingRes?.count ?? 0, 
+		errors 
+	};
+}
