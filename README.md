@@ -48,6 +48,16 @@ xychart-beta
     line [-0.26, -0.26]
 ```
 
+#### 📅 Daily Gap trajectory
+
+```mermaid
+xychart-beta
+    title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
+    x-axis ["05/10", "07/10"]
+    y-axis "Gap" -0.36 --> -0.12
+    line [-0.26, -0.22]
+```
+
 #### 📚 Historical Protocols
 
 | Week | AI | Humanity | Gap | Items | Sample | Type |

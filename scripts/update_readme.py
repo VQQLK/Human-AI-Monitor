@@ -45,6 +45,7 @@ STRINGS = {
         "type_interim": "INTERIM", "type_final": "FINAL",
         "interim_note": "Last point is INTERIM — will be replaced by FINAL on Monday.",
         "interim_ref_prefix": "📌 Interim (reference, not on chart):",
+        "daily_header": "#### 📅 Daily Gap trajectory",
     },
     "ru": {
         "path": "README.ru.md",
@@ -67,6 +68,7 @@ STRINGS = {
         "type_interim": "ПРОМЕЖУТОЧНЫЙ", "type_final": "ФИНАЛЬНЫЙ",
         "interim_note": "Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.",
         "interim_ref_prefix": "📌 Промежуточный протокол (справочно, не на графике):",
+        "daily_header": "#### 📅 Ежедневная траектория Gap",
     },
     "zh": {
         "path": "README.zh.md",
@@ -89,6 +91,7 @@ STRINGS = {
         "type_interim": "临时版", "type_final": "最终版",
         "interim_note": "最后一点为临时版，将于周一替换为最终版。",
         "interim_ref_prefix": "📌 临时协议（仅供参考，不在图表上）：",
+        "daily_header": "#### 📅 每日差距轨迹",
     },
 }
 
@@ -135,6 +138,15 @@ def fetch_json(url, retries=3):
             if i < retries - 1:
                 time.sleep(2 ** i)
     raise last
+
+def fetch_daily_snapshots():
+    try:
+        data = fetch_json(f"{API}/daily-snapshots?limit=30")
+        return data.get("snapshots", [])
+    except Exception as e:
+        print(f"[update_readme] /daily-snapshots fetch failed: {e}", file=sys.stderr)
+        return []
+
 
 
 def fmt_date(dt, lang):
@@ -224,6 +236,32 @@ xychart-beta
 ```'''
 
 
+def build_daily_mermaid(snapshots, lang):
+    """Build mermaid block for daily Gap trajectory. Returns None if < 2 points."""
+    if not snapshots or len(snapshots) < 2:
+        return None
+    rows = sorted(snapshots, key=lambda s: s["snapshot_date"])[-30:]
+    labels = [week_end_to_ddmm(s["snapshot_date"]) for s in rows]
+    gaps = [s["gap"] for s in rows]
+    gap_line = ", ".join(f"{g:.2f}" for g in gaps)
+    x_axis = ", ".join(f'"{l}"' for l in labels)
+    y_min = min(gaps) - 0.1
+    y_max = max(gaps) + 0.1
+    titles = {
+        "en": "Daily Gap | Positive = Humanity leading, Negative = AI leading",
+        "ru": "Ежедневный Gap | Положительный = Человечество впереди, Отрицательный = ИИ впереди",
+        "zh": "每日差距 | 正值 = 人类领先，负值 = 人工智能领先",
+    }
+    y_axis_label = STRINGS[lang]["y_gap"]
+    return f'''```mermaid
+xychart-beta
+    title "{titles[lang]}"
+    x-axis [{x_axis}]
+    y-axis "{y_axis_label}" {y_min:.2f} --> {y_max:.2f}
+    line [{gap_line}]
+```'''
+
+
 def build_history_table(weeks, lang):
     """Build markdown table for finals only (chart history)."""
     L = STRINGS[lang]
@@ -265,7 +303,7 @@ def build_interim_reference(interims, lang):
     )
 
 
-def update_readme(path, lang, weeks, dry=False):
+def update_readme(path, lang, weeks, snapshots=None, dry=False):
     text = path.read_text(encoding="utf-8")
     original = text
     L = STRINGS[lang]
@@ -388,7 +426,11 @@ def update_readme(path, lang, weeks, dry=False):
     interims = [w for w in weeks if w.get("is_interim")]
     history_md = build_history_table(finals, lang)
     interim_ref = build_interim_reference(interims, lang)
-    blocks = [history_md.rstrip()]
+    daily_md = build_daily_mermaid(snapshots or [], lang)
+    blocks = []
+    if daily_md:
+        blocks.append(f"{L['daily_header']}\n\n{daily_md}".rstrip())
+    blocks.append(history_md.rstrip())
     if interim_ref:
         blocks.append(interim_ref.rstrip())
     insert_block = "\n\n" + "\n\n".join(blocks) + "\n"
@@ -406,7 +448,9 @@ def update_readme(path, lang, weeks, dry=False):
 
     # Idempotent: strip previous history section between graphs and separator.
     segment = text[after_m2:sep_pos]
-    idx = segment.find(L["hist_header"])
+    idx = segment.find(L["daily_header"])
+    if idx == -1:
+        idx = segment.find(L["hist_header"])
     if idx != -1:
         head = segment[:idx].rstrip("\n")
         text = text[:after_m2] + head + text[sep_pos:]
@@ -458,7 +502,8 @@ def main():
         data = fetch_json(f"{API}/gap-history")
 
     weeks = data.get("weeks", [])
-    print(f"[update_readme] weeks: {len(weeks)}")
+    snapshots = fetch_daily_snapshots()
+    print(f"[update_readme] weeks: {len(weeks)}, snapshots: {len(snapshots)}")
     if weeks:
         w = weeks[-1]
         print(f"  latest: {w['week_end']} ai={w['ai']} human={w['human']} "
@@ -471,7 +516,7 @@ def main():
             print(f"  {path.name}: NOT FOUND", file=sys.stderr)
             continue
         try:
-            update_readme(path, lang, weeks, dry=args.dry)
+            update_readme(path, lang, weeks, snapshots=snapshots, dry=args.dry)
         except Exception as e:
             print(f"  {path.name}: ERROR {e}", file=sys.stderr)
             return 1
