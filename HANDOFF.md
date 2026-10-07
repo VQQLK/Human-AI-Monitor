@@ -140,8 +140,10 @@ The bot pushed README — rebase resolves cleanly.
 | ----------------------------- | --------------------------------- |
 | 13:00, 13:15, 13:30, 13:45    | Daytime collection (4 batches)    |
 | 23:00                         | Evening collection                |
-| 14:00 Mon                     | sync-protocols.yml                |
-| 08:00 Sat                     | sync-protocols.yml                |
+| 13:45 Tue-Sun                 | Daily interim protocol            |
+| 13:45 Mon                     | Weekly FINAL protocol             |
+| 14:00 daily (Worker dispatch) | sync-protocols.yml                |
+| 14:00 Mon, 08:00 Sat          | sync-protocols.yml (native fallback) |
 
 ## 8. How to add a new source
 

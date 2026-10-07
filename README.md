@@ -356,7 +356,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ✅ Workers AI classifier (Qwen 3, calibrated for 13 axes (12+1))
 - ✅ RSS + HTML collector (39 sources: 25 AI + 14 Human)
 - ✅ Weekly protocol auto-generation (Markdown, EN/RU/ZH)
-- ✅ Interim/Final protocol split (Friday draft → Monday final)
+- ✅ Daily interim protocol, weekly FINAL on Monday
 - ✅ Cron Trigger (5 batches daily: 13:00-13:45 + 23:00 UTC)
 - ✅ First fully autonomous daily cycle completed (September 25, 2026)
 - ✅ Public API accessible worldwide
