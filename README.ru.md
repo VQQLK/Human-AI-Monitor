@@ -79,307 +79,41 @@ xychart-beta
 
 ### 🧠 Лаборатории переднего края
 
-**Dario Amodei (Anthropic) — 2026-09-27**
+**Mark Zuckerberg (Meta) — 2026-09-30**
 
-> CEO Anthropic Дарий Амодеи будет иметь частный ужин в Белом доме с Трампом
+> Внутри Цукерберга, давление Хуанга на соглашение о ИИ Белого дома
 
-— *The Hill — News*
-
-**Sam Altman (OpenAI) — 2026-09-29**
-
-> Альтман представляет «всегда включённого» AI-агента после того, как OpenAI отложил модель из-за опасений по безопасности
-
-— *The Hill — Policy*
-
-**Sam Altman (OpenAI) — 2026-09-23**
-
-> Выступления Сама Алтмана в Совете Безопасности ООН
-
-— *OpenAI Blog*
-
-**Sam Altman (OpenAI) — 2026-09-30**
-
-> Сэм Альтман говорит, что OpenAI не пойдёт на публичную биржу, пока его модели не будут безопасны
-
-— *The Verge — AI*
+— *Politico — Technology*
 
 **Jensen Huang (Nvidia) — 2026-09-30**
 
-> Внутри давления Цукерберга и Хуанга за соглашение по ИИ в Белом доме
+> Внутри Цукерберга, давление Хуанга на соглашение о ИИ Белого дома
 
 — *Politico — Technology*
 
-### 🇺🇳 Международные институты и политики
+**Sam Altman (OpenAI) — 2026-09-29**
 
-**Donald Trump (US President) — 2026-09-24**
-
-> Судья отклонил дело Трампа против опросчика из Айовы
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-24**
-
-> Судья восстанавливает доступ журналистов в Белый дом. И Торк Карлсон о своём расколе в MAGA
-
-— *NPR — World*
-
-**Donald Trump (US President) — 2026-09-26**
-
-> Опрос: лоялисты Трампа из движения MAGA не считают, что у него есть проблема с доступностью
-
-— *Politico — Politics*
-
-**Donald Trump (US President) — 2026-09-26**
-
-> Обзор Sunday shows: Трамп отвергает соглашение с Ираном после недели переговоров с высокими ставками; Республиканцы требуют сохранить контроль над Конгрессом
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-26**
-
-> Трамп и Си создадут канал безопасности ИИ, пока продолжаются военные и торговые переговоры
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> Тюн: Реклама, поддерживающая политическое сообщение Трампа, не должна оплачиваться денежными средствами налогоплательщиков.
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> Иран утверждает, что выбор между войной и дипломатией зависит от Трампа
-
-— *CBS News — World*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> Трамп объявляет о планах по строительству самого большого стального завода в истории США в Айове
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-09-29**
-
-> "Замедлятся ли китайские компании искусственного интеллекта? Высокопоставленный демократ Палаты представителей требует
-
-— *The Verge — AI*
-
-**Donald Trump (US President) — 2026-09-29**
-
-> Смотреть в прямом эфире: Трамп будет продвигать инициативу в области ИИ с запуском America.gov
+> Альтман представляет «всегда включённого» ИИ-агента после того, как OpenAI отложил модель из-за опасений по безопасности
 
 — *The Hill — Policy*
 
-**Donald Trump (US President) — 2026-09-29**
+**Sam Altman (OpenAI) — 2026-09-30**
 
-> Потенциальные напряжённости на Тайване вызвали 'последнюю минуту' изменение в визите Трампа и Си в Национальный архив
-
-— *NPR — World*
-
-**Donald Trump (US President) — 2026-10-01**
-
-> «Эти парни в беде»: Некоторые республиканцы отвергают Трампа на кампании
-
-— *Politico — Politics*
-
-**Donald Trump (US President) — 2026-10-01**
-
-> Суд запрещает увольнение Трампом старшего федерального прокурора в Сиэтле
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-10-01**
-
-> Переименование ИИ Трампа может остаться в Белом доме
-
-— *Politico — Technology*
-
-**Donald Trump (US President) — 2026-10-02**
-
-> Как бельтвей принял договор Трампа по ИИ?
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-10-02**
-
-> Трамп обещает войну с Ираном, чтобы закончить её очень быстро, когда больше войск направляются в Ближний Восток
-
-— *CBS News — World*
-
-**Donald Trump (US President) — 2026-10-04**
-
-> Онлайн-обновления: Трамп отправляется в поездку в Небраску после митинга в Огайо; Алито, адвокат жертвы Корнелл появится на Sunday shows
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-10-04**
-
-> Трамп объявляет о создании «Сверхинтеллектуальной силы» ИИ
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-10-02**
-
-> CPJ присоединяется к правовой кампании по восстановлению доступа прессы в Белый дом
-
-— *CPJ (Committee to Protect Journalists)*
-
-**Donald Trump (US President) — 2026-10-04**
-
-> Приобретения Трампа среди латиноамериканских избирателей снижаются перед выборами
-
-— *Politico — Politics*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> Трамп и Джонсон встретятся с CEO технологических компаний по вопросам рисков ИИ
-
-— *Politico — Technology*
-
-**Donald Trump (US President) — 2026-09-24**
-
-> Суд приказывает Белому дому немедленно восстановить доступ для CNN, MS NOW, Politico
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-27**
-
-> CEO Anthropic примет участие в ужине в Белом доме с Трампом
-
-— *Politico — Technology*
-
-**Donald Trump (US President) — 2026-09-30**
-
-> "Вот как технологические лидеры будут саморегулировать
+> Сэм Альтман говорит, что OpenAI не пойдёт на публичное размещение, пока его модели не будут безопасны
 
 — *The Verge — AI*
 
-**Donald Trump (US President) — 2026-10-02**
+**Dario Amodei (Anthropic) — 2026-09-27**
 
-> Хоули проверяет подход Трампа к ИИ без вмешательства
+> Генеральный директор Anthropic Дарийо Амодеи будет иметь частный ужин в Белом доме с Трампом
 
-— *Politico — Technology*
+— *The Hill — News*
 
-**Donald Trump (US President) — 2026-10-03**
+**Sam Altman (OpenAI) — 2026-09-23**
 
-> Для некоторых бразильцев этот выбор — голос за Трампа
+> Выступление Сэма Альтмана в Совете Безопасности ООН
 
-— *NPR — World*
-
-**Donald Trump (US President) — 2026-10-05**
-
-> Поддержка Трампа достигает нового минимума среди испаноязычных избирателей перед выборами
-
-— *Al Jazeera*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> RBS-Attention: Ограниченное по радиусу разреженное заполнение для моделей больших языков с длинным контекстом
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Ориентированный на внимание маршрут: Связь маршрутизации и внимания в MoEs
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> PRQuant: Перестан
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Generalized Multimodal Foundation Model
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Correcting Learning-based Perception for Safety
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Recognition, Simulation, and Refusal: A Contamination-Aware Study of Classic Psychological Effects in LLM Agents
-
-— *arXiv cs.CL*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Memory That Looks Forward: A Zero-Inference Prospective Term for Personal Memory Retrieval
-
-— *arXiv cs.CL*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Summarize, Judge, Refine: Decoupled Content Understanding and Policy Learning for Multimodal Content Moderation
-
-— *arXiv cs.CL*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Identity or Prompt Noise? A Calibrated Invariance Audit of LLM Code Generation
-
-— *arXiv cs.SE*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
-
-> Didactic knowledge or Clinical Cases? How Data Types Shape Medical Large Language Models
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
-
-> PAANI : On Device Visual Evidence Fusion and Explainable Guidance for River Robot Simulation
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
-
-> TRACTOR Benchmark for Evaluating C to Rust Translators
-
-— *arXiv cs.SE*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> Harness as a Language: A Minimalist Agent Framework With Maximal Expressivity
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> Signal2Symbol: Neuro-Symbolic Temporal Reasoning for Explainable Physiological Time-Series Anomaly Detection
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> HARN: Hierarchical Associative Resonance Network for Event-Driven Multi-Timeframe Forecasting
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> Who Finishes the Job? A Study of Follow-Up Fixes and Commit Authorship on AI Coding Agent Pull Requests
-
-— *arXiv cs.SE*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-25**
-
-> SMILESGNN: Interpretable Clinical Toxicity Prediction via SMILES-Graph Cross-Attention Fusion
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-25**
-
-> Framing by Wording, Framing by Selection: A Large-Scale Two-Dimensional Audit of French News Headlines, 2022-2025
-
-— *arXiv cs.CL*
+— *OpenAI Blog*
 
 ## Что это
 
