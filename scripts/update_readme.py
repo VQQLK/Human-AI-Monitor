@@ -11,6 +11,8 @@ import json
 import re
 import subprocess
 import sys
+import html
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -152,6 +154,15 @@ def fetch_daily_snapshots():
     except Exception as e:
         print(f"[update_readme] /daily-snapshots fetch failed: {e}", file=sys.stderr)
         return []
+
+def fetch_voices(limit=50):
+    try:
+        data = fetch_json(f"{API}/voices?limit={limit}")
+        return data.get("voices", [])
+    except Exception as e:
+        print(f"[update_readme] /voices fetch failed: {e}", file=sys.stderr)
+        return []
+
 
 
 
@@ -333,7 +344,61 @@ def build_interim_reference(interims, lang):
     )
 
 
-def update_readme(path, lang, weeks, snapshots=None, dry=False):
+
+def build_voices_markdown(voices, lang):
+    if not voices:
+        return None
+    
+    cats = {
+        "en": {
+            "frontier_labs": "🧠 Frontier Labs",
+            "researchers": "🧪 AI Researchers & Safety Experts",
+            "institutions": "🇺🇳 International Institutions & Policymakers",
+            "us_administration": "🏛️ US Administration",
+            "mathematics": "🧮 Mathematics Community",
+            "philosophy": "🌏 Philosophy",
+        },
+        "ru": {
+            "frontier_labs": "🧠 Лаборатории переднего края",
+            "researchers": "🧪 Исследователи ИИ и эксперты по безопасности",
+            "institutions": "🇺🇳 Международные институты и политики",
+            "us_administration": "🏛️ Администрация США",
+            "mathematics": "🧮 Математическое сообщество",
+            "philosophy": "🌏 Философия",
+        },
+        "zh": {
+            "frontier_labs": "🧠 前沿实验室",
+            "researchers": "🧪 AI研究人员与安全专家",
+            "institutions": "🇺🇳 国际机构与政策制定者",
+            "us_administration": "🏛️ 美国政府",
+            "mathematics": "🧮 数学界",
+            "philosophy": "🌏 哲学",
+        }
+    }
+    
+    grouped = {}
+    for v in voices:
+        cat = v.get("category", "other")
+        if cat not in grouped:
+            grouped[cat] = []
+        grouped[cat].append(v)
+    
+    lines = ["## Voices\n"]
+    for cat_key, cat_voices in grouped.items():
+        if cat_key not in cats[lang]:
+            continue
+        lines.append(f"### {cats[lang][cat_key]}\n")
+        for v in cat_voices:
+            quote = v.get(f"quote_{lang}") or v.get("quote", "")
+            quote = html.unescape(quote) # Очистка от &#039; и т.д.
+            
+            lines.append(f"**{v['speaker']} ({v['affiliation']}) — {v['date']}**\n")
+            lines.append(f"> {quote}\n")
+            lines.append(f"— *{v['source']}*\n")
+    
+    return "\n".join(lines).strip() + "\n"
+
+def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
     text = path.read_text(encoding="utf-8")
     original = text
     L = STRINGS[lang]
@@ -469,6 +534,27 @@ def update_readme(path, lang, weeks, snapshots=None, dry=False):
         blocks.append(interim_ref.rstrip())
     insert_block = "\n\n" + "\n\n".join(blocks) + "\n"
 
+    # Update Voices section dynamically
+    voices_md = build_voices_markdown(voices or [], lang)
+    if voices_md:
+        pattern = r'(?m)^## Voices\s*\n.*?(?=\n## |\Z)'
+        if re.search(pattern, text, re.DOTALL):
+            text = re.sub(pattern, voices_md.rstrip() + '\n', text, flags=re.DOTALL)
+        else:
+            text = text.rstrip() + '\n\n' + voices_md.rstrip() + '\n'
+
+
+    # Update Voices section
+    voices_md = build_voices_markdown(voices or [], lang)
+    if voices_md:
+        # Replace existing ## Voices section or append if not found
+        pattern = r'(?m)^## Voices\s*\n.*?(?=\n## |\Z)'
+        if re.search(pattern, text, re.DOTALL):
+            text = re.sub(pattern, voices_md.rstrip() + '\n', text, flags=re.DOTALL)
+        else:
+            text = text.rstrip() + '\n\n' + voices_md.rstrip() + '\n'
+
+
     m2 = list(re.finditer(r"```mermaid\n.*?\n```", text, flags=re.DOTALL))
     if len(m2) < 2:
         print(f"  {path.name}: mermaid blocks not found after replace")
@@ -537,7 +623,8 @@ def main():
 
     weeks = data.get("weeks", [])
     snapshots = fetch_daily_snapshots()
-    print(f"[update_readme] weeks: {len(weeks)}, snapshots: {len(snapshots)}")
+    voices = fetch_voices()
+    print(f"[update_readme] weeks: {len(weeks)}, snapshots: {len(snapshots)}, voices: {len(voices)}")
     if weeks:
         w = weeks[-1]
         print(f"  latest: {w['week_end']} ai={w['ai']} human={w['human']} "
@@ -550,7 +637,7 @@ def main():
             print(f"  {path.name}: NOT FOUND", file=sys.stderr)
             continue
         try:
-            update_readme(path, lang, weeks, snapshots=snapshots, dry=args.dry)
+            update_readme(path, lang, weeks, snapshots=snapshots, voices=voices, dry=args.dry)
         except Exception as e:
             print(f"  {path.name}: ERROR {e}", file=sys.stderr)
             return 1
