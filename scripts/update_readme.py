@@ -46,6 +46,8 @@ STRINGS = {
         "interim_note": "Last point is INTERIM — will be replaced by FINAL on Monday.",
         "interim_ref_prefix": "📌 Interim (reference, not on chart):",
         "daily_header": "#### 📅 Daily Gap trajectory",
+        "daily_col_date": "Date",
+        "daily_col_ci": "CI95",
     },
     "ru": {
         "path": "README.ru.md",
@@ -69,6 +71,8 @@ STRINGS = {
         "interim_note": "Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.",
         "interim_ref_prefix": "📌 Промежуточный протокол (справочно, не на графике):",
         "daily_header": "#### 📅 Ежедневная траектория Gap",
+        "daily_col_date": "Дата",
+        "daily_col_ci": "CI95",
     },
     "zh": {
         "path": "README.zh.md",
@@ -92,6 +96,8 @@ STRINGS = {
         "interim_note": "最后一点为临时版，将于周一替换为最终版。",
         "interim_ref_prefix": "📌 临时协议（仅供参考，不在图表上）：",
         "daily_header": "#### 📅 每日差距轨迹",
+        "daily_col_date": "日期",
+        "daily_col_ci": "CI95",
     },
 }
 
@@ -262,6 +268,30 @@ xychart-beta
 ```'''
 
 
+def build_daily_table(snapshots, lang):
+    """Build markdown table for daily snapshots (newest first). Returns "" if < 2 points."""
+    if not snapshots or len(snapshots) < 2:
+        return ""
+    L = STRINGS[lang]
+    rows = sorted(snapshots, key=lambda s: s["snapshot_date"], reverse=True)[:30]
+    header = (f"| {L['daily_col_date']} | {L['hist_col_ai']} | {L['hist_col_human']} "
+              f"| {L['hist_col_gap']} | {L['daily_col_ci']} | {L['hist_col_items']} | {L['hist_col_type']} |")
+    sep = "|---|---|---|---|---|---|---|"
+    lines = [header, sep]
+    for s in rows:
+        ci_lo = s.get("gap_ci95_low")
+        ci_hi = s.get("gap_ci95_high")
+        ci = f"[{fmt_gap(ci_lo)}, {fmt_gap(ci_hi)}]" if ci_lo is not None and ci_hi is not None else "—"
+        date_lbl = week_end_to_ddmm(s["snapshot_date"])
+        ai = f"{s['ai_score']:.2f}" if s.get("ai_score") is not None else "—"
+        human = f"{s['human_score']:.2f}" if s.get("human_score") is not None else "—"
+        gap = fmt_gap(s["gap"]) if s.get("gap") is not None else "—"
+        items = s.get("sample_size") if s.get("sample_size") is not None else "—"
+        typ = L["type_interim"] if s["is_interim"] == 1 else L["type_final"]
+        lines.append(f"| {date_lbl} | {ai} | {human} | {gap} | {ci} | {items} | {typ} |")
+    return "\n".join(lines)
+
+
 def build_history_table(weeks, lang):
     """Build markdown table for finals only (chart history)."""
     L = STRINGS[lang]
@@ -427,9 +457,13 @@ def update_readme(path, lang, weeks, snapshots=None, dry=False):
     history_md = build_history_table(finals, lang)
     interim_ref = build_interim_reference(interims, lang)
     daily_md = build_daily_mermaid(snapshots or [], lang)
+    daily_table_md = build_daily_table(snapshots or [], lang)
     blocks = []
     if daily_md:
-        blocks.append(f"{L['daily_header']}\n\n{daily_md}".rstrip())
+        daily_parts = [f"{L['daily_header']}\n\n{daily_md}"]
+        if daily_table_md:
+            daily_parts.append(daily_table_md)
+        blocks.append("\n\n".join(daily_parts).rstrip())
     blocks.append(history_md.rstrip())
     if interim_ref:
         blocks.append(interim_ref.rstrip())

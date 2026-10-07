@@ -58,6 +58,11 @@ xychart-beta
     line [-0.26, -0.22]
 ```
 
+| Date | AI | Humanity | Gap | CI95 | Items | Type |
+|---|---|---|---|---|---|---|
+| 07/10 | 0.61 | 0.39 | −0.22 | [−0.56, +0.13] | 100 | INTERIM |
+| 05/10 | 0.76 | 0.50 | −0.26 | [−0.52, +0.01] | 237 | FINAL |
+
 #### 📚 Historical Protocols
 
 | Week | AI | Humanity | Gap | Items | Sample | Type |
