@@ -54,7 +54,7 @@ xychart-beta
 |---|---|---|---|---|---|---|
 | 04/10 | 0.76 | 0.50 | −0.26 | 237 | 247 | FINAL |
 
-> 📌 Interim (reference, not on chart): 11/10 — AI 0.61 · Humanity 0.39 · Gap −0.22 · 101 / 100 items.
+> 📌 Interim (reference, not on chart): 07/10 — AI 0.61 · Humanity 0.39 · Gap −0.22 · 101 / 100 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
