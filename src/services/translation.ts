@@ -210,3 +210,65 @@ export async function translateProtocolMarkdown(
 		return englishMarkdown;
 	}
 }
+
+const VOICE_SYSTEM_PROMPT_RU = `You are a professional translator. Translate the following quote to Russian.
+Preserve:
+- Names of people and organizations (keep in English or standard Russian transliteration).
+- Technical terms and URLs unchanged.
+- The original meaning and tone.
+Output ONLY the translated text.`;
+
+const VOICE_SYSTEM_PROMPT_ZH = `You are a professional translator. Translate the following quote to Simplified Chinese.
+Preserve:
+- Names of people and organizations (keep in English or standard Chinese translation).
+- Technical terms and URLs unchanged.
+- The original meaning and tone.
+Output ONLY the translated text.`;
+
+/**
+ * Translate a single voice quote and update the database.
+ */
+export async function translateVoiceQuote(
+	env: Env,
+	voiceId: number,
+	lang: TranslationLang
+): Promise<string | null> {
+	const result = await env.DB.prepare(
+		"SELECT quote FROM voices WHERE id = ?"
+	).bind(voiceId).first<{ quote: string }>();
+
+	if (!result || !result.quote) {
+		return null;
+	}
+
+	const quote = result.quote;
+	const systemPrompt = lang === 'ru' ? VOICE_SYSTEM_PROMPT_RU : VOICE_SYSTEM_PROMPT_ZH;
+	const targetLangName = lang === 'ru' ? 'Russian' : 'Simplified Chinese';
+
+	try {
+		const response = await env.AI.run(env.CLASSIFIER_MODEL, {
+			messages: [
+				{ role: 'system', content: systemPrompt },
+				{ role: 'user', content: `Translate this quote to ${targetLangName}:\n\n"${quote}"` },
+			],
+			temperature: 0.3,
+			max_tokens: 512,
+		});
+
+		const translated = ((response as any).response || '').trim();
+		
+		if (!translated) {
+			return null;
+		}
+
+		const column = lang === 'ru' ? 'quote_ru' : 'quote_zh';
+		await env.DB.prepare(
+			`UPDATE voices SET ${column} = ? WHERE id = ?`
+		).bind(translated, voiceId).run();
+
+		return translated;
+	} catch (err) {
+		console.error(`[translateVoiceQuote] failed for id ${voiceId}:`, err);
+		return null;
+	}
+}
