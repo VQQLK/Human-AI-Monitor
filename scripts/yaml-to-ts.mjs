@@ -21,7 +21,8 @@ const yamlFiles = [
   { yaml: 'axes_ai.yaml', ts: 'axes_ai.ts' },
   { yaml: 'axes_human.yaml', ts: 'axes_human.ts' },
   { yaml: 'sources_ai.yaml', ts: 'sources_ai.ts' },
-  { yaml: 'sources_human.yaml', ts: 'sources_human.ts' }
+  { yaml: 'sources_human.yaml', ts: 'sources_human.ts' },
+  { yaml: 'voices.yaml', ts: 'voices.ts' }
 ];
 
 console.log('\n🔄 Конвертация YAML → TypeScript...\n');
