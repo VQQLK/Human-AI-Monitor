@@ -7,7 +7,7 @@ import { fetchWithRetry } from "./utils/fetch-with-retry";
 import { handleExport } from './handlers/export';
 import { computeGapIndex, type GapResult } from './services/gap-computation';
 import { mulberry32, seedFromString } from './services/bayesian-gap';
-import { translateProtocolMarkdown, translateReasoningBatch } from './services/translation';
+import { translateProtocolMarkdown, translateReasoningBatch, translateVoiceQuote } from './services/translation';
 import { isProtectedPath, verifyAuth } from './auth';
 import { extractVoice, saveVoice } from './services/voices';
 
@@ -1090,6 +1090,50 @@ export default {
 				}
 				
 				return json({ extracted, total: items.results?.length ?? 0 }, 200);
+			}
+			if (path === "/translate-voices") {
+				if (!verifyAuth(request, env)) {
+					return json({ error: "Unauthorized" }, 401);
+				}
+
+				const langParam = url.searchParams.get("lang");
+				if (langParam !== "ru" && langParam !== "zh") {
+					return json({ error: "Invalid lang. Use 'ru' or 'zh'" }, 400);
+				}
+				const lang = langParam as "ru" | "zh";
+
+				const limitParam = url.searchParams.get("limit");
+				const limit = Math.min(Math.max(parseInt(limitParam || "20", 10) || 20, 1), 50);
+
+				const column = lang === "ru" ? "quote_ru" : "quote_zh";
+
+				const items = await env.DB.prepare(
+					`SELECT id, quote FROM voices WHERE (\${column} IS NULL OR \${column} = '') AND quote IS NOT NULL AND quote != '' ORDER BY created_at DESC LIMIT ?`
+				).bind(limit).all();
+
+				let translatedCount = 0;
+				const errors: string[] = [];
+
+				for (const row of items.results ?? []) {
+					const item = row as any;
+					const success = await translateVoiceQuote(env, item.id, lang);
+					if (success) {
+						translatedCount++;
+					} else {
+						errors.push(`Failed to translate voice id \${item.id}`);
+					}
+				}
+
+				const remaining = await env.DB.prepare(
+					`SELECT COUNT(*) as count FROM voices WHERE (\${column} IS NULL OR \${column} = '') AND quote IS NOT NULL AND quote != ''`
+				).first<{ count: number }>();
+
+				return json({ 
+					translated: translatedCount, 
+					requested: limit,
+					remaining: remaining?.count ?? 0,
+					errors: errors.slice(0, 5)
+				}, 200);
 			}
 			if (path === "/protocols/current") {
 				const range = getWeekRange(0);
