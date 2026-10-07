@@ -47,6 +47,7 @@ STRINGS = {
         "type_interim": "INTERIM", "type_final": "FINAL",
         "interim_note": "Last point is INTERIM — will be replaced by FINAL on Monday.",
         "interim_ref_prefix": "📌 Interim (reference, not on chart):",
+        "voices_header": "Voices",
         "daily_header": "#### 📅 Daily Gap trajectory",
         "daily_col_date": "Date",
         "daily_col_ci": "CI95",
@@ -72,6 +73,7 @@ STRINGS = {
         "type_interim": "ПРОМЕЖУТОЧНЫЙ", "type_final": "ФИНАЛЬНЫЙ",
         "interim_note": "Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.",
         "interim_ref_prefix": "📌 Промежуточный протокол (справочно, не на графике):",
+        "voices_header": "Мнения",
         "daily_header": "#### 📅 Ежедневная траектория Gap",
         "daily_col_date": "Дата",
         "daily_col_ci": "CI95",
@@ -97,6 +99,7 @@ STRINGS = {
         "type_interim": "临时版", "type_final": "最终版",
         "interim_note": "最后一点为临时版，将于周一替换为最终版。",
         "interim_ref_prefix": "📌 临时协议（仅供参考，不在图表上）：",
+        "voices_header": "声音",
         "daily_header": "#### 📅 每日差距轨迹",
         "daily_col_date": "日期",
         "daily_col_ci": "CI95",
@@ -348,6 +351,7 @@ def build_interim_reference(interims, lang):
 def build_voices_markdown(voices, lang):
     if not voices:
         return None
+    L = STRINGS[lang]
     
     cats = {
         "en": {
@@ -383,7 +387,7 @@ def build_voices_markdown(voices, lang):
             grouped[cat] = []
         grouped[cat].append(v)
     
-    lines = ["## Voices\n"]
+    lines = [f"## {L['voices_header']}\n"]
     for cat_key, cat_voices in grouped.items():
         if cat_key not in cats[lang]:
             continue
@@ -537,22 +541,13 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
     # Update Voices section dynamically
     voices_md = build_voices_markdown(voices or [], lang)
     if voices_md:
-        pattern = r'(?m)^## Voices\s*\n.*?(?=\n## |\Z)'
+        pattern = r'(?m)^## ' + re.escape(L['voices_header']) + r'\s*\n.*?(?=\n## |\Z)'
         if re.search(pattern, text, re.DOTALL):
             text = re.sub(pattern, voices_md.rstrip() + '\n', text, flags=re.DOTALL)
         else:
             text = text.rstrip() + '\n\n' + voices_md.rstrip() + '\n'
 
 
-    # Update Voices section
-    voices_md = build_voices_markdown(voices or [], lang)
-    if voices_md:
-        # Replace existing ## Voices section or append if not found
-        pattern = r'(?m)^## Voices\s*\n.*?(?=\n## |\Z)'
-        if re.search(pattern, text, re.DOTALL):
-            text = re.sub(pattern, voices_md.rstrip() + '\n', text, flags=re.DOTALL)
-        else:
-            text = text.rstrip() + '\n\n' + voices_md.rstrip() + '\n'
 
 
     m2 = list(re.finditer(r"```mermaid\n.*?\n```", text, flags=re.DOTALL))

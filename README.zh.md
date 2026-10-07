@@ -79,118 +79,310 @@ xychart-beta
 
 ## 声音
 
-该项目追踪着一场辩论，其中每个参与者都同意某些根本性的事情正在发生——但在几乎所有其他方面都存在分歧。
-
 ### 🧠 前沿实验室
 
-**Dario Amodei (Anthropic) — 12.09.2026**
+**Dario Amodei (Anthropic) — 2026-09-27**
 
-> "我们必须减缓改进人工智能模型能力的速度。进步仍将显得很快，我们必须明智地利用获得的时间。"
-> — *《我们必须放慢前沿》论文*
+> “Anthropic 首席执行官达里奥·阿莫迪将与特朗普举行私人白宫晚宴”
 
-**Sam Altman (OpenAI) — 15.09.2026**
+— *The Hill — News*
 
-> "世界应该相信我们会做正确的事，因为这是正确的事，我们意识到这一点的重要性。想象这可能出错的方式不需要像以前那样多的想象力。我认为世界对这一点感到害怕是正确的。"
-> — *旧金山Salesforce活动*
+**Sam Altman (OpenAI) — 2026-09-29**
 
-**Sam Altman — 25.07.2026**
+> "Altman 在 OpenAI 因安全问题
 
-> "我们现在，就像，处于奇点。这是关键时刻。我一直在等待这一刻，我认为它将非常积极，对世界来说是惊人的。"
-> — *"Relentless"播客*
+— *The Hill — Policy*
 
-**Elon Musk (xAI) — 15.09.2026**
+**Sam Altman (OpenAI) — 2026-09-23**
 
-> "我不想让你失望，但有一天我们都会死。如果人工智能控制了军事系统，并例如下令发射核武器，那将是不好的。"
-> — *2026年All-In峰会，洛杉矶*
+> 山姆·阿尔特曼在联合国安全理事会的讲话
 
-**Jensen Huang (Nvidia) — 15.09.2026**
+— *OpenAI Blog*
 
-> "我们不需要新法律。我们不需要新法规。在创新和安全之间做出选择是一个虚假的选择。你完全可以同时拥有两者。所以尽可能快地奔跑吧。"
-> — *Dreamforce 2026，旧金山*
+**Sam Altman (OpenAI) — 2026-09-30**
 
-**Mark Zuckerberg (Meta) — 15.09.2026**
+> 山姆·阿尔特曼表示，OpenAI 在其模型安全之前不会上市。
 
-> "人们不会使用与自己不一致且不按要求行事的代理，因此实验室有强烈的自然激励来使其模型更加一致。任何不专注于对齐的实验室都将落后。"
-> — *在X上发布的帖子，拒绝行业放缓的呼吁*
+— *The Verge — AI*
 
-**Mark Zuckerberg — 10.08.2026**
+**Jensen Huang (Nvidia) — 2026-09-30**
 
-> "这不是一个技术原理。这是权力平衡的问题。不存在单一的仁慈超级智能。"
-> — *《未来属于每个人》论文*
+> “扎克伯格和黄推动白宫人工智能协议”
 
-### 🧪 人工智能研究人员与安全专家
-
-**Demis Hassabis (Google DeepMind) — 13.09.2026**
-
-> "Dario的论文指出了正确的前进方向。细节需要解决，但方向是正确的，以应对这一关键时刻。这也是为什么我们最近提出了一个行业范围的标准机构的建议。"
-> — *在X上发布的帖子，支持Amodei的放缓呼吁*
-
-**Geoffrey Hinton (前Google，诺贝尔奖得主) — 10.09.2026**
-
-> "我们从未创造过可能很快比我们更聪明的生物。我们不知道会发生什么。对我来说，10%的可能性似乎不是一个不合理的估计。但没有人真正知道如何给出一个合理的估计。"
-> — *BBC Newsnight采访*
-
-**Geoffrey Hinton — 16.09.2026**
-
-> "一个关闭开关对这种情况没有用，因为人工智能会比人类更擅长说服人们。它会说服负责开关的人不要按下开关。"
-> — *在CNN采访中解释为什么“关闭开关”不起作用*
-
-**Stuart Russell (加州大学伯克利分校) — 16.09.2026**
-
-> "所以这是一个横跨赛道的障碍。这不是赛道裁判挥旗说减速。你只有在证明你的系统具有必要的安全特性时才能跨越这个障碍。"
-> — *NDTV独家采访，主张强制性安全阈值*
-
-**Yann LeCun (Meta，首席人工智能科学家) — 13.09.2026**
-
-> "存在性恐惧论是‘完全的无稽之谈’，旨在操纵监管捕获并扼杀开源人工智能。放缓人工智能发展的呼声是封闭源代码实验室的‘监管捕获’行为。"
-> — *《前沿分裂》分析报道*
+— *Politico — Technology*
 
 ### 🇺🇳 国际机构与政策制定者
 
-**António Guterres (联合国秘书长) — 16.09.2026**
+**Donald Trump (US President) — 2026-09-24**
 
-> "世界无法承担在人工智能安全方面陷入低水平竞争。我们需要护栏来建立信任——并使人工智能安全、透明、可问责，并以人类尊严为中心。"
-> — *在联合国总部，大会前夕*
+> 法官驳回特朗普对爱荷华州民调专家的诉讼
 
-**António Guterres — 19.02.2026**
+— *The Hill — News*
 
-> "人工智能的未来不能由少数国家决定——或由少数亿万富翁的意愿所左右。"
-> — *印度人工智能影响峰会，新德里*
+**Donald Trump (US President) — 2026-09-24**
 
-**Donald Trump (美国总统) — 13.09.2026**
+> “法官恢复记者的白宫访问权限。此外，塔克·卡森谈他的MAGA分裂”
 
-> "谁赢得人工智能，谁就获胜。我们在人工智能方面领先中国。我们是世界上最先进的国家，说实话，我希望保持这种状态。"
-> — *爱尔兰公开赛，多尼。将人工智能的生存风险贬低为“骗局”和“四维国际象棋”。*
+— *NPR — World*
 
-**Donald Trump (美国总统) — 19.09.2026**
+**Donald Trump (US President) — 2026-09-26**
 
-> "为此，我正在组建人工智能部队，就像我组建太空部队一样，这在我的第一任期内取得了巨大成功。为此，我将在不久的将来宣布人工智能‘负责人’——只有高智商的人才有资格申请！"
-> — *Truth Social帖子。宣布了创建人工智能部队和任命人工智能负责人的计划，但未提供细节。*
+> 民调：特朗普的MAGA支持者认为他没有负担问题。
 
-**Xi Jinping (中华人民共和国主席) — 13.09.2026**
+— *Politico — Politics*
 
-> "首先，开源和包容性人工智能倡议。中国将在建立金砖国家人工智能开源社区方面成为先驱，支持大型语言模型的开发和应用合作，举办专门的人工智能研讨会和培训课程，并建立人工智能的开放生态系统。"
-> — *在第18届金砖国家峰会第二阶段，新德里。*
+**Donald Trump (US President) — 2026-09-26**
 
-### 🧮 数学界
+> 周日节目预告：特朗普在经历一周高风险会议后拒绝伊朗协议；共和党呼吁保持国会控制权
 
-**25位菲尔兹奖得主 — 11.09.2026**
+— *The Hill — News*
 
-> "人工智能公司和数学界的目标严重不一致。"
-> — *联合声明《数学中人工智能的严重不一致》*
+**Donald Trump (US President) — 2026-09-26**
 
-### 🌏 哲学
+> 特朗普和习近平将在军事和贸易谈判继续的同时建立人工智能安全通道
 
-**Yuk Hui (技术哲学家，香港) — 29.07.2026**
+— *CBS News — Politics*
 
-> "它们不会获得血肉之躯。这将对它们来说是一种限制，而不是附加值。" / "判断不能外包：既不能外包给选择目标的武器系统，也不能外包给告诉我们要听什么的聊天机器人。"
-> — *《康德机器》(2026)采访，关于人工智能的局限性以及为什么对齐是错误的问题*
+**Donald Trump (US President) — 2026-09-28**
 
----
+> 汤尼表示：宣传特朗普政治主张的广告‘不应由纳税人资金支付’。
 
-**为何重要：** 这些声音在几乎所有方面都存在分歧——速度与暂停、开放与封闭、监管与市场、拟人化与机制。他们唯一达成一致的是：*某些根本性的事情正在发生，而没有人系统地衡量它。* 人类-人工智能监测是对此的尝试。
+— *The Hill — News*
 
----
+**Donald Trump (US President) — 2026-09-28**
+
+> 伊朗表示，取决于特朗普在战争与外交之间做出选择。
+
+— *CBS News — World*
+
+**Donald Trump (US President) — 2026-09-28**
+
+> 特朗普宣布计划在美国历史上最大的钢铁厂将
+
+— *CBS News — Politics*
+
+**Donald Trump (US President) — 2026-09-29**
+
+> “中国人工智能公司会放慢脚步吗？众议院民主党高层要求答复”
+
+— *The Verge — AI*
+
+**Donald Trump (US President) — 2026-09-29**
+
+> “直播：特朗普将通过America.gov网站上线宣传人工智能举措”
+
+— *The Hill — Policy*
+
+**Donald Trump (US President) — 2026-09-29**
+
+> “台海潜在紧张引发特朗普-习近平国家档案馆访问的‘最后一刻’改变”
+
+— *NPR — World*
+
+**Donald Trump (US President) — 2026-10-01**
+
+> “‘这些家伙陷入困境’：一些共和党人在竞选活动中疏远特朗普”
+
+— *Politico — Politics*
+
+**Donald Trump (US President) — 2026-10-01**
+
+> “法官阻止特朗普解雇西雅图高级联邦检察官”
+
+— *CBS News — Politics*
+
+**Donald Trump (US President) — 2026-10-01**
+
+> 特朗普的AI品牌重塑可能止步于白宫
+
+— *Politico — Technology*
+
+**Donald Trump (US President) — 2026-10-02**
+
+> “华盛顿圈如何接受特朗普的人工智能协议？”
+
+— *The Hill — News*
+
+**Donald Trump (US President) — 2026-10-02**
+
+> “特朗普誓言对伊朗开战并‘迅速结束’，更多部队前往中东”
+
+— *CBS News — World*
+
+**Donald Trump (US President) — 2026-10-04**
+
+> “实时更新：特朗普在俄亥俄州集会后将前往内布拉斯加；阿利托和康奈尔大学受害者律师将登上周日节目”
+
+— *The Hill — News*
+
+**Donald Trump (US President) — 2026-10-04**
+
+> 特朗普宣布人工智能“超级智能力量”
+
+— *CBS News — Politics*
+
+**Donald Trump (US President) — 2026-10-02**
+
+> “CPJ加入法律行动以恢复白宫新闻访问权”
+
+— *CPJ (Committee to Protect Journalists)*
+
+**Donald Trump (US President) — 2026-10-04**
+
+> “特朗普在拉丁裔选民中的支持率在中期选举前下滑”
+
+— *Politico — Politics*
+
+**Donald Trump (US President) — 2026-09-28**
+
+> 特朗普和约翰逊将就人工智能风险与科技企业首席执行官会晤
+
+— *Politico — Technology*
+
+**Donald Trump (US President) — 2026-09-24**
+
+> 法官下令白宫立即恢复对CNN、MS NOW、Politico的访问权限
+
+— *The Hill — News*
+
+**Donald Trump (US President) — 2026-09-27**
+
+> “Anthropic 首席执行官将与特朗普参加白宫晚宴”
+
+— *Politico — Technology*
+
+**Donald Trump (US President) — 2026-09-30**
+
+> “科技领袖如何在特朗普协议下自我监管人工智能安全”
+
+— *The Verge — AI*
+
+**Donald Trump (US President) — 2026-10-02**
+
+> “霍利测试特朗普对人工智能的不干预政策”
+
+— *Politico — Technology*
+
+**Donald Trump (US President) — 2026-10-03**
+
+> 对一些巴西人来说，这次选举是对特朗普的投票。
+
+— *NPR — World*
+
+**Donald Trump (US President) — 2026-10-05**
+
+> “特朗普在西班牙裔选民中的支持率在中期选举前创新低”
+
+— *Al Jazeera*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> RBS-Attention：面向长上下文大语言模型的半径约束稀疏预填充
+
+— *arXiv cs.AI*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> “注意力感知路由：在混合专家模型中路由与注意力的耦合”
+
+— *arXiv cs.AI*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> “PRQuant：用于低开销推理的排列残差量化”
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> “通用多模态基础模型”
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> “纠正基于学习的
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> “识别、模拟与拒绝：大语言模型代理中经典心理效应的污染感知研究”
+
+— *arXiv cs.CL*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> “前瞻记忆：个人记忆检索的零推理前瞻性术语”  
+[3
+
+— *arXiv cs.CL*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> Summarize, Judge, Refine: Decoupled Content Understanding and Policy Learning for Multimodal Content Moderation
+
+— *arXiv cs.CL*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
+
+> Identity or Prompt Noise? A Calibrated Invariance Audit of LLM Code Generation
+
+— *arXiv cs.SE*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
+
+> Didactic knowledge or Clinical Cases? How Data Types Shape Medical Large Language Models
+
+— *arXiv cs.AI*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
+
+> PAANI : On Device Visual Evidence Fusion and Explainable Guidance for River Robot Simulation
+
+— *arXiv cs.AI*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
+
+> TRACTOR Benchmark for Evaluating C to Rust Translators
+
+— *arXiv cs.SE*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
+
+> Harness as a Language: A Minimalist Agent Framework With Maximal Expressivity
+
+— *arXiv cs.AI*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
+
+> Signal2Symbol: Neuro-Symbolic Temporal Reasoning for Explainable Physiological Time-Series Anomaly Detection
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
+
+> HARN: Hierarchical Associative Resonance Network for Event-Driven Multi-Timeframe Forecasting
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
+
+> Who Finishes the Job? A Study of Follow-Up Fixes and Commit Authorship on AI Coding Agent Pull Requests
+
+— *arXiv cs.SE*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-25**
+
+> SMILESGNN: Interpretable Clinical Toxicity Prediction via SMILES-Graph Cross-Attention Fusion
+
+— *arXiv cs.LG*
+
+**Xi Jinping (President of the People's Republic of China) — 2026-09-25**
+
+> Framing by Wording, Framing by Selection: A Large-Scale Two-Dimensional Audit of French News Headlines, 2022-2025
+
+— *arXiv cs.CL*
 
 ## 这是什么
 
@@ -567,310 +759,3 @@ MIT。使用、分叉、改进。
 
 **为他人带来更大的福祉——还有什么比这更高的目标呢！**\
 **我们在一起，就是力量！只有行走者才能征服道路。**
-
-## Voices
-
-### 🧠 前沿实验室
-
-**Dario Amodei (Anthropic) — 2026-09-27**
-
-> “Anthropic 首席执行官达里奥·阿莫迪将与特朗普举行私人白宫晚宴”
-
-— *The Hill — News*
-
-**Sam Altman (OpenAI) — 2026-09-29**
-
-> "Altman 在 OpenAI 因安全问题
-
-— *The Hill — Policy*
-
-**Sam Altman (OpenAI) — 2026-09-23**
-
-> 山姆·阿尔特曼在联合国安全理事会的讲话
-
-— *OpenAI Blog*
-
-**Sam Altman (OpenAI) — 2026-09-30**
-
-> 山姆·阿尔特曼表示，OpenAI 在其模型安全之前不会上市。
-
-— *The Verge — AI*
-
-**Jensen Huang (Nvidia) — 2026-09-30**
-
-> “扎克伯格和黄推动白宫人工智能协议”
-
-— *Politico — Technology*
-
-### 🇺🇳 国际机构与政策制定者
-
-**Donald Trump (US President) — 2026-09-24**
-
-> 法官驳回特朗普对爱荷华州民调专家的诉讼
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-24**
-
-> “法官恢复记者的白宫访问权限。此外，塔克·卡森谈他的MAGA分裂”
-
-— *NPR — World*
-
-**Donald Trump (US President) — 2026-09-26**
-
-> 民调：特朗普的MAGA支持者认为他没有负担问题。
-
-— *Politico — Politics*
-
-**Donald Trump (US President) — 2026-09-26**
-
-> 周日节目预告：特朗普在经历一周高风险会议后拒绝伊朗协议；共和党呼吁保持国会控制权
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-26**
-
-> 特朗普和习近平将在军事和贸易谈判继续的同时建立人工智能安全通道
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> 汤尼表示：宣传特朗普政治主张的广告‘不应由纳税人资金支付’。
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> 伊朗表示，取决于特朗普在战争与外交之间做出选择。
-
-— *CBS News — World*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> 特朗普宣布计划在美国历史上最大的钢铁厂将
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-09-29**
-
-> “中国人工智能公司会放慢脚步吗？众议院民主党高层要求答复”
-
-— *The Verge — AI*
-
-**Donald Trump (US President) — 2026-09-29**
-
-> “直播：特朗普将通过America.gov网站上线宣传人工智能举措”
-
-— *The Hill — Policy*
-
-**Donald Trump (US President) — 2026-09-29**
-
-> “台海潜在紧张引发特朗普-习近平国家档案馆访问的‘最后一刻’改变”
-
-— *NPR — World*
-
-**Donald Trump (US President) — 2026-10-01**
-
-> “‘这些家伙陷入困境’：一些共和党人在竞选活动中疏远特朗普”
-
-— *Politico — Politics*
-
-**Donald Trump (US President) — 2026-10-01**
-
-> “法官阻止特朗普解雇西雅图高级联邦检察官”
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-10-01**
-
-> 特朗普的AI品牌重塑可能止步于白宫
-
-— *Politico — Technology*
-
-**Donald Trump (US President) — 2026-10-02**
-
-> “华盛顿圈如何接受特朗普的人工智能协议？”
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-10-02**
-
-> “特朗普誓言对伊朗开战并‘迅速结束’，更多部队前往中东”
-
-— *CBS News — World*
-
-**Donald Trump (US President) — 2026-10-04**
-
-> “实时更新：特朗普在俄亥俄州集会后将前往内布拉斯加；阿利托和康奈尔大学受害者律师将登上周日节目”
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-10-04**
-
-> 特朗普宣布人工智能“超级智能力量”
-
-— *CBS News — Politics*
-
-**Donald Trump (US President) — 2026-10-02**
-
-> “CPJ加入法律行动以恢复白宫新闻访问权”
-
-— *CPJ (Committee to Protect Journalists)*
-
-**Donald Trump (US President) — 2026-10-04**
-
-> “特朗普在拉丁裔选民中的支持率在中期选举前下滑”
-
-— *Politico — Politics*
-
-**Donald Trump (US President) — 2026-09-28**
-
-> 特朗普和约翰逊将就人工智能风险与科技企业首席执行官会晤
-
-— *Politico — Technology*
-
-**Donald Trump (US President) — 2026-09-24**
-
-> 法官下令白宫立即恢复对CNN、MS NOW、Politico的访问权限
-
-— *The Hill — News*
-
-**Donald Trump (US President) — 2026-09-27**
-
-> “Anthropic 首席执行官将与特朗普参加白宫晚宴”
-
-— *Politico — Technology*
-
-**Donald Trump (US President) — 2026-09-30**
-
-> “科技领袖如何在特朗普协议下自我监管人工智能安全”
-
-— *The Verge — AI*
-
-**Donald Trump (US President) — 2026-10-02**
-
-> “霍利测试特朗普对人工智能的不干预政策”
-
-— *Politico — Technology*
-
-**Donald Trump (US President) — 2026-10-03**
-
-> 对一些巴西人来说，这次选举是对特朗普的投票。
-
-— *NPR — World*
-
-**Donald Trump (US President) — 2026-10-05**
-
-> “特朗普在西班牙裔选民中的支持率在中期选举前创新低”
-
-— *Al Jazeera*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> RBS-Attention：面向长上下文大语言模型的半径约束稀疏预填充
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> “注意力感知路由：在混合专家模型中路由与注意力的耦合”
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> “PRQuant：用于低开销推理的排列残差量化”
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> “通用多模态基础模型”
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> “纠正基于学习的
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> “识别、模拟与拒绝：大语言模型代理中经典心理效应的污染感知研究”
-
-— *arXiv cs.CL*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> “前瞻记忆：个人记忆检索的零推理前瞻性术语”  
-[3
-
-— *arXiv cs.CL*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Summarize, Judge, Refine: Decoupled Content Understanding and Policy Learning for Multimodal Content Moderation
-
-— *arXiv cs.CL*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-22**
-
-> Identity or Prompt Noise? A Calibrated Invariance Audit of LLM Code Generation
-
-— *arXiv cs.SE*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
-
-> Didactic knowledge or Clinical Cases? How Data Types Shape Medical Large Language Models
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
-
-> PAANI : On Device Visual Evidence Fusion and Explainable Guidance for River Robot Simulation
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-23**
-
-> TRACTOR Benchmark for Evaluating C to Rust Translators
-
-— *arXiv cs.SE*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> Harness as a Language: A Minimalist Agent Framework With Maximal Expressivity
-
-— *arXiv cs.AI*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> Signal2Symbol: Neuro-Symbolic Temporal Reasoning for Explainable Physiological Time-Series Anomaly Detection
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> HARN: Hierarchical Associative Resonance Network for Event-Driven Multi-Timeframe Forecasting
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-24**
-
-> Who Finishes the Job? A Study of Follow-Up Fixes and Commit Authorship on AI Coding Agent Pull Requests
-
-— *arXiv cs.SE*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-25**
-
-> SMILESGNN: Interpretable Clinical Toxicity Prediction via SMILES-Graph Cross-Attention Fusion
-
-— *arXiv cs.LG*
-
-**Xi Jinping (President of the People's Republic of China) — 2026-09-25**
-
-> Framing by Wording, Framing by Selection: A Large-Scale Two-Dimensional Audit of French News Headlines, 2022-2025
-
-— *arXiv cs.CL*

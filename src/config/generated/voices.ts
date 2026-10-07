@@ -3,12 +3,8 @@
 
 export default {
   "version": 1,
-  "updated": "2026-10-07-v2",
+  "updated": "2026-10-07-v3",
   "min_relevance": 0.8,
-  "target_axes": [
-    "geopolitics",
-    "h2_sovereignty"
-  ],
   "voices": [
     {
       "name": "Dario Amodei",
@@ -37,21 +33,6 @@ export default {
       "note": "CEO of OpenAI"
     },
     {
-      "name": "Elon Musk",
-      "affiliation": "xAI",
-      "category": "frontier_labs",
-      "keywords": [
-        "Elon Musk",
-        "Musk"
-      ],
-      "sources": [
-        "The Verge — AI",
-        "Ars Technica — AI",
-        "The Hill — News"
-      ],
-      "note": "CEO of xAI, Tesla, SpaceX"
-    },
-    {
       "name": "Jensen Huang",
       "affiliation": "Nvidia",
       "category": "frontier_labs",
@@ -64,6 +45,39 @@ export default {
         "Ars Technica — AI"
       ],
       "note": "CEO of Nvidia"
+    },
+    {
+      "name": "Ilya Sutskever",
+      "affiliation": "Safe Superintelligence Inc.",
+      "category": "frontier_labs",
+      "keywords": [
+        "Ilya Sutskever",
+        "Sutskever",
+        "ilyasutskever"
+      ],
+      "sources": [
+        "The Verge — AI",
+        "Ars Technica — AI",
+        "MIT Technology Review — AI"
+      ],
+      "note": "Co-founder of SSI, ex-OpenAI Chief Scientist"
+    },
+    {
+      "name": "Elon Musk",
+      "affiliation": "xAI, Tesla, SpaceX",
+      "category": "frontier_labs",
+      "keywords": [
+        "Elon Musk",
+        "Musk",
+        "elonmusk"
+      ],
+      "sources": [
+        "The Verge — AI",
+        "Ars Technica — AI",
+        "The Hill — News",
+        "CBS News — Technology"
+      ],
+      "note": "CEO of xAI, Tesla, SpaceX"
     },
     {
       "name": "Mark Zuckerberg",
@@ -82,15 +96,46 @@ export default {
     {
       "name": "Demis Hassabis",
       "affiliation": "Google DeepMind",
-      "category": "researchers",
+      "category": "frontier_labs",
       "keywords": [
         "Demis Hassabis",
         "Hassabis"
       ],
       "sources": [
-        "Google DeepMind Blog"
+        "Google DeepMind Blog",
+        "MIT Technology Review — AI"
       ],
       "note": "CEO of Google DeepMind, Nobel Prize 2024"
+    },
+    {
+      "name": "Yann LeCun",
+      "affiliation": "Meta, Chief AI Scientist",
+      "category": "researchers",
+      "keywords": [
+        "Yann LeCun",
+        "LeCun",
+        "ylecun"
+      ],
+      "sources": [
+        "The Verge — AI",
+        "MIT Technology Review — AI"
+      ],
+      "note": "Chief AI Scientist at Meta"
+    },
+    {
+      "name": "Andrej Karpathy",
+      "affiliation": "Eureka Labs, ex-Tesla, ex-OpenAI",
+      "category": "researchers",
+      "keywords": [
+        "Andrej Karpathy",
+        "Karpathy",
+        "karpathy"
+      ],
+      "sources": [
+        "The Verge — AI",
+        "Ars Technica — AI"
+      ],
+      "note": "Founder of Eureka Labs, ex-Tesla AI director"
     },
     {
       "name": "Geoffrey Hinton",
@@ -121,81 +166,40 @@ export default {
       "note": "Professor at UC Berkeley"
     },
     {
-      "name": "Yann LeCun",
-      "affiliation": "Meta, Chief AI Scientist",
-      "category": "researchers",
+      "name": "Eliezer Yudkowsky",
+      "affiliation": "Machine Intelligence Research Institute",
+      "category": "safety_philosophy",
       "keywords": [
-        "Yann LeCun",
-        "LeCun"
+        "Eliezer Yudkowsky",
+        "Yudkowsky",
+        "ESYudkowsky"
       ],
       "sources": [
-        "The Verge — AI",
-        "MIT Technology Review — AI"
+        "LessWrong — AI",
+        "AI Alignment Forum"
       ],
-      "note": "Chief AI Scientist at Meta"
+      "note": "Co-founder of MIRI, AI safety researcher"
     },
     {
-      "name": "António Guterres",
-      "affiliation": "UN Secretary-General",
-      "category": "institutions",
+      "name": "Henry Shevlin",
+      "affiliation": "Cambridge, Leverhulme CFI",
+      "category": "safety_philosophy",
       "keywords": [
-        "António Guterres",
-        "Guterres"
+        "Henry Shevlin",
+        "Shevlin",
+        "dioscuri"
       ],
       "sources": [
-        "Al Jazeera",
-        "NPR — World",
-        "CBS News — World"
+        "Aeon",
+        "Psyche",
+        "Noema Magazine"
       ],
-      "note": "UN Secretary-General"
-    },
-    {
-      "name": "Donald Trump",
-      "affiliation": "US President",
-      "category": "institutions",
-      "keywords": [
-        "Donald Trump",
-        "Trump"
-      ],
-      "sources": [
-        "The Hill — News",
-        "The Hill — Policy",
-        "Politico — Politics",
-        "Politico — Technology",
-        "NPR — World",
-        "CBS News — Politics"
-      ],
-      "note": "45th and 47th President of the United States"
-    },
-    {
-      "name": "Xi Jinping",
-      "affiliation": "President of the People's Republic of China",
-      "category": "institutions",
-      "keywords": [
-        "Xi Jinping",
-        "Xi"
-      ],
-      "sources": [
-        "Al Jazeera",
-        "The Hindu — International"
-      ],
-      "note": "President of China"
-    },
-    {
-      "name": "Fields Medal Winners",
-      "affiliation": "25 Fields Medal Winners",
-      "category": "mathematics",
-      "keywords": [
-        "Fields Medal",
-        "Fields medalists"
-      ],
-      "sources": [],
-      "note": "Joint declaration 'A Severe Misalignment of AI in Mathematics'"
+      "note": "Philosopher of AI consciousness"
     },
     {
       "name": "Yuk Hui",
       "affiliation": "Philosopher of Technology, Hong Kong",
-      "category": "philosophy",
+      "category": "safety_philosophy",
       "keywords": [
         "Yuk Hui"
       ],
@@ -205,9 +209,99 @@ export default {
       "note": "Philosopher of technology"
     },
     {
+      "name": "Jiang Xueqin",
+      "affiliation": "Peking University",
+      "category": "safety_philosophy",
+      "keywords": [
+        "Jiang Xueqin",
+        "Xueqin",
+        "xueqinjiang"
+      ],
+      "sources": [
+        "Noema Magazine"
+      ],
+      "note": "Education reformer, philosopher"
+    },
+    {
+      "name": "Marc Andreessen",
+      "affiliation": "a16z",
+      "category": "investors",
+      "keywords": [
+        "Marc Andreessen",
+        "Andreessen",
+        "pmarca"
+      ],
+      "sources": [
+        "The Verge — AI",
+        "Politico — Technology"
+      ],
+      "note": "Co-founder of Andreessen Horowitz"
+    },
+    {
+      "name": "Peter Thiel",
+      "affiliation": "Founders Fund",
+      "category": "investors",
+      "keywords": [
+        "Peter Thiel",
+        "Thiel",
+        "peterthiel"
+      ],
+      "sources": [
+        "Politico — Technology",
+        "The Hill — Policy"
+      ],
+      "note": "Co-founder of Founders Fund, PayPal"
+    },
+    {
+      "name": "Paul Graham",
+      "affiliation": "Y Combinator",
+      "category": "investors",
+      "keywords": [
+        "Paul Graham",
+        "Graham",
+        "paulg"
+      ],
+      "sources": [
+        "The Verge — AI",
+        "Ars Technica — AI"
+      ],
+      "note": "Co-founder of Y Combinator"
+    },
+    {
+      "name": "Jeff Bezos",
+      "affiliation": "Amazon, Blue Origin",
+      "category": "investors",
+      "keywords": [
+        "Jeff Bezos",
+        "Bezos"
+      ],
+      "sources": [
+        "The Hill — News",
+        "CBS News — Technology",
+        "NPR — World"
+      ],
+      "note": "Founder of Amazon, Blue Origin"
+    },
+    {
+      "name": "Bill Gates",
+      "affiliation": "Gates Foundation",
+      "category": "investors",
+      "keywords": [
+        "Bill Gates",
+        "Gates",
+        "BillGates"
+      ],
+      "sources": [
+        "NPR — World",
+        "CBS News — World",
+        "Our World in Data"
+      ],
+      "note": "Co-founder of Microsoft, philanthropist"
+    },
+    {
       "name": "Jay Clayton",
       "affiliation": "Director of National Intelligence, Head of SIF",
-      "category": "us_administration",
+      "category": "policy",
       "keywords": [
         "Jay Clayton",
         "Clayton"
@@ -224,7 +318,7 @@ export default {
     {
       "name": "Andrew Ferguson",
       "affiliation": "FTC Chairman",
-      "category": "us_administration",
+      "category": "policy",
       "keywords": [
         "Andrew Ferguson",
         "Ferguson"
@@ -239,7 +333,7 @@ export default {
     {
       "name": "Emil Michael",
       "affiliation": "Deputy Secretary of Defense for R&D",
-      "category": "us_administration",
+      "category": "policy",
       "keywords": [
         "Emil Michael"
       ],
@@ -253,7 +347,7 @@ export default {
     {
       "name": "Scott Kupor",
       "affiliation": "Director of Office of Personnel Management",
-      "category": "us_administration",
+      "category": "policy",
       "keywords": [
         "Scott Kupor",
         "Kupor"
@@ -267,7 +361,7 @@ export default {
     {
       "name": "Susie Wiles",
       "affiliation": "White House Chief of Staff",
-      "category": "us_administration",
+      "category": "policy",
       "keywords": [
         "Susie Wiles",
         "Wiles"
@@ -279,6 +373,50 @@ export default {
         "NPR — World"
       ],
       "note": "White House Chief of Staff"
+    },
+    {
+      "name": "Vitalik Buterin",
+      "affiliation": "Ethereum",
+      "category": "crypto",
+      "keywords": [
+        "Vitalik Buterin",
+        "Buterin",
+        "Vitalik",
+        "VitalikButerin"
+      ],
+      "sources": [
+        "The Verge — AI",
+        "Ars Technica — AI"
+      ],
+      "note": "Co-founder of Ethereum"
+    },
+    {
+      "name": "Alex Karp",
+      "affiliation": "Palantir",
+      "category": "enterprise",
+      "keywords": [
+        "Alex Karp",
+        "Karp",
+        "Palantir"
+      ],
+      "sources": [
+        "Politico — Technology",
+        "The Hill — Policy",
+        "CBS News — Technology"
+      ],
+      "note": "CEO of Palantir"
+    },
+    {
+      "name": "Fields Medal Winners",
+      "affiliation": "25 Fields Medal Winners",
+      "category": "mathematics",
+      "keywords": [
+        "Fields Medal",
+        "Fields medalists",
+        "Terence Tao"
+      ],
+      "sources": [],
+      "note": "Joint declaration 'A Severe Misalignment of AI in Mathematics'"
     }
   ]
 } as const;
