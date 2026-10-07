@@ -1,7 +1,7 @@
 # Human-AI Monitor — Handoff
 
 > Documentation for an engineer continuing this work.
-> Last updated: 2026-10-06.
+> Last updated: 2026-10-07.
 > Languages: [English](HANDOFF.md) | [Русский](HANDOFF.ru.md)
 
 ## 1. Project overview
@@ -10,7 +10,7 @@ Cloudflare Worker that:
 - Collects RSS signals from 52 sources (27 AI + 25 Human)
 - Classifies items via LLM (@cf/qwen/qwen3-30b-a3b-fp8)
 - Computes Bayesian Gap Index: Gap = Human_score − AI_score
-- Exposes API: /gap, /axes-history, /protocols, /health, /classify
+- Exposes API: /gap, /axes-history, /protocols, /health, /classify, /voices, /backfill-voices
 
 Stack: TypeScript, Cloudflare Workers, D1 (SQLite), GitHub Actions, Vitest.
 
@@ -36,7 +36,11 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 | scripts/run-audit.sh              | Launcher for audit.sh                        |
 | scripts/math_verification.py      | Independent math verification (Phase 15)     |
 | scripts/yaml-to-ts.mjs            | YAML → TS generator                          |
-| scripts/update_readme.py          | Update README from live API                  |
+| scripts/update_readme.py          | Update README from live API (incl. ## Voices)|
+| config/voices.yaml                | 19 curated speakers, 6 categories            |
+| src/services/voices.ts            | extractVoice() + saveVoice()                 |
+| src/config/generated/voices.ts    | Auto-generated from voices.yaml              |
+| migrations/0014_voices.sql        | D1 migration: voices table                   |
 | HANDOFF.md                        | This file                                    |
 
 ## 3. Current state
@@ -50,7 +54,8 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - Source languages: en + ru (TASS) + zh (FT Chinese)
 - Batch capacity per run: 60 (planned: 52)
 - CF token: 3 permissions (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
-- **Items classification:** ~530 items, classified with prompt v1 (no per-item version tracking)
+- **Items classification:** 603 items, classified with prompt v1 (no per-item version tracking)
+- **Voices extraction:** 116 verified quotes from 19 curated speakers (6 categories)
 
 ## 4. Known issues (by priority)
 
@@ -579,6 +584,30 @@ before making changes. It addresses the most common misunderstandings.
   `scripts/math_verification.py`, called from Phase 15 in `audit.sh`.
   Do not duplicate.
 
+
+## 5. Voices feature (automated quote extraction)
+
+Extracts quotes from 19 curated speakers (AI lab CEOs, policymakers, researchers) when they are mentioned in high-relevance news items.
+
+### Critical extraction logic (DO NOT CHANGE WITHOUT REVIEW)
+
+A quote is extracted **if and only if BOTH** conditions are met:
+1. `item.relevance >= 0.8` (configurable via `min_relevance` in `config/voices.yaml`)
+2. **At least one keyword** from the speaker's `keywords` list appears in `item.title` OR `item.summary` (case-insensitive)
+
+> ⚠️ **ANTI-PATTERN**: Do *not* implement "source-only" matching (e.g., attributing an article to a speaker just because it's from "NPR" and "NPR" is in their sources list). This causes massive false positives. The speaker's name/keyword **must** appear in the text. Verified: source-only matching produced 224 false positives vs 116 correct extractions with name-in-text logic.
+
+### Flow
+- `config/voices.yaml` → `node scripts/yaml-to-ts.mjs` → `src/config/generated/voices.ts`
+- `src/services/voices.ts:extractVoice()` called in `runCollection()` after `INSERT INTO items`
+- `saveVoice()` uses `INSERT OR IGNORE` with `UNIQUE(item_hash)` — idempotent
+- `GET /voices?limit=20&category=frontier_labs` — returns curated quotes
+- `GET /backfill-voices` (auth required) — retroactively processes all items
+- `scripts/update_readme.py` renders `## Voices` section in README.md / .ru / .zh (with timeout resilience)
+
+### Categories
+`frontier_labs`, `researchers`, `institutions`, `us_administration`, `mathematics`, `philosophy`
+
 ### Information gaps to be aware of
 
 - **Baseline numbers change**: they reflect the last audit run, not a
@@ -597,6 +626,9 @@ before making changes. It addresses the most common misunderstandings.
 Run `bash scripts/run-audit.sh` — it includes Phase 15 (math verification)
 and reflects the real current state of the project. Do not trust
 hand-written statuses without verification.
+
+For Voices feature: `curl /voices?limit=10` to verify extraction quality.
+If count is 0 but items exist, check `extractVoice()` logic — name-in-text is required.
 
 ---
 
