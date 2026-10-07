@@ -1241,26 +1241,23 @@ export default {
 			console.log("[cron] collected: " + JSON.stringify(collectResult));
 
 			if (cfg.generateProtocol) {
-				// Architecture v2: two protocols per week
+				// Architecture v2: daily protocols
 				// Monday: FINAL protocol for previous week (offset=1)
-				// Friday: INTERIM protocol for current week (offset=0)
-				// Other days: only collection, no generation
+				// Tue-Sun: INTERIM protocol for current week (offset=0)
 				if (isMonday) {
 					console.log("[cron] Monday: generating FINAL protocol for previous week (offset=1)");
 					const gen = await generateAndSaveProtocol(env, 1);
 					console.log("[cron] final protocol: " + JSON.stringify(gen));
-				} else if (isFriday) {
-					console.log("[cron] Friday: generating INTERIM protocol for current week (offset=0)");
+				} else {
+					console.log("[cron] Day " + dayOfWeek + ": generating INTERIM protocol for current week (offset=0)");
 					const gen = await generateInterimProtocol(env, 0);
 					console.log("[cron] interim protocol: " + JSON.stringify(gen));
-				} else {
-					console.log("[cron] Day " + dayOfWeek + ": collection only, no protocol generation");
 				}
 			}
 
 			// Trigger sync-protocols workflow via GitHub API.
 			// GitHub's native scheduled triggers are unreliable — Worker acts as an external scheduler.
-			if (cfg.generateProtocol && (isMonday || isFriday)) {
+			if (cfg.generateProtocol) {
 				ctx.waitUntil((async () => {
 					try {
 						const res = await fetch(
@@ -1284,8 +1281,13 @@ export default {
 					} catch (e) {
 						console.error("[cron] sync-protocols dispatch error: " + (e as Error).message);
 					}
+				})());
+			}
 
-					// Dispatch translate-protocols workflow (EN→RU/ZH translation)
+			// Dispatch translate-protocols workflow (EN→RU/ZH translation).
+			// Mon + Fri only — interim protocols on Tue-Sun are not translated.
+			if (cfg.generateProtocol && (isMonday || isFriday)) {
+				ctx.waitUntil((async () => {
 					try {
 						const res = await fetch(
 							"https://api.github.com/repos/VQQLK/Human-AI-Monitor/actions/workflows/translate-protocols.yml/dispatches",
