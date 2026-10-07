@@ -29,6 +29,30 @@ export function extractVoice(item: {
   relevance: number;
   axes: string[];
 }): ExtractedVoice | null {
+  // Criterion: minimum relevance AND speaker name in title/summary
+  if (item.relevance < voicesConfig.min_relevance) return null;
+
+  const textToSearch = `${item.title || ''} ${item.summary || ''}`.toLowerCase();
+
+  for (const voice of voicesConfig.voices) {
+    for (const keyword of voice.keywords) {
+      if (textToSearch.includes(keyword.toLowerCase())) {
+        return {
+          speaker: voice.name,
+          affiliation: voice.affiliation,
+          category: voice.category,
+          quote: item.title || item.summary || '',
+          date: item.date,
+          source: item.source,
+          relevance: item.relevance,
+          axes: item.axes,
+        };
+      }
+    }
+  }
+
+  return null;
+}): ExtractedVoice | null {
   // Criterion 1: minimum relevance
   if (item.relevance < voicesConfig.min_relevance) return null;
   
