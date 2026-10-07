@@ -1,7 +1,7 @@
 # Human-AI Monitor — Handoff
 
 > Документация для инженера, продолжающего работу.
-> Последнее обновление: 2026-10-06.
+> Последнее обновление: 2026-10-07.
 > Языки: [English](HANDOFF.md) | [Русский](HANDOFF.ru.md)
 
 ## 1. Обзор проекта
@@ -10,7 +10,7 @@ Cloudflare Worker, который:
 - Собирает RSS-сигналы из 52 источников (27 AI + 25 Human)
 - Классифицирует items через LLM (@cf/qwen/qwen3-30b-a3b-fp8)
 - Считает Bayesian Gap Index: Gap = Human_score − AI_score
-- API: /gap, /axes-history, /protocols, /health, /classify
+- API: /gap, /axes-history, /protocols, /health, /classify, /voices, /backfill-voices
 
 Стек: TypeScript, Cloudflare Workers, D1 (SQLite), GitHub Actions, Vitest.
 
@@ -36,7 +36,11 @@ Cloudflare Worker, который:
 | scripts/run-audit.sh              | Launcher для audit.sh                        |
 | scripts/math_verification.py      | Независимая мат-верификация (фаза 15)        |
 | scripts/yaml-to-ts.mjs            | YAML → TS генератор                          |
-| scripts/update_readme.py          | Обновление README из live API                |
+| scripts/update_readme.py          | Обновление README из live API (вкл. ## Voices)|
+| config/voices.yaml                | 19 курируемых спикеров, 6 категорий          |
+| src/services/voices.ts            | extractVoice() + saveVoice()                 |
+| src/config/generated/voices.ts    | Автогенерация из voices.yaml                 |
+| migrations/0014_voices.sql        | D1 миграция: таблица voices                  |
 | HANDOFF.ru.md                     | Этот файл (русская версия)                   |
 
 ## 3. Текущее состояние
@@ -50,7 +54,8 @@ Cloudflare Worker, который:
 - Языки источников: en + ru (ТАСС) + zh (FT Chinese)
 - Ёмкость батча за прогон: 60 (планируется: 52)
 - CF-токен: 3 права (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
-- **Классификация items:** ~530 items, классифицированы prompt v1 (без per-item version tracking)
+- **Классификация items:** 603 items, классифицированы prompt v1 (без per-item version tracking)
+- **Извлечение Voices:** 116 проверенных цитат от 19 курируемых спикеров (6 категорий)
 
 ## 4. Известные проблемы (по приоритету)
 
@@ -580,6 +585,30 @@ multitrait-multimethod matrix.*
 - **Тест F уже автоматизирован**: раздел 8 в `scripts/math_verification.py`,
   вызывается из фазы 15 в `audit.sh`. Не дублировать.
 
+
+## 5. Фича Voices (автоматическое извлечение цитат)
+
+Извлекает цитаты от 19 курируемых спикеров (CEO AI-лабораторий, политики, исследователи), когда они упоминаются в новостях с высокой релевантностью.
+
+### Критическая логика извлечения (НЕ МЕНЯТЬ БЕЗ ПРОВЕРКИ)
+
+Цитата извлекается **только если выполнены ОБА** условия:
+1. `item.relevance >= 0.8` (настраивается через `min_relevance` в `config/voices.yaml`)
+2. **Хотя бы одно ключевое слово** из списка `keywords` спикера встречается в `item.title` ИЛИ `item.summary` (без учёта регистра)
+
+> ⚠️ **АНТИ-ПАТТЕРН**: *Не* реализуйте сопоставление "только по источнику" (например, приписывать статью спикеру только потому, что она из "NPR" и "NPR" есть в списке источников спикера). Это вызывает массовые ложные срабатывания. Имя/ключевое слово спикера **должно** присутствовать в тексте. Проверено: логика "только по источнику" дала 224 ложных срабатывания против 116 корректных извлечений с логикой "имя в тексте".
+
+### Поток данных
+- `config/voices.yaml` → `node scripts/yaml-to-ts.mjs` → `src/config/generated/voices.ts`
+- `src/services/voices.ts:extractVoice()` вызывается в `runCollection()` после `INSERT INTO items`
+- `saveVoice()` использует `INSERT OR IGNORE` с `UNIQUE(item_hash)` — идемпотентно
+- `GET /voices?limit=20&category=frontier_labs` — возвращает курируемые цитаты
+- `GET /backfill-voices` (требуется авторизация) — ретроактивно обрабатывает все items
+- `scripts/update_readme.py` рендерит раздел `## Voices` в README.md / .ru / .zh (с защитой от таймаутов)
+
+### Категории
+`frontier_labs`, `researchers`, `institutions`, `us_administration`, `mathematics`, `philosophy`
+
 ### Пробелы в информации
 
 - **Числа baseline меняются**: они отражают последний прогон аудита, а не
@@ -598,6 +627,9 @@ multitrait-multimethod matrix.*
 Запустите `bash scripts/run-audit.sh` — он включает фазу 15 (математическая
 верификация) и отражает реальное состояние проекта. Не доверяйте
 написанным вручную статусам без проверки.
+
+Для фичи Voices: `curl /voices?limit=10` для проверки качества извлечения.
+Если count = 0, но items существуют, проверьте логику `extractVoice()` — требуется имя в тексте.
 
 ---
 
