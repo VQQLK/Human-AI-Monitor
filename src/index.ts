@@ -1063,8 +1063,7 @@ export default {
 			}
 
 			if (path === "/backfill-voices") {
-				const auth = request.headers.get("Authorization");
-				if (!auth || !verifyAuth(auth, env)) {
+				if (!verifyAuth(request, env)) {
 					return json({ error: "Unauthorized" }, 401);
 				}
 				
@@ -1073,14 +1072,15 @@ export default {
 				).all();
 				
 				let extracted = 0;
-				for (const item of items.results ?? []) {
+				for (const rawItem of items.results ?? []) {
+					const item = rawItem as any;
 					const voice = extractVoice({
 						title: item.title,
 						summary: item.summary,
 						source: item.source,
 						date: item.date,
 						relevance: item.relevance,
-						axes: JSON.parse(item.axes || "[]"),
+						axes: JSON.parse((item.axes as string) || "[]"),
 					});
 					
 					if (voice) {
