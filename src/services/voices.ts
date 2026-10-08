@@ -32,16 +32,23 @@ export function extractVoice(item: {
   relevance: number;
   axes: string[];
 }): ExtractedVoice[] {
-  // Criterion: minimum relevance AND speaker name in title/summary
+  // Criterion: minimum relevance AND speaker name in title/summary.
+  // Below title_only_below, speaker must be in title (not just summary) —
+  // avoids 'passing mention' false positives.
   if (item.relevance < voicesConfig.min_relevance) return [];
 
-  const textToSearch = `${item.title || ''} ${item.summary || ''}`.toLowerCase();
+  const titleText = (item.title || '').toLowerCase();
+  const summaryText = (item.summary || '').toLowerCase();
   const matches: ExtractedVoice[] = [];
 
   for (const voice of voicesConfig.voices) {
     for (const keyword of voice.keywords) {
       const re = new RegExp(`\\b${escapeRegex(keyword.toLowerCase())}\\b`);
-      if (re.test(textToSearch)) {
+      const inTitle = re.test(titleText);
+      const inSummary = re.test(summaryText);
+      if (item.relevance < voicesConfig.title_only_below && !inTitle) continue;
+      if (!inTitle && !inSummary) continue;
+      {
         matches.push({
           speaker: voice.name,
           affiliation: voice.affiliation,

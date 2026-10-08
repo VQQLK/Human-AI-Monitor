@@ -1,6 +1,10 @@
 version: 1
 updated: 2026-10-07-v3
 min_relevance: 0.2
+# Below this relevance, speaker must appear in title (not just summary).
+# Prevents "passing mention" false positives (e.g. California Dems letter
+# mentions Musk/Zuckerberg in summary only).
+title_only_below: 0.5
 voices:
 - name: Dario Amodei
   affiliation: Anthropic

@@ -5,6 +5,7 @@ export default {
   "version": 1,
   "updated": "2026-10-07-v3",
   "min_relevance": 0.2,
+  "title_only_below": 0.5,
   "voices": [
     {
       "name": "Dario Amodei",
