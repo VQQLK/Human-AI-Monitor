@@ -15,7 +15,8 @@ export default {
         "Dario Amodei",
         "Amodei",
         "Anthropic CEO",
-        "Anthropic's CEO"
+        "Anthropic's CEO",
+        "Anthropic chief"
       ],
       "sources": [
         "Anthropic News"
@@ -47,7 +48,8 @@ export default {
         "Huang",
         "Nvidia CEO",
         "NVIDIA CEO",
-        "Nvidia's CEO"
+        "Nvidia's CEO",
+        "Nvidia chief"
       ],
       "sources": [
         "The Verge — AI",
@@ -99,7 +101,8 @@ export default {
         "Mark Zuckerberg",
         "Zuckerberg",
         "Meta CEO",
-        "Meta's CEO"
+        "Meta's CEO",
+        "Meta chief"
       ],
       "sources": [
         "The Verge — AI",
@@ -115,7 +118,9 @@ export default {
         "Demis Hassabis",
         "Hassabis",
         "DeepMind CEO",
-        "Google DeepMind CEO"
+        "Google DeepMind CEO",
+        "DeepMind's CEO",
+        "DeepMind chief"
       ],
       "sources": [
         "Google DeepMind Blog",
@@ -305,7 +310,9 @@ export default {
       "keywords": [
         "Bill Gates",
         "Gates",
-        "BillGates"
+        "BillGates",
+        "Bill Gates says",
+        "Gates Foundation"
       ],
       "sources": [
         "NPR — World",
@@ -320,7 +327,9 @@ export default {
       "category": "policy",
       "keywords": [
         "Jay Clayton",
-        "Clayton"
+        "Clayton",
+        "DNI",
+        "Director of National Intelligence"
       ],
       "sources": [
         "The Hill — News",
@@ -337,7 +346,9 @@ export default {
       "category": "policy",
       "keywords": [
         "Andrew Ferguson",
-        "Ferguson"
+        "Ferguson",
+        "FTC Chairman",
+        "FTC Chair"
       ],
       "sources": [
         "Politico — Technology",
@@ -380,7 +391,8 @@ export default {
       "category": "policy",
       "keywords": [
         "Susie Wiles",
-        "Wiles"
+        "Wiles",
+        "White House Chief of Staff"
       ],
       "sources": [
         "The Hill — News",
@@ -413,7 +425,9 @@ export default {
       "keywords": [
         "Alex Karp",
         "Karp",
-        "Palantir CEO"
+        "Palantir CEO",
+        "Palantir's CEO",
+        "Palantir chief"
       ],
       "sources": [
         "Politico — Technology",
@@ -472,7 +486,11 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Sundar Pichai",
-        "Pichai"
+        "Pichai",
+        "Google CEO",
+        "Google's CEO",
+        "Google chief",
+        "Alphabet CEO"
       ],
       "sources": [],
       "note": "CEO of Google and Alphabet"
@@ -483,7 +501,10 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Satya Nadella",
-        "Nadella"
+        "Nadella",
+        "Microsoft CEO",
+        "Microsoft's CEO",
+        "Microsoft chief"
       ],
       "sources": [],
       "note": "CEO of Microsoft"
@@ -494,7 +515,10 @@ export default {
       "category": "policy",
       "keywords": [
         "JD Vance",
-        "J.D. Vance"
+        "J.D. Vance",
+        "Vice President Vance",
+        "VP Vance",
+        "US Vice President"
       ],
       "sources": [],
       "note": "US Vice President"
@@ -505,7 +529,9 @@ export default {
       "category": "policy",
       "keywords": [
         "John Thune",
-        "Thune"
+        "Thune",
+        "Senate Majority Leader",
+        "Majority Leader Thune"
       ],
       "sources": [],
       "note": "Senate Majority Leader"
@@ -515,7 +541,10 @@ export default {
       "affiliation": "White House",
       "category": "policy",
       "keywords": [
-        "David Sacks"
+        "David Sacks",
+        "AI Czar",
+        "AI and Crypto Czar",
+        "White House AI Czar"
       ],
       "sources": [],
       "note": "AI and Crypto Czar"
@@ -526,7 +555,9 @@ export default {
       "category": "policy",
       "keywords": [
         "Michael Kratsios",
-        "Kratsios"
+        "Kratsios",
+        "OSTP Director",
+        "Science and Technology Policy Director"
       ],
       "sources": [],
       "note": "OSTP Director"

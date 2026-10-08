@@ -14,6 +14,7 @@ voices:
   - Amodei
   - Anthropic CEO
   - Anthropic's CEO
+  - Anthropic chief
   sources:
   - Anthropic News
   note: CEO of Anthropic
@@ -38,6 +39,7 @@ voices:
   - Nvidia CEO
   - NVIDIA CEO
   - Nvidia's CEO
+  - Nvidia chief
   sources:
   - The Verge — AI
   - Ars Technica — AI
@@ -78,6 +80,7 @@ voices:
   - Zuckerberg
   - Meta CEO
   - Meta's CEO
+  - Meta chief
   sources:
   - The Verge — AI
   - Politico — Technology
@@ -90,6 +93,8 @@ voices:
   - Hassabis
   - DeepMind CEO
   - Google DeepMind CEO
+  - DeepMind's CEO
+  - DeepMind chief
   sources:
   - Google DeepMind Blog
   - MIT Technology Review — AI
@@ -228,6 +233,8 @@ voices:
   - Bill Gates
   - Gates
   - BillGates
+  - Bill Gates says
+  - Gates Foundation
   sources:
   - NPR — World
   - CBS News — World
@@ -239,6 +246,8 @@ voices:
   keywords:
   - Jay Clayton
   - Clayton
+  - DNI
+  - Director of National Intelligence
   sources:
   - The Hill — News
   - The Hill — Policy
@@ -252,6 +261,8 @@ voices:
   keywords:
   - Andrew Ferguson
   - Ferguson
+  - FTC Chairman
+  - FTC Chair
   sources:
   - Politico — Technology
   - The Verge — AI
@@ -283,6 +294,7 @@ voices:
   keywords:
   - Susie Wiles
   - Wiles
+  - White House Chief of Staff
   sources:
   - The Hill — News
   - The Hill — Policy
@@ -308,6 +320,8 @@ voices:
   - Alex Karp
   - Karp
   - Palantir CEO
+  - Palantir's CEO
+  - Palantir chief
   sources:
   - Politico — Technology
   - The Hill — Policy
@@ -351,6 +365,10 @@ voices:
   keywords:
   - Sundar Pichai
   - Pichai
+  - Google CEO
+  - Google's CEO
+  - Google chief
+  - Alphabet CEO
   sources: []
   note: CEO of Google and Alphabet
 - name: Satya Nadella
@@ -359,6 +377,9 @@ voices:
   keywords:
   - Satya Nadella
   - Nadella
+  - Microsoft CEO
+  - Microsoft's CEO
+  - Microsoft chief
   sources: []
   note: CEO of Microsoft
 - name: JD Vance
@@ -367,6 +388,9 @@ voices:
   keywords:
   - JD Vance
   - J.D. Vance
+  - Vice President Vance
+  - VP Vance
+  - US Vice President
   sources: []
   note: US Vice President
 - name: John Thune
@@ -375,6 +399,8 @@ voices:
   keywords:
   - John Thune
   - Thune
+  - Senate Majority Leader
+  - Majority Leader Thune
   sources: []
   note: Senate Majority Leader
 - name: David Sacks
@@ -382,6 +408,9 @@ voices:
   category: policy
   keywords:
   - David Sacks
+  - AI Czar
+  - AI and Crypto Czar
+  - White House AI Czar
   sources: []
   note: AI and Crypto Czar
 - name: Michael Kratsios
@@ -390,6 +419,8 @@ voices:
   keywords:
   - Michael Kratsios
   - Kratsios
+  - OSTP Director
+  - Science and Technology Policy Director
   sources: []
   note: OSTP Director
 - name: Fei-Fei Li
