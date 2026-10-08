@@ -322,87 +322,6 @@ export default {
       "note": "Co-founder of Microsoft, philanthropist"
     },
     {
-      "name": "Jay Clayton",
-      "affiliation": "Director of National Intelligence, Head of SIF",
-      "category": "policy",
-      "keywords": [
-        "Jay Clayton",
-        "Clayton",
-        "DNI",
-        "Director of National Intelligence"
-      ],
-      "sources": [
-        "The Hill — News",
-        "The Hill — Policy",
-        "Politico — Politics",
-        "NPR — World",
-        "CBS News — Politics"
-      ],
-      "note": "Head of Super Intelligence Force (SIF)"
-    },
-    {
-      "name": "Andrew Ferguson",
-      "affiliation": "FTC Chairman",
-      "category": "policy",
-      "keywords": [
-        "Andrew Ferguson",
-        "Ferguson",
-        "FTC Chairman",
-        "FTC Chair"
-      ],
-      "sources": [
-        "Politico — Technology",
-        "The Verge — AI",
-        "The Hill — Policy"
-      ],
-      "note": "FTC Chairman, SIF leadership"
-    },
-    {
-      "name": "Emil Michael",
-      "affiliation": "Deputy Secretary of Defense for R&D",
-      "category": "policy",
-      "keywords": [
-        "Emil Michael"
-      ],
-      "sources": [
-        "Politico — Politics",
-        "The Hill — Policy",
-        "CBS News — Politics"
-      ],
-      "note": "Deputy Secretary of Defense, SIF leadership"
-    },
-    {
-      "name": "Scott Kupor",
-      "affiliation": "Director of Office of Personnel Management",
-      "category": "policy",
-      "keywords": [
-        "Scott Kupor",
-        "Kupor"
-      ],
-      "sources": [
-        "Politico — Technology",
-        "The Hill — Policy"
-      ],
-      "note": "OPM Director, SIF leadership"
-    },
-    {
-      "name": "Susie Wiles",
-      "affiliation": "White House Chief of Staff",
-      "category": "policy",
-      "keywords": [
-        "Susie Wiles",
-        "Wiles",
-        "White House Chief of Staff"
-      ],
-      "sources": [
-        "The Hill — News",
-        "The Hill — Policy",
-        "Politico — Politics",
-        "NPR — World"
-      ],
-      "note": "White House Chief of Staff"
-    },
-    {
       "name": "Vitalik Buterin",
       "affiliation": "Ethereum",
       "category": "crypto",
@@ -508,33 +427,6 @@ export default {
       ],
       "sources": [],
       "note": "CEO of Microsoft"
-    },
-    {
-      "name": "JD Vance",
-      "affiliation": "US Government",
-      "category": "policy",
-      "keywords": [
-        "JD Vance",
-        "J.D. Vance",
-        "Vice President Vance",
-        "VP Vance",
-        "US Vice President"
-      ],
-      "sources": [],
-      "note": "US Vice President"
-    },
-    {
-      "name": "John Thune",
-      "affiliation": "US Senate",
-      "category": "policy",
-      "keywords": [
-        "John Thune",
-        "Thune",
-        "Senate Majority Leader",
-        "Majority Leader Thune"
-      ],
-      "sources": [],
-      "note": "Senate Majority Leader"
     },
     {
       "name": "David Sacks",
