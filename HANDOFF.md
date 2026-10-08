@@ -37,7 +37,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 | scripts/math_verification.py      | Independent math verification (Phase 15)     |
 | scripts/yaml-to-ts.mjs            | YAML → TS generator                          |
 | scripts/update_readme.py          | Update README from live API (incl. ## Voices)|
-| config/voices.yaml                | 19 curated speakers, 6 categories            |
+| config/voices.yaml                | 46 curated speakers, 7 categories            |
 | src/services/voices.ts            | extractVoice() + saveVoice()                 |
 | src/config/generated/voices.ts    | Auto-generated from voices.yaml              |
 | migrations/0014_voices.sql        | D1 migration: voices table                   |
@@ -55,7 +55,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - Batch capacity per run: 60 (planned: 52)
 - CF token: 3 permissions (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
 - **Items classification:** 603 items, classified with prompt v1 (no per-item version tracking)
-- **Voices extraction:** 116 verified quotes from 19 curated speakers (6 categories)
+- **Voices extraction:** 13 curated mentions from 46 speakers (7 categories; policy emptied 2026-10-08)
 
 ## 4. Known issues (by priority)
 
@@ -605,32 +605,34 @@ and reflects the real current state of the project. Do not trust
 hand-written statuses without verification.
 
 For Voices feature: `curl /voices?limit=10` to verify extraction quality.
-If count is 0 but items exist, check `extractVoice()` logic — name-in-text is required.
+If count is 0 but items exist, check `extractVoice()` logic — name-in-title is required (title-only since f068120).
 
 ---
 
 ## 16. Voices feature (automated quote extraction)
 
-Extracts quotes from 28 curated speakers (AI lab leaders, researchers, investors, policymakers, and other notable figures) when they are mentioned in news items.
+Extracts curated mentions from 46 speakers (AI lab leaders, researchers, investors; policy category emptied 2026-10-08) when they are named in news headlines. Includes CJK frontier labs (DeepSeek, Moonshot, Qwen, Zhipu, ByteDance, MiniMax, Tencent).
 
 ### Critical extraction logic (DO NOT CHANGE WITHOUT REVIEW)
 
-A quote is extracted **if and only if BOTH** conditions are met:
+A mention is extracted **if and only if BOTH** conditions are met:
 1. `item.relevance >= 0.2` (configurable via `min_relevance` in `config/voices.yaml`)
-2. **At least one keyword** from the speaker's `keywords` list appears in `item.title` OR `item.summary` (case-insensitive)
+2. **At least one keyword** from the speaker's `keywords` list appears in `item.title` (case-insensitive, Unicode-aware word boundary)
 
-> ⚠️ **ANTI-PATTERN**: Do *not* implement "source-only" matching (e.g., attributing an article to a speaker just because it's from "NPR" and "NPR" is in their sources list). This causes massive false positives. The speaker's name/keyword **must** appear in the text. Verified: source-only matching produced 224 false positives vs 116 correct extractions with name-in-text logic.
+> ⚠️ **ANTI-PATTERN**: Do *not* implement "source-only" matching (e.g., attributing an article to a speaker just because it's from "NPR" and "NPR" is in their sources list). This causes massive false positives. The speaker's name/keyword **must** appear in the title. Verified: source-only matching produced 224 false positives vs 116 correct extractions with name-in-title logic. Summary-only matches were removed 2026-10-08 (commit f068120) — produced misleading attributions like 'AMD acquires World Labs' → Fei-Fei Li.
 
 ### Flow
 - `config/voices.yaml` → `node scripts/yaml-to-ts.mjs` → `src/config/generated/voices.ts`
 - `src/services/voices.ts:extractVoice()` called in `runCollection()` after `INSERT INTO items`
+  - Uses Unicode-aware word boundaries: `(?<!\p{L})keyword(?!\p{L})` with `/u` flag (commit d7290c2). Required for CJK/cyrillic names like 梁文锋 — `\b` only matches ASCII boundaries.
 - `saveVoice()` uses `INSERT OR IGNORE` with `UNIQUE(item_hash, speaker)` — idempotent
+  - **Gotcha:** `INSERT OR IGNORE` never deletes or overwrites. When a speaker is removed from `config/voices.yaml`, existing rows in `voices` persist until manual `DELETE FROM voices WHERE speaker = ?`. Verified 2026-10-08 (Sacks removal required manual cleanup).
 - `GET /voices?limit=20&category=frontier_labs` — returns curated quotes
 - `GET /backfill-voices` (auth required) — retroactively processes all items
 - `scripts/update_readme.py` renders `## Voices` section in README.md / .ru / .zh (with timeout resilience)
 
 ### Categories
-`frontier_labs`, `researchers`, `safety_philosophy`, `investors`, `policy`, `crypto`, `enterprise`, `mathematics`
+`frontier_labs`, `researchers`, `safety_philosophy`, `investors`, `crypto`, `enterprise`, `mathematics`
 
 
 ---
