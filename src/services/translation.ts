@@ -303,6 +303,18 @@ export async function translateVoicesBatch(
 			+ '   \u00abto have dinner with X\u00bb \u2192 \u00ab\u0431\u0443\u0434\u0435\u0442 \u043d\u0430 \u0443\u0436\u0438\u043d\u0435 \u0441 X\u00bb (NOT \u00ab\u043f\u043e\u043b\u0443\u0447\u0438\u0442 \u0443\u0436\u0438\u043d\u00bb);\n'
 			+ '   \u00abremarks at\u00bb \u2192 \u00ab\u0432\u044b\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435 \u043d\u0430/\u0432\u00bb (NOT \u00ab\u0437\u0430\u043c\u0435\u0447\u0430\u043d\u0438\u044f\u00bb);\n'
 			+ '   \u00abadds X to Y\u00bb \u2192 \u00ab\u0434\u043e\u0431\u0430\u0432\u0438\u043b X \u0432 Y\u00bb (past tense for past events).\n'
+			+ 'NAMES (use these exact Russian forms for all speaker mentions): '
+			+ 'Dario Amodei → Дарио Амодеи; Sam Altman → Сэм Альтман; Jensen Huang → Дженсен Хуанг; '
+			+ 'Ilya Sutskever → Илья Суцкевер; Elon Musk → Илон Маск; Jeff Bezos → Джефф Безос; '
+			+ 'Marc Andreessen → Марк Андриссен; Peter Thiel → Питер Тиль; Alex Karp → Алекс Карп; '
+			+ 'Paul Graham → Пол Грэм; Eliezer Yudkowsky → Элиезер Юдковский; '
+			+ 'Henry Shevlin → Генри Шевлин; Yann LeCun → Янн ЛеКун; Andrej Karpathy → Андрей Карпаты; '
+			+ 'Jiang Xueqin → Цзян Сюэцинь; Bill Gates → Билл Гейтс; Vitalik Buterin → Виталик Бутерин; '
+			+ 'Mark Zuckerberg → Марк Цукерберг; Demis Hassabis → Демис Хассабис; '
+			+ 'Geoffrey Hinton → Джеффри Хинтон; Stuart Russell → Стюарт Рассел; '
+			+ 'Yuk Hui → Юк Хуэй; Jay Clayton → Джей Клейтон; Andrew Ferguson → Эндрю Фергюсон; '
+			+ 'Emil Michael → Эмиль Майкл; Scott Kupor → Скотт Купор; Susie Wiles → Сьюзи Уайлс\n'
+
 		: '1. Natural Simplified Chinese news style \u2014 NOT literal translation.\n'
 			+ '2. Every translation MUST end with \u3002 or \uff01 or \uff1f. Never truncate.\n'
 			+ '3. Keep names in their standard form (Sam Altman, OpenAI, Anthropic).\n';
