@@ -121,3 +121,34 @@ rss:
   note: Академические исследования UC Berkeley — CV, ML, NLP, робототехника
 
 html_sources: []
+- name: WSJ — Tech
+    url: https://feeds.content.dowjones.io/public/rss/RSSWSJD
+    lang: en
+    tier: 1
+    axes:
+      - itq
+    note: WSJ tech section — AI business and policy signals
+  
+  - name: BBC — Technology
+    url: https://feeds.bbci.co.uk/news/technology/rss.xml
+    lang: en
+    tier: 1
+    axes:
+      - itq
+    note: BBC Technology — neutral baseline for AI coverage
+  
+  - name: FT — AI
+    url: https://www.ft.com/artificial-intelligence?format=rss
+    lang: en
+    tier: 1
+    axes:
+      - itq
+    note: Financial Times AI vertical — enterprise and policy
+  
+  - name: The Guardian — AI
+    url: https://www.theguardian.com/technology/artificialintelligenceai/rss
+    lang: en
+    tier: 1
+    axes:
+      - h6_democracy
+    note: Guardian AI coverage — civil liberties and ethics angle
