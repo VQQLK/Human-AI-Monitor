@@ -429,30 +429,6 @@ export default {
       "note": "CEO of Microsoft"
     },
     {
-      "name": "David Sacks",
-      "affiliation": "White House AI Czar",
-      "category": "policy",
-      "keywords": [
-        "AI Czar",
-        "SI Czar"
-      ],
-      "sources": [],
-      "note": "AI and Crypto Czar"
-    },
-    {
-      "name": "Michael Kratsios",
-      "affiliation": "White House OSTP",
-      "category": "policy",
-      "keywords": [
-        "Michael Kratsios",
-        "Kratsios",
-        "OSTP Director",
-        "Science and Technology Policy Director"
-      ],
-      "sources": [],
-      "note": "OSTP Director"
-    },
-    {
       "name": "Fei-Fei Li",
       "affiliation": "Stanford HAI",
       "category": "researchers",
@@ -494,6 +470,72 @@ export default {
       ],
       "sources": [],
       "note": "Author of Superintelligence, FHI founder"
+    },
+    {
+      "name": "Sergey Brin",
+      "affiliation": "Google",
+      "category": "frontier_labs",
+      "keywords": [
+        "Sergey Brin",
+        "Brin"
+      ],
+      "sources": [],
+      "note": "Co-founder of Google"
+    },
+    {
+      "name": "Arkady Volozh",
+      "affiliation": "Nebius",
+      "category": "frontier_labs",
+      "keywords": [
+        "Arkady Volozh",
+        "Volozh"
+      ],
+      "sources": [],
+      "note": "Founder of Nebius, ex-Yandex"
+    },
+    {
+      "name": "Arthur Mensch",
+      "affiliation": "Mistral AI",
+      "category": "frontier_labs",
+      "keywords": [
+        "Arthur Mensch",
+        "Mensch"
+      ],
+      "sources": [],
+      "note": "CEO of Mistral AI"
+    },
+    {
+      "name": "Aidan Gomez",
+      "affiliation": "Cohere",
+      "category": "frontier_labs",
+      "keywords": [
+        "Aidan Gomez",
+        "Gomez"
+      ],
+      "sources": [],
+      "note": "CEO of Cohere, co-author of 'Attention is All You Need'"
+    },
+    {
+      "name": "Moustapha Cisse",
+      "affiliation": "Google Research Africa",
+      "category": "researchers",
+      "keywords": [
+        "Moustapha Cisse",
+        "Moustapha Cissé"
+      ],
+      "sources": [],
+      "note": "Lead of African Master's in Machine Intelligence"
+    },
+    {
+      "name": "Pelonomi Moiloa",
+      "affiliation": "Lelapa AI",
+      "category": "researchers",
+      "keywords": [
+        "Pelonomi Moiloa",
+        "Moiloa"
+      ],
+      "sources": [],
+      "note": "CEO of Lelapa AI, South Africa"
     },
     {
       "name": "Fields Medal Winners",
