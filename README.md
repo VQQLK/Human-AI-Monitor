@@ -84,67 +84,67 @@ xychart-beta
 
 > Sam Altman to Decoded: ‘The world should accept some bad things happening’ for the benefits of AI
 
-— *[Politico — Technology](https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217)*
+— <em><a href="https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
 
 **Sam Altman (OpenAI) — 2026-10-05**
 
 > ‘Clearly not working’: Sam Altman hits AI industry over political spending
 
-— *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
+— <em><a href="https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
 
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
 > Inside Zuckerberg, Huang’s push for White House AI pact
 
-— *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
+— <em><a href="https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
 
 **Jensen Huang (Nvidia) — 2026-09-30**
 
 > Inside Zuckerberg, Huang’s push for White House AI pact
 
-— *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
+— <em><a href="https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
 
 **Mark Zuckerberg (Meta) — 2026-10-01**
 
 > California Dems seek safeguards against election misinformation
 
-— *[Politico — Technology](https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554)*
+— <em><a href="https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
 
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-10-01**
 
 > California Dems seek safeguards against election misinformation
 
-— *[Politico — Technology](https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554)*
+— <em><a href="https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
 
 **Sam Altman (OpenAI) — 2026-09-29**
 
 > Altman unveils 'always-on' AI agent after OpenAI shelves model over safety concerns
 
-— *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
+— <em><a href="https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/" target="_blank" rel="noopener noreferrer">The Hill — Policy</a></em>
 
 **Sam Altman (OpenAI) — 2026-09-30**
 
 > Sam Altman says OpenAI won’t go public until its models are safe
 
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
+— <em><a href="https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety" target="_blank" rel="noopener noreferrer">The Verge — AI</a></em>
 
 **Dario Amodei (Anthropic) — 2026-09-28**
 
 > Amodei adds Thune meeting to Washington tour
 
-— *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
+— <em><a href="https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 
 > Anthropic CEO Dario Amodei to have private White House dinner with Trump
 
-— *[The Hill — News](https://thehill.com/policy/technology/6114077-trump-anthropic-ceo-meeting/)*
+— <em><a href="https://thehill.com/policy/technology/6114077-trump-anthropic-ceo-meeting/" target="_blank" rel="noopener noreferrer">The Hill — News</a></em>
 
 **Sam Altman (OpenAI) — 2026-09-23**
 
 > Sam Altman’s remarks at the United Nations Security Council
 
-— *[OpenAI Blog](https://openai.com/index/sam-altman-un-security-council-remarks)*
+— <em><a href="https://openai.com/index/sam-altman-un-security-council-remarks" target="_blank" rel="noopener noreferrer">OpenAI Blog</a></em>
 
 ### 💼 Investors & Tech Leaders
 
@@ -152,13 +152,13 @@ xychart-beta
 
 > Bill Gates says an AI ‘kill switch’ isn’t enough
 
-— *[Politico — Technology](https://www.politico.com/news/2026/09/27/bill-gates-ai-kill-switch-01094236)*
+— <em><a href="https://www.politico.com/news/2026/09/27/bill-gates-ai-kill-switch-01094236" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
 
 **Peter Thiel (Founders Fund) — 2026-09-24**
 
 > Peter Thiel slams pope’s AI encyclical as gift to Chinese Communist Party
 
-— *[Politico — Technology](https://www.politico.com/news/2026/09/24/peter-thiel-slams-popes-ai-encyclical-as-gift-to-chinese-communist-party-01091850)*
+— <em><a href="https://www.politico.com/news/2026/09/24/peter-thiel-slams-popes-ai-encyclical-as-gift-to-chinese-communist-party-01091850" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
 
 ## What is this
 
