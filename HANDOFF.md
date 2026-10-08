@@ -585,29 +585,6 @@ before making changes. It addresses the most common misunderstandings.
   Do not duplicate.
 
 
-## 5. Voices feature (automated quote extraction)
-
-Extracts quotes from 19 curated speakers (AI lab CEOs, policymakers, researchers) when they are mentioned in high-relevance news items.
-
-### Critical extraction logic (DO NOT CHANGE WITHOUT REVIEW)
-
-A quote is extracted **if and only if BOTH** conditions are met:
-1. `item.relevance >= 0.8` (configurable via `min_relevance` in `config/voices.yaml`)
-2. **At least one keyword** from the speaker's `keywords` list appears in `item.title` OR `item.summary` (case-insensitive)
-
-> ⚠️ **ANTI-PATTERN**: Do *not* implement "source-only" matching (e.g., attributing an article to a speaker just because it's from "NPR" and "NPR" is in their sources list). This causes massive false positives. The speaker's name/keyword **must** appear in the text. Verified: source-only matching produced 224 false positives vs 116 correct extractions with name-in-text logic.
-
-### Flow
-- `config/voices.yaml` → `node scripts/yaml-to-ts.mjs` → `src/config/generated/voices.ts`
-- `src/services/voices.ts:extractVoice()` called in `runCollection()` after `INSERT INTO items`
-- `saveVoice()` uses `INSERT OR IGNORE` with `UNIQUE(item_hash)` — idempotent
-- `GET /voices?limit=20&category=frontier_labs` — returns curated quotes
-- `GET /backfill-voices` (auth required) — retroactively processes all items
-- `scripts/update_readme.py` renders `## Voices` section in README.md / .ru / .zh (with timeout resilience)
-
-### Categories
-`frontier_labs`, `researchers`, `institutions`, `us_administration`, `mathematics`, `philosophy`
-
 ### Information gaps to be aware of
 
 - **Baseline numbers change**: they reflect the last audit run, not a
@@ -629,6 +606,32 @@ hand-written statuses without verification.
 
 For Voices feature: `curl /voices?limit=10` to verify extraction quality.
 If count is 0 but items exist, check `extractVoice()` logic — name-in-text is required.
+
+---
+
+## 16. Voices feature (automated quote extraction)
+
+Extracts quotes from 28 curated speakers (AI lab leaders, researchers, investors, policymakers, and other notable figures) when they are mentioned in news items.
+
+### Critical extraction logic (DO NOT CHANGE WITHOUT REVIEW)
+
+A quote is extracted **if and only if BOTH** conditions are met:
+1. `item.relevance >= 0.2` (configurable via `min_relevance` in `config/voices.yaml`)
+2. **At least one keyword** from the speaker's `keywords` list appears in `item.title` OR `item.summary` (case-insensitive)
+
+> ⚠️ **ANTI-PATTERN**: Do *not* implement "source-only" matching (e.g., attributing an article to a speaker just because it's from "NPR" and "NPR" is in their sources list). This causes massive false positives. The speaker's name/keyword **must** appear in the text. Verified: source-only matching produced 224 false positives vs 116 correct extractions with name-in-text logic.
+
+### Flow
+- `config/voices.yaml` → `node scripts/yaml-to-ts.mjs` → `src/config/generated/voices.ts`
+- `src/services/voices.ts:extractVoice()` called in `runCollection()` after `INSERT INTO items`
+- `saveVoice()` uses `INSERT OR IGNORE` with `UNIQUE(item_hash, speaker)` — idempotent
+- `GET /voices?limit=20&category=frontier_labs` — returns curated quotes
+- `GET /backfill-voices` (auth required) — retroactively processes all items
+- `scripts/update_readme.py` renders `## Voices` section in README.md / .ru / .zh (with timeout resilience)
+
+### Categories
+`frontier_labs`, `researchers`, `safety_philosophy`, `investors`, `policy`, `crypto`, `enterprise`, `mathematics`
+
 
 ---
 
