@@ -79,19 +79,15 @@ xychart-beta
 
 ## Voices
 
+### 🏛️ Policy & Government
+
+**David Sacks (White House AI Czar) — 2026-09-25**
+
+> Trump rules out Bessent as AI czar
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6111941-donald-trump-scott-bessent-artificial-intelligence-czar/)*
+
 ### 🧠 Frontier Labs
-
-**Sam Altman (OpenAI) — 2026-10-04**
-
-> Sam Altman to Decoded: ‘The world should accept some bad things happening’ for the benefits of AI
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217)*
-
-**Sam Altman (OpenAI) — 2026-10-05**
-
-> ‘Clearly not working’: Sam Altman hits AI industry over political spending
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
 
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
@@ -111,17 +107,41 @@ xychart-beta
 
 — *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
 
-**Sam Altman (OpenAI) — 2026-09-30**
-
-> Sam Altman says OpenAI won’t go public until its models are safe
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
-
 **Dario Amodei (Anthropic) — 2026-09-28**
 
 > Amodei adds Thune meeting to Washington tour
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
+
+**Dario Amodei (Anthropic) — 2026-09-27**
+
+> Anthropic CEO to attend White House dinner with Trump
+
+— *[Politico — Technology](https://www.politico.com/news/2026/09/27/anthropic-amodei-trump-white-house-dinner-01094287)*
+
+**Demis Hassabis (Google DeepMind) — 2026-09-24**
+
+> Gemini 4 is almost ready, says new Google DeepMind chief
+
+— *[The Verge — AI](https://www.theverge.com/tech/999802/google-deepmind-gemini-4-timeline-koray-kavukcuoglu)*
+
+**Sam Altman (OpenAI) — 2026-10-04**
+
+> Sam Altman to Decoded: ‘The world should accept some bad things happening’ for the benefits of AI
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217)*
+
+**Sam Altman (OpenAI) — 2026-10-05**
+
+> ‘Clearly not working’: Sam Altman hits AI industry over political spending
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
+
+**Sam Altman (OpenAI) — 2026-09-30**
+
+> Sam Altman says OpenAI won’t go public until its models are safe
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 

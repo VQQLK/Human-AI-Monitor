@@ -78,7 +78,51 @@ xychart-beta
 
 ## Мнения
 
+### 🏛️ Политика и государство
+
+**David Sacks (White House AI Czar) — 2026-09-25**
+
+> Trump rules out Bessent as AI czar
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6111941-donald-trump-scott-bessent-artificial-intelligence-czar/)*
+
 ### 🧠 Лаборатории переднего края
+
+**Mark Zuckerberg (Meta) — 2026-09-30**
+
+> Inside Zuckerberg, Huang’s push for White House AI pact
+
+— *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
+
+**Jensen Huang (Nvidia) — 2026-09-30**
+
+> Inside Zuckerberg, Huang’s push for White House AI pact
+
+— *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
+
+**Sam Altman (OpenAI) — 2026-09-29**
+
+> Altman unveils 'always-on' AI agent after OpenAI shelves model over safety concerns
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
+
+**Dario Amodei (Anthropic) — 2026-09-28**
+
+> Amodei adds Thune meeting to Washington tour
+
+— *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
+
+**Dario Amodei (Anthropic) — 2026-09-27**
+
+> Anthropic CEO to attend White House dinner with Trump
+
+— *[Politico — Technology](https://www.politico.com/news/2026/09/27/anthropic-amodei-trump-white-house-dinner-01094287)*
+
+**Demis Hassabis (Google DeepMind) — 2026-09-24**
+
+> Gemini 4 is almost ready, says new Google DeepMind chief
+
+— *[The Verge — AI](https://www.theverge.com/tech/999802/google-deepmind-gemini-4-timeline-koray-kavukcuoglu)*
 
 **Sam Altman (OpenAI) — 2026-10-04**
 
@@ -92,35 +136,11 @@ xychart-beta
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
 
-**Mark Zuckerberg (Meta) — 2026-09-30**
-
-> Внутри усилий Цукерберга и Хуанга по продвижению соглашения о ИИ в Белом доме
-
-— *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
-
-**Jensen Huang (Nvidia) — 2026-09-30**
-
-> Внутри усилий Цукерберга и Хуанга по продвижению соглашения о ИИ в Белом доме
-
-— *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
-
-**Sam Altman (OpenAI) — 2026-09-29**
-
-> Альтман представляет «всегда активного» ИИ-агента после того, как OpenAI отложила модель из-за опасений по безопасности
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
-
 **Sam Altman (OpenAI) — 2026-09-30**
 
 > Сэм Альтман говорит, что OpenAI не станет публичной компанией, пока её модели не будут безопасны
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
-
-**Dario Amodei (Anthropic) — 2026-09-28**
-
-> Амодеи добавил встречу с Тьюном в программу визита в Вашингтон
-
-— *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 
