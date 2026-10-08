@@ -81,55 +81,55 @@ xychart-beta
 
 **Sam Altman (OpenAI) — 2026-10-04**
 
-> Сэм Алтман в Decoded: «Миру нужно принять, что некоторые плохие вещи произойдут», ради преимуществ ИИ
+> Сэм Альтман в интервью Decoded: «Миру нужно принять, что некоторые плохие вещи произойдут, ради пользы ИИ»
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217)*
 
 **Sam Altman (OpenAI) — 2026-10-05**
 
-> «Очевидно, не работает»: Сэм Алтман критикует индустрию ИИ из-за политических расходов
+> «Очевидно, не работает»: Сэм Альтман критикует индустрию ИИ из-за политических расходов
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
 
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
-> Внутри: давление Зукерберга и Хуанга за соглашение по ИИ Белого Дома
+> Внутри усилий Цукерберга и Хуанга по продвижению соглашения о ИИ в Белом доме
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
 **Jensen Huang (Nvidia) — 2026-09-30**
 
-> Внутри: давление Зукерберга и Хуанга за соглашение по ИИ Белого Дома
+> Внутри усилий Цукерберга и Хуанга по продвижению соглашения о ИИ в Белом доме
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
 **Sam Altman (OpenAI) — 2026-09-29**
 
-> Алтман представляет «всегда включённого» ИИ-агента после того, как OpenAI отложил модель из-за опасений по безопасности
+> Альтман представляет «всегда включённого» ИИ-агента после того, как OpenAI отложил модель из-за опасений по безопасности
 
 — *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
 
 **Sam Altman (OpenAI) — 2026-09-30**
 
-> Сэм Алтман говорит, что OpenAI не пойдёт на публику, пока его модели не будут безопасны
+> Сэм Альтман заявил, что OpenAI не станет публичной компанией, пока его модели не будут безопасны
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
 
 **Dario Amodei (Anthropic) — 2026-09-28**
 
-> Амодеи добавляет встречу с Тюном в тур по Вашингтону
+> Амодеи добавил встречу с Тьюном в программу визита в Вашингтон
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 
-> Гендиректор Anthropic Дарий Амодеи получит частный ужин в Белом Доме с Трампом
+> Гендиректор Anthropic Дарийо Амодеи будет на закрытом ужине в Белом доме с Трампом
 
 — *[The Hill — News](https://thehill.com/policy/technology/6114077-trump-anthropic-ceo-meeting/)*
 
 **Sam Altman (OpenAI) — 2026-09-23**
 
-> Замечания Сэма Алтмана в Совете Безопасности ООН
+> Выступление Сэма Альтмана в Совете Безопасности ООН
 
 — *[OpenAI Blog](https://openai.com/index/sam-altman-un-security-council-remarks)*
 
@@ -137,13 +137,13 @@ xychart-beta
 
 **Bill Gates (Gates Foundation) — 2026-09-27**
 
-> Билл Гейтс говорит, что «выключатель» для ИИ недостаточен
+> Билл Гейтс заявил, что «выключатель» для ИИ недостаточен
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/27/bill-gates-ai-kill-switch-01094236)*
 
 **Peter Thiel (Founders Fund) — 2026-09-24**
 
-> Питер Тиль осуждает энциклику папы по ИИ как подарок Китайской коммунистической партии
+> Питер Тиль критикует энциклику папы по ИИ как подарок КПК
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/24/peter-thiel-slams-popes-ai-encyclical-as-gift-to-chinese-communist-party-01091850)*
 
