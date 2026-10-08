@@ -3,7 +3,7 @@
 
 export default {
   "version": 1,
-  "updated": "2026-10-07-v3",
+  "updated": "2026-10-08-v4",
   "min_relevance": 0.2,
   "title_only_below": 0.5,
   "voices": [
@@ -13,7 +13,9 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Dario Amodei",
-        "Amodei"
+        "Amodei",
+        "Anthropic CEO",
+        "Anthropic's CEO"
       ],
       "sources": [
         "Anthropic News"
@@ -26,7 +28,10 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Sam Altman",
-        "Altman"
+        "Altman",
+        "OpenAI CEO",
+        "OpenAI's CEO",
+        "OpenAI chief"
       ],
       "sources": [
         "OpenAI Blog"
@@ -39,7 +44,10 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Jensen Huang",
-        "Huang"
+        "Huang",
+        "Nvidia CEO",
+        "NVIDIA CEO",
+        "Nvidia's CEO"
       ],
       "sources": [
         "The Verge — AI",
@@ -86,7 +94,9 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Mark Zuckerberg",
-        "Zuckerberg"
+        "Zuckerberg",
+        "Meta CEO",
+        "Meta's CEO"
       ],
       "sources": [
         "The Verge — AI",
@@ -100,7 +110,9 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Demis Hassabis",
-        "Hassabis"
+        "Hassabis",
+        "DeepMind CEO",
+        "Google DeepMind CEO"
       ],
       "sources": [
         "Google DeepMind Blog",
@@ -397,7 +409,8 @@ export default {
       "category": "enterprise",
       "keywords": [
         "Alex Karp",
-        "Karp"
+        "Karp",
+        "Palantir CEO"
       ],
       "sources": [
         "Politico — Technology",
@@ -405,6 +418,158 @@ export default {
         "CBS News — Technology"
       ],
       "note": "CEO of Palantir"
+    },
+    {
+      "name": "Mira Murati",
+      "affiliation": "Thinking Machines Lab, ex-OpenAI CTO",
+      "category": "frontier_labs",
+      "keywords": [
+        "Mira Murati",
+        "Murati"
+      ],
+      "sources": [],
+      "note": "CEO of Thinking Machines Lab, ex-OpenAI CTO"
+    },
+    {
+      "name": "Mustafa Suleyman",
+      "affiliation": "Microsoft AI",
+      "category": "frontier_labs",
+      "keywords": [
+        "Mustafa Suleyman",
+        "Suleyman"
+      ],
+      "sources": [],
+      "note": "CEO of Microsoft AI, co-founder of DeepMind"
+    },
+    {
+      "name": "Greg Brockman",
+      "affiliation": "OpenAI",
+      "category": "frontier_labs",
+      "keywords": [
+        "Greg Brockman",
+        "Brockman"
+      ],
+      "sources": [],
+      "note": "President of OpenAI"
+    },
+    {
+      "name": "Jakub Pachocki",
+      "affiliation": "OpenAI",
+      "category": "frontier_labs",
+      "keywords": [
+        "Jakub Pachocki",
+        "Pachocki"
+      ],
+      "sources": [],
+      "note": "Chief Scientist at OpenAI"
+    },
+    {
+      "name": "Sundar Pichai",
+      "affiliation": "Google, Alphabet",
+      "category": "frontier_labs",
+      "keywords": [
+        "Sundar Pichai",
+        "Pichai"
+      ],
+      "sources": [],
+      "note": "CEO of Google and Alphabet"
+    },
+    {
+      "name": "Satya Nadella",
+      "affiliation": "Microsoft",
+      "category": "frontier_labs",
+      "keywords": [
+        "Satya Nadella",
+        "Nadella"
+      ],
+      "sources": [],
+      "note": "CEO of Microsoft"
+    },
+    {
+      "name": "JD Vance",
+      "affiliation": "US Government",
+      "category": "policy",
+      "keywords": [
+        "JD Vance",
+        "J.D. Vance"
+      ],
+      "sources": [],
+      "note": "US Vice President"
+    },
+    {
+      "name": "John Thune",
+      "affiliation": "US Senate",
+      "category": "policy",
+      "keywords": [
+        "John Thune",
+        "Thune"
+      ],
+      "sources": [],
+      "note": "Senate Majority Leader"
+    },
+    {
+      "name": "David Sacks",
+      "affiliation": "White House",
+      "category": "policy",
+      "keywords": [
+        "David Sacks"
+      ],
+      "sources": [],
+      "note": "AI and Crypto Czar"
+    },
+    {
+      "name": "Michael Kratsios",
+      "affiliation": "White House OSTP",
+      "category": "policy",
+      "keywords": [
+        "Michael Kratsios",
+        "Kratsios"
+      ],
+      "sources": [],
+      "note": "OSTP Director"
+    },
+    {
+      "name": "Fei-Fei Li",
+      "affiliation": "Stanford HAI",
+      "category": "researchers",
+      "keywords": [
+        "Fei-Fei Li"
+      ],
+      "sources": [],
+      "note": "Co-director Stanford HAI, ImageNet creator"
+    },
+    {
+      "name": "Yoshua Bengio",
+      "affiliation": "Mila, Universite de Montreal",
+      "category": "researchers",
+      "keywords": [
+        "Yoshua Bengio",
+        "Bengio"
+      ],
+      "sources": [],
+      "note": "Turing Award 2018, AI safety researcher"
+    },
+    {
+      "name": "Max Tegmark",
+      "affiliation": "MIT, Future of Life Institute",
+      "category": "researchers",
+      "keywords": [
+        "Max Tegmark",
+        "Tegmark"
+      ],
+      "sources": [],
+      "note": "MIT physicist, FLI co-founder, author of Life 3.0"
+    },
+    {
+      "name": "Nick Bostrom",
+      "affiliation": "Oxford",
+      "category": "safety_philosophy",
+      "keywords": [
+        "Nick Bostrom",
+        "Bostrom"
+      ],
+      "sources": [],
+      "note": "Author of Superintelligence, FHI founder"
     },
     {
       "name": "Fields Medal Winners",
