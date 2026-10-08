@@ -79,14 +79,6 @@ xychart-beta
 
 ## Voices
 
-### 🏛️ Policy & Government
-
-**David Sacks (White House AI Czar) — 2026-09-25**
-
-> Trump rules out Bessent as AI czar
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6111941-donald-trump-scott-bessent-artificial-intelligence-czar/)*
-
 ### 🧠 Frontier Labs
 
 **Mark Zuckerberg (Meta) — 2026-09-30**
