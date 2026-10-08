@@ -113,7 +113,7 @@ export default {
     },
     {
       "name": "AI News (Buttondown)",
-      "url": "https://buttondown.email/ainews/rss",
+      "url": "https://duanyytop.github.io/agents-radar/feed.xml",
       "lang": "en",
       "tier": 2
     },

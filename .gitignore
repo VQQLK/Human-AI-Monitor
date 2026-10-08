@@ -207,3 +207,4 @@ id_ed25519*
 
 # Diagnostic folders (temporary audit reports)
 diagnose-*/
+*.bak_*
