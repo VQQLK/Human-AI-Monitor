@@ -7,21 +7,21 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** October 7, 2026  
-**Baseline:** Updated on October 7, 2026 — based on 101 items (sample size: 100).
+**Updated:** October 8, 2026  
+**Baseline:** Updated on October 8, 2026 — based on 149 items (sample size: 144).
 
 ### 🌍 Humanity–AI Gap Index
 
 <div align="center">
 
-| Metric | Value (10-07) | Status |
+| Metric | Value (10-08) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.39** | Current value |
-| **🔴 AI Score** | 🤖 **0.61** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.22** | AI is ahead |
-| **⚡ Threshold Shifts** | **1** | Critical events detected |
-| **📈 Items Analyzed** | **101** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **100** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.38** | Current value |
+| **🔴 AI Score** | 🤖 **0.63** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.25** | AI is ahead |
+| **⚡ Threshold Shifts** | **4** | Critical events detected |
+| **📈 Items Analyzed** | **149** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **144** | Axis-signal pairs |
 
 </div>
 
@@ -53,13 +53,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["05/10", "07/10"]
+    x-axis ["05/10", "07/10", "08/10"]
     y-axis "Gap" -0.36 --> -0.12
-    line [-0.26, -0.22]
+    line [-0.26, -0.22, -0.25]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Type |
 |---|---|---|---|---|---|---|
+| 08/10 | 0.63 | 0.38 | −0.25 | [−0.58, +0.09] | 144 | INTERIM |
 | 07/10 | 0.61 | 0.39 | −0.22 | [−0.56, +0.13] | 100 | INTERIM |
 | 05/10 | 0.76 | 0.50 | −0.26 | [−0.52, +0.01] | 237 | FINAL |
 
@@ -69,7 +70,7 @@ xychart-beta
 |---|---|---|---|---|---|---|
 | 04/10 | 0.76 | 0.50 | −0.26 | 237 | 247 | FINAL |
 
-> 📌 Interim (reference, not on chart): 07/10 — AI 0.61 · Humanity 0.39 · Gap −0.22 · 101 / 100 items.
+> 📌 Interim (reference, not on chart): 08/10 — AI 0.63 · Humanity 0.38 · Gap −0.25 · 149 / 144 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
