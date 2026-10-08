@@ -400,6 +400,64 @@ voices:
   - Moiloa
   sources: []
   note: CEO of Lelapa AI, South Africa
+- name: Liang Wenfeng
+  affiliation: DeepSeek
+  category: frontier_labs
+  keywords:
+  - Liang Wenfeng
+  - Wenfeng
+  - 梁文锋
+  sources: []
+  note: Founder of DeepSeek
+- name: Yang Zhilin
+  affiliation: Moonshot AI
+  category: frontier_labs
+  keywords:
+  - Yang Zhilin
+  - Zhilin
+  - 杨植麟
+  sources: []
+  note: CEO of Moonshot AI
+- name: Junyang Lin
+  affiliation: Alibaba Qwen
+  category: frontier_labs
+  keywords:
+  - Junyang Lin
+  - 林俊旸
+  sources: []
+  note: Lead of Qwen Team
+- name: Tang Jie
+  affiliation: Zhipu AI / Z.ai
+  category: frontier_labs
+  keywords:
+  - Tang Jie
+  - 唐杰
+  sources: []
+  note: Founder and chief scientist of Zhipu AI
+- name: Wu Yonghui
+  affiliation: ByteDance Seed
+  category: frontier_labs
+  keywords:
+  - Wu Yonghui
+  - 吴永辉
+  sources: []
+  note: Lead of ByteDance Seed
+- name: Yan Junjie
+  affiliation: MiniMax
+  category: frontier_labs
+  keywords:
+  - Yan Junjie
+  - 闫俊杰
+  sources: []
+  note: CEO of MiniMax
+- name: Zhang Zhengyou
+  affiliation: Tencent AI Lab
+  category: frontier_labs
+  keywords:
+  - Zhang Zhengyou
+  - 张正友
+  sources: []
+  note: Director of Tencent AI Lab
 - name: Fields Medal Winners
   affiliation: 25 Fields Medal Winners
   category: mathematics
