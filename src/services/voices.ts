@@ -42,7 +42,13 @@ export function extractVoice(item: {
 
   for (const voice of voicesConfig.voices) {
     for (const keyword of voice.keywords) {
-      const re = new RegExp(`\\b${escapeRegex(keyword.toLowerCase())}\\b`);
+      // Unicode-aware word boundaries: \b only works for [A-Za-z0-9_],
+      // fails for CJK and other non-Latin scripts. \p{L} matches any
+      // Unicode letter, /u enables Unicode mode.
+      const re = new RegExp(
+        `(?<!\\p{L})${escapeRegex(keyword.toLowerCase())}(?!\\p{L})`,
+        'u'
+      );
       // Scientific integrity (§12): speaker must be in TITLE.
       // Summary-only matches produced misleading attributions
       // (e.g. "AMD acquires World Labs" -> Fei-Fei Li).
