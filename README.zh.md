@@ -83,55 +83,55 @@ xychart-beta
 
 **Sam Altman (OpenAI) — 2026-10-04**
 
-> 萨姆·奥特曼对《解码》表示：“为了人工智能的好处，世界应接受一些坏事发生”。
+> 萨姆·阿尔特曼对《Decoded》表示：“为了人工智能的好处，世界应接受一些坏事发生。”
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217)*
 
 **Sam Altman (OpenAI) — 2026-10-05**
 
-> “显然没效果”：萨姆·奥特曼批评人工智能行业在政治支出上的问题。
+> “显然没用”：萨姆·阿尔特曼批评人工智能行业在政治支出上的问题
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
 
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
-> 扎克伯格和黄仁勋推动白宫人工智能协议的内部动向。
+> 扎克伯格和黄仁勋推动白宫人工智能协议
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
 **Jensen Huang (Nvidia) — 2026-09-30**
 
-> 扎克伯格和黄仁勋推动白宫人工智能协议的内部动向。
+> 扎克伯格和黄仁勋推动白宫人工智能协议
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
 **Sam Altman (OpenAI) — 2026-09-29**
 
-> 奥特曼在OpenAI因安全问题搁置模型后，发布了“持续运行”的人工智能代理。
+> 阿尔特曼在OpenAI因安全问题搁置模型后，发布“始终在线”的人工智能代理
 
 — *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
 
 **Sam Altman (OpenAI) — 2026-09-30**
 
-> 萨姆·奥特曼表示，OpenAI不会上市，直到其模型安全。
+> 萨姆·阿尔特曼表示，OpenAI将在模型安全之前不会上市
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
 
 **Dario Amodei (Anthropic) — 2026-09-28**
 
-> 阿莫迪增加与图恩的会面行程。
+> 阿莫迪将与图恩的会面加入华盛顿之行
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 
-> Anthropic首席执行官达里奥·阿莫迪将与特朗普在白宫举行私人晚宴。
+> Anthropic首席执行官达里奥·阿莫迪将与特朗普在白宫举行私人晚宴
 
 — *[The Hill — News](https://thehill.com/policy/technology/6114077-trump-anthropic-ceo-meeting/)*
 
 **Sam Altman (OpenAI) — 2026-09-23**
 
-> 萨姆·奥特曼在联合国安理会的讲话。
+> 萨姆·阿尔特曼在联合国安全理事会的讲话
 
 — *[OpenAI Blog](https://openai.com/index/sam-altman-un-security-council-remarks)*
 
@@ -139,13 +139,13 @@ xychart-beta
 
 **Bill Gates (Gates Foundation) — 2026-09-27**
 
-> 比尔·盖茨表示，人工智能的“紧急停止开关”并不足够。
+> 比尔·盖茨表示，人工智能的“关机开关”还不够
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/27/bill-gates-ai-kill-switch-01094236)*
 
 **Peter Thiel (Founders Fund) — 2026-09-24**
 
-> 彼得·蒂尔抨击教皇的人工智能通谕是送给中国共产党的礼物。
+> 彼得·蒂尔抨击教皇的人工智能通谕，称其是送给中国共产党的礼物
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/24/peter-thiel-slams-popes-ai-encyclical-as-gift-to-chinese-communist-party-01091850)*
 

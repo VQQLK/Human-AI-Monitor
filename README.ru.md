@@ -81,13 +81,13 @@ xychart-beta
 
 **Sam Altman (OpenAI) — 2026-10-04**
 
-> Сэм Альтман в интервью Decoded: «Миру нужно принять, что некоторые плохие вещи произойдут, ради пользы ИИ»
+> Сэм Альтман в интервью Decoded: «Миру нужно принять, что некоторые негативные события произойдут ради преимуществ искусственного интеллекта»
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217)*
 
 **Sam Altman (OpenAI) — 2026-10-05**
 
-> «Очевидно, не работает»: Сэм Альтман критикует индустрию ИИ из-за политических расходов
+> «Очевидно, не работает»: Сэм Альтман критикует индустрию ИИ за политические расходы
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
 
@@ -105,13 +105,13 @@ xychart-beta
 
 **Sam Altman (OpenAI) — 2026-09-29**
 
-> Альтман представляет «всегда включённого» ИИ-агента после того, как OpenAI отложил модель из-за опасений по безопасности
+> Альтман представляет «всегда активного» ИИ-агента после того, как OpenAI отложила модель из-за опасений по безопасности
 
 — *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
 
 **Sam Altman (OpenAI) — 2026-09-30**
 
-> Сэм Альтман заявил, что OpenAI не станет публичной компанией, пока его модели не будут безопасны
+> Сэм Альтман говорит, что OpenAI не станет публичной компанией, пока её модели не будут безопасны
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
 
@@ -123,7 +123,7 @@ xychart-beta
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 
-> Гендиректор Anthropic Дарийо Амодеи будет на закрытом ужине в Белом доме с Трампом
+> Дарио Амодеи, CEO Anthropic, будет на закрытом ужине в Белом доме с Трампом
 
 — *[The Hill — News](https://thehill.com/policy/technology/6114077-trump-anthropic-ceo-meeting/)*
 
@@ -137,13 +137,13 @@ xychart-beta
 
 **Bill Gates (Gates Foundation) — 2026-09-27**
 
-> Билл Гейтс заявил, что «выключатель» для ИИ недостаточен
+> Билл Гейтс говорит, что «система аварийного отключения» для ИИ недостаточна
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/27/bill-gates-ai-kill-switch-01094236)*
 
 **Peter Thiel (Founders Fund) — 2026-09-24**
 
-> Питер Тиль критикует энциклику папы по ИИ как подарок КПК
+> Питер Тиль критикует энциклику Папы по ИИ как подарок Китайской коммунистической партии
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/24/peter-thiel-slams-popes-ai-encyclical-as-gift-to-chinese-communist-party-01091850)*
 
