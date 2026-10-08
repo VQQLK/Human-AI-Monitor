@@ -112,7 +112,7 @@ export default {
       "tier": 1
     },
     {
-      "name": "AI News (Buttondown)",
+      "name": "AI News (agents-radar)",
       "url": "https://duanyytop.github.io/agents-radar/feed.xml",
       "lang": "en",
       "tier": 2
