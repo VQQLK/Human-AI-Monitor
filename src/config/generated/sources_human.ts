@@ -33,16 +33,6 @@ export default {
       ]
     },
     {
-      "name": "Edelman Trust Barometer",
-      "url": "https://news.google.com/rss/search?q=Edelman+Trust+Barometer&hl=en-US&gl=US&ceid=US:en",
-      "lang": "en",
-      "tier": 2,
-      "axes": [
-        "h6_democracy"
-      ],
-      "note": "Fallback: Google News RSS (official URL returns 403)"
-    },
-    {
       "name": "OECD — Economy",
       "url": "https://news.google.com/rss/search?q=OECD+economy+policy&hl=en-US&gl=US&ceid=US:en",
       "lang": "en",
@@ -118,17 +108,6 @@ export default {
         "h1_agency"
       ],
       "note": "US politics, elections, democratic institutions"
-    },
-    {
-      "name": "Google News — Geopolitics AI",
-      "url": "https://news.google.com/rss/search?q=AI+geopolitics+OR+BRICS+AI+OR+AI+regulation&hl=en-US&gl=US&ceid=US:en",
-      "lang": "en",
-      "tier": 2,
-      "axes": [
-        "h6_democracy",
-        "h2_sovereignty"
-      ],
-      "note": "Fallback: captures Trump AI Force, Xi BRICS AI, global AI governance"
     },
     {
       "name": "CPJ (Committee to Protect Journalists)",
