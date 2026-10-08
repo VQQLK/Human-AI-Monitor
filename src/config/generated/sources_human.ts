@@ -5,7 +5,7 @@ export default {
   "rss": [
     {
       "name": "WHO News",
-      "url": "https://www.who.int/rss-feeds/news-english.xml",
+      "url": "https://www.who.int/rss-feeds/feature-stories-english.xml",
       "lang": "en",
       "tier": 1,
       "axes": [
@@ -41,15 +41,6 @@ export default {
         "h6_democracy"
       ],
       "note": "Fallback: Google News RSS (official URL returns 403)"
-    },
-    {
-      "name": "World Inequality Lab",
-      "url": "https://wid.world/feed/",
-      "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h4_equity"
-      ]
     },
     {
       "name": "OECD — Economy",

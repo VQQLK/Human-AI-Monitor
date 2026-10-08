@@ -23,7 +23,7 @@ export default {
     },
     {
       "name": "Meta AI Blog",
-      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml",
+      "url": "https://about.fb.com/news/feed/",
       "lang": "en",
       "tier": 1
     },
@@ -140,7 +140,7 @@ export default {
     },
     {
       "name": "WSJ — World News",
-      "url": "https://feeds.a.dj.com/rss/RSSWorldNews.xml",
+      "url": "https://feeds.content.dowjones.io/public/rss/RSSWorldNews",
       "lang": "en",
       "tier": 1,
       "note": "Geopolitics, global AI race, US-China — replaces Reuters (timeout)"
