@@ -38,22 +38,21 @@ export function extractVoice(item: {
   if (item.relevance < voicesConfig.min_relevance) return [];
 
   const titleText = (item.title || '').toLowerCase();
-  const summaryText = (item.summary || '').toLowerCase();
   const matches: ExtractedVoice[] = [];
 
   for (const voice of voicesConfig.voices) {
     for (const keyword of voice.keywords) {
       const re = new RegExp(`\\b${escapeRegex(keyword.toLowerCase())}\\b`);
-      const inTitle = re.test(titleText);
-      const inSummary = re.test(summaryText);
-      if (item.relevance < voicesConfig.title_only_below && !inTitle) continue;
-      if (!inTitle && !inSummary) continue;
+      // Scientific integrity (§12): speaker must be in TITLE.
+      // Summary-only matches produced misleading attributions
+      // (e.g. "AMD acquires World Labs" -> Fei-Fei Li).
+      if (!re.test(titleText)) continue;
       {
         matches.push({
           speaker: voice.name,
           affiliation: voice.affiliation,
           category: voice.category,
-          quote: item.title || item.summary || '',
+          quote: item.title || '',
           date: item.date,
           source: item.source,
           relevance: item.relevance,
