@@ -1441,10 +1441,21 @@ export default {
 			}
 
 			// Dispatch translate-protocols workflow (EN→RU/ZH translation).
-			// Mon + Fri only — interim protocols on Tue-Sun are not translated.
-			if (cfg.generateProtocol && (isMonday || isFriday)) {
+			// Runs whenever the target week lacks RU content (content_ru IS NULL).
+			// Mon: FINAL for prev week. Tue-Sun: INTERIM for current week.
+			if (cfg.generateProtocol) {
 				ctx.waitUntil((async () => {
 					try {
+						const weekToTranslate = isMonday
+							? getWeekRange(1).start
+							: getWeekRange(0).start;
+						const existing = await env.DB.prepare(
+							"SELECT content_ru FROM protocols WHERE week_start = ?"
+						).bind(weekToTranslate).first<{ content_ru: string | null }>();
+						if (existing?.content_ru) {
+							console.log("[cron] translate skip: " + weekToTranslate + " already translated");
+							return;
+						}
 						const res = await fetch(
 							"https://api.github.com/repos/VQQLK/Human-AI-Monitor/actions/workflows/translate-protocols.yml/dispatches",
 							{
@@ -1455,10 +1466,10 @@ export default {
 									"User-Agent": "human-ai-monitor-worker",
 									"X-GitHub-Api-Version": "2022-11-28",
 								},
-								body: JSON.stringify({ ref: "main" }),
+								body: JSON.stringify({ ref: "main", inputs: { week: weekToTranslate } }),
 							}
 						);
-						console.log("[cron] translate-protocols dispatch: HTTP " + res.status);
+						console.log("[cron] translate-protocols dispatch: HTTP " + res.status + " (week=" + weekToTranslate + ")");
 						if (!res.ok) {
 							const txt = await res.text();
 							console.error("[cron] translate-protocols dispatch body: " + txt.slice(0, 300));
