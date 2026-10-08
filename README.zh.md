@@ -89,61 +89,49 @@ xychart-beta
 
 **Sam Altman (OpenAI) — 2026-10-05**
 
-> “显然没用”：Sam Altman抨击AI行业在政治支出上的问题
+> “‘显然不起作用’：Sam Altman抨击AI行业在政治支出上的问题”
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
 
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
-> 揭秘扎克伯格、黄仁勋推动白宫AI协议
+> “揭秘Zuckerberg和Huang推动白宫AI协议”
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
 **Jensen Huang (Nvidia) — 2026-09-30**
 
-> 揭秘扎克伯格、黄仁勋推动白宫AI协议
+> “揭秘Zuckerberg和Huang推动白宫AI协议”
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
-**Mark Zuckerberg (Meta) — 2026-10-01**
-
-> 加州民主党人寻求防止选举虚假信息的保障措施
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-01**
-
-> 加州民主党人寻求防止选举虚假信息的保障措施
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554)*
-
 **Sam Altman (OpenAI) — 2026-09-29**
 
-> Altman在OpenAI因安全问题搁置模型后推出“始终在线”的AI代理
+> “Altman在OpenAI因安全担忧搁置模型后发布‘始终在线’AI代理”
 
 — *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
 
 **Sam Altman (OpenAI) — 2026-09-30**
 
-> Sam Altman表示OpenAI不会上市，直到其模型安全
+> “Sam Altman表示，OpenAI将在模型安全之前不会上市”
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
 
 **Dario Amodei (Anthropic) — 2026-09-28**
 
-> 阿莫迪新增索恩会议加入华盛顿之行
+> “Amodei将与图恩的会面加入华盛顿之行”
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 
-> Anthropic首席执行官达里奥·阿莫迪将与特朗普举行私人白宫晚宴
+> “Anthropic首席执行官Dario Amodei将与特朗普举行白宫私人晚宴”
 
 — *[The Hill — News](https://thehill.com/policy/technology/6114077-trump-anthropic-ceo-meeting/)*
 
 **Sam Altman (OpenAI) — 2026-09-23**
 
-> Sam Altman在联合国安理会的讲话
+> “Sam Altman在联合国安理会的讲话”
 
 — *[OpenAI Blog](https://openai.com/index/sam-altman-un-security-council-remarks)*
 
@@ -151,13 +139,13 @@ xychart-beta
 
 **Bill Gates (Gates Foundation) — 2026-09-27**
 
-> 比尔·盖茨表示AI的“紧急停止按钮”还不够
+> “比尔·盖茨表示，AI‘紧急停止开关’是不够的”
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/27/bill-gates-ai-kill-switch-01094236)*
 
 **Peter Thiel (Founders Fund) — 2026-09-24**
 
-> 彼得·蒂尔抨击教皇的AI通谕是送给中国共产党的礼物
+> “彼得·蒂尔抨击教皇的AI通谕是送给中国共产党的礼物”
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/24/peter-thiel-slams-popes-ai-encyclical-as-gift-to-chinese-communist-party-01091850)*
 

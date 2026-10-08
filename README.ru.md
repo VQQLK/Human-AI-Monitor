@@ -81,39 +81,27 @@ xychart-beta
 
 **Sam Altman (OpenAI) — 2026-10-04**
 
-> Сам Алтман Decoded: «Миру нужно принять некоторые негативные события» ради преимуществ искусственного интеллекта
+> Сэм Алтман в Decoded: «Миру нужно принять, что некоторые плохие вещи произойдут», ради преимуществ ИИ
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217)*
 
 **Sam Altman (OpenAI) — 2026-10-05**
 
-> «Ясно не работает»: Сам Алтман критикует индустрию ИИ из-за политических расходов
+> «Очевидно, не работает»: Сэм Алтман критикует индустрию ИИ из-за политических расходов
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
 
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
-> Внутри Зукерберга, Хуанга: давление за соглашение по ИИ в Белом доме
+> Внутри: давление Зукерберга и Хуанга за соглашение по ИИ Белого Дома
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
 **Jensen Huang (Nvidia) — 2026-09-30**
 
-> Внутри Зукерберга, Хуанга: давление за соглашение по ИИ в Белом доме
+> Внутри: давление Зукерберга и Хуанга за соглашение по ИИ Белого Дома
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
-
-**Mark Zuckerberg (Meta) — 2026-10-01**
-
-> Калифорнийские демократы ищут меры предосторожности против дезинформации на выборах
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-01**
-
-> Калифорнийские демократы ищут меры предосторожности против дезинформации на выборах
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554)*
 
 **Sam Altman (OpenAI) — 2026-09-29**
 
@@ -123,25 +111,25 @@ xychart-beta
 
 **Sam Altman (OpenAI) — 2026-09-30**
 
-> Сам Алтман говорит, что OpenAI не пойдёт на биржу, пока его модели не будут безопасны
+> Сэм Алтман говорит, что OpenAI не пойдёт на публику, пока его модели не будут безопасны
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
 
 **Dario Amodei (Anthropic) — 2026-09-28**
 
-> Амодеи добавляет встречу с Тюном в свою тур по Вашингтону
+> Амодеи добавляет встречу с Тюном в тур по Вашингтону
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 
-> Генеральный директор Anthropic Дарий Амодеи будет иметь частный ужин в Белом доме с Трампом
+> Гендиректор Anthropic Дарий Амодеи получит частный ужин в Белом Доме с Трампом
 
 — *[The Hill — News](https://thehill.com/policy/technology/6114077-trump-anthropic-ceo-meeting/)*
 
 **Sam Altman (OpenAI) — 2026-09-23**
 
-> Выступление Сама Алтмана в Совете Безопасности ООН
+> Замечания Сэма Алтмана в Совете Безопасности ООН
 
 — *[OpenAI Blog](https://openai.com/index/sam-altman-un-security-council-remarks)*
 

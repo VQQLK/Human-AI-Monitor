@@ -104,18 +104,6 @@ xychart-beta
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
-**Mark Zuckerberg (Meta) — 2026-10-01**
-
-> California Dems seek safeguards against election misinformation
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-01**
-
-> California Dems seek safeguards against election misinformation
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554)*
-
 **Sam Altman (OpenAI) — 2026-09-29**
 
 > Altman unveils 'always-on' AI agent after OpenAI shelves model over safety concerns
