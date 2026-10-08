@@ -406,9 +406,7 @@ def build_voices_markdown(voices, lang):
             lines.append(f"> {quote}\n")
             source_url = v.get("url")
             if source_url:
-                src_safe = html.escape(v["source"], quote=True)
-                url_safe = html.escape(source_url, quote=True)
-                lines.append(f'— <em><a href="{url_safe}" target="_blank" rel="noopener noreferrer">{src_safe}</a></em>\n')
+                lines.append(f"— *[{v['source']}]({source_url})*\n")
             else:
                 lines.append(f"— *{v['source']}*\n")
     

@@ -83,67 +83,67 @@ xychart-beta
 
 > Сам Алтман Decoded: «Миру нужно принять некоторые негативные события» ради преимуществ искусственного интеллекта
 
-— <em><a href="https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
+— *[Politico — Technology](https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217)*
 
 **Sam Altman (OpenAI) — 2026-10-05**
 
 > «Ясно не работает»: Сам Алтман критикует индустрию ИИ из-за политических расходов
 
-— <em><a href="https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
+— *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
 
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
 > Внутри Зукерберга, Хуанга: давление за соглашение по ИИ в Белом доме
 
-— <em><a href="https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
+— *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
 **Jensen Huang (Nvidia) — 2026-09-30**
 
 > Внутри Зукерберга, Хуанга: давление за соглашение по ИИ в Белом доме
 
-— <em><a href="https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
+— *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
 **Mark Zuckerberg (Meta) — 2026-10-01**
 
 > Калифорнийские демократы ищут меры предосторожности против дезинформации на выборах
 
-— <em><a href="https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
+— *[Politico — Technology](https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554)*
 
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-10-01**
 
 > Калифорнийские демократы ищут меры предосторожности против дезинформации на выборах
 
-— <em><a href="https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
+— *[Politico — Technology](https://www.politico.com/news/2026/10/01/california-dems-election-misinformation-01100554)*
 
 **Sam Altman (OpenAI) — 2026-09-29**
 
 > Алтман представляет «всегда включённого» ИИ-агента после того, как OpenAI отложил модель из-за опасений по безопасности
 
-— <em><a href="https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/" target="_blank" rel="noopener noreferrer">The Hill — Policy</a></em>
+— *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
 
 **Sam Altman (OpenAI) — 2026-09-30**
 
 > Сам Алтман говорит, что OpenAI не пойдёт на биржу, пока его модели не будут безопасны
 
-— <em><a href="https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety" target="_blank" rel="noopener noreferrer">The Verge — AI</a></em>
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
 
 **Dario Amodei (Anthropic) — 2026-09-28**
 
 > Амодеи добавляет встречу с Тюном в свою тур по Вашингтону
 
-— <em><a href="https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
+— *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 
 > Генеральный директор Anthropic Дарий Амодеи будет иметь частный ужин в Белом доме с Трампом
 
-— <em><a href="https://thehill.com/policy/technology/6114077-trump-anthropic-ceo-meeting/" target="_blank" rel="noopener noreferrer">The Hill — News</a></em>
+— *[The Hill — News](https://thehill.com/policy/technology/6114077-trump-anthropic-ceo-meeting/)*
 
 **Sam Altman (OpenAI) — 2026-09-23**
 
 > Выступление Сама Алтмана в Совете Безопасности ООН
 
-— <em><a href="https://openai.com/index/sam-altman-un-security-council-remarks" target="_blank" rel="noopener noreferrer">OpenAI Blog</a></em>
+— *[OpenAI Blog](https://openai.com/index/sam-altman-un-security-council-remarks)*
 
 ### 💼 Инвесторы и техлидеры
 
@@ -151,13 +151,13 @@ xychart-beta
 
 > Билл Гейтс говорит, что «выключатель» для ИИ недостаточен
 
-— <em><a href="https://www.politico.com/news/2026/09/27/bill-gates-ai-kill-switch-01094236" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
+— *[Politico — Technology](https://www.politico.com/news/2026/09/27/bill-gates-ai-kill-switch-01094236)*
 
 **Peter Thiel (Founders Fund) — 2026-09-24**
 
 > Питер Тиль осуждает энциклику папы по ИИ как подарок Китайской коммунистической партии
 
-— <em><a href="https://www.politico.com/news/2026/09/24/peter-thiel-slams-popes-ai-encyclical-as-gift-to-chinese-communist-party-01091850" target="_blank" rel="noopener noreferrer">Politico — Technology</a></em>
+— *[Politico — Technology](https://www.politico.com/news/2026/09/24/peter-thiel-slams-popes-ai-encyclical-as-gift-to-chinese-communist-party-01091850)*
 
 ## Что это
 
