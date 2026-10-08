@@ -1031,15 +1031,15 @@ export default {
 				const categoryParam = url.searchParams.get("category");
 				const limit = Math.min(Math.max(parseInt(limitParam || "20", 10) || 20, 1), 100);
 
-				let query = "SELECT id, item_hash, speaker, affiliation, category, quote, quote_ru, quote_zh, date, source, relevance, axes, created_at FROM voices ";
+				let query = "SELECT v.id, v.item_hash, v.speaker, v.affiliation, v.category, v.quote, v.quote_ru, v.quote_zh, v.date, v.source, v.relevance, v.axes, v.created_at, i.url FROM voices v LEFT JOIN items i ON v.item_hash = i.hash ";
 				const params: any[] = [];
 
 				if (categoryParam) {
-					query += "WHERE category = ? ";
+					query += "WHERE v.category = ? ";
 					params.push(categoryParam);
 				}
 
-				query += "ORDER BY created_at DESC LIMIT ?";
+				query += "ORDER BY v.created_at DESC LIMIT ?";
 				params.push(limit);
 
 				const rows = await env.DB.prepare(query).bind(...params).all();
@@ -1057,6 +1057,7 @@ export default {
 					relevance: r.relevance,
 					axes: JSON.parse(r.axes || "[]"),
 					created_at: r.created_at,
+					url: r.url ?? null,
 				}));
 
 				return json({ count: voices.length, voices }, 200);

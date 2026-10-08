@@ -404,7 +404,11 @@ def build_voices_markdown(voices, lang):
             
             lines.append(f"**{v['speaker']} ({v['affiliation']}) — {v['date']}**\n")
             lines.append(f"> {quote}\n")
-            lines.append(f"— *{v['source']}*\n")
+            source_url = v.get("url")
+            if source_url:
+                lines.append(f"— *[{v['source']}]({source_url})*\n")
+            else:
+                lines.append(f"— *{v['source']}*\n")
     
     return "\n".join(lines).strip() + "\n"
 
