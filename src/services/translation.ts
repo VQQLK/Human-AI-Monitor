@@ -295,11 +295,31 @@ export async function translateVoicesBatch(
 
 	// 2. Format prompt for batch translation
 	const numberedQuotes = items.results.map((it, idx) => `[${idx + 1}] "${it.quote}"`).join('\n\n');
-	const systemPrompt = `You are a professional translator. Translate the following quotes to ${targetLangName}.
-Preserve names, technical terms, and URLs. Output ONLY the translated quotes in the exact same numbered format:
-[1] translated quote 1
-[2] translated quote 2
-...`;
+	const isRu = lang === 'ru';
+	const styleRules = isRu
+		? '1. Natural Russian news style \u2014 NOT literal translation.\n'
+			+ '2. Use "\u043e\u0431" before vowel-initial abbreviations (\u043e\u0431 \u0418\u0418, \u043e\u0431 \u041e\u041e\u041d); "\u043e" before consonants.\n'
+			+ '3. Prefer natural verbs:\n'
+			+ '   \u00abto have dinner with X\u00bb \u2192 \u00ab\u0431\u0443\u0434\u0435\u0442 \u043d\u0430 \u0443\u0436\u0438\u043d\u0435 \u0441 X\u00bb (NOT \u00ab\u043f\u043e\u043b\u0443\u0447\u0438\u0442 \u0443\u0436\u0438\u043d\u00bb);\n'
+			+ '   \u00abremarks at\u00bb \u2192 \u00ab\u0432\u044b\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435 \u043d\u0430/\u0432\u00bb (NOT \u00ab\u0437\u0430\u043c\u0435\u0447\u0430\u043d\u0438\u044f\u00bb);\n'
+			+ '   \u00abadds X to Y\u00bb \u2192 \u00ab\u0434\u043e\u0431\u0430\u0432\u0438\u043b X \u0432 Y\u00bb (past tense for past events).\n'
+		: '1. Natural Simplified Chinese news style \u2014 NOT literal translation.\n'
+			+ '2. Every translation MUST end with \u3002 or \uff01 or \uff1f. Never truncate.\n'
+			+ '3. Keep names in their standard form (Sam Altman, OpenAI, Anthropic).\n';
+
+	const systemPrompt = `You are a professional news translator. Translate each quote to ${targetLangName}.
+RULES:
+${styleRules}4. Preserve brand names, technical terms, and acronyms (OpenAI, Anthropic, GPT, Nvidia).
+5. Do NOT add explanations, comments, or surrounding quotes around the translation.
+6. Output ONLY numbered lines in this exact format \u2014 no preamble, no markdown:
+[1] translation
+[2] translation
+...
+
+EXAMPLES:
+[1] "Sam Altman's remarks at the UN Security Council" \u2192 "\u0412\u044b\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435 \u0421\u044d\u043c\u0430 \u0410\u043b\u044c\u0442\u043c\u0430\u043d\u0430 \u0432 \u0421\u043e\u0432\u0435\u0442\u0435 \u0411\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u0438 \u041e\u041e\u041d"
+[2] "CEO to have private dinner with Trump" \u2192 "\u0413\u0435\u043d\u0434\u0438\u0440\u0435\u043a\u0442\u043e\u0440 \u0431\u0443\u0434\u0435\u0442 \u043d\u0430 \u0437\u0430\u043a\u0440\u044b\u0442\u043e\u043c \u0443\u0436\u0438\u043d\u0435 \u0441 \u0422\u0440\u0430\u043c\u043f\u043e\u043c"
+[3] "Amodei adds Thune meeting to Washington tour" \u2192 "\u0410\u043c\u043e\u0434\u0435\u0438 \u0434\u043e\u0431\u0430\u0432\u0438\u043b \u0432\u0441\u0442\u0440\u0435\u0447\u0443 \u0441 \u0422\u044c\u044e\u043d\u043e\u043c \u0432 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0443 \u0432\u0438\u0437\u0438\u0442\u0430 \u0432 \u0412\u0430\u0448\u0438\u043d\u0433\u0442\u043e\u043d"`;
 
 	const errors: string[] = [];
 	let translatedCount = 0;
@@ -312,7 +332,7 @@ Preserve names, technical terms, and URLs. Output ONLY the translated quotes in 
 				{ role: 'user', content: `Translate these ${items.results.length} quotes:\n\n${numberedQuotes}` },
 			],
 			temperature: 0.3,
-			max_tokens: 2048,
+			max_tokens: 4096,
 		});
 
 		const translatedText = (response as any).response || '';
