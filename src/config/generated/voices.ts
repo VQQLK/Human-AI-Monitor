@@ -78,7 +78,10 @@ export default {
       "keywords": [
         "Elon Musk",
         "Musk",
-        "elonmusk"
+        "elonmusk",
+        "xAI CEO",
+        "Tesla CEO",
+        "SpaceX CEO"
       ],
       "sources": [
         "The Verge — AI",
