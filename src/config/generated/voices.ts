@@ -430,13 +430,11 @@ export default {
     },
     {
       "name": "David Sacks",
-      "affiliation": "White House",
+      "affiliation": "White House AI Czar",
       "category": "policy",
       "keywords": [
-        "David Sacks",
         "AI Czar",
-        "AI and Crypto Czar",
-        "White House AI Czar"
+        "SI Czar"
       ],
       "sources": [],
       "note": "AI and Crypto Czar"
