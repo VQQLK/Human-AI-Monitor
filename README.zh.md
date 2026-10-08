@@ -81,39 +81,69 @@ xychart-beta
 
 ### 🧠 前沿实验室
 
+**Sam Altman (OpenAI) — 2026-10-04**
+
+> “Sam Altman对Decoded表示：‘为了AI的好处，世界应该接受一些坏事的发生’”
+
+— *Politico — Technology*
+
+**Sam Altman (OpenAI) — 2026-10-05**
+
+> “显然没用”：Sam Altman抨击AI行业在政治支出上的问题
+
+— *Politico — Technology*
+
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
-> “扎克伯格和黄推动白宫人工智能协议”
+> 揭秘扎克伯格、黄仁勋推动白宫AI协议
 
 — *Politico — Technology*
 
 **Jensen Huang (Nvidia) — 2026-09-30**
 
-> “扎克伯格和黄推动白宫人工智能协议”
+> 揭秘扎克伯格、黄仁勋推动白宫AI协议
+
+— *Politico — Technology*
+
+**Mark Zuckerberg (Meta) — 2026-10-01**
+
+> 加州民主党人寻求防止选举虚假信息的保障措施
+
+— *Politico — Technology*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-01**
+
+> 加州民主党人寻求防止选举虚假信息的保障措施
 
 — *Politico — Technology*
 
 **Sam Altman (OpenAI) — 2026-09-29**
 
-> “奥特曼在OpenAI因安全担忧搁置模型后发布‘始终在线’AI代理”
+> Altman在OpenAI因安全问题搁置模型后推出“始终在线”的AI代理
 
 — *The Hill — Policy*
 
 **Sam Altman (OpenAI) — 2026-09-30**
 
-> “山姆·奥特曼称OpenAI在模型安全前不会上市”
+> Sam Altman表示OpenAI不会上市，直到其模型安全
 
 — *The Verge — AI*
 
+**Dario Amodei (Anthropic) — 2026-09-28**
+
+> 阿莫迪新增索恩会议加入华盛顿之行
+
+— *Politico — Technology*
+
 **Dario Amodei (Anthropic) — 2026-09-27**
 
-> “Anthropic首席执行官达里奥·阿莫迪将与特朗普在白宫举行私人晚宴”
+> Anthropic首席执行官达里奥·阿莫迪将与特朗普举行私人白宫晚宴
 
 — *The Hill — News*
 
 **Sam Altman (OpenAI) — 2026-09-23**
 
-> “山姆·奥特曼在联合国安理会的讲话”
+> Sam Altman在联合国安理会的讲话
 
 — *OpenAI Blog*
 
@@ -121,7 +151,13 @@ xychart-beta
 
 **Bill Gates (Gates Foundation) — 2026-09-27**
 
-> “比尔·盖茨称AI的‘紧急关闭装置’还不够”
+> 比尔·盖茨表示AI的“紧急停止按钮”还不够
+
+— *Politico — Technology*
+
+**Peter Thiel (Founders Fund) — 2026-09-24**
+
+> 彼得·蒂尔抨击教皇的AI通谕是送给中国共产党的礼物
 
 — *Politico — Technology*
 

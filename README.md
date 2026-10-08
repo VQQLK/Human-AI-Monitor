@@ -80,6 +80,18 @@ xychart-beta
 
 ### 🧠 Frontier Labs
 
+**Sam Altman (OpenAI) — 2026-10-04**
+
+> Sam Altman to Decoded: ‘The world should accept some bad things happening’ for the benefits of AI
+
+— *Politico — Technology*
+
+**Sam Altman (OpenAI) — 2026-10-05**
+
+> ‘Clearly not working’: Sam Altman hits AI industry over political spending
+
+— *Politico — Technology*
+
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
 > Inside Zuckerberg, Huang’s push for White House AI pact
@@ -89,6 +101,18 @@ xychart-beta
 **Jensen Huang (Nvidia) — 2026-09-30**
 
 > Inside Zuckerberg, Huang’s push for White House AI pact
+
+— *Politico — Technology*
+
+**Mark Zuckerberg (Meta) — 2026-10-01**
+
+> California Dems seek safeguards against election misinformation
+
+— *Politico — Technology*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-01**
+
+> California Dems seek safeguards against election misinformation
 
 — *Politico — Technology*
 
@@ -103,6 +127,12 @@ xychart-beta
 > Sam Altman says OpenAI won’t go public until its models are safe
 
 — *The Verge — AI*
+
+**Dario Amodei (Anthropic) — 2026-09-28**
+
+> Amodei adds Thune meeting to Washington tour
+
+— *Politico — Technology*
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 
@@ -121,6 +151,12 @@ xychart-beta
 **Bill Gates (Gates Foundation) — 2026-09-27**
 
 > Bill Gates says an AI ‘kill switch’ isn’t enough
+
+— *Politico — Technology*
+
+**Peter Thiel (Founders Fund) — 2026-09-24**
+
+> Peter Thiel slams pope’s AI encyclical as gift to Chinese Communist Party
 
 — *Politico — Technology*
 
