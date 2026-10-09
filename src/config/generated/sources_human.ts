@@ -238,6 +238,17 @@ export default {
         "h6_democracy"
       ],
       "note": "Права человека, Global South, конфликты"
+    },
+    {
+      "name": "ПостНаука",
+      "url": "https://postnauka.ru/feed",
+      "lang": "ru",
+      "tier": 1,
+      "axes": [
+        "h5_meaning",
+        "h1_agency"
+      ],
+      "note": "Russian science popularization - fundamental science, lectures, longreads"
     }
   ],
   "html_sources": []
