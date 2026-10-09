@@ -189,26 +189,86 @@ export async function translateProtocolMarkdown(
 	lang: TranslationLang
 ): Promise<string> {
 	const systemPrompt = lang === 'ru' ? PROTOCOL_SYSTEM_PROMPT_RU : PROTOCOL_SYSTEM_PROMPT_ZH;
+	const targetLang = lang === 'ru' ? 'Russian' : 'Simplified Chinese';
+
+	// Split by markdown H2 sections. Each section is translated
+	// independently and in parallel. A single 22KB call to the LLM
+	// exceeds Cloudflare Workers wall/CPU budget (HTTP 000 / 120s
+	// timeout); chunked parallel calls fit comfortably.
+	const chunks = splitMarkdownByH2(englishMarkdown);
 
 	try {
-		const response = await env.AI.run(env.CLASSIFIER_MODEL, {
-			messages: [
-				{ role: 'system', content: systemPrompt },
-				{ role: 'user', content: `Translate this protocol markdown to ${lang === 'ru' ? 'Russian' : 'Simplified Chinese'}:\n\n${englishMarkdown}` },
-			],
-			temperature: 0.3,
-			max_tokens: 16384,
-		});
-		const raw = (response as any).response || englishMarkdown;
-		// Normalize: strip trailing spaces/tabs at end of each line (LLM sometimes
-		// adds markdown hard-breaks after bold closing lines).
+		const translatedChunks = await Promise.all(
+			chunks.map(async (chunk) => {
+				if (!chunk.trim()) return chunk;
+				try {
+					const response = await env.AI.run(env.CLASSIFIER_MODEL, {
+						messages: [
+							{ role: 'system', content: systemPrompt },
+							{ role: 'user', content: `Translate this protocol markdown section to ${targetLang}. Preserve headings, tables, links, and numbers exactly. Output ONLY the translation, no preamble.\n\n${chunk}` },
+						],
+						temperature: 0.3,
+						max_tokens: 4096,
+					});
+					return ((response as any).response || chunk);
+				} catch (err) {
+					console.error(`[translate] chunk failed, using original:`, err);
+					return chunk;
+				}
+			}),
+		);
+		const raw = translatedChunks.join("\n");
 		const cleaned = raw.replace(/[ \t]+$/gm, "");
-		// Force a hard-break between the two bold closing lines at end of file.
 		return ensureClosingHardBreak(cleaned);
 	} catch (err) {
 		console.error(`[translate] protocol translation failed:`, err);
 		return englishMarkdown;
 	}
+}
+
+/**
+ * Split markdown into chunks at H2 (##) boundaries, keeping the H2 header
+ * with its body. Chunks target ~4KB; oversized sections are further split
+ * at paragraph boundaries to stay within a single LLM call budget.
+ */
+function splitMarkdownByH2(md: string): string[] {
+	const lines = md.split("\n");
+	const chunks: string[] = [];
+	let current: string[] = [];
+
+	const flush = () => {
+		if (current.length > 0) {
+			chunks.push(current.join("\n"));
+			current = [];
+		}
+	};
+
+	for (const line of lines) {
+		const isH2 = /^## /.test(line);
+		if (isH2 && current.length > 0) flush();
+		current.push(line);
+	}
+	flush();
+
+	const result: string[] = [];
+	for (const chunk of chunks) {
+		if (chunk.length <= 4000) {
+			result.push(chunk);
+			continue;
+		}
+		const paras = chunk.split(/\n\n/);
+		let buf = "";
+		for (const para of paras) {
+			if ((buf + "\n\n" + para).length > 4000 && buf.length > 0) {
+				result.push(buf + "\n\n");
+				buf = para;
+			} else {
+				buf = buf ? buf + "\n\n" + para : para;
+			}
+		}
+		if (buf) result.push(buf);
+	}
+	return result;
 }
 
 const VOICE_SYSTEM_PROMPT_RU = `You are a professional translator. Translate the following quote to Russian.
