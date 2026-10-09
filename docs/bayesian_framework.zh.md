@@ -42,7 +42,7 @@ G(t) = AI_score(t) − Human_score(t)
 
 ### 1.5 数据来源
 
-每周从约 40 个 RSS 源收集。每个条目由语言模型（Qwen 3，`@cf/qwen/qwen3-30b-a3b-fp8`）分类，并获得：
+每周从约 60 个 RSS 源收集。每个条目由语言模型（Qwen 3，`@cf/qwen/qwen3-30b-a3b-fp8`）分类，并获得：
 
 - `r_s ∈ [0, 1]` — 相关性（分类器置信度），
 - `σ_s ∈ {yes, no, uncertain}` — 阈值位移标志，

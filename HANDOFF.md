@@ -28,7 +28,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 | src/config/prompts.ts             | LLM prompts (AI + Human)                     |
 | src/services/gap-computation.ts   | Bayesian posterior + MC 10000 samples        |
 | src/services/bayesian-gap.ts      | Beta sampling, RNG                           |
-| config/sources_ai.yaml            | 27 AI sources                                |
+| config/sources_ai.yaml            | 33 AI sources                                |
 | config/sources_human.yaml         | 25 Human sources                             |
 | config/axes_ai.yaml               | 6 AI axes + META geopolitics                 |
 | config/axes_human.yaml            | 6 Human axes                                 |

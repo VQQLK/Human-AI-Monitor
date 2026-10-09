@@ -42,7 +42,7 @@ where `AI_score` is the aggregated estimate of the AI level, and `Human_score` i
 
 ### 1.5 Data Source
 
-Weekly collection from ~40 RSS sources. Each item is classified by a language model (Qwen 3, `@cf/qwen/qwen3-30b-a3b-fp8`) and receives:
+Weekly collection from ~60 RSS sources. Each item is classified by a language model (Qwen 3, `@cf/qwen/qwen3-30b-a3b-fp8`) and receives:
 
 - `r_s ∈ [0, 1]` — relevance (classifier confidence),
 - `σ_s ∈ {yes, no, uncertain}` — threshold shift flag,

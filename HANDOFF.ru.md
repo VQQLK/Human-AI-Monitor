@@ -28,7 +28,7 @@ Cloudflare Worker, который:
 | src/config/prompts.ts             | Промпты LLM (AI + Human)                     |
 | src/services/gap-computation.ts   | Bayesian posterior + MC 10000                |
 | src/services/bayesian-gap.ts      | Beta sampling, RNG                           |
-| config/sources_ai.yaml            | 27 AI-источников                             |
+| config/sources_ai.yaml            | 33 AI-источников                             |
 | config/sources_human.yaml         | 25 Human-источников                          |
 | config/axes_ai.yaml               | 6 AI-осей + META geopolitics                 |
 | config/axes_human.yaml            | 6 Human-осей                                 |
