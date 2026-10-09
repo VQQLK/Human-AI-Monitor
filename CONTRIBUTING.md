@@ -81,8 +81,8 @@ Process:
     ├── config/
     │   ├── axes_ai.yaml                # 6 AI + 1 Geo meta
     │   ├── axes_human.yaml             # 6 Human axes
-    │   ├── sources_ai.yaml             # 21 AI sources (20 active)
-    │   └── sources_human.yaml          # 15 human sources (11 active)
+    │   ├── sources_ai.yaml             # 33 AI sources
+    │   └── sources_human.yaml          # 24 human sources
     ├── migrations/
     │   ├── 0001_initial_schema.sql
     │   ├── 0002_add_content_column.sql

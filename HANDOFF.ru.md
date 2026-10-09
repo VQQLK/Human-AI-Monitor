@@ -7,7 +7,7 @@
 ## 1. Обзор проекта
 
 Cloudflare Worker, который:
-- Собирает RSS-сигналы из 52 источников (27 AI + 25 Human)
+- Собирает RSS-сигналы из 57 источников (33 AI + 24 Human)
 - Классифицирует items через LLM (@cf/qwen/qwen3-30b-a3b-fp8)
 - Считает Bayesian Gap Index: Gap = Human_score − AI_score
 - API: /gap, /axes-history, /protocols, /health, /classify, /voices, /backfill-voices
@@ -49,10 +49,10 @@ Cloudflare Worker, который:
 - **Baseline: 147 проверок — 146 PASS / 1 WARN / 0 FAIL** (WARN = транзитное покрытие оси, напр. `hexad`; всегда проверяйте через `bash scripts/run-audit.sh`)
 - Версия скрипта аудита: **v4.9** (15 фаз; фаза 15 = математическая верификация)
 - Математическая верификация: **20/20 PASS** (см. §14; запускается в аудите как фаза 15)
-- Источников: 52 (27 AI + 25 Human)
+- Источников: 57 (33 AI + 24 Human)
 - Осей: 13 (6 AI + 6 Human + 1 META)
 - Языки источников: en + ru (ТАСС) + zh (FT Chinese)
-- Ёмкость батча за прогон: 60 (планируется: 52)
+- Ёмкость батча за прогон: 60 (планируется: 57)
 - CF-токен: 3 права (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
 - **Классификация items:** 603 items, классифицированы prompt v1 (без per-item version tracking)
 - **Извлечение Voices:** 13 курируемых упоминаний от 46 спикеров (7 категорий; policy очищена 2026-10-08)
