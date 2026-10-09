@@ -486,8 +486,6 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 	}
 	lines.push("---");
 	lines.push("");
-	lines.push("**To bring the greater good to others — what could be a higher goal!**\\");
-	lines.push("**United We Stand! Only the one who walks conquers the road.**");
 	return lines.join("\n");
 }
 
@@ -571,8 +569,6 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	}
 	lines.push("---");
 	lines.push("");
-	lines.push("**To bring the greater good to others — what could be a higher goal!**\\");
-	lines.push("**United We Stand! Only the one who walks conquers the road.**");
 	return lines.join("\n");
 }
 
