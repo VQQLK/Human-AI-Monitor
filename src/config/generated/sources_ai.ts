@@ -226,6 +226,16 @@ export default {
         "geopolitics"
       ],
       "note": "Quantum industry intelligence - market, policy, national strategies"
+    },
+    {
+      "name": "DARPA",
+      "url": "https://www.darpa.mil/rss.xml",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "geopolitics"
+      ],
+      "note": "US Defense Advanced Research Projects Agency - national security AI, quantum, robotics"
     }
   ],
   "html_sources": []
