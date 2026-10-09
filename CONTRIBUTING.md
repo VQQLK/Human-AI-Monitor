@@ -82,7 +82,7 @@ Process:
     │   ├── axes_ai.yaml                # 6 AI + 1 Geo meta
     │   ├── axes_human.yaml             # 6 Human axes
     │   ├── sources_ai.yaml             # 33 AI sources
-    │   └── sources_human.yaml          # 24 human sources
+    │   └── sources_human.yaml          # 25 human sources
     ├── migrations/
     │   ├── 0001_initial_schema.sql
     │   ├── 0002_add_content_column.sql
