@@ -197,5 +197,14 @@ rss:
   - h5_meaning
   - h1_agency
   note: Curated essays on culture, philosophy, science - AI and humanity angle
+- name: Axios
+  url: https://api.axios.com/feed/
+  lang: en
+  tier: 1
+  axes:
+  - h6_democracy
+  - h3_wellbeing
+  - h1_agency
+  note: Insider scoops on AI policy, national security, politics, tech industry
 
 html_sources: []
