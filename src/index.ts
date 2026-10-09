@@ -1136,8 +1136,19 @@ export default {
 			if (currentViewMatch) {
 				const lang = (currentViewMatch[2] || "en") as "en" | "ru" | "zh";
 				const range = getWeekRange(0);
-				const enMd = await buildDraftProtocolMarkdown(env, range);
-				const md = lang === "en" ? enMd : await translateProtocolMarkdown(env, enMd, lang);
+				// EN: build live. RU/ZH: read stored translation from DB.
+				// Avoids per-request LLM call on 20KB+ markdown that caused
+				// HTTP 000 timeouts (worker CPU budget exceeded).
+				let md: string;
+				if (lang === "en") {
+					md = await buildDraftProtocolMarkdown(env, range);
+				} else {
+					const col = "content_" + lang;
+					const row: any = await env.DB.prepare(
+						"SELECT " + col + " AS content FROM protocols WHERE week_start = ? LIMIT 1"
+					).bind(range.start).first();
+					md = (row && row.content) ? row.content : await buildDraftProtocolMarkdown(env, range);
+				}
 				const html = htmlPage("Live Protocol (DRAFT) — " + lang.toUpperCase(), renderMarkdownToHtml(md), lang);
 				return new Response(html, {
 					headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store, must-revalidate", ...SECURITY_HEADERS, ...CORS },
