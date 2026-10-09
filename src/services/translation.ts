@@ -161,19 +161,6 @@ ${numbered}`;
 /**
  * Translate entire protocol markdown document.
  */
-/**
- * Force a hard-break between the two bold closing slogan lines at end of file.
- * The LLM may omit the backslash or insert blank lines between them.
- */
-function ensureClosingHardBreak(text: string): string {
-	// Match two bold lines at the very end of the file, allowing whitespace between.
-	const re = /(\*\*[^\n*]+\*\*)(\s*\n\s*)(\*\*[^\n*]+\*\*)(\s*)$/;
-	const m = text.match(re);
-	if (!m) return text;
-	const line1 = m[1].replace(/\\+$/, "") + "\\";
-	return text.slice(0, m.index) + line1 + "\n" + m[3] + m[4];
-}
-
 export async function translateProtocolMarkdown(
 	env: Env,
 	englishMarkdown: string,
@@ -210,7 +197,7 @@ export async function translateProtocolMarkdown(
 		);
 		const raw = translatedChunks.join("\n");
 		const cleaned = raw.replace(/[ \t]+$/gm, "");
-		return ensureClosingHardBreak(cleaned);
+		return cleaned;
 	} catch (err) {
 		console.error(`[translate] protocol translation failed:`, err);
 		return englishMarkdown;
