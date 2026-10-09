@@ -233,13 +233,10 @@ if hits == 0:
 if "Приносить благо" in read(ROOT / "README.md"):
     fail("regression README.md: русская closing-строка в EN-файле")
 
-tr = read(ROOT / "src" / "services" / "translation.ts")
-if "我们在起" in tr or "带来更大的利益" in tr:
-    fail("translation.ts: в ZH-глоссарий вернулись до-канонные формы (ожидаются утверждённые переводы каноничных EN-фраз)")
-elif "我们在一起，就是力量！" not in tr or "为他人带来更大的福祉" not in tr:
-    fail("translation.ts: в ZH-глоссарии нет утверждённых переводов каноничных EN-фраз")
-else:
-    ok("translation.ts: ZH-глоссарий = утверждённые переводы каноничных EN-фраз (EN — канон, RU/ZH — зеркала)")
+# Closing slogans removed from protocols (commit 1ab3fb3): closing lives in
+# README only. The former ZH-glossary check in translation.ts is obsolete —
+# canonical phrases no longer appear in the LLM prompt. Kept the README-level
+# regression patterns above (line 215/233) which still guard README content.
 
 # ---------- 8. Cron-батчи: wrangler == ключи CRON_BATCH_META ----------
 w_clean = re.sub(r"/\*.*?\*/", "", read(ROOT / "wrangler.jsonc"), flags=re.S)
