@@ -249,6 +249,17 @@ export default {
         "h1_agency"
       ],
       "note": "Russian science popularization - fundamental science, lectures, longreads"
+    },
+    {
+      "name": "3 Quarks Daily",
+      "url": "https://3quarksdaily.com/feed",
+      "lang": "en",
+      "tier": 2,
+      "axes": [
+        "h5_meaning",
+        "h1_agency"
+      ],
+      "note": "Curated essays on culture, philosophy, science - AI and humanity angle"
     }
   ],
   "html_sources": []
