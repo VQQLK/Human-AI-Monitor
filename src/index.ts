@@ -1136,19 +1136,21 @@ export default {
 			if (currentViewMatch) {
 				const lang = (currentViewMatch[2] || "en") as "en" | "ru" | "zh";
 				const range = getWeekRange(0);
-				// EN: build live. RU/ZH: read stored translation from DB.
-				// Avoids per-request LLM call on 20KB+ markdown that caused
-				// HTTP 000 timeouts (worker CPU budget exceeded).
-				let md: string;
-				if (lang === "en") {
-					md = await buildDraftProtocolMarkdown(env, range);
-				} else {
-					const col = "content_" + lang;
-					const row: any = await env.DB.prepare(
-						"SELECT " + col + " AS content FROM protocols WHERE week_start = ? LIMIT 1"
-					).bind(range.start).first();
-					md = (row && row.content) ? row.content : await buildDraftProtocolMarkdown(env, range);
-				}
+				// All three languages read the SAME snapshot from DB.
+				// This guarantees EN / RU / ZH consistency: one row of protocols,
+				// three columns (content, content_ru, content_zh), written by cron.
+				// Previous split ("EN builds live, RU/ZH read stored") caused a
+				// numeric mismatch (EN=0.66, RU/ZH=0.61) when translation cron
+				// failed on 20KB+ markdown (HTTP 000 CPU timeout).
+				// Fallback buildDraftProtocolMarkdown only if row is missing
+				// (new week, before first interim generation).
+				const col = lang === "en" ? "content" : ("content_" + lang);
+				const row: any = await env.DB.prepare(
+					"SELECT " + col + " AS content FROM protocols WHERE week_start = ? LIMIT 1"
+				).bind(range.start).first();
+				const md: string = (row && row.content)
+					? row.content
+					: await buildDraftProtocolMarkdown(env, range);
 				const html = htmlPage("Live Protocol (DRAFT) — " + lang.toUpperCase(), renderMarkdownToHtml(md), lang);
 				return new Response(html, {
 					headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store, must-revalidate", ...SECURITY_HEADERS, ...CORS },
