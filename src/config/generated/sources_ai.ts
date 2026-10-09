@@ -216,6 +216,16 @@ export default {
         "h6_democracy"
       ],
       "note": "Guardian AI coverage — civil liberties and ethics angle"
+    },
+    {
+      "name": "The Quantum Insider",
+      "url": "https://thequantuminsider.com/feed/",
+      "lang": "en",
+      "tier": 1,
+      "axes": [
+        "geopolitics"
+      ],
+      "note": "Quantum industry intelligence - market, policy, national strategies"
     }
   ],
   "html_sources": []
