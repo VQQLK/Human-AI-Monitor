@@ -598,6 +598,39 @@ before making changes. It addresses the most common misunderstandings.
   on Monday cron (14:00 UTC). If `/gap` shows an old `recorded_at`,
   that is expected until the next scheduled generation.
 
+### Band label collision — "significantly"
+
+The `interpretGap` band label for $|G| > 0.3$ uses the word **significantly**
+(`AI is significantly ahead` / `Humanity is significantly ahead`). This is a
+**magnitude** label retained from the original specification.
+
+**Known collision.** The same word appears in `statistically_significant` —
+a separate boolean field (CI95 strictly excludes zero). The two fields can
+disagree. Live example, 2026-10-05:
+
+    gap:                       -0.31
+    interpretation:            "AI is significantly ahead"
+    gap_ci95:                  [-0.6106, +0.006]
+    statistically_significant:  0
+
+Both readings are correct: the band reports a large magnitude; the significance
+flag reports that the sign is not resolved by the current sample.
+
+**Reading rule.** Band = magnitude. `statistically_significant` = reliability.
+Report both. Do not collapse to one label. User-facing explanation:
+`docs/methodology.md` §3.3.
+
+**Why not rename.** Renaming to "substantially" or "strongly" would require
+synchronized changes in: `src/services/bayesian-gap.ts` (2 lines),
+`test/bayesian-gap.spec.ts` (2 assertions) + `test/gap-computation.spec.ts` (1 assertion),
+`src/services/translation.ts` (add RU/ZH glossary entries — none exist today),
+`gap_history` (interpretation column values), README ×3, generated protocol
+markdown ×5, and `docs/methodology.{md,ru.md,zh.md}` §3.3.
+Decision (2026-10-10): **document the collision** rather than chase a rename.
+
+**Do NOT "fix" this by editing only one file.** Any band-label rename must be
+preregistered per §13 (Measurement instrument change protocol).
+
 ### When in doubt
 
 Run `bash scripts/run-audit.sh` — it includes Phase 15 (math verification)
