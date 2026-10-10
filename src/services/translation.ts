@@ -359,7 +359,9 @@ export async function translateVoicesBatch(
 			+ '   «X won\'t go public» → «X не выйдет на IPO»;\n'
 			+ '   «always-on» → «постоянно работающий»;\n'
 			+ '   «kill switch» → «аварийный выключатель»;\n'
-			+ '   «pressure for X» → «давление ради X» (NOT «за X»).\n'
+			+ '   «pressure of X for Y» / «pressure for X» → «давление ради X» (NOT «за X»);\n'
+			+ '   Standalone surname (Zuckerberg, Altman, Huang without first name) → Russian surname from NAMES list;\n'
+			+ '   e.g. «Inside Zuckerberg» → «Что стоит за Цукербергом», NOT «Зукербергом».\n'
 
 		: '1. Natural Simplified Chinese news style \u2014 NOT literal translation.\n'
 			+ '2. Every translation MUST end with \u3002 or \uff01 or \uff1f. Never truncate.\n'
