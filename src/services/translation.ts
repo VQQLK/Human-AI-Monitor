@@ -412,6 +412,10 @@ EXAMPLES:
 			let cleanQuote = items.results[i].quote; // fallback
 			if (match) {
 				cleanQuote = match.replace(/^\[\d+\]\s*"?|"?\s*$/g, '').trim();
+				if (isRu) {
+					// RU orthography postprocess: 'о' → 'об' before А/О/У/И/Э (not Е/Ё/Ю/Я/Ы)
+					cleanQuote = cleanQuote.replace(/(?<![а-яА-ЯёЁ])о(?=\s+[аоуиэАОУИЭ])/g, 'об');
+				}
 			}
 			
 			try {
