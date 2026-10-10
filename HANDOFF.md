@@ -620,10 +620,19 @@ flag reports that the sign is not resolved by the current sample.
 Report both. Do not collapse to one label. User-facing explanation:
 `docs/methodology.md` §3.3.
 
+**Resolution — `interpretation_full`.** Since 2026-10-10 the API exposes an
+additional field `interpretation_full`: for labels containing `significantly
+ahead` it appends ` (statistically confirmed)` or ` (not statistically
+confirmed)`, based on `statistically_significant`. The original
+`interpretation` field is unchanged. README, protocol markdown, and RU/ZH
+translations render the suffixed form; RU/ZH suffixes are substituted via
+`%%SIG_NO%%` / `%%SIG_YES%%` markers in `src/services/translation.ts` after
+the LLM pass, so no glossary dependency on the full English string.
+
 **Why not rename.** Renaming to "substantially" or "strongly" would require
 synchronized changes in: `src/services/bayesian-gap.ts` (2 lines),
 `test/bayesian-gap.spec.ts` (2 assertions) + `test/gap-computation.spec.ts` (1 assertion),
-`src/services/translation.ts` (add RU/ZH glossary entries — none exist today),
+`src/services/translation.ts` (RU/ZH suffix localization via %%SIG_NO%% / %%SIG_YES%% markers),
 `gap_history` (interpretation column values), README ×3, generated protocol
 markdown ×5, and `docs/methodology.{md,ru.md,zh.md}` §3.3.
 Decision (2026-10-10): **document the collision** rather than chase a rename.
