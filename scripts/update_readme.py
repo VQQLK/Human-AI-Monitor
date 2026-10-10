@@ -74,7 +74,7 @@ STRINGS = {
         "interim_note": "Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.",
         "interim_ref_prefix": "📌 Промежуточный протокол (справочно, не на графике):",
         "voices_header": "Мнения",
-        "daily_header": "#### 📅 Ежедневная траектория Gap",
+        "daily_header": "#### 📅 Ежедневная траектория разрыва",
         "daily_col_date": "Дата",
         "daily_col_ci": "CI95",
     },
@@ -286,7 +286,7 @@ def build_daily_mermaid(snapshots, lang):
     y_max = max(gaps) + 0.1
     titles = {
         "en": "Daily Gap | Positive = Humanity leading, Negative = AI leading",
-        "ru": "Ежедневный Gap | Положительный = Человечество впереди, Отрицательный = ИИ впереди",
+        "ru": "Ежедневный разрыв | Положительный = Человечество впереди, Отрицательный = ИИ впереди",
         "zh": "每日差距 | 正值 = 人类领先，负值 = 人工智能领先",
     }
     y_axis_label = STRINGS[lang]["y_gap"]
@@ -601,16 +601,17 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
         return False
     sep_pos = after_m2 + m_sep.start()
 
-    # Idempotent: strip previous history section between graphs and separator.
-    segment = text[after_m2:sep_pos]
-    idx = segment.find(L["daily_header"])
-    if idx == -1:
-        idx = segment.find(L["hist_header"])
-    if idx != -1:
-        head = segment[:idx].rstrip("\n")
-        text = text[:after_m2] + head + text[sep_pos:]
-        m_sep = re.search(r"\n---\n", text[after_m2:])
-        sep_pos = after_m2 + m_sep.start()
+    # Idempotent: strip everything between the second mermaid block and the
+    # '---' separator, then re-insert fresh daily + historical blocks below.
+    # We do NOT search for old header strings — if the localized header text
+    # changed between versions, the search would miss and leave stale content
+    # (observed with RU 'Ежедневная траектория Gap' -> '...разрыва').
+    text = text[:after_m2] + text[sep_pos:]
+    m_sep = re.search(r"\n---\n", text[after_m2:])
+    if not m_sep:
+        print(f"  {path.name}: '---' separator not found after strip")
+        return False
+    sep_pos = after_m2 + m_sep.start()
 
     text = text[:sep_pos] + insert_block + text[sep_pos:]
 
