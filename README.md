@@ -35,7 +35,7 @@ and Humanity.**
 xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
     x-axis ["04/10", "04/10"]
-    y-axis "Score" 0.40 --> 0.80
+    y-axis "Score" 0.400 --> 0.810
     bar [0.500, 0.500]
     line [0.760, 0.760]
 ```
@@ -46,7 +46,7 @@ xychart-beta
 xychart-beta
     title "Gap Index | Positive = Humanity leading, Negative = AI leading"
     x-axis ["04/10", "04/10"]
-    y-axis "Gap" -0.15 --> 0.25
+    y-axis "Gap" -0.310 --> 0.250
     line [-0.260, -0.260]
 ```
 

@@ -199,6 +199,8 @@ def fmt_gap(g):
 def build_score_mermaid(weeks, lang):
     """Build mermaid block for Score Dynamics (finals only, history)."""
     finals = [w for w in weeks if not w.get("is_interim")]
+    # Baseline y-axis bounds; extended below when data exceeds them.
+    y_min, y_max = 0.40, 0.80
     if len(finals) == 0:
         x_axis, bar_line, ai_line = '"—"', "0", "0"
     elif len(finals) == 1:
@@ -207,6 +209,8 @@ def build_score_mermaid(weeks, lang):
         x_axis = f'"{lbl}", "{lbl}"'
         bar_line = f"{w['human']:.3f}, {w['human']:.3f}"
         ai_line = f"{w['ai']:.3f}, {w['ai']:.3f}"
+        y_min = min(y_min, w["human"] - 0.05, w["ai"] - 0.05)
+        y_max = max(y_max, w["human"] + 0.05, w["ai"] + 0.05)
     else:
         labels = [week_end_to_ddmm(w["week_end"]) for w in finals]
         human_data = [f"{w['human']:.3f}" for w in finals]
@@ -214,6 +218,9 @@ def build_score_mermaid(weeks, lang):
         x_axis = ", ".join(f'"{l}"' for l in labels)
         bar_line = ", ".join(human_data)
         ai_line = ", ".join(ai_data)
+        vals = [v for w in finals for v in (w["human"], w["ai"])]
+        y_min = min(y_min, min(vals) - 0.05)
+        y_max = max(y_max, max(vals) + 0.05)
     L = STRINGS[lang]
     title = L["score_title"]
     y_axis_label = L["y_score"]
@@ -221,7 +228,7 @@ def build_score_mermaid(weeks, lang):
 xychart-beta
     title "{title}"
     x-axis [{x_axis}]
-    y-axis "{y_axis_label}" 0.40 --> 0.80
+    y-axis "{y_axis_label}" {y_min:.3f} --> {y_max:.3f}
     bar [{bar_line}]
     line [{ai_line}]
 ```'''
@@ -230,6 +237,8 @@ xychart-beta
 def build_gap_mermaid(weeks, lang):
     """Build mermaid block for Gap Index Dynamics (finals only, history)."""
     finals = [w for w in weeks if not w.get("is_interim")]
+    # Baseline y-axis bounds; extended below when data exceeds them.
+    y_min, y_max = -0.15, 0.25
     if len(finals) == 0:
         x_axis, gap_line = '"—"', "0"
     elif len(finals) == 1:
@@ -237,10 +246,15 @@ def build_gap_mermaid(weeks, lang):
         lbl = week_end_to_ddmm(w["week_end"])
         x_axis = f'"{lbl}", "{lbl}"'
         gap_line = f"{w['gap']:.3f}, {w['gap']:.3f}"
+        y_min = min(y_min, w["gap"] - 0.05)
+        y_max = max(y_max, w["gap"] + 0.05)
     else:
         labels = [week_end_to_ddmm(w["week_end"]) for w in finals]
         gap_line = ", ".join(f"{w['gap']:.3f}" for w in finals)
         x_axis = ", ".join(f'"{l}"' for l in labels)
+        gaps_all = [w["gap"] for w in finals]
+        y_min = min(y_min, min(gaps_all) - 0.05)
+        y_max = max(y_max, max(gaps_all) + 0.05)
     titles = {
         "en": "Gap Index | Positive = Humanity leading, Negative = AI leading",
         "ru": "Индекс разрыва | Положительный = Человечество впереди, Отрицательный = ИИ впереди",
@@ -251,7 +265,7 @@ def build_gap_mermaid(weeks, lang):
 xychart-beta
     title "{titles[lang]}"
     x-axis [{x_axis}]
-    y-axis "{y_axis_label}" -0.15 --> 0.25
+    y-axis "{y_axis_label}" {y_min:.3f} --> {y_max:.3f}
     line [{gap_line}]
 ```'''
 
