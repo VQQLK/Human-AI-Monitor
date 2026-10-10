@@ -130,6 +130,12 @@ INTERP = {
     },
 }
 
+SIG_SUFFIX = {
+    "en": {0: " (not statistically confirmed)", 1: " (statistically confirmed)"},
+    "ru": {0: " (статистически не подтверждено)", 1: " (статистически подтверждено)"},
+    "zh": {0: "（统计上未确认）",                  1: "（统计上已确认）"},
+}
+
 
 def _curl(url, max_time):
     r = subprocess.run(
@@ -438,6 +444,9 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
     shifts = latest["shifts"] or 0
     interp_en = latest["interpretation"] or ""
     interp_loc = INTERP[lang].get(interp_en, interp_en)
+    if "significantly ahead" in interp_en:
+        _sig = int(latest.get("statistically_significant") or 0)
+        interp_loc = interp_loc + SIG_SUFFIX[lang][_sig]
     shifts_status = L["shifts_none"] if shifts == 0 else L["shifts_some"]
 
     date_long = fmt_date(dt, lang)

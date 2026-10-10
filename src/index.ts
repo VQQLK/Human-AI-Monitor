@@ -386,6 +386,14 @@ export function getWeekRange(offsetWeeks: number): any {
 
 // DRAFT protocol for current (still-open) week — read-only, not saved to DB
 // Used by /protocols/current endpoint for monitoring and debugging
+function interpretationFull(interp: string | null | undefined, sig: number | null | undefined): string {
+	const base = interp ?? "no data";
+	if (!base.includes("significantly ahead")) return base;
+	return sig === 1
+		? base + " (statistically confirmed)"
+		: base + " (not statistically confirmed)";
+}
+
 async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boolean = false): Promise<string> {
 	const res = await env.DB.prepare(
 		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning, temporal_status, event_date FROM items WHERE date >= ? AND date <= ? AND (temporal_status IS NULL OR temporal_status != 'stale_forecast') ORDER BY relevance DESC LIMIT 500"
@@ -419,7 +427,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 	// Read Gap from gap_history (read-only; do NOT recompute — Monte Carlo is expensive).
 	// Same source as /gap endpoint. Draft is a view, not a compute step.
 	const gapRow: any = await env.DB.prepare(
-		"SELECT ai_score, human_score, gap, interpretation FROM gap_history WHERE week_start = ? LIMIT 1"
+		"SELECT ai_score, human_score, gap, interpretation, statistically_significant FROM gap_history WHERE week_start = ? LIMIT 1"
 	).bind(range.start).first();
 	const gapResult = gapRow
 		? {
@@ -427,6 +435,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 			humanScore: gapRow.human_score,
 			gap: gapRow.gap,
 			interpretation: gapRow.interpretation ?? "no data",
+			statisticallySignificant: gapRow.statistically_significant ?? 0,
 		}
 		: null;
 	const shifts = filteredItems.filter((it) => it.shift === "yes").length;
@@ -451,7 +460,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 		lines.push("### Gap Index");
 		lines.push("- AI score: " + gapResult.aiScore);
 		lines.push("- Human score: " + gapResult.humanScore);
-		lines.push("- **Gap: " + gapResult.gap + "** (" + gapResult.interpretation + ")");
+		lines.push("- **Gap: " + gapResult.gap + "** (" + interpretationFull(gapResult.interpretation, gapResult.statisticallySignificant) + ")");
 		lines.push("");
 	}
 	lines.push("---");
@@ -534,7 +543,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		lines.push("### Gap Index");
 		lines.push("- AI score: " + gap.ai_score);
 		lines.push("- Human score: " + gap.human_score);
-		lines.push("- **Gap: " + gap.gap + "** (" + gap.interpretation + ")");
+		lines.push("- **Gap: " + gap.gap + "** (" + interpretationFull(gap.interpretation, gap.statistically_significant) + ")");
 		lines.push("");
 	}
 	lines.push("---");
@@ -971,9 +980,12 @@ export default {
 			}
 
 			if (path === "/gap") {
-				const row = await env.DB.prepare("SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1").first();
+				const row: any = await env.DB.prepare("SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1").first();
 				if (!row) return json({ error: "No gap data" }, 404);
-				return json(row, 200);
+				return json({
+					...row,
+					interpretation_full: interpretationFull(row.interpretation, row.statistically_significant),
+				}, 200);
 			}
 			if (path === "/daily-snapshots") {
 				const limitParam = url.searchParams.get("limit");
@@ -998,7 +1010,7 @@ export default {
 				// Joined with protocols to include week_end, items_count, is_interim.
 				const histRows = await env.DB.prepare(
 					"SELECT g.week_start, p.week_end, p.is_interim, " +
-					"       g.ai_score, g.human_score, g.gap, g.interpretation, " +
+					"       g.ai_score, g.human_score, g.gap, g.interpretation, g.statistically_significant, " +
 					"       g.sample_size, p.items_count, p.shifts_count, " +
 					"       g.recorded_at, p.generated_at " +
 					"FROM gap_history g " +
@@ -1013,6 +1025,8 @@ export default {
 					human: r.human_score,
 					gap: r.gap,
 					interpretation: r.interpretation,
+					interpretation_full: interpretationFull(r.interpretation, r.statistically_significant),
+					statistically_significant: r.statistically_significant,
 					items: r.items_count,
 					sample: r.sample_size,
 					shifts: r.shifts_count,

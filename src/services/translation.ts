@@ -162,6 +162,30 @@ ${numbered}`;
 	return results;
 }
 
+const SIG_LOCALIZED = {
+	ru: {
+		no: "(статистически не подтверждено)",
+		yes: "(статистически подтверждено)",
+	},
+	zh: {
+		no: "（统计上未确认）",
+		yes: "（统计上已确认）",
+	},
+} as const;
+
+function preprocessSigMarkers(text: string): string {
+	return text
+		.replace(/\(not statistically confirmed\)/g, "%%SIG_NO%%")
+		.replace(/\(statistically confirmed\)/g, "%%SIG_YES%%");
+}
+
+function postprocessSigMarkers(text: string, lang: TranslationLang): string {
+	const loc = SIG_LOCALIZED[lang];
+	return text
+		.replace(/%%SIG_NO%%/g, loc.no)
+		.replace(/%%SIG_YES%%/g, loc.yes);
+}
+
 /**
  * Translate entire protocol markdown document.
  */
@@ -177,7 +201,7 @@ export async function translateProtocolMarkdown(
 	// independently and in parallel. A single 22KB call to the LLM
 	// exceeds Cloudflare Workers wall/CPU budget (HTTP 000 / 120s
 	// timeout); chunked parallel calls fit comfortably.
-	const chunks = splitMarkdownByH2(englishMarkdown);
+	const chunks = splitMarkdownByH2(preprocessSigMarkers(englishMarkdown));
 
 	try {
 		const translatedChunks = await Promise.all(
@@ -201,7 +225,7 @@ export async function translateProtocolMarkdown(
 		);
 		const raw = translatedChunks.join("\n");
 		const cleaned = raw.replace(/[ \t]+$/gm, "");
-		return cleaned;
+		return postprocessSigMarkers(cleaned, lang);
 	} catch (err) {
 		console.error(`[translate] protocol translation failed:`, err);
 		return englishMarkdown;
