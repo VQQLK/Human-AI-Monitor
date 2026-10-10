@@ -6,7 +6,7 @@ import {
   betaParamsFromSignals, betaMean, betaVariance,
   sampleGapDistribution,
   summarize,
-  interpretGap, classifyStability, isSignificant,
+  interpretGap, isSignificant,
 } from "../src/services/bayesian-gap";
 
 // -----------------------------------------------------------------
@@ -248,37 +248,28 @@ describe("summarize", () => {
 });
 
 // =================================================================
-// 7. interpretGap — boundaries
+// 7. interpretGap — CI95 sign only
 // =================================================================
 describe("interpretGap", () => {
-  it("boundaries match methodology.md §3.3", () => {
-    expect(interpretGap(-0.31)).toBe("AI is significantly ahead");
-    expect(interpretGap(-0.30)).toBe("AI is ahead");
-    expect(interpretGap(-0.11)).toBe("AI is ahead");
-    expect(interpretGap(-0.10)).toBe("Symmetric development");
-    expect(interpretGap( 0.00)).toBe("Symmetric development");
-    expect(interpretGap( 0.10)).toBe("Symmetric development");
-    expect(interpretGap( 0.11)).toBe("Humanity is ahead");
-    expect(interpretGap( 0.30)).toBe("Humanity is ahead");
-    expect(interpretGap( 0.31)).toBe("Humanity is significantly ahead");
+  it("CI95 strictly below 0 -> AI is ahead", () => {
+    expect(interpretGap(-0.61, -0.05)).toBe("AI is ahead");
+    expect(interpretGap(-0.50, -0.01)).toBe("AI is ahead");
+    expect(interpretGap(-0.30, -0.10)).toBe("AI is ahead");
   });
-});
-
-// =================================================================
-// 8. classifyStability — same/different bands
-// =================================================================
-describe("classifyStability", () => {
-  it("CI fully inside symmetric band -> stable", () => {
-    expect(classifyStability(-0.05, 0.05)).toBe("stable");
+  it("CI95 strictly above 0 -> Humanity is ahead", () => {
+    expect(interpretGap(0.05, 0.61)).toBe("Humanity is ahead");
+    expect(interpretGap(0.01, 0.50)).toBe("Humanity is ahead");
+    expect(interpretGap(0.10, 0.30)).toBe("Humanity is ahead");
   });
-  it("CI crosses -0.1 boundary -> unstable", () => {
-    expect(classifyStability(-0.15, 0.05)).toBe("unstable");
+  it("CI95 contains 0 -> Inconclusive", () => {
+    expect(interpretGap(-0.10, 0.10)).toBe("Inconclusive");
+    expect(interpretGap(-0.05, 0.05)).toBe("Inconclusive");
+    expect(interpretGap(-0.61, 0.01)).toBe("Inconclusive");
+    expect(interpretGap(-0.05, 0.50)).toBe("Inconclusive");
   });
-  it("CI fully inside 'significant AI' -> stable", () => {
-    expect(classifyStability(0.4, 0.6)).toBe("stable");
-  });
-  it("CI crosses 0.3 boundary -> unstable", () => {
-    expect(classifyStability(0.25, 0.35)).toBe("unstable");
+  it("boundary at 0 is Inconclusive (strict inequality)", () => {
+    expect(interpretGap(0, 0.5)).toBe("Inconclusive");
+    expect(interpretGap(-0.5, 0)).toBe("Inconclusive");
   });
 });
 

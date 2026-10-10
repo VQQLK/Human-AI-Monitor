@@ -108,32 +108,20 @@ STRINGS = {
 
 INTERP = {
     "en": {
-        "AI is significantly ahead": "AI is significantly ahead",
-        "AI is ahead": "AI is ahead",
-        "Symmetric development": "Symmetric development",
         "Humanity is ahead": "Humanity is ahead",
-        "Humanity is significantly ahead": "Humanity is significantly ahead",
+        "AI is ahead": "AI is ahead",
+        "Inconclusive": "Inconclusive",
     },
     "ru": {
-        "AI is significantly ahead": "ИИ значительно впереди",
-        "AI is ahead": "ИИ впереди",
-        "Symmetric development": "Симметричное развитие",
         "Humanity is ahead": "Человечество впереди",
-        "Humanity is significantly ahead": "Человечество значительно впереди",
+        "AI is ahead": "ИИ впереди",
+        "Inconclusive": "Неопределённо",
     },
     "zh": {
-        "AI is significantly ahead": "人工智能显著领先",
-        "AI is ahead": "人工智能领先",
-        "Symmetric development": "对称发展",
         "Humanity is ahead": "人类领先",
-        "Humanity is significantly ahead": "人类显著领先",
+        "AI is ahead": "人工智能领先",
+        "Inconclusive": "不确定",
     },
-}
-
-SIG_SUFFIX = {
-    "en": {0: " (not statistically confirmed)", 1: " (statistically confirmed)"},
-    "ru": {0: " (статистически не подтверждено)", 1: " (статистически подтверждено)"},
-    "zh": {0: "（统计上未确认）",                  1: "（统计上已确认）"},
 }
 
 
@@ -444,9 +432,6 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
     shifts = latest["shifts"] or 0
     interp_en = latest["interpretation"] or ""
     interp_loc = INTERP[lang].get(interp_en, interp_en)
-    if "significantly ahead" in interp_en:
-        _sig = int(latest.get("statistically_significant") or 0)
-        interp_loc = interp_loc + SIG_SUFFIX[lang][_sig]
     shifts_status = L["shifts_none"] if shifts == 0 else L["shifts_some"]
 
     date_long = fmt_date(dt, lang)

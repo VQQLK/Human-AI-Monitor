@@ -24,7 +24,6 @@ import {
   sampleGapDistribution,
   summarize,
   interpretGap,
-  classifyStability,
   isSignificant,
   DEFAULT_MC_SAMPLES,
   cryptoRng,
@@ -59,7 +58,6 @@ export interface GapResult {
   gapStd: number;
   sampleSize: number;
   statisticallySignificant: boolean;
-  stability: 'stable' | 'unstable';
   method: 'bayesian';
 }
 
@@ -150,9 +148,8 @@ export async function computeGapIndex(
   const humanSummary = summarize(run.humanSamples);
   const gapSummary = summarize(run.gapSamples);
 
-  // 6. Interpretation, stability, two-sided significance
-  const interpretation = interpretGap(gapSummary.mean);
-  const stability = classifyStability(gapSummary.ci95Low, gapSummary.ci95High);
+  // 6. Interpretation and significance
+  const interpretation = interpretGap(gapSummary.ci95Low, gapSummary.ci95High);
   const significant = isSignificant(gapSummary.ci95Low, gapSummary.ci95High);
 
   // 7. Return — old fields first for readability, then Bayesian extensions
@@ -174,7 +171,6 @@ export async function computeGapIndex(
     gapStd: round4(gapSummary.std),
     sampleSize,
     statisticallySignificant: significant,
-    stability,
     method: 'bayesian',
   };
 }

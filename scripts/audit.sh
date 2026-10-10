@@ -185,18 +185,19 @@ check_axes "docs/architecture.zh.md"
 # ============================================================
 # ФАЗА 5: ГРАНИЦЫ ИНТЕРПРЕТАЦИИ
 # ============================================================
-hdr "ФАЗА 5: ГРАНИЦЫ ИНТЕРПРЕТАЦИИ (0.3)"
+hdr "ФАЗА 5: МЕТКИ ИНТЕРПРЕТАЦИИ (CI95)"
 
 for f in docs/methodology.md docs/methodology.ru.md docs/methodology.zh.md; do
-    if grep -qE ">\s*0\.3" "$f"; then
-        ok "$f: граница 0.3"
+    if grep -q "Inconclusive" "$f"; then
+        ok "$f: метка Inconclusive"
     else
-        fail "$f: граница 0.3 НЕ найдена"
+        fail "$f: метка Inconclusive НЕ найдена"
     fi
 done
 
-grep -q "mean > 0.3" src/services/bayesian-gap.ts && ok "Код: граница 0.3" || fail "Код: граница 0.3 НЕ найдена"
-grep -q "mean < -0.3" src/services/bayesian-gap.ts && ok "Код: граница -0.3" || fail "Код: граница -0.3 НЕ найдена"
+grep -q "ci95Low > 0" src/services/bayesian-gap.ts && ok "Код: ci95Low > 0" || fail "Код: ci95Low > 0 НЕ найден"
+grep -q "ci95High < 0" src/services/bayesian-gap.ts && ok "Код: ci95High < 0" || fail "Код: ci95High < 0 НЕ найден"
+grep -q "Inconclusive" src/services/bayesian-gap.ts && ok "Код: Inconclusive" || fail "Код: Inconclusive НЕ найден"
 
 # ============================================================
 # ФАЗА 6: ВЕСА ОСЕЙ
@@ -214,10 +215,12 @@ done
 hdr "ФАЗА 7: ТАБЛИЦА ИНТЕРПРЕТАЦИИ"
 
 for f in docs/methodology.md docs/methodology.ru.md docs/methodology.zh.md; do
-    if grep -qE "Symmetric development|Симметричное развитие|对称发展" "$f"; then
-        ok "$f: строка симметричного развития найдена"
-    else
-        warn "$f: строка симметричного развития не найдена"
+    ok=1
+    grep -q "Inconclusive" "$f" || { warn "$f: метка Inconclusive не найдена"; ok=0; }
+    grep -qE "Humanity is ahead|Человечество впереди|人类领先" "$f" || { warn "$f: метка Humanity is ahead не найдена"; ok=0; }
+    grep -qE "AI is ahead|ИИ впереди|人工智能领先" "$f" || { warn "$f: метка AI is ahead не найдена"; ok=0; }
+    if [ "$ok" = "1" ]; then
+        ok "$f: все три метки найдены"
     fi
 done
 

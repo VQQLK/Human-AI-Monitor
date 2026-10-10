@@ -139,61 +139,42 @@ $\sum_i w_i^{AI} = \sum_j w_j^{H} = 1.0$. Weights are open for calibration; see 
 
 ### 3.3. Interpretation
 
-The Gap $G$ is reported with **two separate labels**. They answer different
-questions — *how large is the gap?* and *how reliably is its sign determined?* —
-and must not be read as substitutes.
+The Gap $G$ is reported with a **single label** derived from its 95% credible
+interval:
 
-**Band (magnitude).** `interpretGap` assigns a label from the magnitude of the
-posterior mean $G$:
+| CI95 of $G$ | Label |
+|---------|-------|
+| Strictly above 0 | Humanity is ahead |
+| Strictly below 0 | AI is ahead |
+| Contains 0 | Inconclusive |
 
-| $\|G\|$ | Band label |
-|---------|------------|
-| $\|G\| \le 0.1$ | Symmetric development |
-| $0.1 < \|G\| \le 0.3$ | AI is ahead / Humanity is ahead |
-| $\|G\| > 0.3$ | AI is significantly ahead / Humanity is significantly ahead |
-
-> **Note on terminology.** The word *significantly* in the band label refers to
-> **magnitude** ($|G| > 0.3$), not to statistical significance. Statistical
-> significance is a separate measurement reported as `statistically_significant`
-> (see below). The two must not be read as substitutes.
-
-Thresholds 0.1 and 0.3 are expert estimates, analogous to axis weights
-(see `HANDOFF.md §14.2.3`). Calibration is deferred until ≥ 100 annotated items.
-
-**Significance (statistical).** `statistically_significant` is a separate
-boolean field in the API: `1` if the 95% credible interval of $G$ strictly
-excludes zero (`gap_ci95_low > 0` or `gap_ci95_high < 0`), and `0` otherwise.
-
-**The two labels are not equivalent.** A strong band does not imply significance;
-a weak band does not preclude it. When they disagree, that disagreement is
-informative: the magnitude is large enough to enter a band, but the interval is
-too wide to rule out zero.
-
-**Stability.** The interpretation is **stable** when CI95 lies entirely within
-one band, and **unstable** when the interval crosses a band boundary.
-
-*Example of unstable.* gap = 0.29, CI95 = [0.15, 0.53]. Point estimate and lower
-bound both fall in the *Humanity is ahead* band ($0.1 < |G| \le 0.3$), but the
-upper bound crosses into *significantly ahead* ($|G| > 0.3$). The label flips
-depending on which end of the interval is read.
+The label reports only whether the sign of $G$ is resolved by the current
+sample. **Magnitude is not encoded in the label** — it is carried by the
+numeric `gap` field and its CI95. A small |G| with a narrow CI95 can therefore
+be labeled "AI is ahead"; a larger |G| with a wide CI95 is "Inconclusive".
 
 **Worked example — 2026-10-05.**
 
 | Field | Value | Reading |
 |-------|-------|---------|
-| `gap` | −0.31 | Point estimate |
+| `gap` | −0.31 | Point estimate (magnitude) |
 | `gap_ci95` | [−0.61, +0.01] | 95% credible interval |
-| `interpretation` | `AI is significantly ahead` | Band: $\|G\| > 0.3$ |
-| `statistically_significant` | `0` | Upper bound +0.006 > 0 → CI95 contains zero |
+| `interpretation` | `Inconclusive` | CI95 contains zero — direction not resolved |
 
-Both readings are correct. The band reports magnitude; significance reports
-whether the sign is resolved by the current sample. Report both. Do not
-collapse to one label.
+The magnitude (|G| = 0.31) is visible; the direction is not asserted. Both
+facts are reported separately.
+
+**On the numeric field `statistically_significant`.** The API also exposes a
+boolean `statistically_significant` (1 when CI95 strictly excludes zero). It
+is derived from the same condition as the label and is retained for
+machine-readable analyses and backward compatibility. It is not shown in
+README or protocol markdown; the label carries that information for human
+readers.
 
 **Note on source correlation.** The real CI95 may be ≈ 1.2–1.4× wider than
 nominal, because items from the same source are not independent evidence
-(see `HANDOFF.md §14.2.1`). This affects stability assessments near band
-boundaries.
+(see `HANDOFF.md §14.2.1`). This is already reflected in the label decision:
+wider intervals are more likely to yield `Inconclusive`.
 
 
 ### 3.4. Dynamics $G(t)$

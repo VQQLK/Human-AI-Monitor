@@ -386,14 +386,6 @@ export function getWeekRange(offsetWeeks: number): any {
 
 // DRAFT protocol for current (still-open) week — read-only, not saved to DB
 // Used by /protocols/current endpoint for monitoring and debugging
-function interpretationFull(interp: string | null | undefined, sig: number | null | undefined): string {
-	const base = interp ?? "no data";
-	if (!base.includes("significantly ahead")) return base;
-	return sig === 1
-		? base + " (statistically confirmed)"
-		: base + " (not statistically confirmed)";
-}
-
 async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boolean = false): Promise<string> {
 	const res = await env.DB.prepare(
 		"SELECT title, url, source, date, axes, relevance, shift, direction, reasoning, temporal_status, event_date FROM items WHERE date >= ? AND date <= ? AND (temporal_status IS NULL OR temporal_status != 'stale_forecast') ORDER BY relevance DESC LIMIT 500"
@@ -427,7 +419,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 	// Read Gap from gap_history (read-only; do NOT recompute — Monte Carlo is expensive).
 	// Same source as /gap endpoint. Draft is a view, not a compute step.
 	const gapRow: any = await env.DB.prepare(
-		"SELECT ai_score, human_score, gap, interpretation, statistically_significant FROM gap_history WHERE week_start = ? LIMIT 1"
+		"SELECT ai_score, human_score, gap, interpretation FROM gap_history WHERE week_start = ? LIMIT 1"
 	).bind(range.start).first();
 	const gapResult = gapRow
 		? {
@@ -435,7 +427,6 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 			humanScore: gapRow.human_score,
 			gap: gapRow.gap,
 			interpretation: gapRow.interpretation ?? "no data",
-			statisticallySignificant: gapRow.statistically_significant ?? 0,
 		}
 		: null;
 	const shifts = filteredItems.filter((it) => it.shift === "yes").length;
@@ -460,7 +451,7 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 		lines.push("### Gap Index");
 		lines.push("- AI score: " + gapResult.aiScore);
 		lines.push("- Human score: " + gapResult.humanScore);
-		lines.push("- **Gap: " + gapResult.gap + "** (" + interpretationFull(gapResult.interpretation, gapResult.statisticallySignificant) + ")");
+		lines.push("- **Gap: " + gapResult.gap + "** (" + gapResult.interpretation + ")");
 		lines.push("");
 	}
 	lines.push("---");
@@ -543,7 +534,7 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 		lines.push("### Gap Index");
 		lines.push("- AI score: " + gap.ai_score);
 		lines.push("- Human score: " + gap.human_score);
-		lines.push("- **Gap: " + gap.gap + "** (" + interpretationFull(gap.interpretation, gap.statistically_significant) + ")");
+		lines.push("- **Gap: " + gap.gap + "** (" + gap.interpretation + ")");
 		lines.push("");
 	}
 	lines.push("---");
@@ -657,8 +648,8 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 		+ "gap_ci95_low, gap_ci95_high, gap_std, "
 		+ "ai_score_ci95_low, ai_score_ci95_high, "
 		+ "human_score_ci95_low, human_score_ci95_high, "
-		+ "sample_size, statistically_significant, stability, method"
-		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+		+ "sample_size, statistically_significant, method"
+		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 	).bind(
 		range.start,
 		gapResult.aiScore, gapResult.humanScore, gapResult.gap,
@@ -667,7 +658,7 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 		gapResult.aiScoreCi95[0], gapResult.aiScoreCi95[1],
 		gapResult.humanScoreCi95[0], gapResult.humanScoreCi95[1],
 		gapResult.sampleSize, gapResult.statisticallySignificant ? 1 : 0,
-		gapResult.stability, gapResult.method
+		gapResult.method
 	).run();
 
 	// Persist daily snapshot (is_interim = 0, FINAL)
@@ -772,8 +763,8 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 		+ "gap_ci95_low, gap_ci95_high, gap_std, "
 		+ "ai_score_ci95_low, ai_score_ci95_high, "
 		+ "human_score_ci95_low, human_score_ci95_high, "
-		+ "sample_size, statistically_significant, stability, method"
-		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+		+ "sample_size, statistically_significant, method"
+		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 	).bind(
 		range.start,
 		gapResult.aiScore, gapResult.humanScore, gapResult.gap,
@@ -782,7 +773,7 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 		gapResult.aiScoreCi95[0], gapResult.aiScoreCi95[1],
 		gapResult.humanScoreCi95[0], gapResult.humanScoreCi95[1],
 		gapResult.sampleSize, gapResult.statisticallySignificant ? 1 : 0,
-		gapResult.stability, gapResult.method
+		gapResult.method
 	).run();
 
 	// Persist daily snapshot (is_interim = 1, INTERIM)
@@ -982,10 +973,7 @@ export default {
 			if (path === "/gap") {
 				const row: any = await env.DB.prepare("SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1").first();
 				if (!row) return json({ error: "No gap data" }, 404);
-				return json({
-					...row,
-					interpretation_full: interpretationFull(row.interpretation, row.statistically_significant),
-				}, 200);
+				return json(row, 200);
 			}
 			if (path === "/daily-snapshots") {
 				const limitParam = url.searchParams.get("limit");
@@ -1025,7 +1013,6 @@ export default {
 					human: r.human_score,
 					gap: r.gap,
 					interpretation: r.interpretation,
-					interpretation_full: interpretationFull(r.interpretation, r.statistically_significant),
 					statistically_significant: r.statistically_significant,
 					items: r.items_count,
 					sample: r.sample_size,

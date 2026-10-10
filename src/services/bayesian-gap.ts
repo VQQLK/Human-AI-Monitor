@@ -233,26 +233,18 @@ export function summarize(samples: number[]): Summary {
   return { mean, std, ci95Low: sorted[loIdx], ci95High: sorted[hiIdx] };
 }
 
-// ----- Interpretation band -----------------------------------
-// Matches methodology.md §3.3 boundaries:
-//   G < -0.3 -> significant Humanity
-//   -0.3 <= G < -0.1 -> moderate Humanity
-//   -0.1 <= G <= 0.1 -> symmetric
-//   0.1 < G <= 0.3 -> moderate AI
-//   G > 0.3 -> significant AI
-export function interpretGap(mean: number): string {
-  if (mean < -0.3) return 'AI is significantly ahead';
-  if (mean < -0.1) return 'AI is ahead';
-  if (mean > 0.3) return 'Humanity is significantly ahead';
-  if (mean > 0.1) return 'Humanity is ahead';
-  return 'Symmetric development';
-}
-
-// ----- Stability of interpretation ---------------------------
-// "stable"   = both endpoints of CI95 fall in the same band
-// "unstable" = CI95 crosses a band boundary
-export function classifyStability(ci95Low: number, ci95High: number): 'stable' | 'unstable' {
-  return interpretGap(ci95Low) === interpretGap(ci95High) ? 'stable' : 'unstable';
+// ----- Interpretation -----------------------------------------
+// The label is derived from the 95% credible interval alone:
+//   CI95 strictly above 0  -> Humanity is ahead
+//   CI95 strictly below 0  -> AI is ahead
+//   CI95 contains 0        -> Inconclusive
+//
+// Magnitude is not encoded in the label. The numeric `gap` field and
+// its CI95 carry the size; the label carries only the resolved direction.
+export function interpretGap(ci95Low: number, ci95High: number): string {
+  if (ci95Low > 0) return 'Humanity is ahead';
+  if (ci95High < 0) return 'AI is ahead';
+  return 'Inconclusive';
 }
 
 // ----- Two-sided significance --------------------------------

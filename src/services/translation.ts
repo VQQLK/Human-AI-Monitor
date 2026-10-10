@@ -48,14 +48,12 @@ CRITICAL RULES:
 7. "Shifts detected" → "Обнаружено сдвигов"
 8. "No signals this week" → "Нет сигналов на этой неделе"
 9. Preserve all emoji (🔴🟢🟡) and numbers unchanged
-10. "Symmetric development" → "Симметричное развитие"
-11. "Humanity is ahead" → "Человечество впереди"
-12. "AI is ahead" → "ИИ впереди"
-13. "AI is significantly ahead" → "ИИ значительно впереди"
-14. "Humanity is significantly ahead" → "Человечество значительно впереди"
-15. CAPITALIZATION: Always write "Человек" and "Человечество" with capital letter when referring to Humanity as a monitored entity (symmetry with "ИИ"). Examples: "Протокол мониторинга Человечества и ИИ", "Оценка Человека", "Человечество впереди".
-16. "Humanity-AI Monitor Protocol" → "Протокол мониторинга Человечества и ИИ"
-17. "Human score" → "Оценка Человека"
+10. "Humanity is ahead" → "Человечество впереди"
+11. "AI is ahead" → "ИИ впереди"
+12. "Inconclusive" → "Неопределённо"
+13. CAPITALIZATION: Always write "Человек" and "Человечество" with capital letter when referring to Humanity as a monitored entity (symmetry with "ИИ"). Examples: "Протокол мониторинга Человечества и ИИ", "Оценка Человека", "Человечество впереди".
+14. "Humanity-AI Monitor Protocol" → "Протокол мониторинга Человечества и ИИ"
+15. "Human score" → "Оценка Человека"
 
 Output ONLY the translated markdown. No explanations.`;
 
@@ -73,14 +71,12 @@ CRITICAL RULES:
 7. "Shifts detected" → "检测到的变化"
 8. "No signals this week" → "本周无信号"
 9. Preserve all emoji (🔴🟢🟡) and numbers unchanged
-10. "Symmetric development" → "对称发展"
-11. "Humanity is ahead" → "人类领先"
-12. "AI is ahead" → "人工智能领先"
-13. "AI is significantly ahead" → "人工智能显著领先"
-14. "Humanity is significantly ahead" → "人类显著领先"
-15. CAPITALIZATION: 人类 is already correct in Chinese (no case distinction). Keep 人类-人工智能 as the standard form.
-16. "Humanity-AI Monitor Protocol" → "全人类与人工智能监测协议"
-17. "Human score" → "人类得分"
+10. "Humanity is ahead" → "人类领先"
+11. "AI is ahead" → "人工智能领先"
+12. "Inconclusive" → "不确定"
+13. CAPITALIZATION: 人类 is already correct in Chinese (no case distinction). Keep 人类-人工智能 as the standard form.
+14. "Humanity-AI Monitor Protocol" → "全人类与人工智能监测协议"
+15. "Human score" → "人类得分"
 
 Output ONLY the translated markdown. No explanations.`;
 
@@ -162,30 +158,6 @@ ${numbered}`;
 	return results;
 }
 
-const SIG_LOCALIZED = {
-	ru: {
-		no: "(статистически не подтверждено)",
-		yes: "(статистически подтверждено)",
-	},
-	zh: {
-		no: "（统计上未确认）",
-		yes: "（统计上已确认）",
-	},
-} as const;
-
-function preprocessSigMarkers(text: string): string {
-	return text
-		.replace(/\(not statistically confirmed\)/g, "%%SIG_NO%%")
-		.replace(/\(statistically confirmed\)/g, "%%SIG_YES%%");
-}
-
-function postprocessSigMarkers(text: string, lang: TranslationLang): string {
-	const loc = SIG_LOCALIZED[lang];
-	return text
-		.replace(/%%SIG_NO%%/g, loc.no)
-		.replace(/%%SIG_YES%%/g, loc.yes);
-}
-
 /**
  * Translate entire protocol markdown document.
  */
@@ -201,7 +173,7 @@ export async function translateProtocolMarkdown(
 	// independently and in parallel. A single 22KB call to the LLM
 	// exceeds Cloudflare Workers wall/CPU budget (HTTP 000 / 120s
 	// timeout); chunked parallel calls fit comfortably.
-	const chunks = splitMarkdownByH2(preprocessSigMarkers(englishMarkdown));
+	const chunks = splitMarkdownByH2(englishMarkdown);
 
 	try {
 		const translatedChunks = await Promise.all(
@@ -225,7 +197,7 @@ export async function translateProtocolMarkdown(
 		);
 		const raw = translatedChunks.join("\n");
 		const cleaned = raw.replace(/[ \t]+$/gm, "");
-		return postprocessSigMarkers(cleaned, lang);
+		return cleaned;
 	} catch (err) {
 		console.error(`[translate] protocol translation failed:`, err);
 		return englishMarkdown;
