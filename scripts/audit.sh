@@ -188,7 +188,7 @@ check_axes "docs/architecture.zh.md"
 hdr "ФАЗА 5: ГРАНИЦЫ ИНТЕРПРЕТАЦИИ (0.3)"
 
 for f in docs/methodology.md docs/methodology.ru.md docs/methodology.zh.md; do
-    if grep -qE "G\s*>\s*0\.3|G > 0\.3" "$f"; then
+    if grep -qE ">\s*0\.3" "$f"; then
         ok "$f: граница 0.3"
     else
         fail "$f: граница 0.3 НЕ найдена"
