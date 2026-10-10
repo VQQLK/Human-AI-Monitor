@@ -19,7 +19,7 @@ and Humanity.**
 |:---|:---:|:---:|
 | **🟢 Humanity Score** | 🌐 **0.35** | Current value |
 | **🔴 AI Score** | 🤖 **0.66** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.31** | AI is significantly ahead (not statistically confirmed) |
+| **⚖️ Gap Index** | ⚖️ **−0.31** | Inconclusive |
 | **⚡ Threshold Shifts** | **6** | Critical events detected |
 | **📈 Items Analyzed** | **225** | Weekly sample |
 | **🔬 Sample Size (Bayesian)** | **207** | Axis-signal pairs |
