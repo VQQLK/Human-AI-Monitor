@@ -449,9 +449,9 @@ async function buildDraftProtocolMarkdown(env: Env, range: any, isInterim: boole
 	lines.push("");
 	if (gapResult) {
 		lines.push("### Gap Index");
-		lines.push("- AI score: " + gapResult.aiScore);
-		lines.push("- Human score: " + gapResult.humanScore);
-		lines.push("- **Gap: " + gapResult.gap + "** (" + gapResult.interpretation + ")");
+		lines.push("- AI score: " + Number(gapResult.aiScore).toFixed(3));
+		lines.push("- Human score: " + Number(gapResult.humanScore).toFixed(3));
+		lines.push("- **Gap: " + Number(gapResult.gap).toFixed(3) + "** (" + gapResult.interpretation + ")");
 		lines.push("");
 	}
 	lines.push("---");
@@ -532,9 +532,9 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	lines.push("");
 	if (gap) {
 		lines.push("### Gap Index");
-		lines.push("- AI score: " + gap.ai_score);
-		lines.push("- Human score: " + gap.human_score);
-		lines.push("- **Gap: " + gap.gap + "** (" + gap.interpretation + ")");
+		lines.push("- AI score: " + Number(gap.ai_score).toFixed(3));
+		lines.push("- Human score: " + Number(gap.human_score).toFixed(3));
+		lines.push("- **Gap: " + Number(gap.gap).toFixed(3) + "** (" + gap.interpretation + ")");
 		lines.push("");
 	}
 	lines.push("---");

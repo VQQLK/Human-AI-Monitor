@@ -154,10 +154,10 @@ export async function computeGapIndex(
 
   // 7. Return — old fields first for readability, then Bayesian extensions
   return {
-    // Backward-compatible (2-decimal rounding, same as before)
-    aiScore: round2(aiSummary.mean),
-    humanScore: round2(humanSummary.mean),
-    gap: round2(gapSummary.mean),
+    // Stored at 4 decimals so Gap = Human − AI holds at display precision (3).
+    aiScore: round4(aiSummary.mean),
+    humanScore: round4(humanSummary.mean),
+    gap: round4(gapSummary.mean),
     interpretation,
     axisLevels,
 

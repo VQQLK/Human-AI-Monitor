@@ -193,7 +193,7 @@ def week_end_to_ddmm(week_end):
 
 def fmt_gap(g):
     sign = "+" if g >= 0 else "\u2212"
-    return f"{sign}{abs(g):.2f}"
+    return f"{sign}{abs(g):.3f}"
 
 
 def build_score_mermaid(weeks, lang):
@@ -205,12 +205,12 @@ def build_score_mermaid(weeks, lang):
         w = finals[0]
         lbl = week_end_to_ddmm(w["week_end"])
         x_axis = f'"{lbl}", "{lbl}"'
-        bar_line = f"{w['human']:.2f}, {w['human']:.2f}"
-        ai_line = f"{w['ai']:.2f}, {w['ai']:.2f}"
+        bar_line = f"{w['human']:.3f}, {w['human']:.3f}"
+        ai_line = f"{w['ai']:.3f}, {w['ai']:.3f}"
     else:
         labels = [week_end_to_ddmm(w["week_end"]) for w in finals]
-        human_data = [f"{w['human']:.2f}" for w in finals]
-        ai_data = [f"{w['ai']:.2f}" for w in finals]
+        human_data = [f"{w['human']:.3f}" for w in finals]
+        ai_data = [f"{w['ai']:.3f}" for w in finals]
         x_axis = ", ".join(f'"{l}"' for l in labels)
         bar_line = ", ".join(human_data)
         ai_line = ", ".join(ai_data)
@@ -236,10 +236,10 @@ def build_gap_mermaid(weeks, lang):
         w = finals[0]
         lbl = week_end_to_ddmm(w["week_end"])
         x_axis = f'"{lbl}", "{lbl}"'
-        gap_line = f"{w['gap']:.2f}, {w['gap']:.2f}"
+        gap_line = f"{w['gap']:.3f}, {w['gap']:.3f}"
     else:
         labels = [week_end_to_ddmm(w["week_end"]) for w in finals]
-        gap_line = ", ".join(f"{w['gap']:.2f}" for w in finals)
+        gap_line = ", ".join(f"{w['gap']:.3f}" for w in finals)
         x_axis = ", ".join(f'"{l}"' for l in labels)
     titles = {
         "en": "Gap Index | Positive = Humanity leading, Negative = AI leading",
@@ -263,7 +263,7 @@ def build_daily_mermaid(snapshots, lang):
     rows = sorted(snapshots, key=lambda s: s["snapshot_date"])[-30:]
     labels = [week_end_to_ddmm(s["snapshot_date"]) for s in rows]
     gaps = [s["gap"] for s in rows]
-    gap_line = ", ".join(f"{g:.2f}" for g in gaps)
+    gap_line = ", ".join(f"{g:.3f}" for g in gaps)
     x_axis = ", ".join(f'"{l}"' for l in labels)
     y_min = min(gaps) - 0.1
     y_max = max(gaps) + 0.1
@@ -277,7 +277,7 @@ def build_daily_mermaid(snapshots, lang):
 xychart-beta
     title "{titles[lang]}"
     x-axis [{x_axis}]
-    y-axis "{y_axis_label}" {y_min:.2f} --> {y_max:.2f}
+    y-axis "{y_axis_label}" {y_min:.3f} --> {y_max:.3f}
     line [{gap_line}]
 ```'''
 
@@ -298,8 +298,8 @@ def build_daily_table(snapshots, lang):
         ci_hi = s.get("gap_ci95_high")
         ci = f"[{fmt_gap(ci_lo)}, {fmt_gap(ci_hi)}]" if ci_lo is not None and ci_hi is not None else "—"
         date_lbl = week_end_to_ddmm(s["snapshot_date"])
-        ai = f"{s['ai_score']:.2f}" if s.get("ai_score") is not None else "—"
-        human = f"{s['human_score']:.2f}" if s.get("human_score") is not None else "—"
+        ai = f"{s['ai_score']:.3f}" if s.get("ai_score") is not None else "—"
+        human = f"{s['human_score']:.3f}" if s.get("human_score") is not None else "—"
         gap = fmt_gap(s["gap"]) if s.get("gap") is not None else "—"
         items = s.get("items_count") if s.get("items_count") is not None else "—"
         sample = s.get("sample_size") if s.get("sample_size") is not None else "—"
@@ -325,7 +325,7 @@ def build_history_table(weeks, lang):
         ci = f"[{fmt_gap(ci_lo)}, {fmt_gap(ci_hi)}]" if ci_lo is not None and ci_hi is not None else "—"
         rows.append(
             f"| {week_end_to_ddmm(w['week_end'])} "
-            f"| {w['ai']:.2f} | {w['human']:.2f} | {fmt_gap(w['gap'])} "
+            f"| {w['ai']:.3f} | {w['human']:.3f} | {fmt_gap(w['gap'])} "
             f"| {ci} | {items} | {sample} | {typ} |"
         )
     return f"{L['hist_header']}\n\n{header}\n{sep}\n" + "\n".join(rows)
@@ -346,7 +346,7 @@ def build_interim_reference(interims, lang):
     sep = "" if lang == "zh" else " "
     return (
         f"> {L['interim_ref_prefix']}{sep}{lbl} — "
-        f"{L['hist_col_ai']} {w['ai']:.2f} · {L['hist_col_human']} {w['human']:.2f} · {L['hist_col_gap']} {fmt_gap(w['gap'])} · "
+        f"{L['hist_col_ai']} {w['ai']:.3f} · {L['hist_col_human']} {w['human']:.3f} · {L['hist_col_gap']} {fmt_gap(w['gap'])} · "
         f"{items} / {sample} items.\n"
         f"> {L['interim_note']}"
     )
@@ -476,9 +476,9 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
             (r"^\| Metric \| Value \(\d{2}-\d{2}\) \| Status \|$",
              f"| Metric | Value ({mm_dd}) | Status |"),
             (r"^\| \*\*🟢 Humanity Score\*\* \| 🌐 \*\*[\d.]+\*\* \| [^|]+ \|$",
-             f"| **🟢 Humanity Score** | 🌐 **{human:.2f}** | {L['status_current']} |"),
+             f"| **🟢 Humanity Score** | 🌐 **{human:.3f}** | {L['status_current']} |"),
             (r"^\| \*\*🔴 AI Score\*\* \| 🤖 \*\*[\d.]+\*\* \| [^|]+ \|$",
-             f"| **🔴 AI Score** | 🤖 **{ai:.2f}** | {L['status_current']} |"),
+             f"| **🔴 AI Score** | 🤖 **{ai:.3f}** | {L['status_current']} |"),
             (r"^\| \*\*⚖️ Gap Index\*\* \| ⚖️ \*\*[+\-−][\d.]+\*\* \| [^|]+ \|(\n\| \*\*📊 CI95\*\* \| [^\n]*)?",
              f"| **⚖️ Gap Index** | ⚖️ **{fmt_gap(gap_val)}** | {interp_loc} |\n| **📊 CI95** | **{ci_str}** | {sig_loc} |"),
             (r"^\| \*\*⚡ Threshold Shifts\*\* \| \*\*\d+\*\* \| [^|]+ \|$",
@@ -493,9 +493,9 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
             (r"^\| Метрика \| Значение \(\d{2}\.\d{2}\) \| Статус \|$",
              f"| Метрика | Значение ({dd_mm}) | Статус |"),
             (r"^\| \*\*🟢 Оценка Человечества\*\* \| 🌐 \*\*[\d.]+\*\* \| [^|]+ \|$",
-             f"| **🟢 Оценка Человечества** | 🌐 **{human:.2f}** | {L['status_current']} |"),
+             f"| **🟢 Оценка Человечества** | 🌐 **{human:.3f}** | {L['status_current']} |"),
             (r"^\| \*\*🔴 Оценка ИИ\*\* \| 🤖 \*\*[\d.]+\*\* \| [^|]+ \|$",
-             f"| **🔴 Оценка ИИ** | 🤖 **{ai:.2f}** | {L['status_current']} |"),
+             f"| **🔴 Оценка ИИ** | 🤖 **{ai:.3f}** | {L['status_current']} |"),
             (r"^\| \*\*⚖️ Индекс разрыва\*\* \| ⚖️ \*\*[+\-−][\d.]+\*\* \| [^|]+ \|(\n\| \*\*📊 CI95\*\* \| [^\n]*)?",
              f"| **⚖️ Индекс разрыва** | ⚖️ **{fmt_gap(gap_val)}** | {interp_loc} |\n| **📊 CI95** | **{ci_str}** | {sig_loc} |"),
             (r"^\| \*\*⚡ Ключевых сдвигов\*\* \| \*\*\d+\*\* \| [^|]+ \|$",
@@ -510,9 +510,9 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
             (r"^\| 指标 \| 数值 \(\d{2}-\d{2}\) \| 状态 \|$",
              f"| 指标 | 数值 ({mm_dd}) | 状态 |"),
             (r"^\| \*\*🟢 人类得分\*\* \| 🌐 \*\*[\d.]+\*\* \| [^|]+ \|$",
-             f"| **🟢 人类得分** | 🌐 **{human:.2f}** | {L['status_current']} |"),
+             f"| **🟢 人类得分** | 🌐 **{human:.3f}** | {L['status_current']} |"),
             (r"^\| \*\*🔴 人工智能得分\*\* \| 🤖 \*\*[\d.]+\*\* \| [^|]+ \|$",
-             f"| **🔴 人工智能得分** | 🤖 **{ai:.2f}** | {L['status_current']} |"),
+             f"| **🔴 人工智能得分** | 🤖 **{ai:.3f}** | {L['status_current']} |"),
             (r"^\| \*\*⚖️ 差距指数\*\* \| ⚖️ \*\*[+\-−][\d.]+\*\* \| [^|]+ \|(\n\| \*\*📊 CI95\*\* \| [^\n]*)?",
              f"| **⚖️ 差距指数** | ⚖️ **{fmt_gap(gap_val)}** | {interp_loc} |\n| **📊 CI95** | **{ci_str}** | {sig_loc} |"),
             (r"^\| \*\*⚡ 阈值变化\*\* \| \*\*\d+\*\* \| [^|]+ \|$",
