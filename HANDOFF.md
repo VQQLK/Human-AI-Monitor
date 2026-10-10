@@ -631,6 +631,49 @@ A mention is extracted **if and only if BOTH** conditions are met:
 - `GET /backfill-voices` (auth required) — retroactively processes all items
 - `scripts/update_readme.py` renders `## Voices` section in README.md / .ru / .zh (with timeout resilience)
 
+### Quote translation (RU / ZH)
+
+`GET /translate-voices?lang=ru|zh&limit=N` (auth required, N ∈ [1, 20]) invokes
+`translateVoicesBatch()` in `src/services/translation.ts`. Picks rows where
+`quote_ru` (or `quote_zh`) is NULL/empty, calls the LLM once per batch of up to
+20 quotes, saves numbered results back.
+
+**Prompt structure (RU branch):**
+- `NAMES` — 25 predefined RU transliterations (Sam Altman → Сэм Альтман, …).
+  Used to prevent ad-hoc transliteration drift.
+- `NEWS IDIOMS` — RBC/Kommersant-style mapping, NOT literal translation:
+  - `Inside X` → `Что стоит за X` (NOT `Внутри X`)
+  - `X slams Y` / `X hits Y` → `X критикует Y`
+  - `X unveils Y` → `X представляет Y`
+  - `won't go public` → `не выйдет на IPO`
+  - `always-on` → `постоянно работающий`
+  - `kill switch` → `аварийный выключатель`
+  - `pressure of X for Y` / `pressure for X` → `давление ради X` (NOT `за X`)
+  - `Standalone surname` (Zuckerberg without first name) → `Цукерберг` from NAMES
+- **Postprocess:** `о → об` before А/О/У/И/Э (regex in `cleanQuote`).
+  Fixes LLM drift like `соглашение о ИИ` → `соглашение об ИИ`.
+
+**Prompt structure (ZH branch):**
+- `NEWS IDIOMS` — Sina News-style:
+  - `Inside X` → `X内幕` (NOT `X内部`)
+  - `X slams Y` / `X hits Y` → `X抨击Y`
+  - `X unveils Y` → `X发布Y`
+  - `won't go public` → `不上市`
+  - `always-on` → `常驻`
+  - `kill switch` → `紧急停止按钮`
+
+**Re-translation workflow** (when prompt changes):
+1. Deploy worker (`npx wrangler deploy`)
+2. `UPDATE voices SET quote_ru = NULL` (or `quote_zh`)
+3. `curl -H "Authorization: Bearer $ADMIN_TOKEN" /translate-voices?lang=ru&limit=20`
+4. `python3 scripts/update_readme.py`
+5. Commit README × N + push
+
+**Cost:** 1 LLM call per language per batch (13 voices → 2 calls).
+
+**Backup before clearing:** dump to JSON first —
+`npx wrangler d1 execute ... --json "SELECT id, quote, quote_ru, quote_zh FROM voices" > backup.json`
+
 ### Categories
 `frontier_labs`, `researchers`, `safety_philosophy`, `investors`, `crypto`, `enterprise`, `mathematics`
 

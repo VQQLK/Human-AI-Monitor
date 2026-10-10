@@ -631,6 +631,49 @@ multitrait-multimethod matrix.*
 - `GET /backfill-voices` (требуется авторизация) — ретроактивно обрабатывает все items
 - `scripts/update_readme.py` рендерит раздел `## Voices` в README.md / .ru / .zh (с защитой от таймаутов)
 
+### Перевод цитат (RU / ZH)
+
+`GET /translate-voices?lang=ru|zh&limit=N` (требует auth, N ∈ [1, 20]) вызывает
+`translateVoicesBatch()` из `src/services/translation.ts`. Берёт строки, где
+`quote_ru` (или `quote_zh`) NULL/пусто, делает один LLM-вызов на батч до
+20 цитат, сохраняет пронумерованные результаты.
+
+**Структура промпта (ветка RU):**
+- `NAMES` — 25 предопределённых русских транслитераций (Sam Altman → Сэм Альтман, …).
+  Используется для предотвращения разнобоя в транслитерации.
+- `NEWS IDIOMS` — RBC/Коммерсантъ-стиль, НЕ буквальный перевод:
+  - `Inside X` → `Что стоит за X` (НЕ `Внутри X`)
+  - `X slams Y` / `X hits Y` → `X критикует Y`
+  - `X unveils Y` → `X представляет Y`
+  - `won't go public` → `не выйдет на IPO`
+  - `always-on` → `постоянно работающий`
+  - `kill switch` → `аварийный выключатель`
+  - `pressure of X for Y` / `pressure for X` → `давление ради X` (НЕ `за X`)
+  - `Standalone surname` (Zuckerberg без имени) → `Цукерберг` из NAMES
+- **Постпроцессинг:** `о → об` перед А/О/У/И/Э (regex в `cleanQuote`).
+  Чинит дрейф LLM типа `соглашение о ИИ` → `соглашение об ИИ`.
+
+**Структура промпта (ветка ZH):**
+- `NEWS IDIOMS` — стиль Sina News:
+  - `Inside X` → `X内幕` (НЕ `X内部`)
+  - `X slams Y` / `X hits Y` → `X抨击Y`
+  - `X unveils Y` → `X发布Y`
+  - `won't go public` → `不上市`
+  - `always-on` → `常驻`
+  - `kill switch` → `紧急停止按钮`
+
+**Процедура пере-перевода** (при изменении промпта):
+1. Задеплоить воркер (`npx wrangler deploy`)
+2. `UPDATE voices SET quote_ru = NULL` (или `quote_zh`)
+3. `curl -H "Authorization: Bearer $ADMIN_TOKEN" /translate-voices?lang=ru&limit=20`
+4. `python3 scripts/update_readme.py`
+5. Коммит README × N + push
+
+**Стоимость:** 1 LLM-вызов на язык на батч (13 voices → 2 вызова).
+
+**Бэкап перед очисткой:** сначала выгрузить JSON —
+`npx wrangler d1 execute ... --json "SELECT id, quote, quote_ru, quote_zh FROM voices" > backup.json`
+
 ### Категории
 `frontier_labs`, `researchers`, `safety_philosophy`, `investors`, `crypto`, `enterprise`, `mathematics`
 
