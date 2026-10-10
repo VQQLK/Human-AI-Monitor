@@ -979,12 +979,14 @@ export default {
 				const limitParam = url.searchParams.get("limit");
 				const limit = Math.min(Math.max(parseInt(limitParam || "90", 10) || 90, 1), 365);
 				const rows = await env.DB.prepare(
-					"SELECT snapshot_date, week_start, week_end, "
-					+ "       ai_score, human_score, gap, "
-					+ "       gap_ci95_low, gap_ci95_high, gap_std, "
-					+ "       sample_size, is_interim, method, recorded_at "
-					+ "FROM daily_snapshots "
-					+ "ORDER BY snapshot_date DESC "
+					"SELECT ds.snapshot_date, ds.week_start, ds.week_end, "
+					+ "       ds.ai_score, ds.human_score, ds.gap, "
+					+ "       ds.gap_ci95_low, ds.gap_ci95_high, ds.gap_std, "
+					+ "       ds.sample_size, ds.is_interim, ds.method, ds.recorded_at, "
+					+ "       p.items_count "
+					+ "FROM daily_snapshots ds "
+					+ "LEFT JOIN protocols p ON ds.week_start = p.week_start "
+					+ "ORDER BY ds.snapshot_date DESC "
 					+ "LIMIT ?"
 				).bind(limit).all();
 				return json({

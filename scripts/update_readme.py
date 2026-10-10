@@ -289,8 +289,9 @@ def build_daily_table(snapshots, lang):
     L = STRINGS[lang]
     rows = sorted(snapshots, key=lambda s: s["snapshot_date"], reverse=True)[:30]
     header = (f"| {L['daily_col_date']} | {L['hist_col_ai']} | {L['hist_col_human']} "
-              f"| {L['hist_col_gap']} | {L['daily_col_ci']} | {L['hist_col_items']} | {L['hist_col_type']} |")
-    sep = "|---|---|---|---|---|---|---|"
+              f"| {L['hist_col_gap']} | {L['daily_col_ci']} "
+              f"| {L['hist_col_items']} | {L['hist_col_sample']} | {L['hist_col_type']} |")
+    sep = "|---|---|---|---|---|---|---|---|"
     lines = [header, sep]
     for s in rows:
         ci_lo = s.get("gap_ci95_low")
@@ -300,9 +301,10 @@ def build_daily_table(snapshots, lang):
         ai = f"{s['ai_score']:.2f}" if s.get("ai_score") is not None else "—"
         human = f"{s['human_score']:.2f}" if s.get("human_score") is not None else "—"
         gap = fmt_gap(s["gap"]) if s.get("gap") is not None else "—"
-        items = s.get("sample_size") if s.get("sample_size") is not None else "—"
+        items = s.get("items_count") if s.get("items_count") is not None else "—"
+        sample = s.get("sample_size") if s.get("sample_size") is not None else "—"
         typ = L["type_interim"] if s["is_interim"] == 1 else L["type_final"]
-        lines.append(f"| {date_lbl} | {ai} | {human} | {gap} | {ci} | {items} | {typ} |")
+        lines.append(f"| {date_lbl} | {ai} | {human} | {gap} | {ci} | {items} | {sample} | {typ} |")
     return "\n".join(lines)
 
 
