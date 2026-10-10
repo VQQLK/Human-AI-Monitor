@@ -149,7 +149,7 @@ export async function computeGapIndex(
   const gapSummary = summarize(run.gapSamples);
 
   // 6. Interpretation and significance
-  const interpretation = interpretGap(gapSummary.ci95Low, gapSummary.ci95High);
+  const interpretation = interpretGap(gapSummary.mean);
   const significant = isSignificant(gapSummary.ci95Low, gapSummary.ci95High);
 
   // 7. Return — old fields first for readability, then Bayesian extensions

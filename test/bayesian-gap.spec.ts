@@ -248,28 +248,31 @@ describe("summarize", () => {
 });
 
 // =================================================================
-// 7. interpretGap — CI95 sign only
+// 7. interpretGap — sign of mean, with |mean| > EPS threshold
 // =================================================================
 describe("interpretGap", () => {
-  it("CI95 strictly below 0 -> AI is ahead", () => {
-    expect(interpretGap(-0.61, -0.05)).toBe("AI is ahead");
-    expect(interpretGap(-0.50, -0.01)).toBe("AI is ahead");
-    expect(interpretGap(-0.30, -0.10)).toBe("AI is ahead");
+  it("mean < -EPS -> AI is ahead", () => {
+    expect(interpretGap(-0.31)).toBe("AI is ahead");
+    expect(interpretGap(-0.10)).toBe("AI is ahead");
+    expect(interpretGap(-0.99)).toBe("AI is ahead");
   });
-  it("CI95 strictly above 0 -> Humanity is ahead", () => {
-    expect(interpretGap(0.05, 0.61)).toBe("Humanity is ahead");
-    expect(interpretGap(0.01, 0.50)).toBe("Humanity is ahead");
-    expect(interpretGap(0.10, 0.30)).toBe("Humanity is ahead");
+  it("mean > EPS -> Humanity is ahead", () => {
+    expect(interpretGap(0.31)).toBe("Humanity is ahead");
+    expect(interpretGap(0.10)).toBe("Humanity is ahead");
+    expect(interpretGap(0.99)).toBe("Humanity is ahead");
   });
-  it("CI95 contains 0 -> Inconclusive", () => {
-    expect(interpretGap(-0.10, 0.10)).toBe("Inconclusive");
-    expect(interpretGap(-0.05, 0.05)).toBe("Inconclusive");
-    expect(interpretGap(-0.61, 0.01)).toBe("Inconclusive");
-    expect(interpretGap(-0.05, 0.50)).toBe("Inconclusive");
+  it("|mean| <= EPS -> Balanced", () => {
+    expect(interpretGap(0)).toBe("Balanced");
+    expect(interpretGap(0.04)).toBe("Balanced");
+    expect(interpretGap(-0.04)).toBe("Balanced");
   });
-  it("boundary at 0 is Inconclusive (strict inequality)", () => {
-    expect(interpretGap(0, 0.5)).toBe("Inconclusive");
-    expect(interpretGap(-0.5, 0)).toBe("Inconclusive");
+  it("EPS boundary is exclusive (strict inequality)", () => {
+    // |mean| == EPS -> Balanced (not "< -EPS" and not "> EPS")
+    expect(interpretGap(-0.05)).toBe("Balanced");
+    expect(interpretGap( 0.05)).toBe("Balanced");
+    // just past EPS -> direction resolved
+    expect(interpretGap(-0.05001)).toBe("AI is ahead");
+    expect(interpretGap( 0.05001)).toBe("Humanity is ahead");
   });
 });
 

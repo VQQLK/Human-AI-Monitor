@@ -139,42 +139,55 @@ $\sum_i w_i^{AI} = \sum_j w_j^{H} = 1.0$. Weights are open for calibration; see 
 
 ### 3.3. Interpretation
 
-The Gap $G$ is reported with a **single label** derived from its 95% credible
-interval:
+The Gap is reported with **two independent labels**, each answering a
+different question.
+
+| Question | Field | Source |
+|----------|-------|--------|
+| Which direction does the point estimate point? | `interpretation` | sign of the posterior mean $G$ |
+| Is that direction statistically resolved? | `statistically_significant` | CI95 of $G$ excludes zero |
+
+**Direction (from the mean).**
+
+| $G$ | Label |
+|-----|-------|
+| $G < -\varepsilon$ | AI is ahead |
+| $|G| \le \varepsilon$ | Balanced |
+| $G > \varepsilon$ | Humanity is ahead |
+
+with $\varepsilon = 0.05$ (see `INTERPRET_EPS` in `bayesian-gap.ts`). The
+threshold marks a **negligible** mean magnitude; without it, exact 0 is
+never attained on Monte Carlo samples.
+
+**Evidence (from the CI95).**
 
 | CI95 of $G$ | Label |
-|---------|-------|
-| Strictly above 0 | Humanity is ahead |
-| Strictly below 0 | AI is ahead |
-| Contains 0 | Inconclusive |
+|-------------|-------|
+| Strictly excludes zero | Significant |
+| Contains zero | Inconclusive |
 
-The label reports only whether the sign of $G$ is resolved by the current
-sample. **Magnitude is not encoded in the label** — it is carried by the
-numeric `gap` field and its CI95. A small |G| with a narrow CI95 can therefore
-be labeled "AI is ahead"; a larger |G| with a wide CI95 is "Inconclusive".
+The two labels are **independent**: an `AI is ahead` direction may pair with
+`Inconclusive` evidence when the mean is negative but the CI95 is wide.
+They are reported as two separate rows in the README, never merged into a
+single claim.
 
 **Worked example — 2026-10-05.**
 
 | Field | Value | Reading |
 |-------|-------|---------|
-| `gap` | −0.31 | Point estimate (magnitude) |
+| `gap` | −0.31 | Point estimate |
 | `gap_ci95` | [−0.61, +0.01] | 95% credible interval |
-| `interpretation` | `Inconclusive` | CI95 contains zero — direction not resolved |
+| `interpretation` | `AI is ahead` | Direction: $G < -\varepsilon$ |
+| `statistically_significant` | `0` | CI95 contains zero — evidence inconclusive |
 
-The magnitude (|G| = 0.31) is visible; the direction is not asserted. Both
-facts are reported separately.
-
-**On the numeric field `statistically_significant`.** The API also exposes a
-boolean `statistically_significant` (1 when CI95 strictly excludes zero). It
-is derived from the same condition as the label and is retained for
-machine-readable analyses and backward compatibility. It is not shown in
-README or protocol markdown; the label carries that information for human
-readers.
+The direction row reads: "the point estimate points to AI ahead." The
+evidence row reads: "that direction is not yet statistically resolved."
+Both are facts about the sample. Neither is a claim about the world.
 
 **Note on source correlation.** The real CI95 may be ≈ 1.2–1.4× wider than
 nominal, because items from the same source are not independent evidence
-(see `HANDOFF.md §14.2.1`). This is already reflected in the label decision:
-wider intervals are more likely to yield `Inconclusive`.
+(see `HANDOFF.md §14.2.1`). Wider intervals are more likely to fall in the
+`Inconclusive` evidence row.
 
 
 ### 3.4. Dynamics $G(t)$

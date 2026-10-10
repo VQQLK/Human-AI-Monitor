@@ -27,7 +27,7 @@ describe("computeGapIndex (Bayesian)", () => {
     expect(r.aiScore).toBeCloseTo(0.5, 2);
     expect(r.humanScore).toBeCloseTo(0.5, 2);
     expect(Math.abs(r.gap)).toBeLessThan(0.02);
-    expect(r.interpretation).toBe("Inconclusive");
+    expect(r.interpretation).toBe("Balanced");
     expect(r.method).toBe("bayesian");
     expect(r.sampleSize).toBe(0);
   });
@@ -125,7 +125,7 @@ describe("computeGapIndex (Bayesian)", () => {
     const env = createMockEnv(items);
     const r = await computeGapIndex(env, RANGE, mulberry32(7));
     expect(Math.abs(r.gap)).toBeLessThan(0.05);
-    expect(r.interpretation).toBe("Inconclusive");
+    expect(r.interpretation).toBe("Balanced");
     expect(r.statisticallySignificant).toBe(false);
   });
 

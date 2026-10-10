@@ -233,18 +233,25 @@ export function summarize(samples: number[]): Summary {
   return { mean, std, ci95Low: sorted[loIdx], ci95High: sorted[hiIdx] };
 }
 
-// ----- Interpretation -----------------------------------------
-// The label is derived from the 95% credible interval alone:
-//   CI95 strictly above 0  -> Humanity is ahead
-//   CI95 strictly below 0  -> AI is ahead
-//   CI95 contains 0        -> Inconclusive
+// ----- Direction label ----------------------------------------
+// Direction is read from the sign of the posterior mean:
+//   mean < -EPS  -> AI is ahead
+//   mean >  EPS  -> Humanity is ahead
+//   otherwise    -> Balanced
 //
-// Magnitude is not encoded in the label. The numeric `gap` field and
-// its CI95 carry the size; the label carries only the resolved direction.
-export function interpretGap(ci95Low: number, ci95High: number): string {
-  if (ci95Low > 0) return 'Humanity is ahead';
-  if (ci95High < 0) return 'AI is ahead';
-  return 'Inconclusive';
+// EPS = 0.01 marks "negligible" mean magnitude. Without it, the strict
+// inequalities would never yield 'Balanced' on real Monte Carlo samples
+// (mean is a float sum of many draws, exact 0 is not attained).
+//
+// This label reports direction only. Whether the direction is
+// statistically supported is a separate question, answered by
+// isSignificant(ci95Low, ci95High) and surfaced separately.
+export const INTERPRET_EPS = 0.05;
+
+export function interpretGap(mean: number): string {
+  if (mean < -INTERPRET_EPS) return 'AI is ahead';
+  if (mean >  INTERPRET_EPS) return 'Humanity is ahead';
+  return 'Balanced';
 }
 
 // ----- Two-sided significance --------------------------------

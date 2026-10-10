@@ -999,6 +999,7 @@ export default {
 				const histRows = await env.DB.prepare(
 					"SELECT g.week_start, p.week_end, p.is_interim, " +
 					"       g.ai_score, g.human_score, g.gap, g.interpretation, g.statistically_significant, " +
+					"       g.gap_ci95_low, g.gap_ci95_high, " +
 					"       g.sample_size, p.items_count, p.shifts_count, " +
 					"       g.recorded_at, p.generated_at " +
 					"FROM gap_history g " +
@@ -1014,6 +1015,8 @@ export default {
 					gap: r.gap,
 					interpretation: r.interpretation,
 					statistically_significant: r.statistically_significant,
+					gap_ci95_low: r.gap_ci95_low,
+					gap_ci95_high: r.gap_ci95_high,
 					items: r.items_count,
 					sample: r.sample_size,
 					shifts: r.shifts_count,

@@ -110,18 +110,24 @@ INTERP = {
     "en": {
         "Humanity is ahead": "Humanity is ahead",
         "AI is ahead": "AI is ahead",
-        "Inconclusive": "Inconclusive",
+        "Balanced": "Balanced",
     },
     "ru": {
         "Humanity is ahead": "Человечество впереди",
         "AI is ahead": "ИИ впереди",
-        "Inconclusive": "Неопределённо",
+        "Balanced": "Сбалансировано",
     },
     "zh": {
         "Humanity is ahead": "人类领先",
         "AI is ahead": "人工智能领先",
-        "Inconclusive": "不确定",
+        "Balanced": "均衡",
     },
+}
+
+SIG_STATUS = {
+    "en": {1: "Significant", 0: "Inconclusive"},
+    "ru": {1: "Значимо",      0: "Неопределённо"},
+    "zh": {1: "显著",          0: "不确定"},
 }
 
 
@@ -432,6 +438,11 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
     shifts = latest["shifts"] or 0
     interp_en = latest["interpretation"] or ""
     interp_loc = INTERP[lang].get(interp_en, interp_en)
+    _sig = int(latest.get("statistically_significant") or 0)
+    sig_loc = SIG_STATUS[lang][_sig]
+    _ci_lo = latest.get("gap_ci95_low")
+    _ci_hi = latest.get("gap_ci95_high")
+    ci_str = f"[{fmt_gap(_ci_lo)}, {fmt_gap(_ci_hi)}]" if _ci_lo is not None and _ci_hi is not None else "n/a"
     shifts_status = L["shifts_none"] if shifts == 0 else L["shifts_some"]
 
     date_long = fmt_date(dt, lang)
@@ -463,8 +474,8 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
              f"| **🟢 Humanity Score** | 🌐 **{human:.2f}** | {L['status_current']} |"),
             (r"^\| \*\*🔴 AI Score\*\* \| 🤖 \*\*[\d.]+\*\* \| [^|]+ \|$",
              f"| **🔴 AI Score** | 🤖 **{ai:.2f}** | {L['status_current']} |"),
-            (r"^\| \*\*⚖️ Gap Index\*\* \| ⚖️ \*\*[+\-−][\d.]+\*\* \| [^|]+ \|$",
-             f"| **⚖️ Gap Index** | ⚖️ **{fmt_gap(gap_val)}** | {interp_loc} |"),
+            (r"^\| \*\*⚖️ Gap Index\*\* \| ⚖️ \*\*[+\-−][\d.]+\*\* \| [^|]+ \|(\n\| \*\*📊 CI95\*\* \| [^\n]*)?",
+             f"| **⚖️ Gap Index** | ⚖️ **{fmt_gap(gap_val)}** | {interp_loc} |\n| **📊 CI95** | **{ci_str}** | {sig_loc} |"),
             (r"^\| \*\*⚡ Threshold Shifts\*\* \| \*\*\d+\*\* \| [^|]+ \|$",
              f"| **⚡ Threshold Shifts** | **{shifts}** | {shifts_status} |"),
             (r"^\| \*\*📈 Items Analyzed\*\* \| \*\*\d+\*\* \| [^|]+ \|$",
@@ -480,8 +491,8 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
              f"| **🟢 Оценка Человечества** | 🌐 **{human:.2f}** | {L['status_current']} |"),
             (r"^\| \*\*🔴 Оценка ИИ\*\* \| 🤖 \*\*[\d.]+\*\* \| [^|]+ \|$",
              f"| **🔴 Оценка ИИ** | 🤖 **{ai:.2f}** | {L['status_current']} |"),
-            (r"^\| \*\*⚖️ Индекс разрыва\*\* \| ⚖️ \*\*[+\-−][\d.]+\*\* \| [^|]+ \|$",
-             f"| **⚖️ Индекс разрыва** | ⚖️ **{fmt_gap(gap_val)}** | {interp_loc} |"),
+            (r"^\| \*\*⚖️ Индекс разрыва\*\* \| ⚖️ \*\*[+\-−][\d.]+\*\* \| [^|]+ \|(\n\| \*\*📊 CI95\*\* \| [^\n]*)?",
+             f"| **⚖️ Индекс разрыва** | ⚖️ **{fmt_gap(gap_val)}** | {interp_loc} |\n| **📊 CI95** | **{ci_str}** | {sig_loc} |"),
             (r"^\| \*\*⚡ Ключевых сдвигов\*\* \| \*\*\d+\*\* \| [^|]+ \|$",
              f"| **⚡ Ключевых сдвигов** | **{shifts}** | {shifts_status} |"),
             (r"^\| \*\*📈 Анализированных событий\*\* \| \*\*\d+\*\* \| [^|]+ \|$",
@@ -497,8 +508,8 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
              f"| **🟢 人类得分** | 🌐 **{human:.2f}** | {L['status_current']} |"),
             (r"^\| \*\*🔴 人工智能得分\*\* \| 🤖 \*\*[\d.]+\*\* \| [^|]+ \|$",
              f"| **🔴 人工智能得分** | 🤖 **{ai:.2f}** | {L['status_current']} |"),
-            (r"^\| \*\*⚖️ 差距指数\*\* \| ⚖️ \*\*[+\-−][\d.]+\*\* \| [^|]+ \|$",
-             f"| **⚖️ 差距指数** | ⚖️ **{fmt_gap(gap_val)}** | {interp_loc} |"),
+            (r"^\| \*\*⚖️ 差距指数\*\* \| ⚖️ \*\*[+\-−][\d.]+\*\* \| [^|]+ \|(\n\| \*\*📊 CI95\*\* \| [^\n]*)?",
+             f"| **⚖️ 差距指数** | ⚖️ **{fmt_gap(gap_val)}** | {interp_loc} |\n| **📊 CI95** | **{ci_str}** | {sig_loc} |"),
             (r"^\| \*\*⚡ 阈值变化\*\* \| \*\*\d+\*\* \| [^|]+ \|$",
              f"| **⚡ 阈值变化** | **{shifts}** | {shifts_status} |"),
             (r"^\| \*\*📈 分析项目\*\* \| \*\*\d+\*\* \| [^|]+ \|$",
