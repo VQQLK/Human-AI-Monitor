@@ -310,18 +310,21 @@ def build_history_table(weeks, lang):
     """Build markdown table for finals only (chart history)."""
     L = STRINGS[lang]
     header = (f"| {L['hist_col_week']} | {L['hist_col_ai']} | {L['hist_col_human']} "
-              f"| {L['hist_col_gap']} | {L['hist_col_items']} | {L['hist_col_sample']} "
-              f"| {L['hist_col_type']} |")
-    sep = "|---|---|---|---|---|---|---|"
+              f"| {L['hist_col_gap']} | {L['daily_col_ci']} "
+              f"| {L['hist_col_items']} | {L['hist_col_sample']} | {L['hist_col_type']} |")
+    sep = "|---|---|---|---|---|---|---|---|"
     rows = []
     for w in weeks:
         typ = L["type_interim"] if w["is_interim"] == 1 else L["type_final"]
         items = w["items"] if w["items"] is not None else "—"
         sample = w["sample"] if w["sample"] is not None else "—"
+        ci_lo = w.get("gap_ci95_low")
+        ci_hi = w.get("gap_ci95_high")
+        ci = f"[{fmt_gap(ci_lo)}, {fmt_gap(ci_hi)}]" if ci_lo is not None and ci_hi is not None else "—"
         rows.append(
             f"| {week_end_to_ddmm(w['week_end'])} "
             f"| {w['ai']:.2f} | {w['human']:.2f} | {fmt_gap(w['gap'])} "
-            f"| {items} | {sample} | {typ} |"
+            f"| {ci} | {items} | {sample} | {typ} |"
         )
     return f"{L['hist_header']}\n\n{header}\n{sep}\n" + "\n".join(rows)
 

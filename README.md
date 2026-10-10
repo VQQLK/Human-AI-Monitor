@@ -70,9 +70,9 @@ xychart-beta
 
 #### 📚 Historical Protocols
 
-| Week | AI | Humanity | Gap | Items | Sample | Type |
-|---|---|---|---|---|---|---|
-| 04/10 | 0.76 | 0.50 | −0.26 | 237 | 247 | FINAL |
+| Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
+|---|---|---|---|---|---|---|---|
+| 04/10 | 0.76 | 0.50 | −0.26 | [−0.52, +0.01] | 237 | 247 | FINAL |
 
 > 📌 Interim (reference, not on chart): 10/10 — AI 0.69 · Humanity 0.36 · Gap −0.32 · 281 / 263 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
