@@ -352,10 +352,25 @@ export async function translateVoicesBatch(
 			+ 'Geoffrey Hinton → Джеффри Хинтон; Stuart Russell → Стюарт Рассел; '
 			+ 'Yuk Hui → Юк Хуэй; Jay Clayton → Джей Клейтон; Andrew Ferguson → Эндрю Фергюсон; '
 			+ 'Emil Michael → Эмиль Майкл; Scott Kupor → Скотт Купор; Susie Wiles → Сьюзи Уайлс\n'
+			+ '\nNEWS IDIOMS (translate like RBC/Kommersant headlines, not literally):\n'
+			+ '   «Inside X» → «Что стоит за X» (NOT «Внутри X»);\n'
+			+ '   «X slams Y» / «X hits Y» → «X критикует Y»;\n'
+			+ '   «X unveils Y» → «X представляет Y»;\n'
+			+ '   «X won\'t go public» → «X не выйдет на IPO»;\n'
+			+ '   «always-on» → «постоянно работающий»;\n'
+			+ '   «kill switch» → «аварийный выключатель»;\n'
+			+ '   «pressure for X» → «давление ради X» (NOT «за X»).\n'
 
 		: '1. Natural Simplified Chinese news style \u2014 NOT literal translation.\n'
 			+ '2. Every translation MUST end with \u3002 or \uff01 or \uff1f. Never truncate.\n'
-			+ '3. Keep names in their standard form (Sam Altman, OpenAI, Anthropic).\n';
+			+ '3. Keep names in their standard form (Sam Altman, OpenAI, Anthropic).\n'
+			+ '\nNEWS IDIOMS (translate as Sina News headlines, not literally):\n'
+			+ '   "Inside X" → "X内幕" (NOT "X内部");\n'
+			+ '   "X slams Y" / "X hits Y" → "X抨击Y";\n'
+			+ '   "X unveils Y" → "X发布Y";\n'
+			+ '   "won\'t go public" → "不上市";\n'
+			+ '   "always-on" → "常驻";\n'
+			+ '   "kill switch" → "紧急停止按钮".\n';
 
 	const systemPrompt = `You are a professional news translator. Translate each quote to ${targetLangName}.
 RULES:
