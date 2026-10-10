@@ -185,19 +185,20 @@ check_axes "docs/architecture.zh.md"
 # ============================================================
 # ФАЗА 5: ГРАНИЦЫ ИНТЕРПРЕТАЦИИ
 # ============================================================
-hdr "ФАЗА 5: МЕТКИ ИНТЕРПРЕТАЦИИ (CI95)"
+hdr "ФАЗА 5: МЕТКИ НАПРАВЛЕНИЯ (по mean)"
 
 for f in docs/methodology.md docs/methodology.ru.md docs/methodology.zh.md; do
-    if grep -q "Inconclusive" "$f"; then
-        ok "$f: метка Inconclusive"
+    if grep -q "Balanced\|Сбалансировано\|均衡" "$f"; then
+        ok "$f: метка Balanced"
     else
-        fail "$f: метка Inconclusive НЕ найдена"
+        fail "$f: метка Balanced НЕ найдена"
     fi
 done
 
-grep -q "ci95Low > 0" src/services/bayesian-gap.ts && ok "Код: ci95Low > 0" || fail "Код: ci95Low > 0 НЕ найден"
-grep -q "ci95High < 0" src/services/bayesian-gap.ts && ok "Код: ci95High < 0" || fail "Код: ci95High < 0 НЕ найден"
-grep -q "Inconclusive" src/services/bayesian-gap.ts && ok "Код: Inconclusive" || fail "Код: Inconclusive НЕ найден"
+grep -q "INTERPRET_EPS" src/services/bayesian-gap.ts && ok "Код: INTERPRET_EPS" || fail "Код: INTERPRET_EPS НЕ найден"
+grep -q "AI is ahead" src/services/bayesian-gap.ts && ok "Код: AI is ahead" || fail "Код: AI is ahead НЕ найден"
+grep -q "Humanity is ahead" src/services/bayesian-gap.ts && ok "Код: Humanity is ahead" || fail "Код: Humanity is ahead НЕ найден"
+grep -q "Balanced" src/services/bayesian-gap.ts && ok "Код: Balanced" || fail "Код: Balanced НЕ найден"
 
 # ============================================================
 # ФАЗА 6: ВЕСА ОСЕЙ
@@ -216,11 +217,13 @@ hdr "ФАЗА 7: ТАБЛИЦА ИНТЕРПРЕТАЦИИ"
 
 for f in docs/methodology.md docs/methodology.ru.md docs/methodology.zh.md; do
     ok=1
-    grep -q "Inconclusive" "$f" || { warn "$f: метка Inconclusive не найдена"; ok=0; }
     grep -qE "Humanity is ahead|Человечество впереди|人类领先" "$f" || { warn "$f: метка Humanity is ahead не найдена"; ok=0; }
     grep -qE "AI is ahead|ИИ впереди|人工智能领先" "$f" || { warn "$f: метка AI is ahead не найдена"; ok=0; }
+    grep -qE "Balanced|Сбалансировано|均衡" "$f" || { warn "$f: метка Balanced не найдена"; ok=0; }
+    grep -qE "Significant|Значимо|显著" "$f" || { warn "$f: метка Significant не найдена"; ok=0; }
+    grep -qE "Inconclusive|Неопределённо|不确定" "$f" || { warn "$f: метка Inconclusive не найдена"; ok=0; }
     if [ "$ok" = "1" ]; then
-        ok "$f: все три метки найдены"
+        ok "$f: все метки найдены"
     fi
 done
 
