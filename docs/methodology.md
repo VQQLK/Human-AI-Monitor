@@ -139,15 +139,62 @@ $\sum_i w_i^{AI} = \sum_j w_j^{H} = 1.0$. Weights are open for calibration; see 
 
 ### 3.3. Interpretation
 
-| Value of $G$ | Interpretation |
-|--------------|----------------|
-| $G > 0.3$ | **Critical asymmetry:** Humanity significantly ahead |
-| $0.1 < G \leq 0.3$ | **Moderate asymmetry:** Humanity ahead |
-| $\|G\| \leq 0.1$ | Symmetric development (norm) |
-| $-0.3 \leq G < -0.1$ | Moderate asymmetry: AI is ahead |
-| $G < -0.3$ | **Anomaly:** AI significantly ahead |
+The Gap $G$ is reported with **two separate labels**. They answer different
+questions — *how large is the gap?* and *how reliably is its sign determined?* —
+and must not be read as substitutes.
 
-The interpretation is **stable** when the 95% credible interval of $G$ lies entirely within one row, and **unstable** when the interval crosses a threshold.
+**Band (magnitude).** `interpretGap` assigns a label from the magnitude of the
+posterior mean $G$:
+
+| $\|G\|$ | Band label |
+|---------|------------|
+| $\|G\| \le 0.1$ | Symmetric development |
+| $0.1 < \|G\| \le 0.3$ | AI is ahead / Humanity is ahead |
+| $\|G\| > 0.3$ | AI is significantly ahead / Humanity is significantly ahead |
+
+> **Note on terminology.** The word *significantly* in the band label refers to
+> **magnitude** ($|G| > 0.3$), not to statistical significance. Statistical
+> significance is a separate measurement reported as `statistically_significant`
+> (see below). The two must not be read as substitutes.
+
+Thresholds 0.1 and 0.3 are expert estimates, analogous to axis weights
+(see `HANDOFF.md §14.2.3`). Calibration is deferred until ≥ 100 annotated items.
+
+**Significance (statistical).** `statistically_significant` is a separate
+boolean field in the API: `1` if the 95% credible interval of $G$ strictly
+excludes zero (`gap_ci95_low > 0` or `gap_ci95_high < 0`), and `0` otherwise.
+
+**The two labels are not equivalent.** A strong band does not imply significance;
+a weak band does not preclude it. When they disagree, that disagreement is
+informative: the magnitude is large enough to enter a band, but the interval is
+too wide to rule out zero.
+
+**Stability.** The interpretation is **stable** when CI95 lies entirely within
+one band, and **unstable** when the interval crosses a band boundary.
+
+*Example of unstable.* gap = 0.29, CI95 = [0.15, 0.53]. Point estimate and lower
+bound both fall in the *Humanity is ahead* band ($0.1 < |G| \le 0.3$), but the
+upper bound crosses into *significantly ahead* ($|G| > 0.3$). The label flips
+depending on which end of the interval is read.
+
+**Worked example — 2026-10-05.**
+
+| Field | Value | Reading |
+|-------|-------|---------|
+| `gap` | −0.31 | Point estimate |
+| `gap_ci95` | [−0.61, +0.01] | 95% credible interval |
+| `interpretation` | `AI is significantly ahead` | Band: $\|G\| > 0.3$ |
+| `statistically_significant` | `0` | Upper bound +0.006 > 0 → CI95 contains zero |
+
+Both readings are correct. The band reports magnitude; significance reports
+whether the sign is resolved by the current sample. Report both. Do not
+collapse to one label.
+
+**Note on source correlation.** The real CI95 may be ≈ 1.2–1.4× wider than
+nominal, because items from the same source are not independent evidence
+(see `HANDOFF.md §14.2.1`). This affects stability assessments near band
+boundaries.
+
 
 ### 3.4. Dynamics $G(t)$
 
