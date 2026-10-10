@@ -46,7 +46,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 ## 3. Current state
 
 - HEAD: latest commit on main (see `git log --oneline -5`)
-- **Baseline: 147 checks — 146 PASS / 1 WARN / 0 FAIL** (WARN = transient axis coverage, e.g. `hexad`; always verify via `bash scripts/run-audit.sh`)
+- **Baseline: 149 checks — 148 PASS / 1 WARN / 0 FAIL** (WARN = transient axis coverage, e.g. `hexad`; always verify via `bash scripts/run-audit.sh`)
 - Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
 - Math verification: **20/20 PASS** (see §14; runs inside audit as Phase 15)
 - Sources: 58 (33 AI + 25 Human)
