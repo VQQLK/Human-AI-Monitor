@@ -604,6 +604,15 @@ async function persistDailySnapshot(
 	range: { start: string; end: string },
 	isInterim: boolean,
 ): Promise<void> {
+	// FINAL is one per week. Regenerating a closed week must not leave
+	// stale snapshots behind. Delete any prior FINAL snapshot for the same
+	// week_start before inserting the new one. INTERIM snapshots accumulate
+	// one per day and are intentionally not deleted.
+	if (!isInterim) {
+		await env.DB.prepare(
+			"DELETE FROM daily_snapshots WHERE week_start = ? AND is_interim = 0"
+		).bind(range.start).run();
+	}
 	const snapshotDate = new Date().toISOString().slice(0, 10);
 	const recordedAt = new Date().toISOString();
 	await env.DB.prepare(
