@@ -55,9 +55,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["05/10", "07/10", "08/10", "09/10", "10/10"]
+    x-axis ["07/10", "08/10", "09/10", "10/10"]
     y-axis "Gap" -0.424 --> -0.120
-    line [-0.260, -0.220, -0.250, -0.310, -0.324]
+    line [-0.220, -0.250, -0.310, -0.324]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
@@ -66,7 +66,6 @@ xychart-beta
 | 09/10 | 0.660 | 0.350 | −0.310 | [−0.611, +0.006] | 281 | 207 | INTERIM |
 | 08/10 | 0.630 | 0.380 | −0.250 | [−0.579, +0.090] | 281 | 144 | INTERIM |
 | 07/10 | 0.610 | 0.390 | −0.220 | [−0.560, +0.126] | 281 | 100 | INTERIM |
-| 05/10 | 0.760 | 0.500 | −0.260 | [−0.518, +0.011] | 237 | 247 | FINAL |
 
 #### 📚 Historical Protocols
 

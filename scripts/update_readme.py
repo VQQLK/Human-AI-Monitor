@@ -272,9 +272,12 @@ xychart-beta
 
 def build_daily_mermaid(snapshots, lang):
     """Build mermaid block for daily Gap trajectory. Returns None if < 2 points."""
-    if not snapshots or len(snapshots) < 2:
+    # Daily trajectory shows INTERIM snapshots only. FINAL points belong
+    # to Historical Protocols and are not duplicated here.
+    interims = [s for s in (snapshots or []) if s.get("is_interim") == 1]
+    if len(interims) < 2:
         return None
-    rows = sorted(snapshots, key=lambda s: s["snapshot_date"])[-30:]
+    rows = sorted(interims, key=lambda s: s["snapshot_date"])[-30:]
     labels = [week_end_to_ddmm(s["snapshot_date"]) for s in rows]
     gaps = [s["gap"] for s in rows]
     gap_line = ", ".join(f"{g:.3f}" for g in gaps)
@@ -298,10 +301,13 @@ xychart-beta
 
 def build_daily_table(snapshots, lang):
     """Build markdown table for daily snapshots (newest first). Returns "" if < 2 points."""
-    if not snapshots or len(snapshots) < 2:
+    # Daily trajectory shows INTERIM snapshots only. FINAL points belong
+    # to Historical Protocols and are not duplicated here.
+    interims = [s for s in (snapshots or []) if s.get("is_interim") == 1]
+    if len(interims) < 2:
         return ""
     L = STRINGS[lang]
-    rows = sorted(snapshots, key=lambda s: s["snapshot_date"], reverse=True)[:30]
+    rows = sorted(interims, key=lambda s: s["snapshot_date"], reverse=True)[:30]
     header = (f"| {L['daily_col_date']} | {L['hist_col_ai']} | {L['hist_col_human']} "
               f"| {L['hist_col_gap']} | {L['daily_col_ci']} "
               f"| {L['hist_col_items']} | {L['hist_col_sample']} | {L['hist_col_type']} |")
