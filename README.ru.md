@@ -85,37 +85,37 @@ xychart-beta
 
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
-> Inside Zuckerberg, Huang’s push for White House AI pact
+> Внутри Цукерберга, давление Хуанга за соглашение о ИИ в Белом доме
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
 **Jensen Huang (Nvidia) — 2026-09-30**
 
-> Inside Zuckerberg, Huang’s push for White House AI pact
+> Внутри Цукерберга, давление Хуанга за соглашение о ИИ в Белом доме
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
 
 **Sam Altman (OpenAI) — 2026-09-29**
 
-> Altman unveils 'always-on' AI agent after OpenAI shelves model over safety concerns
+> Альтман представляет «всегда включённый» ИИ-агента после того как OpenAI отложил модель из-за опасений по безопасности
 
 — *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
 
 **Dario Amodei (Anthropic) — 2026-09-28**
 
-> Amodei adds Thune meeting to Washington tour
+> Амодеи добавил встречу с Тьюном в программу визита в Вашингтон
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
 
 **Dario Amodei (Anthropic) — 2026-09-27**
 
-> Anthropic CEO to attend White House dinner with Trump
+> Глава Anthropic примет участие в ужине в Белом доме с Трампом
 
 — *[Politico — Technology](https://www.politico.com/news/2026/09/27/anthropic-amodei-trump-white-house-dinner-01094287)*
 
 **Demis Hassabis (Google DeepMind) — 2026-09-24**
 
-> Gemini 4 is almost ready, says new Google DeepMind chief
+> Gemini 4 почти готов, заявил новый глава Google DeepMind
 
 — *[The Verge — AI](https://www.theverge.com/tech/999802/google-deepmind-gemini-4-timeline-koray-kavukcuoglu)*
 
