@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** October 10, 2026  
-**Baseline:** Updated on October 10, 2026 — based on 281 items (sample size: 263).
+**Updated:** October 11, 2026  
+**Baseline:** Updated on October 11, 2026 — based on 320 items (sample size: 295).
 
 ### 🌍 Humanity–AI Gap Index
 
 <div align="center">
 
-| Metric | Value (10-10) | Status |
+| Metric | Value (10-11) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.363** | Current value |
-| **🔴 AI Score** | 🤖 **0.687** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.324** | AI is ahead |
-| **📊 CI95** | **[−0.607, −0.023]** | Significant |
+| **🟢 Humanity Score** | 🌐 **0.368** | Current value |
+| **🔴 AI Score** | 🤖 **0.706** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.338** | AI is ahead |
+| **📊 CI95** | **[−0.599, −0.052]** | Significant |
 | **⚡ Threshold Shifts** | **6** | Critical events detected |
-| **📈 Items Analyzed** | **281** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **263** | Axis-signal pairs |
+| **📈 Items Analyzed** | **320** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **295** | Axis-signal pairs |
 
 </div>
 
@@ -55,17 +55,18 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["07/10", "08/10", "09/10", "10/10"]
-    y-axis "Gap" -0.424 --> -0.120
-    line [-0.220, -0.250, -0.310, -0.324]
+    x-axis ["07/10", "08/10", "09/10", "10/10", "11/10"]
+    y-axis "Gap" -0.438 --> -0.120
+    line [-0.220, -0.250, -0.310, -0.324, -0.338]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 281 | 263 | INTERIM |
-| 09/10 | 0.660 | 0.350 | −0.310 | [−0.611, +0.006] | 281 | 207 | INTERIM |
-| 08/10 | 0.630 | 0.380 | −0.250 | [−0.579, +0.090] | 281 | 144 | INTERIM |
-| 07/10 | 0.610 | 0.390 | −0.220 | [−0.560, +0.126] | 281 | 100 | INTERIM |
+| 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 320 | 295 | INTERIM |
+| 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 320 | 263 | INTERIM |
+| 09/10 | 0.660 | 0.350 | −0.310 | [−0.611, +0.006] | 320 | 207 | INTERIM |
+| 08/10 | 0.630 | 0.380 | −0.250 | [−0.579, +0.090] | 320 | 144 | INTERIM |
+| 07/10 | 0.610 | 0.390 | −0.220 | [−0.560, +0.126] | 320 | 100 | INTERIM |
 
 #### 📚 Historical Protocols
 
@@ -73,7 +74,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 04/10 | 0.760 | 0.500 | −0.260 | [−0.518, +0.011] | 237 | 247 | FINAL |
 
-> 📌 Interim (reference, not on chart): 10/10 — AI 0.687 · Humanity 0.363 · Gap −0.324 · 281 / 263 items.
+> 📌 Interim (reference, not on chart): 11/10 — AI 0.706 · Humanity 0.368 · Gap −0.338 · 320 / 295 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -83,6 +84,12 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Satya Nadella (Microsoft) — 2026-10-10**
+
+> Satya Nadella says we should assume all AI models are ‘compromised’
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1009337/satya-nadella-says-we-should-assume-all-ai-models-are-compromised)*
 
 **Mark Zuckerberg (Meta) — 2026-09-30**
 
