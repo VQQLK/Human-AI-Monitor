@@ -7,7 +7,7 @@
 ## 1. Project overview
 
 Cloudflare Worker that:
-- Collects RSS signals from 58 sources (33 AI + 25 Human)
+- Collects RSS signals from 59 sources (34 AI + 25 Human)
 - Classifies items via LLM (@cf/qwen/qwen3-30b-a3b-fp8)
 - Computes Bayesian Gap Index: Gap = Human_score − AI_score
 - Exposes API: /gap, /axes-history, /protocols, /health, /classify, /voices, /backfill-voices
@@ -28,7 +28,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 | src/config/prompts.ts             | LLM prompts (AI + Human)                     |
 | src/services/gap-computation.ts   | Bayesian posterior + MC 10000 samples        |
 | src/services/bayesian-gap.ts      | Beta sampling, RNG                           |
-| config/sources_ai.yaml            | 33 AI sources                                |
+| config/sources_ai.yaml            | 34 AI sources                                |
 | config/sources_human.yaml         | 25 Human sources                             |
 | config/axes_ai.yaml               | 6 AI axes + META geopolitics                 |
 | config/axes_human.yaml            | 6 Human axes                                 |
@@ -49,10 +49,10 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - **Baseline: 149 checks — 148 PASS / 1 WARN / 0 FAIL** (WARN = transient axis coverage, e.g. `hexad`; always verify via `bash scripts/run-audit.sh`)
 - Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
 - Math verification: **20/20 PASS** (see §14; runs inside audit as Phase 15)
-- Sources: 58 (33 AI + 25 Human)
+- Sources: 59 (34 AI + 25 Human)
 - Axes: 13 (6 AI + 6 Human + 1 META)
 - Source languages: en + ru (TASS) + zh (FT Chinese)
-- Batch capacity per run: 60 (planned: 58)
+- Batch capacity per run: 60 (planned: 59)
 - CF token: 3 permissions (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
 - **Items classification:** 603 items, classified with prompt v1 (no per-item version tracking)
 - **Voices extraction:** 13 curated mentions from 46 speakers (7 categories; policy emptied 2026-10-08)
