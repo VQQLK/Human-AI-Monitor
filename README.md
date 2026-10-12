@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** October 11, 2026  
-**Baseline:** Updated on October 11, 2026 — based on 320 items (sample size: 295).
+**Updated:** October 12, 2026  
+**Baseline:** Updated on October 12, 2026 — based on 335 items (sample size: 314).
 
 ### 🌍 Humanity–AI Gap Index
 
 <div align="center">
 
-| Metric | Value (10-11) | Status |
+| Metric | Value (10-12) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.368** | Current value |
-| **🔴 AI Score** | 🤖 **0.706** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.338** | AI is ahead |
-| **📊 CI95** | **[−0.599, −0.052]** | Significant |
+| **🟢 Humanity Score** | 🌐 **0.356** | Current value |
+| **🔴 AI Score** | 🤖 **0.720** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.364** | AI is ahead |
+| **📊 CI95** | **[−0.615, −0.084]** | Significant |
 | **⚡ Threshold Shifts** | **6** | Critical events detected |
-| **📈 Items Analyzed** | **320** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **295** | Axis-signal pairs |
+| **📈 Items Analyzed** | **335** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **314** | Axis-signal pairs |
 
 </div>
 
@@ -34,10 +34,10 @@ and Humanity.**
 ```mermaid
 xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
-    x-axis ["04/10", "04/10"]
-    y-axis "Score" 0.400 --> 0.810
-    bar [0.500, 0.500]
-    line [0.760, 0.760]
+    x-axis ["04/10", "11/10"]
+    y-axis "Score" 0.306 --> 0.810
+    bar [0.500, 0.356]
+    line [0.760, 0.720]
 ```
 
 #### 📉 Gap Index Dynamics (Humanity minus AI)
@@ -45,9 +45,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["04/10", "04/10"]
-    y-axis "Gap" -0.310 --> 0.250
-    line [-0.260, -0.260]
+    x-axis ["04/10", "11/10"]
+    y-axis "Gap" -0.414 --> 0.250
+    line [-0.260, -0.364]
 ```
 
 #### 📅 Daily Gap trajectory
@@ -62,20 +62,18 @@ xychart-beta
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 320 | 295 | INTERIM |
-| 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 320 | 263 | INTERIM |
-| 09/10 | 0.660 | 0.350 | −0.310 | [−0.611, +0.006] | 320 | 207 | INTERIM |
-| 08/10 | 0.630 | 0.380 | −0.250 | [−0.579, +0.090] | 320 | 144 | INTERIM |
-| 07/10 | 0.610 | 0.390 | −0.220 | [−0.560, +0.126] | 320 | 100 | INTERIM |
+| 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 335 | 295 | INTERIM |
+| 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 335 | 263 | INTERIM |
+| 09/10 | 0.660 | 0.350 | −0.310 | [−0.611, +0.006] | 335 | 207 | INTERIM |
+| 08/10 | 0.630 | 0.380 | −0.250 | [−0.579, +0.090] | 335 | 144 | INTERIM |
+| 07/10 | 0.610 | 0.390 | −0.220 | [−0.560, +0.126] | 335 | 100 | INTERIM |
 
 #### 📚 Historical Protocols
 
 | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
 | 04/10 | 0.760 | 0.500 | −0.260 | [−0.518, +0.011] | 237 | 247 | FINAL |
-
-> 📌 Interim (reference, not on chart): 11/10 — AI 0.706 · Humanity 0.368 · Gap −0.338 · 320 / 295 items.
-> Last point is INTERIM — will be replaced by FINAL on Monday.
+| 11/10 | 0.720 | 0.356 | −0.364 | [−0.615, −0.084] | 335 | 314 | FINAL |
 
 ---
 
