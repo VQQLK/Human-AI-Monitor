@@ -1476,9 +1476,12 @@ export default {
 						const existing = await env.DB.prepare(
 							"SELECT content_ru FROM protocols WHERE week_start = ?"
 						).bind(weekToTranslate).first<{ content_ru: string | null }>();
-						if (existing?.content_ru) {
-							console.log("[cron] translate skip: " + weekToTranslate + " already translated");
+						if (!isMonday && existing?.content_ru) {
+							console.log("[cron] translate skip: " + weekToTranslate + " already translated (non-Monday)");
 							return;
+						}
+						if (isMonday && existing?.content_ru) {
+							console.log("[cron] Monday FINAL override: re-translating " + weekToTranslate + " (was INTERIM)");
 						}
 						const res = await fetch(
 							"https://api.github.com/repos/VQQLK/Human-AI-Monitor/actions/workflows/translate-protocols.yml/dispatches",
