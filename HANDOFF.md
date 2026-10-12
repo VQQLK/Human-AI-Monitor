@@ -87,6 +87,16 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - Recomputation happens automatically on Monday 14:00 UTC
   (cron sync-protocols.yml → generateProtocol: true)
 
+### 🟢 Monday FINAL translation skip — FIXED (2026-10-12)
+
+**Symptom:** Monday FINAL protocol kept Friday INTERIM's `content_ru`/`content_zh` in D1 and archive (H1 contained `(INTERMEDIATE)` marker, items=320 instead of 335, gap=−0.338 instead of −0.364).
+
+**Root cause:** worker skipped dispatch of `translate-protocols.yml` when `content_ru` existed. On Monday, FINAL regenerates the same `week_start` row that Fri-Sun INTERIM already populated — stale but "exists".
+
+**Fix (commit `aed68eb`):** skip only on non-Monday. Monday always dispatches — covers INTERIM→FINAL transition, independent of GitHub cron health.
+
+**Verified:** manual re-translate of 2026-10-05 restored clean H1; next Monday cron will log `Monday FINAL override: re-translating`.
+
 ## 5. Working patterns
 
 NEVER use nano for large edits — breaks unicode, drops chunks.
@@ -147,8 +157,10 @@ The bot pushed README — rebase resolves cleanly.
 | 23:00                         | Evening collection                |
 | 13:45 Tue-Sun                 | Daily interim protocol            |
 | 13:45 Mon                     | Weekly FINAL protocol             |
-| 14:00 daily (Worker dispatch) | sync-protocols.yml                |
-| 14:00 Mon, 08:00 Sat          | sync-protocols.yml (native fallback) |
+| 13:45+ (worker dispatch)      | translate-protocols.yml (Mon always; Tue–Sun if NULL) |
+| 13:45+ (worker dispatch)      | sync-protocols.yml (after generation) |
+| 13:50 daily (native)          | translate-protocols.yml (GitHub cron fallback) |
+| 14:00 Mon, 08:00 Sat (native) | sync-protocols.yml (GitHub cron fallback) |
 
 ## 8. How to add a new source
 

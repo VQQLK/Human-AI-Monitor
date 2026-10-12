@@ -86,6 +86,16 @@ Cloudflare Worker, который:
 - Пересчёт произойдёт автоматически в понедельник 14:00 UTC
   (cron sync-protocols.yml → generateProtocol: true)
 
+### 🟢 Пропуск перевода для Monday FINAL — ИСПРАВЛЕНО (2026-10-12)
+
+**Симптом:** финальный протокол понедельника сохранял `content_ru`/`content_zh` от пятничного INTERIM в D1 и в архиве (в H1 маркер `(ПРОМЕЖУТОЧНЫЙ)`, items=320 вместо 335, gap=−0.338 вместо −0.364).
+
+**Причина:** worker пропускал dispatch `translate-protocols.yml`, если `content_ru` уже существовал. В понедельник FINAL перезаписывает ту же строку `week_start`, что и Fri-Sun INTERIM — перевод устарел, но "существует".
+
+**Исправление (коммит `aed68eb`):** skip только для non-Monday. Monday всегда диспатчит — покрывает переход INTERIM→FINAL, независимо от состояния GitHub cron.
+
+**Проверка:** ручной re-translate для 2026-10-05 восстановил чистый H1; следующий Monday cron запишет в лог `Monday FINAL override: re-translating`.
+
 ## 5. Рабочие паттерны
 
 НИКОГДА не использовать nano для больших правок — ломает юникод, теряет куски.
@@ -146,8 +156,10 @@ Cloudflare Worker, который:
 | 23:00                       | Вечерний сбор                    |
 | 13:45 вт-вс                  | Ежедневный промежуточный протокол |
 | 13:45 пн                     | Финальный протокол недели         |
-| 14:00 ежедн. (Worker)        | sync-protocols.yml                |
-| 14:00 пн, 08:00 сб           | sync-protocols.yml (native fallback) |
+| 13:45+ (worker dispatch)     | translate-protocols.yml (Mon always; Tue–Sun if NULL) |
+| 13:45+ (worker dispatch)     | sync-protocols.yml (после генерации) |
+| 13:50 ежедн. (native)        | translate-protocols.yml (GitHub cron fallback) |
+| 14:00 пн, 08:00 сб (native)  | sync-protocols.yml (GitHub cron fallback) |
 
 ## 8. Как добавить новый источник
 
