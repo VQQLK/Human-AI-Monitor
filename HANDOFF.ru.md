@@ -96,6 +96,24 @@ Cloudflare Worker, который:
 
 **Проверка:** ручной re-translate для 2026-10-05 восстановил чистый H1; следующий Monday cron запишет в лог `Monday FINAL override: re-translating`.
 
+### 🟢 Ежедневные snapshots: items_count — ИСПРАВЛЕНО (2026-10-13)
+
+**Симптом:** `/daily-snapshots` отдавал одно и то же число items (335) для каждой точки недели, тогда как `sample_size` рос день ото дня. Таблица Daily Gap в README выглядела плоской и противоречила тренду.
+
+**Причина:** endpoint делал `LEFT JOIN protocols p ON ds.week_start = p.week_start` и брал `p.items_count` (одно значение на неделю, зафиксированное на момент генерации) вместо значения на конкретный snapshot. Колонки `items_count` в `daily_snapshots` вообще не было.
+
+**Исправление (коммит `d5ad561`):**
+- миграция 0016 — `ALTER TABLE daily_snapshots ADD COLUMN items_count INTEGER` + backfill
+- новая `countItemsUpTo(env, filterStart, filterEnd)` повторяет логику фильтра `countProtocolItems()`
+- `persistDailySnapshot()` принимает `itemsCount` и пишет его; оба вызова считают `min(today, weekEnd)`
+- `/daily-snapshots` читает `ds.items_count` напрямую; JOIN убран
+
+**Семантика:** накопительное число items от `week_start` до `min(snapshot_date, week_end)`. Тот же фильтр "честного observer", что в `countProtocolItems()` (исключает `stale_forecast`; исключает `future_event` с прошедшим `event_date`).
+
+**Проверено:** таблица Daily теперь показывает 130 → 190 → 266 → 304 → 337 по неделе 05–11/10, и 82 для первого дня текущей недели.
+
+**Откат:** `ALTER TABLE daily_snapshots DROP COLUMN items_count;` (SQLite 3.35+, поддерживается D1).
+
 ## 5. Рабочие паттерны
 
 НИКОГДА не использовать nano для больших правок — ломает юникод, теряет куски.

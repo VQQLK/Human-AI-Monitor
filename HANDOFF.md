@@ -97,6 +97,24 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 
 **Verified:** manual re-translate of 2026-10-05 restored clean H1; next Monday cron will log `Monday FINAL override: re-translating`.
 
+### 🟢 Daily snapshots items_count — FIXED (2026-10-13)
+
+**Symptom:** `/daily-snapshots` returned the same items count (335) for every daily point of a week, while `sample_size` grew day by day. README's Daily Gap table looked flat and contradicted the trend.
+
+**Root cause:** endpoint `LEFT JOIN protocols p ON ds.week_start = p.week_start` took `p.items_count` (one value per week, set at generation time) instead of a per-snapshot value. `daily_snapshots` did not have an `items_count` column at all.
+
+**Fix (commit `d5ad561`):**
+- migration 0016 — `ALTER TABLE daily_snapshots ADD COLUMN items_count INTEGER` + backfill
+- new `countItemsUpTo(env, filterStart, filterEnd)` mirrors `countProtocolItems()` filter logic
+- `persistDailySnapshot()` accepts `itemsCount`, writes it; both callers compute `min(today, weekEnd)`
+- `/daily-snapshots` reads `ds.items_count` directly; JOIN removed
+
+**Semantics:** cumulative items from `week_start` through `min(snapshot_date, week_end)`. Same "honest observer" filter as `countProtocolItems()` (excludes `stale_forecast`; excludes `future_event` with past `event_date`).
+
+**Verified:** Daily table now shows 130 → 190 → 266 → 304 → 337 across week 05–11/10, and 82 for the first day of the current week.
+
+**Rollback:** `ALTER TABLE daily_snapshots DROP COLUMN items_count;` (SQLite 3.35+, supported by D1).
+
 ## 5. Working patterns
 
 NEVER use nano for large edits — breaks unicode, drops chunks.
