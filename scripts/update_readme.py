@@ -330,6 +330,10 @@ def build_daily_table(snapshots, lang):
 
 def build_history_table(weeks, lang):
     """Build markdown table for finals only (chart history)."""
+    # Sort newest first for display (weeks comes ASC from /gap-history).
+    # Local sort — does NOT mutate the caller's list (build_*_mermaid and
+    # interim reference depend on the original ASC order).
+    weeks = sorted(weeks, key=lambda w: w["week_start"], reverse=True)
     L = STRINGS[lang]
     header = (f"| {L['hist_col_week']} | {L['hist_col_ai']} | {L['hist_col_human']} "
               f"| {L['hist_col_gap']} | {L['daily_col_ci']} "
