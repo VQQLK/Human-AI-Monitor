@@ -572,6 +572,25 @@ async function buildProtocolMarkdown(env: Env, range: any): Promise<string> {
 	return lines.join("\n");
 }
 
+async function countItemsUpTo(env: Env, filterStart: string, filterEnd: string): Promise<number> {
+	// Cumulative item count from filterStart to filterEnd (inclusive).
+	// Same filter as countProtocolItems(), but with explicit end date
+	// instead of "today". Used by persistDailySnapshot() so each daily
+	// snapshot stores the count that was actually available at that moment.
+	const res = await env.DB.prepare(
+		"SELECT temporal_status, event_date FROM items " +
+		"WHERE date >= ? AND date <= ? " +
+		"AND (temporal_status IS NULL OR temporal_status != 'stale_forecast')"
+	).bind(filterStart, filterEnd).all();
+	const rows: any[] = res.results ?? [];
+	let items = 0;
+	for (const r of rows) {
+		if (r.temporal_status === 'future_event' && r.event_date && r.event_date < filterEnd) continue;
+		items++;
+	}
+	return items;
+}
+
 async function countProtocolItems(env: Env, range: any): Promise<{ items: number; shifts: number }> {
 	// Same filter + JS post-processing as build*ProtocolMarkdown, so that
 	// protocols.items_count matches the "Items collected" line in the
@@ -603,6 +622,7 @@ async function persistDailySnapshot(
 	gapResult: GapResult,
 	range: { start: string; end: string },
 	isInterim: boolean,
+	itemsCount: number,
 ): Promise<void> {
 	// FINAL is one per week. Regenerating a closed week must not leave
 	// stale snapshots behind. Delete any prior FINAL snapshot for the same
@@ -620,8 +640,9 @@ async function persistDailySnapshot(
 		+ "snapshot_date, week_start, week_end, "
 		+ "ai_score, human_score, gap, "
 		+ "gap_ci95_low, gap_ci95_high, gap_std, "
-		+ "sample_size, is_interim, method, recorded_at"
-		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?"
+		+ "sample_size, is_interim, method, recorded_at, "
+		+ "items_count"
+		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?"
 		+ ")"
 	).bind(
 		snapshotDate, range.start, range.end,
@@ -629,6 +650,7 @@ async function persistDailySnapshot(
 		gapResult.gapCi95[0], gapResult.gapCi95[1], gapResult.gapStd,
 		gapResult.sampleSize, isInterim ? 1 : 0,
 		gapResult.method, recordedAt,
+		itemsCount,
 	).run();
 }
 
@@ -671,7 +693,10 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 	).run();
 
 	// Persist daily snapshot (is_interim = 0, FINAL)
-	await persistDailySnapshot(env, gapResult, range, false);
+	const today = new Date().toISOString().slice(0, 10);
+	const endDate = today < range.filterEnd ? today : range.filterEnd;
+	const itemsCountForSnapshot = await countItemsUpTo(env, range.filterStart, endDate);
+	await persistDailySnapshot(env, gapResult, range, false, itemsCountForSnapshot);
 	
 	// Persist axis posteriors to index_history
 	// (mean + CI95 + std + α + β + per-axis sample size).
@@ -786,7 +811,10 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 	).run();
 
 	// Persist daily snapshot (is_interim = 1, INTERIM)
-	await persistDailySnapshot(env, gapResult, range, true);
+	const today = new Date().toISOString().slice(0, 10);
+	const endDate = today < range.filterEnd ? today : range.filterEnd;
+	const itemsCountForSnapshot = await countItemsUpTo(env, range.filterStart, endDate);
+	await persistDailySnapshot(env, gapResult, range, true, itemsCountForSnapshot);
 
 	// Persist axis posteriors to index_history
 	// (mean + CI95 + std + α + β + per-axis sample size).
@@ -992,9 +1020,8 @@ export default {
 					+ "       ds.ai_score, ds.human_score, ds.gap, "
 					+ "       ds.gap_ci95_low, ds.gap_ci95_high, ds.gap_std, "
 					+ "       ds.sample_size, ds.is_interim, ds.method, ds.recorded_at, "
-					+ "       p.items_count "
+					+ "       ds.items_count "
 					+ "FROM daily_snapshots ds "
-					+ "LEFT JOIN protocols p ON ds.week_start = p.week_start "
 					+ "ORDER BY ds.snapshot_date DESC "
 					+ "LIMIT ?"
 				).bind(limit).all();
