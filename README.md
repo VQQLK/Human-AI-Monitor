@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** October 13, 2026  
-**Baseline:** Updated on October 13, 2026 — based on 82 items (sample size: 63).
+**Updated:** October 14, 2026  
+**Baseline:** Updated on October 14, 2026 — based on 147 items (sample size: 127).
 
 ### 🌍 Humanity–AI Gap Index
 
 <div align="center">
 
-| Metric | Value (10-13) | Status |
+| Metric | Value (10-14) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.404** | Current value |
-| **🔴 AI Score** | 🤖 **0.634** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.231** | AI is ahead |
-| **📊 CI95** | **[−0.569, +0.125]** | Inconclusive |
-| **⚡ Threshold Shifts** | **0** | No critical events |
-| **📈 Items Analyzed** | **82** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **63** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.434** | Current value |
+| **🔴 AI Score** | 🤖 **0.730** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.295** | AI is ahead |
+| **📊 CI95** | **[−0.599, +0.024]** | Inconclusive |
+| **⚡ Threshold Shifts** | **1** | Critical events detected |
+| **📈 Items Analyzed** | **147** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **127** | Axis-signal pairs |
 
 </div>
 
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["07/10", "08/10", "09/10", "10/10", "11/10", "13/10"]
+    x-axis ["07/10", "08/10", "09/10", "10/10", "11/10", "13/10", "14/10"]
     y-axis "Gap" -0.438 --> -0.120
-    line [-0.220, -0.250, -0.310, -0.324, -0.338, -0.231]
+    line [-0.220, -0.250, -0.310, -0.324, -0.338, -0.231, -0.295]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 14/10 | 0.730 | 0.434 | −0.295 | [−0.599, +0.024] | 147 | 127 | INTERIM |
 | 13/10 | 0.634 | 0.404 | −0.231 | [−0.569, +0.125] | 82 | 63 | INTERIM |
 | 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 337 | 295 | INTERIM |
 | 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 304 | 263 | INTERIM |
@@ -76,7 +77,7 @@ xychart-beta
 | 11/10 | 0.720 | 0.356 | −0.364 | [−0.615, −0.084] | 335 | 314 | FINAL |
 | 04/10 | 0.760 | 0.500 | −0.260 | [−0.518, +0.011] | 237 | 247 | FINAL |
 
-> 📌 Interim (reference, not on chart): 13/10 — AI 0.634 · Humanity 0.404 · Gap −0.231 · 82 / 63 items.
+> 📌 Interim (reference, not on chart): 14/10 — AI 0.730 · Humanity 0.434 · Gap −0.295 · 147 / 127 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
