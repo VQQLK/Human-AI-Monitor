@@ -115,6 +115,17 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 
 **Rollback:** `ALTER TABLE daily_snapshots DROP COLUMN items_count;` (SQLite 3.35+, supported by D1).
 
+### 🟢 Parallel item collection (CONCURRENCY=5) — 2026-10-15
+
+Worker's per-source item loop is now batched `Promise.all` (5 items in parallel).
+Sequential processing was ~29 sec/item and exceeded cron's 15-min wall time at
+`maxPerSource: 10`. Batched: ~10 sec/batch → 12× speedup.
+
+- 18 new items: 522 sec sequential → 43.5 sec parallel
+- 12 sources × 10 items: ~240 sec, fits cron 15-min budget
+- Workers AI not rate-limited at CONCURRENCY=5
+- Subrequest budgets unchanged (only ordering)
+
 ## 5. Working patterns
 
 NEVER use nano for large edits — breaks unicode, drops chunks.
