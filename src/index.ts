@@ -1228,6 +1228,109 @@ export default {
 					results,
 				}, 200);
 			}
+			if (path === "/grab") {
+				if (!verifyAuth(request, env)) {
+					return json({ error: "Unauthorized" }, 401);
+				}
+
+				const targetUrl = url.searchParams.get("url");
+				if (!targetUrl) return json({ error: "Missing 'url' param" }, 400);
+				if (!targetUrl.startsWith("https://")) return json({ error: "Only https:// URLs allowed" }, 400);
+
+				let parsedUrl: URL;
+				try { parsedUrl = new URL(targetUrl); } catch {
+					return json({ error: "Invalid URL" }, 400);
+				}
+
+				// 1. Fetch HTML
+				const r = await fetchWithRetry(targetUrl);
+				if (!r.ok) return json({ error: "Fetch failed: HTTP " + r.status }, 502);
+				const html = await r.text();
+
+				// 2. Extract meta
+				const titleMatch = html.match(/<meta\s+property="og:title"\s+content="([^"]+)"/i)
+				                || html.match(/<title>([^<]+)<\/title>/i);
+				const summaryMatch = html.match(/<meta\s+property="og:description"\s+content="([^"]+)"/i)
+				                  || html.match(/<meta\s+name="description"\s+content="([^"]+)"/i);
+				const dateMatch = html.match(/<meta\s+property="article:published_time"\s+content="([^"]+)"/i);
+
+				const title = titleMatch ? titleMatch[1].trim().slice(0, 500) : "";
+				const summary = summaryMatch ? summaryMatch[1].trim().slice(0, 1000) : "";
+				const itemDate = dateMatch ? dateMatch[1].slice(0, 10) : new Date().toISOString().slice(0, 10);
+
+				if (!title) return json({ error: "No title extracted from HTML" }, 422);
+
+				// 3. Detect source from hostname
+				const hostname = parsedUrl.hostname;
+				const sourceMatch = SOURCES.find((s) => {
+					try { return new URL(s.url).hostname === hostname; } catch { return false; }
+				});
+				const source = sourceMatch?.name ?? hostname;
+				const kind = sourceMatch?.kind ?? "ai";
+
+				// 4. Hash + duplicate check
+				const hash = await sha256Hex(targetUrl);
+				const existing: any = await env.DB.prepare(
+					"SELECT hash FROM items WHERE hash = ?"
+				).bind(hash).first();
+				if (existing) {
+					return json({ status: "already_exists", hash: hash.slice(0, 12), title }, 200);
+				}
+
+				// 5. Classify
+				const today = new Date().toISOString().slice(0, 10);
+				const systemPrompt = kind === "human" ? getHumanPrompt(today) : getAIPrompt(today);
+				const ai: any = await env.AI.run(env.CLASSIFIER_MODEL, {
+					messages: [
+						{ role: "system", content: systemPrompt },
+						{ role: "user", content: (title + ". " + summary).slice(0, 800) }
+					],
+				});
+				const parsed = validateParsed(parseAIResponse(ai));
+				if (!parsed) return json({ error: "Classification failed" }, 500);
+
+				// 6. INSERT
+				await env.DB.prepare(
+					"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, topic_relevance, shift, direction, reasoning, temporal_status, event_date, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+				).bind(
+					hash, title, summary,
+					targetUrl.slice(0, 500), source, itemDate, "en",
+					JSON.stringify(parsed.axes ?? []),
+					typeof parsed.relevance === "number" ? parsed.relevance : 0.5,
+					typeof parsed.topic_relevance === "number" ? parsed.topic_relevance : (typeof parsed.relevance === "number" ? parsed.relevance : 0.5),
+					String(parsed.shift ?? "uncertain"),
+					String(parsed.direction ?? "uncertain"),
+					String(parsed.reasoning ?? "").slice(0, 1000),
+					String(parsed.temporal_status ?? "static_fact"),
+					parsed.event_date || null,
+					new Date().toISOString()
+				).run();
+
+				// 7. Extract voices
+				const voices = extractVoice({
+					title, summary, source, date: itemDate,
+					relevance: typeof parsed.relevance === 'number' ? parsed.relevance : 0.5,
+					topic_relevance: typeof parsed.topic_relevance === 'number' ? parsed.topic_relevance : undefined,
+					axes: Array.isArray(parsed.axes) ? parsed.axes : [],
+				});
+				for (const v of voices) {
+					await saveVoice(env.DB, hash, v);
+				}
+
+				return json({
+					status: "inserted",
+					hash: hash.slice(0, 12),
+					title,
+					source,
+					kind,
+					date: itemDate,
+					relevance: parsed.relevance,
+					topic_relevance: parsed.topic_relevance,
+					axes: parsed.axes,
+					voices_extracted: voices.length,
+				}, 200);
+			}
+
 			if (path === "/translate-voices") {
 				if (!verifyAuth(request, env)) {
 					return json({ error: "Unauthorized" }, 401);
