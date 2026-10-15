@@ -202,88 +202,92 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 			}
 			stats.items_fetched += items.length;
 			stats.sources_processed++;
-			for (const item of items) {
-				if (!item.title) { stats.items_skipped_no_title++; continue; }
-				try {
-					const hash = await sha256Hex(item.url || item.title);
-					const existing: any = await env.DB.prepare(
-						"SELECT hash, axes, relevance, shift FROM items WHERE hash = ?"
-					).bind(hash).first();
+			const CONCURRENCY = 5;
+			for (let bi = 0; bi < items.length; bi += CONCURRENCY) {
+				const itemBatch = items.slice(bi, bi + CONCURRENCY);
+				await Promise.all(itemBatch.map(async (item) => {
+					if (!item.title) { stats.items_skipped_no_title++; return; }
+					try {
+						const hash = await sha256Hex(item.url || item.title);
+						const existing: any = await env.DB.prepare(
+							"SELECT hash, axes, relevance, shift FROM items WHERE hash = ?"
+						).bind(hash).first();
 
-					if (existing) {
-						stats.items_existing++;
-						if (stats.sample.length < 5) {
-							let axes: any[] = [];
-							try { axes = JSON.parse(existing.axes ?? "[]"); } catch (e) {}
-							if (Array.isArray(axes) && axes.length > 0) {
-								stats.sample.push({
-									source: src.name, title: item.title.slice(0, 120),
-									axes: axes, relevance: existing.relevance, shift: existing.shift,
-									existing: true,
-								});
+						if (existing) {
+							stats.items_existing++;
+							if (stats.sample.length < 5) {
+								let axes: any[] = [];
+								try { axes = JSON.parse(existing.axes ?? "[]"); } catch (e) {}
+								if (Array.isArray(axes) && axes.length > 0) {
+									stats.sample.push({
+										source: src.name, title: item.title.slice(0, 120),
+										axes: axes, relevance: existing.relevance, shift: existing.shift,
+										existing: true,
+									});
+								}
 							}
+							return;
 						}
-						continue;
-					}
 
-					const text = (item.title + ". " + item.summary).slice(0, 800);
-					const today = new Date().toISOString().split('T')[0];
-					const systemPrompt = src.kind === 'human' ? getHumanPrompt(today) : getAIPrompt(today);
-					const ai: any = await env.AI.run(env.CLASSIFIER_MODEL, {
-						messages: [
-							{ role: "system", content: systemPrompt },
-							{ role: "user", content: text }
-						],
-					});
-					const parsed = validateParsed(parseAIResponse(ai));
-					if (!parsed) continue;
-					stats.items_classified++;
-
-					const itemDate = parsePubDate(item.pubDate);
-					if (item.url && item.url.length > 500) {
-						console.warn("[collect] URL truncated: " + item.url.length + " -> 500 chars (" + item.url.slice(0, 80) + "…)");
-					}
-					await env.DB.prepare(
-						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, topic_relevance, shift, direction, reasoning, temporal_status, event_date, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-					).bind(
-						hash, item.title.slice(0, 500), item.summary.slice(0, 1000),
-						item.url.slice(0, 500), src.name, itemDate, "en",
-						JSON.stringify(parsed.axes ?? []),
-						typeof parsed.relevance === "number" ? parsed.relevance : 0.5,
-						typeof parsed.topic_relevance === "number" ? parsed.topic_relevance : (typeof parsed.relevance === "number" ? parsed.relevance : 0.5),
-						String(parsed.shift ?? "uncertain"),
-						String(parsed.direction ?? "uncertain"),
-						String(parsed.reasoning ?? "").slice(0, 1000),
-						String(parsed.temporal_status ?? "static_fact"),
-						parsed.event_date || null,
-						new Date().toISOString()
-					).run();
-
-					// Extract voices if item matches curated speakers
-					const voices = extractVoice({
-						title: item.title,
-						summary: item.summary,
-						source: src.name,
-						date: itemDate,
-						relevance: typeof parsed.relevance === 'number' ? parsed.relevance : 0.5,
-						topic_relevance: typeof parsed.topic_relevance === 'number' ? parsed.topic_relevance : undefined,
-						axes: Array.isArray(parsed.axes) ? parsed.axes : [],
-					});
-					for (const v of voices) {
-						await saveVoice(env.DB, hash, v);
-						console.log(`[collect] Voice extracted: ${v.speaker} from ${src.name}`);
-					}
-
-					stats.items_saved++;
-					if (stats.sample.length < 5 && Array.isArray(parsed.axes) && parsed.axes.length > 0) {
-						stats.sample.push({
-							source: src.name, title: item.title.slice(0, 120),
-							axes: parsed.axes, relevance: parsed.relevance, shift: parsed.shift,
+						const text = (item.title + ". " + item.summary).slice(0, 800);
+						const today = new Date().toISOString().split('T')[0];
+						const systemPrompt = src.kind === 'human' ? getHumanPrompt(today) : getAIPrompt(today);
+						const ai: any = await env.AI.run(env.CLASSIFIER_MODEL, {
+							messages: [
+								{ role: "system", content: systemPrompt },
+								{ role: "user", content: text }
+							],
 						});
+						const parsed = validateParsed(parseAIResponse(ai));
+						if (!parsed) return;
+						stats.items_classified++;
+
+						const itemDate = parsePubDate(item.pubDate);
+						if (item.url && item.url.length > 500) {
+							console.warn("[collect] URL truncated: " + item.url.length + " -> 500 chars (" + item.url.slice(0, 80) + "…)");
+						}
+						await env.DB.prepare(
+							"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, topic_relevance, shift, direction, reasoning, temporal_status, event_date, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+						).bind(
+							hash, item.title.slice(0, 500), item.summary.slice(0, 1000),
+							item.url.slice(0, 500), src.name, itemDate, "en",
+							JSON.stringify(parsed.axes ?? []),
+							typeof parsed.relevance === "number" ? parsed.relevance : 0.5,
+							typeof parsed.topic_relevance === "number" ? parsed.topic_relevance : (typeof parsed.relevance === "number" ? parsed.relevance : 0.5),
+							String(parsed.shift ?? "uncertain"),
+							String(parsed.direction ?? "uncertain"),
+							String(parsed.reasoning ?? "").slice(0, 1000),
+							String(parsed.temporal_status ?? "static_fact"),
+							parsed.event_date || null,
+							new Date().toISOString()
+						).run();
+
+						// Extract voices if item matches curated speakers
+						const voices = extractVoice({
+							title: item.title,
+							summary: item.summary,
+							source: src.name,
+							date: itemDate,
+							relevance: typeof parsed.relevance === 'number' ? parsed.relevance : 0.5,
+							topic_relevance: typeof parsed.topic_relevance === 'number' ? parsed.topic_relevance : undefined,
+							axes: Array.isArray(parsed.axes) ? parsed.axes : [],
+						});
+						for (const v of voices) {
+							await saveVoice(env.DB, hash, v);
+							console.log(`[collect] Voice extracted: ${v.speaker} from ${src.name}`);
+						}
+
+						stats.items_saved++;
+						if (stats.sample.length < 5 && Array.isArray(parsed.axes) && parsed.axes.length > 0) {
+							stats.sample.push({
+								source: src.name, title: item.title.slice(0, 120),
+								axes: parsed.axes, relevance: parsed.relevance, shift: parsed.shift,
+							});
+						}
+					} catch (e: any) {
+						stats.errors.push("classify " + src.name + ": " + (e?.message ?? e));
 					}
-				} catch (e: any) {
-					stats.errors.push("classify " + src.name + ": " + (e?.message ?? e));
-				}
+				}));
 			}
 		} catch (e: any) {
 			stats.errors.push("fetch " + src.name + ": " + (e?.message ?? e));
