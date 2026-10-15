@@ -1186,7 +1186,11 @@ export default {
 				let processed = 0;
 				let errors = 0;
 
-				for (const raw of rows.results ?? []) {
+				const BACKFILL_CONCURRENCY = 5;
+				const itemsToProcess = rows.results ?? [];
+				for (let bi = 0; bi < itemsToProcess.length; bi += BACKFILL_CONCURRENCY) {
+					const itemBatch = itemsToProcess.slice(bi, bi + BACKFILL_CONCURRENCY);
+					await Promise.all(itemBatch.map(async (raw) => {
 					const item: any = raw;
 					try {
 						const text = (item.title + ". " + item.summary).slice(0, 800);
@@ -1220,9 +1224,12 @@ export default {
 							hash: String(item.hash).slice(0, 12),
 							error: (e as Error).message,
 						});
-						lastHash = item.hash;
 						errors++;
 					}
+					}));
+					// After batch: advance cursor to max hash (parallel-safe)
+					const batchHashes = itemBatch.map((r: any) => r.hash).sort();
+					if (batchHashes.length > 0) lastHash = batchHashes[batchHashes.length - 1];
 				}
 
 				// Count remaining in the window
