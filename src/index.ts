@@ -244,12 +244,13 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 						console.warn("[collect] URL truncated: " + item.url.length + " -> 500 chars (" + item.url.slice(0, 80) + "…)");
 					}
 					await env.DB.prepare(
-						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, shift, direction, reasoning, temporal_status, event_date, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+						"INSERT OR IGNORE INTO items (hash, title, summary, url, source, date, lang, axes, relevance, topic_relevance, shift, direction, reasoning, temporal_status, event_date, collected_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 					).bind(
 						hash, item.title.slice(0, 500), item.summary.slice(0, 1000),
 						item.url.slice(0, 500), src.name, itemDate, "en",
 						JSON.stringify(parsed.axes ?? []),
 						typeof parsed.relevance === "number" ? parsed.relevance : 0.5,
+						typeof parsed.topic_relevance === "number" ? parsed.topic_relevance : (typeof parsed.relevance === "number" ? parsed.relevance : 0.5),
 						String(parsed.shift ?? "uncertain"),
 						String(parsed.direction ?? "uncertain"),
 						String(parsed.reasoning ?? "").slice(0, 1000),
@@ -265,6 +266,7 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 						source: src.name,
 						date: itemDate,
 						relevance: typeof parsed.relevance === 'number' ? parsed.relevance : 0.5,
+						topic_relevance: typeof parsed.topic_relevance === 'number' ? parsed.topic_relevance : undefined,
 						axes: Array.isArray(parsed.axes) ? parsed.axes : [],
 					});
 					for (const v of voices) {

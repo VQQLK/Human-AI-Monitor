@@ -4,7 +4,7 @@ export const getAIPrompt = (today: string) => [
   '{"axes":["smd"|"itq"|"agg"|"cycle_velocity"|"verification"|"hexad"|"geopolitics"],',
   '"temporal_status":"future_event"|"past_event"|"ongoing"|"stale_forecast"|"static_fact",',
   '"event_date":"YYYY-MM-DD or null",',
-  '"relevance":number 0.0-1.0,',
+  '"relevance":number 0.0-1.0,"topic_relevance":number 0.0-1.0,',
   '"shift":"yes"|"no"|"uncertain",',
   '"direction":"up"|"down"|"stable"|"uncertain",',
   '"reasoning":"1-2 sentences in English"}',
@@ -26,6 +26,7 @@ export const getAIPrompt = (today: string) => [
   "10. static_fact: timeless research finding or technical result.",
   "11. event_date: date of the event in YYYY-MM-DD format (or null if N/A).",
   `12. If the text mentions an event date in the PAST relative to today (${today}), mark as stale_forecast.`,
+  "13. topic_relevance = overall significance as AI signal, INDEPENDENT of axis match. HIGH (0.8-1.0) major AI news (regulation, breakthrough, safety, funding, deployment, key figure statements); MEDIUM (0.5-0.7) notable AI item (product launch, industry analysis); LOW (0.2-0.4) minor AI mention (enterprise adoption, tangential); ZERO (0.0-0.1) not about AI. IMPORTANT: If about AI but no RSI axis matches → relevance=0.0, but topic_relevance stays 0.5-0.9.",
   "Return ONLY JSON, no markdown."
 ].join(" ");
 
@@ -35,7 +36,7 @@ export const getHumanPrompt = (today: string) => [
   '{"axes":["h1_agency"|"h2_sovereignty"|"h3_wellbeing"|"h4_equity"|"h5_meaning"|"h6_democracy"],',
   '"temporal_status":"future_event"|"past_event"|"ongoing"|"stale_forecast"|"static_fact",',
   '"event_date":"YYYY-MM-DD or null",',
-  '"relevance":number 0.0-1.0,',
+  '"relevance":number 0.0-1.0,"topic_relevance":number 0.0-1.0,',
   '"shift":"yes"|"no"|"uncertain",',
   '"direction":"up"|"down"|"stable"|"uncertain",',
   '"reasoning":"1-2 sentences in English"}',
@@ -55,5 +56,6 @@ export const getHumanPrompt = (today: string) => [
   "9. static_fact: timeless research finding or technical result.",
   "10. event_date: date of the event in YYYY-MM-DD format (or null if N/A).",
   `11. If the text mentions an event date in the PAST relative to today (${today}), mark as stale_forecast.`,
+  "12. topic_relevance = overall significance as Humanity signal, INDEPENDENT of axis match. HIGH (0.8-1.0) major Humanity news (institutional change, rights, mental health, education, governance); MEDIUM (0.5-0.7) notable Humanity item; LOW (0.2-0.4) minor mention; ZERO (0.0-0.1) not about Humanity.",
   "Return ONLY JSON, no markdown."
 ].join(" ");

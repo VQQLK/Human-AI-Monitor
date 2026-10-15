@@ -30,12 +30,14 @@ export function extractVoice(item: {
   source: string;
   date: string;
   relevance: number;
+  topic_relevance?: number;
   axes: string[];
 }): ExtractedVoice[] {
   // Criterion: minimum relevance AND speaker name in title/summary.
   // Below title_only_below, speaker must be in title (not just summary) —
   // avoids 'passing mention' false positives.
-  if (item.relevance < voicesConfig.min_relevance) return [];
+  const relevanceForVoices = item.topic_relevance ?? item.relevance;
+  if (relevanceForVoices < voicesConfig.min_relevance) return [];
 
   const titleText = (item.title || '').toLowerCase();
   const matches: ExtractedVoice[] = [];
