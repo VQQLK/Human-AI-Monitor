@@ -27,10 +27,15 @@ describe("dynamic cron batching invariants", () => {
         }
     });
 
-    it("every N in 0..capacity: subrequest budget holds per batch", () => {
+    it("every N in 0..capacity: subrequest budgets hold per batch", () => {
         for (const n of N_RANGE) {
             for (const b of Object.values(computeBatches(n))) {
-                expect(b.limit * b.maxPerSource * 2).toBeLessThanOrEqual(50);
+                // External: RSS fetch only (1 per source)
+                const externalUsed = b.limit * 1;
+                expect(externalUsed).toBeLessThanOrEqual(50);
+                // Internal: D1 + Workers AI (~3 per item)
+                const internalUsed = b.limit * b.maxPerSource * 3;
+                expect(internalUsed).toBeLessThanOrEqual(1000);
             }
         }
     });

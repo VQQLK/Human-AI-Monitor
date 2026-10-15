@@ -879,25 +879,34 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 // when sources change. Capacity (44) refuses loudly via cron_drift_events.
 // Enforced by test/cron-batching.spec.ts (property tests) + repo_audit.py.
 export const CRON_BATCH_META: Record<string, { batch: number; maxPerSource: number; generateProtocol: boolean }> = {
-	"0 13 * * *":  { batch: 1, maxPerSource: 2, generateProtocol: false },
-	"15 13 * * *":  { batch: 2, maxPerSource: 2, generateProtocol: false },
-	"30 13 * * *":  { batch: 3, maxPerSource: 2, generateProtocol: false },
-	"45 13 * * *":  { batch: 4, maxPerSource: 2, generateProtocol: true },
-	"0 23 * * *":  { batch: 5, maxPerSource: 2, generateProtocol: false },
+	"0 13 * * *":  { batch: 1, maxPerSource: 10, generateProtocol: false },
+	"15 13 * * *":  { batch: 2, maxPerSource: 10, generateProtocol: false },
+	"30 13 * * *":  { batch: 3, maxPerSource: 10, generateProtocol: false },
+	"45 13 * * *":  { batch: 4, maxPerSource: 10, generateProtocol: true },
+	"0 23 * * *":  { batch: 5, maxPerSource: 10, generateProtocol: false },
 };
 export const SUBREQUEST_LIMIT = 50;
+export const EXTERNAL_LIMIT = 50;
+export const INTERNAL_LIMIT = 1000;
+
 export const BATCH_MAX_SOURCES = Object.values(CRON_BATCH_META)
-	.reduce((s, m) => s + Math.floor(SUBREQUEST_LIMIT / (m.maxPerSource * 2)), 0);
+	.reduce((s, m) => {
+		const externalCap = Math.floor(EXTERNAL_LIMIT / 1);
+		const internalCap = Math.floor(INTERNAL_LIMIT / (m.maxPerSource * 3));
+		return s + Math.min(externalCap, internalCap);
+	}, 0);
 
 export function computeBatches(n: number): Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }> {
 	if (n > BATCH_MAX_SOURCES) {
-		throw new Error("SOURCES.length=" + n + " exceeds batching capacity " + BATCH_MAX_SOURCES + " (budget " + SUBREQUEST_LIMIT + ")");
+		throw new Error("SOURCES.length=" + n + " exceeds batching capacity " + BATCH_MAX_SOURCES + " (external=" + EXTERNAL_LIMIT + " internal=" + INTERNAL_LIMIT + ")");
 	}
 	const metas = Object.entries(CRON_BATCH_META).sort((a, b) => a[1].batch - b[1].batch);
 	const out: Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }> = {};
 	let offset = 0;
 	metas.forEach(([cron, m], idx) => {
-		const cap = Math.floor(SUBREQUEST_LIMIT / (m.maxPerSource * 2));
+		const externalCap = Math.floor(EXTERNAL_LIMIT / 1);
+		const internalCap = Math.floor(INTERNAL_LIMIT / (m.maxPerSource * 3));
+		const cap = Math.min(externalCap, internalCap);
 		const remaining = metas.length - idx;
 		const take = Math.min(cap, Math.ceil((n - offset) / remaining), n - offset);
 		out[cron] = { offset, limit: take, batch: m.batch, maxPerSource: m.maxPerSource, generateProtocol: m.generateProtocol };
@@ -1471,7 +1480,7 @@ export default {
 			}
 			if (path === "/collect") {
 				const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "3", 10), SOURCES.length);
-				const maxPerSource = Math.min(parseInt(url.searchParams.get("max") ?? "2", 10), 5);
+				const maxPerSource = Math.min(parseInt(url.searchParams.get("max") ?? "2", 10), 25);
 				const offset = Math.max(0, parseInt(url.searchParams.get("offset") ?? "0", 10));
 				return json(await runCollection(env, limit, maxPerSource, offset), 200);
 			}
