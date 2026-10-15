@@ -1136,6 +1136,98 @@ export default {
 				
 				return json({ extracted: extractedItems, voices_saved: savedVoices, total: items.results?.length ?? 0 }, 200);
 			}
+
+			if (path === "/backfill-topic-relevance") {
+				if (!verifyAuth(request, env)) {
+					return json({ error: "Unauthorized" }, 401);
+				}
+
+				const daysParam = parseInt(url.searchParams.get("days") ?? "10", 10);
+				const days = Math.min(Math.max(daysParam, 1), 30);
+
+				const batchSizeParam = parseInt(url.searchParams.get("batchSize") ?? "6", 10);
+				const batchSize = Math.min(Math.max(batchSizeParam, 1), 10);
+
+				const startAfter = url.searchParams.get("startAfter") ?? "";
+
+				const today = new Date().toISOString().slice(0, 10);
+				const fromDate = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
+
+				// Build sourceKind map once
+				const sourceKind: Record<string, "ai" | "human"> = {};
+				for (const src of SOURCES) sourceKind[src.name] = src.kind;
+
+				// Fetch batch of items with NULL topic_relevance
+				const rows = await env.DB.prepare(
+					"SELECT hash, title, summary, source, date " +
+					"FROM items " +
+					"WHERE date >= ? AND date <= ? " +
+					"  AND topic_relevance IS NULL " +
+					"  AND hash > ? " +
+					"ORDER BY hash ASC " +
+					"LIMIT ?"
+				).bind(fromDate, today, startAfter, batchSize).all();
+
+				const results: any[] = [];
+				let lastHash = startAfter;
+				let processed = 0;
+				let errors = 0;
+
+				for (const raw of rows.results ?? []) {
+					const item: any = raw;
+					try {
+						const text = (item.title + ". " + item.summary).slice(0, 800);
+						const kind = sourceKind[item.source] ?? "ai";
+						const systemPrompt = kind === "human" ? getHumanPrompt(today) : getAIPrompt(today);
+						const ai: any = await env.AI.run(env.CLASSIFIER_MODEL, {
+							messages: [
+								{ role: "system", content: systemPrompt },
+								{ role: "user", content: text }
+							],
+						});
+						const parsed = validateParsed(parseAIResponse(ai));
+						const topicRel = typeof parsed?.topic_relevance === "number"
+							? parsed.topic_relevance
+							: (typeof parsed?.relevance === "number" ? parsed.relevance : 0.5);
+
+						await env.DB.prepare(
+							"UPDATE items SET topic_relevance = ? WHERE hash = ?"
+						).bind(topicRel, item.hash).run();
+
+						results.push({
+							hash: String(item.hash).slice(0, 12),
+							source: item.source,
+							kind,
+							topic_relevance: topicRel,
+						});
+						lastHash = item.hash;
+						processed++;
+					} catch (e) {
+						results.push({
+							hash: String(item.hash).slice(0, 12),
+							error: (e as Error).message,
+						});
+						lastHash = item.hash;
+						errors++;
+					}
+				}
+
+				// Count remaining in the window
+				const remainingRes: any = await env.DB.prepare(
+					"SELECT COUNT(*) AS cnt FROM items " +
+					"WHERE date >= ? AND date <= ? AND topic_relevance IS NULL"
+				).bind(fromDate, today).first();
+
+				return json({
+					processed,
+					errors,
+					remaining: remainingRes?.cnt ?? 0,
+					startAfter: lastHash,
+					fromDate,
+					toDate: today,
+					results,
+				}, 200);
+			}
 			if (path === "/translate-voices") {
 				if (!verifyAuth(request, env)) {
 					return json({ error: "Unauthorized" }, 401);
