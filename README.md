@@ -87,6 +87,14 @@ xychart-beta
 
 ## Voices
 
+### 🧪 AI Researchers
+
+**Geoffrey Hinton (ex-Google, Nobel Laureate) — 2026-10-13**
+
+> AI godfather Geoffrey Hinton: ‘We’re creating alien beings. I’m willing to be selfish and choose humans’
+
+— *[The Guardian — AI](https://www.theguardian.com/us-news/2026/oct/13/geoffrey-hinton-trump-ai-tech)*
+
 ### 🧠 Frontier Labs
 
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-10-14**

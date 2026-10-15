@@ -88,17 +88,25 @@ xychart-beta
 
 ## 声音
 
+### 🧪 AI研究人员
+
+**Geoffrey Hinton (ex-Google, Nobel Laureate) — 2026-10-13**
+
+> AI之父杰弗里·辛顿：‘我们正在创造外星生命。我愿意自私地选择人类’。
+
+— *[The Guardian — AI](https://www.theguardian.com/us-news/2026/oct/13/geoffrey-hinton-trump-ai-tech)*
+
 ### 🧠 前沿实验室
 
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-10-14**
 
-> Ukraine's Starlink restrictions raise suspicions of Musk, Trump retaliation
+> 乌克兰对星链的限制引发马斯克和特朗普报复的猜测。
 
 — *[Axios](https://www.axios.com/2026/10/14/ukraine-starlink-zelensky-spacex-musk-trump)*
 
 **Satya Nadella (Microsoft) — 2026-10-10**
 
-> Satya Nadella says we should assume all AI models are ‘compromised’
+> 萨提亚·纳德拉表示我们应假设所有AI模型都“已被入侵”。
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1009337/satya-nadella-says-we-should-assume-all-ai-models-are-compromised)*
 

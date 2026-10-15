@@ -86,17 +86,25 @@ xychart-beta
 
 ## Мнения
 
+### 🧪 Исследователи ИИ
+
+**Geoffrey Hinton (ex-Google, Nobel Laureate) — 2026-10-13**
+
+> Отец ИИ Джеффри Хинтон: «Мы создаем инопланетных существ. Я готов быть эгоистом и выбрать людей»
+
+— *[The Guardian — AI](https://www.theguardian.com/us-news/2026/oct/13/geoffrey-hinton-trump-ai-tech)*
+
 ### 🧠 Лаборатории переднего края
 
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-10-14**
 
-> Ukraine's Starlink restrictions raise suspicions of Musk, Trump retaliation
+> Ограничения Украины в отношении Starlink вызывают подозрения о мести Маска и Трампа
 
 — *[Axios](https://www.axios.com/2026/10/14/ukraine-starlink-zelensky-spacex-musk-trump)*
 
 **Satya Nadella (Microsoft) — 2026-10-10**
 
-> Satya Nadella says we should assume all AI models are ‘compromised’
+> Сатья Наделла говорит, что мы должны предполагать, что все модели ИИ скомпрометированы
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1009337/satya-nadella-says-we-should-assume-all-ai-models-are-compromised)*
 
