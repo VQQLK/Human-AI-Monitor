@@ -125,6 +125,20 @@ Cloudflare Worker, который:
 - Workers AI не throttled при CONCURRENCY=5
 - Subrequest-бюджеты не изменились (только порядок)
 
+### 🟡 Бюджет neurons (Free plan: 10 000/день)
+
+- Cron (maxPerSource=10): ~3 500/день (35% лимита)
+- Backfill 547 items: ~3 200
+- Ручной /collect тест: ~700
+- Не совмещать backfill + ручные тесты + cron в один день
+- После сброса лимита edge может возвращать 4006 несколько часов
+
+### 🟡 /backfill-topic-relevance: особенности
+
+- `days=N` считает от сегодня, не от последнего item
+- `startAfter=MIN(hash)` пропускает этот item (SQL использует `hash > startAfter`)
+- Для полного покрытия: передавать пустой startAfter
+
 ## 5. Рабочие паттерны
 
 НИКОГДА не использовать nano для больших правок — ломает юникод, теряет куски.

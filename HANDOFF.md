@@ -126,6 +126,20 @@ Sequential processing was ~29 sec/item and exceeded cron's 15-min wall time at
 - Workers AI not rate-limited at CONCURRENCY=5
 - Subrequest budgets unchanged (only ordering)
 
+### 🟡 Neurons budget (Free plan: 10 000/day)
+
+- Cron (maxPerSource=10): ~3 500/day (35% limit)
+- Backfill 547 items: ~3 200
+- Manual /collect test: ~700
+- Never combine backfill + manual tests + cron on same day
+- After daily reset, edge may return 4006 for several hours
+
+### 🟡 /backfill-topic-relevance gotchas
+
+- `days=N` counts from today, not from last item
+- `startAfter=MIN(hash)` skips that item (SQL uses `hash > startAfter`)
+- For full coverage: pass empty startAfter
+
 ## 5. Working patterns
 
 NEVER use nano for large edits — breaks unicode, drops chunks.
