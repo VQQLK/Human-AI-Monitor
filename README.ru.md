@@ -89,39 +89,39 @@ xychart-beta
 
 ### 🧠 Лаборатории переднего края
 
-**Claude (Anthropic) (Anthropic) — 2026-10-17**
+**Claude (Anthropic) — 2026-10-17**
 
-> Клауд решает квантовый бутылочный горлышко памяти с 17-кратно более компактной схемой
+> Claude solves quantum memory bottleneck with 17x leaner circuit
 
 — *[interestingengineering.com](https://interestingengineering.com/ai-robotics/claude-quantum-circuit-design)*
 
-**Claude (Anthropic) (Anthropic) — 2026-10-13**
+**Claude (Anthropic) — 2026-10-13**
 
-> [AINews] Meta Muse Wonder & Wonder Full: модель уровня Frontier MSL Claude 5.5
+> [AINews] Meta Muse Wonder & Wonder Full: MSL’s Claude 5.5-tier Frontier Model
 
 — *[Latent Space](https://www.latent.space/p/ainews-meta-muse-wonder-and-wonder)*
 
-**Claude (Anthropic) (Anthropic) — 2026-10-08**
+**Claude (Anthropic) — 2026-10-08**
 
-> Чувствует ли Клауд давление?
+> Does Claude Feel The Whip?
 
 — *[Noema Magazine](https://www.noemamag.com/does-claude-feel-the-whip)*
 
-**Claude (Anthropic) (Anthropic) — 2026-10-08**
+**Claude (Anthropic) — 2026-10-08**
 
-> [AINews] Клауд Хайку 5.5 — лучше, чем GPT-6 Luna по той же цене
+> [AINews] Claude Haiku 5.5 — better than GPT-6 Luna at the same pricing
 
 — *[Latent Space](https://www.latent.space/p/ainews-claude-haiku-55-better-than)*
 
-**Claude (Anthropic) (Anthropic) — 2026-10-01**
+**Claude (Anthropic) — 2026-10-01**
 
-> Барклиз масштабирует Клауд для оптимизации операций и улучшения опыта клиентов
+> Barclays scales Claude to upgrade operations and improve client experience
 
 — *[Anthropic News](https://www.anthropic.com/news/barclays-scales-claude)*
 
-**Claude (Anthropic) (Anthropic) — 2026-09-22**
+**Claude (Anthropic) — 2026-09-22**
 
-> Anthropic запускает Клауд Опус 5.5 с более строгими мерами защиты в области кибербезопасности
+> Anthropic launches Claude Opus 5.5 with stricter safeguards for cybersecurity
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/998868/anthropic-claude-opus-5-5-cybersecurity)*
 
