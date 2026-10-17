@@ -24,7 +24,7 @@ export default {
       "note": "CEO of Anthropic"
     },
     {
-      "name": "Claude (Anthropic)",
+      "name": "Claude",
       "affiliation": "Anthropic",
       "category": "frontier_labs",
       "keywords": [
