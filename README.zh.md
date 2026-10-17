@@ -89,15 +89,43 @@ xychart-beta
 
 ## 声音
 
-### 🧪 AI研究人员
-
-**Geoffrey Hinton (ex-Google, Nobel Laureate) — 2026-10-13**
-
-> AI之父杰弗里·辛顿：‘我们正在创造外星生命。我愿意自私地选择人类’。
-
-— *[The Guardian — AI](https://www.theguardian.com/us-news/2026/oct/13/geoffrey-hinton-trump-ai-tech)*
-
 ### 🧠 前沿实验室
+
+**Claude (Anthropic) (Anthropic) — 2026-10-17**
+
+> Claude solves quantum memory bottleneck with 17x leaner circuit
+
+— *[interestingengineering.com](https://interestingengineering.com/ai-robotics/claude-quantum-circuit-design)*
+
+**Claude (Anthropic) (Anthropic) — 2026-10-13**
+
+> [AINews] Meta Muse Wonder & Wonder Full: MSL’s Claude 5.5-tier Frontier Model
+
+— *[Latent Space](https://www.latent.space/p/ainews-meta-muse-wonder-and-wonder)*
+
+**Claude (Anthropic) (Anthropic) — 2026-10-08**
+
+> Does Claude Feel The Whip?
+
+— *[Noema Magazine](https://www.noemamag.com/does-claude-feel-the-whip)*
+
+**Claude (Anthropic) (Anthropic) — 2026-10-08**
+
+> [AINews] Claude Haiku 5.5 — better than GPT-6 Luna at the same pricing
+
+— *[Latent Space](https://www.latent.space/p/ainews-claude-haiku-55-better-than)*
+
+**Claude (Anthropic) (Anthropic) — 2026-10-01**
+
+> Barclays scales Claude to upgrade operations and improve client experience
+
+— *[Anthropic News](https://www.anthropic.com/news/barclays-scales-claude)*
+
+**Claude (Anthropic) (Anthropic) — 2026-09-22**
+
+> Anthropic launches Claude Opus 5.5 with stricter safeguards for cybersecurity
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/998868/anthropic-claude-opus-5-5-cybersecurity)*
 
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-10-14**
 
@@ -176,6 +204,14 @@ xychart-beta
 > 奥特曼在联合国安理会的讲话
 
 — *[OpenAI Blog](https://openai.com/index/sam-altman-un-security-council-remarks)*
+
+### 🧪 AI研究人员
+
+**Geoffrey Hinton (ex-Google, Nobel Laureate) — 2026-10-13**
+
+> AI之父杰弗里·辛顿：‘我们正在创造外星生命。我愿意自私地选择人类’。
+
+— *[The Guardian — AI](https://www.theguardian.com/us-news/2026/oct/13/geoffrey-hinton-trump-ai-tech)*
 
 ### 💼 投资人与科技领袖
 
