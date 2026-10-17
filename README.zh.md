@@ -91,45 +91,51 @@ xychart-beta
 
 ### 🧠 前沿实验室
 
+**Claude — 2026-08-22**
+
+> Claude如何为AI生成的文本添加水印？
+
+— *[Ahead of AI (Sebastian Raschka)](https://magazine.sebastianraschka.com/p/claude-watermarking)*
+
 **Claude (Anthropic) — 2026-10-15**
 
-> Senate poised to add Claude to staffers’ AI tools
+> 参议院拟将Claude加入工作人员的AI工具中。
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/15/senate-add-claude-staffers-ai-01122420)*
 
 **Claude (Anthropic) — 2026-10-17**
 
-> Claude solves quantum memory bottleneck with 17x leaner circuit
+> Claude通过17倍更简洁的电路解决量子存储瓶颈。
 
 — *[interestingengineering.com](https://interestingengineering.com/ai-robotics/claude-quantum-circuit-design)*
 
 **Claude (Anthropic) — 2026-10-13**
 
-> [AINews] Meta Muse Wonder & Wonder Full: MSL’s Claude 5.5-tier Frontier Model
+> [AINews] Meta Muse Wonder & Wonder Full：MSL的Claude 5.5级前沿模型。
 
 — *[Latent Space](https://www.latent.space/p/ainews-meta-muse-wonder-and-wonder)*
 
 **Claude (Anthropic) — 2026-10-08**
 
-> Does Claude Feel The Whip?
+> Claude是否感受到鞭打？
 
 — *[Noema Magazine](https://www.noemamag.com/does-claude-feel-the-whip)*
 
 **Claude (Anthropic) — 2026-10-08**
 
-> [AINews] Claude Haiku 5.5 — better than GPT-6 Luna at the same pricing
+> [AINews] Claude Haiku 5.5——相同定价下优于GPT-6 Luna。
 
 — *[Latent Space](https://www.latent.space/p/ainews-claude-haiku-55-better-than)*
 
 **Claude (Anthropic) — 2026-10-01**
 
-> Barclays scales Claude to upgrade operations and improve client experience
+> 巴克莱银行扩大Claude应用以升级运营并提升客户体验。
 
 — *[Anthropic News](https://www.anthropic.com/news/barclays-scales-claude)*
 
 **Claude (Anthropic) — 2026-09-22**
 
-> Anthropic launches Claude Opus 5.5 with stricter safeguards for cybersecurity
+> Anthropic推出Claude Opus 5.5，加强网络安全防护措施。
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/998868/anthropic-claude-opus-5-5-cybersecurity)*
 

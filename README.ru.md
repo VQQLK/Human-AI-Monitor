@@ -89,45 +89,51 @@ xychart-beta
 
 ### 🧠 Лаборатории переднего края
 
+**Claude — 2026-08-22**
+
+> Как Клод наносит водяные знаки на текст, созданный ИИ
+
+— *[Ahead of AI (Sebastian Raschka)](https://magazine.sebastianraschka.com/p/claude-watermarking)*
+
 **Claude (Anthropic) — 2026-10-15**
 
-> Senate poised to add Claude to staffers’ AI tools
+> Сенат готов добавить Клод в инструменты ИИ для сотрудников
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/15/senate-add-claude-staffers-ai-01122420)*
 
 **Claude (Anthropic) — 2026-10-17**
 
-> Claude solves quantum memory bottleneck with 17x leaner circuit
+> Клод решает проблему квантовой памяти с циркуитом, в 17 раз компактнее
 
 — *[interestingengineering.com](https://interestingengineering.com/ai-robotics/claude-quantum-circuit-design)*
 
 **Claude (Anthropic) — 2026-10-13**
 
-> [AINews] Meta Muse Wonder & Wonder Full: MSL’s Claude 5.5-tier Frontier Model
+> [AINews] Мета Muse Wonder и Wonder Full: модель передового уровня Клод 5.5 от MSL
 
 — *[Latent Space](https://www.latent.space/p/ainews-meta-muse-wonder-and-wonder)*
 
 **Claude (Anthropic) — 2026-10-08**
 
-> Does Claude Feel The Whip?
+> Чувствует ли Клод давление?
 
 — *[Noema Magazine](https://www.noemamag.com/does-claude-feel-the-whip)*
 
 **Claude (Anthropic) — 2026-10-08**
 
-> [AINews] Claude Haiku 5.5 — better than GPT-6 Luna at the same pricing
+> [AINews] Клод Хайку 5.5 — лучше, чем GPT-6 Luna по той же цене
 
 — *[Latent Space](https://www.latent.space/p/ainews-claude-haiku-55-better-than)*
 
 **Claude (Anthropic) — 2026-10-01**
 
-> Barclays scales Claude to upgrade operations and improve client experience
+> Барклиц масштабирует Клод для совершенствования операций и улучшения опыта клиентов
 
 — *[Anthropic News](https://www.anthropic.com/news/barclays-scales-claude)*
 
 **Claude (Anthropic) — 2026-09-22**
 
-> Anthropic launches Claude Opus 5.5 with stricter safeguards for cybersecurity
+> Anthropic запускает Claude Opus 5.5 с более строгими мерами безопасности для информационной безопасности
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/998868/anthropic-claude-opus-5-5-cybersecurity)*
 

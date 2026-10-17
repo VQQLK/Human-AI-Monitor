@@ -90,6 +90,12 @@ xychart-beta
 
 ### 🧠 Frontier Labs
 
+**Claude — 2026-08-22**
+
+> How Claude Watermarks AI-Generated Text
+
+— *[Ahead of AI (Sebastian Raschka)](https://magazine.sebastianraschka.com/p/claude-watermarking)*
+
 **Claude (Anthropic) — 2026-10-15**
 
 > Senate poised to add Claude to staffers’ AI tools
