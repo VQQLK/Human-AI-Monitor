@@ -91,6 +91,12 @@ xychart-beta
 
 ### 🧠 前沿实验室
 
+**Claude (Anthropic) — 2026-10-15**
+
+> Senate poised to add Claude to staffers’ AI tools
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/15/senate-add-claude-staffers-ai-01122420)*
+
 **Claude (Anthropic) — 2026-10-17**
 
 > Claude solves quantum memory bottleneck with 17x leaner circuit
