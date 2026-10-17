@@ -431,7 +431,11 @@ def build_voices_markdown(voices, lang):
             quote = v.get(f"quote_{lang}") or v.get("quote", "")
             quote = html.unescape(quote) # Очистка от &#039; и т.д.
             
-            lines.append(f"**{v['speaker']} ({v['affiliation']}) — {v['date']}**\n")
+            aff = v.get('affiliation')
+            if aff:
+                lines.append(f"**{v['speaker']} ({aff}) — {v['date']}**\n")
+            else:
+                lines.append(f"**{v['speaker']} — {v['date']}**\n")
             lines.append(f"> {quote}\n")
             source_url = v.get("url")
             if source_url:

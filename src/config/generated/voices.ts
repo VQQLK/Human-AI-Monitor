@@ -25,7 +25,6 @@ export default {
     },
     {
       "name": "Claude",
-      "affiliation": "Anthropic",
       "category": "frontier_labs",
       "keywords": [
         "Claude",

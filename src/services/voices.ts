@@ -58,7 +58,7 @@ export function extractVoice(item: {
       {
         matches.push({
           speaker: voice.name,
-          affiliation: voice.affiliation,
+          affiliation: (voice as any).affiliation ?? "",
           category: voice.category,
           quote: item.title || '',
           date: item.date,
