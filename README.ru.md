@@ -91,37 +91,37 @@ xychart-beta
 
 **Claude (Anthropic) (Anthropic) — 2026-10-17**
 
-> Claude solves quantum memory bottleneck with 17x leaner circuit
+> Клауд решает квантовый бутылочный горлышко памяти с 17-кратно более компактной схемой
 
 — *[interestingengineering.com](https://interestingengineering.com/ai-robotics/claude-quantum-circuit-design)*
 
 **Claude (Anthropic) (Anthropic) — 2026-10-13**
 
-> [AINews] Meta Muse Wonder & Wonder Full: MSL’s Claude 5.5-tier Frontier Model
+> [AINews] Meta Muse Wonder & Wonder Full: модель уровня Frontier MSL Claude 5.5
 
 — *[Latent Space](https://www.latent.space/p/ainews-meta-muse-wonder-and-wonder)*
 
 **Claude (Anthropic) (Anthropic) — 2026-10-08**
 
-> Does Claude Feel The Whip?
+> Чувствует ли Клауд давление?
 
 — *[Noema Magazine](https://www.noemamag.com/does-claude-feel-the-whip)*
 
 **Claude (Anthropic) (Anthropic) — 2026-10-08**
 
-> [AINews] Claude Haiku 5.5 — better than GPT-6 Luna at the same pricing
+> [AINews] Клауд Хайку 5.5 — лучше, чем GPT-6 Luna по той же цене
 
 — *[Latent Space](https://www.latent.space/p/ainews-claude-haiku-55-better-than)*
 
 **Claude (Anthropic) (Anthropic) — 2026-10-01**
 
-> Barclays scales Claude to upgrade operations and improve client experience
+> Барклиз масштабирует Клауд для оптимизации операций и улучшения опыта клиентов
 
 — *[Anthropic News](https://www.anthropic.com/news/barclays-scales-claude)*
 
 **Claude (Anthropic) (Anthropic) — 2026-09-22**
 
-> Anthropic launches Claude Opus 5.5 with stricter safeguards for cybersecurity
+> Anthropic запускает Клауд Опус 5.5 с более строгими мерами защиты в области кибербезопасности
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/998868/anthropic-claude-opus-5-5-cybersecurity)*
 
