@@ -640,6 +640,131 @@ export default {
       ],
       "sources": [],
       "note": "Joint declaration 'A Severe Misalignment of AI in Mathematics'"
+    },
+    {
+      "name": "OpenAI",
+      "category": "frontier_labs",
+      "keywords": [
+        "OpenAI",
+        "GPT",
+        "ChatGPT",
+        "GPT-6"
+      ]
+    },
+    {
+      "name": "xAI",
+      "category": "frontier_labs",
+      "keywords": [
+        "xAI",
+        "Grok"
+      ]
+    },
+    {
+      "name": "Google",
+      "category": "frontier_labs",
+      "keywords": [
+        "Google",
+        "Gemini",
+        "DeepMind",
+        "AlphaFold"
+      ]
+    },
+    {
+      "name": "Microsoft",
+      "category": "frontier_labs",
+      "keywords": [
+        "Microsoft",
+        "Copilot",
+        "MAI-1"
+      ]
+    },
+    {
+      "name": "Meta",
+      "category": "frontier_labs",
+      "keywords": [
+        "Meta",
+        "Llama",
+        "Llama 4"
+      ]
+    },
+    {
+      "name": "Nvidia",
+      "category": "frontier_labs",
+      "keywords": [
+        "Nvidia",
+        "CUDA",
+        "Blackwell",
+        "H100"
+      ]
+    },
+    {
+      "name": "DeepSeek",
+      "category": "frontier_labs",
+      "keywords": [
+        "DeepSeek",
+        "深度求索",
+        "DeepSeek V4"
+      ]
+    },
+    {
+      "name": "Alibaba Qwen",
+      "category": "frontier_labs",
+      "keywords": [
+        "Qwen",
+        "通义千问"
+      ]
+    },
+    {
+      "name": "Moonshot AI",
+      "category": "frontier_labs",
+      "keywords": [
+        "Moonshot",
+        "Kimi",
+        "月之暗面"
+      ]
+    },
+    {
+      "name": "Zhipu AI",
+      "category": "frontier_labs",
+      "keywords": [
+        "Zhipu",
+        "Z.ai",
+        "GLM",
+        "智谱"
+      ]
+    },
+    {
+      "name": "ByteDance",
+      "category": "frontier_labs",
+      "keywords": [
+        "ByteDance",
+        "Doubao",
+        "豆包"
+      ]
+    },
+    {
+      "name": "Tencent",
+      "category": "frontier_labs",
+      "keywords": [
+        "Tencent",
+        "Hunyuan",
+        "混元"
+      ]
+    },
+    {
+      "name": "Mistral AI",
+      "category": "frontier_labs",
+      "keywords": [
+        "Mistral",
+        "Codestral"
+      ]
+    },
+    {
+      "name": "Perplexity AI",
+      "category": "frontier_labs",
+      "keywords": [
+        "Perplexity"
+      ]
     }
   ]
 } as const;
