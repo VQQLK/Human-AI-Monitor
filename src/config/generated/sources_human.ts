@@ -218,17 +218,6 @@ export default {
       "note": "Психология, внутренняя жизнь, смысл"
     },
     {
-      "name": "Oxfam",
-      "url": "https://www.oxfam.org/en/rss.xml",
-      "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h4_equity",
-        "h1_agency"
-      ],
-      "note": "Глобальное неравенство, бедность, справедливость"
-    },
-    {
       "name": "Human Rights Watch",
       "url": "https://www.hrw.org/rss/news",
       "lang": "en",

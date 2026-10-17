@@ -164,6 +164,18 @@ export default {
       "note": "Техническая аналитика по AI, агенты, инфраструктура"
     },
     {
+      "name": "TechNode",
+      "url": "https://technode.com/feed/",
+      "lang": "en",
+      "tier": 2
+    },
+    {
+      "name": "TechCrunch AI",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "lang": "en",
+      "tier": 2
+    },
+    {
       "name": "Ahead of AI (Sebastian Raschka)",
       "url": "https://magazine.sebastianraschka.com/feed",
       "lang": "en",
@@ -216,17 +228,6 @@ export default {
         "h6_democracy"
       ],
       "note": "Guardian AI coverage — civil liberties and ethics angle"
-    },
-    {
-      "name": "The Guardian — US",
-      "url": "https://www.theguardian.com/us-news/rss",
-      "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h6_democracy",
-        "geopolitics"
-      ],
-      "note": "Guardian US news — politics, tech policy, civil liberties"
     },
     {
       "name": "The Quantum Insider",
