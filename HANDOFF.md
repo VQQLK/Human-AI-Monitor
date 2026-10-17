@@ -666,7 +666,7 @@ If count is 0 but items exist, check `extractVoice()` logic — name-in-title is
 
 ## 16. Voices feature (automated quote extraction)
 
-Extracts curated mentions from 46 speakers (AI lab leaders, researchers, investors; policy category emptied 2026-10-08) when they are named in news headlines. Includes CJK frontier labs (DeepSeek, Moonshot, Qwen, Zhipu, ByteDance, MiniMax, Tencent).
+Extracts curated mentions from 61 speakers (AI lab leaders, researchers, investors, **14 AI companies**; policy category emptied 2026-10-08) when they are named in news headlines. Includes CJK frontier labs (DeepSeek, Moonshot, Qwen, Zhipu, ByteDance, MiniMax, Tencent).
 
 ### Critical extraction logic (DO NOT CHANGE WITHOUT REVIEW)
 
