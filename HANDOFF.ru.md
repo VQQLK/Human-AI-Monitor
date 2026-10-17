@@ -7,7 +7,7 @@
 ## 1. Обзор проекта
 
 Cloudflare Worker, который:
-- Собирает RSS-сигналы из 59 источников (34 AI + 25 Human)
+- Собирает RSS-сигналы из 59 источников (35 AI + 24 Human)
 - Классифицирует items через LLM (@cf/qwen/qwen3-30b-a3b-fp8)
 - Считает Bayesian Gap Index: Gap = Human_score − AI_score
 - API: /gap, /axes-history, /protocols, /health, /classify, /voices, /backfill-voices
@@ -28,8 +28,8 @@ Cloudflare Worker, который:
 | src/config/prompts.ts             | Промпты LLM (AI + Human)                     |
 | src/services/gap-computation.ts   | Bayesian posterior + MC 10000                |
 | src/services/bayesian-gap.ts      | Beta sampling, RNG                           |
-| config/sources_ai.yaml            | 34 AI-источников                             |
-| config/sources_human.yaml         | 25 Human-источников                          |
+| config/sources_ai.yaml            | 35 AI-источников                             |
+| config/sources_human.yaml         | 24 Human-источников                          |
 | config/axes_ai.yaml               | 6 AI-осей + META geopolitics                 |
 | config/axes_human.yaml            | 6 Human-осей                                 |
 | scripts/audit.sh                  | Главный аудит (v4.9, 147 проверок, 15 фаз)   |
@@ -37,7 +37,7 @@ Cloudflare Worker, который:
 | scripts/math_verification.py      | Независимая мат-верификация (фаза 15)        |
 | scripts/yaml-to-ts.mjs            | YAML → TS генератор                          |
 | scripts/update_readme.py          | Обновление README из live API (вкл. ## Voices)|
-| config/voices.yaml                | 46 курируемых спикеров, 7 категорий          |
+| config/voices.yaml                | 61 курируемых спикеров, 7 категорий          |
 | src/services/voices.ts            | extractVoice() + saveVoice()                 |
 | src/config/generated/voices.ts    | Автогенерация из voices.yaml                 |
 | migrations/0014_voices.sql        | D1 миграция: таблица voices                  |
@@ -49,13 +49,13 @@ Cloudflare Worker, который:
 - **Baseline: 149 проверок — 148 PASS / 1 WARN / 0 FAIL** (WARN = транзитное покрытие оси, напр. `hexad`; всегда проверяйте через `bash scripts/run-audit.sh`)
 - Версия скрипта аудита: **v4.9** (15 фаз; фаза 15 = математическая верификация)
 - Математическая верификация: **20/20 PASS** (см. §14; запускается в аудите как фаза 15)
-- Источников: 59 (34 AI + 25 Human)
+- Источников: 59 (35 AI + 24 Human)
 - Осей: 13 (6 AI + 6 Human + 1 META)
 - Языки источников: en + ru (ТАСС) + zh (FT Chinese)
 - Ёмкость батча за прогон: 60 (планируется: 59)
 - CF-токен: 3 права (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
 - **Классификация items:** 603 items, классифицированы prompt v1 (без per-item version tracking)
-- **Извлечение Voices:** 13 курируемых упоминаний от 46 спикеров (7 категорий; policy очищена 2026-10-08)
+- **Извлечение Voices:** 25 курируемых упоминаний от 61 спикера (7 категорий; 14 AI-компаний добавлены 2026-10-17)
 
 ## 4. Известные проблемы (по приоритету)
 
@@ -666,7 +666,7 @@ multitrait-multimethod matrix.*
 
 ## 16. Фича Voices (автоматическое извлечение цитат)
 
-Извлекает курируемые упоминания от 46 спикеров (руководители AI-лабораторий, исследователи, инвесторы; категория policy очищена 2026-10-08), когда они названы в заголовках новостей. Включает CJK frontier labs (DeepSeek, Moonshot, Qwen, Zhipu, ByteDance, MiniMax, Tencent).
+Извлекает курируемые упоминания от 61 спикера (руководители AI-лабораторий, исследователи, инвесторы, **14 AI-компаний**; категория policy очищена 2026-10-08), когда они названы в заголовках новостей. Включает CJK frontier labs (DeepSeek, Moonshot, Qwen, Zhipu, ByteDance, MiniMax, Tencent).
 
 ### Критическая логика извлечения (НЕ МЕНЯТЬ БЕЗ ПРОВЕРКИ)
 
