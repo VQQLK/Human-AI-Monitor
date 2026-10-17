@@ -24,6 +24,20 @@ export default {
       "note": "CEO of Anthropic"
     },
     {
+      "name": "Claude (Anthropic)",
+      "affiliation": "Anthropic",
+      "category": "frontier_labs",
+      "keywords": [
+        "Claude",
+        "Claude Mythos",
+        "Anthropic's Claude"
+      ],
+      "sources": [
+        "Anthropic News"
+      ],
+      "note": "Anthropic's AI assistant"
+    },
+    {
       "name": "Sam Altman",
       "affiliation": "OpenAI",
       "category": "frontier_labs",
