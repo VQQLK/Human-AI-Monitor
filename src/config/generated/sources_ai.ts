@@ -248,17 +248,6 @@ export default {
         "geopolitics"
       ],
       "note": "US Defense Advanced Research Projects Agency - national security AI, quantum, robotics"
-    },
-    {
-      "name": "Forrester Research",
-      "url": "https://www.forrester.com/blogs/feed/",
-      "lang": "en",
-      "tier": 1,
-      "axes": [
-        "itq",
-        "h1_agency"
-      ],
-      "note": "Analyst insights on AI, tech strategy, and market impact"
     }
   ],
   "html_sources": []
