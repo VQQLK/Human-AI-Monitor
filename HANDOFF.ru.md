@@ -735,4 +735,17 @@ multitrait-multimethod matrix.*
 
 ---
 
+## 17. Thinking mode Qwen3 — `/no_think` (2026-10-19)
+
+**Проблема:** `@cf/qwen/qwen3-30b-a3b-fp8` включает thinking mode по умолчанию. Измерено: ~16% вызовов упираются в `completion_tokens: 2000` (максимум, обрезан) → **63 neurons/вызов** против **~20 neurons/вызов** в норме. Thinking mode съедает весь бюджет вывода до генерации JSON — JSON обрезается или пустой.
+
+**Исправление (коммит `578804a`):** Добавлен `\n /no_think` в **user message** в 3 местах:
+- `runCollection()` (строка ~232) — сбор cron
+- `backfill-topic-relevance` (строка ~1196) — ручной backfill
+- `/classify` (строка ~1307) — прямая классификация
+
+**Примечание:** `/no_think` работает в **user message**, не в system prompt (Qwen GitHub Discussion #1329). **Пробел перед слэшем** обязателен (`\n /no_think`, не `\n/no_think`).
+
+**Эффект:** `completion_tokens` падает с ~500-2000 до ~300-500; `neurons/вызов` с ~63 до ~20. Без потери качества для классификации (структурированное извлечение).
+
 *По вопросам — см. docs/methodology.md (математика Gap) и scripts/audit.sh (что проверяется).*

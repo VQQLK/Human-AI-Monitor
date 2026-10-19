@@ -735,4 +735,17 @@ A mention is extracted **if and only if BOTH** conditions are met:
 
 ---
 
+## 17. Qwen3 thinking mode — `/no_think` (2026-10-19)
+
+**Problem:** `@cf/qwen/qwen3-30b-a3b-fp8` has thinking mode ON by default. Measured: ~16% of calls hit `completion_tokens: 2000` (max, truncated) → **63 neurons/call** vs **~20 neurons/call** normal. Thinking mode burns the entire output budget before JSON is emitted — JSON gets truncated or empty.
+
+**Fix (commit `578804a`):** Add `\n /no_think` to **user message** in 3 places:
+- `runCollection()` (line ~232) — cron collection
+- `backfill-topic-relevance` (line ~1196) — manual backfill
+- `/classify` (line ~1307) — direct classification
+
+**Note:** `/no_think` works in **user message**, not system prompt (Qwen GitHub Discussion #1329). **Space before slash** required (`\n /no_think`, not `\n/no_think`).
+
+**Effect:** `completion_tokens` drops from ~500-2000 to ~300-500; `neurons/call` from ~63 to ~20. No quality loss for classification (structured extraction).
+
 *For questions — see docs/methodology.md (Gap math) and scripts/audit.sh (what is checked).*
