@@ -229,7 +229,7 @@ async function runCollection(env: Env, limit: number, maxPerSource: number, offs
 							return;
 						}
 
-						const text = (item.title + ". " + item.summary).slice(0, 800);
+						const text = (item.title + ". " + item.summary).slice(0, 800) + "\n /no_think";
 						const today = new Date().toISOString().split('T')[0];
 						const systemPrompt = src.kind === 'human' ? getHumanPrompt(today) : getAIPrompt(today);
 						const ai: any = await env.AI.run(env.CLASSIFIER_MODEL, {
@@ -1193,7 +1193,7 @@ export default {
 					await Promise.all(itemBatch.map(async (raw) => {
 					const item: any = raw;
 					try {
-						const text = (item.title + ". " + item.summary).slice(0, 800);
+						const text = (item.title + ". " + item.summary).slice(0, 800) + "\n /no_think";
 						const kind = sourceKind[item.source] ?? "ai";
 						const systemPrompt = kind === "human" ? getHumanPrompt(today) : getAIPrompt(today);
 						const ai: any = await env.AI.run(env.CLASSIFIER_MODEL, {
@@ -1303,7 +1303,7 @@ export default {
 				const ai: any = await env.AI.run(env.CLASSIFIER_MODEL, {
 					messages: [
 						{ role: "system", content: systemPrompt },
-						{ role: "user", content: (title + ". " + summary).slice(0, 800) }
+						{ role: "user", content: (title + ". " + summary).slice(0, 800) + "\n /no_think" }
 					],
 				});
 				const parsed = validateParsed(parseAIResponse(ai));
