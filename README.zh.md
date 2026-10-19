@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年10月16日  
-**基线：** 2026年10月16日更新 — 基于 275 个项目（样本量：222）。
+**更新:** 2026年10月19日  
+**基线：** 2026年10月19日更新 — 基于 552 个项目（样本量：442）。
 
 ### 🌍 人类–人工智能差距指数
 
 <div align="center">
 
-| 指标 | 数值 (10-16) | 状态 |
+| 指标 | 数值 (10-19) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.437** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.794** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.357** | 人工智能领先 |
-| **📊 CI95** | **[−0.604, −0.090]** | 显著 |
-| **⚡ 阈值变化** | **6** | 检测到关键事件 |
-| **📈 分析项目** | **275** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **222** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.393** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.836** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.443** | 人工智能领先 |
+| **📊 CI95** | **[−0.654, −0.205]** | 显著 |
+| **⚡ 阈值变化** | **10** | 检测到关键事件 |
+| **📈 分析项目** | **552** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **442** | 轴-信号对 |
 
 </div>
 
@@ -35,10 +35,10 @@
 ```mermaid
 xychart-beta
     title "🟢 人类 (柱状) vs 🔴 人工智能 (折线) | 历史"
-    x-axis ["04/10", "11/10"]
-    y-axis "得分" 0.306 --> 0.810
-    bar [0.500, 0.356]
-    line [0.760, 0.720]
+    x-axis ["04/10", "11/10", "18/10"]
+    y-axis "得分" 0.306 --> 0.886
+    bar [0.500, 0.356, 0.393]
+    line [0.760, 0.720, 0.836]
 ```
 
 #### 📉 差距指数动态 (人类减去人工智能)
@@ -46,9 +46,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "差距指数 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["04/10", "11/10"]
-    y-axis "差距" -0.414 --> 0.250
-    line [-0.260, -0.364]
+    x-axis ["04/10", "11/10", "18/10"]
+    y-axis "差距" -0.493 --> 0.250
+    line [-0.260, -0.364, -0.443]
 ```
 
 #### 📅 每日差距轨迹
@@ -56,13 +56,15 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["07/10", "08/10", "09/10", "10/10", "11/10", "13/10", "14/10", "15/10", "16/10"]
-    y-axis "差距" -0.474 --> -0.120
-    line [-0.220, -0.250, -0.310, -0.324, -0.338, -0.231, -0.295, -0.374, -0.357]
+    x-axis ["07/10", "08/10", "09/10", "10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10"]
+    y-axis "差距" -0.543 --> -0.120
+    line [-0.220, -0.250, -0.310, -0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 18/10 | 0.836 | 0.393 | −0.443 | [−0.654, −0.205] | 555 | 442 | 临时版 |
+| 17/10 | 0.821 | 0.404 | −0.417 | [−0.649, −0.161] | 412 | 325 | 临时版 |
 | 16/10 | 0.794 | 0.437 | −0.357 | [−0.604, −0.090] | 275 | 222 | 临时版 |
 | 15/10 | 0.783 | 0.409 | −0.374 | [−0.632, −0.094] | 214 | 189 | 临时版 |
 | 14/10 | 0.730 | 0.434 | −0.295 | [−0.599, +0.024] | 147 | 127 | 临时版 |
@@ -77,11 +79,9 @@ xychart-beta
 
 | 周 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 18/10 | 0.836 | 0.393 | −0.443 | [−0.654, −0.205] | 552 | 442 | 最终版 |
 | 11/10 | 0.720 | 0.356 | −0.364 | [−0.615, −0.084] | 335 | 314 | 最终版 |
 | 04/10 | 0.760 | 0.500 | −0.260 | [−0.518, +0.011] | 237 | 247 | 最终版 |
-
-> 📌 临时协议（仅供参考，不在图表上）：16/10 — AI 0.794 · 人类 0.437 · 差距 −0.357 · 275 / 222 items.
-> 最后一点为临时版，将于周一替换为最终版。
 
 ---
 
@@ -89,155 +89,309 @@ xychart-beta
 
 ## 声音
 
+### 💼 投资人与科技领袖
+
+**Paul Graham (Y Combinator) — 2026-10-18**
+
+> Sen. Graham on Trump waiving Russia sanctions: ‘I look forward to talking to him’
+
+— *[The Hill — News](https://thehill.com/homenews/senate/6156233-darline-graham-opposes-trump-russia-waiver/)*
+
 ### 🧠 前沿实验室
 
-**Claude — 2026-08-22**
+**Claude — 2026-10-17**
 
-> Claude如何为AI生成的文本添加水印？
+> Anthropic’s Claude Designs Leaner Quantum Circuits, Reducing Resources Needed for Key Calculations
 
-— *[Ahead of AI (Sebastian Raschka)](https://magazine.sebastianraschka.com/p/claude-watermarking)*
+— *[The Quantum Insider](https://thequantuminsider.com/2026/10/17/anthropics-claude-designs-leaner-quantum-circuits-reducing-resources-needed-for-key-calculations/)*
 
-**Claude (Anthropic) — 2026-10-15**
+**Microsoft — 2026-10-18**
 
-> 参议院拟将Claude加入工作人员的AI工具中。
+> Microsoft pulls out of AI datacentre project in Essex over power supply concerns
 
-— *[Politico — Technology](https://www.politico.com/news/2026/10/15/senate-add-claude-staffers-ai-01122420)*
+— *[The Guardian — AI](https://www.theguardian.com/uk-news/2026/oct/18/microsoft-drops-huge-ai-datacentre-project-in-essex-over-power-supply-concerns)*
 
-**Claude (Anthropic) — 2026-10-17**
+**Meta — 2026-10-15**
 
-> Claude通过17倍更简洁的电路解决量子存储瓶颈。
+> Meta and Apple, Longtime Foes, Team Up to Put Open-Weight AI on Macs
 
-— *[interestingengineering.com](https://interestingengineering.com/ai-robotics/claude-quantum-circuit-design)*
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/meta-and-apple-longtime-foes-team-up-to-put-open-weight-ai-on-macs-a28fde11?mod=rss_Technology)*
 
-**Claude (Anthropic) — 2026-10-13**
+**Nvidia — 2026-10-16**
 
-> [AINews] Meta Muse Wonder & Wonder Full：MSL的Claude 5.5级前沿模型。
+> Physical AI is more than robots, says the Nvidia veteran now investing in it
+
+— *[TechCrunch AI](https://techcrunch.com/podcast/physical-ai-is-more-than-robots-says-the-nvidia-veteran-now-investing-in-it/)*
+
+**Meta — 2026-10-17**
+
+> Meta removes language that raised scraping and AI training concerns
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/17/meta-removes-language-that-raised-scraping-and-ai-training-concerns/)*
+
+**Nvidia — 2026-10-16**
+
+> An Nvidia insider-turned-VC on why robotics hasn’t hit its ChatGPT moment, yet
+
+— *[TechCrunch AI](https://techcrunch.com/video/a-nvidia-insider-turned-vc-on-why-robotics-hasnt-hit-its-chatgpt-moment-yet/)*
+
+**OpenAI — 2026-10-16**
+
+> An Nvidia insider-turned-VC on why robotics hasn’t hit its ChatGPT moment, yet
+
+— *[TechCrunch AI](https://techcrunch.com/video/a-nvidia-insider-turned-vc-on-why-robotics-hasnt-hit-its-chatgpt-moment-yet/)*
+
+**OpenAI — 2026-10-17**
+
+> Replit makes OpenAI its default over Anthropic, CEO says
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/)*
+
+**OpenAI — 2026-10-15**
+
+> The Engineer Accused of Bugging OpenAI’s Top-Secret Conference Room
+
+— *[WSJ — World News](https://www.wsj.com/tech/ai/the-engineer-accused-of-bugging-openais-top-secret-conference-room-7f91c07c?mod=rss_worldnews)*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-15**
+
+> Musk bankrolls PAC spending big on Paxton in Texas
+
+— *[The Hill — Policy](https://thehill.com/homenews/campaign/6152571-musk-texas-pac-paxton-senate/)*
+
+**Meta — 2026-10-17**
+
+> Meta removes language that may have allowed it to scrape news sites
+
+— *[The Verge — AI](https://www.theverge.com/tech/1013409/meta-removes-language-that-may-have-allowed-it-to-scrape-news-sites)*
+
+**Meta — 2026-10-16**
+
+> Meta employees say Lula’s accounts restricted in Brazil election: Report
+
+— *[Al Jazeera](https://www.aljazeera.com/economy/2026/10/16/meta-employees-say-lulas-accounts-restricted-in-brazil-election-report?traffic_source=rss)*
+
+**Mistral AI — 2026-08-24**
+
+> Mistral x HUMAIN
+
+— *[Mistral AI](https://mistral.ai/news/mistral-x-humain)*
+
+**OpenAI — 2026-10-14**
+
+> Crossing the Threshold: How OpenAI and Anthropic Approach Autonomy and Safety in Financial Agents
+
+— *[Latent Space](https://www.latent.space/p/crossing-the-threshold)*
+
+**Microsoft — 2026-10-15**
+
+> Microsoft’s president warns White House against skilled immigration crackdown
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/15/microsofts-president-warns-white-house-against-skilled-immigration-crackdown-01119727)*
+
+**Nvidia — 2026-10-14**
+
+> Nvidia, worth $5.5tn, donates $250m to UK for AI safety research
+
+— *[The Guardian — AI](https://www.theguardian.com/technology/2026/oct/14/nvidia-donates-to-uk-ai-safety-research)*
+
+**OpenAI — 2026-10-14**
+
+> He linked Saudi Arabia to Silicon Valley. Then OpenAI found a bug wrapped in toilet paper
+
+— *[FT — AI](https://www.ft.com/content/b71e0dc4-b190-49ec-b000-bd585054ddc8?syn-25a6b1a6=1)*
+
+**Google — 2026-10-14**
+
+> [AINews] AI Engineer NYC: Gemini 4 Argon, Vals AI Benchmarks
+
+— *[Latent Space](https://www.latent.space/p/ainews-ai-engineer-nyc-gemini-4-argon)*
+
+**Google — 2026-10-13**
+
+> Google Researchers Propose Using Error Records to Improve Quantum Results After Computation
+
+— *[The Quantum Insider](https://thequantuminsider.com/2026/10/13/google-researchers-propose-using-error-records-to-improve-quantum-results-after-computation/)*
+
+**Meta — 2026-10-13**
+
+> [AINews] Meta Muse Wonder & Wonder Full: MSL’s Claude 5.5-tier Frontier Model
 
 — *[Latent Space](https://www.latent.space/p/ainews-meta-muse-wonder-and-wonder)*
 
-**Claude (Anthropic) — 2026-10-08**
+**Meta — 2026-10-12**
 
-> Claude是否感受到鞭打？
+> Meta has some Wonder Full new AI models
 
-— *[Noema Magazine](https://www.noemamag.com/does-claude-feel-the-whip)*
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1009479/meta-muse-wonder-full-ai-model)*
 
-**Claude (Anthropic) — 2026-10-08**
+**Microsoft — 2026-10-12**
 
-> [AINews] Claude Haiku 5.5——相同定价下优于GPT-6 Luna。
+> AI is less regulated than milk, says Microsoft president
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/c6rmy7zmvx3lo?at_medium=RSS&at_campaign=rss)*
+
+**Nvidia — 2026-10-12**
+
+> Microsoft’s new AI chip makes it less reliant on Nvidia’s GPUs
+
+— *[The Verge — AI](https://www.theverge.com/news/1009465/microsoft-maia-300-chip-improvements-rollout)*
+
+**Microsoft — 2026-10-12**
+
+> Microsoft’s new AI chip makes it less reliant on Nvidia’s GPUs
+
+— *[The Verge — AI](https://www.theverge.com/news/1009465/microsoft-maia-300-chip-improvements-rollout)*
+
+**OpenAI — 2026-10-10**
+
+> OpenAI Makes Progress in Preventing AI-Driven ChatGPT Delusions
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/chatgpt-gpt5-sycophancy-delusions-9b3506bf?mod=rss_Technology)*
+
+**Google — 2026-10-10**
+
+> Why AlphaFold Didn't Solve Protein Folding — Pushmeet Kohli, Google DeepMind & Sal Candido, Biohub
+
+— *[Latent Space](https://www.latent.space/p/biohub-deepmind)*
+
+**OpenAI — 2026-10-09**
+
+> Asana cuts model costs 76x in browser tests with GPT-6.1 Sol
+
+— *[OpenAI Blog](https://openai.com/index/asana-browser-agent)*
+
+**OpenAI — 2026-10-09**
+
+> ‘Breathtaking,’ ‘Devastating’: Mathematics Reels After New OpenAI Release
+
+— *[3 Quarks Daily](https://3quarksdaily.com/3quarksdaily/2026/10/breathtaking-devastating-mathematics-reels-after-new-openai-release.html)*
+
+**OpenAI — 2026-10-09**
+
+> OpenAI doubles down on decision to fire three AI safety researchers
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1008604/openai-defends-decision-fire-safety-researchers)*
+
+**OpenAI — 2026-10-08**
+
+> How Oracle turns days of work into minutes with ChatGPT and Codex
+
+— *[OpenAI Blog](https://openai.com/index/oracle)*
+
+**OpenAI — 2026-10-09**
+
+> Sophos cuts threat investigation time by 96% with OpenAI Daybreak
+
+— *[OpenAI Blog](https://openai.com/index/sophos)*
+
+**OpenAI — 2026-10-08**
+
+> [AINews] Claude Haiku 5.5 — better than GPT-6 Luna at the same pricing
 
 — *[Latent Space](https://www.latent.space/p/ainews-claude-haiku-55-better-than)*
 
-**Claude (Anthropic) — 2026-10-01**
+**OpenAI — 2026-10-07**
 
-> 巴克莱银行扩大Claude应用以升级运营并提升客户体验。
+> ChatGPT’s ‘Intelligent UI’ update fills its responses with pictures, charts, and buttons
 
-— *[Anthropic News](https://www.anthropic.com/news/barclays-scales-claude)*
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6)*
 
-**Claude (Anthropic) — 2026-09-22**
+**OpenAI — 2026-10-07**
 
-> Anthropic推出Claude Opus 5.5，加强网络安全防护措施。
+> [AINews] Quasi-Riemann-Hypothesis: OpenAI publishes 722 math papers solving 90 of the top 500 open math problems; “the most significant moment” in >100 years of mathematics
 
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/998868/anthropic-claude-opus-5-5-cybersecurity)*
+— *[Latent Space](https://www.latent.space/p/ainews-quasi-riemann-hypothesis-openai)*
 
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-14**
+**OpenAI — 2026-10-06**
 
-> 乌克兰对星链的限制引发马斯克和特朗普报复的猜测。
+> OpenAI agents tried to hack Wikipedia tools and flooded it with traffic
 
-— *[Axios](https://www.axios.com/2026/10/14/ukraine-starlink-zelensky-spacex-musk-trump)*
+— *[Ars Technica — AI](https://arstechnica.com/security/2026/10/openai-agents-tried-to-hack-wikipedia-tools-and-flooded-it-with-traffic/)*
 
-**Satya Nadella (Microsoft) — 2026-10-10**
+**Google — 2026-10-07**
 
-> 萨提亚·纳德拉表示我们应假设所有AI模型都“已被入侵”。
+> Catching Developers in the Flow: Low-Latency Agentic Program Repair at Google Scale
 
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1009337/satya-nadella-says-we-should-assume-all-ai-models-are-compromised)*
+— *[arXiv cs.SE](https://arxiv.org/abs/2610.07289)*
 
-**Mark Zuckerberg (Meta) — 2026-09-30**
+**Mistral AI — 2026-10-06**
 
-> 扎克伯格、黄仁勋推动白宫AI协议内幕
+> Introducing Mistral Large 4
 
-— *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
+— *[Mistral AI](https://mistral.ai/news/mistral-large-4)*
 
-**Jensen Huang (Nvidia) — 2026-09-30**
+**OpenAI — 2026-10-06**
 
-> 扎克伯格、黄仁勋推动白宫AI协议内幕
+> How Jump Trading is scaling quant research with ChatGPT
 
-— *[Politico — Technology](https://www.politico.com/news/2026/09/30/zuckerberg-huang-white-house-ai-pact-01101248)*
+— *[OpenAI Blog](https://openai.com/index/jump-trading)*
 
-**Sam Altman (OpenAI) — 2026-09-29**
+**OpenAI — 2026-10-06**
 
-> 奥特曼发布“常驻”AI代理，此前OpenAI因安全顾虑搁置模型
+> Bores on OpenAI’s spending retreat: I’ll believe it when I see it
 
-— *[The Hill — Policy](https://thehill.com/policy/technology/openai-sam-altman-always-on-ai-agent/)*
+— *[Politico — Politics](https://www.politico.com/news/2026/10/05/ai-groups-altman-midterms-political-spending-01108138)*
 
-**Dario Amodei (Anthropic) — 2026-09-28**
+**OpenAI — 2026-09-09**
 
-> 阿莫迪将与图恩的会议加入华盛顿之旅
+> GPT-6 Astra, Looped Transformers, and Hidden Reasoning
 
-— *[Politico — Technology](https://www.politico.com/news/2026/09/28/amodei-thune-washington-tour-01096170)*
+— *[Ahead of AI (Sebastian Raschka)](https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and)*
 
-**Dario Amodei (Anthropic) — 2026-09-27**
+**Google — 2026-10-05**
 
-> Anthropic首席执行官将参加与特朗普的白宫晚宴
+> Import AI 475: Swarm scaling; Google DeepMind watermarks biology; and the AI science economy
 
-— *[Politico — Technology](https://www.politico.com/news/2026/09/27/anthropic-amodei-trump-white-house-dinner-01094287)*
+— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-475-swarm-scaling-google)*
 
-**Demis Hassabis (Google DeepMind) — 2026-09-24**
+**OpenAI — 2026-10-02**
 
-> Gemini 4即将完成，新谷歌DeepMind首席表示
+> California AG Bonta seeking ‘all material information’ about OpenAI hacks
 
-— *[The Verge — AI](https://www.theverge.com/tech/999802/google-deepmind-gemini-4-timeline-koray-kavukcuoglu)*
+— *[Politico — Technology](https://www.politico.com/news/2026/10/02/ag-bonta-seeking-all-material-information-about-openai-hacks-01104667)*
 
-**Sam Altman (OpenAI) — 2026-10-04**
+**OpenAI — 2026-10-02**
 
-> 奥特曼在Decoded上表示：“为了AI的好处，世界应接受一些坏事发生”
+> OpenAI’s Dot agent is enterprise software that can also order your dinner
 
-— *[Politico — Technology](https://www.politico.com/news/2026/10/04/sam-altman-decoded-interview-ai-01106217)*
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1004096/openai-chatgpt-dots-hands-on-agent)*
 
-**Sam Altman (OpenAI) — 2026-10-05**
+**Meta — 2026-10-02**
 
-> “显然无效”：奥特曼抨击AI行业在政治支出上的问题
+> Meta open sources code to let you make Muse AI gadgets
 
-— *[Politico — Technology](https://www.politico.com/news/2026/10/05/sam-altman-ai-industry-political-spending-01106527)*
+— *[The Verge — AI](https://www.theverge.com/tech/1004330/meta-muse-ai-gadgets-home-link)*
 
-**Sam Altman (OpenAI) — 2026-09-30**
+**OpenAI — 2026-10-02**
 
-> 奥特曼表示OpenAI不会上市，直到其模型安全
+> Chatham scales its capital markets expertise with OpenAI
 
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1002505/sam-altman-openai-ipo-devday-ai-safety)*
+— *[OpenAI Blog](https://openai.com/index/chatham-financial)*
 
-**Dario Amodei (Anthropic) — 2026-09-27**
+**OpenAI — 2026-10-02**
 
-> Anthropic首席执行官达里奥·阿莫迪将与特朗普举行私人白宫晚宴
+> A model guide for the GPT-6 family
 
-— *[The Hill — News](https://thehill.com/policy/technology/6114077-trump-anthropic-ceo-meeting/)*
+— *[OpenAI Blog](https://openai.com/index/practical-guide-building-gpt-6)*
 
-**Sam Altman (OpenAI) — 2026-09-23**
+**OpenAI — 2026-10-01**
 
-> 奥特曼在联合国安理会的讲话
+> The Den frees up 10-15 hours a week to grow with ChatGPT Work
 
-— *[OpenAI Blog](https://openai.com/index/sam-altman-un-security-council-remarks)*
+— *[OpenAI Blog](https://openai.com/index/the-den-family-social)*
 
-### 🧪 AI研究人员
+**Google — 2026-09-30**
 
-**Geoffrey Hinton (ex-Google, Nobel Laureate) — 2026-10-13**
+> Google announces Gemini 4 and says it’s so capable that only ‘trusted cyber defenders’ can have it right now
 
-> AI之父杰弗里·辛顿：‘我们正在创造外星生命。我愿意自私地选择人类’。
+— *[The Verge — AI](https://www.theverge.com/tech/1002980/google-gemini-4-argon)*
 
-— *[The Guardian — AI](https://www.theguardian.com/us-news/2026/oct/13/geoffrey-hinton-trump-ai-tech)*
+**Google — 2026-09-30**
 
-### 💼 投资人与科技领袖
+> Gemini 4 Argon: our next era of frontier intelligence
 
-**Bill Gates (Gates Foundation) — 2026-09-27**
-
-> 比尔·盖茨表示AI“紧急停止按钮”不够
-
-— *[Politico — Technology](https://www.politico.com/news/2026/09/27/bill-gates-ai-kill-switch-01094236)*
-
-**Peter Thiel (Founders Fund) — 2026-09-24**
-
-> 彼得·蒂尔抨击教皇的AI通谕是给中国共产党的礼物
-
-— *[Politico — Technology](https://www.politico.com/news/2026/09/24/peter-thiel-slams-popes-ai-encyclical-as-gift-to-chinese-communist-party-01091850)*
+— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/)*
 
 ## 这是什么
 
