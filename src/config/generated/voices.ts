@@ -16,7 +16,8 @@ export default {
         "Amodei",
         "Anthropic CEO",
         "Anthropic's CEO",
-        "Anthropic chief"
+        "Anthropic chief",
+        "Дарио Амодеи"
       ],
       "sources": [
         "Anthropic News"
@@ -45,7 +46,8 @@ export default {
         "Altman",
         "OpenAI CEO",
         "OpenAI's CEO",
-        "OpenAI chief"
+        "OpenAI chief",
+        "Сэм Альтман"
       ],
       "sources": [
         "OpenAI Blog"
@@ -62,7 +64,8 @@ export default {
         "Nvidia CEO",
         "NVIDIA CEO",
         "Nvidia's CEO",
-        "Nvidia chief"
+        "Nvidia chief",
+        "Дженсен Хуанг"
       ],
       "sources": [
         "The Verge — AI",
@@ -77,7 +80,8 @@ export default {
       "keywords": [
         "Ilya Sutskever",
         "Sutskever",
-        "ilyasutskever"
+        "ilyasutskever",
+        "Илья Суцкевер"
       ],
       "sources": [
         "The Verge — AI",
@@ -96,7 +100,9 @@ export default {
         "elonmusk",
         "xAI CEO",
         "Tesla CEO",
-        "SpaceX CEO"
+        "SpaceX CEO",
+        "Илон Маск",
+        "Маск"
       ],
       "sources": [
         "The Verge — AI",
@@ -115,7 +121,9 @@ export default {
         "Zuckerberg",
         "Meta CEO",
         "Meta's CEO",
-        "Meta chief"
+        "Meta chief",
+        "Марк Цукерберг",
+        "Цукерберг"
       ],
       "sources": [
         "The Verge — AI",
@@ -133,7 +141,8 @@ export default {
         "DeepMind CEO",
         "Google DeepMind CEO",
         "DeepMind's CEO",
-        "DeepMind chief"
+        "DeepMind chief",
+        "Демис Хассабис"
       ],
       "sources": [
         "Google DeepMind Blog",
@@ -148,7 +157,8 @@ export default {
       "keywords": [
         "Yann LeCun",
         "LeCun",
-        "ylecun"
+        "ylecun",
+        "Ян Лекун"
       ],
       "sources": [
         "The Verge — AI",
@@ -163,7 +173,8 @@ export default {
       "keywords": [
         "Andrej Karpathy",
         "Karpathy",
-        "karpathy"
+        "karpathy",
+        "Андрей Карпаты"
       ],
       "sources": [
         "The Verge — AI",
@@ -177,7 +188,8 @@ export default {
       "category": "researchers",
       "keywords": [
         "Geoffrey Hinton",
-        "Hinton"
+        "Hinton",
+        "Джеффри Хинтон"
       ],
       "sources": [
         "The Verge — AI",
@@ -191,7 +203,8 @@ export default {
       "category": "researchers",
       "keywords": [
         "Stuart Russell",
-        "Russell"
+        "Russell",
+        "Стюарт Рассел"
       ],
       "sources": [
         "LessWrong — AI",
@@ -206,7 +219,8 @@ export default {
       "keywords": [
         "Eliezer Yudkowsky",
         "Yudkowsky",
-        "ESYudkowsky"
+        "ESYudkowsky",
+        "Элиезер Юдковский"
       ],
       "sources": [
         "LessWrong — AI",
@@ -263,7 +277,8 @@ export default {
       "keywords": [
         "Marc Andreessen",
         "Andreessen",
-        "pmarca"
+        "pmarca",
+        "Марк Андреессен"
       ],
       "sources": [
         "The Verge — AI",
@@ -278,7 +293,8 @@ export default {
       "keywords": [
         "Peter Thiel",
         "Thiel",
-        "peterthiel"
+        "peterthiel",
+        "Питер Тиль"
       ],
       "sources": [
         "Politico — Technology",
@@ -293,7 +309,8 @@ export default {
       "keywords": [
         "Paul Graham",
         "Graham",
-        "paulg"
+        "paulg",
+        "Пол Грэм"
       ],
       "sources": [
         "The Verge — AI",
@@ -307,7 +324,8 @@ export default {
       "category": "investors",
       "keywords": [
         "Jeff Bezos",
-        "Bezos"
+        "Bezos",
+        "Джефф Безос"
       ],
       "sources": [
         "The Hill — News",
@@ -325,7 +343,9 @@ export default {
         "Gates",
         "BillGates",
         "Bill Gates says",
-        "Gates Foundation"
+        "Gates Foundation",
+        "Билл Гейтс",
+        "Гейтс"
       ],
       "sources": [
         "NPR — World",
@@ -342,7 +362,8 @@ export default {
         "Vitalik Buterin",
         "Buterin",
         "Vitalik",
-        "VitalikButerin"
+        "VitalikButerin",
+        "Виталик Бутерин"
       ],
       "sources": [
         "The Verge — AI",
@@ -374,7 +395,8 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Mira Murati",
-        "Murati"
+        "Murati",
+        "Мира Мурати"
       ],
       "sources": [],
       "note": "CEO of Thinking Machines Lab, ex-OpenAI CTO"
@@ -407,7 +429,8 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Jakub Pachocki",
-        "Pachocki"
+        "Pachocki",
+        "Якуб Пачоцки"
       ],
       "sources": [],
       "note": "Chief Scientist at OpenAI"
@@ -422,7 +445,8 @@ export default {
         "Google CEO",
         "Google's CEO",
         "Google chief",
-        "Alphabet CEO"
+        "Alphabet CEO",
+        "Сундар Пичаи"
       ],
       "sources": [],
       "note": "CEO of Google and Alphabet"
@@ -436,7 +460,8 @@ export default {
         "Nadella",
         "Microsoft CEO",
         "Microsoft's CEO",
-        "Microsoft chief"
+        "Microsoft chief",
+        "Сатья Наделла"
       ],
       "sources": [],
       "note": "CEO of Microsoft"
@@ -446,7 +471,8 @@ export default {
       "affiliation": "Stanford HAI",
       "category": "researchers",
       "keywords": [
-        "Fei-Fei Li"
+        "Fei-Fei Li",
+        "Фей-Фей Ли"
       ],
       "sources": [],
       "note": "Co-director Stanford HAI, ImageNet creator"
@@ -468,7 +494,8 @@ export default {
       "category": "researchers",
       "keywords": [
         "Max Tegmark",
-        "Tegmark"
+        "Tegmark",
+        "Макс Тегмарк"
       ],
       "sources": [],
       "note": "MIT physicist, FLI co-founder, author of Life 3.0"
@@ -479,7 +506,8 @@ export default {
       "category": "safety_philosophy",
       "keywords": [
         "Nick Bostrom",
-        "Bostrom"
+        "Bostrom",
+        "Ник Бостром"
       ],
       "sources": [],
       "note": "Author of Superintelligence, FHI founder"
@@ -557,7 +585,8 @@ export default {
       "keywords": [
         "Liang Wenfeng",
         "Wenfeng",
-        "梁文锋"
+        "梁文锋",
+        "Лян Вэньфэн"
       ],
       "sources": [],
       "note": "Founder of DeepSeek"
@@ -569,7 +598,8 @@ export default {
       "keywords": [
         "Yang Zhilin",
         "Zhilin",
-        "杨植麟"
+        "杨植麟",
+        "Ян Чжилинь"
       ],
       "sources": [],
       "note": "CEO of Moonshot AI"
@@ -580,7 +610,8 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Junyang Lin",
-        "林俊旸"
+        "林俊旸",
+        "Линь Цзюньян"
       ],
       "sources": [],
       "note": "Lead of Qwen Team"
@@ -591,7 +622,8 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Tang Jie",
-        "唐杰"
+        "唐杰",
+        "Тан Цзе"
       ],
       "sources": [],
       "note": "Founder and chief scientist of Zhipu AI"
@@ -602,7 +634,8 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Wu Yonghui",
-        "吴永辉"
+        "吴永辉",
+        "У Юнхуэй"
       ],
       "sources": [],
       "note": "Lead of ByteDance Seed"
@@ -613,7 +646,8 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Yan Junjie",
-        "闫俊杰"
+        "闫俊杰",
+        "Янь Цзюньцзе"
       ],
       "sources": [],
       "note": "CEO of MiniMax"
@@ -624,7 +658,8 @@ export default {
       "category": "frontier_labs",
       "keywords": [
         "Zhang Zhengyou",
-        "张正友"
+        "张正友",
+        "Чжан Чжэнъю"
       ],
       "sources": [],
       "note": "Director of Tencent AI Lab"
@@ -703,7 +738,8 @@ export default {
       "keywords": [
         "DeepSeek",
         "深度求索",
-        "DeepSeek V4"
+        "DeepSeek V4",
+        "ДипСик"
       ]
     },
     {

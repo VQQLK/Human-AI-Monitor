@@ -15,6 +15,7 @@ voices:
   - Anthropic CEO
   - Anthropic's CEO
   - Anthropic chief
+  - Дарио Амодеи
   sources:
   - Anthropic News
   note: CEO of Anthropic
@@ -36,6 +37,7 @@ voices:
   - OpenAI CEO
   - OpenAI's CEO
   - OpenAI chief
+  - Сэм Альтман
   sources:
   - OpenAI Blog
   note: CEO of OpenAI
@@ -49,6 +51,7 @@ voices:
   - NVIDIA CEO
   - Nvidia's CEO
   - Nvidia chief
+  - Дженсен Хуанг
   sources:
   - The Verge — AI
   - Ars Technica — AI
@@ -60,6 +63,7 @@ voices:
   - Ilya Sutskever
   - Sutskever
   - ilyasutskever
+  - Илья Суцкевер
   sources:
   - The Verge — AI
   - Ars Technica — AI
@@ -75,6 +79,8 @@ voices:
   - xAI CEO
   - Tesla CEO
   - SpaceX CEO
+  - Илон Маск
+  - Маск
   sources:
   - The Verge — AI
   - Ars Technica — AI
@@ -90,6 +96,8 @@ voices:
   - Meta CEO
   - Meta's CEO
   - Meta chief
+  - Марк Цукерберг
+  - Цукерберг
   sources:
   - The Verge — AI
   - Politico — Technology
@@ -104,6 +112,7 @@ voices:
   - Google DeepMind CEO
   - DeepMind's CEO
   - DeepMind chief
+  - Демис Хассабис
   sources:
   - Google DeepMind Blog
   - MIT Technology Review — AI
@@ -115,6 +124,7 @@ voices:
   - Yann LeCun
   - LeCun
   - ylecun
+  - Ян Лекун
   sources:
   - The Verge — AI
   - MIT Technology Review — AI
@@ -126,6 +136,7 @@ voices:
   - Andrej Karpathy
   - Karpathy
   - karpathy
+  - Андрей Карпаты
   sources:
   - The Verge — AI
   - Ars Technica — AI
@@ -136,6 +147,7 @@ voices:
   keywords:
   - Geoffrey Hinton
   - Hinton
+  - Джеффри Хинтон
   sources:
   - The Verge — AI
   - Ars Technica — AI
@@ -146,6 +158,7 @@ voices:
   keywords:
   - Stuart Russell
   - Russell
+  - Стюарт Рассел
   sources:
   - LessWrong — AI
   - AI Alignment Forum
@@ -157,6 +170,7 @@ voices:
   - Eliezer Yudkowsky
   - Yudkowsky
   - ESYudkowsky
+  - Элиезер Юдковский
   sources:
   - LessWrong — AI
   - AI Alignment Forum
@@ -198,6 +212,7 @@ voices:
   - Marc Andreessen
   - Andreessen
   - pmarca
+  - Марк Андреессен
   sources:
   - The Verge — AI
   - Politico — Technology
@@ -209,6 +224,7 @@ voices:
   - Peter Thiel
   - Thiel
   - peterthiel
+  - Питер Тиль
   sources:
   - Politico — Technology
   - The Hill — Policy
@@ -220,6 +236,7 @@ voices:
   - Paul Graham
   - Graham
   - paulg
+  - Пол Грэм
   sources:
   - The Verge — AI
   - Ars Technica — AI
@@ -230,6 +247,7 @@ voices:
   keywords:
   - Jeff Bezos
   - Bezos
+  - Джефф Безос
   sources:
   - The Hill — News
   - CBS News — Technology
@@ -244,6 +262,8 @@ voices:
   - BillGates
   - Bill Gates says
   - Gates Foundation
+  - Билл Гейтс
+  - Гейтс
   sources:
   - NPR — World
   - CBS News — World
@@ -257,6 +277,7 @@ voices:
   - Buterin
   - Vitalik
   - VitalikButerin
+  - Виталик Бутерин
   sources:
   - The Verge — AI
   - Ars Technica — AI
@@ -281,6 +302,7 @@ voices:
   keywords:
   - Mira Murati
   - Murati
+  - Мира Мурати
   sources: []
   note: CEO of Thinking Machines Lab, ex-OpenAI CTO
 - name: Mustafa Suleyman
@@ -305,6 +327,7 @@ voices:
   keywords:
   - Jakub Pachocki
   - Pachocki
+  - Якуб Пачоцки
   sources: []
   note: Chief Scientist at OpenAI
 - name: Sundar Pichai
@@ -317,6 +340,7 @@ voices:
   - Google's CEO
   - Google chief
   - Alphabet CEO
+  - Сундар Пичаи
   sources: []
   note: CEO of Google and Alphabet
 - name: Satya Nadella
@@ -328,6 +352,7 @@ voices:
   - Microsoft CEO
   - Microsoft's CEO
   - Microsoft chief
+  - Сатья Наделла
   sources: []
   note: CEO of Microsoft
 - name: Fei-Fei Li
@@ -335,6 +360,7 @@ voices:
   category: researchers
   keywords:
   - Fei-Fei Li
+  - Фей-Фей Ли
   sources: []
   note: Co-director Stanford HAI, ImageNet creator
 - name: Yoshua Bengio
@@ -351,6 +377,7 @@ voices:
   keywords:
   - Max Tegmark
   - Tegmark
+  - Макс Тегмарк
   sources: []
   note: MIT physicist, FLI co-founder, author of Life 3.0
 - name: Nick Bostrom
@@ -359,6 +386,7 @@ voices:
   keywords:
   - Nick Bostrom
   - Bostrom
+  - Ник Бостром
   sources: []
   note: Author of Superintelligence, FHI founder
 - name: Sergey Brin
@@ -416,6 +444,7 @@ voices:
   - Liang Wenfeng
   - Wenfeng
   - 梁文锋
+  - Лян Вэньфэн
   sources: []
   note: Founder of DeepSeek
 - name: Yang Zhilin
@@ -425,6 +454,7 @@ voices:
   - Yang Zhilin
   - Zhilin
   - 杨植麟
+  - Ян Чжилинь
   sources: []
   note: CEO of Moonshot AI
 - name: Junyang Lin
@@ -433,6 +463,7 @@ voices:
   keywords:
   - Junyang Lin
   - 林俊旸
+  - Линь Цзюньян
   sources: []
   note: Lead of Qwen Team
 - name: Tang Jie
@@ -441,6 +472,7 @@ voices:
   keywords:
   - Tang Jie
   - 唐杰
+  - Тан Цзе
   sources: []
   note: Founder and chief scientist of Zhipu AI
 - name: Wu Yonghui
@@ -449,6 +481,7 @@ voices:
   keywords:
   - Wu Yonghui
   - 吴永辉
+  - У Юнхуэй
   sources: []
   note: Lead of ByteDance Seed
 - name: Yan Junjie
@@ -457,6 +490,7 @@ voices:
   keywords:
   - Yan Junjie
   - 闫俊杰
+  - Янь Цзюньцзе
   sources: []
   note: CEO of MiniMax
 - name: Zhang Zhengyou
@@ -465,6 +499,7 @@ voices:
   keywords:
   - Zhang Zhengyou
   - 张正友
+  - Чжан Чжэнъю
   sources: []
   note: Director of Tencent AI Lab
 - name: Fields Medal Winners
@@ -527,6 +562,7 @@ voices:
   - DeepSeek
   - 深度求索
   - DeepSeek V4
+  - ДипСик
 
 - name: Alibaba Qwen
   category: frontier_labs
