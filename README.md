@@ -469,7 +469,7 @@ This tool does three things:
   - Daytime (13:00, 13:15, 13:30, 13:45 UTC): 4 batches
   - Evening (23:00 UTC): 1 batch
   - Sources dynamically allocated via `computeBatches()` — auto-adapts
-    to `SOURCES.length`. Current: 58 sources across 5 batches
+    to `SOURCES.length`. Current: 60 sources across 5 batches
     (capacity 60, maxPerSource=2, governed by `SUBREQUEST_LIMIT=50`).
 
 **No external AI providers.** All classification runs on open-weight 
@@ -518,13 +518,13 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 
 ## Current status
 
-**Current release (v1.0.2):**
+**Current release (v1.1.0):**
 
 - ✅ Cloudflare Worker with 20 API endpoints — deployed
 - ✅ `/verify` endpoint — CheatBench-inspired reward hacking detection
 - ✅ D1 database (4 tables, populated)
 - ✅ Workers AI classifier (Qwen 3, calibrated for 13 axes (12+1))
-- ✅ RSS + HTML collector (58 sources: 33 AI + 25 Human)
+- ✅ RSS + HTML collector (60 sources: 36 AI + 24 Human)
 - ✅ Weekly protocol auto-generation (Markdown, EN/RU/ZH)
 - ✅ Daily interim protocol, weekly FINAL on Monday
 - ✅ Cron Trigger (5 batches daily: 13:00-13:45 + 23:00 UTC)
@@ -533,7 +533,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ✅ Type-safe YAML → TypeScript pipeline (build-time code generation)
 - ✅ Modular architecture (14 modules instead of monolith)
 - ✅ CI/CD via GitHub Actions (automatic tests on every push)
-- ✅ 111 unit tests passing (~75% coverage measured across 8 unit-testable suites via `npm run coverage`; API entry point excluded)
+- ✅ 148 unit tests passing (across 12 test suites via `npm run test`; API entry point excluded)
 
 **In progress:**
 

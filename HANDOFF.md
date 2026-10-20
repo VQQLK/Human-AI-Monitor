@@ -49,7 +49,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - **Baseline: 149 checks — 148 PASS / 1 WARN / 0 FAIL** (WARN = transient axis coverage, e.g. `hexad`; always verify via `bash scripts/run-audit.sh`)
 - Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
 - Math verification: **20/20 PASS** (see §14; runs inside audit as Phase 15)
-- Sources: 59 (34 AI + 25 Human)
+- Sources: 60 (36 AI + 24 Human)
 - Axes: 13 (6 AI + 6 Human + 1 META)
 - Source languages: en + ru (TASS) + zh (FT Chinese)
 - Batch capacity per run: 60 (planned: 59)

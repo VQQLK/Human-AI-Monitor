@@ -507,13 +507,13 @@ xychart-beta
 
 ## 当前状态
 
-**当前版本 (v1.0.2):**
+**当前版本 (v1.1.0):**
 
 - ✅ 部署了20个API端点的Cloudflare Worker
 - ✅ `/verify`端点 — 基于CheatBench的奖励劫持检测
 - ✅ D1数据库（4个表，已填充）
 - ✅ Workers AI分类器（Qwen 3，校准为13个轴 (12+1)）
-- ✅ RSS + HTML收集器（58个来源：33 AI + 25 Human）
+- ✅ RSS + HTML收集器（60个来源：36 AI + 24 Human）
 - ✅ 每周协议自动生成（Markdown，EN/RU/ZH）
 - ✅ 定时触发器（每天5批：13:00-13:45 + 23:00 UTC）
 - ✅ 第一个完全自治日周期完成（2026年9月25日）
