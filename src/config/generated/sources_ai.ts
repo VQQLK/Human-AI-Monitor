@@ -248,6 +248,12 @@ export default {
         "geopolitics"
       ],
       "note": "US Defense Advanced Research Projects Agency - national security AI, quantum, robotics"
+    },
+    {
+      "name": "The Decoder",
+      "url": "https://the-decoder.com/feed/",
+      "lang": "en",
+      "tier": 2
     }
   ],
   "html_sources": []
