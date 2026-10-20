@@ -254,6 +254,12 @@ export default {
       "url": "https://the-decoder.com/feed/",
       "lang": "en",
       "tier": 2
+    },
+    {
+      "name": "Synced Review",
+      "url": "https://syncedreview.com/feed/",
+      "lang": "en",
+      "tier": 2
     }
   ],
   "html_sources": []
