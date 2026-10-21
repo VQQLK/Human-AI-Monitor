@@ -5,7 +5,7 @@ on:
     # Every day at 13:50 UTC — 5 minutes after the worker's 13:45 UTC cron
     # generates either the FINAL (Monday) or the INTERIM (Tue-Sun) protocol.
     # Translation targets /protocols[0] (most recent week_start) automatically.
-    - cron: '50 13 * * *'
+    - cron: '30 16 * * *'
   workflow_dispatch:
     inputs:
       week:
