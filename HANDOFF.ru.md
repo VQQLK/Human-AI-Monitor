@@ -199,8 +199,8 @@ Cloudflare Worker, который:
 | 16:00                       | Вечерний сбор + протокол         |
 | 16:00 вт-вс                  | Ежедневный промежуточный протокол |
 | 16:00 пн                     | Финальный протокол недели         |
-| 16:00+ (worker dispatch)     | translate-protocols.yml (Mon always; Tue–Sun if NULL) |
-| 16:00+ (worker dispatch)     | sync-protocols.yml (после генерации) |
+| 16:00+ (worker dispatch)     | sync-protocols.yml (после генерации, ~16:00:0x) |
+| 16:01+ (worker dispatch)     | translate-protocols.yml (после 60с задержки, ~16:01:0x) |
 | 16:30 ежедн. (native)        | translate-protocols.yml (GitHub cron fallback) |
 | 16:30 пн, 09:30 сб (native)  | sync-protocols.yml (GitHub cron fallback) |
 

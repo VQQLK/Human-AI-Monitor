@@ -200,8 +200,8 @@ The bot pushed README — rebase resolves cleanly.
 | 16:00                         | Evening collection + protocol     |
 | 16:00 Tue-Sun                 | Daily interim protocol            |
 | 16:00 Mon                     | Weekly FINAL protocol             |
-| 16:00+ (worker dispatch)      | translate-protocols.yml (Mon always; Tue–Sun if NULL) |
-| 16:00+ (worker dispatch)      | sync-protocols.yml (after generation) |
+| 16:00+ (worker dispatch)      | sync-protocols.yml (after generation, ~16:00:0x) |
+| 16:01+ (worker dispatch)      | translate-protocols.yml (after 60s sleep, ~16:01:0x) |
 | 16:30 daily (native)          | translate-protocols.yml (GitHub cron fallback) |
 | 16:30 Mon, 09:30 Sat (native) | sync-protocols.yml (GitHub cron fallback) |
 
