@@ -883,11 +883,11 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 // when sources change. Capacity (44) refuses loudly via cron_drift_events.
 // Enforced by test/cron-batching.spec.ts (property tests) + repo_audit.py.
 export const CRON_BATCH_META: Record<string, { batch: number; maxPerSource: number; generateProtocol: boolean }> = {
-	"0 13 * * *":  { batch: 1, maxPerSource: 10, generateProtocol: false },
-	"15 13 * * *":  { batch: 2, maxPerSource: 10, generateProtocol: false },
-	"30 13 * * *":  { batch: 3, maxPerSource: 10, generateProtocol: false },
-	"45 13 * * *":  { batch: 4, maxPerSource: 10, generateProtocol: true },
-	"0 23 * * *":  { batch: 5, maxPerSource: 10, generateProtocol: false },
+	"0 15 * * *":  { batch: 1, maxPerSource: 10, generateProtocol: false },
+	"15 15 * * *":  { batch: 2, maxPerSource: 10, generateProtocol: false },
+	"30 15 * * *":  { batch: 3, maxPerSource: 10, generateProtocol: false },
+	"45 15 * * *":  { batch: 4, maxPerSource: 10, generateProtocol: false },
+	"0 16 * * *":  { batch: 5, maxPerSource: 10, generateProtocol: true },
 };
 export const SUBREQUEST_LIMIT = 50;
 export const EXTERNAL_LIMIT = 50;
