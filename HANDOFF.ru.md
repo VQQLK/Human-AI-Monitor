@@ -83,7 +83,7 @@ Cloudflare Worker, который:
 
 ### 🟢 Snapshot пересчитан — RESOLVED (2026-10-05)
 - /gap и /axes-history отдают первый FINAL-протокол за неделю 2026-09-28 (recorded_at 2026-10-05, gap = −0.26, AI опережает)
-- Пересчёт произойдёт автоматически в понедельник 14:00 UTC
+- Пересчёт произойдёт автоматически в понедельник 16:00 UTC
   (cron sync-protocols.yml → generateProtocol: true)
 
 ### 🟢 Пропуск перевода для Monday FINAL — ИСПРАВЛЕНО (2026-10-12)
@@ -195,14 +195,14 @@ Cloudflare Worker, который:
 
 | Время                       | Что                              |
 | --------------------------- | -------------------------------- |
-| 13:00, 13:15, 13:30, 13:45  | Дневной сбор (4 батча)           |
-| 23:00                       | Вечерний сбор                    |
-| 13:45 вт-вс                  | Ежедневный промежуточный протокол |
-| 13:45 пн                     | Финальный протокол недели         |
-| 13:45+ (worker dispatch)     | translate-protocols.yml (Mon always; Tue–Sun if NULL) |
-| 13:45+ (worker dispatch)     | sync-protocols.yml (после генерации) |
-| 13:50 ежедн. (native)        | translate-protocols.yml (GitHub cron fallback) |
-| 14:00 пн, 08:00 сб (native)  | sync-protocols.yml (GitHub cron fallback) |
+| 15:00, 15:15, 15:30, 15:45  | Дневной сбор (4 батча)           |
+| 16:00                       | Вечерний сбор + протокол         |
+| 16:00 вт-вс                  | Ежедневный промежуточный протокол |
+| 16:00 пн                     | Финальный протокол недели         |
+| 16:00+ (worker dispatch)     | translate-protocols.yml (Mon always; Tue–Sun if NULL) |
+| 16:00+ (worker dispatch)     | sync-protocols.yml (после генерации) |
+| 16:30 ежедн. (native)        | translate-protocols.yml (GitHub cron fallback) |
+| 16:30 пн, 09:30 сб (native)  | sync-protocols.yml (GitHub cron fallback) |
 
 ## 8. Как добавить новый источник
 
@@ -651,7 +651,7 @@ multitrait-multimethod matrix.*
   добавления новых источников, до следующего cron-сбора. Не обязательно дефект.
 
 - **Snapshot (`/gap`) может отставать от `items`**: пересчёт происходит
-  по понедельничному cron (14:00 UTC). Если `/gap` показывает старый
+  по понедельничному cron (16:00 UTC). Если `/gap` показывает старый
   `recorded_at` — это ожидаемо до следующей scheduled генерации.
 
 ### Если сомневаетесь

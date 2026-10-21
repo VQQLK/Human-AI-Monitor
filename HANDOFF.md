@@ -84,7 +84,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 
 ### 🟢 Snapshot recomputed — RESOLVED (2026-10-05)
 - /gap and /axes-history serve the first FINAL protocol for week 2026-09-28 (recorded_at 2026-10-05, gap = −0.26, AI is ahead)
-- Recomputation happens automatically on Monday 14:00 UTC
+- Recomputation happens automatically on Monday 16:00 UTC
   (cron sync-protocols.yml → generateProtocol: true)
 
 ### 🟢 Monday FINAL translation skip — FIXED (2026-10-12)
@@ -196,14 +196,14 @@ The bot pushed README — rebase resolves cleanly.
 
 | Time                          | What                              |
 | ----------------------------- | --------------------------------- |
-| 13:00, 13:15, 13:30, 13:45    | Daytime collection (4 batches)    |
-| 23:00                         | Evening collection                |
-| 13:45 Tue-Sun                 | Daily interim protocol            |
-| 13:45 Mon                     | Weekly FINAL protocol             |
-| 13:45+ (worker dispatch)      | translate-protocols.yml (Mon always; Tue–Sun if NULL) |
-| 13:45+ (worker dispatch)      | sync-protocols.yml (after generation) |
-| 13:50 daily (native)          | translate-protocols.yml (GitHub cron fallback) |
-| 14:00 Mon, 08:00 Sat (native) | sync-protocols.yml (GitHub cron fallback) |
+| 15:00, 15:15, 15:30, 15:45    | Daytime collection (4 batches)    |
+| 16:00                         | Evening collection + protocol     |
+| 16:00 Tue-Sun                 | Daily interim protocol            |
+| 16:00 Mon                     | Weekly FINAL protocol             |
+| 16:00+ (worker dispatch)      | translate-protocols.yml (Mon always; Tue–Sun if NULL) |
+| 16:00+ (worker dispatch)      | sync-protocols.yml (after generation) |
+| 16:30 daily (native)          | translate-protocols.yml (GitHub cron fallback) |
+| 16:30 Mon, 09:30 Sat (native) | sync-protocols.yml (GitHub cron fallback) |
 
 ## 8. How to add a new source
 
@@ -650,7 +650,7 @@ before making changes. It addresses the most common misunderstandings.
   new sources were added, before the next cron run. Not necessarily a defect.
 
 - **Snapshot (`/gap`) may lag behind `items`**: recomputation happens
-  on Monday cron (14:00 UTC). If `/gap` shows an old `recorded_at`,
+  on Monday cron (16:00 UTC). If `/gap` shows an old `recorded_at`,
   that is expected until the next scheduled generation.
 
 ### When in doubt
