@@ -1708,6 +1708,11 @@ export default {
 				})());
 			}
 
+			// Delay 60s before translate-dispatch to avoid SQLITE_BUSY on protocols table
+			if (cfg.generateProtocol) {
+				await new Promise((r) => setTimeout(r, 60_000));
+			}
+
 			// Dispatch translate-protocols workflow (EN→RU/ZH translation).
 			// Runs whenever the target week lacks RU content (content_ru IS NULL).
 			// Mon: FINAL for prev week. Tue-Sun: INTERIM for current week.
