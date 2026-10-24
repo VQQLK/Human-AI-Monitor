@@ -49,6 +49,7 @@ export async function timingSafeEqual(a: string, b: string): Promise<boolean> {
  */
 const PROTECTED_PREFIXES = [
   "/collect",
+  "/run-cycle",
   "/generate",
   "/classify",
   "/translate",           // covers /translate and /translate/{week}

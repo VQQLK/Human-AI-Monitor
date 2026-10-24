@@ -918,6 +918,75 @@ export function computeBatches(n: number): Record<string, { offset: number; limi
 	});
 	return out;
 }
+async function tryAcquireLock(env: Env, owner: string): Promise<boolean> {
+  // 1. Атомарная попытка взять/перехватить истёкший лок
+  await env.DB.prepare(`
+    INSERT INTO cycle_lock (lock_key, owner, acquired_at, expires_at)
+    VALUES ('collect', ?, datetime('now'), datetime('now', '+1 hour'))
+    ON CONFLICT(lock_key) DO UPDATE SET
+      owner = excluded.owner,
+      acquired_at = excluded.acquired_at,
+      expires_at = excluded.expires_at
+    WHERE cycle_lock.expires_at < datetime('now')
+  `).bind(owner).run();
+
+  // 2. Надёжная проверка: лок наш только если owner совпадает И не истёк
+  const row: any = await env.DB.prepare(
+    "SELECT owner FROM cycle_lock WHERE lock_key = 'collect' AND expires_at >= datetime('now')"
+  ).first();
+  return row?.owner === owner;
+}
+
+async function runCollectionCycle(
+  env: Env,
+  ctx: ExecutionContext,
+  batch: number,
+  generateProtocol: boolean,
+  scheduledTime?: string
+): Promise<{ processed: boolean; reason: string }> {
+  const owner = `batch-${batch}-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+  const locked = await tryAcquireLock(env, owner);
+  if (!locked) {
+    return { processed: false, reason: 'locked' };
+  }
+
+  let batchConfig: Record<string, { offset: number; limit: number; batch: number; maxPerSource: number; generateProtocol: boolean }>;
+  try {
+    batchConfig = computeBatches(SOURCES.length);
+  } catch (capErr) {
+    console.error("[cycle] BATCH CAPACITY EXCEEDED: " + (capErr as Error).message);
+    return { processed: false, reason: 'capacity_exceeded' };
+  }
+
+  const cronKey = Object.keys(batchConfig).find(k => batchConfig[k].batch === batch);
+  if (!cronKey) {
+    return { processed: false, reason: 'batch_not_found' };
+  }
+  const cfg = batchConfig[cronKey];
+
+  try {
+    const collectResult = await runCollection(env, cfg.limit, cfg.maxPerSource, cfg.offset);
+    console.log("[cycle] collected: " + JSON.stringify(collectResult));
+
+    if (generateProtocol) {
+      const refTime = scheduledTime ? new Date(scheduledTime) : new Date();
+      const isMonday = refTime.getUTCDay() === 1;
+      if (isMonday) {
+        const gen = await generateAndSaveProtocol(env, 1);
+        console.log("[cycle] final protocol: " + JSON.stringify(gen));
+      } else {
+        const gen = await generateInterimProtocol(env, 0);
+        console.log("[cycle] interim protocol: " + JSON.stringify(gen));
+      }
+    }
+
+    return { processed: true, reason: 'collected' };
+  } catch (e) {
+    console.error("[cycle] error: " + (e as Error).message);
+    return { processed: false, reason: 'error: ' + (e as Error).message };
+  }
+}
+
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		const url = new URL(request.url);
@@ -1489,6 +1558,23 @@ export default {
 				});
 				return json({ input: text, kind, parsed: validateParsed(parseAIResponse(response)) }, 200);
 			}
+			if (path === "/run-cycle") {
+				const today: any = await env.DB.prepare(
+					"SELECT COUNT(*) as n FROM items WHERE date(collected_at) = date('now')"
+				).first();
+				if (today?.n > 0) {
+					return json({ status: "already_collected", items_today: today.n }, 200);
+				}
+				const batch = Math.min(Math.max(parseInt(url.searchParams.get("batch") ?? "5", 10), 1), 5);
+				const genProto = url.searchParams.get("protocol") !== "false";
+				// Fire-and-forget: return 202 immediately, run in background
+				ctx.waitUntil((async () => {
+					const result = await runCollectionCycle(env, ctx, batch, genProto);
+					console.log("[run-cycle] " + JSON.stringify(result));
+				})());
+				return json({ status: "accepted", batch, generate_protocol: genProto }, 202);
+			}
+
 			if (path === "/collect") {
 				const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "3", 10), SOURCES.length);
 				const maxPerSource = Math.min(parseInt(url.searchParams.get("max") ?? "2", 10), 25);
@@ -1754,6 +1840,20 @@ export default {
 						console.error("[cron] translate-protocols dispatch error: " + (e as Error).message);
 					}
 				})());
+			}
+
+			// Self-heal: if this batch's sources have 0 items today, force collection
+			const batchSources = SOURCES.slice(cfg.offset, cfg.offset + cfg.limit);
+			const batchSourceNames = batchSources.map(s => s.name);
+			if (batchSourceNames.length > 0) {
+				const placeholders = batchSourceNames.map(() => '?').join(',');
+				const todayItems: any = await env.DB.prepare(
+					`SELECT COUNT(*) as n FROM items WHERE date(collected_at) = date('now') AND source IN (${placeholders})`
+				).bind(...batchSourceNames).first();
+				if (todayItems?.n === 0) {
+					console.log("[self-heal] No items for batch " + cfg.batch + " today — forcing collection");
+					await runCollectionCycle(env, ctx, cfg.batch, false, new Date(event.scheduledTime).toISOString());
+				}
 			}
 		})());
 	},
