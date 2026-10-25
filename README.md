@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** October 23, 2026  
-**Baseline:** Updated on October 23, 2026 — based on 752 items (sample size: 672).
+**Updated:** October 24, 2026  
+**Baseline:** Updated on October 24, 2026 — based on 909 items (sample size: 795).
 
 ### 🌍 Humanity–AI Gap Index
 
 <div align="center">
 
-| Metric | Value (10-23) | Status |
+| Metric | Value (10-24) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.293** | Current value |
-| **🔴 AI Score** | 🤖 **0.827** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.533** | AI is ahead |
-| **📊 CI95** | **[−0.738, −0.303]** | Significant |
+| **🟢 Humanity Score** | 🌐 **0.267** | Current value |
+| **🔴 AI Score** | 🤖 **0.842** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.576** | AI is ahead |
+| **📊 CI95** | **[−0.768, −0.357]** | Significant |
 | **⚡ Threshold Shifts** | **4** | Critical events detected |
-| **📈 Items Analyzed** | **752** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **672** | Axis-signal pairs |
+| **📈 Items Analyzed** | **909** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **795** | Axis-signal pairs |
 
 </div>
 
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["07/10", "08/10", "09/10", "10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10"]
-    y-axis "Gap" -0.633 --> -0.120
-    line [-0.220, -0.250, -0.310, -0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533]
+    x-axis ["07/10", "08/10", "09/10", "10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10"]
+    y-axis "Gap" -0.675 --> -0.120
+    line [-0.220, -0.250, -0.310, -0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | INTERIM |
 | 23/10 | 0.827 | 0.293 | −0.533 | [−0.738, −0.303] | 752 | 672 | INTERIM |
 | 22/10 | 0.800 | 0.335 | −0.465 | [−0.694, −0.208] | 569 | 501 | INTERIM |
 | 21/10 | 0.716 | 0.341 | −0.375 | [−0.653, −0.083] | 382 | 328 | INTERIM |
@@ -86,7 +87,7 @@ xychart-beta
 | 11/10 | 0.720 | 0.356 | −0.364 | [−0.615, −0.084] | 335 | 314 | FINAL |
 | 04/10 | 0.760 | 0.500 | −0.260 | [−0.518, +0.011] | 237 | 247 | FINAL |
 
-> 📌 Interim (reference, not on chart): 23/10 — AI 0.827 · Humanity 0.293 · Gap −0.533 · 752 / 672 items.
+> 📌 Interim (reference, not on chart): 24/10 — AI 0.842 · Humanity 0.267 · Gap −0.576 · 909 / 795 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -96,6 +97,114 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**OpenAI — 2026-10-24**
+
+> OpenAI's isolated AI agents found ways to talk to each other through CPU cache
+
+— *[The Decoder](https://the-decoder.com/openais-isolated-ai-agents-found-ways-to-talk-to-each-other-through-cpu-cache/)*
+
+**OpenAI — 2026-10-24**
+
+> Three fired OpenAI safety researchers say they were never told what they actually leaked
+
+— *[The Decoder](https://the-decoder.com/three-fired-openai-safety-researchers-say-they-were-never-told-what-they-actually-leaked/)*
+
+**Google — 2026-10-23**
+
+> Google Launches $150,000 AI Competition to Reduce Quantum Computing Demands
+
+— *[The Quantum Insider](https://thequantuminsider.com/2026/10/23/google-launches-150000-ai-competition-to-reduce-quantum-computing-demands/)*
+
+**Nvidia — 2026-10-22**
+
+> Qblox Integrates NVIDIA DGX Spark With Quantum System Controller
+
+— *[The Quantum Insider](https://thequantuminsider.com/2026/10/22/qblox-hybrid-quantum-computing-nvidia-dgx-spark-nvqlink/)*
+
+**xAI — 2026-10-24**
+
+> Forced to pick, Grok’s AI model chooses Republicans. OpenAI’s picks Democrats.
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/24/forced-to-pick-groks-ai-model-chooses-republicans-openais-picks-democrats/)*
+
+**OpenAI — 2026-10-24**
+
+> Forced to pick, Grok’s AI model chooses Republicans. OpenAI’s picks Democrats.
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/24/forced-to-pick-groks-ai-model-chooses-republicans-openais-picks-democrats/)*
+
+**Nvidia — 2026-10-23**
+
+> Hottest toy for Christmas? Nvidia CEO plays with adorable Microduck robots, 20,000 sell
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/23/hottest-toy-for-christmas-nvidia-ceo-plays-with-adorable-microduck-robots-20000-sell/)*
+
+**Jensen Huang (Nvidia) — 2026-10-23**
+
+> Hottest toy for Christmas? Nvidia CEO plays with adorable Microduck robots, 20,000 sell
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/23/hottest-toy-for-christmas-nvidia-ceo-plays-with-adorable-microduck-robots-20000-sell/)*
+
+**OpenAI — 2026-10-23**
+
+> OpenAI says it will no longer train its AI models on the live internet, citing “significant risks”
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/)*
+
+**Moonshot AI — 2026-10-24**
+
+> [AINews] Kimi 3.1 Pro 104BA-2.8T: Fable-5.1-Class Open Weights narrows Closed-AI lead to 1 month... and Pro Highspeed API with 2-3× speed
+
+— *[Latent Space](https://latent.space/p/ainews-kimi-31/)*
+
+**OpenAI — 2026-10-23**
+
+> Texas sues OpenAI, Sam Altman over product safety
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/23/texas-sues-openai-over-product-safety-01134162)*
+
+**Sam Altman (OpenAI) — 2026-10-23**
+
+> Texas sues OpenAI, Sam Altman over product safety
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/23/texas-sues-openai-over-product-safety-01134162)*
+
+**Meta — 2026-10-22**
+
+> Meta turns Muse sharing back on
+
+— *[The Verge — AI](https://www.theverge.com/tech/1017066/meta-muse-sharing-back-on-artifiacts)*
+
+**Meta — 2026-10-22**
+
+> Meta’s AI could still scrape news sites, legal experts say
+
+— *[The Verge — AI](https://www.theverge.com/tech/1017082/meta-terms-update-ai-training-concerns)*
+
+**OpenAI — 2026-10-23**
+
+> OpenAI now trains its frontier AI models with no internet access
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1018021/openai-training-top-ai-models-no-internet)*
+
+**Google — 2026-10-23**
+
+> Now Google says it might use your Gmail and Google Photos data to target ads
+
+— *[The Verge — AI](https://www.theverge.com/tech/1017600/google-personal-intelligence-privacy-policy-ads-update)*
+
+**Meta — 2026-10-23**
+
+> Meta delays new business terms after publisher pushback on AI scraping
+
+— *[The Verge — AI](https://www.theverge.com/tech/1017450/meta-business-terms-delayed-ai-scraping)*
+
+**OpenAI — 2026-10-23**
+
+> Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)
+
+— *[OpenAI Blog](https://openai.com/index/scaling-storage-one-billion-users-part-two)*
 
 **OpenAI — 2026-10-22**
 
@@ -288,116 +397,6 @@ xychart-beta
 > PHP Armageddon: OpenAI, Google’s Wiz find ancient holes, panicking the internet
 
 — *[TechCrunch AI](https://techcrunch.com/2026/10/21/php-armageddon-openai-googles-wiz-find-ancient-holes-panicking-the-internet/)*
-
-**Meta — 2026-10-21**
-
-> Meta says Muse has over 10M users, with shopping a top activity
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/21/meta-says-muse-has-over-10m-users-with-shopping-a-top-activity/)*
-
-**OpenAI — 2026-10-21**
-
-> PHP Armageddon: OpenAI, Google’s Wiz find ancient holes, panicking the internet
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/21/php-armageddon-openai-googles-wiz-find-ancient-holes-panicking-the-internet/)*
-
-**Claude — 2026-10-22**
-
-> Claude Duet app is Anthropic’s bet on agents
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/)*
-
-**DeepSeek — 2026-10-22**
-
-> DeepSeek reportedly raises $15B days after US restrictions
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/22/deepseek-reportedly-raises-15b-days-after-us-restrictions/)*
-
-**OpenAI — 2026-10-22**
-
-> [AINews] OpenAI’s Patch the Planet program is 1 of 2 parties to discover PHP2Shell vulnerabilities in core PHP affecting 70% of the web, using GPT-5.6 Sol; coordinated response over 2 months
-
-— *[Latent Space](https://www.latent.space/p/ainews-openais-patch-the-planet-program)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-22**
-
-> Elon Musk's Starlink and Starshield, and what they mean to Ukraine
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/elon-musk-starlink-starshield-ukraine-russia/)*
-
-**Meta — 2026-10-21**
-
-> New Mexico judge orders Meta to pay state $25B over privacy practices
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/21/new-mexico-meta-cambridge-analytica-judgment-01130539)*
-
-**Meta — 2026-10-21**
-
-> Zuckerberg considered leaving CA over wealth tax, Meta says
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/21/zuckerberg-considered-leaving-ca-over-wealth-tax-meta-says-01131087)*
-
-**Mark Zuckerberg (Meta) — 2026-10-21**
-
-> Zuckerberg considered leaving CA over wealth tax, Meta says
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/21/zuckerberg-considered-leaving-ca-over-wealth-tax-meta-says-01131087)*
-
-**Nvidia — 2026-10-21**
-
-> NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required
-
-— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/kumo-relational)*
-
-**Mistral AI — 2026-10-21**
-
-> Mistral Advances AI for Engineering with NVIDIA
-
-— *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering)*
-
-**Nvidia — 2026-10-21**
-
-> Mistral Advances AI for Engineering with NVIDIA
-
-— *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering)*
-
-**OpenAI — 2026-10-21**
-
-> Cloudflare links vulnerability discovery to defense with OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/cloudflare-cyber)*
-
-**OpenAI — 2026-10-21**
-
-> How AT&T is rethinking in-house legal work with OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/att-legal)*
-
-**OpenAI — 2026-10-22**
-
-> What FDE means at OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/forward-deployed-engineering-means)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-21**
-
-> Musk pledges $10bn in SpaceX shares for US children: Who really gains?
-
-— *[Al Jazeera](https://www.aljazeera.com/news/2026/10/21/musk-pledges-10bn-in-spacex-shares-for-us-children-who-really-gains?traffic_source=rss)*
-
-### 💼 Investors & Tech Leaders
-
-**Paul Graham (Y Combinator) — 2026-10-22**
-
-> Trump rallies for Darline Graham despite divide on waived Russia sanctions
-
-— *[CBS News — Technology](https://www.cbsnews.com/video/trump-rallies-for-darline-graham-despite-divide-on-waived-russia-sanctions/)*
-
-**Peter Thiel (Founders Fund) — 2026-10-21**
-
-> Peter Thiel breaks with Trump over Iran war: ‘We should not have done it’
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/21/peter-thiel-trump-iran-war-01131284)*
 
 ## What is this
 
