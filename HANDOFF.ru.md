@@ -202,7 +202,7 @@ Cloudflare Worker, который:
 | 16:00+ (worker dispatch)     | sync-protocols.yml (после генерации, ~16:00:0x) |
 | 16:01+ (worker dispatch)     | translate-protocols.yml (после 60с задержки, ~16:01:0x) |
 | 16:30 ежедн. (native)        | translate-protocols.yml (GitHub cron fallback) |
-| 16:30 пн, 09:30 сб (native)  | sync-protocols.yml (GitHub cron fallback) |
+| 17:00 пн, 17:00 сб (native)  | sync-protocols.yml (GitHub cron fallback) |
 
 ## 8. Как добавить новый источник
 
@@ -747,5 +747,30 @@ multitrait-multimethod matrix.*
 **Примечание:** `/no_think` работает в **user message**, не в system prompt (Qwen GitHub Discussion #1329). **Пробел перед слэшем** обязателен (`\n /no_think`, не `\n/no_think`).
 
 **Эффект:** `completion_tokens` падает с ~500-2000 до ~300-500; `neurons/вызов` с ~63 до ~20. Без потери качества для классификации (структурированное извлечение).
+
+## 18. Self-Heal и Cycle Lock (2026-10-25)
+
+**Проблема:** Cloudflare Cron может пропускать batch'и или дублировать запуски.
+
+**Исправление:**
+- Таблица `cycle_lock` (D1, миграция 0017) — атомарный лок через `owner` + `expires_at`, `SELECT owner` (не `changes()`).
+- `tryAcquireLock(env, owner)` — взятие/освобождение лока.
+- `runCollectionCycle(env, ctx, batch, generateProtocol, scheduledTime?)` — выделенная функция с локом + опциональный протокол.
+- **Self-heal** внутри `scheduled()` (per-batch): если у источников batch'а 0 items сегодня → форсировать сбор.
+- `/run-cycle` (Bearer-защищён, в `PROTECTED_PREFIXES`) — ручной/внешний триггер с idempotency-first + `ctx.waitUntil` + `202`.
+
+## 19. AI/TECH фильтр в Human промпте (2026-10-25)
+
+**Проблема:** Human-оси зашумлены общими новостями (войны, катастрофы) — дроны в Судане, Мали, казни в Саудовской Аравии.
+
+**Исправление (коммит `c2f7ec7`):** Добавлено **Правило 13** в `getHumanPrompt()`: классифицировать как Human-ось **ТОЛЬКО если** явно упомянут AI/tech/digital infrastructure. Игнорировать общие геополитические конфликты, катастрофы, преступления без связи с технологиями.
+
+**Эффект:** Дроновые атаки в Судане → `axes=[], relevance=0`. AI слежка за протестующими → `axes=['h1_agency', 'h6_democracy'], relevance=0.85`.
+
+## 20. Фикс расписания sync (2026-10-25)
+
+**Проблема:** Субботний `sync-protocols.yml` в 10:00 UTC — **до** генерации протокола (16:00 UTC). README обновлялся старыми данными каждую субботу.
+
+**Исправление (коммит `b589061`):** Субботний cron `0 10 * * 6` → `0 17 * * 6` (17:00 UTC, через 1 час после протокола). Понедельник уже `0 17 * * 1`.
 
 *По вопросам — см. docs/methodology.md (математика Gap) и scripts/audit.sh (что проверяется).*

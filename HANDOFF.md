@@ -37,7 +37,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 | scripts/math_verification.py      | Independent math verification (Phase 15)     |
 | scripts/yaml-to-ts.mjs            | YAML → TS generator                          |
 | scripts/update_readme.py          | Update README from live API (incl. ## Voices)|
-| config/voices.yaml                | 46 curated speakers, 7 categories            |
+| config/voices.yaml                | 61 curated speakers, 7 categories            |
 | src/services/voices.ts            | extractVoice() + saveVoice()                 |
 | src/config/generated/voices.ts    | Auto-generated from voices.yaml              |
 | migrations/0014_voices.sql        | D1 migration: voices table                   |
@@ -55,7 +55,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - Batch capacity per run: 60 (planned: 59)
 - CF token: 3 permissions (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
 - **Items classification:** 603 items, classified with prompt v1 (no per-item version tracking)
-- **Voices extraction:** 13 curated mentions from 46 speakers (7 categories; policy emptied 2026-10-08)
+- **Voices extraction:** 25 curated mentions from 61 speakers (7 categories; policy emptied 2026-10-08)
 
 ## 4. Known issues (by priority)
 
@@ -203,7 +203,7 @@ The bot pushed README — rebase resolves cleanly.
 | 16:00+ (worker dispatch)      | sync-protocols.yml (after generation, ~16:00:0x) |
 | 16:01+ (worker dispatch)      | translate-protocols.yml (after 60s sleep, ~16:01:0x) |
 | 16:30 daily (native)          | translate-protocols.yml (GitHub cron fallback) |
-| 16:30 Mon, 09:30 Sat (native) | sync-protocols.yml (GitHub cron fallback) |
+| 17:00 Mon, 17:00 Sat (native) | sync-protocols.yml (GitHub cron fallback) |
 
 ## 8. How to add a new source
 
@@ -747,5 +747,30 @@ A mention is extracted **if and only if BOTH** conditions are met:
 **Note:** `/no_think` works in **user message**, not system prompt (Qwen GitHub Discussion #1329). **Space before slash** required (`\n /no_think`, not `\n/no_think`).
 
 **Effect:** `completion_tokens` drops from ~500-2000 to ~300-500; `neurons/call` from ~63 to ~20. No quality loss for classification (structured extraction).
+
+## 18. Self-Heal & Cycle Lock (2026-10-25)
+
+**Problem:** Cloudflare Cron may skip batches or run duplicates during incidents.
+
+**Fix:**
+- `cycle_lock` table (D1, migration 0017) — atomic lock via `owner` + `expires_at`, `SELECT owner` (not `changes()`).
+- `tryAcquireLock(env, owner)` — acquire/release lock.
+- `runCollectionCycle(env, ctx, batch, generateProtocol, scheduledTime?)` — extracted function with lock + optional protocol.
+- **Self-heal** inside `scheduled()` (per-batch): if batch's sources have 0 items today → force collection.
+- `/run-cycle` endpoint (Bearer-protected, in `PROTECTED_PREFIXES`) — manual/external trigger with idempotency-first + `ctx.waitUntil` + `202`.
+
+## 19. Human Prompt AI/TECH Filter (2026-10-25)
+
+**Problem:** Human axes polluted by general news (wars, disasters) — Sudan drones, Mali, Saudi executions.
+
+**Fix (commit `c2f7ec7`):** Added **Rule 13** to `getHumanPrompt()`: classify as Human-axis **ONLY if** AI/tech/digital infrastructure is explicitly mentioned. Ignore general geopolitical conflicts, disasters, crimes unless tech-related.
+
+**Effect:** Sudan drone attacks → `axes=[], relevance=0`. AI surveillance of protesters → `axes=['h1_agency', 'h6_democracy'], relevance=0.85`.
+
+## 20. Sync Schedule Fix (2026-10-25)
+
+**Problem:** Saturday `sync-protocols.yml` fallback at 10:00 UTC — **before** protocol generation (16:00 UTC). README updated with stale data every Saturday.
+
+**Fix (commit `b589061`):** Saturday cron `0 10 * * 6` → `0 17 * * 6` (17:00 UTC, 1 hour after protocol). Monday already `0 17 * * 1`.
 
 *For questions — see docs/methodology.md (Gap math) and scripts/audit.sh (what is checked).*
