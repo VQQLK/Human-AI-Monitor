@@ -394,7 +394,7 @@ def build_voices_markdown(voices, lang):
             "mathematics": "🧮 Mathematics Community",
         },
         "ru": {
-            "frontier_labs": "🧠 Лаборатории переднего края",
+            "frontier_labs": "🧠 Ведущие Лаборатории ИИ",
             "researchers": "🧪 Исследователи ИИ",
             "safety_philosophy": "🌍 Безопасность и философия ИИ",
             "investors": "💼 Инвесторы и техлидеры",

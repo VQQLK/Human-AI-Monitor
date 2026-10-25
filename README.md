@@ -100,6 +100,18 @@ xychart-beta
 
 **OpenAI — 2026-10-24**
 
+> FBI Explores Espionage Case Against Saudi OpenAI Suspect
+
+— *[WSJ — World News](https://www.wsj.com/us-news/law/fbi-explores-espionage-case-against-saudi-openai-suspect-fbaedefe?mod=rss_worldnews)*
+
+**Google — 2026-10-25**
+
+> Google’s AI search changes upended online publishing
+
+— *[The Verge — AI](https://www.theverge.com/column/1017983/google-ai-search-online-publishing)*
+
+**OpenAI — 2026-10-24**
+
 > OpenAI's isolated AI agents found ways to talk to each other through CPU cache
 
 — *[The Decoder](https://the-decoder.com/openais-isolated-ai-agents-found-ways-to-talk-to-each-other-through-cpu-cache/)*
@@ -385,18 +397,6 @@ xychart-beta
 > Mark Zuckerberg Threatened to Leave California. Meta’s Board Cut Him a Deal.
 
 — *[WSJ — Tech](https://www.wsj.com/business/mark-zuckerberg-discussed-leaving-california-over-wealth-tax-21b0b522?mod=rss_Technology)*
-
-**Meta — 2026-10-22**
-
-> The Morning Risk Report: Meta Ordered to Pay $25 Billion to New Mexico in Data-Privacy Case
-
-— *[WSJ — Tech](https://www.wsj.com/risk-compliance-journal/the-morning-risk-report-meta-ordered-to-pay-25-billion-to-new-mexico-in-data-privacy-case-01dd9197?mod=rss_Technology)*
-
-**Google — 2026-10-21**
-
-> PHP Armageddon: OpenAI, Google’s Wiz find ancient holes, panicking the internet
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/21/php-armageddon-openai-googles-wiz-find-ancient-holes-panicking-the-internet/)*
 
 ## What is this
 
