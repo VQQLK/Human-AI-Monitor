@@ -7,50 +7,31 @@ export default {
       "name": "WHO News",
       "url": "https://www.who.int/rss-feeds/feature-stories-english.xml",
       "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h3_wellbeing"
-      ]
+      "tier": 1
     },
     {
       "name": "Benton Institute for Broadband & Society",
       "url": "https://www.benton.org/blog/feed",
       "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h1_agency",
-        "h2_sovereignty"
-      ]
+      "tier": 1
     },
     {
       "name": "Reuters Institute",
       "url": "https://reutersinstitute.politics.ox.ac.uk/rss.xml",
       "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h2_sovereignty",
-        "h6_democracy"
-      ]
+      "tier": 1
     },
     {
       "name": "Noema Magazine",
       "url": "https://www.noemamag.com/feed/",
       "lang": "en",
-      "tier": 2,
-      "axes": [
-        "h5_meaning",
-        "h6_democracy"
-      ]
+      "tier": 2
     },
     {
       "name": "Politico — Politics",
       "url": "https://rss.politico.com/politics-news.xml",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h6_democracy",
-        "h1_agency"
-      ],
       "note": "US politics, Congress, democratic institutions"
     },
     {
@@ -58,10 +39,6 @@ export default {
       "url": "https://thehill.com/feed/",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h6_democracy",
-        "h2_sovereignty"
-      ],
       "note": "US politics, international summits (Xi/Trump)"
     },
     {
@@ -69,11 +46,6 @@ export default {
       "url": "https://feeds.npr.org/1004/rss.xml",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h6_democracy",
-        "h1_agency",
-        "h3_wellbeing"
-      ],
       "note": "World news, UNGA, international relations"
     },
     {
@@ -81,10 +53,6 @@ export default {
       "url": "https://www.cbsnews.com/latest/rss/world",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h6_democracy",
-        "h3_wellbeing"
-      ],
       "note": "World news, geopolitics — replaces AP News"
     },
     {
@@ -92,10 +60,6 @@ export default {
       "url": "https://www.cbsnews.com/latest/rss/politics",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h6_democracy",
-        "h1_agency"
-      ],
       "note": "US politics, elections, democratic institutions"
     },
     {
@@ -103,9 +67,6 @@ export default {
       "url": "https://cpj.org/feed/",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h6_democracy"
-      ],
       "note": "Свобода прессы, безопасность журналистов"
     },
     {
@@ -113,10 +74,6 @@ export default {
       "url": "https://www.pewresearch.org/feed/",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h1_agency",
-        "h6_democracy"
-      ],
       "note": "Исследования общественного мнения, доверие, технологии"
     },
     {
@@ -124,9 +81,6 @@ export default {
       "url": "https://www.eff.org/rss/updates.xml",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h2_sovereignty"
-      ],
       "note": "Цифровые права, приватность, свобода выражения"
     },
     {
@@ -134,10 +88,6 @@ export default {
       "url": "https://ourworldindata.org/feed",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h3_wellbeing",
-        "h4_equity"
-      ],
       "note": "Глобальные данные о здоровье, неравенстве, благополучии"
     },
     {
@@ -145,10 +95,6 @@ export default {
       "url": "https://tass.ru/rss/v2.xml",
       "lang": "ru",
       "tier": 1,
-      "axes": [
-        "h1_agency",
-        "h6_democracy"
-      ],
       "note": "Российское информагентство, экономика, политика"
     },
     {
@@ -156,10 +102,6 @@ export default {
       "url": "https://www.ftchinese.com/rss/news",
       "lang": "zh",
       "tier": 1,
-      "axes": [
-        "h1_agency",
-        "h4_equity"
-      ],
       "note": "Китайская версия Financial Times — экономика, неравенство"
     },
     {
@@ -167,10 +109,6 @@ export default {
       "url": "https://www.aljazeera.com/xml/rss/all.xml",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h3_wellbeing",
-        "h6_democracy"
-      ],
       "note": "Global South perspective, конфликты, права"
     },
     {
@@ -178,10 +116,6 @@ export default {
       "url": "https://www.thehindu.com/news/international/feeder/default.rss",
       "lang": "en",
       "tier": 2,
-      "axes": [
-        "h4_equity",
-        "h6_democracy"
-      ],
       "note": "Индийская газета, Global South perspective"
     },
     {
@@ -189,10 +123,6 @@ export default {
       "url": "https://aeon.co/feed.rss",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h5_meaning",
-        "h2_sovereignty"
-      ],
       "note": "Философия, культура, смысл жизни, критическое мышление"
     },
     {
@@ -200,10 +130,6 @@ export default {
       "url": "https://psyche.co/feed.rss",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h5_meaning",
-        "h3_wellbeing"
-      ],
       "note": "Психология, внутренняя жизнь, смысл"
     },
     {
@@ -211,10 +137,6 @@ export default {
       "url": "https://www.hrw.org/rss/news",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h4_equity",
-        "h6_democracy"
-      ],
       "note": "Права человека, Global South, конфликты"
     },
     {
@@ -222,10 +144,6 @@ export default {
       "url": "https://3quarksdaily.com/feed",
       "lang": "en",
       "tier": 2,
-      "axes": [
-        "h5_meaning",
-        "h1_agency"
-      ],
       "note": "Curated essays on culture, philosophy, science - AI and humanity angle"
     },
     {
@@ -233,11 +151,6 @@ export default {
       "url": "https://api.axios.com/feed/",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h6_democracy",
-        "h3_wellbeing",
-        "h1_agency"
-      ],
       "note": "Insider scoops on AI policy, national security, politics, tech industry"
     },
     {

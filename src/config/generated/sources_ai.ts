@@ -137,12 +137,7 @@ export default {
       "name": "AI Now Institute",
       "url": "https://ainowinstitute.org/feed",
       "lang": "en",
-      "tier": 1,
-      "axes": [
-        "h1_agency",
-        "h4_equity",
-        "h6_democracy"
-      ]
+      "tier": 1
     },
     {
       "name": "Latent Space",
@@ -169,9 +164,6 @@ export default {
       "url": "https://feeds.content.dowjones.io/public/rss/RSSWSJD",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "itq"
-      ],
       "note": "WSJ tech section — AI business and policy signals"
     },
     {
@@ -179,9 +171,6 @@ export default {
       "url": "https://feeds.bbci.co.uk/news/technology/rss.xml",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "itq"
-      ],
       "note": "BBC Technology — neutral baseline for AI coverage"
     },
     {
@@ -189,9 +178,6 @@ export default {
       "url": "https://www.ft.com/artificial-intelligence?format=rss",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "itq"
-      ],
       "note": "Financial Times AI vertical — enterprise and policy"
     },
     {
@@ -199,9 +185,6 @@ export default {
       "url": "https://www.theguardian.com/technology/artificialintelligenceai/rss",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "h6_democracy"
-      ],
       "note": "Guardian AI coverage — civil liberties and ethics angle"
     },
     {
@@ -209,9 +192,6 @@ export default {
       "url": "https://thequantuminsider.com/feed/",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "geopolitics"
-      ],
       "note": "Quantum industry intelligence - market, policy, national strategies"
     },
     {
@@ -219,9 +199,6 @@ export default {
       "url": "https://www.darpa.mil/rss.xml",
       "lang": "en",
       "tier": 1,
-      "axes": [
-        "geopolitics"
-      ],
       "note": "US Defense Advanced Research Projects Agency - national security AI, quantum, robotics"
     },
     {
