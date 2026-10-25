@@ -152,12 +152,6 @@ export default {
       "note": "Техническая аналитика по AI, агенты, инфраструктура"
     },
     {
-      "name": "TechNode",
-      "url": "https://technode.com/feed/",
-      "lang": "en",
-      "tier": 2
-    },
-    {
       "name": "TechCrunch AI",
       "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
       "lang": "en",
@@ -229,12 +223,6 @@ export default {
         "geopolitics"
       ],
       "note": "US Defense Advanced Research Projects Agency - national security AI, quantum, robotics"
-    },
-    {
-      "name": "The Decoder",
-      "url": "https://the-decoder.com/feed/",
-      "lang": "en",
-      "tier": 2
     },
     {
       "name": "Synced Review",

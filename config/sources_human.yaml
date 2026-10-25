@@ -190,4 +190,20 @@ rss:
   url: https://news.mit.edu/rss/topic/engineering
   lang: en
   tier: 1
+- name: ScienceDaily
+  url: https://www.sciencedaily.com/rss/top/science.xml
+  lang: en
+  tier: 1
+- name: SpaceNews
+  url: https://spacenews.com/feed/
+  lang: en
+  tier: 1
+- name: The Atlantic
+  url: https://www.theatlantic.com/feed/all/
+  lang: en
+  tier: 1
+- name: Inside Higher Ed
+  url: https://www.insidehighered.com/news/feed
+  lang: en
+  tier: 1
 html_sources: []
