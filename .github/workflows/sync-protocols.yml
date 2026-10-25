@@ -3,7 +3,7 @@ name: Sync protocols (dual-sync)
 on:
   schedule:
     - cron: "0 17 * * 1"
-    - cron: "0 10 * * 6"
+    - cron: "0 17 * * 6"
   workflow_dispatch:
 
 concurrency:
