@@ -47,12 +47,12 @@ describe("weights configuration", () => {
   });
 
   it("Human weights match methodology.md §3.2", () => {
-    expect(HUMAN_WEIGHTS.h1_agency).toBeCloseTo(0.20);
-    expect(HUMAN_WEIGHTS.h2_sovereignty).toBeCloseTo(0.15);
-    expect(HUMAN_WEIGHTS.h3_wellbeing).toBeCloseTo(0.20);
-    expect(HUMAN_WEIGHTS.h4_equity).toBeCloseTo(0.15);
-    expect(HUMAN_WEIGHTS.h5_meaning).toBeCloseTo(0.15);
-    expect(HUMAN_WEIGHTS.h6_democracy).toBeCloseTo(0.15);
+    expect(HUMAN_WEIGHTS.h1_science).toBeCloseTo(0.20);
+    expect(HUMAN_WEIGHTS.h2_engineering).toBeCloseTo(0.20);
+    expect(HUMAN_WEIGHTS.h3_culture).toBeCloseTo(0.20);
+    expect(HUMAN_WEIGHTS.h4_institutions).toBeCloseTo(0.15);
+    expect(HUMAN_WEIGHTS.h5_wellbeing).toBeCloseTo(0.15);
+    expect(HUMAN_WEIGHTS.h6_governance).toBeCloseTo(0.10);
   });
 
   it("covers exactly the 6 AI axes", () => {
@@ -63,7 +63,7 @@ describe("weights configuration", () => {
 
   it("covers exactly the 6 Human axes", () => {
     expect(Object.keys(HUMAN_WEIGHTS).sort()).toEqual(
-      ["h1_agency", "h2_sovereignty", "h3_wellbeing", "h4_equity", "h5_meaning", "h6_democracy"].sort()
+      ["h1_science", "h2_engineering", "h3_culture", "h4_institutions", "h5_wellbeing", "h6_governance"].sort()
     );
   });
 });

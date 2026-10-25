@@ -94,18 +94,6 @@ export default {
       "tier": 2
     },
     {
-      "name": "NIST AI",
-      "url": "https://www.nist.gov/news-events/news/rss.xml",
-      "lang": "en",
-      "tier": 2
-    },
-    {
-      "name": "EU AI Act News",
-      "url": "https://artificialintelligenceact.eu/feed/",
-      "lang": "en",
-      "tier": 1
-    },
-    {
       "name": "Import AI (Jack Clark)",
       "url": "https://importai.substack.com/feed",
       "lang": "en",
@@ -181,13 +169,6 @@ export default {
       "lang": "en",
       "tier": 1,
       "note": "Глубокий анализ архитектур LLM, математика, обзоры статей"
-    },
-    {
-      "name": "BAIR Blog (Berkeley AI Research)",
-      "url": "https://bair.berkeley.edu/blog/feed.xml",
-      "lang": "en",
-      "tier": 2,
-      "note": "Академические исследования UC Berkeley — CV, ML, NLP, робототехника"
     },
     {
       "name": "WSJ — Tech",

@@ -29,12 +29,12 @@ export const AI_WEIGHTS: Record<string, number> = {
 };
 
 export const HUMAN_WEIGHTS: Record<string, number> = {
-  h1_agency: 0.20,
-  h2_sovereignty: 0.15,
-  h3_wellbeing: 0.20,
-  h4_equity: 0.15,
-  h5_meaning: 0.15,
-  h6_democracy: 0.15,
+  h1_science: 0.20,
+  h2_engineering: 0.20,
+  h3_culture: 0.20,
+  h4_institutions: 0.15,
+  h5_wellbeing: 0.15,
+  h6_governance: 0.10,
 };
 
 // ----- Validation at module load time ------------------------

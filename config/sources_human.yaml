@@ -20,14 +20,6 @@ rss:
   - h2_sovereignty
   - h6_democracy
 
-- name: OECD — Economy
-  url: https://news.google.com/rss/search?q=OECD+economy+policy&hl=en-US&gl=US&ceid=US:en
-  lang: en
-  tier: 2
-  axes:
-  - h4_equity
-  - h5_meaning
-  note: 'Fallback: Google News RSS (official URL returns 403 bot protection)'
 - name: Noema Magazine
   url: https://www.noemamag.com/feed/
   lang: en
@@ -190,4 +182,12 @@ rss:
   - h1_agency
   note: Insider scoops on AI policy, national security, politics, tech industry
 
+- name: Science
+  url: https://feeds.science.org/rss/science.xml
+  lang: en
+  tier: 1
+- name: MIT News (Engineering)
+  url: https://news.mit.edu/rss/topic/engineering
+  lang: en
+  tier: 1
 html_sources: []

@@ -38,19 +38,19 @@ describe("translateProtocolMarkdown", () => {
 		const mockEnv = {
 			AI: {
 				run: vi.fn().mockResolvedValue({
-					response: "# Протокол\n\nОси: smd, itq, h1_agency остались без изменений.",
+					response: "# Протокол\n\nОси: smd, itq, h1_science остались без изменений.",
 				}),
 			},
 			CLASSIFIER_MODEL: "@cf/qwen/qwen3-30b-a3b-fp8",
 		} as any;
 
-		const englishMarkdown = "# Protocol\n\nAxes: smd, itq, h1_agency should remain unchanged.";
+		const englishMarkdown = "# Protocol\n\nAxes: smd, itq, h1_science should remain unchanged.";
 		const result = await translateProtocolMarkdown(mockEnv, englishMarkdown, "ru");
 
 		// Проверяем, что технические термины сохранились
 		expect(result).toContain("smd");
 		expect(result).toContain("itq");
-		expect(result).toContain("h1_agency");
+		expect(result).toContain("h1_science");
 	});
 });
 

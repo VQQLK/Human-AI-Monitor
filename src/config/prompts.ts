@@ -28,6 +28,7 @@ export const getAIPrompt = (today: string) => [
   `12. If the text mentions an event date in the PAST relative to today (${today}), mark as stale_forecast.`,
   "13. topic_relevance = overall significance as AI signal, INDEPENDENT of axis match. HIGH (0.8-1.0) major AI news (regulation, breakthrough, safety, funding, deployment, key figure statements); MEDIUM (0.5-0.7) notable AI item (product launch, industry analysis); LOW (0.2-0.4) minor AI mention (enterprise adoption, tangential); ZERO (0.0-0.1) not about AI. IMPORTANT: If about AI but no RSI axis matches → relevance=0.0, but topic_relevance stays 0.5-0.9.",
   "13. AI/TECH FILTER (CRITICAL): Classify as Human-axes ONLY if the item explicitly mentions AI, technology, digital infrastructure, or the societal impact of automation. Ignore general geopolitical conflicts, natural disasters, or crimes unless they are directly linked to technological systems.",
+  "14. HUMAN ACHIEVEMENT FOCUS: Prioritize scientific discoveries, engineering feats, cultural milestones, and institutional successes. Measure human ingenuity alongside societal challenges.",
   "Return ONLY JSON, no markdown."
 ].join(" ");
 

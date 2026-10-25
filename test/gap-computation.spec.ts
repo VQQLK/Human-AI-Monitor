@@ -44,19 +44,19 @@ describe("computeGapIndex (Bayesian)", () => {
     const r = await computeGapIndex(env, RANGE, mulberry32(2));
     expect(r.axisLevels["smd"]).toBeCloseTo(1.3 / 1.8, 4);
     expect(r.axisLevels["itq"]).toBe(0.5);
-    expect(r.axisLevels["h1_agency"]).toBe(0.5);
+    expect(r.axisLevels["h1_science"]).toBe(0.5);
     expect(r.sampleSize).toBe(1);
   });
 
   // ----------------------------------------------------------------
   // 3. Human signal
   // ----------------------------------------------------------------
-  it("h1_agency (yes, up, rel=0.7): axis level = 1.2/1.7", async () => {
+  it("h1_science (yes, up, rel=0.7): axis level = 1.2/1.7", async () => {
     const env = createMockEnv([
-      { axes: '["h1_agency"]', relevance: 0.7, shift: "yes", direction: "up" },
+      { axes: '["h1_science"]', relevance: 0.7, shift: "yes", direction: "up" },
     ]);
     const r = await computeGapIndex(env, RANGE, mulberry32(3));
-    expect(r.axisLevels["h1_agency"]).toBeCloseTo(1.2 / 1.7, 4);
+    expect(r.axisLevels["h1_science"]).toBeCloseTo(1.2 / 1.7, 4);
     expect(r.axisLevels["smd"]).toBe(0.5);
   });
 
@@ -66,11 +66,11 @@ describe("computeGapIndex (Bayesian)", () => {
   it("AI (yes, up), Human (no, stable, v=0)", async () => {
     const env = createMockEnv([
       { axes: '["smd"]', relevance: 0.9, shift: "yes", direction: "up" },
-      { axes: '["h1_agency"]', relevance: 0.5, shift: "no", direction: "stable" },
+      { axes: '["h1_science"]', relevance: 0.5, shift: "no", direction: "stable" },
     ]);
     const r = await computeGapIndex(env, RANGE, mulberry32(4));
     expect(r.axisLevels["smd"]).toBeCloseTo(1.4 / 1.9, 4);
-    expect(r.axisLevels["h1_agency"]).toBe(0.5);
+    expect(r.axisLevels["h1_science"]).toBe(0.5);
   });
 
   // ----------------------------------------------------------------
@@ -102,7 +102,7 @@ describe("computeGapIndex (Bayesian)", () => {
     }
     // 4 signals per Human axis, each voice = -1.0
     // alpha = 0.5, beta = 4.5, mean = 0.5/5 = 0.1
-    for (const axis of ["h1_agency", "h2_sovereignty", "h3_wellbeing", "h4_equity", "h5_meaning", "h6_democracy"]) {
+    for (const axis of ["h1_science", "h2_engineering", "h3_culture", "h4_institutions", "h5_wellbeing", "h6_governance"]) {
       for (let k = 0; k < 4; k++) {
         items.push({ axes: `["${axis}"]`, relevance: 1.0, shift: "yes", direction: "down" });
       }
@@ -119,7 +119,7 @@ describe("computeGapIndex (Bayesian)", () => {
     for (const axis of ["smd", "itq", "agg", "cycle_velocity", "verification", "hexad"]) {
       items.push({ axes: `["${axis}"]`, relevance: 0.5, shift: "yes", direction: "up" });
     }
-    for (const axis of ["h1_agency", "h2_sovereignty", "h3_wellbeing", "h4_equity", "h5_meaning", "h6_democracy"]) {
+    for (const axis of ["h1_science", "h2_engineering", "h3_culture", "h4_institutions", "h5_wellbeing", "h6_governance"]) {
       items.push({ axes: `["${axis}"]`, relevance: 0.5, shift: "yes", direction: "up" });
     }
     const env = createMockEnv(items);
