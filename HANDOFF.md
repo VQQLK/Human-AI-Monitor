@@ -759,18 +759,24 @@ A mention is extracted **if and only if BOTH** conditions are met:
 - **Self-heal** inside `scheduled()` (per-batch): if batch's sources have 0 items today → force collection.
 - `/run-cycle` endpoint (Bearer-protected, in `PROTECTED_PREFIXES`) — manual/external trigger with idempotency-first + `ctx.waitUntil` + `202`.
 
-## 19. Human Prompt AI/TECH Filter (2026-10-25)
+## 19. Human Axes: Shift to Achievements (2026-10-25)
 
-**Problem:** Human axes polluted by general news (wars, disasters) — Sudan drones, Mali, Saudi executions.
+**Problem:** Gap Index measured AI *capability* vs Human *problems* (wars, disasters) — scientifically invalid comparison.
 
-**Fix (commit `c2f7ec7`):** Added **Rule 13** to `getHumanPrompt()`: classify as Human-axis **ONLY if** AI/tech/digital infrastructure is explicitly mentioned. Ignore general geopolitical conflicts, disasters, crimes unless tech-related.
+**Fix (commit `2c3fd2d`):**
+- **New Human axes:** `h1_science` (research), `h2_engineering` (infrastructure), `h3_culture` (arts), `h4_institutions` (universities), `h5_wellbeing` (health), `h6_governance` (rights).
+- **Weights:** 0.20/0.20/0.20/0.15/0.15/0.10 (sum = 1.0).
+- **Prompt:** Rule 14 — prioritize achievements (science, engineering, culture, institutions) over generic disasters.
+- **Sources:** +ScienceDaily, +SpaceNews, +The Atlantic, +Inside Higher Ed, +Science, +MIT News. Removed: BAIR, NIST, EU AI Act, OECD, TechNode, The Decoder.
 
-**Effect:** Sudan drone attacks → `axes=[], relevance=0`. AI surveillance of protesters → `axes=['h1_agency', 'h6_democracy'], relevance=0.85`.
+**Effect:** Gap Index now measures **Human Progress vs AI Progress** — scientifically valid.
 
-## 20. Sync Schedule Fix (2026-10-25)
+## 20. Sources: Human Achievements (2026-10-25)
 
-**Problem:** Saturday `sync-protocols.yml` fallback at 10:00 UTC — **before** protocol generation (16:00 UTC). README updated with stale data every Saturday.
+**Total: 60 (AI: 32, Human: 28)**
 
-**Fix (commit `b589061`):** Saturday cron `0 10 * * 6` → `0 17 * * 6` (17:00 UTC, 1 hour after protocol). Monday already `0 17 * * 1`.
+**AI (32):** OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral, Hugging Face, arXiv ×4, MIT Tech Review, The Verge, Ars Technica, AI Alignment, LessWrong, Import AI, AI News, Politico, The Hill, CBS Tech, WSJ World, AI Now, Latent Space, TechCrunch, Ahead of AI, WSJ Tech, BBC, FT AI, Guardian AI, Quantum Insider, DARPA, Synced Review.
+
+**Human (28):** WHO, Benton, Reuters Institute, Noema, Politico Politics, The Hill News, NPR, CBS World, CBS Politics, CPJ, Pew, EFF, Our World in Data, ТАСС, FT Chinese, Al Jazeera, The Hindu, Aeon, Psyche, HRW, 3 Quarks, Axios, **Science**, **MIT News (Engineering)**, **ScienceDaily**, **SpaceNews**, **The Atlantic**, **Inside Higher Ed**.
 
 *For questions — see docs/methodology.md (Gap math) and scripts/audit.sh (what is checked).*

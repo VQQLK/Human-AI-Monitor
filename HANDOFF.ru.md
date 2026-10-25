@@ -759,18 +759,24 @@ multitrait-multimethod matrix.*
 - **Self-heal** внутри `scheduled()` (per-batch): если у источников batch'а 0 items сегодня → форсировать сбор.
 - `/run-cycle` (Bearer-защищён, в `PROTECTED_PREFIXES`) — ручной/внешний триггер с idempotency-first + `ctx.waitUntil` + `202`.
 
-## 19. AI/TECH фильтр в Human промпте (2026-10-25)
+## 19. Human-оси: переход к достижениям (2026-10-25)
 
-**Проблема:** Human-оси зашумлены общими новостями (войны, катастрофы) — дроны в Судане, Мали, казни в Саудовской Аравии.
+**Проблема:** Gap Index измерял AI *capability* vs Human *проблемы* (войны, катастрофы) — научно некорректное сравнение.
 
-**Исправление (коммит `c2f7ec7`):** Добавлено **Правило 13** в `getHumanPrompt()`: классифицировать как Human-ось **ТОЛЬКО если** явно упомянут AI/tech/digital infrastructure. Игнорировать общие геополитические конфликты, катастрофы, преступления без связи с технологиями.
+**Исправление (коммит `2c3fd2d`):**
+- **Новые Human-оси:** `h1_science` (наука), `h2_engineering` (инфраструктура), `h3_culture` (искусство), `h4_institutions` (университеты), `h5_wellbeing` (здоровье), `h6_governance` (права).
+- **Веса:** 0.20/0.20/0.20/0.15/0.15/0.10 (сумма = 1.0).
+- **Промпт:** Правило 14 — приоритет достижениям (наука, инженерия, культура, институты) над общими катастрофами.
+- **Источники:** +ScienceDaily, +SpaceNews, +The Atlantic, +Inside Higher Ed, +Science, +MIT News. Удалены: BAIR, NIST, EU AI Act, OECD, TechNode, The Decoder.
 
-**Эффект:** Дроновые атаки в Судане → `axes=[], relevance=0`. AI слежка за протестующими → `axes=['h1_agency', 'h6_democracy'], relevance=0.85`.
+**Эффект:** Gap Index теперь измеряет **Human Progress vs AI Progress** — научно корректно.
 
-## 20. Фикс расписания sync (2026-10-25)
+## 20. Источники: Human Achievements (2026-10-25)
 
-**Проблема:** Субботний `sync-protocols.yml` в 10:00 UTC — **до** генерации протокола (16:00 UTC). README обновлялся старыми данными каждую субботу.
+**Всего: 60 (AI: 32, Human: 28)**
 
-**Исправление (коммит `b589061`):** Субботний cron `0 10 * * 6` → `0 17 * * 6` (17:00 UTC, через 1 час после протокола). Понедельник уже `0 17 * * 1`.
+**AI (32):** OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral, Hugging Face, arXiv ×4, MIT Tech Review, The Verge, Ars Technica, AI Alignment, LessWrong, Import AI, AI News, Politico, The Hill, CBS Tech, WSJ World, AI Now, Latent Space, TechCrunch, Ahead of AI, WSJ Tech, BBC, FT AI, Guardian AI, Quantum Insider, DARPA, Synced Review.
+
+**Human (28):** WHO, Benton, Reuters Institute, Noema, Politico Politics, The Hill News, NPR, CBS World, CBS Politics, CPJ, Pew, EFF, Our World in Data, ТАСС, FT Chinese, Al Jazeera, The Hindu, Aeon, Psyche, HRW, 3 Quarks, Axios, **Science**, **MIT News (Engineering)**, **ScienceDaily**, **SpaceNews**, **The Atlantic**, **Inside Higher Ed**.
 
 *По вопросам — см. docs/methodology.md (математика Gap) и scripts/audit.sh (что проверяется).*

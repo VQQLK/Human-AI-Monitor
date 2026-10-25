@@ -11,7 +11,7 @@ and Humanity.**
 **Updated:** October 24, 2026  
 **Baseline:** Updated on October 24, 2026 — based on 909 items (sample size: 795).
 
-### 🌍 Humanity–AI Gap Index
+### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
@@ -415,7 +415,7 @@ xychart-beta
 
 - **Geopolitics** — AI governance blocs, WAICO, export controls
 
-**6 Humanity axes (HHI — Human Horizon Index):**
+**6 Human Achievement axes (HHI — Human Horizon Index):**
 
 - **H1 Agency** — Human agency
 - **H2 Sovereignty** — Cognitive sovereignty
