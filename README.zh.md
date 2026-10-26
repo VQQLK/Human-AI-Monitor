@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年10月24日  
-**基线：** 2026年10月24日更新 — 基于 909 个项目（样本量：795）。
+**更新:** 2026年10月26日  
+**基线：** 2026年10月26日更新 — 基于 127 个项目（样本量：126）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (10-24) | 状态 |
+| 指标 | 数值 (10-26) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.267** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.842** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.576** | 人工智能领先 |
-| **📊 CI95** | **[−0.768, −0.357]** | 显著 |
-| **⚡ 阈值变化** | **4** | 检测到关键事件 |
-| **📈 分析项目** | **909** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **795** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.446** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.613** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.167** | 人工智能领先 |
+| **📊 CI95** | **[−0.534, +0.201]** | 不确定 |
+| **⚡ 阈值变化** | **3** | 检测到关键事件 |
+| **📈 分析项目** | **127** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **126** | 轴-信号对 |
 
 </div>
 
@@ -35,10 +35,10 @@
 ```mermaid
 xychart-beta
     title "🟢 人类 (柱状) vs 🔴 人工智能 (折线) | 历史"
-    x-axis ["04/10", "11/10", "18/10"]
-    y-axis "得分" 0.306 --> 0.886
-    bar [0.500, 0.356, 0.393]
-    line [0.760, 0.720, 0.836]
+    x-axis ["25/10", "25/10"]
+    y-axis "得分" 0.396 --> 0.800
+    bar [0.446, 0.446]
+    line [0.613, 0.613]
 ```
 
 #### 📉 差距指数动态 (人类减去人工智能)
@@ -46,9 +46,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "差距指数 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["04/10", "11/10", "18/10"]
-    y-axis "差距" -0.493 --> 0.250
-    line [-0.260, -0.364, -0.443]
+    x-axis ["25/10", "25/10"]
+    y-axis "差距" -0.217 --> 0.250
+    line [-0.167, -0.167]
 ```
 
 #### 📅 每日差距轨迹
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["07/10", "08/10", "09/10", "10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10"]
+    x-axis ["07/10", "08/10", "09/10", "10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10"]
     y-axis "差距" -0.675 --> -0.120
-    line [-0.220, -0.250, -0.310, -0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576]
+    line [-0.220, -0.250, -0.310, -0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | 临时版 |
 | 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | 临时版 |
 | 23/10 | 0.827 | 0.293 | −0.533 | [−0.738, −0.303] | 752 | 672 | 临时版 |
 | 22/10 | 0.800 | 0.335 | −0.465 | [−0.694, −0.208] | 569 | 501 | 临时版 |
@@ -84,12 +85,7 @@ xychart-beta
 
 | 周 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
-| 18/10 | 0.836 | 0.393 | −0.443 | [−0.654, −0.205] | 552 | 442 | 最终版 |
-| 11/10 | 0.720 | 0.356 | −0.364 | [−0.615, −0.084] | 335 | 314 | 最终版 |
-| 04/10 | 0.760 | 0.500 | −0.260 | [−0.518, +0.011] | 237 | 247 | 最终版 |
-
-> 📌 临时协议（仅供参考，不在图表上）：24/10 — AI 0.842 · 人类 0.267 · 差距 −0.576 · 909 / 795 items.
-> 最后一点为临时版，将于周一替换为最终版。
+| 25/10 | 0.613 | 0.446 | −0.167 | [−0.534, +0.201] | 127 | 126 | 最终版 |
 
 ---
 
@@ -99,77 +95,47 @@ xychart-beta
 
 ### 🧠 前沿实验室
 
-**OpenAI — 2026-10-24**
+**OpenAI — 2026-10-26**
 
-> FBI Explores Espionage Case Against Saudi OpenAI Suspect
+> 'Dear ChatGPT': 12-year-old wins top youth prize at Australian Poetry Slam – video
 
-— *[WSJ — World News](https://www.wsj.com/us-news/law/fbi-explores-espionage-case-against-saudi-openai-suspect-fbaedefe?mod=rss_worldnews)*
+— *[The Guardian — AI](https://www.theguardian.com/technology/video/2026/oct/26/dear-chatgpt-12-year-old-wins-top-youth-prize-at-australian-poetry-slam-video)*
 
-**Google — 2026-10-25**
+**Claude — 2026-10-26**
 
-> Google’s AI search changes upended online publishing
+> Anthropic’s Claude AI model accessed Georgia voter data in US
 
-— *[The Verge — AI](https://www.theverge.com/column/1017983/google-ai-search-online-publishing)*
+— *[The Guardian — AI](https://www.theguardian.com/technology/2026/oct/26/anthropics-claude-ai-model-accessed-georgia-voter-data-in-us)*
 
-**OpenAI — 2026-10-24**
+**Meta — 2026-10-26**
 
-> OpenAI's isolated AI agents found ways to talk to each other through CPU cache
+> Anthropic files for stock market IPO; Meta announces $95bn fundraising drive to pay for AI expansion – business live
 
-— *[The Decoder](https://the-decoder.com/openais-isolated-ai-agents-found-ways-to-talk-to-each-other-through-cpu-cache/)*
+— *[The Guardian — AI](https://www.theguardian.com/business/live/2026/oct/26/ai-cloud-computing-companies-guppy-level-death-elon-musk-stock-markets-dollar-oil-bond-yieds-latest-news-updates)*
 
-**OpenAI — 2026-10-24**
+**Meta — 2026-10-26**
 
-> Three fired OpenAI safety researchers say they were never told what they actually leaked
+> Meta plans $95bn stock offering to help cover AI expansion
 
-— *[The Decoder](https://the-decoder.com/three-fired-openai-safety-researchers-say-they-were-never-told-what-they-actually-leaked/)*
+— *[The Guardian — AI](https://www.theguardian.com/technology/2026/oct/26/meta-plans-95bn-stock-offering-to-help-cover-ai-expansion)*
 
-**Google — 2026-10-23**
+**Meta — 2026-10-26**
 
-> Google Launches $150,000 AI Competition to Reduce Quantum Computing Demands
+> Meta plans $95bn stock offering to bankroll AI expansion
 
-— *[The Quantum Insider](https://thequantuminsider.com/2026/10/23/google-launches-150000-ai-competition-to-reduce-quantum-computing-demands/)*
+— *[FT — AI](https://www.ft.com/content/94e5a0ae-874d-447a-bbfc-cd465a1a7555?syn-25a6b1a6=1)*
 
-**Nvidia — 2026-10-22**
+**Meta — 2026-10-22**
 
-> Qblox Integrates NVIDIA DGX Spark With Quantum System Controller
+> Zuckerberg wins Meta deal to help him foot bill for possible California billionaire tax
 
-— *[The Quantum Insider](https://thequantuminsider.com/2026/10/22/qblox-hybrid-quantum-computing-nvidia-dgx-spark-nvqlink/)*
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cky83vwnyglno?at_medium=RSS&at_campaign=rss)*
 
-**xAI — 2026-10-24**
+**Mark Zuckerberg (Meta) — 2026-10-22**
 
-> Forced to pick, Grok’s AI model chooses Republicans. OpenAI’s picks Democrats.
+> Zuckerberg wins Meta deal to help him foot bill for possible California billionaire tax
 
-— *[TechCrunch AI](https://techcrunch.com/2026/10/24/forced-to-pick-groks-ai-model-chooses-republicans-openais-picks-democrats/)*
-
-**OpenAI — 2026-10-24**
-
-> Forced to pick, Grok’s AI model chooses Republicans. OpenAI’s picks Democrats.
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/24/forced-to-pick-groks-ai-model-chooses-republicans-openais-picks-democrats/)*
-
-**Nvidia — 2026-10-23**
-
-> Hottest toy for Christmas? Nvidia CEO plays with adorable Microduck robots, 20,000 sell
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/23/hottest-toy-for-christmas-nvidia-ceo-plays-with-adorable-microduck-robots-20000-sell/)*
-
-**Jensen Huang (Nvidia) — 2026-10-23**
-
-> Hottest toy for Christmas? Nvidia CEO plays with adorable Microduck robots, 20,000 sell
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/23/hottest-toy-for-christmas-nvidia-ceo-plays-with-adorable-microduck-robots-20000-sell/)*
-
-**OpenAI — 2026-10-23**
-
-> OpenAI says it will no longer train its AI models on the live internet, citing “significant risks”
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/)*
-
-**Moonshot AI — 2026-10-24**
-
-> [AINews] Kimi 3.1 Pro 104BA-2.8T: Fable-5.1-Class Open Weights narrows Closed-AI lead to 1 month... and Pro Highspeed API with 2-3× speed
-
-— *[Latent Space](https://latent.space/p/ainews-kimi-31/)*
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cky83vwnyglno?at_medium=RSS&at_campaign=rss)*
 
 **OpenAI — 2026-10-23**
 
@@ -183,161 +149,131 @@ xychart-beta
 
 — *[Politico — Technology](https://www.politico.com/news/2026/10/23/texas-sues-openai-over-product-safety-01134162)*
 
-**Meta — 2026-10-22**
+**Google — 2026-09-07**
 
-> Meta turns Muse sharing back on
+> Import AI 472: DeepMind's cheating math agents; populist AI policies; and Forethought theorizes a nightwatchman
 
-— *[The Verge — AI](https://www.theverge.com/tech/1017066/meta-muse-sharing-back-on-artifiacts)*
+— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-472-deepminds-cheating)*
 
-**Meta — 2026-10-22**
+**Zhipu AI — 2026-09-28**
 
-> Meta’s AI could still scrape news sites, legal experts say
+> Import AI 474: Platonic mindspace; TPUs in space; Zhipu starts an outer RSI loop
 
-— *[The Verge — AI](https://www.theverge.com/tech/1017082/meta-terms-update-ai-training-concerns)*
+— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-474-platonic-mindspace)*
 
-**OpenAI — 2026-10-23**
+**Google — 2026-10-05**
 
-> OpenAI now trains its frontier AI models with no internet access
+> Import AI 475: Swarm scaling; Google DeepMind watermarks biology; and the AI science economy
 
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1018021/openai-training-top-ai-models-no-internet)*
+— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-475-swarm-scaling-google)*
 
-**Google — 2026-10-23**
+**OpenAI — 2026-10-12**
 
-> Now Google says it might use your Gmail and Google Photos data to target ads
+> OpenAI Can't Self-Police Because It Fires the People Raising the Alarm
 
-— *[The Verge — AI](https://www.theverge.com/tech/1017600/google-personal-intelligence-privacy-policy-ads-update)*
+— *[AI Alignment Forum](https://www.alignmentforum.org/posts/sSHbioPoHWtm4zuti/openai-can-t-self-police-because-it-fires-the-people-raising)*
 
-**Meta — 2026-10-23**
+**Meta — 2026-10-20**
 
-> Meta delays new business terms after publisher pushback on AI scraping
+> Meta Muse exposes users' personal and business secrets when they share conversations
 
-— *[The Verge — AI](https://www.theverge.com/tech/1017450/meta-business-terms-delayed-ai-scraping)*
+— *[Ars Technica — AI](https://arstechnica.com/security/2026/10/meta-muse-exposes-users-personal-and-business-secrets-when-they-share-conversations/)*
 
-**OpenAI — 2026-10-23**
+**OpenAI — 2026-10-16**
 
-> Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)
+> OpenAI models hacked a crypto wallet and breached more websites
 
-— *[OpenAI Blog](https://openai.com/index/scaling-storage-one-billion-users-part-two)*
+— *[Ars Technica — AI](https://arstechnica.com/security/2026/10/openai-models-hacked-a-crypto-wallet-and-breached-more-websites/)*
+
+**Mistral AI — 2026-10-21**
+
+> Mistral Advances AI for Engineering with NVIDIA
+
+— *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering)*
+
+**Nvidia — 2026-10-21**
+
+> Mistral Advances AI for Engineering with NVIDIA
+
+— *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering)*
+
+**Mistral AI — 2026-10-06**
+
+> Introducing Mistral Large 4
+
+— *[Mistral AI](https://mistral.ai/news/mistral-large-4)*
+
+**Meta — 2026-10-14**
+
+> Meta, Milan’s Pinacoteca di Brera, and EssilorLuxottica Expand Access to Art Through AI Glasses
+
+— *[Meta AI Blog](https://about.fb.com/news/2026/10/meta-milans-pinacoteca-di-brera-and-essilorluxottica-expand-access-to-art-through-ai-glasses/)*
+
+**Google — 2026-09-24**
+
+> Introducing Gemini 3.8 Live with Live Avatar
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/)*
+
+**Google — 2026-09-30**
+
+> Gemini 4 Argon: our next era of frontier intelligence
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/)*
+
+**Google — 2026-10-13**
+
+> Gemini 4 Argon: Built to solve your hardest problems
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/introducing-gemini-4-argon/)*
+
+**Google — 2026-10-15**
+
+> Accelerating the search for antimicrobial peptides with Google Antigravity
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/accelerating-antimicrobial-discovery/)*
+
+**Google — 2026-10-14**
+
+> Google DeepMind and Singapore Government collaborate to build fine-tuned AI model for scam detection
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/on-device-ai-scam-detection-mddi/)*
+
+**Google — 2026-10-13**
+
+> Gemini 4 Argon for Robotics
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-argon-for-robotics/)*
+
+**Google — 2026-10-13**
+
+> Developing Gemini 4 Argon responsibly and safely
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/developing-gemini-4-argon-responsibly-and-safely/)*
+
+**OpenAI — 2026-10-21**
+
+> How AT&T is rethinking in-house legal work with OpenAI
+
+— *[OpenAI Blog](https://openai.com/index/att-legal)*
+
+**Google — 2026-10-21**
+
+> OpenAI models are coming to Google Cloud
+
+— *[OpenAI Blog](https://openai.com/index/openai-models-google-cloud)*
+
+**OpenAI — 2026-10-21**
+
+> OpenAI models are coming to Google Cloud
+
+— *[OpenAI Blog](https://openai.com/index/openai-models-google-cloud)*
 
 **OpenAI — 2026-10-22**
 
-> OpenAI trims valuation target to $1.25tn after pitching higher price
+> What FDE means at OpenAI
 
-— *[FT — AI](https://www.ft.com/content/bb564eb1-79d4-4694-aa24-1155202a9abc?syn-25a6b1a6=1)*
-
-**Meta — 2026-10-22**
-
-> Zuckerberg wins Meta deal to help him foot bill for possible California billionaire tax
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cky83vwnyglno?at_medium=RSS&at_campaign=rss)*
-
-**Mark Zuckerberg (Meta) — 2026-10-22**
-
-> Zuckerberg wins Meta deal to help him foot bill for possible California billionaire tax
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cky83vwnyglno?at_medium=RSS&at_campaign=rss)*
-
-**Meta — 2026-10-22**
-
-> Meta’s Hunt for AI Capital Strikes a Raw Nerve on Wall Street
-
-— *[WSJ — Tech](https://www.wsj.com/finance/stocks/metas-hunt-for-ai-capital-strikes-a-raw-nerve-on-wall-street-e2de1601?mod=rss_Technology)*
-
-**OpenAI — 2026-10-23**
-
-> The Signal Chats That Cost OpenAI Researchers Their Jobs
-
-— *[WSJ — Tech](https://www.wsj.com/tech/ai/the-signal-chats-that-cost-openai-researchers-their-jobs-594c5853?mod=rss_Technology)*
-
-**OpenAI — 2026-10-23**
-
-> The Leak Suspicions That Got Three OpenAI Staffers Fired
-
-— *[WSJ — Tech](https://www.wsj.com/tech/the-leak-suspicions-that-got-three-openai-staffers-fired-d3671d0e?mod=rss_Technology)*
-
-**OpenAI — 2026-10-23**
-
-> The Morning Risk Report: The Signal Chats That Cost OpenAI Researchers Their Jobs
-
-— *[WSJ — Tech](https://www.wsj.com/risk-compliance-journal/the-morning-risk-report-the-signal-chats-that-cost-openai-researchers-their-jobs-7adf1811?mod=rss_Technology)*
-
-**Meta — 2026-10-23**
-
-> Meta’s Muse Is Going Gangbusters. But Where Is the Payoff?
-
-— *[WSJ — Tech](https://www.wsj.com/finance/stocks/metas-muse-is-going-gangbusters-but-where-is-the-payoff-648d310d?mod=rss_Technology)*
-
-**Microsoft — 2026-10-22**
-
-> Microsoft’s Mustafa Suleyman says its AI outperforms doctors on hard cases as he chases ‘medical superintelligence’
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/)*
-
-**Mustafa Suleyman (Microsoft AI) — 2026-10-22**
-
-> Microsoft’s Mustafa Suleyman says its AI outperforms doctors on hard cases as he chases ‘medical superintelligence’
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/)*
-
-**OpenAI — 2026-10-22**
-
-> Uber puts all 30,000 employees on ChatGPT Work
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/22/uber-puts-all-30000-employees-on-chatgpt-work/)*
-
-**Nvidia — 2026-10-23**
-
-> Uber rival inDrive eyes 2027 robotaxi tests in Central Asia with Pony.ai and Nvidia
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/22/uber-rival-indrive-eyes-2027-robotaxi-tests-in-central-asia-with-pony-ai-and-nvidia/)*
-
-**OpenAI — 2026-10-22**
-
-> OpenAI makes its Jev competitor widely available as decision model competition heats up
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/)*
-
-**OpenAI — 2026-10-22**
-
-> OpenAI working on new $30B raise at $1.25T valuation ahead of IPO
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/)*
-
-**DeepSeek — 2026-10-21**
-
-> [AINews] DeepSeek DeepInfer: Open Source SOTA Inference running 155T toks/day/cluster making $22m/day at ~80% margin for a 81 day payback
-
-— *[Latent Space](https://latent.space/p/ainews-deepseek-deepinfer-open-source/)*
-
-**Claude — 2026-10-21**
-
-> Claude Mods: Flipping the Harness Inside Out
-
-— *[Latent Space](https://latent.space/p/claude-mods/)*
-
-**OpenAI — 2026-10-22**
-
-> [AINews] OpenAI’s Patch the Planet program is 1 of 2 parties to discover PHP2Shell vulnerabilities in core PHP affecting 70% of the web, using GPT-5.6 Sol; coordinated response over 2 months
-
-— *[Latent Space](https://latent.space/p/ainews-openais-patch-the-planet-program/)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-23**
-
-> Trump Called Musk and Asked Him to Lift Ukraine Starlink Restrictions
-
-— *[WSJ — World News](https://www.wsj.com/world/trump-called-musk-and-asked-him-to-lift-ukraine-starlink-restrictions-5aeebc6e?mod=rss_worldnews)*
-
-**Claude — 2026-10-23**
-
-> Anthropic previews Claude Duet personal AI agent for subscribers
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/anthropic-claude-duet-personal-ai-agentsuggest-a-e/)*
-
-**Meta — 2026-10-22**
-
-> ‘Just the beginning’: New Mexico AG warns AI industry after $25B Meta ruling
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/22/just-the-beginning-new-mexico-ag-warns-ai-industry-after-25b-meta-ruling-01133294)*
+— *[OpenAI Blog](https://openai.com/index/forward-deployed-engineering-means)*
 
 **OpenAI — 2026-10-22**
 
@@ -345,59 +281,23 @@ xychart-beta
 
 — *[OpenAI Blog](https://openai.com/index/uber-chatgpt-work-rollout)*
 
+**OpenAI — 2026-10-26**
+
+> How Fanatics and OpenAI streamline the fan experience
+
+— *[OpenAI Blog](https://openai.com/index/fanatics-streamline-fan-experience)*
+
+**OpenAI — 2026-10-23**
+
+> Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)
+
+— *[OpenAI Blog](https://openai.com/index/scaling-storage-one-billion-users-part-two)*
+
 **OpenAI — 2026-10-23**
 
 > OpenAI and Poland’s NASK partner to advance AI safety and security
 
 — *[OpenAI Blog](https://openai.com/index/openai-nask-ai-safety-security-partnership)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-22**
-
-> Musk warns Democrats over possible congressional probes
-
-— *[The Hill — News](https://thehill.com/policy/technology/6165520-doge-starlink-ukraine-controversy/)*
-
-**Google — 2026-10-22**
-
-> ‘Pure arrogance’: anger in Finland as Google illegally fells 250,000 trees for datacentre
-
-— *[The Guardian — AI](https://www.theguardian.com/environment/ng-interactive/2026/oct/22/finland-google-felling-trees-datacentre)*
-
-**Meta — 2026-10-22**
-
-> Meta agrees deal to keep Zuckerberg in California despite wealth tax proposal
-
-— *[FT — AI](https://www.ft.com/content/b34502b6-38dc-4a46-a8e7-d9131726cd31?syn-25a6b1a6=1)*
-
-**Mark Zuckerberg (Meta) — 2026-10-22**
-
-> Meta agrees deal to keep Zuckerberg in California despite wealth tax proposal
-
-— *[FT — AI](https://www.ft.com/content/b34502b6-38dc-4a46-a8e7-d9131726cd31?syn-25a6b1a6=1)*
-
-**DeepSeek — 2026-10-22**
-
-> Chinese AI Startup DeepSeek Raises $15 Billion Ahead of Potential IPO
-
-— *[WSJ — Tech](https://www.wsj.com/tech/ai/chinese-ai-startup-deekseek-raises-15-billion-ahead-of-potential-ipo-f7fe3a49?mod=rss_Technology)*
-
-**Meta — 2026-10-22**
-
-> Meta Will Split Stock, Create New Class to Fund AI Spending
-
-— *[WSJ — Tech](https://www.wsj.com/articles/metaplatforms-meta-3q-earnings-report-2026-stock-f28d64c2?mod=rss_Technology)*
-
-**Meta — 2026-10-22**
-
-> Mark Zuckerberg Threatened to Leave California. Meta’s Board Cut Him a Deal.
-
-— *[WSJ — Tech](https://www.wsj.com/business/mark-zuckerberg-discussed-leaving-california-over-wealth-tax-21b0b522?mod=rss_Technology)*
-
-**Mark Zuckerberg (Meta) — 2026-10-22**
-
-> Mark Zuckerberg Threatened to Leave California. Meta’s Board Cut Him a Deal.
-
-— *[WSJ — Tech](https://www.wsj.com/business/mark-zuckerberg-discussed-leaving-california-over-wealth-tax-21b0b522?mod=rss_Technology)*
 
 ## 这是什么
 
