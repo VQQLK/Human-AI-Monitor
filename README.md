@@ -530,7 +530,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ✅ `/verify` endpoint — CheatBench-inspired reward hacking detection
 - ✅ D1 database (4 tables, populated)
 - ✅ Workers AI classifier (Qwen 3, calibrated for 13 axes (12+1))
-- ✅ RSS + HTML collector (60 sources: 36 AI + 24 Human)
+- ✅ RSS + HTML collector (60 sources: 30 AI + 30 Human)
 - ✅ Weekly protocol auto-generation (Markdown, EN/RU/ZH)
 - ✅ Daily interim protocol, weekly FINAL on Monday
 - ✅ Cron Trigger (5 batches daily: 13:00-13:45 + 23:00 UTC)
