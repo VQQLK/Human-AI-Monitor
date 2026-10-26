@@ -37,7 +37,7 @@ Cloudflare Worker, который:
 | scripts/math_verification.py      | Независимая мат-верификация (фаза 15)        |
 | scripts/yaml-to-ts.mjs            | YAML → TS генератор                          |
 | scripts/update_readme.py          | Обновление README из live API (вкл. ## Voices)|
-| config/voices.yaml                | 61 курируемых спикеров, 7 категорий          |
+| config/voices.yaml                | 62 курируемых спикеров, 7 категорий          |
 | src/services/voices.ts            | extractVoice() + saveVoice()                 |
 | src/config/generated/voices.ts    | Автогенерация из voices.yaml                 |
 | migrations/0014_voices.sql        | D1 миграция: таблица voices                  |
@@ -49,13 +49,13 @@ Cloudflare Worker, который:
 - **Baseline: 149 проверок — 148 PASS / 1 WARN / 0 FAIL** (WARN = транзитное покрытие оси, напр. `hexad`; всегда проверяйте через `bash scripts/run-audit.sh`)
 - Версия скрипта аудита: **v4.9** (15 фаз; фаза 15 = математическая верификация)
 - Математическая верификация: **20/20 PASS** (см. §14; запускается в аудите как фаза 15)
-- Источников: 60 (36 AI + 24 Human)
+- Источников: 60 (30 AI + 30 Human)
 - Осей: 13 (6 AI + 6 Human + 1 META)
 - Языки источников: en + ru (ТАСС) + zh (FT Chinese)
 - Ёмкость батча за прогон: 60 (планируется: 59)
 - CF-токен: 3 права (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
 - **Классификация items:** 603 items, классифицированы prompt v1 (без per-item version tracking)
-- **Извлечение Voices:** 25 курируемых упоминаний от 61 спикера (7 категорий; 14 AI-компаний добавлены 2026-10-17)
+- **Извлечение Voices:** 25 курируемых упоминаний от 62 спикеров (7 категорий; 14 AI-компаний добавлены 2026-10-17)
 
 ## 4. Известные проблемы (по приоритету)
 
@@ -775,8 +775,8 @@ multitrait-multimethod matrix.*
 
 **Всего: 60 (AI: 32, Human: 28)**
 
-**AI (32):** OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral, Hugging Face, arXiv ×4, MIT Tech Review, The Verge, Ars Technica, AI Alignment, LessWrong, Import AI, AI News, Politico, The Hill, CBS Tech, WSJ World, AI Now, Latent Space, TechCrunch, Ahead of AI, WSJ Tech, BBC, FT AI, Guardian AI, Quantum Insider, DARPA, Synced Review.
+**AI (30):** OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral, Hugging Face, arXiv ×4, MIT Tech Review, The Verge, Ars Technica, AI Alignment, Import AI, AI News, Politico Tech, The Hill Policy, CBS Tech, WSJ World, AI Now, Latent Space, TechCrunch, WSJ Tech, BBC, FT AI, Guardian AI, Quantum Insider, DARPA, Synced Review.
 
-**Human (28):** WHO, Benton, Reuters Institute, Noema, Politico Politics, The Hill News, NPR, CBS World, CBS Politics, CPJ, Pew, EFF, Our World in Data, ТАСС, FT Chinese, Al Jazeera, The Hindu, Aeon, Psyche, HRW, 3 Quarks, Axios, **Science**, **MIT News (Engineering)**, **ScienceDaily**, **SpaceNews**, **The Atlantic**, **Inside Higher Ed**.
+**Human (30):** WHO, Benton, Reuters Institute, Noema, Politico Politics, The Hill News, NPR, CBS World, CBS Politics, CPJ, Pew, EFF, Our World in Data, ТАСС, FT Chinese, Al Jazeera, The Hindu, Aeon, Psyche, HRW, 3 Quarks, Axios, **Science**, **MIT News (Engineering)**, **ScienceDaily**, **SpaceNews**, **The Atlantic**, **Inside Higher Ed**.
 
 *По вопросам — см. docs/methodology.md (математика Gap) и scripts/audit.sh (что проверяется).*

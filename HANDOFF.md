@@ -37,7 +37,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 | scripts/math_verification.py      | Independent math verification (Phase 15)     |
 | scripts/yaml-to-ts.mjs            | YAML → TS generator                          |
 | scripts/update_readme.py          | Update README from live API (incl. ## Voices)|
-| config/voices.yaml                | 61 curated speakers, 7 categories            |
+| config/voices.yaml                | 62 curated speakers, 7 categories            |
 | src/services/voices.ts            | extractVoice() + saveVoice()                 |
 | src/config/generated/voices.ts    | Auto-generated from voices.yaml              |
 | migrations/0014_voices.sql        | D1 migration: voices table                   |
@@ -49,13 +49,13 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 - **Baseline: 149 checks — 148 PASS / 1 WARN / 0 FAIL** (WARN = transient axis coverage, e.g. `hexad`; always verify via `bash scripts/run-audit.sh`)
 - Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
 - Math verification: **20/20 PASS** (see §14; runs inside audit as Phase 15)
-- Sources: 60 (36 AI + 24 Human)
+- Sources: 60 (30 AI + 30 Human)
 - Axes: 13 (6 AI + 6 Human + 1 META)
 - Source languages: en + ru (TASS) + zh (FT Chinese)
 - Batch capacity per run: 60 (planned: 59)
 - CF token: 3 permissions (Workers Scripts:Edit, D1:Edit, Workers Builds Config:Edit)
 - **Items classification:** 603 items, classified with prompt v1 (no per-item version tracking)
-- **Voices extraction:** 25 curated mentions from 61 speakers (7 categories; policy emptied 2026-10-08)
+- **Voices extraction:** 25 curated mentions from 62 speakers (7 categories; policy emptied 2026-10-08)
 
 ## 4. Known issues (by priority)
 
@@ -775,8 +775,8 @@ A mention is extracted **if and only if BOTH** conditions are met:
 
 **Total: 60 (AI: 32, Human: 28)**
 
-**AI (32):** OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral, Hugging Face, arXiv ×4, MIT Tech Review, The Verge, Ars Technica, AI Alignment, LessWrong, Import AI, AI News, Politico, The Hill, CBS Tech, WSJ World, AI Now, Latent Space, TechCrunch, Ahead of AI, WSJ Tech, BBC, FT AI, Guardian AI, Quantum Insider, DARPA, Synced Review.
+**AI (30):** OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral, Hugging Face, arXiv ×4, MIT Tech Review, The Verge, Ars Technica, AI Alignment, Import AI, AI News, Politico Tech, The Hill Policy, CBS Tech, WSJ World, AI Now, Latent Space, TechCrunch, WSJ Tech, BBC, FT AI, Guardian AI, Quantum Insider, DARPA, Synced Review.
 
-**Human (28):** WHO, Benton, Reuters Institute, Noema, Politico Politics, The Hill News, NPR, CBS World, CBS Politics, CPJ, Pew, EFF, Our World in Data, ТАСС, FT Chinese, Al Jazeera, The Hindu, Aeon, Psyche, HRW, 3 Quarks, Axios, **Science**, **MIT News (Engineering)**, **ScienceDaily**, **SpaceNews**, **The Atlantic**, **Inside Higher Ed**.
+**Human (30):** WHO, Benton, Reuters Institute, Noema, Politico Politics, The Hill News, NPR, CBS World, CBS Politics, CPJ, Pew, EFF, Our World in Data, ТАСС, FT Chinese, Al Jazeera, The Hindu, Aeon, Psyche, HRW, 3 Quarks, Axios, **Science**, **MIT News (Engineering)**, **ScienceDaily**, **SpaceNews**, **The Atlantic**, **Inside Higher Ed**.
 
 *For questions — see docs/methodology.md (Gap math) and scripts/audit.sh (what is checked).*
