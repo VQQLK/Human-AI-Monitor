@@ -4,12 +4,6 @@
 export default {
   "rss": [
     {
-      "name": "WHO News",
-      "url": "https://www.who.int/rss-feeds/feature-stories-english.xml",
-      "lang": "en",
-      "tier": 1
-    },
-    {
       "name": "Benton Institute for Broadband & Society",
       "url": "https://www.benton.org/blog/feed",
       "lang": "en",
@@ -47,27 +41,6 @@ export default {
       "lang": "en",
       "tier": 1,
       "note": "World news, UNGA, international relations"
-    },
-    {
-      "name": "CBS News — World",
-      "url": "https://www.cbsnews.com/latest/rss/world",
-      "lang": "en",
-      "tier": 1,
-      "note": "World news, geopolitics — replaces AP News"
-    },
-    {
-      "name": "CBS News — Politics",
-      "url": "https://www.cbsnews.com/latest/rss/politics",
-      "lang": "en",
-      "tier": 1,
-      "note": "US politics, elections, democratic institutions"
-    },
-    {
-      "name": "CPJ (Committee to Protect Journalists)",
-      "url": "https://cpj.org/feed/",
-      "lang": "en",
-      "tier": 1,
-      "note": "Свобода прессы, безопасность журналистов"
     },
     {
       "name": "Pew Research Center",
@@ -186,6 +159,30 @@ export default {
     {
       "name": "Inside Higher Ed",
       "url": "https://www.insidehighered.com/news/feed",
+      "lang": "en",
+      "tier": 1
+    },
+    {
+      "name": "Issues in Science and Technology",
+      "url": "https://issues.org/feed/",
+      "lang": "en",
+      "tier": 1
+    },
+    {
+      "name": "STAT News",
+      "url": "https://www.statnews.com/feed/",
+      "lang": "en",
+      "tier": 1
+    },
+    {
+      "name": "IEEE Spectrum",
+      "url": "https://spectrum.ieee.org/feeds/feed.rss",
+      "lang": "en",
+      "tier": 1
+    },
+    {
+      "name": "Phys.org",
+      "url": "https://phys.org/rss-feed/",
       "lang": "en",
       "tier": 1
     }
