@@ -472,11 +472,11 @@ This tool does three things:
 - **Cloudflare Workers AI** — classifier model: 
   `@cf/qwen/qwen3-30b-a3b-fp8` (open-weight)
 - **Cron Trigger** — 5 batches daily:
-  - Daytime (13:00, 13:15, 13:30, 13:45 UTC): 4 batches
-  - Evening (23:00 UTC): 1 batch
+  - Daytime (15:00, 15:15, 15:30, 15:45 UTC): 4 batches
+  - Evening (16:00 UTC): 1 batch (protocol generation)
   - Sources dynamically allocated via `computeBatches()` — auto-adapts
     to `SOURCES.length`. Current: 60 sources across 5 batches
-    (capacity 60, maxPerSource=2, governed by `SUBREQUEST_LIMIT=50`).
+    (capacity 60, maxPerSource=10, governed by `SUBREQUEST_LIMIT=50`).
 
 **No external AI providers.** All classification runs on open-weight 
 models hosted by Cloudflare Workers AI.
@@ -533,7 +533,7 @@ Human–AI Monitor Research Team. (2026). Has the Singularity Already Arrived? A
 - ✅ RSS + HTML collector (60 sources: 30 AI + 30 Human)
 - ✅ Weekly protocol auto-generation (Markdown, EN/RU/ZH)
 - ✅ Daily interim protocol, weekly FINAL on Monday
-- ✅ Cron Trigger (5 batches daily: 13:00-13:45 + 23:00 UTC)
+- ✅ Cron Trigger (5 batches daily: 15:00-15:45 + 16:00 UTC)
 - ✅ First fully autonomous daily cycle completed (September 25, 2026)
 - ✅ Public API accessible worldwide
 - ✅ Type-safe YAML → TypeScript pipeline (build-time code generation)

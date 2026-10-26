@@ -464,7 +464,7 @@ xychart-beta
 - **Cloudflare Workers** (TypeScript) — среда выполнения, 20 API-эндпоинтов, Cron Trigger
 - **Cloudflare D1** (Serverless SQLite) — 4 таблицы: items, protocols, gap_history, index_history
 - **Cloudflare Workers AI** — модель классификатора: `@cf/qwen/qwen3-30b-a3b-fp8` (открытые веса)
-- **Cron Trigger** — 5 batches ежедневно: 13:00, 13:15, 13:30, 13:45, 23:00 UTC
+- **Cron Trigger** — 5 batches ежедневно: 15:00, 15:15, 15:30, 15:45, 16:00 UTC
 
 **Никаких внешних ИИ-провайдеров.** Вся классификация выполняется на моделях с открытыми весами, размещённых в Cloudflare Workers AI.
 
@@ -519,7 +519,7 @@ Human–AI Monitor Research Team. (2026). Сингулярность уже на
 - ✅ Классификатор Workers AI (Qwen 3, откалиброван для 13 осей (12+1))
 - ✅ RSS + HTML коллектор (60 источников: 30 AI + 30 Human)
 - ✅ Автогенерация еженедельного протокола (Markdown, EN/RU/ZH)
-- ✅ Cron Trigger — 5 batches ежедневно (13:00-13:45 + 23:00 UTC)
+- ✅ Cron Trigger — 5 batches ежедневно (15:00-15:45 + 16:00 UTC)
 - ✅ Первый полностью автономный дневной цикл завершён (25 сентября 2026)
 - ✅ Ежедневный промежуточный протокол, финальный по понедельникам
 - ✅ Публичный API доступен по всему миру

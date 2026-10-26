@@ -466,7 +466,7 @@ xychart-beta
 - **Cloudflare Workers** (TypeScript) — 运行时，20个API端点，定时触发器
 - **Cloudflare D1** (无服务器SQLite) — 4个表：items、protocols、gap_history、index_history
 - **Cloudflare Workers AI** — 分类器模型：`@cf/qwen/qwen3-30b-a3b-fp8`（开放权重）
-- **定时触发器** — 每天5批：13:00、13:15、13:30、13:45、23:00 UTC
+- **定时触发器** — 每天5批：15:00、15:15、15:30、15:45、16:00 UTC
 
 **无外部AI提供商。** 所有分类都在Cloudflare Workers AI托管的开放权重模型上运行。
 
@@ -521,7 +521,7 @@ xychart-beta
 - ✅ Workers AI分类器（Qwen 3，校准为13个轴 (12+1)）
 - ✅ RSS + HTML收集器（60个来源：30 AI + 30 Human）
 - ✅ 每周协议自动生成（Markdown，EN/RU/ZH）
-- ✅ 定时触发器（每天5批：13:00-13:45 + 23:00 UTC）
+- ✅ 定时触发器（每天5批：15:00-15:45 + 16:00 UTC）
 - ✅ 第一个完全自治日周期完成（2026年9月25日）
 - ✅ 每日临时协议，周一最终协议
 - ✅ 全球公开API可访问
