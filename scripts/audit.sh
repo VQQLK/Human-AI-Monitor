@@ -105,7 +105,7 @@ fi
 if [ -f "src/config/weights.ts" ]; then
     ok "src/config/weights.ts существует"
     grep -q "smd: 0.20" src/config/weights.ts && ok "AI_WEIGHTS: smd = 0.20" || fail "AI_WEIGHTS: smd НЕ 0.20"
-    grep -q "h1_agency: 0.20" src/config/weights.ts && ok "HUMAN_WEIGHTS: h1_agency = 0.20" || fail "HUMAN_WEIGHTS: h1_agency НЕ 0.20"
+    grep -q "h1_science: 0.20" src/config/weights.ts && ok "HUMAN_WEIGHTS: h1_science = 0.20" || fail "HUMAN_WEIGHTS: h1_science НЕ 0.20"
 else
     fail "src/config/weights.ts отсутствует"
 fi
@@ -754,7 +754,7 @@ try:
 except: pass
 " 2>/dev/null)
 
-    for axis in smd itq agg cycle_velocity verification hexad h1_agency h2_sovereignty h3_wellbeing h4_equity h5_meaning h6_democracy; do
+    for axis in smd itq agg cycle_velocity verification hexad h1_science h2_engineering h3_culture h4_institutions h5_wellbeing h6_governance; do
         n=$(echo "$AXIS_COUNTS" | grep "^${axis}:" | cut -d: -f2)
         n=${n:-0}
         if [ "$n" -eq 0 ]; then
@@ -816,7 +816,7 @@ fi
 echo
 echo "── Оси в промптах ──"
 PROMPT_MISSING=""
-for axis in smd itq agg cycle_velocity verification hexad h1_agency h2_sovereignty h3_wellbeing h4_equity h5_meaning h6_democracy; do
+for axis in smd itq agg cycle_velocity verification hexad h1_science h2_engineering h3_culture h4_institutions h5_wellbeing h6_governance; do
     if ! grep -q "\"$axis\"" src/config/prompts.ts 2>/dev/null; then
         PROMPT_MISSING="$PROMPT_MISSING $axis"
     fi

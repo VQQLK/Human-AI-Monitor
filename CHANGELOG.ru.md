@@ -154,7 +154,7 @@
 
 - **AI Now Institute** (https://ainowinstitute.org/feed) как источник ИИ уровня tier 1
   - Фокус: управление ИИ, равенство, человеческая автономия
-  - Оси: h1_agency, h4_equity, h6_democracy
+  - Оси: h1_science, h4_institutions, h6_governance
   - Заменил Stanford HAI (RSS недоступен — все URL возвращают HTML вместо RSS)
 
 - **Миграция 0005**: удалены дубликаты из `index_history`

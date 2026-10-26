@@ -38,12 +38,12 @@ The monitoring system has **two parallel groups of axes**: 6 describe the **arti
 
 | Symbol | Name | What Is Measured | Alarm Threshold |
 |--------|------|------------------|-----------------|
-| **H1 Agency** | Human Agency | Ability to make decisions without delegating to AI | Sustained decline in key domains |
-| **H2 Sovereignty** | Cognitive Sovereignty | Critical thinking, independence of judgment | Growing share unable to distinguish AI content |
-| **H3 Wellbeing** | Wellbeing & Mental Health | Mental health, loneliness, anxiety | Rising anxiety and loneliness among youth |
-| **H4 Equity** | Equity & Access | Distribution of AI benefits, digital inequality | Growing compute divide |
-| **H5 Meaning** | Meaning & Purpose | Meaning in life, job satisfaction | Decline in share finding meaning in work |
-| **H6 Democracy** | Democratic Resilience | Trust in institutions, resilience to disinformation | Sustained decline in trust |
+| **H1 Science** | Human Agency | Ability to make decisions without delegating to AI | Sustained decline in key domains |
+| **H2 Engineering** | Cognitive Sovereignty | Critical thinking, independence of judgment | Growing share unable to distinguish AI content |
+| **H3 Culture** | Wellbeing & Mental Health | Mental health, loneliness, anxiety | Rising anxiety and loneliness among youth |
+| **H4 Institutions** | Equity & Access | Distribution of AI benefits, digital inequality | Growing compute divide |
+| **H5 Wellbeing** | Meaning & Purpose | Meaning in life, job satisfaction | Decline in share finding meaning in work |
+| **H6 Governance** | Democratic Resilience | Trust in institutions, resilience to disinformation | Sustained decline in trust |
 
 ---
 
@@ -128,12 +128,12 @@ statistically rigorous quantification of uncertainty.
 
 | Humanity axis | Weight | Rationale |
 |---------------|--------|-----------|
-| H1 Agency | 0.20 | Human agency |
-| H2 Sovereignty | 0.15 | Cognitive sovereignty |
-| H3 Wellbeing | 0.20 | Wellbeing & mental health |
-| H4 Equity | 0.15 | Equity & access |
-| H5 Meaning | 0.15 | Meaning & purpose |
-| H6 Democracy | 0.15 | Democratic resilience |
+| H1 Science | 0.20 | Scientific Breakthroughs |
+| H2 Engineering | 0.15 | Engineering & Infrastructure |
+| H3 Culture | 0.20 | Wellbeing & mental health |
+| H4 Institutions | 0.15 | Equity & access |
+| H5 Wellbeing | 0.15 | Meaning & purpose |
+| H6 Governance | 0.15 | Democratic resilience |
 
 $\sum_i w_i^{AI} = \sum_j w_j^{H} = 1.0$. Weights are open for calibration; see §6 for limitations.
 

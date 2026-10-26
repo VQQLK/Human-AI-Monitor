@@ -19,7 +19,7 @@ Human–AI Monitor is an open monitoring system that simultaneously tracks the d
 The system operates with **13 axes**:
 
 - **A = {a₁, …, a₆}** — six AI axes (RSI — Recursive Self-Improvement): `SMD` (Self-Modification Depth), `ITQ` (Improvement Trajectory Quality), `AGG` (Autonomous Goal Generation), `Cycle Velocity`, `Verification`, `Hexad`.
-- **H = {h₁, …, h₆}** — six Humanity axes (HHI — Human Horizon Index): `H1 Agency`, `H2 Sovereignty`, `H3 Wellbeing`, `H4 Equity`, `H5 Meaning`, `H6 Democracy`.
+- **H = {h₁, …, h₆}** — six Humanity axes (HHI — Human Horizon Index): `H1 Science`, `H2 Engineering`, `H3 Culture`, `H4 Institutions`, `H5 Wellbeing`, `H6 Governance`.
 - **G = {g}** — one geopolitical meta-axis: measured and published, but **not included** in either `AI_score` or `Human_score`.
 
 Structure formula: `13 = 6 + 6 + 1`.

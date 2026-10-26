@@ -19,7 +19,7 @@ Human–AI Monitor 是一个开放的监测系统，同时追踪人工智能的�
 系统操作 **13 个轴**：
 
 - **A = {a₁, …, a₆}** — 六个 AI 轴（RSI — Recursive Self-Improvement）：`SMD`（Self-Modification Depth）、`ITQ`（Improvement Trajectory Quality）、`AGG`（Autonomous Goal Generation）、`Cycle Velocity`、`Verification`、`Hexad`。
-- **H = {h₁, …, h₆}** — 六个人类轴（HHI — Human Horizon Index）：`H1 Agency`、`H2 Sovereignty`、`H3 Wellbeing`、`H4 Equity`、`H5 Meaning`、`H6 Democracy`。
+- **H = {h₁, …, h₆}** — 六个人类轴（HHI — Human Horizon Index）：`H1 Science`、`H2 Engineering`、`H3 Culture`、`H4 Institutions`、`H5 Wellbeing`、`H6 Governance`。
 - **G = {g}** — 一个地缘政治元轴：被测量并发布，但**不包含**在 `AI_score` 或 `Human_score` 中。
 
 结构公式：`13 = 6 + 6 + 1`。

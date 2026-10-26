@@ -39,12 +39,12 @@ As of September 25, 2026, the system has completed its **first fully autonomous 
 
 | Symbol | What Is Measured | Alarm Threshold |
 |--------|------------------|-----------------|
-| H1 Agency | Human agency, decision autonomy | Sustained decline in key domains |
-| H2 Sovereignty | Cognitive sovereignty, critical thinking | Growing share unable to distinguish AI content |
-| H3 Wellbeing | Wellbeing, mental health, loneliness | Rising anxiety and loneliness among youth |
-| H4 Equity | Equity and access, compute divide | Growing compute divide |
-| H5 Meaning | Meaning and purpose in work | Decline in share finding meaning in work |
-| H6 Democracy | Institutional resilience, trust | Sustained decline in trust |
+| H1 Science | Scientific Breakthroughs, decision autonomy | Sustained decline in key domains |
+| H2 Engineering | Engineering & Infrastructure, critical thinking | Growing share unable to distinguish AI content |
+| H3 Culture | Wellbeing, mental health, loneliness | Rising anxiety and loneliness among youth |
+| H4 Institutions | Institutions & Education, compute divide | Growing compute divide |
+| H5 Wellbeing | Wellbeing & Health in work | Decline in share finding meaning in work |
+| H6 Governance | Governance & Rights, trust | Sustained decline in trust |
 
 ### 2.3. Bayesian Axis Level
 

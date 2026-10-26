@@ -155,7 +155,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **AI Now Institute** (https://ainowinstitute.org/feed) as tier 1 AI source
   - Focus: AI governance, equity, human agency
-  - Axes: h1_agency, h4_equity, h6_democracy
+  - Axes: h1_science, h4_institutions, h6_governance
   - Replaced Stanford HAI (RSS unavailable — all URLs return HTML instead of RSS)
 
 - **Migration 0005**: Removed duplicate entries from `index_history`

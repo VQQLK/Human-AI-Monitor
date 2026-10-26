@@ -153,7 +153,7 @@
 
 - **AI Now Institute**（https://ainowinstitute.org/feed）作为 tier 1 AI 来源
   - 专注：AI治理、公平性、人类自主性
-  - 轴线：h1_agency、h4_equity、h6_democracy
+  - 轴线：h1_science、h4_institutions、h6_governance
   - 替换 Stanford HAI（RSS不可用——所有URL返回HTML而非RSS）
 
 - **迁移0005**：从 `index_history` 中删除重复条目

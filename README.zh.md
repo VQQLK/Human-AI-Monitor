@@ -418,12 +418,12 @@ xychart-beta
 
 **6 个人类轴线 (HHI — 人类前景指数):**
 
-- **H1 Agency** — 人类能动性
-- **H2 Sovereignty** — 认知主权
-- **H3 Wellbeing** — 心理健康和福祉
-- **H4 Equity** — 公平与可及性
-- **H5 Meaning** — 意义与目的
-- **H6 Democracy** — 制度韧性
+- **H1 Science** — 人类能动性
+- **H2 Engineering** — 认知主权
+- **H3 Culture** — 心理健康和福祉
+- **H4 Institutions** — 公平与可及性
+- **H5 Wellbeing** — 意义与目的
+- **H6 Governance** — 制度韧性
 
 **差距指数** — 人工智能发展与人类现状之间的差距。
 

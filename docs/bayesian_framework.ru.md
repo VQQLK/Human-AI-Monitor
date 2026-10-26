@@ -19,7 +19,7 @@ Human–AI Monitor — открытая система мониторинга, �
 Система оперирует **13 осями**:
 
 - **A = {a₁, …, a₆}** — шесть осей ИИ (RSI — Recursive Self-Improvement): `SMD` (Self-Modification Depth), `ITQ` (Improvement Trajectory Quality), `AGG` (Autonomous Goal Generation), `Cycle Velocity`, `Verification`, `Hexad`.
-- **H = {h₁, …, h₆}** — шесть осей Человечества (HHI — Human Horizon Index): `H1 Agency`, `H2 Sovereignty`, `H3 Wellbeing`, `H4 Equity`, `H5 Meaning`, `H6 Democracy`.
+- **H = {h₁, …, h₆}** — шесть осей Человечества (HHI — Human Horizon Index): `H1 Science`, `H2 Engineering`, `H3 Culture`, `H4 Institutions`, `H5 Wellbeing`, `H6 Governance`.
 - **G = {g}** — одна геополитическая мета-ось: измеряется и публикуется, но **не входит** ни в `AI_score`, ни в `Human_score`.
 
 Формула структуры: `13 = 6 + 6 + 1`.

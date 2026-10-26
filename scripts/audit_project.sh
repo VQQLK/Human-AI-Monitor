@@ -89,7 +89,7 @@ fi
 if [ -f "src/config/weights.ts" ]; then
     ok "src/config/weights.ts существует"
     grep -q "smd: 0.20" src/config/weights.ts && ok "AI_WEIGHTS: smd = 0.20" || fail "AI_WEIGHTS: smd НЕ 0.20"
-    grep -q "h1_agency: 0.20" src/config/weights.ts && ok "HUMAN_WEIGHTS: h1_agency = 0.20" || fail "HUMAN_WEIGHTS: h1_agency НЕ 0.20"
+    grep -q "h1_science: 0.20" src/config/weights.ts && ok "HUMAN_WEIGHTS: h1_science = 0.20" || fail "HUMAN_WEIGHTS: h1_science НЕ 0.20"
 else
     fail "src/config/weights.ts отсутствует"
 fi

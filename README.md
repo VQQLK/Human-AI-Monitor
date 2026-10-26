@@ -417,12 +417,12 @@ xychart-beta
 
 **6 Human Achievement axes (HHI — Human Horizon Index):**
 
-- **H1 Agency** — Human agency
-- **H2 Sovereignty** — Cognitive sovereignty
-- **H3 Wellbeing** — Mental health and wellbeing
-- **H4 Equity** — Equity and access
-- **H5 Meaning** — Meaning and purpose
-- **H6 Democracy** — Institutional resilience
+- **H1 Science** — Scientific Breakthroughs
+- **H2 Engineering** — Engineering & Infrastructure
+- **H3 Culture** — Culture & Arts
+- **H4 Institutions** — Institutions & Education
+- **H5 Wellbeing** — Wellbeing & Health
+- **H6 Governance** — Governance & Rights
 
 **Gap Index** — the gap between AI development and Humanity's state.
 

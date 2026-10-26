@@ -39,12 +39,12 @@ Human–AI Monitor 提出了一种**操作化的结构**：**13个轴 (12+1)，�
 
 | 符号 | 名称 | 测量内容 | 警戒阈值 |
 |:---|:---|:---|:---|
-| **H1 Agency** | Human Agency | 不委托给AI的决策能力 | 关键领域持续下降 |
-| **H2 Sovereignty** | Cognitive Sovereignty | 批判性思维、判断独立性 | 无法区分AI内容的比例增长 |
-| **H3 Wellbeing** | Wellbeing & Mental Health | 心理健康、孤独、焦虑 | 青年中焦虑和孤独感上升 |
-| **H4 Equity** | Equity & Access | AI利益分配、数字不平等 | 计算资源鸿沟增长 |
-| **H5 Meaning** | Meaning & Purpose | 生活意义、工作满意度 | 在工作中找到意义的比例下降 |
-| **H6 Democracy** | Democratic Resilience | 对机构的信任、抵御虚假信息 | 信任持续下降 |
+| **H1 Science** | Human Agency | 不委托给AI的决策能力 | 关键领域持续下降 |
+| **H2 Engineering** | Cognitive Sovereignty | 批判性思维、判断独立性 | 无法区分AI内容的比例增长 |
+| **H3 Culture** | Wellbeing & Mental Health | 心理健康、孤独、焦虑 | 青年中焦虑和孤独感上升 |
+| **H4 Institutions** | Equity & Access | AI利益分配、数字不平等 | 计算资源鸿沟增长 |
+| **H5 Wellbeing** | Meaning & Purpose | 生活意义、工作满意度 | 在工作中找到意义的比例下降 |
+| **H6 Governance** | Democratic Resilience | 对机构的信任、抵御虚假信息 | 信任持续下降 |
 
 ---
 
@@ -127,12 +127,12 @@ $G^{(k)}$ 的后验均值，带有95%可信区间。这提供了统计上严格�
 
 | 人类轴 | 权重 | 依据 |
 |--------|------|------|
-| H1 Agency | 0.20 | 人类主体性 |
-| H2 Sovereignty | 0.15 | 认知主权 |
-| H3 Wellbeing | 0.20 | 福祉与心理健康 |
-| H4 Equity | 0.15 | 公平与可及 |
-| H5 Meaning | 0.15 | 意义与目标 |
-| H6 Democracy | 0.15 | 民主韧性 |
+| H1 Science | 0.20 | 人类主体性 |
+| H2 Engineering | 0.15 | 认知主权 |
+| H3 Culture | 0.20 | 福祉与心理健康 |
+| H4 Institutions | 0.15 | 公平与可及 |
+| H5 Wellbeing | 0.15 | 意义与目标 |
+| H6 Governance | 0.15 | 民主韧性 |
 
 $\sum_i w_i^{AI} = \sum_j w_j^{H} = 1.0$。权重开放校准；局限性见 §6。
 
