@@ -29,13 +29,6 @@ export default {
       "note": "US politics, Congress, democratic institutions"
     },
     {
-      "name": "The Hill — News",
-      "url": "https://thehill.com/feed/",
-      "lang": "en",
-      "tier": 1,
-      "note": "US politics, international summits (Xi/Trump)"
-    },
-    {
       "name": "NPR — World",
       "url": "https://feeds.npr.org/1004/rss.xml",
       "lang": "en",
@@ -195,6 +188,12 @@ export default {
     {
       "name": "Quanta Magazine",
       "url": "https://www.quantamagazine.org/feed/",
+      "lang": "en",
+      "tier": 1
+    },
+    {
+      "name": "New Scientist",
+      "url": "https://www.newscientist.com/feed/",
       "lang": "en",
       "tier": 1
     }
