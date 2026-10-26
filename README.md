@@ -9,7 +9,7 @@ and Humanity.**
 ## 📊 Current State of Development
 
 **Updated:** October 26, 2026  
-**Baseline:** Updated on October 26, 2026 — based on 127 items (sample size: 126).
+**Baseline:** Updated on October 26, 2026 — based on 121 items (sample size: 117).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
@@ -17,13 +17,13 @@ and Humanity.**
 
 | Metric | Value (10-26) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.446** | Current value |
-| **🔴 AI Score** | 🤖 **0.613** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.167** | AI is ahead |
-| **📊 CI95** | **[−0.534, +0.201]** | Inconclusive |
+| **🟢 Humanity Score** | 🌐 **0.467** | Current value |
+| **🔴 AI Score** | 🤖 **0.614** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.146** | AI is ahead |
+| **📊 CI95** | **[−0.520, +0.227]** | Inconclusive |
 | **⚡ Threshold Shifts** | **3** | Critical events detected |
-| **📈 Items Analyzed** | **127** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **126** | Axis-signal pairs |
+| **📈 Items Analyzed** | **121** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **117** | Axis-signal pairs |
 
 </div>
 
@@ -35,9 +35,9 @@ and Humanity.**
 xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
     x-axis ["25/10", "25/10"]
-    y-axis "Score" 0.396 --> 0.800
-    bar [0.446, 0.446]
-    line [0.613, 0.613]
+    y-axis "Score" 0.400 --> 0.800
+    bar [0.467, 0.467]
+    line [0.614, 0.614]
 ```
 
 #### 📉 Gap Index Dynamics (Humanity minus AI)
@@ -46,8 +46,8 @@ xychart-beta
 xychart-beta
     title "Gap Index | Positive = Humanity leading, Negative = AI leading"
     x-axis ["25/10", "25/10"]
-    y-axis "Gap" -0.217 --> 0.250
-    line [-0.167, -0.167]
+    y-axis "Gap" -0.196 --> 0.250
+    line [-0.146, -0.146]
 ```
 
 #### 📅 Daily Gap trajectory
@@ -82,7 +82,7 @@ xychart-beta
 
 | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 25/10 | 0.613 | 0.446 | −0.167 | [−0.534, +0.201] | 127 | 126 | FINAL |
+| 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | FINAL |
 
 ---
 
