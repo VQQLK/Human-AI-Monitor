@@ -44,7 +44,7 @@ describe("dynamic cron batching invariants", () => {
         for (const n of N_RANGE) {
             const nums = Object.values(computeBatches(n))
                 .map((b) => b.batch).sort((a, b) => a - b);
-            expect(nums).toEqual([1, 2, 3, 4, 5]);
+            expect(nums).toEqual([1, 2, 3, 4]);
         }
     });
 
@@ -52,9 +52,9 @@ describe("dynamic cron batching invariants", () => {
         expect(() => computeBatches(BATCH_MAX_SOURCES + 1)).toThrow(/capacity/);
     });
 
-    it("regression anchor: N = 41 distributes exactly [9, 8, 8, 8, 8]", () => {
+    it("regression anchor: N = 41 distributes exactly [11, 10, 10, 10]", () => {
         const limits = Object.values(computeBatches(41))
             .sort((a, b) => a.batch - b.batch).map((b) => b.limit);
-        expect(limits).toEqual([9, 8, 8, 8, 8]);
+        expect(limits).toEqual([11, 10, 10, 10]);
     });
 });

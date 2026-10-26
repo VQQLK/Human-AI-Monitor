@@ -886,8 +886,7 @@ export const CRON_BATCH_META: Record<string, { batch: number; maxPerSource: numb
 	"0 15 * * *":  { batch: 1, maxPerSource: 10, generateProtocol: false },
 	"15 15 * * *":  { batch: 2, maxPerSource: 10, generateProtocol: false },
 	"30 15 * * *":  { batch: 3, maxPerSource: 10, generateProtocol: false },
-	"45 15 * * *":  { batch: 4, maxPerSource: 10, generateProtocol: false },
-	"0 16 * * *":  { batch: 5, maxPerSource: 10, generateProtocol: true },
+	"0 16 * * *":  { batch: 4, maxPerSource: 10, generateProtocol: true },
 };
 export const SUBREQUEST_LIMIT = 50;
 export const EXTERNAL_LIMIT = 50;
@@ -985,6 +984,48 @@ async function runCollectionCycle(
     console.error("[cycle] error: " + (e as Error).message);
     return { processed: false, reason: 'error: ' + (e as Error).message };
   }
+}
+
+async function handleDedicatedDispatch(env: Env): Promise<void> {
+	const now = new Date();
+	const day = now.getUTCDay();
+	const diff = now.getUTCDate() - day + (day === 0 ? -6 : 1);
+	const monday = new Date(now);
+	monday.setUTCDate(diff);
+	const weekToTranslate = monday.toISOString().split("T")[0];
+
+	try {
+		const existing = await env.DB.prepare(
+			"SELECT content_ru FROM protocols WHERE week_start = ?"
+		).bind(weekToTranslate).first<{ content_ru: string | null }>();
+
+		const isMonday = day === 1;
+		if (!isMonday && existing?.content_ru) {
+			console.log("[dispatch] skip: " + weekToTranslate + " already translated (non-Monday)");
+			return;
+		}
+
+		const res = await fetch(
+			"https://api.github.com/repos/VQQLK/Human-AI-Monitor/actions/workflows/translate-protocols.yml/dispatches",
+			{
+				method: "POST",
+				headers: {
+					"Accept": "application/vnd.github+json",
+					"Authorization": "Bearer " + env.GITHUB_PAT,
+					"User-Agent": "human-ai-monitor-worker",
+					"X-GitHub-Api-Version": "2022-11-28",
+				},
+				body: JSON.stringify({ ref: "main", inputs: { week: weekToTranslate } }),
+			}
+		);
+		console.log("[dispatch] translate-protocols HTTP " + res.status + " (week=" + weekToTranslate + ")");
+		if (!res.ok) {
+			const txt = await res.text();
+			console.error("[dispatch] body: " + txt.slice(0, 300));
+		}
+	} catch (e) {
+		console.error("[dispatch] error: " + (e as Error).message);
+	}
 }
 
 export default {
@@ -1717,6 +1758,12 @@ export default {
 	},
 
 	async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
+		// Dedicated dispatch slot: clean worker, no collection, 1-2 subrequests.
+		if (event.cron === "5 16 * * *") {
+			ctx.waitUntil(handleDedicatedDispatch(env));
+			return;
+		}
+
 		// Architecture v2: 5 cron triggers (Cloudflare Free plan limit)
 		// 13:00-13:45 UTC: 4 batches of 8 (daytime, covers 32 of the 41 currently-enabled sources)
 		// 23:00 UTC: 1 batch of 9 at reduced depth (evening, covers the remaining 9 sources)
@@ -1790,54 +1837,6 @@ export default {
 						}
 					} catch (e) {
 						console.error("[cron] sync-protocols dispatch error: " + (e as Error).message);
-					}
-				})());
-			}
-
-			// Delay 60s before translate-dispatch to avoid SQLITE_BUSY on protocols table
-			if (cfg.generateProtocol) {
-				await new Promise((r) => setTimeout(r, 60_000));
-			}
-
-			// Dispatch translate-protocols workflow (EN→RU/ZH translation).
-			// Runs whenever the target week lacks RU content (content_ru IS NULL).
-			// Mon: FINAL for prev week. Tue-Sun: INTERIM for current week.
-			if (cfg.generateProtocol) {
-				ctx.waitUntil((async () => {
-					try {
-						const weekToTranslate = isMonday
-							? getWeekRange(1).start
-							: getWeekRange(0).start;
-						const existing = await env.DB.prepare(
-							"SELECT content_ru FROM protocols WHERE week_start = ?"
-						).bind(weekToTranslate).first<{ content_ru: string | null }>();
-						if (!isMonday && existing?.content_ru) {
-							console.log("[cron] translate skip: " + weekToTranslate + " already translated (non-Monday)");
-							return;
-						}
-						if (isMonday && existing?.content_ru) {
-							console.log("[cron] Monday FINAL override: re-translating " + weekToTranslate + " (was INTERIM)");
-						}
-						const res = await fetch(
-							"https://api.github.com/repos/VQQLK/Human-AI-Monitor/actions/workflows/translate-protocols.yml/dispatches",
-							{
-								method: "POST",
-								headers: {
-									"Accept": "application/vnd.github+json",
-									"Authorization": "Bearer " + env.GITHUB_PAT,
-									"User-Agent": "human-ai-monitor-worker",
-									"X-GitHub-Api-Version": "2022-11-28",
-								},
-								body: JSON.stringify({ ref: "main", inputs: { week: weekToTranslate } }),
-							}
-						);
-						console.log("[cron] translate-protocols dispatch: HTTP " + res.status + " (week=" + weekToTranslate + ")");
-						if (!res.ok) {
-							const txt = await res.text();
-							console.error("[cron] translate-protocols dispatch body: " + txt.slice(0, 300));
-						}
-					} catch (e) {
-						console.error("[cron] translate-protocols dispatch error: " + (e as Error).message);
 					}
 				})());
 			}
