@@ -7,6 +7,23 @@ All notable changes to Human-AI Monitor will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-10-26
+
+### Added
+- Human Achievements axes: h1_science, h2_engineering, h3_culture, h4_institutions, h5_wellbeing, h6_governance
+- New sources: Nature, Quanta, Phys.org, IEEE Spectrum, STAT News, New Scientist, Issues in S&T, Inside Higher Ed, SpaceNews
+- Nobel Prize Winners in voices
+- Balanced sources: 30 AI + 30 Human = 60
+
+### Changed
+- Gap Index now measures Human Progress vs AI Progress (Achievements vs Challenges)
+- Cron schedule: 15:00-15:45 + 16:00 UTC (was 13:00-13:45 + 23:00)
+- Prompt: Rule 14 (Human Achievement Focus)
+
+### Removed
+- Old axes: h1_agency, h2_sovereignty, h3_wellbeing, h4_equity, h5_meaning, h6_democracy
+- Sources: DARPA, BAIR, NIST AI, EU AI Act, OECD, TechNode, The Decoder, LessWrong, Ahead of AI, CBS News (Politics/World), WHO News, CPJ, Reuters Institute, The Hill — News
+
 ## [1.0.2] - 2026-09-29
 
 ### Changed
