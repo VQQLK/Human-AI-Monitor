@@ -99,13 +99,6 @@ export default {
       "note": "Психология, внутренняя жизнь, смысл"
     },
     {
-      "name": "Human Rights Watch",
-      "url": "https://www.hrw.org/rss/news",
-      "lang": "en",
-      "tier": 1,
-      "note": "Права человека, Global South, конфликты"
-    },
-    {
       "name": "3 Quarks Daily",
       "url": "https://3quarksdaily.com/feed",
       "lang": "en",
@@ -196,7 +189,10 @@ export default {
       "url": "https://www.newscientist.com/feed/",
       "lang": "en",
       "tier": 1
+    },
+    {
+      "name": "Business & Human Rights Resource Centre",
+      "url": "https://www.business-humanrights.org/en/latest-news/feed/"
     }
-  ],
-  "html_sources": []
+  ]
 } as const;

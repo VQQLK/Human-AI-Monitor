@@ -115,7 +115,7 @@ export default {
       ],
       "sources": [
         "V-Dem",
-        "HRW",
+        "Business & Human Rights Resource Centre",
         "CPJ"
       ]
     }

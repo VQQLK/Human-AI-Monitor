@@ -60,7 +60,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 ## 4. Known issues (by priority)
 
 ### 🟢 h1_agency, h5_meaning coverage — RESOLVED
-- Added: Aeon, Psyche (h5_meaning), Oxfam, HRW (h4_equity)
+- Added: Aeon, Psyche (h5_meaning), Oxfam, Business & Human Rights Resource Centre (h6_governance)
 
 ### 🟢 Non-English sources — RESOLVED
 - Added: TASS (ru), FT Chinese (zh), Al Jazeera, The Hindu (en, Global South)
@@ -777,6 +777,6 @@ A mention is extracted **if and only if BOTH** conditions are met:
 
 **AI (30):** OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral, Hugging Face, arXiv ×4, MIT Tech Review, The Verge, Ars Technica, AI Alignment, Import AI, AI News, Politico Tech, The Hill Policy, CBS Tech, WSJ World, AI Now, Latent Space, TechCrunch, WSJ Tech, BBC, FT AI, Guardian AI, Quantum Insider, DARPA, Synced Review.
 
-**Human (30):** WHO, Benton, Reuters Institute, Noema, Politico Politics, The Hill News, NPR, CBS World, CBS Politics, CPJ, Pew, EFF, Our World in Data, ТАСС, FT Chinese, Al Jazeera, The Hindu, Aeon, Psyche, HRW, 3 Quarks, Axios, **Science**, **MIT News (Engineering)**, **ScienceDaily**, **SpaceNews**, **The Atlantic**, **Inside Higher Ed**.
+**Human (30):** WHO, Benton, Reuters Institute, Noema, Politico Politics, The Hill News, NPR, CBS World, CBS Politics, CPJ, Pew, EFF, Our World in Data, ТАСС, FT Chinese, Al Jazeera, The Hindu, Aeon, Psyche, Business & Human Rights Resource Centre, 3 Quarks, Axios, **Science**, **MIT News (Engineering)**, **ScienceDaily**, **SpaceNews**, **The Atlantic**, **Inside Higher Ed**.
 
 *For questions — see docs/methodology.md (Gap math) and scripts/audit.sh (what is checked).*
