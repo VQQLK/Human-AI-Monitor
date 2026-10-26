@@ -185,6 +185,18 @@ export default {
       "url": "https://phys.org/rss-feed/",
       "lang": "en",
       "tier": 1
+    },
+    {
+      "name": "Nature",
+      "url": "https://www.nature.com/nature.rss",
+      "lang": "en",
+      "tier": 1
+    },
+    {
+      "name": "Quanta Magazine",
+      "url": "https://www.quantamagazine.org/feed/",
+      "lang": "en",
+      "tier": 1
     }
   ],
   "html_sources": []

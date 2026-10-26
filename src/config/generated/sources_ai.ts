@@ -88,12 +88,6 @@ export default {
       "tier": 1
     },
     {
-      "name": "LessWrong — AI",
-      "url": "https://www.lesswrong.com/feed.xml?view=curated-rss",
-      "lang": "en",
-      "tier": 2
-    },
-    {
       "name": "Import AI (Jack Clark)",
       "url": "https://importai.substack.com/feed",
       "lang": "en",
@@ -151,13 +145,6 @@ export default {
       "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
       "lang": "en",
       "tier": 2
-    },
-    {
-      "name": "Ahead of AI (Sebastian Raschka)",
-      "url": "https://magazine.sebastianraschka.com/feed",
-      "lang": "en",
-      "tier": 1,
-      "note": "Глубокий анализ архитектур LLM, математика, обзоры статей"
     },
     {
       "name": "WSJ — Tech",
