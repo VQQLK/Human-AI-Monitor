@@ -152,7 +152,7 @@ def fetch_json(url, retries=3):
 
 def fetch_daily_snapshots():
     try:
-        data = fetch_json(f"{API}/daily-snapshots?limit=15")
+        data = fetch_json(f"{API}/daily-snapshots?limit=30")
         return data.get("snapshots", [])
     except Exception as e:
         print(f"[update_readme] /daily-snapshots fetch failed: {e}", file=sys.stderr)
