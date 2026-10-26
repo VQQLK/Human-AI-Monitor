@@ -76,11 +76,6 @@ rss:
   tier: 1
   note: Психология, внутренняя жизнь, смысл
 
-- name: Human Rights Watch
-  url: https://www.hrw.org/rss/news
-  lang: en
-  tier: 1
-  note: Права человека, Global South, конфликты
 - name: 3 Quarks Daily
   url: https://3quarksdaily.com/feed
   lang: en
@@ -145,3 +140,5 @@ rss:
   lang: en
   tier: 1
 html_sources: []
+- name: Business & Human Rights Resource Centre
+  url: https://www.business-humanrights.org/en/latest-news/feed/
