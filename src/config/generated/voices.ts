@@ -801,6 +801,18 @@ export default {
       "keywords": [
         "Perplexity"
       ]
+    },
+    {
+      "name": "Nobel Prize Winners",
+      "category": "mathematics",
+      "keywords": [
+        "Nobel Prize",
+        "Nobel Laureate",
+        "Nobel laureate",
+        "Nobel winner",
+        "Нобелевская премия",
+        "Нобелевский лауреат"
+      ]
     }
   ]
 } as const;
