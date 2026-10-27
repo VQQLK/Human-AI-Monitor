@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年10月26日  
-**基线：** 2026年10月26日更新 — 基于 121 个项目（样本量：117）。
+**更新:** 2026年10月27日  
+**基线：** 2026年10月27日更新 — 基于 167 个项目（样本量：147）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (10-26) | 状态 |
+| 指标 | 数值 (10-27) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.467** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.614** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.146** | 人工智能领先 |
-| **📊 CI95** | **[−0.520, +0.227]** | 不确定 |
-| **⚡ 阈值变化** | **3** | 检测到关键事件 |
-| **📈 分析项目** | **121** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **117** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.620** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.679** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.059** | 人工智能领先 |
+| **📊 CI95** | **[−0.370, +0.260]** | 不确定 |
+| **⚡ 阈值变化** | **4** | 检测到关键事件 |
+| **📈 分析项目** | **167** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **147** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["09/10", "10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10"]
-    y-axis "差距" -0.675 --> -0.131
-    line [-0.310, -0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349]
+    x-axis ["10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10"]
+    y-axis "差距" -0.675 --> 0.041
+    line [-0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | 临时版 |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | 临时版 |
 | 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | 临时版 |
 | 23/10 | 0.827 | 0.293 | −0.533 | [−0.738, −0.303] | 752 | 672 | 临时版 |
@@ -77,13 +78,15 @@ xychart-beta
 | 13/10 | 0.634 | 0.404 | −0.231 | [−0.569, +0.125] | 82 | 63 | 临时版 |
 | 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 337 | 295 | 临时版 |
 | 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 304 | 263 | 临时版 |
-| 09/10 | 0.660 | 0.350 | −0.310 | [−0.611, +0.006] | 266 | 207 | 临时版 |
 
 #### 📚 协议历史
 
 | 周 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | 最终版 |
+
+> 📌 临时协议（仅供参考，不在图表上）：27/10 — AI 0.679 · 人类 0.620 · 差距 −0.059 · 167 / 147 items.
+> 最后一点为临时版，将于周一替换为最终版。
 
 ---
 
@@ -92,6 +95,90 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Meta — 2026-10-21**
+
+> Zuckerberg considered leaving CA over wealth tax, Meta says
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/zuckerberg-considered-leaving-ca-over-wealth-tax-meta-says-01131087)*
+
+**Mark Zuckerberg (Meta) — 2026-10-21**
+
+> Zuckerberg considered leaving CA over wealth tax, Meta says
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/zuckerberg-considered-leaving-ca-over-wealth-tax-meta-says-01131087)*
+
+**Meta — 2026-10-22**
+
+> ‘Just the beginning’: New Mexico AG warns AI industry after $25B Meta ruling
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/22/just-the-beginning-new-mexico-ag-warns-ai-industry-after-25b-meta-ruling-01133294)*
+
+**Meta — 2026-10-21**
+
+> New Mexico judge orders Meta to pay state $25B over privacy practices
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/new-mexico-meta-cambridge-analytica-judgment-01130539)*
+
+**Meta — 2026-10-27**
+
+> Prospect Theory in Large Language Models: A Meta-Analysis of Loss Aversion, Diminishing Sensitivity, and Probability Weighting
+
+— *[arXiv cs.AI](https://arxiv.org/abs/2610.33103)*
+
+**Nvidia — 2026-10-21**
+
+> NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required
+
+— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/kumo-relational)*
+
+**Mistral AI — 2026-09-08**
+
+> Mistral raises €3B to make sovereign, open-weight AI the technology frontier
+
+— *[Mistral AI](https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier)*
+
+**Mistral AI — 2026-09-10**
+
+> Cloudera and Mistral Partner to Bring Specialized, Sovereign Intelligence to Enterprise Data
+
+— *[Mistral AI](https://mistral.ai/news/mistral-x-cloudera)*
+
+**Mistral AI — 2026-09-16**
+
+> Mistral and Mozilla are bringing open, private and multilingual AI to your web browser
+
+— *[Mistral AI](https://mistral.ai/news/mistral-x-mozilla)*
+
+**OpenAI — 2026-10-26**
+
+> How Ultrafast cut incident investigation from hours to minutes at OpenAI
+
+— *[OpenAI Blog](https://openai.com/index/openai-cut-incident-investigation)*
+
+**OpenAI — 2026-10-26**
+
+> Introducing GPT-6.1 Terra
+
+— *[OpenAI Blog](https://openai.com/index/introducing-gpt-6-1-terra)*
+
+**OpenAI — 2026-10-26**
+
+> ChatGPT’s expanding world of work
+
+— *[OpenAI Blog](https://openai.com/index/chatgpt-expanding-world-of-work)*
+
+**OpenAI — 2026-10-26**
+
+> GPT-6.1 Sol helps CodeRabbit strengthen security across complex codebases
+
+— *[OpenAI Blog](https://openai.com/index/gpt-6-1-sol-coderabbit-code-security)*
+
+**OpenAI — 2026-10-26**
+
+> Greptile takes bug detection beyond code review with GPT-6 Astra
+
+— *[OpenAI Blog](https://openai.com/index/greptile-code-review-codex-astra)*
 
 **OpenAI — 2026-10-26**
 
@@ -296,6 +383,14 @@ xychart-beta
 > OpenAI and Poland’s NASK partner to advance AI safety and security
 
 — *[OpenAI Blog](https://openai.com/index/openai-nask-ai-safety-security-partnership)*
+
+### 💼 投资人与科技领袖
+
+**Peter Thiel (Founders Fund) — 2026-10-21**
+
+> Peter Thiel breaks with Trump over Iran war: ‘We should not have done it’
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/peter-thiel-trump-iran-war-01131284)*
 
 ## 这是什么
 

@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** October 26, 2026  
-**Baseline:** Updated on October 26, 2026 — based on 121 items (sample size: 117).
+**Updated:** October 27, 2026  
+**Baseline:** Updated on October 27, 2026 — based on 167 items (sample size: 147).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (10-26) | Status |
+| Metric | Value (10-27) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.467** | Current value |
-| **🔴 AI Score** | 🤖 **0.614** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.146** | AI is ahead |
-| **📊 CI95** | **[−0.520, +0.227]** | Inconclusive |
-| **⚡ Threshold Shifts** | **3** | Critical events detected |
-| **📈 Items Analyzed** | **121** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **117** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.620** | Current value |
+| **🔴 AI Score** | 🤖 **0.679** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.059** | AI is ahead |
+| **📊 CI95** | **[−0.370, +0.260]** | Inconclusive |
+| **⚡ Threshold Shifts** | **4** | Critical events detected |
+| **📈 Items Analyzed** | **167** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **147** | Axis-signal pairs |
 
 </div>
 
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["09/10", "10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10"]
-    y-axis "Gap" -0.675 --> -0.131
-    line [-0.310, -0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349]
+    x-axis ["10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10"]
+    y-axis "Gap" -0.675 --> 0.041
+    line [-0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | INTERIM |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | INTERIM |
 | 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | INTERIM |
 | 23/10 | 0.827 | 0.293 | −0.533 | [−0.738, −0.303] | 752 | 672 | INTERIM |
@@ -76,13 +77,15 @@ xychart-beta
 | 13/10 | 0.634 | 0.404 | −0.231 | [−0.569, +0.125] | 82 | 63 | INTERIM |
 | 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 337 | 295 | INTERIM |
 | 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 304 | 263 | INTERIM |
-| 09/10 | 0.660 | 0.350 | −0.310 | [−0.611, +0.006] | 266 | 207 | INTERIM |
 
 #### 📚 Historical Protocols
 
 | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | FINAL |
+
+> 📌 Interim (reference, not on chart): 27/10 — AI 0.679 · Humanity 0.620 · Gap −0.059 · 167 / 147 items.
+> Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
 
@@ -91,6 +94,90 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Meta — 2026-10-21**
+
+> Zuckerberg considered leaving CA over wealth tax, Meta says
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/zuckerberg-considered-leaving-ca-over-wealth-tax-meta-says-01131087)*
+
+**Mark Zuckerberg (Meta) — 2026-10-21**
+
+> Zuckerberg considered leaving CA over wealth tax, Meta says
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/zuckerberg-considered-leaving-ca-over-wealth-tax-meta-says-01131087)*
+
+**Meta — 2026-10-22**
+
+> ‘Just the beginning’: New Mexico AG warns AI industry after $25B Meta ruling
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/22/just-the-beginning-new-mexico-ag-warns-ai-industry-after-25b-meta-ruling-01133294)*
+
+**Meta — 2026-10-21**
+
+> New Mexico judge orders Meta to pay state $25B over privacy practices
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/new-mexico-meta-cambridge-analytica-judgment-01130539)*
+
+**Meta — 2026-10-27**
+
+> Prospect Theory in Large Language Models: A Meta-Analysis of Loss Aversion, Diminishing Sensitivity, and Probability Weighting
+
+— *[arXiv cs.AI](https://arxiv.org/abs/2610.33103)*
+
+**Nvidia — 2026-10-21**
+
+> NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required
+
+— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/kumo-relational)*
+
+**Mistral AI — 2026-09-08**
+
+> Mistral raises €3B to make sovereign, open-weight AI the technology frontier
+
+— *[Mistral AI](https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier)*
+
+**Mistral AI — 2026-09-10**
+
+> Cloudera and Mistral Partner to Bring Specialized, Sovereign Intelligence to Enterprise Data
+
+— *[Mistral AI](https://mistral.ai/news/mistral-x-cloudera)*
+
+**Mistral AI — 2026-09-16**
+
+> Mistral and Mozilla are bringing open, private and multilingual AI to your web browser
+
+— *[Mistral AI](https://mistral.ai/news/mistral-x-mozilla)*
+
+**OpenAI — 2026-10-26**
+
+> How Ultrafast cut incident investigation from hours to minutes at OpenAI
+
+— *[OpenAI Blog](https://openai.com/index/openai-cut-incident-investigation)*
+
+**OpenAI — 2026-10-26**
+
+> Introducing GPT-6.1 Terra
+
+— *[OpenAI Blog](https://openai.com/index/introducing-gpt-6-1-terra)*
+
+**OpenAI — 2026-10-26**
+
+> ChatGPT’s expanding world of work
+
+— *[OpenAI Blog](https://openai.com/index/chatgpt-expanding-world-of-work)*
+
+**OpenAI — 2026-10-26**
+
+> GPT-6.1 Sol helps CodeRabbit strengthen security across complex codebases
+
+— *[OpenAI Blog](https://openai.com/index/gpt-6-1-sol-coderabbit-code-security)*
+
+**OpenAI — 2026-10-26**
+
+> Greptile takes bug detection beyond code review with GPT-6 Astra
+
+— *[OpenAI Blog](https://openai.com/index/greptile-code-review-codex-astra)*
 
 **OpenAI — 2026-10-26**
 
@@ -295,6 +382,14 @@ xychart-beta
 > OpenAI and Poland’s NASK partner to advance AI safety and security
 
 — *[OpenAI Blog](https://openai.com/index/openai-nask-ai-safety-security-partnership)*
+
+### 💼 Investors & Tech Leaders
+
+**Peter Thiel (Founders Fund) — 2026-10-21**
+
+> Peter Thiel breaks with Trump over Iran war: ‘We should not have done it’
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/peter-thiel-trump-iran-war-01131284)*
 
 ## What is this
 

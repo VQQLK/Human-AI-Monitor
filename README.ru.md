@@ -7,22 +7,22 @@
 
 ## 📊 Текущее состояние развития
 
-**Обновлено:** 26 октября 2026  
-**Базовая линия:** Обновлено 26 октября 2026 — на основе 121 элементов (размер выборки: 117).
+**Обновлено:** 27 октября 2026  
+**Базовая линия:** Обновлено 27 октября 2026 — на основе 167 элементов (размер выборки: 147).
 
 ### 🌍 Индекс разрыва Human–AI (Достижения vs Прогресс)
 
 <div align="center">
 
-| Метрика | Значение (26.10) | Статус |
+| Метрика | Значение (27.10) | Статус |
 |:---|:---:|:---:|
-| **🟢 Оценка Человечества** | 🌐 **0.467** | Текущее значение |
-| **🔴 Оценка ИИ** | 🤖 **0.614** | Текущее значение |
-| **⚖️ Индекс разрыва** | ⚖️ **−0.146** | ИИ впереди |
-| **📊 CI95** | **[−0.520, +0.227]** | Неопределённо |
-| **⚡ Ключевых сдвигов** | **3** | Обнаружены критические события |
-| **📈 Анализированных событий** | **121** | Недельная выборка |
-| **🔬 Размер выборки (байесовский)** | **117** | Пары «ось-сигнал» |
+| **🟢 Оценка Человечества** | 🌐 **0.620** | Текущее значение |
+| **🔴 Оценка ИИ** | 🤖 **0.679** | Текущее значение |
+| **⚖️ Индекс разрыва** | ⚖️ **−0.059** | ИИ впереди |
+| **📊 CI95** | **[−0.370, +0.260]** | Неопределённо |
+| **⚡ Ключевых сдвигов** | **4** | Обнаружены критические события |
+| **📈 Анализированных событий** | **167** | Недельная выборка |
+| **🔬 Размер выборки (байесовский)** | **147** | Пары «ось-сигнал» |
 
 </div>
 
@@ -54,13 +54,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Ежедневный разрыв | Положительный = Человечество впереди, Отрицательный = ИИ впереди"
-    x-axis ["09/10", "10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10"]
-    y-axis "Разрыв" -0.675 --> -0.131
-    line [-0.310, -0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349]
+    x-axis ["10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10"]
+    y-axis "Разрыв" -0.675 --> 0.041
+    line [-0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059]
 ```
 
 | Дата | ИИ | Человечество | Разрыв | CI95 | Элементов | Выборка | Тип |
 |---|---|---|---|---|---|---|---|
+| 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | ПРОМЕЖУТОЧНЫЙ |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | ПРОМЕЖУТОЧНЫЙ |
 | 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | ПРОМЕЖУТОЧНЫЙ |
 | 23/10 | 0.827 | 0.293 | −0.533 | [−0.738, −0.303] | 752 | 672 | ПРОМЕЖУТОЧНЫЙ |
@@ -75,13 +76,15 @@ xychart-beta
 | 13/10 | 0.634 | 0.404 | −0.231 | [−0.569, +0.125] | 82 | 63 | ПРОМЕЖУТОЧНЫЙ |
 | 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 337 | 295 | ПРОМЕЖУТОЧНЫЙ |
 | 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 304 | 263 | ПРОМЕЖУТОЧНЫЙ |
-| 09/10 | 0.660 | 0.350 | −0.310 | [−0.611, +0.006] | 266 | 207 | ПРОМЕЖУТОЧНЫЙ |
 
 #### 📚 История протоколов
 
 | Неделя | ИИ | Человечество | Разрыв | CI95 | Элементов | Выборка | Тип |
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | ФИНАЛЬНЫЙ |
+
+> 📌 Промежуточный протокол (справочно, не на графике): 27/10 — ИИ 0.679 · Человечество 0.620 · Разрыв −0.059 · 167 / 147 items.
+> Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.
 
 ---
 
@@ -90,6 +93,90 @@ xychart-beta
 ## Мнения
 
 ### 🧠 Ведущие Лаборатории ИИ
+
+**Meta — 2026-10-21**
+
+> Zuckerberg considered leaving CA over wealth tax, Meta says
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/zuckerberg-considered-leaving-ca-over-wealth-tax-meta-says-01131087)*
+
+**Mark Zuckerberg (Meta) — 2026-10-21**
+
+> Zuckerberg considered leaving CA over wealth tax, Meta says
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/zuckerberg-considered-leaving-ca-over-wealth-tax-meta-says-01131087)*
+
+**Meta — 2026-10-22**
+
+> ‘Just the beginning’: New Mexico AG warns AI industry after $25B Meta ruling
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/22/just-the-beginning-new-mexico-ag-warns-ai-industry-after-25b-meta-ruling-01133294)*
+
+**Meta — 2026-10-21**
+
+> New Mexico judge orders Meta to pay state $25B over privacy practices
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/new-mexico-meta-cambridge-analytica-judgment-01130539)*
+
+**Meta — 2026-10-27**
+
+> Prospect Theory in Large Language Models: A Meta-Analysis of Loss Aversion, Diminishing Sensitivity, and Probability Weighting
+
+— *[arXiv cs.AI](https://arxiv.org/abs/2610.33103)*
+
+**Nvidia — 2026-10-21**
+
+> NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required
+
+— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/kumo-relational)*
+
+**Mistral AI — 2026-09-08**
+
+> Mistral raises €3B to make sovereign, open-weight AI the technology frontier
+
+— *[Mistral AI](https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier)*
+
+**Mistral AI — 2026-09-10**
+
+> Cloudera and Mistral Partner to Bring Specialized, Sovereign Intelligence to Enterprise Data
+
+— *[Mistral AI](https://mistral.ai/news/mistral-x-cloudera)*
+
+**Mistral AI — 2026-09-16**
+
+> Mistral and Mozilla are bringing open, private and multilingual AI to your web browser
+
+— *[Mistral AI](https://mistral.ai/news/mistral-x-mozilla)*
+
+**OpenAI — 2026-10-26**
+
+> How Ultrafast cut incident investigation from hours to minutes at OpenAI
+
+— *[OpenAI Blog](https://openai.com/index/openai-cut-incident-investigation)*
+
+**OpenAI — 2026-10-26**
+
+> Introducing GPT-6.1 Terra
+
+— *[OpenAI Blog](https://openai.com/index/introducing-gpt-6-1-terra)*
+
+**OpenAI — 2026-10-26**
+
+> ChatGPT’s expanding world of work
+
+— *[OpenAI Blog](https://openai.com/index/chatgpt-expanding-world-of-work)*
+
+**OpenAI — 2026-10-26**
+
+> GPT-6.1 Sol helps CodeRabbit strengthen security across complex codebases
+
+— *[OpenAI Blog](https://openai.com/index/gpt-6-1-sol-coderabbit-code-security)*
+
+**OpenAI — 2026-10-26**
+
+> Greptile takes bug detection beyond code review with GPT-6 Astra
+
+— *[OpenAI Blog](https://openai.com/index/greptile-code-review-codex-astra)*
 
 **OpenAI — 2026-10-26**
 
@@ -294,6 +381,14 @@ xychart-beta
 > OpenAI and Poland’s NASK partner to advance AI safety and security
 
 — *[OpenAI Blog](https://openai.com/index/openai-nask-ai-safety-security-partnership)*
+
+### 💼 Инвесторы и техлидеры
+
+**Peter Thiel (Founders Fund) — 2026-10-21**
+
+> Peter Thiel breaks with Trump over Iran war: ‘We should not have done it’
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/21/peter-thiel-trump-iran-war-01131284)*
 
 ## Что это
 
