@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年10月27日  
-**基线：** 2026年10月27日更新 — 基于 167 个项目（样本量：147）。
+**更新:** 2026年10月28日  
+**基线：** 2026年10月28日更新 — 基于 315 个项目（样本量：302）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (10-27) | 状态 |
+| 指标 | 数值 (10-28) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.620** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.679** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.059** | 人工智能领先 |
-| **📊 CI95** | **[−0.370, +0.260]** | 不确定 |
-| **⚡ 阈值变化** | **4** | 检测到关键事件 |
-| **📈 分析项目** | **167** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **147** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.596** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.721** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.125** | 人工智能领先 |
+| **📊 CI95** | **[−0.409, +0.165]** | 不确定 |
+| **⚡ 阈值变化** | **7** | 检测到关键事件 |
+| **📈 分析项目** | **315** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **302** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10"]
+    x-axis ["11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10"]
     y-axis "差距" -0.675 --> 0.041
-    line [-0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059]
+    line [-0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | 临时版 |
 | 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | 临时版 |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | 临时版 |
 | 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 14/10 | 0.730 | 0.434 | −0.295 | [−0.599, +0.024] | 147 | 127 | 临时版 |
 | 13/10 | 0.634 | 0.404 | −0.231 | [−0.569, +0.125] | 82 | 63 | 临时版 |
 | 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 337 | 295 | 临时版 |
-| 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 304 | 263 | 临时版 |
 
 #### 📚 协议历史
 
@@ -85,7 +85,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：27/10 — AI 0.679 · 人类 0.620 · 差距 −0.059 · 167 / 147 items.
+> 📌 临时协议（仅供参考，不在图表上）：28/10 — AI 0.721 · 人类 0.596 · 差距 −0.125 · 315 / 302 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -95,6 +95,42 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-28**
+
+> Ukraine's Starlink woes spur Europe to look for non-Musk alternatives
+
+— *[Axios](https://www.axios.com/2026/10/28/starlink-musk-ukraine-war-satcom)*
+
+**OpenAI — 2026-10-28**
+
+> OpenAI launching election war room to track interference efforts
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/28/openai-election-war-room-interference-01137690)*
+
+**Nvidia — 2026-10-28**
+
+> NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcription You Can Prompt and Adapt
+
+— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/nemotron-transcribe-granary)*
+
+**Claude — 2026-10-27**
+
+> Expanding our partnership with GSA to bring Claude to all levels of government
+
+— *[Anthropic News](https://www.anthropic.com/news/expanding-partnership-gsa)*
+
+**OpenAI — 2026-10-27**
+
+> OpenAI expands partnership with Oracle to bring its apps to ChatGPT
+
+— *[OpenAI Blog](https://openai.com/index/oracle-apps-in-chatgpt)*
+
+**OpenAI — 2026-10-27**
+
+> Retell uses OpenAI models to help power 100M monthly calls
+
+— *[OpenAI Blog](https://openai.com/index/retell-ai)*
 
 **Meta — 2026-10-21**
 
@@ -348,41 +384,13 @@ xychart-beta
 
 — *[OpenAI Blog](https://openai.com/index/openai-models-google-cloud)*
 
-**OpenAI — 2026-10-21**
+### 🧪 AI研究人员
 
-> OpenAI models are coming to Google Cloud
+**Stuart Russell (UC Berkeley) — 2026-10-28**
 
-— *[OpenAI Blog](https://openai.com/index/openai-models-google-cloud)*
+> Russell Brand takes the stand at his rape and sexual assault trial
 
-**OpenAI — 2026-10-22**
-
-> What FDE means at OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/forward-deployed-engineering-means)*
-
-**OpenAI — 2026-10-22**
-
-> Uber brings ChatGPT Work to all employees with OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/uber-chatgpt-work-rollout)*
-
-**OpenAI — 2026-10-26**
-
-> How Fanatics and OpenAI streamline the fan experience
-
-— *[OpenAI Blog](https://openai.com/index/fanatics-streamline-fan-experience)*
-
-**OpenAI — 2026-10-23**
-
-> Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)
-
-— *[OpenAI Blog](https://openai.com/index/scaling-storage-one-billion-users-part-two)*
-
-**OpenAI — 2026-10-23**
-
-> OpenAI and Poland’s NASK partner to advance AI safety and security
-
-— *[OpenAI Blog](https://openai.com/index/openai-nask-ai-safety-security-partnership)*
+— *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-takes-stand-rape-sexual-assault-trial-london/)*
 
 ### 💼 投资人与科技领袖
 

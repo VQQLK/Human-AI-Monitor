@@ -7,22 +7,22 @@
 
 ## 📊 Текущее состояние развития
 
-**Обновлено:** 27 октября 2026  
-**Базовая линия:** Обновлено 27 октября 2026 — на основе 167 элементов (размер выборки: 147).
+**Обновлено:** 28 октября 2026  
+**Базовая линия:** Обновлено 28 октября 2026 — на основе 315 элементов (размер выборки: 302).
 
 ### 🌍 Индекс разрыва Human–AI (Достижения vs Прогресс)
 
 <div align="center">
 
-| Метрика | Значение (27.10) | Статус |
+| Метрика | Значение (28.10) | Статус |
 |:---|:---:|:---:|
-| **🟢 Оценка Человечества** | 🌐 **0.620** | Текущее значение |
-| **🔴 Оценка ИИ** | 🤖 **0.679** | Текущее значение |
-| **⚖️ Индекс разрыва** | ⚖️ **−0.059** | ИИ впереди |
-| **📊 CI95** | **[−0.370, +0.260]** | Неопределённо |
-| **⚡ Ключевых сдвигов** | **4** | Обнаружены критические события |
-| **📈 Анализированных событий** | **167** | Недельная выборка |
-| **🔬 Размер выборки (байесовский)** | **147** | Пары «ось-сигнал» |
+| **🟢 Оценка Человечества** | 🌐 **0.596** | Текущее значение |
+| **🔴 Оценка ИИ** | 🤖 **0.721** | Текущее значение |
+| **⚖️ Индекс разрыва** | ⚖️ **−0.125** | ИИ впереди |
+| **📊 CI95** | **[−0.409, +0.165]** | Неопределённо |
+| **⚡ Ключевых сдвигов** | **7** | Обнаружены критические события |
+| **📈 Анализированных событий** | **315** | Недельная выборка |
+| **🔬 Размер выборки (байесовский)** | **302** | Пары «ось-сигнал» |
 
 </div>
 
@@ -54,13 +54,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Ежедневный разрыв | Положительный = Человечество впереди, Отрицательный = ИИ впереди"
-    x-axis ["10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10"]
+    x-axis ["11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10"]
     y-axis "Разрыв" -0.675 --> 0.041
-    line [-0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059]
+    line [-0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125]
 ```
 
 | Дата | ИИ | Человечество | Разрыв | CI95 | Элементов | Выборка | Тип |
 |---|---|---|---|---|---|---|---|
+| 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | ПРОМЕЖУТОЧНЫЙ |
 | 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | ПРОМЕЖУТОЧНЫЙ |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | ПРОМЕЖУТОЧНЫЙ |
 | 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | ПРОМЕЖУТОЧНЫЙ |
@@ -75,7 +76,6 @@ xychart-beta
 | 14/10 | 0.730 | 0.434 | −0.295 | [−0.599, +0.024] | 147 | 127 | ПРОМЕЖУТОЧНЫЙ |
 | 13/10 | 0.634 | 0.404 | −0.231 | [−0.569, +0.125] | 82 | 63 | ПРОМЕЖУТОЧНЫЙ |
 | 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 337 | 295 | ПРОМЕЖУТОЧНЫЙ |
-| 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 304 | 263 | ПРОМЕЖУТОЧНЫЙ |
 
 #### 📚 История протоколов
 
@@ -83,7 +83,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | ФИНАЛЬНЫЙ |
 
-> 📌 Промежуточный протокол (справочно, не на графике): 27/10 — ИИ 0.679 · Человечество 0.620 · Разрыв −0.059 · 167 / 147 items.
+> 📌 Промежуточный протокол (справочно, не на графике): 28/10 — ИИ 0.721 · Человечество 0.596 · Разрыв −0.125 · 315 / 302 items.
 > Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.
 
 ---
@@ -93,6 +93,42 @@ xychart-beta
 ## Мнения
 
 ### 🧠 Ведущие Лаборатории ИИ
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-28**
+
+> Ukraine's Starlink woes spur Europe to look for non-Musk alternatives
+
+— *[Axios](https://www.axios.com/2026/10/28/starlink-musk-ukraine-war-satcom)*
+
+**OpenAI — 2026-10-28**
+
+> OpenAI launching election war room to track interference efforts
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/28/openai-election-war-room-interference-01137690)*
+
+**Nvidia — 2026-10-28**
+
+> NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcription You Can Prompt and Adapt
+
+— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/nemotron-transcribe-granary)*
+
+**Claude — 2026-10-27**
+
+> Expanding our partnership with GSA to bring Claude to all levels of government
+
+— *[Anthropic News](https://www.anthropic.com/news/expanding-partnership-gsa)*
+
+**OpenAI — 2026-10-27**
+
+> OpenAI expands partnership with Oracle to bring its apps to ChatGPT
+
+— *[OpenAI Blog](https://openai.com/index/oracle-apps-in-chatgpt)*
+
+**OpenAI — 2026-10-27**
+
+> Retell uses OpenAI models to help power 100M monthly calls
+
+— *[OpenAI Blog](https://openai.com/index/retell-ai)*
 
 **Meta — 2026-10-21**
 
@@ -346,41 +382,13 @@ xychart-beta
 
 — *[OpenAI Blog](https://openai.com/index/openai-models-google-cloud)*
 
-**OpenAI — 2026-10-21**
+### 🧪 Исследователи ИИ
 
-> OpenAI models are coming to Google Cloud
+**Stuart Russell (UC Berkeley) — 2026-10-28**
 
-— *[OpenAI Blog](https://openai.com/index/openai-models-google-cloud)*
+> Russell Brand takes the stand at his rape and sexual assault trial
 
-**OpenAI — 2026-10-22**
-
-> What FDE means at OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/forward-deployed-engineering-means)*
-
-**OpenAI — 2026-10-22**
-
-> Uber brings ChatGPT Work to all employees with OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/uber-chatgpt-work-rollout)*
-
-**OpenAI — 2026-10-26**
-
-> How Fanatics and OpenAI streamline the fan experience
-
-— *[OpenAI Blog](https://openai.com/index/fanatics-streamline-fan-experience)*
-
-**OpenAI — 2026-10-23**
-
-> Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)
-
-— *[OpenAI Blog](https://openai.com/index/scaling-storage-one-billion-users-part-two)*
-
-**OpenAI — 2026-10-23**
-
-> OpenAI and Poland’s NASK partner to advance AI safety and security
-
-— *[OpenAI Blog](https://openai.com/index/openai-nask-ai-safety-security-partnership)*
+— *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-takes-stand-rape-sexual-assault-trial-london/)*
 
 ### 💼 Инвесторы и техлидеры
 

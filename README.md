@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** October 27, 2026  
-**Baseline:** Updated on October 27, 2026 — based on 167 items (sample size: 147).
+**Updated:** October 28, 2026  
+**Baseline:** Updated on October 28, 2026 — based on 315 items (sample size: 302).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (10-27) | Status |
+| Metric | Value (10-28) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.620** | Current value |
-| **🔴 AI Score** | 🤖 **0.679** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.059** | AI is ahead |
-| **📊 CI95** | **[−0.370, +0.260]** | Inconclusive |
-| **⚡ Threshold Shifts** | **4** | Critical events detected |
-| **📈 Items Analyzed** | **167** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **147** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.596** | Current value |
+| **🔴 AI Score** | 🤖 **0.721** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.125** | AI is ahead |
+| **📊 CI95** | **[−0.409, +0.165]** | Inconclusive |
+| **⚡ Threshold Shifts** | **7** | Critical events detected |
+| **📈 Items Analyzed** | **315** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **302** | Axis-signal pairs |
 
 </div>
 
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["10/10", "11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10"]
+    x-axis ["11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10"]
     y-axis "Gap" -0.675 --> 0.041
-    line [-0.324, -0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059]
+    line [-0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | INTERIM |
 | 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | INTERIM |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | INTERIM |
 | 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | INTERIM |
@@ -76,7 +77,6 @@ xychart-beta
 | 14/10 | 0.730 | 0.434 | −0.295 | [−0.599, +0.024] | 147 | 127 | INTERIM |
 | 13/10 | 0.634 | 0.404 | −0.231 | [−0.569, +0.125] | 82 | 63 | INTERIM |
 | 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 337 | 295 | INTERIM |
-| 10/10 | 0.687 | 0.363 | −0.324 | [−0.607, −0.023] | 304 | 263 | INTERIM |
 
 #### 📚 Historical Protocols
 
@@ -84,7 +84,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | FINAL |
 
-> 📌 Interim (reference, not on chart): 27/10 — AI 0.679 · Humanity 0.620 · Gap −0.059 · 167 / 147 items.
+> 📌 Interim (reference, not on chart): 28/10 — AI 0.721 · Humanity 0.596 · Gap −0.125 · 315 / 302 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -94,6 +94,42 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-28**
+
+> Ukraine's Starlink woes spur Europe to look for non-Musk alternatives
+
+— *[Axios](https://www.axios.com/2026/10/28/starlink-musk-ukraine-war-satcom)*
+
+**OpenAI — 2026-10-28**
+
+> OpenAI launching election war room to track interference efforts
+
+— *[Politico — Technology](https://www.politico.com/news/2026/10/28/openai-election-war-room-interference-01137690)*
+
+**Nvidia — 2026-10-28**
+
+> NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcription You Can Prompt and Adapt
+
+— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/nemotron-transcribe-granary)*
+
+**Claude — 2026-10-27**
+
+> Expanding our partnership with GSA to bring Claude to all levels of government
+
+— *[Anthropic News](https://www.anthropic.com/news/expanding-partnership-gsa)*
+
+**OpenAI — 2026-10-27**
+
+> OpenAI expands partnership with Oracle to bring its apps to ChatGPT
+
+— *[OpenAI Blog](https://openai.com/index/oracle-apps-in-chatgpt)*
+
+**OpenAI — 2026-10-27**
+
+> Retell uses OpenAI models to help power 100M monthly calls
+
+— *[OpenAI Blog](https://openai.com/index/retell-ai)*
 
 **Meta — 2026-10-21**
 
@@ -347,41 +383,13 @@ xychart-beta
 
 — *[OpenAI Blog](https://openai.com/index/openai-models-google-cloud)*
 
-**OpenAI — 2026-10-21**
+### 🧪 AI Researchers
 
-> OpenAI models are coming to Google Cloud
+**Stuart Russell (UC Berkeley) — 2026-10-28**
 
-— *[OpenAI Blog](https://openai.com/index/openai-models-google-cloud)*
+> Russell Brand takes the stand at his rape and sexual assault trial
 
-**OpenAI — 2026-10-22**
-
-> What FDE means at OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/forward-deployed-engineering-means)*
-
-**OpenAI — 2026-10-22**
-
-> Uber brings ChatGPT Work to all employees with OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/uber-chatgpt-work-rollout)*
-
-**OpenAI — 2026-10-26**
-
-> How Fanatics and OpenAI streamline the fan experience
-
-— *[OpenAI Blog](https://openai.com/index/fanatics-streamline-fan-experience)*
-
-**OpenAI — 2026-10-23**
-
-> Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)
-
-— *[OpenAI Blog](https://openai.com/index/scaling-storage-one-billion-users-part-two)*
-
-**OpenAI — 2026-10-23**
-
-> OpenAI and Poland’s NASK partner to advance AI safety and security
-
-— *[OpenAI Blog](https://openai.com/index/openai-nask-ai-safety-security-partnership)*
+— *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-takes-stand-rape-sexual-assault-trial-london/)*
 
 ### 💼 Investors & Tech Leaders
 
