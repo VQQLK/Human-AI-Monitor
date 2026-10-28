@@ -211,7 +211,7 @@ This document describes the project's **canonical Bayesian methodology**. The im
 
 ### 4.1. Weekly Cycle
 
-1. **Data collection** (daily, 5 batches at 13:00, 13:15, 13:30, 13:45, 23:00 UTC):
+1. **Data collection** (daily, 5 batches at 15:00, 15:15, 15:30, 16:00, 16:05 UTC):
    - RSS feeds (arXiv, labs, analytics).
    - News sources (AP, Reuters, BBC).
    - Global indices (quarterly).

@@ -233,10 +233,10 @@ On **September 25, 2026**, the system ran **fully autonomously** for an entire d
 
 | Time UTC | Event | Result |
 |----------|-------|--------|
-| 13:00–13:01 | Batch 1 | 8 items, 2 sources ✅ |
-| 13:15–13:17 | Batch 2 | 13 items, 4 sources ✅ |
-| 13:30–13:31 | Batch 3 | 8 items, 4 sources ✅ |
-| 13:45–13:46 | Batch 4 | 4 items, 2 sources + **interim protocol** ✅ |
+| 15:00–15:01 | Batch 1 | 8 items, 2 sources ✅ |
+| 15:15–15:17 | Batch 2 | 13 items, 4 sources ✅ |
+| 15:30–15:31 | Batch 3 | 8 items, 4 sources ✅ |
+| 16:00–16:01 | Batch 4 | 4 items, 2 sources + **interim protocol** ✅ |
 
 **Day summary:**
 
@@ -287,7 +287,7 @@ This design removes dependence on GitHub's unreliable native scheduler.
 |---------------|-----------------|---------------|-------|
 | **Interim** (Friday) | Fri ~13:53 UTC | Fri ~14:00 UTC | ~5–10 min |
 | **Final** (Monday) | Mon ~13:53 UTC | Mon ~14:00 UTC | ~5–10 min |
-| **RU/ZH translations** | Mon/Fri ~13:53 UTC | next sync cycle | up to ~3–4 days |
+| **RU/ZH translations** | Daily 16:05 UTC | next sync cycle | up to ~3–4 days |
 
 EN files appear in git within minutes of generation. RU/ZH translations are regenerated asynchronously and may lag by one sync cycle.
 
