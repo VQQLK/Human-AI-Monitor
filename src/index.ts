@@ -1024,7 +1024,31 @@ async function handleDedicatedDispatch(env: Env): Promise<void> {
 			console.error("[dispatch] body: " + txt.slice(0, 300));
 		}
 	} catch (e) {
-		console.error("[dispatch] error: " + (e as Error).message);
+		console.error("[dispatch] translate error: " + (e as Error).message);
+	}
+
+	// Dispatch sync-protocols (README update) — separate try/catch, always runs
+	try {
+		const syncRes = await fetch(
+			"https://api.github.com/repos/VQQLK/Human-AI-Monitor/actions/workflows/sync-protocols.yml/dispatches",
+			{
+				method: "POST",
+				headers: {
+					"Accept": "application/vnd.github+json",
+					"Authorization": "Bearer " + env.GITHUB_PAT,
+					"User-Agent": "human-ai-monitor-worker",
+					"X-GitHub-Api-Version": "2022-11-28",
+				},
+				body: JSON.stringify({ ref: "main" }),
+			}
+		);
+		console.log("[dispatch] sync-protocols HTTP " + syncRes.status);
+		if (!syncRes.ok) {
+			const txt = await syncRes.text();
+			console.error("[dispatch] sync body: " + txt.slice(0, 300));
+		}
+	} catch (e) {
+		console.error("[dispatch] sync error: " + (e as Error).message);
 	}
 }
 
