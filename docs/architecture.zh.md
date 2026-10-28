@@ -58,12 +58,12 @@ Human–AI Monitor 构建在**去中心化的 Cloudflare 基础设施**之上—
    - `GET /generate?week=YYYY-MM-DD` — 手动生成协议。
 
 2. **`scheduled` 处理器** — Cron Trigger：
-   - 每天分 5 批运行（13:00, 13:15, 13:30, 13:45, 23:00 UTC）。
+   - 每天分 5 批运行（15:00, 15:15, 15:30, 16:00, 16:05 UTC）。
    - 每批从 8 个源（批 1–4）或 7 个源（晚间批 5）采集新鲜新闻。
    - 通过 Workers AI 对每条进行分类。
    - 保存到 D1。
-   - 周五 13:45 UTC：生成本周的中间协议。
-   - 周一 13:45 UTC：生成上一周的最终协议。
+   - 每日 16:00 UTC：生成本周的中间协议。
+   - 周一 16:00 UTC：生成上一周的最终协议。
 
 **技术栈：** TypeScript, Wrangler CLI。
 
@@ -111,28 +111,28 @@ Human–AI Monitor 构建在**去中心化的 Cloudflare 基础设施**之上—
 **作用：** 通过批处理实现每日自动化。
 
 **时间表：** 每天 5 批（UTC）：
-- `0 13 * * *` — 第 1 批（源 0-7）
-- `15 13 * * *` — 第 2 批（源 8-15）
-- `30 13 * * *` — 第 3 批（源 16-23）
-- `45 13 * * *` — 第 4 批（源 24-31）+ 协议生成
-- `0 23 * * *` — 第 5 批（源 32-40）
+- `0 15 * * *` — 第 1 批
+- `15 15 * * *` — 第 2 批
+- `30 15 * * *` — 第 3 批
+- `5 16 * * *` — Dispatch translate + sync（无采集）
+- `0 16 * * *` — 第 4 批：采集 + 协议生成
 
 **协议生成：**
-- 周五 13:45 UTC：本周的中间协议
-- 周一 13:45 UTC：上一周的最终协议
+- 每日 16:00 UTC：本周的中间协议
+- 周一 16:00 UTC：上一周的最终协议
 
 **执行内容：**
 1. 采集新鲜 RSS 条目。
 2. 通过 Workers AI 分类。
 3. 保存到 D1。
 4. 生成上一周的 Markdown 协议。
-5. 通过 GitHub API 触发 `sync-protocols.yml` 和 `translate-protocols.yml`（仅周一/周五）。
+5. 通过 `handleDedicatedDispatch` 触发 `translate-protocols.yml` 和 `sync-protocols.yml`（16:05 UTC，每日）。
 
 ---
 
 ## 3. 数据流
 
-Cron Trigger（每天 5 批：13:00, 13:15, 13:30, 13:45, 23:00 UTC）
+Cron Trigger（每天 5 批：15:00, 15:15, 15:30, 16:00, 16:05 UTC）
 |
 v
 Worker.scheduled() <-- RSS, arXiv, News
@@ -150,7 +150,7 @@ v
 D1 protocols table (EN/RU/ZH)
 |
 v
-Worker 通过 GitHub API 并行触发两个 workflow（仅周一/周五）：
+Worker 通过 GitHub API 触发两个 workflow（16:05 UTC，每日）：
   |- sync-protocols.yml       -->  GitHub (data/protocols/) -- EN/RU/ZH 文件
   '- translate-protocols.yml -->  D1（重新生成 RU/ZH 翻译）
 
@@ -214,16 +214,16 @@ npx wrangler deploy
 ```jsonc
 "triggers": {
   "crons": [
-    "0 13 * * *",
-    "15 13 * * *",
-    "30 13 * * *",
-    "45 13 * * *",
-    "0 23 * * *"
+    "0 15 * * *",
+    "15 15 * * *",
+    "30 15 * * *",
+    "5 16 * * *",
+    "0 16 * * *"
   ]
 }
 ```
 
-每天运行 5 批：13:00, 13:15, 13:30, 13:45, 23:00 UTC。
+每天运行 5 批：15:00, 15:15, 15:30, 16:00, 16:05 UTC。
 
 ---
 
@@ -235,13 +235,13 @@ npx wrangler deploy
 
 ### 6.2. 时间表
 
-协议由 Cloudflare Worker 在周一/周五 13:45 UTC 生成。生成后，Worker 立即
+协议由 Cloudflare Worker 在每日 16:00 UTC 生成。生成后，Worker 立即
 通过 GitHub API（`workflow_dispatch`）并行触发两个 GitHub Actions workflow：
 
 | Workflow | 触发方式 | 用途 | 可见性 |
 |----------|---------|------|--------|
-| `sync-protocols.yml` | Worker dispatch（周一/周五 ~13:53 UTC） | 将 EN/RU/ZH 文件同步到 git | 生成后 ~5–10 分钟 |
-| `translate-protocols.yml` | Worker dispatch（周一/周五 ~13:53 UTC） | 在 D1 中重新生成 RU/ZH | 下一个 sync 周期 |
+| `sync-protocols.yml` | Worker dispatch（16:05 UTC，每日） | 将 EN/RU/ZH 文件同步到 git | 生成后 ~5–10 分钟 |
+| `translate-protocols.yml` | Worker dispatch（16:05 UTC，每日） | 在 D1 中重新生成 RU/ZH | 下一个 sync 周期 |
 
 > **历史说明：**两个 workflow 仍保留 `schedule:` 触发器，但 GitHub 的
 > 定时任务不可靠（延迟可达 4 小时以上、可能跳过）。Worker 的 dispatch
