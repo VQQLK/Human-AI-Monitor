@@ -1836,35 +1836,6 @@ export default {
 				}
 			}
 
-			// Trigger sync-protocols workflow via GitHub API.
-			// GitHub's native scheduled triggers are unreliable — Worker acts as an external scheduler.
-			if (cfg.generateProtocol) {
-				ctx.waitUntil((async () => {
-					try {
-						const res = await fetch(
-							"https://api.github.com/repos/VQQLK/Human-AI-Monitor/actions/workflows/sync-protocols.yml/dispatches",
-							{
-								method: "POST",
-								headers: {
-									"Accept": "application/vnd.github+json",
-									"Authorization": "Bearer " + env.GITHUB_PAT,
-									"User-Agent": "human-ai-monitor-worker",
-									"X-GitHub-Api-Version": "2022-11-28",
-								},
-								body: JSON.stringify({ ref: "main" }),
-							}
-						);
-						console.log("[cron] sync-protocols dispatch: HTTP " + res.status);
-						if (!res.ok) {
-							const txt = await res.text();
-							console.error("[cron] sync-protocols dispatch body: " + txt.slice(0, 300));
-						}
-					} catch (e) {
-						console.error("[cron] sync-protocols dispatch error: " + (e as Error).message);
-					}
-				})());
-			}
-
 			// Self-heal: if this batch's sources have 0 items today, force collection
 			const batchSources = SOURCES.slice(cfg.offset, cfg.offset + cfg.limit);
 			const batchSourceNames = batchSources.map(s => s.name);
