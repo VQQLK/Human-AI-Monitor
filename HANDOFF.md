@@ -45,7 +45,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 
 ## 3. Current state
 
-- HEAD: latest commit on main (see `git log --oneline -5`)
+- HEAD: d59bf7e (refactor: remove duplicate sync dispatch; last verified 2026-10-28)
 - **Baseline: 149 checks — 148 PASS / 1 WARN / 0 FAIL** (WARN = transient axis coverage, e.g. `hexad`; always verify via `bash scripts/run-audit.sh`)
 - Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
 - Math verification: **20/20 PASS** (see §14; runs inside audit as Phase 15)
@@ -200,10 +200,9 @@ The bot pushed README — rebase resolves cleanly.
 | 16:00                         | Evening collection + protocol     |
 | 16:00 Tue-Sun                 | Daily interim protocol            |
 | 16:00 Mon                     | Weekly FINAL protocol             |
-| 16:00+ (worker dispatch)      | sync-protocols.yml (after generation, ~16:00:0x) |
-| 16:01+ (worker dispatch)      | translate-protocols.yml (after 60s sleep, ~16:01:0x) |
+| 16:05 (worker dispatch)       | translate + sync (handleDedicatedDispatch, 2 fetch) |
 | 16:30 daily (native)          | translate-protocols.yml (GitHub cron fallback) |
-| 17:00 Mon, 17:00 Sat (native) | sync-protocols.yml (GitHub cron fallback) |
+| 17:15 daily (native)          | sync-protocols.yml (GitHub cron fallback) |
 
 ## 8. How to add a new source
 

@@ -45,7 +45,7 @@ Cloudflare Worker, который:
 
 ## 3. Текущее состояние
 
-- HEAD: последний коммит в main (см. git log --oneline -5)
+- HEAD: d59bf7e (refactor: удалён дублирующий dispatch sync; проверено 2026-10-28)
 - **Baseline: 149 проверок — 148 PASS / 1 WARN / 0 FAIL** (WARN = транзитное покрытие оси, напр. `hexad`; всегда проверяйте через `bash scripts/run-audit.sh`)
 - Версия скрипта аудита: **v4.9** (15 фаз; фаза 15 = математическая верификация)
 - Математическая верификация: **20/20 PASS** (см. §14; запускается в аудите как фаза 15)
@@ -199,10 +199,9 @@ Cloudflare Worker, который:
 | 16:00                       | Вечерний сбор + протокол         |
 | 16:00 вт-вс                  | Ежедневный промежуточный протокол |
 | 16:00 пн                     | Финальный протокол недели         |
-| 16:00+ (worker dispatch)     | sync-protocols.yml (после генерации, ~16:00:0x) |
-| 16:01+ (worker dispatch)     | translate-protocols.yml (после 60с задержки, ~16:01:0x) |
+| 16:05 (worker dispatch)      | translate + sync (handleDedicatedDispatch, 2 fetch) |
 | 16:30 ежедн. (native)        | translate-protocols.yml (GitHub cron fallback) |
-| 17:00 пн, 17:00 сб (native)  | sync-protocols.yml (GitHub cron fallback) |
+| 17:15 ежедн. (native)        | sync-protocols.yml (GitHub cron fallback) |
 
 ## 8. Как добавить новый источник
 
