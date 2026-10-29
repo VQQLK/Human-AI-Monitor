@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年10月28日  
-**基线：** 2026年10月28日更新 — 基于 315 个项目（样本量：302）。
+**更新:** 2026年10月29日  
+**基线：** 2026年10月29日更新 — 基于 452 个项目（样本量：422）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (10-28) | 状态 |
+| 指标 | 数值 (10-29) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.596** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.721** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.125** | 人工智能领先 |
-| **📊 CI95** | **[−0.409, +0.165]** | 不确定 |
-| **⚡ 阈值变化** | **7** | 检测到关键事件 |
-| **📈 分析项目** | **315** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **302** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.652** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.757** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.105** | 人工智能领先 |
+| **📊 CI95** | **[−0.353, +0.154]** | 不确定 |
+| **⚡ 阈值变化** | **9** | 检测到关键事件 |
+| **📈 分析项目** | **452** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **422** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10"]
+    x-axis ["13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10"]
     y-axis "差距" -0.675 --> 0.041
-    line [-0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125]
+    line [-0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | 临时版 |
 | 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | 临时版 |
 | 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | 临时版 |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 15/10 | 0.783 | 0.409 | −0.374 | [−0.632, −0.094] | 214 | 189 | 临时版 |
 | 14/10 | 0.730 | 0.434 | −0.295 | [−0.599, +0.024] | 147 | 127 | 临时版 |
 | 13/10 | 0.634 | 0.404 | −0.231 | [−0.569, +0.125] | 82 | 63 | 临时版 |
-| 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 337 | 295 | 临时版 |
 
 #### 📚 协议历史
 
@@ -85,7 +85,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：28/10 — AI 0.721 · 人类 0.596 · 差距 −0.125 · 315 / 302 items.
+> 📌 临时协议（仅供参考，不在图表上）：29/10 — AI 0.757 · 人类 0.652 · 差距 −0.105 · 452 / 422 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -95,6 +95,60 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Claude — 2026-10-27**
+
+> How Anthropic ships Claude with Claude: Separating the Brain from the Hands
+
+— *[Latent Space](https://latent.space/p/opus55/)*
+
+**Google — 2026-10-29**
+
+> [AINews] Gemini 4 Carbon tops leaderboards, launches for cyber defenders
+
+— *[Latent Space](https://latent.space/p/ainews-gemini-4-carbon/)*
+
+**Meta — 2026-10-28**
+
+> Meta says it’ll probably delay its controversial new business terms again
+
+— *[The Verge — AI](https://www.theverge.com/tech/1020769/meta-updated-business-terms-delay-indefinitely)*
+
+**Google — 2026-10-28**
+
+> Google launches Gemini 4 Carbon with a ‘significant leap’ in cybersecurity
+
+— *[The Verge — AI](https://www.theverge.com/tech/1021339/google-gemini-4-carbon-cybersecurity-frontier)*
+
+**Microsoft — 2026-10-28**
+
+> Microsoft is ending Copilot support on smart TVs
+
+— *[The Verge — AI](https://www.theverge.com/tech/1021143/microsoft-lg-samsung-copilot-ai-assistant-smart-tvs-ending)*
+
+**Mistral AI — 2026-10-29**
+
+> Welcome Le Chonk: Mistral Large 4 on Hugging Face
+
+— *[Hugging Face Blog](https://huggingface.co/blog/mistral-large4)*
+
+**Meta — 2026-10-28**
+
+> Meta Partners With Five US Universities to Accelerate Medical and Scientific Breakthroughs
+
+— *[Meta AI Blog](https://about.fb.com/news/2026/10/meta-partners-with-five-us-universities-to-accelerate-medical-and-scientific-breakthroughs/)*
+
+**Google — 2026-10-28**
+
+> Gemini 4 Carbon: Our next frontier model
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/)*
+
+**OpenAI — 2026-10-28**
+
+> OpenAI and ServiceNow expand partnership across enterprise workflows
+
+— *[OpenAI Blog](https://openai.com/index/openai-servicenow-partnership-expansion)*
 
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-10-28**
 
@@ -329,60 +383,6 @@ xychart-beta
 > Meta, Milan’s Pinacoteca di Brera, and EssilorLuxottica Expand Access to Art Through AI Glasses
 
 — *[Meta AI Blog](https://about.fb.com/news/2026/10/meta-milans-pinacoteca-di-brera-and-essilorluxottica-expand-access-to-art-through-ai-glasses/)*
-
-**Google — 2026-09-24**
-
-> Introducing Gemini 3.8 Live with Live Avatar
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/)*
-
-**Google — 2026-09-30**
-
-> Gemini 4 Argon: our next era of frontier intelligence
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/)*
-
-**Google — 2026-10-13**
-
-> Gemini 4 Argon: Built to solve your hardest problems
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/introducing-gemini-4-argon/)*
-
-**Google — 2026-10-15**
-
-> Accelerating the search for antimicrobial peptides with Google Antigravity
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/accelerating-antimicrobial-discovery/)*
-
-**Google — 2026-10-14**
-
-> Google DeepMind and Singapore Government collaborate to build fine-tuned AI model for scam detection
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/on-device-ai-scam-detection-mddi/)*
-
-**Google — 2026-10-13**
-
-> Gemini 4 Argon for Robotics
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-argon-for-robotics/)*
-
-**Google — 2026-10-13**
-
-> Developing Gemini 4 Argon responsibly and safely
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/developing-gemini-4-argon-responsibly-and-safely/)*
-
-**OpenAI — 2026-10-21**
-
-> How AT&T is rethinking in-house legal work with OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/att-legal)*
-
-**Google — 2026-10-21**
-
-> OpenAI models are coming to Google Cloud
-
-— *[OpenAI Blog](https://openai.com/index/openai-models-google-cloud)*
 
 ### 🧪 AI研究人员
 

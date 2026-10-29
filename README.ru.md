@@ -7,22 +7,22 @@
 
 ## 📊 Текущее состояние развития
 
-**Обновлено:** 28 октября 2026  
-**Базовая линия:** Обновлено 28 октября 2026 — на основе 315 элементов (размер выборки: 302).
+**Обновлено:** 29 октября 2026  
+**Базовая линия:** Обновлено 29 октября 2026 — на основе 452 элементов (размер выборки: 422).
 
 ### 🌍 Индекс разрыва Human–AI (Достижения vs Прогресс)
 
 <div align="center">
 
-| Метрика | Значение (28.10) | Статус |
+| Метрика | Значение (29.10) | Статус |
 |:---|:---:|:---:|
-| **🟢 Оценка Человечества** | 🌐 **0.596** | Текущее значение |
-| **🔴 Оценка ИИ** | 🤖 **0.721** | Текущее значение |
-| **⚖️ Индекс разрыва** | ⚖️ **−0.125** | ИИ впереди |
-| **📊 CI95** | **[−0.409, +0.165]** | Неопределённо |
-| **⚡ Ключевых сдвигов** | **7** | Обнаружены критические события |
-| **📈 Анализированных событий** | **315** | Недельная выборка |
-| **🔬 Размер выборки (байесовский)** | **302** | Пары «ось-сигнал» |
+| **🟢 Оценка Человечества** | 🌐 **0.652** | Текущее значение |
+| **🔴 Оценка ИИ** | 🤖 **0.757** | Текущее значение |
+| **⚖️ Индекс разрыва** | ⚖️ **−0.105** | ИИ впереди |
+| **📊 CI95** | **[−0.353, +0.154]** | Неопределённо |
+| **⚡ Ключевых сдвигов** | **9** | Обнаружены критические события |
+| **📈 Анализированных событий** | **452** | Недельная выборка |
+| **🔬 Размер выборки (байесовский)** | **422** | Пары «ось-сигнал» |
 
 </div>
 
@@ -54,13 +54,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Ежедневный разрыв | Положительный = Человечество впереди, Отрицательный = ИИ впереди"
-    x-axis ["11/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10"]
+    x-axis ["13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10"]
     y-axis "Разрыв" -0.675 --> 0.041
-    line [-0.338, -0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125]
+    line [-0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105]
 ```
 
 | Дата | ИИ | Человечество | Разрыв | CI95 | Элементов | Выборка | Тип |
 |---|---|---|---|---|---|---|---|
+| 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | ПРОМЕЖУТОЧНЫЙ |
 | 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | ПРОМЕЖУТОЧНЫЙ |
 | 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | ПРОМЕЖУТОЧНЫЙ |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | ПРОМЕЖУТОЧНЫЙ |
@@ -75,7 +76,6 @@ xychart-beta
 | 15/10 | 0.783 | 0.409 | −0.374 | [−0.632, −0.094] | 214 | 189 | ПРОМЕЖУТОЧНЫЙ |
 | 14/10 | 0.730 | 0.434 | −0.295 | [−0.599, +0.024] | 147 | 127 | ПРОМЕЖУТОЧНЫЙ |
 | 13/10 | 0.634 | 0.404 | −0.231 | [−0.569, +0.125] | 82 | 63 | ПРОМЕЖУТОЧНЫЙ |
-| 11/10 | 0.706 | 0.368 | −0.338 | [−0.599, −0.052] | 337 | 295 | ПРОМЕЖУТОЧНЫЙ |
 
 #### 📚 История протоколов
 
@@ -83,7 +83,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | ФИНАЛЬНЫЙ |
 
-> 📌 Промежуточный протокол (справочно, не на графике): 28/10 — ИИ 0.721 · Человечество 0.596 · Разрыв −0.125 · 315 / 302 items.
+> 📌 Промежуточный протокол (справочно, не на графике): 29/10 — ИИ 0.757 · Человечество 0.652 · Разрыв −0.105 · 452 / 422 items.
 > Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.
 
 ---
@@ -93,6 +93,60 @@ xychart-beta
 ## Мнения
 
 ### 🧠 Ведущие Лаборатории ИИ
+
+**Claude — 2026-10-27**
+
+> How Anthropic ships Claude with Claude: Separating the Brain from the Hands
+
+— *[Latent Space](https://latent.space/p/opus55/)*
+
+**Google — 2026-10-29**
+
+> [AINews] Gemini 4 Carbon tops leaderboards, launches for cyber defenders
+
+— *[Latent Space](https://latent.space/p/ainews-gemini-4-carbon/)*
+
+**Meta — 2026-10-28**
+
+> Meta says it’ll probably delay its controversial new business terms again
+
+— *[The Verge — AI](https://www.theverge.com/tech/1020769/meta-updated-business-terms-delay-indefinitely)*
+
+**Google — 2026-10-28**
+
+> Google launches Gemini 4 Carbon with a ‘significant leap’ in cybersecurity
+
+— *[The Verge — AI](https://www.theverge.com/tech/1021339/google-gemini-4-carbon-cybersecurity-frontier)*
+
+**Microsoft — 2026-10-28**
+
+> Microsoft is ending Copilot support on smart TVs
+
+— *[The Verge — AI](https://www.theverge.com/tech/1021143/microsoft-lg-samsung-copilot-ai-assistant-smart-tvs-ending)*
+
+**Mistral AI — 2026-10-29**
+
+> Welcome Le Chonk: Mistral Large 4 on Hugging Face
+
+— *[Hugging Face Blog](https://huggingface.co/blog/mistral-large4)*
+
+**Meta — 2026-10-28**
+
+> Meta Partners With Five US Universities to Accelerate Medical and Scientific Breakthroughs
+
+— *[Meta AI Blog](https://about.fb.com/news/2026/10/meta-partners-with-five-us-universities-to-accelerate-medical-and-scientific-breakthroughs/)*
+
+**Google — 2026-10-28**
+
+> Gemini 4 Carbon: Our next frontier model
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/)*
+
+**OpenAI — 2026-10-28**
+
+> OpenAI and ServiceNow expand partnership across enterprise workflows
+
+— *[OpenAI Blog](https://openai.com/index/openai-servicenow-partnership-expansion)*
 
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-10-28**
 
@@ -327,60 +381,6 @@ xychart-beta
 > Meta, Milan’s Pinacoteca di Brera, and EssilorLuxottica Expand Access to Art Through AI Glasses
 
 — *[Meta AI Blog](https://about.fb.com/news/2026/10/meta-milans-pinacoteca-di-brera-and-essilorluxottica-expand-access-to-art-through-ai-glasses/)*
-
-**Google — 2026-09-24**
-
-> Introducing Gemini 3.8 Live with Live Avatar
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/)*
-
-**Google — 2026-09-30**
-
-> Gemini 4 Argon: our next era of frontier intelligence
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/)*
-
-**Google — 2026-10-13**
-
-> Gemini 4 Argon: Built to solve your hardest problems
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/introducing-gemini-4-argon/)*
-
-**Google — 2026-10-15**
-
-> Accelerating the search for antimicrobial peptides with Google Antigravity
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/accelerating-antimicrobial-discovery/)*
-
-**Google — 2026-10-14**
-
-> Google DeepMind and Singapore Government collaborate to build fine-tuned AI model for scam detection
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/on-device-ai-scam-detection-mddi/)*
-
-**Google — 2026-10-13**
-
-> Gemini 4 Argon for Robotics
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-argon-for-robotics/)*
-
-**Google — 2026-10-13**
-
-> Developing Gemini 4 Argon responsibly and safely
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/developing-gemini-4-argon-responsibly-and-safely/)*
-
-**OpenAI — 2026-10-21**
-
-> How AT&T is rethinking in-house legal work with OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/att-legal)*
-
-**Google — 2026-10-21**
-
-> OpenAI models are coming to Google Cloud
-
-— *[OpenAI Blog](https://openai.com/index/openai-models-google-cloud)*
 
 ### 🧪 Исследователи ИИ
 
