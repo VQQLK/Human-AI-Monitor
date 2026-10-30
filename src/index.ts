@@ -1002,9 +1002,8 @@ async function handleDedicatedDispatch(env: Env): Promise<void> {
 		const isMonday = day === 1;
 		if (!isMonday && existing?.content_ru) {
 			console.log("[dispatch] skip: " + weekToTranslate + " already translated (non-Monday)");
-			return;
-		}
-
+			// do not return — sync dispatch below must still run
+		} else {
 		const res = await fetch(
 			"https://api.github.com/repos/VQQLK/Human-AI-Monitor/actions/workflows/translate-protocols.yml/dispatches",
 			{
@@ -1022,6 +1021,7 @@ async function handleDedicatedDispatch(env: Env): Promise<void> {
 		if (!res.ok) {
 			const txt = await res.text();
 			console.error("[dispatch] body: " + txt.slice(0, 300));
+		}
 		}
 	} catch (e) {
 		console.error("[dispatch] translate error: " + (e as Error).message);
