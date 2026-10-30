@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年10月29日  
-**基线：** 2026年10月29日更新 — 基于 452 个项目（样本量：422）。
+**更新:** 2026年10月30日  
+**基线：** 2026年10月30日更新 — 基于 583 个项目（样本量：531）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (10-29) | 状态 |
+| 指标 | 数值 (10-30) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.652** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.757** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.105** | 人工智能领先 |
-| **📊 CI95** | **[−0.353, +0.154]** | 不确定 |
-| **⚡ 阈值变化** | **9** | 检测到关键事件 |
-| **📈 分析项目** | **452** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **422** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.670** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.771** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.101** | 人工智能领先 |
+| **📊 CI95** | **[−0.342, +0.150]** | 不确定 |
+| **⚡ 阈值变化** | **11** | 检测到关键事件 |
+| **📈 分析项目** | **583** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **531** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10"]
+    x-axis ["14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10"]
     y-axis "差距" -0.675 --> 0.041
-    line [-0.231, -0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105]
+    line [-0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 30/10 | 0.771 | 0.670 | −0.101 | [−0.342, +0.150] | 583 | 531 | 临时版 |
 | 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | 临时版 |
 | 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | 临时版 |
 | 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 16/10 | 0.794 | 0.437 | −0.357 | [−0.604, −0.090] | 275 | 222 | 临时版 |
 | 15/10 | 0.783 | 0.409 | −0.374 | [−0.632, −0.094] | 214 | 189 | 临时版 |
 | 14/10 | 0.730 | 0.434 | −0.295 | [−0.599, +0.024] | 147 | 127 | 临时版 |
-| 13/10 | 0.634 | 0.404 | −0.231 | [−0.569, +0.125] | 82 | 63 | 临时版 |
 
 #### 📚 协议历史
 
@@ -85,7 +85,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：29/10 — AI 0.757 · 人类 0.652 · 差距 −0.105 · 452 / 422 items.
+> 📌 临时协议（仅供参考，不在图表上）：30/10 — AI 0.771 · 人类 0.670 · 差距 −0.101 · 583 / 531 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -95,6 +95,54 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Meta — 2026-10-30**
+
+> What New Mexico's $25 Billion Meta Judgment Says, and What It Doesn’t
+
+— *[Benton Institute for Broadband & Society](https://www.benton.org/blog/what-new-mexicos%C2%A025-billion-meta-judgment-says-and-what-it-doesn%E2%80%99t)*
+
+**Moonshot AI — 2026-10-24**
+
+> [AINews] Kimi 3.1 Pro 104BA-2.8T: Fable-5.1-Class Open Weights narrows Closed-AI lead to 1 month... and Pro Highspeed API with 2-3× speed
+
+— *[Latent Space](https://latent.space/p/ainews-kimi-31/)*
+
+**Microsoft — 2026-10-29**
+
+> Microsoft’s AI future has fewer jobs
+
+— *[The Verge — AI](https://www.theverge.com/tech/1022023/microsoft-exit-offer-layoffs-notepad)*
+
+**Google — 2026-10-29**
+
+> You can generate and edit Google Docs files directly in Gemini chats now
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1022519/google-gemini-file-editing-documents-pdfs)*
+
+**OpenAI — 2026-10-30**
+
+> Sam Altman sympathizes with mathematicians, but says OpenAI’s math onslaught won’t stop
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1023054/altman-cheeky-pint-ai-math-interview)*
+
+**Sam Altman (OpenAI) — 2026-10-30**
+
+> Sam Altman sympathizes with mathematicians, but says OpenAI’s math onslaught won’t stop
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1023054/altman-cheeky-pint-ai-math-interview)*
+
+**Meta — 2026-10-29**
+
+> The Future Is for Everyone: Meta and CNIB Partner to Support Canadians Who Are Blind, Deafblind or Have Low Vision
+
+— *[Meta AI Blog](https://about.fb.com/news/2026/10/the-future-is-for-everyone-meta-and-cnib-partner-to-support-canadians-who-are-blind-deafblind-or-have-low-vision/)*
+
+**Meta — 2026-10-29**
+
+> L’avenir appartient à tous: Meta et INCA s’associent pour soutenir les personnes aveugles, sourdes et aveugles ou ayant une basse vision au Canada
+
+— *[Meta AI Blog](https://about.fb.com/news/2026/10/lavenir-appartient-a-tous-meta-et-inca-sassocient-pour-soutenir-les-personnes-aveugles-sourdes-et-aveugles-ou-ayant-une-basse-vision-au-canada/)*
 
 **Claude — 2026-10-27**
 
@@ -335,54 +383,6 @@ xychart-beta
 > Import AI 474: Platonic mindspace; TPUs in space; Zhipu starts an outer RSI loop
 
 — *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-474-platonic-mindspace)*
-
-**Google — 2026-10-05**
-
-> Import AI 475: Swarm scaling; Google DeepMind watermarks biology; and the AI science economy
-
-— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-475-swarm-scaling-google)*
-
-**OpenAI — 2026-10-12**
-
-> OpenAI Can't Self-Police Because It Fires the People Raising the Alarm
-
-— *[AI Alignment Forum](https://www.alignmentforum.org/posts/sSHbioPoHWtm4zuti/openai-can-t-self-police-because-it-fires-the-people-raising)*
-
-**Meta — 2026-10-20**
-
-> Meta Muse exposes users' personal and business secrets when they share conversations
-
-— *[Ars Technica — AI](https://arstechnica.com/security/2026/10/meta-muse-exposes-users-personal-and-business-secrets-when-they-share-conversations/)*
-
-**OpenAI — 2026-10-16**
-
-> OpenAI models hacked a crypto wallet and breached more websites
-
-— *[Ars Technica — AI](https://arstechnica.com/security/2026/10/openai-models-hacked-a-crypto-wallet-and-breached-more-websites/)*
-
-**Mistral AI — 2026-10-21**
-
-> Mistral Advances AI for Engineering with NVIDIA
-
-— *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering)*
-
-**Nvidia — 2026-10-21**
-
-> Mistral Advances AI for Engineering with NVIDIA
-
-— *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering)*
-
-**Mistral AI — 2026-10-06**
-
-> Introducing Mistral Large 4
-
-— *[Mistral AI](https://mistral.ai/news/mistral-large-4)*
-
-**Meta — 2026-10-14**
-
-> Meta, Milan’s Pinacoteca di Brera, and EssilorLuxottica Expand Access to Art Through AI Glasses
-
-— *[Meta AI Blog](https://about.fb.com/news/2026/10/meta-milans-pinacoteca-di-brera-and-essilorluxottica-expand-access-to-art-through-ai-glasses/)*
 
 ### 🧪 AI研究人员
 
