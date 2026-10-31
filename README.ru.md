@@ -7,22 +7,22 @@
 
 ## 📊 Текущее состояние развития
 
-**Обновлено:** 30 октября 2026  
-**Базовая линия:** Обновлено 30 октября 2026 — на основе 583 элементов (размер выборки: 531).
+**Обновлено:** 31 октября 2026  
+**Базовая линия:** Обновлено 31 октября 2026 — на основе 712 элементов (размер выборки: 630).
 
 ### 🌍 Индекс разрыва Human–AI (Достижения vs Прогресс)
 
 <div align="center">
 
-| Метрика | Значение (30.10) | Статус |
+| Метрика | Значение (31.10) | Статус |
 |:---|:---:|:---:|
-| **🟢 Оценка Человечества** | 🌐 **0.670** | Текущее значение |
-| **🔴 Оценка ИИ** | 🤖 **0.771** | Текущее значение |
-| **⚖️ Индекс разрыва** | ⚖️ **−0.101** | ИИ впереди |
-| **📊 CI95** | **[−0.342, +0.150]** | Неопределённо |
+| **🟢 Оценка Человечества** | 🌐 **0.679** | Текущее значение |
+| **🔴 Оценка ИИ** | 🤖 **0.791** | Текущее значение |
+| **⚖️ Индекс разрыва** | ⚖️ **−0.112** | ИИ впереди |
+| **📊 CI95** | **[−0.340, +0.138]** | Неопределённо |
 | **⚡ Ключевых сдвигов** | **11** | Обнаружены критические события |
-| **📈 Анализированных событий** | **583** | Недельная выборка |
-| **🔬 Размер выборки (байесовский)** | **531** | Пары «ось-сигнал» |
+| **📈 Анализированных событий** | **712** | Недельная выборка |
+| **🔬 Размер выборки (байесовский)** | **630** | Пары «ось-сигнал» |
 
 </div>
 
@@ -54,13 +54,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Ежедневный разрыв | Положительный = Человечество впереди, Отрицательный = ИИ впереди"
-    x-axis ["14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10"]
+    x-axis ["15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10"]
     y-axis "Разрыв" -0.675 --> 0.041
-    line [-0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101]
+    line [-0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112]
 ```
 
 | Дата | ИИ | Человечество | Разрыв | CI95 | Элементов | Выборка | Тип |
 |---|---|---|---|---|---|---|---|
+| 31/10 | 0.791 | 0.679 | −0.112 | [−0.340, +0.138] | 712 | 630 | ПРОМЕЖУТОЧНЫЙ |
 | 30/10 | 0.771 | 0.670 | −0.101 | [−0.342, +0.150] | 583 | 531 | ПРОМЕЖУТОЧНЫЙ |
 | 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | ПРОМЕЖУТОЧНЫЙ |
 | 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | ПРОМЕЖУТОЧНЫЙ |
@@ -75,7 +76,6 @@ xychart-beta
 | 17/10 | 0.821 | 0.404 | −0.417 | [−0.649, −0.161] | 412 | 325 | ПРОМЕЖУТОЧНЫЙ |
 | 16/10 | 0.794 | 0.437 | −0.357 | [−0.604, −0.090] | 275 | 222 | ПРОМЕЖУТОЧНЫЙ |
 | 15/10 | 0.783 | 0.409 | −0.374 | [−0.632, −0.094] | 214 | 189 | ПРОМЕЖУТОЧНЫЙ |
-| 14/10 | 0.730 | 0.434 | −0.295 | [−0.599, +0.024] | 147 | 127 | ПРОМЕЖУТОЧНЫЙ |
 
 #### 📚 История протоколов
 
@@ -83,7 +83,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | ФИНАЛЬНЫЙ |
 
-> 📌 Промежуточный протокол (справочно, не на графике): 30/10 — ИИ 0.771 · Человечество 0.670 · Разрыв −0.101 · 583 / 531 items.
+> 📌 Промежуточный протокол (справочно, не на графике): 31/10 — ИИ 0.791 · Человечество 0.679 · Разрыв −0.112 · 712 / 630 items.
 > Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.
 
 ---
@@ -93,6 +93,66 @@ xychart-beta
 ## Мнения
 
 ### 🧠 Ведущие Лаборатории ИИ
+
+**xAI — 2026-10-31**
+
+> Grok the Vote
+
+— *[The Atlantic](https://www.theatlantic.com/technology/2026/10/x-midterm-election-ai-fact-check/689245/?utm_source=feed)*
+
+**OpenAI — 2026-10-31**
+
+> OpenAI Raises Less Than Half of $30 Billion Target in Latest Round
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/openai-raises-less-than-half-of-30-billion-target-in-latest-round-91aecdc5?mod=rss_Technology)*
+
+**Nvidia — 2026-10-31**
+
+> Chinese Executive Close to Nvidia CEO Suspected of Giving China Information
+
+— *[WSJ — Tech](https://www.wsj.com/tech/chinese-executive-close-to-nvidia-ceo-suspected-of-giving-china-information-798eb6a1?mod=rss_Technology)*
+
+**Jensen Huang (Nvidia) — 2026-10-31**
+
+> Chinese Executive Close to Nvidia CEO Suspected of Giving China Information
+
+— *[WSJ — Tech](https://www.wsj.com/tech/chinese-executive-close-to-nvidia-ceo-suspected-of-giving-china-information-798eb6a1?mod=rss_Technology)*
+
+**Google — 2026-10-30**
+
+> Google’s first data center satellite is online and writing poetry
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/)*
+
+**Nvidia — 2026-10-31**
+
+> Nvidia weighs playing the cosigner for Nscale’s AI data center in West Virginia
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/30/nvidia-weighs-playing-the-cosigner-for-nscales-ai-data-center-in-west-virginia/)*
+
+**Google — 2026-10-31**
+
+> [AINews] Google admits AI Mode hurts Search revenue; -15% $500B drop worst since 2004 IPO. AI Bear Market coming?
+
+— *[Latent Space](https://latent.space/p/ainews-google-admits-ai-mode-hurts-search-revenue-15-500b-drop-worst-since-2004-ipo-ai-bear-market-c/)*
+
+**Google — 2026-10-30**
+
+> Google’s satellite AI server transmits its first response to Earth
+
+— *[The Verge — AI](https://www.theverge.com/tech/1023528/google-project-suncatcher-ai-satellite-transmission)*
+
+**Sam Altman (OpenAI) — 2026-10-30**
+
+> Sam Altman says it’s better for RAM to be in a data center than on your desk
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1023820/sam-altman-ram-shortage-cloud-servers)*
+
+**OpenAI — 2026-10-29**
+
+> Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot
+
+— *[OpenAI Blog](https://openai.com/index/credit-saison)*
 
 **Meta — 2026-10-30**
 
@@ -321,66 +381,6 @@ xychart-beta
 > 'Dear ChatGPT': 12-year-old wins top youth prize at Australian Poetry Slam – video
 
 — *[The Guardian — AI](https://www.theguardian.com/technology/video/2026/oct/26/dear-chatgpt-12-year-old-wins-top-youth-prize-at-australian-poetry-slam-video)*
-
-**Claude — 2026-10-26**
-
-> Anthropic’s Claude AI model accessed Georgia voter data in US
-
-— *[The Guardian — AI](https://www.theguardian.com/technology/2026/oct/26/anthropics-claude-ai-model-accessed-georgia-voter-data-in-us)*
-
-**Meta — 2026-10-26**
-
-> Anthropic files for stock market IPO; Meta announces $95bn fundraising drive to pay for AI expansion – business live
-
-— *[The Guardian — AI](https://www.theguardian.com/business/live/2026/oct/26/ai-cloud-computing-companies-guppy-level-death-elon-musk-stock-markets-dollar-oil-bond-yieds-latest-news-updates)*
-
-**Meta — 2026-10-26**
-
-> Meta plans $95bn stock offering to help cover AI expansion
-
-— *[The Guardian — AI](https://www.theguardian.com/technology/2026/oct/26/meta-plans-95bn-stock-offering-to-help-cover-ai-expansion)*
-
-**Meta — 2026-10-26**
-
-> Meta plans $95bn stock offering to bankroll AI expansion
-
-— *[FT — AI](https://www.ft.com/content/94e5a0ae-874d-447a-bbfc-cd465a1a7555?syn-25a6b1a6=1)*
-
-**Meta — 2026-10-22**
-
-> Zuckerberg wins Meta deal to help him foot bill for possible California billionaire tax
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cky83vwnyglno?at_medium=RSS&at_campaign=rss)*
-
-**Mark Zuckerberg (Meta) — 2026-10-22**
-
-> Zuckerberg wins Meta deal to help him foot bill for possible California billionaire tax
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cky83vwnyglno?at_medium=RSS&at_campaign=rss)*
-
-**OpenAI — 2026-10-23**
-
-> Texas sues OpenAI, Sam Altman over product safety
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/23/texas-sues-openai-over-product-safety-01134162)*
-
-**Sam Altman (OpenAI) — 2026-10-23**
-
-> Texas sues OpenAI, Sam Altman over product safety
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/23/texas-sues-openai-over-product-safety-01134162)*
-
-**Google — 2026-09-07**
-
-> Import AI 472: DeepMind's cheating math agents; populist AI policies; and Forethought theorizes a nightwatchman
-
-— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-472-deepminds-cheating)*
-
-**Zhipu AI — 2026-09-28**
-
-> Import AI 474: Platonic mindspace; TPUs in space; Zhipu starts an outer RSI loop
-
-— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-474-platonic-mindspace)*
 
 ### 🧪 Исследователи ИИ
 

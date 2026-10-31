@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** October 30, 2026  
-**Baseline:** Updated on October 30, 2026 — based on 583 items (sample size: 531).
+**Updated:** October 31, 2026  
+**Baseline:** Updated on October 31, 2026 — based on 712 items (sample size: 630).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (10-30) | Status |
+| Metric | Value (10-31) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.670** | Current value |
-| **🔴 AI Score** | 🤖 **0.771** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.101** | AI is ahead |
-| **📊 CI95** | **[−0.342, +0.150]** | Inconclusive |
+| **🟢 Humanity Score** | 🌐 **0.679** | Current value |
+| **🔴 AI Score** | 🤖 **0.791** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.112** | AI is ahead |
+| **📊 CI95** | **[−0.340, +0.138]** | Inconclusive |
 | **⚡ Threshold Shifts** | **11** | Critical events detected |
-| **📈 Items Analyzed** | **583** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **531** | Axis-signal pairs |
+| **📈 Items Analyzed** | **712** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **630** | Axis-signal pairs |
 
 </div>
 
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["14/10", "15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10"]
+    x-axis ["15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10"]
     y-axis "Gap" -0.675 --> 0.041
-    line [-0.295, -0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101]
+    line [-0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 31/10 | 0.791 | 0.679 | −0.112 | [−0.340, +0.138] | 712 | 630 | INTERIM |
 | 30/10 | 0.771 | 0.670 | −0.101 | [−0.342, +0.150] | 583 | 531 | INTERIM |
 | 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | INTERIM |
 | 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | INTERIM |
@@ -76,7 +77,6 @@ xychart-beta
 | 17/10 | 0.821 | 0.404 | −0.417 | [−0.649, −0.161] | 412 | 325 | INTERIM |
 | 16/10 | 0.794 | 0.437 | −0.357 | [−0.604, −0.090] | 275 | 222 | INTERIM |
 | 15/10 | 0.783 | 0.409 | −0.374 | [−0.632, −0.094] | 214 | 189 | INTERIM |
-| 14/10 | 0.730 | 0.434 | −0.295 | [−0.599, +0.024] | 147 | 127 | INTERIM |
 
 #### 📚 Historical Protocols
 
@@ -84,7 +84,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | FINAL |
 
-> 📌 Interim (reference, not on chart): 30/10 — AI 0.771 · Humanity 0.670 · Gap −0.101 · 583 / 531 items.
+> 📌 Interim (reference, not on chart): 31/10 — AI 0.791 · Humanity 0.679 · Gap −0.112 · 712 / 630 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -94,6 +94,66 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**xAI — 2026-10-31**
+
+> Grok the Vote
+
+— *[The Atlantic](https://www.theatlantic.com/technology/2026/10/x-midterm-election-ai-fact-check/689245/?utm_source=feed)*
+
+**OpenAI — 2026-10-31**
+
+> OpenAI Raises Less Than Half of $30 Billion Target in Latest Round
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/openai-raises-less-than-half-of-30-billion-target-in-latest-round-91aecdc5?mod=rss_Technology)*
+
+**Nvidia — 2026-10-31**
+
+> Chinese Executive Close to Nvidia CEO Suspected of Giving China Information
+
+— *[WSJ — Tech](https://www.wsj.com/tech/chinese-executive-close-to-nvidia-ceo-suspected-of-giving-china-information-798eb6a1?mod=rss_Technology)*
+
+**Jensen Huang (Nvidia) — 2026-10-31**
+
+> Chinese Executive Close to Nvidia CEO Suspected of Giving China Information
+
+— *[WSJ — Tech](https://www.wsj.com/tech/chinese-executive-close-to-nvidia-ceo-suspected-of-giving-china-information-798eb6a1?mod=rss_Technology)*
+
+**Google — 2026-10-30**
+
+> Google’s first data center satellite is online and writing poetry
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/)*
+
+**Nvidia — 2026-10-31**
+
+> Nvidia weighs playing the cosigner for Nscale’s AI data center in West Virginia
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/30/nvidia-weighs-playing-the-cosigner-for-nscales-ai-data-center-in-west-virginia/)*
+
+**Google — 2026-10-31**
+
+> [AINews] Google admits AI Mode hurts Search revenue; -15% $500B drop worst since 2004 IPO. AI Bear Market coming?
+
+— *[Latent Space](https://latent.space/p/ainews-google-admits-ai-mode-hurts-search-revenue-15-500b-drop-worst-since-2004-ipo-ai-bear-market-c/)*
+
+**Google — 2026-10-30**
+
+> Google’s satellite AI server transmits its first response to Earth
+
+— *[The Verge — AI](https://www.theverge.com/tech/1023528/google-project-suncatcher-ai-satellite-transmission)*
+
+**Sam Altman (OpenAI) — 2026-10-30**
+
+> Sam Altman says it’s better for RAM to be in a data center than on your desk
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1023820/sam-altman-ram-shortage-cloud-servers)*
+
+**OpenAI — 2026-10-29**
+
+> Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot
+
+— *[OpenAI Blog](https://openai.com/index/credit-saison)*
 
 **Meta — 2026-10-30**
 
@@ -322,66 +382,6 @@ xychart-beta
 > 'Dear ChatGPT': 12-year-old wins top youth prize at Australian Poetry Slam – video
 
 — *[The Guardian — AI](https://www.theguardian.com/technology/video/2026/oct/26/dear-chatgpt-12-year-old-wins-top-youth-prize-at-australian-poetry-slam-video)*
-
-**Claude — 2026-10-26**
-
-> Anthropic’s Claude AI model accessed Georgia voter data in US
-
-— *[The Guardian — AI](https://www.theguardian.com/technology/2026/oct/26/anthropics-claude-ai-model-accessed-georgia-voter-data-in-us)*
-
-**Meta — 2026-10-26**
-
-> Anthropic files for stock market IPO; Meta announces $95bn fundraising drive to pay for AI expansion – business live
-
-— *[The Guardian — AI](https://www.theguardian.com/business/live/2026/oct/26/ai-cloud-computing-companies-guppy-level-death-elon-musk-stock-markets-dollar-oil-bond-yieds-latest-news-updates)*
-
-**Meta — 2026-10-26**
-
-> Meta plans $95bn stock offering to help cover AI expansion
-
-— *[The Guardian — AI](https://www.theguardian.com/technology/2026/oct/26/meta-plans-95bn-stock-offering-to-help-cover-ai-expansion)*
-
-**Meta — 2026-10-26**
-
-> Meta plans $95bn stock offering to bankroll AI expansion
-
-— *[FT — AI](https://www.ft.com/content/94e5a0ae-874d-447a-bbfc-cd465a1a7555?syn-25a6b1a6=1)*
-
-**Meta — 2026-10-22**
-
-> Zuckerberg wins Meta deal to help him foot bill for possible California billionaire tax
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cky83vwnyglno?at_medium=RSS&at_campaign=rss)*
-
-**Mark Zuckerberg (Meta) — 2026-10-22**
-
-> Zuckerberg wins Meta deal to help him foot bill for possible California billionaire tax
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cky83vwnyglno?at_medium=RSS&at_campaign=rss)*
-
-**OpenAI — 2026-10-23**
-
-> Texas sues OpenAI, Sam Altman over product safety
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/23/texas-sues-openai-over-product-safety-01134162)*
-
-**Sam Altman (OpenAI) — 2026-10-23**
-
-> Texas sues OpenAI, Sam Altman over product safety
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/23/texas-sues-openai-over-product-safety-01134162)*
-
-**Google — 2026-09-07**
-
-> Import AI 472: DeepMind's cheating math agents; populist AI policies; and Forethought theorizes a nightwatchman
-
-— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-472-deepminds-cheating)*
-
-**Zhipu AI — 2026-09-28**
-
-> Import AI 474: Platonic mindspace; TPUs in space; Zhipu starts an outer RSI loop
-
-— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-474-platonic-mindspace)*
 
 ### 🧪 AI Researchers
 
