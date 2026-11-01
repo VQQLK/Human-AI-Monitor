@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年10月31日  
-**基线：** 2026年10月31日更新 — 基于 712 个项目（样本量：630）。
+**更新:** 2026年11月1日  
+**基线：** 2026年11月1日更新 — 基于 822 个项目（样本量：720）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (10-31) | 状态 |
+| 指标 | 数值 (11-01) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.679** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.791** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.112** | 人工智能领先 |
-| **📊 CI95** | **[−0.340, +0.138]** | 不确定 |
+| **🟢 人类得分** | 🌐 **0.675** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.814** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.139** | 人工智能领先 |
+| **📊 CI95** | **[−0.357, +0.104]** | 不确定 |
 | **⚡ 阈值变化** | **11** | 检测到关键事件 |
-| **📈 分析项目** | **712** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **630** | 轴-信号对 |
+| **📈 分析项目** | **822** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **720** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["15/10", "16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10"]
+    x-axis ["16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11"]
     y-axis "差距" -0.675 --> 0.041
-    line [-0.374, -0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112]
+    line [-0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 01/11 | 0.814 | 0.675 | −0.139 | [−0.357, +0.104] | 822 | 720 | 临时版 |
 | 31/10 | 0.791 | 0.679 | −0.112 | [−0.340, +0.138] | 712 | 630 | 临时版 |
 | 30/10 | 0.771 | 0.670 | −0.101 | [−0.342, +0.150] | 583 | 531 | 临时版 |
 | 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 18/10 | 0.836 | 0.393 | −0.443 | [−0.654, −0.205] | 555 | 442 | 临时版 |
 | 17/10 | 0.821 | 0.404 | −0.417 | [−0.649, −0.161] | 412 | 325 | 临时版 |
 | 16/10 | 0.794 | 0.437 | −0.357 | [−0.604, −0.090] | 275 | 222 | 临时版 |
-| 15/10 | 0.783 | 0.409 | −0.374 | [−0.632, −0.094] | 214 | 189 | 临时版 |
 
 #### 📚 协议历史
 
@@ -85,7 +85,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：31/10 — AI 0.791 · 人类 0.679 · 差距 −0.112 · 712 / 630 items.
+> 📌 临时协议（仅供参考，不在图表上）：01/11 — AI 0.814 · 人类 0.675 · 差距 −0.139 · 822 / 720 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -95,6 +95,24 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**xAI — 2026-10-31**
+
+> Judge allows NAACP lawsuit over xAI data center pollution to move forward
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/31/judge-allows-naacp-lawsuit-over-xai-data-center-pollution-to-move-forward/)*
+
+**OpenAI — 2026-10-31**
+
+> OpenAI reportedly lowers funding target for new round
+
+— *[TechCrunch AI](https://techcrunch.com/2026/10/31/openai-reportedly-lowers-funding-target-for-new-round/)*
+
+**Meta — 2026-10-31**
+
+> I built an AI Tamagotchi before Meta could
+
+— *[The Verge — AI](https://www.theverge.com/gadgets/1013375/muse-charm-gadgets-preview-waveshare-esp32-claude-vibe-code)*
 
 **xAI — 2026-10-31**
 
@@ -365,24 +383,6 @@ xychart-beta
 > ChatGPT’s expanding world of work
 
 — *[OpenAI Blog](https://openai.com/index/chatgpt-expanding-world-of-work)*
-
-**OpenAI — 2026-10-26**
-
-> GPT-6.1 Sol helps CodeRabbit strengthen security across complex codebases
-
-— *[OpenAI Blog](https://openai.com/index/gpt-6-1-sol-coderabbit-code-security)*
-
-**OpenAI — 2026-10-26**
-
-> Greptile takes bug detection beyond code review with GPT-6 Astra
-
-— *[OpenAI Blog](https://openai.com/index/greptile-code-review-codex-astra)*
-
-**OpenAI — 2026-10-26**
-
-> 'Dear ChatGPT': 12-year-old wins top youth prize at Australian Poetry Slam – video
-
-— *[The Guardian — AI](https://www.theguardian.com/technology/video/2026/oct/26/dear-chatgpt-12-year-old-wins-top-youth-prize-at-australian-poetry-slam-video)*
 
 ### 🧪 AI研究人员
 
