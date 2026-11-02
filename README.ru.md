@@ -7,22 +7,22 @@
 
 ## 📊 Текущее состояние развития
 
-**Обновлено:** 1 ноября 2026  
-**Базовая линия:** Обновлено 1 ноября 2026 — на основе 822 элементов (размер выборки: 720).
+**Обновлено:** 2 ноября 2026  
+**Базовая линия:** Обновлено 2 ноября 2026 — на основе 838 элементов (размер выборки: 730).
 
 ### 🌍 Индекс разрыва Human–AI (Достижения vs Прогресс)
 
 <div align="center">
 
-| Метрика | Значение (01.11) | Статус |
+| Метрика | Значение (02.11) | Статус |
 |:---|:---:|:---:|
-| **🟢 Оценка Человечества** | 🌐 **0.675** | Текущее значение |
+| **🟢 Оценка Человечества** | 🌐 **0.679** | Текущее значение |
 | **🔴 Оценка ИИ** | 🤖 **0.814** | Текущее значение |
-| **⚖️ Индекс разрыва** | ⚖️ **−0.139** | ИИ впереди |
-| **📊 CI95** | **[−0.357, +0.104]** | Неопределённо |
+| **⚖️ Индекс разрыва** | ⚖️ **−0.135** | ИИ впереди |
+| **📊 CI95** | **[−0.351, +0.102]** | Неопределённо |
 | **⚡ Ключевых сдвигов** | **11** | Обнаружены критические события |
-| **📈 Анализированных событий** | **822** | Недельная выборка |
-| **🔬 Размер выборки (байесовский)** | **720** | Пары «ось-сигнал» |
+| **📈 Анализированных событий** | **838** | Недельная выборка |
+| **🔬 Размер выборки (байесовский)** | **730** | Пары «ось-сигнал» |
 
 </div>
 
@@ -33,10 +33,10 @@
 ```mermaid
 xychart-beta
     title "🟢 Человечество (столбики) vs 🔴 ИИ (линия) | История"
-    x-axis ["25/10", "25/10"]
-    y-axis "Оценка" 0.400 --> 0.800
-    bar [0.467, 0.467]
-    line [0.614, 0.614]
+    x-axis ["25/10", "01/11"]
+    y-axis "Оценка" 0.400 --> 0.864
+    bar [0.467, 0.679]
+    line [0.614, 0.814]
 ```
 
 #### 📉 Динамика Индекса разрыва (Человечество минус ИИ)
@@ -44,9 +44,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Индекс разрыва | Положительный = Человечество впереди, Отрицательный = ИИ впереди"
-    x-axis ["25/10", "25/10"]
+    x-axis ["25/10", "01/11"]
     y-axis "Разрыв" -0.196 --> 0.250
-    line [-0.146, -0.146]
+    line [-0.146, -0.135]
 ```
 
 #### 📅 Ежедневная траектория разрыва
@@ -81,10 +81,8 @@ xychart-beta
 
 | Неделя | ИИ | Человечество | Разрыв | CI95 | Элементов | Выборка | Тип |
 |---|---|---|---|---|---|---|---|
+| 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | ФИНАЛЬНЫЙ |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | ФИНАЛЬНЫЙ |
-
-> 📌 Промежуточный протокол (справочно, не на графике): 01/11 — ИИ 0.814 · Человечество 0.675 · Разрыв −0.139 · 822 / 720 items.
-> Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.
 
 ---
 
@@ -93,6 +91,48 @@ xychart-beta
 ## Мнения
 
 ### 🧠 Ведущие Лаборатории ИИ
+
+**Moonshot AI — 2026-11-02**
+
+> Women travel thousands of miles for a reproductive moonshot. Scientists say they’ve been misled
+
+— *[STAT News](https://www.statnews.com/2026/11/02/three-parent-ivf-fertility-tourism-investigation-mrt-therapy/?utm_campaign=rss)*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-02**
+
+> Trump vows to protect Musk, floats pre-emptive staff pardons
+
+— *[Axios](https://www.axios.com/2026/11/02/trump-musk-democrats)*
+
+**OpenAI — 2026-11-01**
+
+> OpenAI might rebrand its data centers as ‘AI compute campuses’
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/01/openai-might-rebrand-its-data-centers-as-ai-compute-campuses/)*
+
+**OpenAI — 2026-11-02**
+
+> OpenAI is finally merging ChatGPT’s chat and Work tabs
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/02/openai-is-finally-merging-chatgpts-chat-and-work-tabs/)*
+
+**Moonshot AI — 2026-11-02**
+
+> Italy revels in 20-year-old Kimi Antonelli's Formula 1 supremacy
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/kimi-antonelli-formula-one-youngest-world-champion-italy-mexico-grand-prix/)*
+
+**OpenAI — 2026-11-02**
+
+> OpenAI is already pitching 2028 hopefuls on how to talk about AI
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/02/openai-is-already-pitching-2028-hopefuls-on-how-to-talk-about-ai-01144821)*
+
+**Microsoft — 2026-11-02**
+
+> Cognitive Inclusivity in AI Coding Assistants: Evidence from GitHub Copilot
+
+— *[arXiv cs.SE](https://arxiv.org/abs/2610.41192)*
 
 **xAI — 2026-10-31**
 
@@ -339,48 +379,6 @@ xychart-beta
 > Prospect Theory in Large Language Models: A Meta-Analysis of Loss Aversion, Diminishing Sensitivity, and Probability Weighting
 
 — *[arXiv cs.AI](https://arxiv.org/abs/2610.33103)*
-
-**Nvidia — 2026-10-21**
-
-> NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required
-
-— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/kumo-relational)*
-
-**Mistral AI — 2026-09-08**
-
-> Mistral raises €3B to make sovereign, open-weight AI the technology frontier
-
-— *[Mistral AI](https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier)*
-
-**Mistral AI — 2026-09-10**
-
-> Cloudera and Mistral Partner to Bring Specialized, Sovereign Intelligence to Enterprise Data
-
-— *[Mistral AI](https://mistral.ai/news/mistral-x-cloudera)*
-
-**Mistral AI — 2026-09-16**
-
-> Mistral and Mozilla are bringing open, private and multilingual AI to your web browser
-
-— *[Mistral AI](https://mistral.ai/news/mistral-x-mozilla)*
-
-**OpenAI — 2026-10-26**
-
-> How Ultrafast cut incident investigation from hours to minutes at OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/openai-cut-incident-investigation)*
-
-**OpenAI — 2026-10-26**
-
-> Introducing GPT-6.1 Terra
-
-— *[OpenAI Blog](https://openai.com/index/introducing-gpt-6-1-terra)*
-
-**OpenAI — 2026-10-26**
-
-> ChatGPT’s expanding world of work
-
-— *[OpenAI Blog](https://openai.com/index/chatgpt-expanding-world-of-work)*
 
 ### 🧪 Исследователи ИИ
 
