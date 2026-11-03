@@ -211,3 +211,6 @@ diagnose-*/
 
 # Voices backup dumps (pre-translation snapshots)
 voices_backup_*.json
+
+# Local backups (do not commit)
+backups/
