@@ -754,8 +754,10 @@ export default {
       "name": "Moonshot AI",
       "category": "frontier_labs",
       "keywords": [
-        "Moonshot",
-        "Kimi",
+        "Moonshot AI",
+        "Kimi 3",
+        "Kimi K",
+        "Kimi Pro",
         "月之暗面"
       ]
     },
