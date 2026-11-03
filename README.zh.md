@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年11月2日  
-**基线：** 2026年11月2日更新 — 基于 838 个项目（样本量：730）。
+**更新:** 2026年11月3日  
+**基线：** 2026年11月3日更新 — 基于 271 个项目（样本量：247）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (11-02) | 状态 |
+| 指标 | 数值 (11-03) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.679** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.814** | 当前值 |
+| **🟢 人类得分** | 🌐 **0.596** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.731** | 当前值 |
 | **⚖️ 差距指数** | ⚖️ **−0.135** | 人工智能领先 |
-| **📊 CI95** | **[−0.351, +0.102]** | 不确定 |
-| **⚡ 阈值变化** | **11** | 检测到关键事件 |
-| **📈 分析项目** | **838** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **730** | 轴-信号对 |
+| **📊 CI95** | **[−0.433, +0.174]** | 不确定 |
+| **⚡ 阈值变化** | **3** | 检测到关键事件 |
+| **📈 分析项目** | **271** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **247** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["16/10", "17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11"]
+    x-axis ["17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11"]
     y-axis "差距" -0.675 --> 0.041
-    line [-0.357, -0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139]
+    line [-0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 03/11 | 0.731 | 0.596 | −0.135 | [−0.433, +0.174] | 271 | 247 | 临时版 |
 | 01/11 | 0.814 | 0.675 | −0.139 | [−0.357, +0.104] | 822 | 720 | 临时版 |
 | 31/10 | 0.791 | 0.679 | −0.112 | [−0.340, +0.138] | 712 | 630 | 临时版 |
 | 30/10 | 0.771 | 0.670 | −0.101 | [−0.342, +0.150] | 583 | 531 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 20/10 | 0.646 | 0.303 | −0.342 | [−0.646, −0.017] | 166 | 138 | 临时版 |
 | 18/10 | 0.836 | 0.393 | −0.443 | [−0.654, −0.205] | 555 | 442 | 临时版 |
 | 17/10 | 0.821 | 0.404 | −0.417 | [−0.649, −0.161] | 412 | 325 | 临时版 |
-| 16/10 | 0.794 | 0.437 | −0.357 | [−0.604, −0.090] | 275 | 222 | 临时版 |
 
 #### 📚 协议历史
 
@@ -86,6 +86,9 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | 最终版 |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | 最终版 |
 
+> 📌 临时协议（仅供参考，不在图表上）：03/11 — AI 0.731 · 人类 0.596 · 差距 −0.135 · 271 / 247 items.
+> 最后一点为临时版，将于周一替换为最终版。
+
 ---
 
 
@@ -93,6 +96,54 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-03**
+
+> Elon Musk's next target: a major shake-up of America's wireless market
+
+— *[Axios](https://www.axios.com/2026/11/03/elon-musk-spacex-boost-mobile-wireless-market)*
+
+**Google — 2026-11-03**
+
+> Google takes Dreambeans to India in bid to bring AI-generated personal stories to the masses
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/02/google-takes-dreambeans-to-india-in-bid-to-bring-ai-generated-personal-stories-to-the-masses/)*
+
+**OpenAI — 2026-11-02**
+
+> OpenAI pitches data center power plants as a way to protect nearby areas
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1024604/openai-data-center-grid-protection-program)*
+
+**Claude — 2026-11-02**
+
+> Anthropic clamps down on Claude’s AI video game clones
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1024632/anthropic-claude-ai-video-game-clones)*
+
+**OpenAI — 2026-11-02**
+
+> ChatGPT as a Surveillance Assistant? An Exploratory Case Study of AI-Assisted Surveillance Risks
+
+— *[arXiv cs.AI](https://arxiv.org/abs/2610.40890)*
+
+**OpenAI — 2026-11-02**
+
+> OpenAI appoints Dan Driscoll as Senior Counselor for National Security Modernization
+
+— *[OpenAI Blog](https://openai.com/index/dan-driscoll-joins-openai)*
+
+**OpenAI — 2026-11-02**
+
+> Preparing our next security sprint to harden OpenAI
+
+— *[OpenAI Blog](https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai)*
+
+**OpenAI — 2026-11-02**
+
+> Scaling Git at OpenAI
+
+— *[OpenAI Blog](https://openai.com/index/scaling-git-at-openai)*
 
 **Moonshot AI — 2026-11-02**
 
@@ -340,48 +391,6 @@ xychart-beta
 
 — *[Anthropic News](https://www.anthropic.com/news/expanding-partnership-gsa)*
 
-**OpenAI — 2026-10-27**
-
-> OpenAI expands partnership with Oracle to bring its apps to ChatGPT
-
-— *[OpenAI Blog](https://openai.com/index/oracle-apps-in-chatgpt)*
-
-**OpenAI — 2026-10-27**
-
-> Retell uses OpenAI models to help power 100M monthly calls
-
-— *[OpenAI Blog](https://openai.com/index/retell-ai)*
-
-**Meta — 2026-10-21**
-
-> Zuckerberg considered leaving CA over wealth tax, Meta says
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/21/zuckerberg-considered-leaving-ca-over-wealth-tax-meta-says-01131087)*
-
-**Mark Zuckerberg (Meta) — 2026-10-21**
-
-> Zuckerberg considered leaving CA over wealth tax, Meta says
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/21/zuckerberg-considered-leaving-ca-over-wealth-tax-meta-says-01131087)*
-
-**Meta — 2026-10-22**
-
-> ‘Just the beginning’: New Mexico AG warns AI industry after $25B Meta ruling
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/22/just-the-beginning-new-mexico-ag-warns-ai-industry-after-25b-meta-ruling-01133294)*
-
-**Meta — 2026-10-21**
-
-> New Mexico judge orders Meta to pay state $25B over privacy practices
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/21/new-mexico-meta-cambridge-analytica-judgment-01130539)*
-
-**Meta — 2026-10-27**
-
-> Prospect Theory in Large Language Models: A Meta-Analysis of Loss Aversion, Diminishing Sensitivity, and Probability Weighting
-
-— *[arXiv cs.AI](https://arxiv.org/abs/2610.33103)*
-
 ### 🧪 AI研究人员
 
 **Stuart Russell (UC Berkeley) — 2026-10-28**
@@ -389,14 +398,6 @@ xychart-beta
 > Russell Brand takes the stand at his rape and sexual assault trial
 
 — *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-takes-stand-rape-sexual-assault-trial-london/)*
-
-### 💼 投资人与科技领袖
-
-**Peter Thiel (Founders Fund) — 2026-10-21**
-
-> Peter Thiel breaks with Trump over Iran war: ‘We should not have done it’
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/21/peter-thiel-trump-iran-war-01131284)*
 
 ## 这是什么
 
