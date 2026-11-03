@@ -143,12 +143,6 @@ xychart-beta
 
 — *[OpenAI Blog](https://openai.com/index/scaling-git-at-openai)*
 
-**Moonshot AI — 2026-11-02**
-
-> Women travel thousands of miles for a reproductive moonshot. Scientists say they’ve been misled
-
-— *[STAT News](https://www.statnews.com/2026/11/02/three-parent-ivf-fertility-tourism-investigation-mrt-therapy/?utm_campaign=rss)*
-
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-11-02**
 
 > Trump vows to protect Musk, floats pre-emptive staff pardons
@@ -166,12 +160,6 @@ xychart-beta
 > OpenAI is finally merging ChatGPT’s chat and Work tabs
 
 — *[TechCrunch AI](https://techcrunch.com/2026/11/02/openai-is-finally-merging-chatgpts-chat-and-work-tabs/)*
-
-**Moonshot AI — 2026-11-02**
-
-> Italy revels in 20-year-old Kimi Antonelli's Formula 1 supremacy
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/kimi-antonelli-formula-one-youngest-world-champion-italy-mexico-grand-prix/)*
 
 **OpenAI — 2026-11-02**
 
@@ -388,6 +376,18 @@ xychart-beta
 > Expanding our partnership with GSA to bring Claude to all levels of government
 
 — *[Anthropic News](https://www.anthropic.com/news/expanding-partnership-gsa)*
+
+**OpenAI — 2026-10-27**
+
+> OpenAI expands partnership with Oracle to bring its apps to ChatGPT
+
+— *[OpenAI Blog](https://openai.com/index/oracle-apps-in-chatgpt)*
+
+**OpenAI — 2026-10-27**
+
+> Retell uses OpenAI models to help power 100M monthly calls
+
+— *[OpenAI Blog](https://openai.com/index/retell-ai)*
 
 ### 🧪 Исследователи ИИ
 
