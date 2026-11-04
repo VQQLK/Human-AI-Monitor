@@ -7,22 +7,22 @@
 
 ## 📊 Текущее состояние развития
 
-**Обновлено:** 3 ноября 2026  
-**Базовая линия:** Обновлено 3 ноября 2026 — на основе 271 элементов (размер выборки: 247).
+**Обновлено:** 4 ноября 2026  
+**Базовая линия:** Обновлено 4 ноября 2026 — на основе 417 элементов (размер выборки: 382).
 
 ### 🌍 Индекс разрыва Human–AI (Достижения vs Прогресс)
 
 <div align="center">
 
-| Метрика | Значение (03.11) | Статус |
+| Метрика | Значение (04.11) | Статус |
 |:---|:---:|:---:|
-| **🟢 Оценка Человечества** | 🌐 **0.596** | Текущее значение |
-| **🔴 Оценка ИИ** | 🤖 **0.731** | Текущее значение |
-| **⚖️ Индекс разрыва** | ⚖️ **−0.135** | ИИ впереди |
-| **📊 CI95** | **[−0.433, +0.174]** | Неопределённо |
-| **⚡ Ключевых сдвигов** | **3** | Обнаружены критические события |
-| **📈 Анализированных событий** | **271** | Недельная выборка |
-| **🔬 Размер выборки (байесовский)** | **247** | Пары «ось-сигнал» |
+| **🟢 Оценка Человечества** | 🌐 **0.529** | Текущее значение |
+| **🔴 Оценка ИИ** | 🤖 **0.800** | Текущее значение |
+| **⚖️ Индекс разрыва** | ⚖️ **−0.271** | ИИ впереди |
+| **📊 CI95** | **[−0.516, −0.003]** | Значимо |
+| **⚡ Ключевых сдвигов** | **5** | Обнаружены критические события |
+| **📈 Анализированных событий** | **417** | Недельная выборка |
+| **🔬 Размер выборки (байесовский)** | **382** | Пары «ось-сигнал» |
 
 </div>
 
@@ -54,13 +54,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Ежедневный разрыв | Положительный = Человечество впереди, Отрицательный = ИИ впереди"
-    x-axis ["17/10", "18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11"]
+    x-axis ["18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11"]
     y-axis "Разрыв" -0.675 --> 0.041
-    line [-0.417, -0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135]
+    line [-0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271]
 ```
 
 | Дата | ИИ | Человечество | Разрыв | CI95 | Элементов | Выборка | Тип |
 |---|---|---|---|---|---|---|---|
+| 04/11 | 0.800 | 0.529 | −0.271 | [−0.516, −0.003] | 417 | 382 | ПРОМЕЖУТОЧНЫЙ |
 | 03/11 | 0.731 | 0.596 | −0.135 | [−0.433, +0.174] | 271 | 247 | ПРОМЕЖУТОЧНЫЙ |
 | 01/11 | 0.814 | 0.675 | −0.139 | [−0.357, +0.104] | 822 | 720 | ПРОМЕЖУТОЧНЫЙ |
 | 31/10 | 0.791 | 0.679 | −0.112 | [−0.340, +0.138] | 712 | 630 | ПРОМЕЖУТОЧНЫЙ |
@@ -75,7 +76,6 @@ xychart-beta
 | 21/10 | 0.716 | 0.341 | −0.375 | [−0.653, −0.083] | 382 | 328 | ПРОМЕЖУТОЧНЫЙ |
 | 20/10 | 0.646 | 0.303 | −0.342 | [−0.646, −0.017] | 166 | 138 | ПРОМЕЖУТОЧНЫЙ |
 | 18/10 | 0.836 | 0.393 | −0.443 | [−0.654, −0.205] | 555 | 442 | ПРОМЕЖУТОЧНЫЙ |
-| 17/10 | 0.821 | 0.404 | −0.417 | [−0.649, −0.161] | 412 | 325 | ПРОМЕЖУТОЧНЫЙ |
 
 #### 📚 История протоколов
 
@@ -84,7 +84,7 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | ФИНАЛЬНЫЙ |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | ФИНАЛЬНЫЙ |
 
-> 📌 Промежуточный протокол (справочно, не на графике): 03/11 — ИИ 0.731 · Человечество 0.596 · Разрыв −0.135 · 271 / 247 items.
+> 📌 Промежуточный протокол (справочно, не на графике): 04/11 — ИИ 0.800 · Человечество 0.529 · Разрыв −0.271 · 417 / 382 items.
 > Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.
 
 ---
@@ -94,6 +94,60 @@ xychart-beta
 ## Мнения
 
 ### 🧠 Ведущие Лаборатории ИИ
+
+**Google — 2026-11-04**
+
+> Google will cut off search access for students at schools that reject AI
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/google-search-ai-students/)*
+
+**Microsoft — 2026-11-03**
+
+> UEFI bootkit infected fully patched Windows machines. Is Microsoft to blame?
+
+— *[Ars Technica — AI](https://arstechnica.com/security/2026/11/uefi-bootkit-infected-fully-patched-windows-machines-is-microsoft-to-blame/)*
+
+**Google — 2026-11-03**
+
+> OpenAI says ChatGPT is catching up to Google in search
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1025482/openai-says-chatgpt-is-catching-up-to-google-in-search)*
+
+**OpenAI — 2026-11-03**
+
+> OpenAI says ChatGPT is catching up to Google in search
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1025482/openai-says-chatgpt-is-catching-up-to-google-in-search)*
+
+**Google — 2026-11-04**
+
+> Google hasn’t figured out how to make AI pay like its search engine
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1024862/google-search-ai-overviews-alphabet-earnings-q3)*
+
+**Sam Altman (OpenAI) — 2026-11-04**
+
+> Sam Altman addresses RAM comments: people should ‘put as much as they want in their computers’
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1026292/sam-altman-ram-shortage-pcs-comments)*
+
+**Google — 2026-11-03**
+
+> Agentic cheminformatics with Google Antigravity
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/)*
+
+**OpenAI — 2026-11-03**
+
+> OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer
+
+— *[OpenAI Blog](https://openai.com/index/jill-hazelbaker-chief-corporate-affairs-officer)*
+
+**OpenAI — 2026-11-03**
+
+> How Cisco defends at machine speed with OpenAI
+
+— *[OpenAI Blog](https://openai.com/index/cisco-cyber)*
 
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-11-03**
 
@@ -335,67 +389,13 @@ xychart-beta
 
 — *[Hugging Face Blog](https://huggingface.co/blog/mistral-large4)*
 
-**Meta — 2026-10-28**
+### 💼 Инвесторы и техлидеры
 
-> Meta Partners With Five US Universities to Accelerate Medical and Scientific Breakthroughs
+**Jeff Bezos (Amazon, Blue Origin) — 2026-11-03**
 
-— *[Meta AI Blog](https://about.fb.com/news/2026/10/meta-partners-with-five-us-universities-to-accelerate-medical-and-scientific-breakthroughs/)*
+> Those Jeff Bezos hair transplant photos are very fake
 
-**Google — 2026-10-28**
-
-> Gemini 4 Carbon: Our next frontier model
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/)*
-
-**OpenAI — 2026-10-28**
-
-> OpenAI and ServiceNow expand partnership across enterprise workflows
-
-— *[OpenAI Blog](https://openai.com/index/openai-servicenow-partnership-expansion)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-10-28**
-
-> Ukraine's Starlink woes spur Europe to look for non-Musk alternatives
-
-— *[Axios](https://www.axios.com/2026/10/28/starlink-musk-ukraine-war-satcom)*
-
-**OpenAI — 2026-10-28**
-
-> OpenAI launching election war room to track interference efforts
-
-— *[Politico — Technology](https://www.politico.com/news/2026/10/28/openai-election-war-room-interference-01137690)*
-
-**Nvidia — 2026-10-28**
-
-> NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcription You Can Prompt and Adapt
-
-— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/nemotron-transcribe-granary)*
-
-**Claude — 2026-10-27**
-
-> Expanding our partnership with GSA to bring Claude to all levels of government
-
-— *[Anthropic News](https://www.anthropic.com/news/expanding-partnership-gsa)*
-
-**OpenAI — 2026-10-27**
-
-> OpenAI expands partnership with Oracle to bring its apps to ChatGPT
-
-— *[OpenAI Blog](https://openai.com/index/oracle-apps-in-chatgpt)*
-
-**OpenAI — 2026-10-27**
-
-> Retell uses OpenAI models to help power 100M monthly calls
-
-— *[OpenAI Blog](https://openai.com/index/retell-ai)*
-
-### 🧪 Исследователи ИИ
-
-**Stuart Russell (UC Berkeley) — 2026-10-28**
-
-> Russell Brand takes the stand at his rape and sexual assault trial
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-takes-stand-rape-sexual-assault-trial-london/)*
+— *[The Verge — AI](https://www.theverge.com/tech/1025745/fake-jeff-bezos-hair-replacement-photos-debunk)*
 
 ## Что это
 
