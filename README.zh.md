@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年11月4日  
-**基线：** 2026年11月4日更新 — 基于 417 个项目（样本量：382）。
+**更新:** 2026年11月5日  
+**基线：** 2026年11月5日更新 — 基于 565 个项目（样本量：542）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (11-04) | 状态 |
+| 指标 | 数值 (11-05) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.529** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.800** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.271** | 人工智能领先 |
-| **📊 CI95** | **[−0.516, −0.003]** | 显著 |
-| **⚡ 阈值变化** | **5** | 检测到关键事件 |
-| **📈 分析项目** | **417** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **382** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.569** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.827** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.258** | 人工智能领先 |
+| **📊 CI95** | **[−0.489, −0.017]** | 显著 |
+| **⚡ 阈值变化** | **10** | 检测到关键事件 |
+| **📈 分析项目** | **565** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **542** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11"]
+    x-axis ["20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11"]
     y-axis "差距" -0.675 --> 0.041
-    line [-0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271]
+    line [-0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 05/11 | 0.827 | 0.569 | −0.258 | [−0.489, −0.017] | 565 | 542 | 临时版 |
 | 04/11 | 0.800 | 0.529 | −0.271 | [−0.516, −0.003] | 417 | 382 | 临时版 |
 | 03/11 | 0.731 | 0.596 | −0.135 | [−0.433, +0.174] | 271 | 247 | 临时版 |
 | 01/11 | 0.814 | 0.675 | −0.139 | [−0.357, +0.104] | 822 | 720 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 22/10 | 0.800 | 0.335 | −0.465 | [−0.694, −0.208] | 569 | 501 | 临时版 |
 | 21/10 | 0.716 | 0.341 | −0.375 | [−0.653, −0.083] | 382 | 328 | 临时版 |
 | 20/10 | 0.646 | 0.303 | −0.342 | [−0.646, −0.017] | 166 | 138 | 临时版 |
-| 18/10 | 0.836 | 0.393 | −0.443 | [−0.654, −0.205] | 555 | 442 | 临时版 |
 
 #### 📚 协议历史
 
@@ -86,7 +86,7 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | 最终版 |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：04/11 — AI 0.800 · 人类 0.529 · 差距 −0.271 · 417 / 382 items.
+> 📌 临时协议（仅供参考，不在图表上）：05/11 — AI 0.827 · 人类 0.569 · 差距 −0.258 · 565 / 542 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -96,6 +96,42 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Google — 2026-11-04**
+
+> Google Won’t Give Schools the One Thing They Want
+
+— *[The Atlantic](https://www.theatlantic.com/technology/2026/11/google-schools-ai-search/689298/?utm_source=feed)*
+
+**Google — 2026-11-04**
+
+> Google Summaries Aren't About AI, They're About Lock-In
+
+— *[EFF (Electronic Frontier Foundation)](https://www.eff.org/deeplinks/2026/11/google-summaries-arent-about-ai-theyre-about-lock)*
+
+**OpenAI — 2026-11-05**
+
+> OpenAI lays out new policy framework for data centers
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/05/openai-new-policy-framework-data-centers-01150714)*
+
+**Meta — 2026-11-05**
+
+> Challenge-Aware Knowledge Recruitment with Meta-Agent Supervision for Medical Multi-Agent Reasoning
+
+— *[arXiv cs.AI](https://arxiv.org/abs/2611.05393)*
+
+**OpenAI — 2026-11-04**
+
+> DevRev delivers autonomous self-service with GPT-6.1 Sol
+
+— *[OpenAI Blog](https://openai.com/index/devrev-enterprise-self-service)*
+
+**OpenAI — 2026-11-04**
+
+> OpenAI to acquire Pierre Computer Company, Inc.
+
+— *[OpenAI Blog](https://openai.com/index/openai-to-acquire-pierre)*
 
 **Google — 2026-11-04**
 
@@ -343,53 +379,19 @@ xychart-beta
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1023054/altman-cheeky-pint-ai-math-interview)*
 
-**Meta — 2026-10-29**
+### 🧪 AI研究人员
 
-> The Future Is for Everyone: Meta and CNIB Partner to Support Canadians Who Are Blind, Deafblind or Have Low Vision
+**Stuart Russell (UC Berkeley) — 2026-11-05**
 
-— *[Meta AI Blog](https://about.fb.com/news/2026/10/the-future-is-for-everyone-meta-and-cnib-partner-to-support-canadians-who-are-blind-deafblind-or-have-low-vision/)*
+> Russell Brand found guilty of rape and sexual assault by UK court
 
-**Meta — 2026-10-29**
+— *[Al Jazeera](https://www.aljazeera.com/news/2026/11/5/russell-brand-found-guilty-of-rape-and-sexual-assault-by-uk-court?traffic_source=rss)*
 
-> L’avenir appartient à tous: Meta et INCA s’associent pour soutenir les personnes aveugles, sourdes et aveugles ou ayant une basse vision au Canada
+**Stuart Russell (UC Berkeley) — 2026-11-05**
 
-— *[Meta AI Blog](https://about.fb.com/news/2026/10/lavenir-appartient-a-tous-meta-et-inca-sassocient-pour-soutenir-les-personnes-aveugles-sourdes-et-aveugles-ou-ayant-une-basse-vision-au-canada/)*
+> Russell Brand found guilty of rape and sexual assault
 
-**Claude — 2026-10-27**
-
-> How Anthropic ships Claude with Claude: Separating the Brain from the Hands
-
-— *[Latent Space](https://latent.space/p/opus55/)*
-
-**Google — 2026-10-29**
-
-> [AINews] Gemini 4 Carbon tops leaderboards, launches for cyber defenders
-
-— *[Latent Space](https://latent.space/p/ainews-gemini-4-carbon/)*
-
-**Meta — 2026-10-28**
-
-> Meta says it’ll probably delay its controversial new business terms again
-
-— *[The Verge — AI](https://www.theverge.com/tech/1020769/meta-updated-business-terms-delay-indefinitely)*
-
-**Google — 2026-10-28**
-
-> Google launches Gemini 4 Carbon with a ‘significant leap’ in cybersecurity
-
-— *[The Verge — AI](https://www.theverge.com/tech/1021339/google-gemini-4-carbon-cybersecurity-frontier)*
-
-**Microsoft — 2026-10-28**
-
-> Microsoft is ending Copilot support on smart TVs
-
-— *[The Verge — AI](https://www.theverge.com/tech/1021143/microsoft-lg-samsung-copilot-ai-assistant-smart-tvs-ending)*
-
-**Mistral AI — 2026-10-29**
-
-> Welcome Le Chonk: Mistral Large 4 on Hugging Face
-
-— *[Hugging Face Blog](https://huggingface.co/blog/mistral-large4)*
+— *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-found-guilty-rape-sexual-assault-verdict/)*
 
 ### 💼 投资人与科技领袖
 

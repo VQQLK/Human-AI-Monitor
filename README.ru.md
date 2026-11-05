@@ -7,22 +7,22 @@
 
 ## 📊 Текущее состояние развития
 
-**Обновлено:** 4 ноября 2026  
-**Базовая линия:** Обновлено 4 ноября 2026 — на основе 417 элементов (размер выборки: 382).
+**Обновлено:** 5 ноября 2026  
+**Базовая линия:** Обновлено 5 ноября 2026 — на основе 565 элементов (размер выборки: 542).
 
 ### 🌍 Индекс разрыва Human–AI (Достижения vs Прогресс)
 
 <div align="center">
 
-| Метрика | Значение (04.11) | Статус |
+| Метрика | Значение (05.11) | Статус |
 |:---|:---:|:---:|
-| **🟢 Оценка Человечества** | 🌐 **0.529** | Текущее значение |
-| **🔴 Оценка ИИ** | 🤖 **0.800** | Текущее значение |
-| **⚖️ Индекс разрыва** | ⚖️ **−0.271** | ИИ впереди |
-| **📊 CI95** | **[−0.516, −0.003]** | Значимо |
-| **⚡ Ключевых сдвигов** | **5** | Обнаружены критические события |
-| **📈 Анализированных событий** | **417** | Недельная выборка |
-| **🔬 Размер выборки (байесовский)** | **382** | Пары «ось-сигнал» |
+| **🟢 Оценка Человечества** | 🌐 **0.569** | Текущее значение |
+| **🔴 Оценка ИИ** | 🤖 **0.827** | Текущее значение |
+| **⚖️ Индекс разрыва** | ⚖️ **−0.258** | ИИ впереди |
+| **📊 CI95** | **[−0.489, −0.017]** | Значимо |
+| **⚡ Ключевых сдвигов** | **10** | Обнаружены критические события |
+| **📈 Анализированных событий** | **565** | Недельная выборка |
+| **🔬 Размер выборки (байесовский)** | **542** | Пары «ось-сигнал» |
 
 </div>
 
@@ -54,13 +54,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Ежедневный разрыв | Положительный = Человечество впереди, Отрицательный = ИИ впереди"
-    x-axis ["18/10", "20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11"]
+    x-axis ["20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11"]
     y-axis "Разрыв" -0.675 --> 0.041
-    line [-0.443, -0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271]
+    line [-0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258]
 ```
 
 | Дата | ИИ | Человечество | Разрыв | CI95 | Элементов | Выборка | Тип |
 |---|---|---|---|---|---|---|---|
+| 05/11 | 0.827 | 0.569 | −0.258 | [−0.489, −0.017] | 565 | 542 | ПРОМЕЖУТОЧНЫЙ |
 | 04/11 | 0.800 | 0.529 | −0.271 | [−0.516, −0.003] | 417 | 382 | ПРОМЕЖУТОЧНЫЙ |
 | 03/11 | 0.731 | 0.596 | −0.135 | [−0.433, +0.174] | 271 | 247 | ПРОМЕЖУТОЧНЫЙ |
 | 01/11 | 0.814 | 0.675 | −0.139 | [−0.357, +0.104] | 822 | 720 | ПРОМЕЖУТОЧНЫЙ |
@@ -75,7 +76,6 @@ xychart-beta
 | 22/10 | 0.800 | 0.335 | −0.465 | [−0.694, −0.208] | 569 | 501 | ПРОМЕЖУТОЧНЫЙ |
 | 21/10 | 0.716 | 0.341 | −0.375 | [−0.653, −0.083] | 382 | 328 | ПРОМЕЖУТОЧНЫЙ |
 | 20/10 | 0.646 | 0.303 | −0.342 | [−0.646, −0.017] | 166 | 138 | ПРОМЕЖУТОЧНЫЙ |
-| 18/10 | 0.836 | 0.393 | −0.443 | [−0.654, −0.205] | 555 | 442 | ПРОМЕЖУТОЧНЫЙ |
 
 #### 📚 История протоколов
 
@@ -84,7 +84,7 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | ФИНАЛЬНЫЙ |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | ФИНАЛЬНЫЙ |
 
-> 📌 Промежуточный протокол (справочно, не на графике): 04/11 — ИИ 0.800 · Человечество 0.529 · Разрыв −0.271 · 417 / 382 items.
+> 📌 Промежуточный протокол (справочно, не на графике): 05/11 — ИИ 0.827 · Человечество 0.569 · Разрыв −0.258 · 565 / 542 items.
 > Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.
 
 ---
@@ -94,6 +94,42 @@ xychart-beta
 ## Мнения
 
 ### 🧠 Ведущие Лаборатории ИИ
+
+**Google — 2026-11-04**
+
+> Google Won’t Give Schools the One Thing They Want
+
+— *[The Atlantic](https://www.theatlantic.com/technology/2026/11/google-schools-ai-search/689298/?utm_source=feed)*
+
+**Google — 2026-11-04**
+
+> Google Summaries Aren't About AI, They're About Lock-In
+
+— *[EFF (Electronic Frontier Foundation)](https://www.eff.org/deeplinks/2026/11/google-summaries-arent-about-ai-theyre-about-lock)*
+
+**OpenAI — 2026-11-05**
+
+> OpenAI lays out new policy framework for data centers
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/05/openai-new-policy-framework-data-centers-01150714)*
+
+**Meta — 2026-11-05**
+
+> Challenge-Aware Knowledge Recruitment with Meta-Agent Supervision for Medical Multi-Agent Reasoning
+
+— *[arXiv cs.AI](https://arxiv.org/abs/2611.05393)*
+
+**OpenAI — 2026-11-04**
+
+> DevRev delivers autonomous self-service with GPT-6.1 Sol
+
+— *[OpenAI Blog](https://openai.com/index/devrev-enterprise-self-service)*
+
+**OpenAI — 2026-11-04**
+
+> OpenAI to acquire Pierre Computer Company, Inc.
+
+— *[OpenAI Blog](https://openai.com/index/openai-to-acquire-pierre)*
 
 **Google — 2026-11-04**
 
@@ -341,53 +377,19 @@ xychart-beta
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1023054/altman-cheeky-pint-ai-math-interview)*
 
-**Meta — 2026-10-29**
+### 🧪 Исследователи ИИ
 
-> The Future Is for Everyone: Meta and CNIB Partner to Support Canadians Who Are Blind, Deafblind or Have Low Vision
+**Stuart Russell (UC Berkeley) — 2026-11-05**
 
-— *[Meta AI Blog](https://about.fb.com/news/2026/10/the-future-is-for-everyone-meta-and-cnib-partner-to-support-canadians-who-are-blind-deafblind-or-have-low-vision/)*
+> Russell Brand found guilty of rape and sexual assault by UK court
 
-**Meta — 2026-10-29**
+— *[Al Jazeera](https://www.aljazeera.com/news/2026/11/5/russell-brand-found-guilty-of-rape-and-sexual-assault-by-uk-court?traffic_source=rss)*
 
-> L’avenir appartient à tous: Meta et INCA s’associent pour soutenir les personnes aveugles, sourdes et aveugles ou ayant une basse vision au Canada
+**Stuart Russell (UC Berkeley) — 2026-11-05**
 
-— *[Meta AI Blog](https://about.fb.com/news/2026/10/lavenir-appartient-a-tous-meta-et-inca-sassocient-pour-soutenir-les-personnes-aveugles-sourdes-et-aveugles-ou-ayant-une-basse-vision-au-canada/)*
+> Russell Brand found guilty of rape and sexual assault
 
-**Claude — 2026-10-27**
-
-> How Anthropic ships Claude with Claude: Separating the Brain from the Hands
-
-— *[Latent Space](https://latent.space/p/opus55/)*
-
-**Google — 2026-10-29**
-
-> [AINews] Gemini 4 Carbon tops leaderboards, launches for cyber defenders
-
-— *[Latent Space](https://latent.space/p/ainews-gemini-4-carbon/)*
-
-**Meta — 2026-10-28**
-
-> Meta says it’ll probably delay its controversial new business terms again
-
-— *[The Verge — AI](https://www.theverge.com/tech/1020769/meta-updated-business-terms-delay-indefinitely)*
-
-**Google — 2026-10-28**
-
-> Google launches Gemini 4 Carbon with a ‘significant leap’ in cybersecurity
-
-— *[The Verge — AI](https://www.theverge.com/tech/1021339/google-gemini-4-carbon-cybersecurity-frontier)*
-
-**Microsoft — 2026-10-28**
-
-> Microsoft is ending Copilot support on smart TVs
-
-— *[The Verge — AI](https://www.theverge.com/tech/1021143/microsoft-lg-samsung-copilot-ai-assistant-smart-tvs-ending)*
-
-**Mistral AI — 2026-10-29**
-
-> Welcome Le Chonk: Mistral Large 4 on Hugging Face
-
-— *[Hugging Face Blog](https://huggingface.co/blog/mistral-large4)*
+— *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-found-guilty-rape-sexual-assault-verdict/)*
 
 ### 💼 Инвесторы и техлидеры
 
