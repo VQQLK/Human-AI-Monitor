@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年11月5日  
-**基线：** 2026年11月5日更新 — 基于 565 个项目（样本量：542）。
+**更新:** 2026年11月6日  
+**基线：** 2026年11月6日更新 — 基于 716 个项目（样本量：692）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (11-05) | 状态 |
+| 指标 | 数值 (11-06) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.569** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.827** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.258** | 人工智能领先 |
-| **📊 CI95** | **[−0.489, −0.017]** | 显著 |
-| **⚡ 阈值变化** | **10** | 检测到关键事件 |
-| **📈 分析项目** | **565** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **542** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.574** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.853** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.280** | 人工智能领先 |
+| **📊 CI95** | **[−0.496, −0.057]** | 显著 |
+| **⚡ 阈值变化** | **13** | 检测到关键事件 |
+| **📈 分析项目** | **716** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **692** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["20/10", "21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11"]
+    x-axis ["21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11"]
     y-axis "差距" -0.675 --> 0.041
-    line [-0.342, -0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258]
+    line [-0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 06/11 | 0.853 | 0.574 | −0.280 | [−0.496, −0.057] | 716 | 692 | 临时版 |
 | 05/11 | 0.827 | 0.569 | −0.258 | [−0.489, −0.017] | 565 | 542 | 临时版 |
 | 04/11 | 0.800 | 0.529 | −0.271 | [−0.516, −0.003] | 417 | 382 | 临时版 |
 | 03/11 | 0.731 | 0.596 | −0.135 | [−0.433, +0.174] | 271 | 247 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 23/10 | 0.827 | 0.293 | −0.533 | [−0.738, −0.303] | 752 | 672 | 临时版 |
 | 22/10 | 0.800 | 0.335 | −0.465 | [−0.694, −0.208] | 569 | 501 | 临时版 |
 | 21/10 | 0.716 | 0.341 | −0.375 | [−0.653, −0.083] | 382 | 328 | 临时版 |
-| 20/10 | 0.646 | 0.303 | −0.342 | [−0.646, −0.017] | 166 | 138 | 临时版 |
 
 #### 📚 协议历史
 
@@ -86,7 +86,7 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | 最终版 |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：05/11 — AI 0.827 · 人类 0.569 · 差距 −0.258 · 565 / 542 items.
+> 📌 临时协议（仅供参考，不在图表上）：06/11 — AI 0.853 · 人类 0.574 · 差距 −0.280 · 716 / 692 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -96,6 +96,78 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Nvidia — 2026-11-06**
+
+> Nvidia CEO called in by lawmakers over ties to alleged Chinese spy
+
+— *[Axios](https://www.axios.com/2026/11/05/jensen-huang-nvidia-congress-china)*
+
+**Jensen Huang (Nvidia) — 2026-11-06**
+
+> Nvidia CEO called in by lawmakers over ties to alleged Chinese spy
+
+— *[Axios](https://www.axios.com/2026/11/05/jensen-huang-nvidia-congress-china)*
+
+**OpenAI — 2026-11-05**
+
+> OpenAI president Greg Brockman says company could be IPO ready in 2027
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/05/openai-president-greg-brockman-says-company-could-be-ipo-ready-in-2027/)*
+
+**Greg Brockman (OpenAI) — 2026-11-05**
+
+> OpenAI president Greg Brockman says company could be IPO ready in 2027
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/05/openai-president-greg-brockman-says-company-could-be-ipo-ready-in-2027/)*
+
+**Meta — 2026-11-05**
+
+> Meta warns that election backlash against data centers could make AI expansion harder
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/05/metas-warns-that-election-backlash-against-data-centers-could-make-ai-expansion-harder/)*
+
+**Meta — 2026-11-05**
+
+> Meta, TikTok, Google sue to block California teen social media law championed by Newsom
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/05/meta-tiktok-google-sue-to-block-california-teen-social-media-law-championed-by-newsom-01151171)*
+
+**Google — 2026-11-05**
+
+> Meta, TikTok, Google sue to block California teen social media law championed by Newsom
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/05/meta-tiktok-google-sue-to-block-california-teen-social-media-law-championed-by-newsom-01151171)*
+
+**Nvidia — 2026-11-05**
+
+> New NVIDIA Cosmos 3 Open Models for Interactive World Simulation
+
+— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation)*
+
+**Google — 2026-11-05**
+
+> Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/)*
+
+**OpenAI — 2026-11-05**
+
+> Franklin Templeton uses OpenAI to support investment research
+
+— *[OpenAI Blog](https://openai.com/index/franklin-templeton)*
+
+**OpenAI — 2026-11-05**
+
+> GPT‑6 Cyber: Advancing the frontier of aligned cybersecurity agents
+
+— *[OpenAI Blog](https://openai.com/index/introducing-gpt-6-cyber)*
+
+**OpenAI — 2026-11-05**
+
+> Merge builds product and business tools with OpenAI technology
+
+— *[OpenAI Blog](https://openai.com/index/merge-builds-with-openai)*
 
 **Google — 2026-11-04**
 
@@ -306,78 +378,6 @@ xychart-beta
 > Chinese Executive Close to Nvidia CEO Suspected of Giving China Information
 
 — *[WSJ — Tech](https://www.wsj.com/tech/chinese-executive-close-to-nvidia-ceo-suspected-of-giving-china-information-798eb6a1?mod=rss_Technology)*
-
-**Google — 2026-10-30**
-
-> Google’s first data center satellite is online and writing poetry
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/)*
-
-**Nvidia — 2026-10-31**
-
-> Nvidia weighs playing the cosigner for Nscale’s AI data center in West Virginia
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/30/nvidia-weighs-playing-the-cosigner-for-nscales-ai-data-center-in-west-virginia/)*
-
-**Google — 2026-10-31**
-
-> [AINews] Google admits AI Mode hurts Search revenue; -15% $500B drop worst since 2004 IPO. AI Bear Market coming?
-
-— *[Latent Space](https://latent.space/p/ainews-google-admits-ai-mode-hurts-search-revenue-15-500b-drop-worst-since-2004-ipo-ai-bear-market-c/)*
-
-**Google — 2026-10-30**
-
-> Google’s satellite AI server transmits its first response to Earth
-
-— *[The Verge — AI](https://www.theverge.com/tech/1023528/google-project-suncatcher-ai-satellite-transmission)*
-
-**Sam Altman (OpenAI) — 2026-10-30**
-
-> Sam Altman says it’s better for RAM to be in a data center than on your desk
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1023820/sam-altman-ram-shortage-cloud-servers)*
-
-**OpenAI — 2026-10-29**
-
-> Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot
-
-— *[OpenAI Blog](https://openai.com/index/credit-saison)*
-
-**Meta — 2026-10-30**
-
-> What New Mexico's $25 Billion Meta Judgment Says, and What It Doesn’t
-
-— *[Benton Institute for Broadband & Society](https://www.benton.org/blog/what-new-mexicos%C2%A025-billion-meta-judgment-says-and-what-it-doesn%E2%80%99t)*
-
-**Moonshot AI — 2026-10-24**
-
-> [AINews] Kimi 3.1 Pro 104BA-2.8T: Fable-5.1-Class Open Weights narrows Closed-AI lead to 1 month... and Pro Highspeed API with 2-3× speed
-
-— *[Latent Space](https://latent.space/p/ainews-kimi-31/)*
-
-**Microsoft — 2026-10-29**
-
-> Microsoft’s AI future has fewer jobs
-
-— *[The Verge — AI](https://www.theverge.com/tech/1022023/microsoft-exit-offer-layoffs-notepad)*
-
-**Google — 2026-10-29**
-
-> You can generate and edit Google Docs files directly in Gemini chats now
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1022519/google-gemini-file-editing-documents-pdfs)*
-
-**OpenAI — 2026-10-30**
-
-> Sam Altman sympathizes with mathematicians, but says OpenAI’s math onslaught won’t stop
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1023054/altman-cheeky-pint-ai-math-interview)*
-
-**Sam Altman (OpenAI) — 2026-10-30**
-
-> Sam Altman sympathizes with mathematicians, but says OpenAI’s math onslaught won’t stop
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1023054/altman-cheeky-pint-ai-math-interview)*
 
 ### 🧪 AI研究人员
 
