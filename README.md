@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 6, 2026  
-**Baseline:** Updated on November 6, 2026 — based on 716 items (sample size: 692).
+**Updated:** November 7, 2026  
+**Baseline:** Updated on November 7, 2026 — based on 850 items (sample size: 804).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-06) | Status |
+| Metric | Value (11-07) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.574** | Current value |
-| **🔴 AI Score** | 🤖 **0.853** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.280** | AI is ahead |
-| **📊 CI95** | **[−0.496, −0.057]** | Significant |
-| **⚡ Threshold Shifts** | **13** | Critical events detected |
-| **📈 Items Analyzed** | **716** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **692** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.598** | Current value |
+| **🔴 AI Score** | 🤖 **0.870** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.272** | AI is ahead |
+| **📊 CI95** | **[−0.486, −0.059]** | Significant |
+| **⚡ Threshold Shifts** | **15** | Critical events detected |
+| **📈 Items Analyzed** | **850** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **804** | Axis-signal pairs |
 
 </div>
 
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["21/10", "22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11"]
+    x-axis ["22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11"]
     y-axis "Gap" -0.675 --> 0.041
-    line [-0.375, -0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280]
+    line [-0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 07/11 | 0.870 | 0.598 | −0.272 | [−0.486, −0.059] | 849 | 804 | INTERIM |
 | 06/11 | 0.853 | 0.574 | −0.280 | [−0.496, −0.057] | 716 | 692 | INTERIM |
 | 05/11 | 0.827 | 0.569 | −0.258 | [−0.489, −0.017] | 565 | 542 | INTERIM |
 | 04/11 | 0.800 | 0.529 | −0.271 | [−0.516, −0.003] | 417 | 382 | INTERIM |
@@ -76,7 +77,6 @@ xychart-beta
 | 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | INTERIM |
 | 23/10 | 0.827 | 0.293 | −0.533 | [−0.738, −0.303] | 752 | 672 | INTERIM |
 | 22/10 | 0.800 | 0.335 | −0.465 | [−0.694, −0.208] | 569 | 501 | INTERIM |
-| 21/10 | 0.716 | 0.341 | −0.375 | [−0.653, −0.083] | 382 | 328 | INTERIM |
 
 #### 📚 Historical Protocols
 
@@ -85,7 +85,7 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | FINAL |
 
-> 📌 Interim (reference, not on chart): 06/11 — AI 0.853 · Humanity 0.574 · Gap −0.280 · 716 / 692 items.
+> 📌 Interim (reference, not on chart): 07/11 — AI 0.870 · Humanity 0.598 · Gap −0.272 · 850 / 804 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -95,6 +95,78 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Google — 2026-11-06**
+
+> Google Forcing AI on Students Is BS
+
+— *[EFF (Electronic Frontier Foundation)](https://www.eff.org/deeplinks/2026/11/google-forcing-ai-students-bs)*
+
+**Nvidia — 2026-11-05**
+
+> Nvidia-Backed Cohere Says IPO Timing Uncertain Despite Surging Revenue
+
+— *[WSJ — Tech](https://www.wsj.com/pro/venture-capital/nvidia-backed-cohere-says-ipo-timing-uncertain-despite-surging-revenue-3310476f?mod=rss_Technology)*
+
+**OpenAI — 2026-11-06**
+
+> OpenAI Bolsters Cyber Defenses
+
+— *[WSJ — Tech](https://www.wsj.com/cio-journal/openai-bolsters-cyber-defenses-cf7cafb5?mod=rss_Technology)*
+
+**Meta — 2026-11-06**
+
+> Meta introduces Spaces, a new way to collaborate with your Muse agent
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent/)*
+
+**OpenAI — 2026-11-06**
+
+> OpenAI reportedly raises an additional $11 billion at a $1.25 trillion valuation
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/)*
+
+**Google — 2026-11-07**
+
+> Crusoe sells troubled Wyoming data center project to Google
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/)*
+
+**OpenAI — 2026-11-04**
+
+> OpenAI: Astra covertly underperforms on safety research
+
+— *[AI Alignment Forum](https://www.alignmentforum.org/posts/eKe7fky8kSt9DCJxZ/openai-astra-covertly-underperforms-on-safety-research)*
+
+**Microsoft — 2026-11-06**
+
+> Protesters break into Microsoft data center site in Amsterdam
+
+— *[The Verge — AI](https://www.theverge.com/news/1028549/protesters-microsoft-data-center-site-amsterdam)*
+
+**OpenAI — 2026-11-06**
+
+> OpenAI valued at $1.25 trillion, as rival Anthropic nears its IPO
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029380/openai-1-25-trillion-investment-valuation)*
+
+**Jensen Huang (Nvidia) — 2026-11-06**
+
+> China reportedly recruited AI exec to spy on Jensen Huang
+
+— *[The Verge — AI](https://www.theverge.com/tech/1029338/nvidia-ceo-jensen-huang-china-spy)*
+
+**Meta — 2026-11-06**
+
+> Meta’s Muse AI can create custom ‘spaces’ for the version of the app you need right now
+
+— *[The Verge — AI](https://www.theverge.com/tech/1028871/meta-muse-ai-spaces)*
+
+**OpenAI — 2026-11-06**
+
+> Partnering with Hacktron to find vulnerabilities in OpenAI’s systems
+
+— *[OpenAI Blog](https://openai.com/index/partnering-with-hacktron)*
 
 **Nvidia — 2026-11-06**
 
@@ -305,78 +377,6 @@ xychart-beta
 > Scaling Git at OpenAI
 
 — *[OpenAI Blog](https://openai.com/index/scaling-git-at-openai)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-02**
-
-> Trump vows to protect Musk, floats pre-emptive staff pardons
-
-— *[Axios](https://www.axios.com/2026/11/02/trump-musk-democrats)*
-
-**OpenAI — 2026-11-01**
-
-> OpenAI might rebrand its data centers as ‘AI compute campuses’
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/01/openai-might-rebrand-its-data-centers-as-ai-compute-campuses/)*
-
-**OpenAI — 2026-11-02**
-
-> OpenAI is finally merging ChatGPT’s chat and Work tabs
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/02/openai-is-finally-merging-chatgpts-chat-and-work-tabs/)*
-
-**OpenAI — 2026-11-02**
-
-> OpenAI is already pitching 2028 hopefuls on how to talk about AI
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/02/openai-is-already-pitching-2028-hopefuls-on-how-to-talk-about-ai-01144821)*
-
-**Microsoft — 2026-11-02**
-
-> Cognitive Inclusivity in AI Coding Assistants: Evidence from GitHub Copilot
-
-— *[arXiv cs.SE](https://arxiv.org/abs/2610.41192)*
-
-**xAI — 2026-10-31**
-
-> Judge allows NAACP lawsuit over xAI data center pollution to move forward
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/31/judge-allows-naacp-lawsuit-over-xai-data-center-pollution-to-move-forward/)*
-
-**OpenAI — 2026-10-31**
-
-> OpenAI reportedly lowers funding target for new round
-
-— *[TechCrunch AI](https://techcrunch.com/2026/10/31/openai-reportedly-lowers-funding-target-for-new-round/)*
-
-**Meta — 2026-10-31**
-
-> I built an AI Tamagotchi before Meta could
-
-— *[The Verge — AI](https://www.theverge.com/gadgets/1013375/muse-charm-gadgets-preview-waveshare-esp32-claude-vibe-code)*
-
-**xAI — 2026-10-31**
-
-> Grok the Vote
-
-— *[The Atlantic](https://www.theatlantic.com/technology/2026/10/x-midterm-election-ai-fact-check/689245/?utm_source=feed)*
-
-**OpenAI — 2026-10-31**
-
-> OpenAI Raises Less Than Half of $30 Billion Target in Latest Round
-
-— *[WSJ — Tech](https://www.wsj.com/tech/ai/openai-raises-less-than-half-of-30-billion-target-in-latest-round-91aecdc5?mod=rss_Technology)*
-
-**Nvidia — 2026-10-31**
-
-> Chinese Executive Close to Nvidia CEO Suspected of Giving China Information
-
-— *[WSJ — Tech](https://www.wsj.com/tech/chinese-executive-close-to-nvidia-ceo-suspected-of-giving-china-information-798eb6a1?mod=rss_Technology)*
-
-**Jensen Huang (Nvidia) — 2026-10-31**
-
-> Chinese Executive Close to Nvidia CEO Suspected of Giving China Information
-
-— *[WSJ — Tech](https://www.wsj.com/tech/chinese-executive-close-to-nvidia-ceo-suspected-of-giving-china-information-798eb6a1?mod=rss_Technology)*
 
 ### 🧪 AI Researchers
 
