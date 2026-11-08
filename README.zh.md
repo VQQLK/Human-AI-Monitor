@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年11月7日  
-**基线：** 2026年11月7日更新 — 基于 850 个项目（样本量：804）。
+**更新:** 2026年11月8日  
+**基线：** 2026年11月8日更新 — 基于 966 个项目（样本量：895）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (11-07) | 状态 |
+| 指标 | 数值 (11-08) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.598** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.870** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.272** | 人工智能领先 |
-| **📊 CI95** | **[−0.486, −0.059]** | 显著 |
-| **⚡ 阈值变化** | **15** | 检测到关键事件 |
-| **📈 分析项目** | **850** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **804** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.615** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.883** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.269** | 人工智能领先 |
+| **📊 CI95** | **[−0.469, −0.070]** | 显著 |
+| **⚡ 阈值变化** | **19** | 检测到关键事件 |
+| **📈 分析项目** | **966** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **895** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["22/10", "23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11"]
+    x-axis ["23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11"]
     y-axis "差距" -0.675 --> 0.041
-    line [-0.465, -0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272]
+    line [-0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 08/11 | 0.883 | 0.615 | −0.269 | [−0.469, −0.070] | 966 | 895 | 临时版 |
 | 07/11 | 0.870 | 0.598 | −0.272 | [−0.486, −0.059] | 849 | 804 | 临时版 |
 | 06/11 | 0.853 | 0.574 | −0.280 | [−0.496, −0.057] | 716 | 692 | 临时版 |
 | 05/11 | 0.827 | 0.569 | −0.258 | [−0.489, −0.017] | 565 | 542 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | 临时版 |
 | 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | 临时版 |
 | 23/10 | 0.827 | 0.293 | −0.533 | [−0.738, −0.303] | 752 | 672 | 临时版 |
-| 22/10 | 0.800 | 0.335 | −0.465 | [−0.694, −0.208] | 569 | 501 | 临时版 |
 
 #### 📚 协议历史
 
@@ -86,7 +86,7 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | 最终版 |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：07/11 — AI 0.870 · 人类 0.598 · 差距 −0.272 · 850 / 804 items.
+> 📌 临时协议（仅供参考，不在图表上）：08/11 — AI 0.883 · 人类 0.615 · 差距 −0.269 · 966 / 895 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -96,6 +96,60 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Nvidia — 2026-11-07**
+
+> "Congress will investigate": Nvidia CEO Jensen Huang faces probe over alleged Chinese spy ties
+
+— *[Axios](https://www.axios.com/2026/11/07/jensen-huang-nvidia-congress-china-spy)*
+
+**Jensen Huang (Nvidia) — 2026-11-07**
+
+> "Congress will investigate": Nvidia CEO Jensen Huang faces probe over alleged Chinese spy ties
+
+— *[Axios](https://www.axios.com/2026/11/07/jensen-huang-nvidia-congress-china-spy)*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-04**
+
+> Elon Musk's millions failed to deliver Republican wins in fierce midterms
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cv8ez3p3ge5ko?at_medium=RSS&at_campaign=rss)*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-06**
+
+> Elon Musk appears to signal the end of the road for Cybertruck
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cq1j33w7d232o?at_medium=RSS&at_campaign=rss)*
+
+**Nvidia — 2026-11-07**
+
+> Megaspeed exec was recruited to spy on Nvidia CEO, according to US intelligence memo
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/)*
+
+**Jensen Huang (Nvidia) — 2026-11-07**
+
+> Megaspeed exec was recruited to spy on Nvidia CEO, according to US intelligence memo
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/)*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-07**
+
+> After the midterms, things are looking rocky for Elon Musk and data centers
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/07/after-the-midterms-things-are-looking-rocky-for-elon-musk-and-data-centers/)*
+
+**OpenAI — 2026-11-04**
+
+> OpenAI is already trying to shape the 2028 election
+
+— *[AI Now Institute](https://ainowinstitute.org/news/openai-is-already-trying-to-shape-the-2028-election)*
+
+**Nvidia — 2026-11-07**
+
+> The US let Nvidia sell chips to an empty office in China
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029483/nvidia-ai-chips-china-blacklist-government)*
 
 **Google — 2026-11-06**
 
@@ -319,67 +373,13 @@ xychart-beta
 
 — *[Google DeepMind Blog](https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/)*
 
-**OpenAI — 2026-11-03**
-
-> OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer
-
-— *[OpenAI Blog](https://openai.com/index/jill-hazelbaker-chief-corporate-affairs-officer)*
-
-**OpenAI — 2026-11-03**
-
-> How Cisco defends at machine speed with OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/cisco-cyber)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-03**
-
-> Elon Musk's next target: a major shake-up of America's wireless market
-
-— *[Axios](https://www.axios.com/2026/11/03/elon-musk-spacex-boost-mobile-wireless-market)*
-
-**Google — 2026-11-03**
-
-> Google takes Dreambeans to India in bid to bring AI-generated personal stories to the masses
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/02/google-takes-dreambeans-to-india-in-bid-to-bring-ai-generated-personal-stories-to-the-masses/)*
-
-**OpenAI — 2026-11-02**
-
-> OpenAI pitches data center power plants as a way to protect nearby areas
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1024604/openai-data-center-grid-protection-program)*
-
-**Claude — 2026-11-02**
-
-> Anthropic clamps down on Claude’s AI video game clones
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1024632/anthropic-claude-ai-video-game-clones)*
-
-**OpenAI — 2026-11-02**
-
-> ChatGPT as a Surveillance Assistant? An Exploratory Case Study of AI-Assisted Surveillance Risks
-
-— *[arXiv cs.AI](https://arxiv.org/abs/2610.40890)*
-
-**OpenAI — 2026-11-02**
-
-> OpenAI appoints Dan Driscoll as Senior Counselor for National Security Modernization
-
-— *[OpenAI Blog](https://openai.com/index/dan-driscoll-joins-openai)*
-
-**OpenAI — 2026-11-02**
-
-> Preparing our next security sprint to harden OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai)*
-
-**OpenAI — 2026-11-02**
-
-> Scaling Git at OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/scaling-git-at-openai)*
-
 ### 🧪 AI研究人员
+
+**Stuart Russell (UC Berkeley) — 2026-11-08**
+
+> Russell Brand to learn sentence after being found guilty of rape and sexual assault
+
+— *[NPR — World](https://www.npr.org/2026/11/08/nx-s1-6033957/russell-brand-learn-sentence-found-guilty-rape-sexual-assault)*
 
 **Stuart Russell (UC Berkeley) — 2026-11-05**
 
