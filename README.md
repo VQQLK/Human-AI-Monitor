@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 8, 2026  
-**Baseline:** Updated on November 8, 2026 — based on 966 items (sample size: 895).
+**Updated:** November 9, 2026  
+**Baseline:** Updated on November 9, 2026 — based on 991 items (sample size: 918).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-08) | Status |
+| Metric | Value (11-09) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.615** | Current value |
-| **🔴 AI Score** | 🤖 **0.883** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.269** | AI is ahead |
-| **📊 CI95** | **[−0.469, −0.070]** | Significant |
+| **🟢 Humanity Score** | 🌐 **0.614** | Current value |
+| **🔴 AI Score** | 🤖 **0.888** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.274** | AI is ahead |
+| **📊 CI95** | **[−0.473, −0.075]** | Significant |
 | **⚡ Threshold Shifts** | **19** | Critical events detected |
-| **📈 Items Analyzed** | **966** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **895** | Axis-signal pairs |
+| **📈 Items Analyzed** | **991** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **918** | Axis-signal pairs |
 
 </div>
 
@@ -34,10 +34,10 @@ and Humanity.**
 ```mermaid
 xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
-    x-axis ["25/10", "01/11"]
-    y-axis "Score" 0.400 --> 0.864
-    bar [0.467, 0.679]
-    line [0.614, 0.814]
+    x-axis ["25/10", "01/11", "08/11"]
+    y-axis "Score" 0.400 --> 0.938
+    bar [0.467, 0.679, 0.614]
+    line [0.614, 0.814, 0.888]
 ```
 
 #### 📉 Gap Index Dynamics (Humanity minus AI)
@@ -45,9 +45,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["25/10", "01/11"]
-    y-axis "Gap" -0.196 --> 0.250
-    line [-0.146, -0.135]
+    x-axis ["25/10", "01/11", "08/11"]
+    y-axis "Gap" -0.324 --> 0.250
+    line [-0.146, -0.135, -0.274]
 ```
 
 #### 📅 Daily Gap trajectory
@@ -82,11 +82,9 @@ xychart-beta
 
 | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 08/11 | 0.888 | 0.614 | −0.274 | [−0.473, −0.075] | 991 | 918 | FINAL |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | FINAL |
-
-> 📌 Interim (reference, not on chart): 08/11 — AI 0.883 · Humanity 0.615 · Gap −0.269 · 966 / 895 items.
-> Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
 
@@ -95,6 +93,126 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Nvidia — 2026-11-09**
+
+> Trump backs Nvidia's Huang amid affair, spy investigation
+
+— *[Axios](https://www.axios.com/2026/11/09/trump-jensen-huang-nvidia)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> Trump backs Nvidia's Huang amid affair, spy investigation
+
+— *[Axios](https://www.axios.com/2026/11/09/trump-jensen-huang-nvidia)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> Jensen Huang spy scandal rocks AI race
+
+— *[Axios](https://www.axios.com/2026/11/09/jensen-huang-spy-scandal-ai)*
+
+**Nvidia — 2026-11-08**
+
+> Nvidia will investigate CEO Jensen Huang’s relationship with possible Chinese spy
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> Is Jensen Huang’s job on the line? Yale’s Jeffrey Sonnenfeld estimates it’s “about a 50-50”
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/)*
+
+**Jensen Huang (Nvidia) — 2026-11-08**
+
+> Nvidia will investigate CEO Jensen Huang’s relationship with possible Chinese spy
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/)*
+
+**Nvidia — 2026-11-09**
+
+> Nvidia investigates CEO Jensen Huang over Chinese espionage concerns
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-jensen-huang-investigation-china-intelligence/)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> Nvidia investigates CEO Jensen Huang over Chinese espionage concerns
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-jensen-huang-investigation-china-intelligence/)*
+
+**Nvidia — 2026-11-09**
+
+> Nvidia stock slumps amid board investigation into CEO Jensen Huang
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-jensen-huang-stock-board-investigation-spy/)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> Nvidia stock slumps amid board investigation into CEO Jensen Huang
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-jensen-huang-stock-board-investigation-spy/)*
+
+**Nvidia — 2026-11-09**
+
+> Trump: Nvidia CEO an 'honorable guy'
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6207489-donald-trump-jensen-huang-nvidia-affair-allegations-chinese-spy/)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> Trump: Nvidia CEO an 'honorable guy'
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6207489-donald-trump-jensen-huang-nvidia-affair-allegations-chinese-spy/)*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-09**
+
+> Musk spent big on Republicans in the midterms. He has little to show for it
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6205126-texas-election-blue-wave-impact/)*
+
+**Nvidia — 2026-11-08**
+
+> Nvidia launches investigation into reported Chinese spy effort targeting Jensen Huang
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/08/nvidia-investigation-chinese-spy-effort-jensen-huang-01155747)*
+
+**Jensen Huang (Nvidia) — 2026-11-08**
+
+> Nvidia launches investigation into reported Chinese spy effort targeting Jensen Huang
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/08/nvidia-investigation-chinese-spy-effort-jensen-huang-01155747)*
+
+**Meta — 2026-11-09**
+
+> Import AI 480: Self-sustaining space economies; AI for science progress, and Meta builds perfect hands for a superintelligence
+
+— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-480-self-sustaining-space)*
+
+**Nvidia — 2026-11-08**
+
+> Here’s the full text of Jensen Huang’s memo to Nvidia
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia)*
+
+**Nvidia — 2026-11-08**
+
+> Nvidia is investigating Jensen Huang’s relationship with an alleged Chinese spy
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy)*
+
+**Jensen Huang (Nvidia) — 2026-11-08**
+
+> Here’s the full text of Jensen Huang’s memo to Nvidia
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia)*
+
+**Jensen Huang (Nvidia) — 2026-11-08**
+
+> Nvidia is investigating Jensen Huang’s relationship with an alleged Chinese spy
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy)*
 
 **Nvidia — 2026-11-07**
 
@@ -258,147 +376,25 @@ xychart-beta
 
 — *[Politico — Technology](https://www.politico.com/news/2026/11/05/meta-tiktok-google-sue-to-block-california-teen-social-media-law-championed-by-newsom-01151171)*
 
-**Google — 2026-11-05**
-
-> Meta, TikTok, Google sue to block California teen social media law championed by Newsom
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/05/meta-tiktok-google-sue-to-block-california-teen-social-media-law-championed-by-newsom-01151171)*
-
-**Nvidia — 2026-11-05**
-
-> New NVIDIA Cosmos 3 Open Models for Interactive World Simulation
-
-— *[Hugging Face Blog](https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation)*
-
-**Google — 2026-11-05**
-
-> Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/)*
-
-**OpenAI — 2026-11-05**
-
-> Franklin Templeton uses OpenAI to support investment research
-
-— *[OpenAI Blog](https://openai.com/index/franklin-templeton)*
-
-**OpenAI — 2026-11-05**
-
-> GPT‑6 Cyber: Advancing the frontier of aligned cybersecurity agents
-
-— *[OpenAI Blog](https://openai.com/index/introducing-gpt-6-cyber)*
-
-**OpenAI — 2026-11-05**
-
-> Merge builds product and business tools with OpenAI technology
-
-— *[OpenAI Blog](https://openai.com/index/merge-builds-with-openai)*
-
-**Google — 2026-11-04**
-
-> Google Won’t Give Schools the One Thing They Want
-
-— *[The Atlantic](https://www.theatlantic.com/technology/2026/11/google-schools-ai-search/689298/?utm_source=feed)*
-
-**Google — 2026-11-04**
-
-> Google Summaries Aren't About AI, They're About Lock-In
-
-— *[EFF (Electronic Frontier Foundation)](https://www.eff.org/deeplinks/2026/11/google-summaries-arent-about-ai-theyre-about-lock)*
-
-**OpenAI — 2026-11-05**
-
-> OpenAI lays out new policy framework for data centers
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/05/openai-new-policy-framework-data-centers-01150714)*
-
-**Meta — 2026-11-05**
-
-> Challenge-Aware Knowledge Recruitment with Meta-Agent Supervision for Medical Multi-Agent Reasoning
-
-— *[arXiv cs.AI](https://arxiv.org/abs/2611.05393)*
-
-**OpenAI — 2026-11-04**
-
-> DevRev delivers autonomous self-service with GPT-6.1 Sol
-
-— *[OpenAI Blog](https://openai.com/index/devrev-enterprise-self-service)*
-
-**OpenAI — 2026-11-04**
-
-> OpenAI to acquire Pierre Computer Company, Inc.
-
-— *[OpenAI Blog](https://openai.com/index/openai-to-acquire-pierre)*
-
-**Google — 2026-11-04**
-
-> Google will cut off search access for students at schools that reject AI
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/google-search-ai-students/)*
-
-**Microsoft — 2026-11-03**
-
-> UEFI bootkit infected fully patched Windows machines. Is Microsoft to blame?
-
-— *[Ars Technica — AI](https://arstechnica.com/security/2026/11/uefi-bootkit-infected-fully-patched-windows-machines-is-microsoft-to-blame/)*
-
-**Google — 2026-11-03**
-
-> OpenAI says ChatGPT is catching up to Google in search
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1025482/openai-says-chatgpt-is-catching-up-to-google-in-search)*
-
-**OpenAI — 2026-11-03**
-
-> OpenAI says ChatGPT is catching up to Google in search
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1025482/openai-says-chatgpt-is-catching-up-to-google-in-search)*
-
-**Google — 2026-11-04**
-
-> Google hasn’t figured out how to make AI pay like its search engine
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1024862/google-search-ai-overviews-alphabet-earnings-q3)*
-
-**Sam Altman (OpenAI) — 2026-11-04**
-
-> Sam Altman addresses RAM comments: people should ‘put as much as they want in their computers’
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1026292/sam-altman-ram-shortage-pcs-comments)*
-
-**Google — 2026-11-03**
-
-> Agentic cheminformatics with Google Antigravity
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/)*
-
 ### 🧪 AI Researchers
+
+**Stuart Russell (UC Berkeley) — 2026-11-09**
+
+> Russell Brand Sentenced to 10½ Years in Jail for Rape and Sexual Assault
+
+— *[WSJ — World News](https://www.wsj.com/world/uk/russell-brand-sentenced-to-10-years-in-jail-for-rape-and-sexual-assault-271db16f?mod=rss_worldnews)*
+
+**Stuart Russell (UC Berkeley) — 2026-11-09**
+
+> Russell Brand sentenced to over 10 years for rape and sex assault
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-sentenced-prison-rape-sexual-assault/)*
 
 **Stuart Russell (UC Berkeley) — 2026-11-08**
 
 > Russell Brand to learn sentence after being found guilty of rape and sexual assault
 
 — *[NPR — World](https://www.npr.org/2026/11/08/nx-s1-6033957/russell-brand-learn-sentence-found-guilty-rape-sexual-assault)*
-
-**Stuart Russell (UC Berkeley) — 2026-11-05**
-
-> Russell Brand found guilty of rape and sexual assault by UK court
-
-— *[Al Jazeera](https://www.aljazeera.com/news/2026/11/5/russell-brand-found-guilty-of-rape-and-sexual-assault-by-uk-court?traffic_source=rss)*
-
-**Stuart Russell (UC Berkeley) — 2026-11-05**
-
-> Russell Brand found guilty of rape and sexual assault
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-found-guilty-rape-sexual-assault-verdict/)*
-
-### 💼 Investors & Tech Leaders
-
-**Jeff Bezos (Amazon, Blue Origin) — 2026-11-03**
-
-> Those Jeff Bezos hair transplant photos are very fake
-
-— *[The Verge — AI](https://www.theverge.com/tech/1025745/fake-jeff-bezos-hair-replacement-photos-debunk)*
 
 ## What is this
 
