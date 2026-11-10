@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 9, 2026  
-**Baseline:** Updated on November 9, 2026 — based on 991 items (sample size: 918).
+**Updated:** November 10, 2026  
+**Baseline:** Updated on November 10, 2026 — based on 253 items (sample size: 251).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-09) | Status |
+| Metric | Value (11-10) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.614** | Current value |
-| **🔴 AI Score** | 🤖 **0.888** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.274** | AI is ahead |
-| **📊 CI95** | **[−0.473, −0.075]** | Significant |
-| **⚡ Threshold Shifts** | **19** | Critical events detected |
-| **📈 Items Analyzed** | **991** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **918** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.569** | Current value |
+| **🔴 AI Score** | 🤖 **0.774** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.205** | AI is ahead |
+| **📊 CI95** | **[−0.480, +0.086]** | Inconclusive |
+| **⚡ Threshold Shifts** | **6** | Critical events detected |
+| **📈 Items Analyzed** | **253** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **251** | Axis-signal pairs |
 
 </div>
 
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["23/10", "24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11"]
+    x-axis ["24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11"]
     y-axis "Gap" -0.675 --> 0.041
-    line [-0.533, -0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269]
+    line [-0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 10/11 | 0.774 | 0.569 | −0.205 | [−0.480, +0.086] | 253 | 251 | INTERIM |
 | 08/11 | 0.883 | 0.615 | −0.269 | [−0.469, −0.070] | 966 | 895 | INTERIM |
 | 07/11 | 0.870 | 0.598 | −0.272 | [−0.486, −0.059] | 849 | 804 | INTERIM |
 | 06/11 | 0.853 | 0.574 | −0.280 | [−0.496, −0.057] | 716 | 692 | INTERIM |
@@ -76,7 +77,6 @@ xychart-beta
 | 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | INTERIM |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | INTERIM |
 | 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | INTERIM |
-| 23/10 | 0.827 | 0.293 | −0.533 | [−0.738, −0.303] | 752 | 672 | INTERIM |
 
 #### 📚 Historical Protocols
 
@@ -86,6 +86,9 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | FINAL |
 
+> 📌 Interim (reference, not on chart): 10/11 — AI 0.774 · Humanity 0.569 · Gap −0.205 · 253 / 251 items.
+> Last point is INTERIM — will be replaced by FINAL on Monday.
+
 ---
 
 
@@ -93,6 +96,90 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Nvidia — 2026-11-10**
+
+> How Nvidia's crisis and politics could deliver the pause AI leaders want
+
+— *[Axios](https://www.axios.com/2026/11/10/ai-race-politics-slowdown)*
+
+**Nvidia — 2026-11-10**
+
+> Jeffries pushes tighter China chip restrictions amid Nvidia CEO scandal
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6210410-jeffries-backs-china-ai-chip-restrictions/)*
+
+**Jensen Huang (Nvidia) — 2026-11-10**
+
+> Jeffries pushes tighter China chip restrictions amid Nvidia CEO scandal
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6210410-jeffries-backs-china-ai-chip-restrictions/)*
+
+**Nvidia — 2026-11-09**
+
+> Nvidia sued over Jensen Huang’s alleged spy affair
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/09/nvidia-sued-jensen-huang-alleged-spy-affair-01157660)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> Nvidia sued over Jensen Huang’s alleged spy affair
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/09/nvidia-sued-jensen-huang-alleged-spy-affair-01157660)*
+
+**Nvidia — 2026-11-10**
+
+> ‘This is a serious national security issue.’ GOP bucks Trump on Nvidia
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/09/republicans-trump-china-nvidia-scandal-01157896)*
+
+**Claude — 2026-11-09**
+
+> Anthropic launches new Claude Fable and Mythos 5.2 models
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> The future of AI hinges on… Jensen Huang’s sex life?
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029990/jensen-huang-the-spy-who-loved-me)*
+
+**Nvidia — 2026-11-09**
+
+> Everything we know so far about the Nvidia spy scandal targeting CEO Jensen Huang
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> Everything we know so far about the Nvidia spy scandal targeting CEO Jensen Huang
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> Here’s what Trump said he knew about Jensen Huang
+
+— *[The Verge — AI](https://www.theverge.com/tech/1030446/trump-jensen-huang-press-conference)*
+
+**Jensen Huang (Nvidia) — 2026-11-09**
+
+> What could China get from Jensen Huang?
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1030328/what-could-china-get-from-jensen-huang)*
+
+**Google — 2026-11-09**
+
+> Gemini Robotics 2.5 accelerates real-world general dexterity
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/)*
+
+**OpenAI — 2026-11-09**
+
+> ChatGPT Enterprise now available in AWS Marketplace
+
+— *[OpenAI Blog](https://openai.com/index/chatgpt-enterprise-aws-marketplace)*
 
 **Nvidia — 2026-11-09**
 
@@ -286,97 +373,13 @@ xychart-beta
 
 — *[WSJ — Tech](https://www.wsj.com/cio-journal/openai-bolsters-cyber-defenses-cf7cafb5?mod=rss_Technology)*
 
-**Meta — 2026-11-06**
-
-> Meta introduces Spaces, a new way to collaborate with your Muse agent
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent/)*
-
-**OpenAI — 2026-11-06**
-
-> OpenAI reportedly raises an additional $11 billion at a $1.25 trillion valuation
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/)*
-
-**Google — 2026-11-07**
-
-> Crusoe sells troubled Wyoming data center project to Google
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/)*
-
-**OpenAI — 2026-11-04**
-
-> OpenAI: Astra covertly underperforms on safety research
-
-— *[AI Alignment Forum](https://www.alignmentforum.org/posts/eKe7fky8kSt9DCJxZ/openai-astra-covertly-underperforms-on-safety-research)*
-
-**Microsoft — 2026-11-06**
-
-> Protesters break into Microsoft data center site in Amsterdam
-
-— *[The Verge — AI](https://www.theverge.com/news/1028549/protesters-microsoft-data-center-site-amsterdam)*
-
-**OpenAI — 2026-11-06**
-
-> OpenAI valued at $1.25 trillion, as rival Anthropic nears its IPO
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029380/openai-1-25-trillion-investment-valuation)*
-
-**Jensen Huang (Nvidia) — 2026-11-06**
-
-> China reportedly recruited AI exec to spy on Jensen Huang
-
-— *[The Verge — AI](https://www.theverge.com/tech/1029338/nvidia-ceo-jensen-huang-china-spy)*
-
-**Meta — 2026-11-06**
-
-> Meta’s Muse AI can create custom ‘spaces’ for the version of the app you need right now
-
-— *[The Verge — AI](https://www.theverge.com/tech/1028871/meta-muse-ai-spaces)*
-
-**OpenAI — 2026-11-06**
-
-> Partnering with Hacktron to find vulnerabilities in OpenAI’s systems
-
-— *[OpenAI Blog](https://openai.com/index/partnering-with-hacktron)*
-
-**Nvidia — 2026-11-06**
-
-> Nvidia CEO called in by lawmakers over ties to alleged Chinese spy
-
-— *[Axios](https://www.axios.com/2026/11/05/jensen-huang-nvidia-congress-china)*
-
-**Jensen Huang (Nvidia) — 2026-11-06**
-
-> Nvidia CEO called in by lawmakers over ties to alleged Chinese spy
-
-— *[Axios](https://www.axios.com/2026/11/05/jensen-huang-nvidia-congress-china)*
-
-**OpenAI — 2026-11-05**
-
-> OpenAI president Greg Brockman says company could be IPO ready in 2027
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/05/openai-president-greg-brockman-says-company-could-be-ipo-ready-in-2027/)*
-
-**Greg Brockman (OpenAI) — 2026-11-05**
-
-> OpenAI president Greg Brockman says company could be IPO ready in 2027
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/05/openai-president-greg-brockman-says-company-could-be-ipo-ready-in-2027/)*
-
-**Meta — 2026-11-05**
-
-> Meta warns that election backlash against data centers could make AI expansion harder
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/05/metas-warns-that-election-backlash-against-data-centers-could-make-ai-expansion-harder/)*
-
-**Meta — 2026-11-05**
-
-> Meta, TikTok, Google sue to block California teen social media law championed by Newsom
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/05/meta-tiktok-google-sue-to-block-california-teen-social-media-law-championed-by-newsom-01151171)*
-
 ### 🧪 AI Researchers
+
+**Stuart Russell (UC Berkeley) — 2026-11-09**
+
+> British comedian Russell Brand sentenced to over 10 years for rape and sexual assault
+
+— *[NPR — World](https://www.npr.org/2026/11/09/nx-s1-6034335/british-comedian-russell-brand-sentenced)*
 
 **Stuart Russell (UC Berkeley) — 2026-11-09**
 
