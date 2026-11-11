@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 10, 2026  
-**Baseline:** Updated on November 10, 2026 — based on 253 items (sample size: 251).
+**Updated:** November 11, 2026  
+**Baseline:** Updated on November 11, 2026 — based on 408 items (sample size: 392).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-10) | Status |
+| Metric | Value (11-11) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.569** | Current value |
-| **🔴 AI Score** | 🤖 **0.774** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.205** | AI is ahead |
-| **📊 CI95** | **[−0.480, +0.086]** | Inconclusive |
+| **🟢 Humanity Score** | 🌐 **0.548** | Current value |
+| **🔴 AI Score** | 🤖 **0.794** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.246** | AI is ahead |
+| **📊 CI95** | **[−0.510, +0.035]** | Inconclusive |
 | **⚡ Threshold Shifts** | **6** | Critical events detected |
-| **📈 Items Analyzed** | **253** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **251** | Axis-signal pairs |
+| **📈 Items Analyzed** | **408** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **392** | Axis-signal pairs |
 
 </div>
 
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11"]
-    y-axis "Gap" -0.675 --> 0.041
-    line [-0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205]
+    x-axis ["25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11"]
+    y-axis "Gap" -0.449 --> 0.041
+    line [-0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | INTERIM |
 | 10/11 | 0.774 | 0.569 | −0.205 | [−0.480, +0.086] | 253 | 251 | INTERIM |
 | 08/11 | 0.883 | 0.615 | −0.269 | [−0.469, −0.070] | 966 | 895 | INTERIM |
 | 07/11 | 0.870 | 0.598 | −0.272 | [−0.486, −0.059] | 849 | 804 | INTERIM |
@@ -76,7 +77,6 @@ xychart-beta
 | 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | INTERIM |
 | 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | INTERIM |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | INTERIM |
-| 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | INTERIM |
 
 #### 📚 Historical Protocols
 
@@ -86,7 +86,7 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | FINAL |
 
-> 📌 Interim (reference, not on chart): 10/11 — AI 0.774 · Humanity 0.569 · Gap −0.205 · 253 / 251 items.
+> 📌 Interim (reference, not on chart): 11/11 — AI 0.794 · Humanity 0.548 · Gap −0.246 · 408 / 392 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -96,6 +96,120 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Nvidia — 2026-11-10**
+
+> Scoop: Commerce Department received national security warning on Nvidia CEO affair
+
+— *[Axios](https://www.axios.com/2026/11/10/lutnick-nvidia-jensen-huang-china-memo)*
+
+**Jensen Huang (Nvidia) — 2026-11-10**
+
+> Scoop: Commerce Department received national security warning on Nvidia CEO affair
+
+— *[Axios](https://www.axios.com/2026/11/10/lutnick-nvidia-jensen-huang-china-memo)*
+
+**OpenAI — 2026-11-11**
+
+> AI Engineer Code Summit: OpenAI on New Ways of Working With Codex
+
+— *[Latent Space](https://latent.space/p/codex-work/)*
+
+**Jensen Huang (Nvidia) — 2026-11-11**
+
+> Jensen Huang Affair Strains Taiwan’s Devotion to Its Hometown Hero
+
+— *[WSJ — World News](https://www.wsj.com/world/asia/the-jensen-huang-scandal-is-testing-taiwans-devotion-to-its-hometown-hero-2a2914d9?mod=rss_worldnews)*
+
+**Nvidia — 2026-11-10**
+
+> Nvidia and Jensen Huang face shareholder lawsuit alleging investors were misled about spy affair
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/nvidia-jensen-huang-shareholder-lawsuit/)*
+
+**Jensen Huang (Nvidia) — 2026-11-10**
+
+> Nvidia and Jensen Huang face shareholder lawsuit alleging investors were misled about spy affair
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/nvidia-jensen-huang-shareholder-lawsuit/)*
+
+**Nvidia — 2026-11-10**
+
+> Nvidia hires Wachtell Lipton for Jensen Huang investigation
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/10/nvidia-wachtell-lipton-jensen-huang-01159501)*
+
+**Nvidia — 2026-11-11**
+
+> Senate Banking Republican calls on Nvidia CEO to resign
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/10/senate-banking-republican-nvidia-ceo-resign-01160543)*
+
+**Jensen Huang (Nvidia) — 2026-11-10**
+
+> Nvidia hires Wachtell Lipton for Jensen Huang investigation
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/10/nvidia-wachtell-lipton-jensen-huang-01159501)*
+
+**Jensen Huang (Nvidia) — 2026-11-11**
+
+> Senate Banking Republican calls on Nvidia CEO to resign
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/10/senate-banking-republican-nvidia-ceo-resign-01160543)*
+
+**Nvidia — 2026-11-11**
+
+> Nvidia loses ground in Washington chip fight after CEO spy scandal
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/10/nvidia-ceos-spy-scandal-tilts-capitol-hills-chip-fight-01160548)*
+
+**Nvidia — 2026-11-11**
+
+> Jensen Huang’s crisis becomes Nvidia’s Washington problem
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/11/jensen-huang-washington-problem-01160374)*
+
+**Jensen Huang (Nvidia) — 2026-11-11**
+
+> Jensen Huang’s crisis becomes Nvidia’s Washington problem
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/11/jensen-huang-washington-problem-01160374)*
+
+**Google — 2026-11-10**
+
+> Pay for Hugging Face Hub with your Google Cloud Account
+
+— *[Hugging Face Blog](https://huggingface.co/blog/hub-gcp-marketplace)*
+
+**Google — 2026-11-10**
+
+> Gemini 4 Carbon is now available
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-carbon-is-now-available/)*
+
+**OpenAI — 2026-11-10**
+
+> Singapore Airlines elevates travel & work with OpenAI technology
+
+— *[OpenAI Blog](https://openai.com/index/singapore-airlines-travel-work)*
+
+**OpenAI — 2026-11-10**
+
+> Cogent and OpenAI build cyber defense factories for enterprises
+
+— *[OpenAI Blog](https://openai.com/index/cogent-security)*
+
+**OpenAI — 2026-11-11**
+
+> ChatGPT Plus for veterans and servicemembers
+
+— *[OpenAI Blog](https://openai.com/index/chatgpt-plus-for-veterans)*
+
+**OpenAI — 2026-11-10**
+
+> Introducing Businesses in ChatGPT
+
+— *[OpenAI Blog](https://openai.com/index/introducing-businesses-chatgpt)*
 
 **Nvidia — 2026-11-10**
 
@@ -265,114 +379,6 @@ xychart-beta
 
 — *[Politico — Technology](https://www.politico.com/news/2026/11/08/nvidia-investigation-chinese-spy-effort-jensen-huang-01155747)*
 
-**Jensen Huang (Nvidia) — 2026-11-08**
-
-> Nvidia launches investigation into reported Chinese spy effort targeting Jensen Huang
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/08/nvidia-investigation-chinese-spy-effort-jensen-huang-01155747)*
-
-**Meta — 2026-11-09**
-
-> Import AI 480: Self-sustaining space economies; AI for science progress, and Meta builds perfect hands for a superintelligence
-
-— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-480-self-sustaining-space)*
-
-**Nvidia — 2026-11-08**
-
-> Here’s the full text of Jensen Huang’s memo to Nvidia
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia)*
-
-**Nvidia — 2026-11-08**
-
-> Nvidia is investigating Jensen Huang’s relationship with an alleged Chinese spy
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy)*
-
-**Jensen Huang (Nvidia) — 2026-11-08**
-
-> Here’s the full text of Jensen Huang’s memo to Nvidia
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia)*
-
-**Jensen Huang (Nvidia) — 2026-11-08**
-
-> Nvidia is investigating Jensen Huang’s relationship with an alleged Chinese spy
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy)*
-
-**Nvidia — 2026-11-07**
-
-> "Congress will investigate": Nvidia CEO Jensen Huang faces probe over alleged Chinese spy ties
-
-— *[Axios](https://www.axios.com/2026/11/07/jensen-huang-nvidia-congress-china-spy)*
-
-**Jensen Huang (Nvidia) — 2026-11-07**
-
-> "Congress will investigate": Nvidia CEO Jensen Huang faces probe over alleged Chinese spy ties
-
-— *[Axios](https://www.axios.com/2026/11/07/jensen-huang-nvidia-congress-china-spy)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-04**
-
-> Elon Musk's millions failed to deliver Republican wins in fierce midterms
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cv8ez3p3ge5ko?at_medium=RSS&at_campaign=rss)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-06**
-
-> Elon Musk appears to signal the end of the road for Cybertruck
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cq1j33w7d232o?at_medium=RSS&at_campaign=rss)*
-
-**Nvidia — 2026-11-07**
-
-> Megaspeed exec was recruited to spy on Nvidia CEO, according to US intelligence memo
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/)*
-
-**Jensen Huang (Nvidia) — 2026-11-07**
-
-> Megaspeed exec was recruited to spy on Nvidia CEO, according to US intelligence memo
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-07**
-
-> After the midterms, things are looking rocky for Elon Musk and data centers
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/07/after-the-midterms-things-are-looking-rocky-for-elon-musk-and-data-centers/)*
-
-**OpenAI — 2026-11-04**
-
-> OpenAI is already trying to shape the 2028 election
-
-— *[AI Now Institute](https://ainowinstitute.org/news/openai-is-already-trying-to-shape-the-2028-election)*
-
-**Nvidia — 2026-11-07**
-
-> The US let Nvidia sell chips to an empty office in China
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029483/nvidia-ai-chips-china-blacklist-government)*
-
-**Google — 2026-11-06**
-
-> Google Forcing AI on Students Is BS
-
-— *[EFF (Electronic Frontier Foundation)](https://www.eff.org/deeplinks/2026/11/google-forcing-ai-students-bs)*
-
-**Nvidia — 2026-11-05**
-
-> Nvidia-Backed Cohere Says IPO Timing Uncertain Despite Surging Revenue
-
-— *[WSJ — Tech](https://www.wsj.com/pro/venture-capital/nvidia-backed-cohere-says-ipo-timing-uncertain-despite-surging-revenue-3310476f?mod=rss_Technology)*
-
-**OpenAI — 2026-11-06**
-
-> OpenAI Bolsters Cyber Defenses
-
-— *[WSJ — Tech](https://www.wsj.com/cio-journal/openai-bolsters-cyber-defenses-cf7cafb5?mod=rss_Technology)*
-
 ### 🧪 AI Researchers
 
 **Stuart Russell (UC Berkeley) — 2026-11-09**
@@ -392,12 +398,6 @@ xychart-beta
 > Russell Brand sentenced to over 10 years for rape and sex assault
 
 — *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-sentenced-prison-rape-sexual-assault/)*
-
-**Stuart Russell (UC Berkeley) — 2026-11-08**
-
-> Russell Brand to learn sentence after being found guilty of rape and sexual assault
-
-— *[NPR — World](https://www.npr.org/2026/11/08/nx-s1-6033957/russell-brand-learn-sentence-found-guilty-rape-sexual-assault)*
 
 ## What is this
 

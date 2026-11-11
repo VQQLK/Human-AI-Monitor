@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年11月10日  
-**基线：** 2026年11月10日更新 — 基于 253 个项目（样本量：251）。
+**更新:** 2026年11月11日  
+**基线：** 2026年11月11日更新 — 基于 408 个项目（样本量：392）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (11-10) | 状态 |
+| 指标 | 数值 (11-11) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.569** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.774** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.205** | 人工智能领先 |
-| **📊 CI95** | **[−0.480, +0.086]** | 不确定 |
+| **🟢 人类得分** | 🌐 **0.548** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.794** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.246** | 人工智能领先 |
+| **📊 CI95** | **[−0.510, +0.035]** | 不确定 |
 | **⚡ 阈值变化** | **6** | 检测到关键事件 |
-| **📈 分析项目** | **253** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **251** | 轴-信号对 |
+| **📈 分析项目** | **408** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **392** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["24/10", "25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11"]
-    y-axis "差距" -0.675 --> 0.041
-    line [-0.576, -0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205]
+    x-axis ["25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11"]
+    y-axis "差距" -0.449 --> 0.041
+    line [-0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | 临时版 |
 | 10/11 | 0.774 | 0.569 | −0.205 | [−0.480, +0.086] | 253 | 251 | 临时版 |
 | 08/11 | 0.883 | 0.615 | −0.269 | [−0.469, −0.070] | 966 | 895 | 临时版 |
 | 07/11 | 0.870 | 0.598 | −0.272 | [−0.486, −0.059] | 849 | 804 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | 临时版 |
 | 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | 临时版 |
 | 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | 临时版 |
-| 24/10 | 0.842 | 0.267 | −0.576 | [−0.768, −0.357] | 909 | 795 | 临时版 |
 
 #### 📚 协议历史
 
@@ -87,7 +87,7 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | 最终版 |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：10/11 — AI 0.774 · 人类 0.569 · 差距 −0.205 · 253 / 251 items.
+> 📌 临时协议（仅供参考，不在图表上）：11/11 — AI 0.794 · 人类 0.548 · 差距 −0.246 · 408 / 392 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -97,6 +97,120 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Nvidia — 2026-11-10**
+
+> Scoop: Commerce Department received national security warning on Nvidia CEO affair
+
+— *[Axios](https://www.axios.com/2026/11/10/lutnick-nvidia-jensen-huang-china-memo)*
+
+**Jensen Huang (Nvidia) — 2026-11-10**
+
+> Scoop: Commerce Department received national security warning on Nvidia CEO affair
+
+— *[Axios](https://www.axios.com/2026/11/10/lutnick-nvidia-jensen-huang-china-memo)*
+
+**OpenAI — 2026-11-11**
+
+> AI Engineer Code Summit: OpenAI on New Ways of Working With Codex
+
+— *[Latent Space](https://latent.space/p/codex-work/)*
+
+**Jensen Huang (Nvidia) — 2026-11-11**
+
+> Jensen Huang Affair Strains Taiwan’s Devotion to Its Hometown Hero
+
+— *[WSJ — World News](https://www.wsj.com/world/asia/the-jensen-huang-scandal-is-testing-taiwans-devotion-to-its-hometown-hero-2a2914d9?mod=rss_worldnews)*
+
+**Nvidia — 2026-11-10**
+
+> Nvidia and Jensen Huang face shareholder lawsuit alleging investors were misled about spy affair
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/nvidia-jensen-huang-shareholder-lawsuit/)*
+
+**Jensen Huang (Nvidia) — 2026-11-10**
+
+> Nvidia and Jensen Huang face shareholder lawsuit alleging investors were misled about spy affair
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/nvidia-jensen-huang-shareholder-lawsuit/)*
+
+**Nvidia — 2026-11-10**
+
+> Nvidia hires Wachtell Lipton for Jensen Huang investigation
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/10/nvidia-wachtell-lipton-jensen-huang-01159501)*
+
+**Nvidia — 2026-11-11**
+
+> Senate Banking Republican calls on Nvidia CEO to resign
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/10/senate-banking-republican-nvidia-ceo-resign-01160543)*
+
+**Jensen Huang (Nvidia) — 2026-11-10**
+
+> Nvidia hires Wachtell Lipton for Jensen Huang investigation
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/10/nvidia-wachtell-lipton-jensen-huang-01159501)*
+
+**Jensen Huang (Nvidia) — 2026-11-11**
+
+> Senate Banking Republican calls on Nvidia CEO to resign
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/10/senate-banking-republican-nvidia-ceo-resign-01160543)*
+
+**Nvidia — 2026-11-11**
+
+> Nvidia loses ground in Washington chip fight after CEO spy scandal
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/10/nvidia-ceos-spy-scandal-tilts-capitol-hills-chip-fight-01160548)*
+
+**Nvidia — 2026-11-11**
+
+> Jensen Huang’s crisis becomes Nvidia’s Washington problem
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/11/jensen-huang-washington-problem-01160374)*
+
+**Jensen Huang (Nvidia) — 2026-11-11**
+
+> Jensen Huang’s crisis becomes Nvidia’s Washington problem
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/11/jensen-huang-washington-problem-01160374)*
+
+**Google — 2026-11-10**
+
+> Pay for Hugging Face Hub with your Google Cloud Account
+
+— *[Hugging Face Blog](https://huggingface.co/blog/hub-gcp-marketplace)*
+
+**Google — 2026-11-10**
+
+> Gemini 4 Carbon is now available
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-carbon-is-now-available/)*
+
+**OpenAI — 2026-11-10**
+
+> Singapore Airlines elevates travel & work with OpenAI technology
+
+— *[OpenAI Blog](https://openai.com/index/singapore-airlines-travel-work)*
+
+**OpenAI — 2026-11-10**
+
+> Cogent and OpenAI build cyber defense factories for enterprises
+
+— *[OpenAI Blog](https://openai.com/index/cogent-security)*
+
+**OpenAI — 2026-11-11**
+
+> ChatGPT Plus for veterans and servicemembers
+
+— *[OpenAI Blog](https://openai.com/index/chatgpt-plus-for-veterans)*
+
+**OpenAI — 2026-11-10**
+
+> Introducing Businesses in ChatGPT
+
+— *[OpenAI Blog](https://openai.com/index/introducing-businesses-chatgpt)*
 
 **Nvidia — 2026-11-10**
 
@@ -266,114 +380,6 @@ xychart-beta
 
 — *[Politico — Technology](https://www.politico.com/news/2026/11/08/nvidia-investigation-chinese-spy-effort-jensen-huang-01155747)*
 
-**Jensen Huang (Nvidia) — 2026-11-08**
-
-> Nvidia launches investigation into reported Chinese spy effort targeting Jensen Huang
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/08/nvidia-investigation-chinese-spy-effort-jensen-huang-01155747)*
-
-**Meta — 2026-11-09**
-
-> Import AI 480: Self-sustaining space economies; AI for science progress, and Meta builds perfect hands for a superintelligence
-
-— *[Import AI (Jack Clark)](https://importai.substack.com/p/import-ai-480-self-sustaining-space)*
-
-**Nvidia — 2026-11-08**
-
-> Here’s the full text of Jensen Huang’s memo to Nvidia
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia)*
-
-**Nvidia — 2026-11-08**
-
-> Nvidia is investigating Jensen Huang’s relationship with an alleged Chinese spy
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy)*
-
-**Jensen Huang (Nvidia) — 2026-11-08**
-
-> Here’s the full text of Jensen Huang’s memo to Nvidia
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia)*
-
-**Jensen Huang (Nvidia) — 2026-11-08**
-
-> Nvidia is investigating Jensen Huang’s relationship with an alleged Chinese spy
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy)*
-
-**Nvidia — 2026-11-07**
-
-> "Congress will investigate": Nvidia CEO Jensen Huang faces probe over alleged Chinese spy ties
-
-— *[Axios](https://www.axios.com/2026/11/07/jensen-huang-nvidia-congress-china-spy)*
-
-**Jensen Huang (Nvidia) — 2026-11-07**
-
-> "Congress will investigate": Nvidia CEO Jensen Huang faces probe over alleged Chinese spy ties
-
-— *[Axios](https://www.axios.com/2026/11/07/jensen-huang-nvidia-congress-china-spy)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-04**
-
-> Elon Musk's millions failed to deliver Republican wins in fierce midterms
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cv8ez3p3ge5ko?at_medium=RSS&at_campaign=rss)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-06**
-
-> Elon Musk appears to signal the end of the road for Cybertruck
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cq1j33w7d232o?at_medium=RSS&at_campaign=rss)*
-
-**Nvidia — 2026-11-07**
-
-> Megaspeed exec was recruited to spy on Nvidia CEO, according to US intelligence memo
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/)*
-
-**Jensen Huang (Nvidia) — 2026-11-07**
-
-> Megaspeed exec was recruited to spy on Nvidia CEO, according to US intelligence memo
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-07**
-
-> After the midterms, things are looking rocky for Elon Musk and data centers
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/07/after-the-midterms-things-are-looking-rocky-for-elon-musk-and-data-centers/)*
-
-**OpenAI — 2026-11-04**
-
-> OpenAI is already trying to shape the 2028 election
-
-— *[AI Now Institute](https://ainowinstitute.org/news/openai-is-already-trying-to-shape-the-2028-election)*
-
-**Nvidia — 2026-11-07**
-
-> The US let Nvidia sell chips to an empty office in China
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029483/nvidia-ai-chips-china-blacklist-government)*
-
-**Google — 2026-11-06**
-
-> Google Forcing AI on Students Is BS
-
-— *[EFF (Electronic Frontier Foundation)](https://www.eff.org/deeplinks/2026/11/google-forcing-ai-students-bs)*
-
-**Nvidia — 2026-11-05**
-
-> Nvidia-Backed Cohere Says IPO Timing Uncertain Despite Surging Revenue
-
-— *[WSJ — Tech](https://www.wsj.com/pro/venture-capital/nvidia-backed-cohere-says-ipo-timing-uncertain-despite-surging-revenue-3310476f?mod=rss_Technology)*
-
-**OpenAI — 2026-11-06**
-
-> OpenAI Bolsters Cyber Defenses
-
-— *[WSJ — Tech](https://www.wsj.com/cio-journal/openai-bolsters-cyber-defenses-cf7cafb5?mod=rss_Technology)*
-
 ### 🧪 AI研究人员
 
 **Stuart Russell (UC Berkeley) — 2026-11-09**
@@ -393,12 +399,6 @@ xychart-beta
 > Russell Brand sentenced to over 10 years for rape and sex assault
 
 — *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-sentenced-prison-rape-sexual-assault/)*
-
-**Stuart Russell (UC Berkeley) — 2026-11-08**
-
-> Russell Brand to learn sentence after being found guilty of rape and sexual assault
-
-— *[NPR — World](https://www.npr.org/2026/11/08/nx-s1-6033957/russell-brand-learn-sentence-found-guilty-rape-sexual-assault)*
 
 ## 这是什么
 
