@@ -390,13 +390,11 @@ xychart-beta
 
 — *[Axios](https://www.axios.com/2026/11/10/ai-race-politics-slowdown)*
 
-### 🧪 Исследователи ИИ
+**Nvidia — 2026-11-10**
 
-**Stuart Russell (UC Berkeley) — 2026-11-09**
+> Jeffries pushes tighter China chip restrictions amid Nvidia CEO scandal
 
-> British comedian Russell Brand sentenced to over 10 years for rape and sexual assault
-
-— *[NPR — World](https://www.npr.org/2026/11/09/nx-s1-6034335/british-comedian-russell-brand-sentenced)*
+— *[The Hill — Policy](https://thehill.com/policy/technology/6210410-jeffries-backs-china-ai-chip-restrictions/)*
 
 ## Что это
 
