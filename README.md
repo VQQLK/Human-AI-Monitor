@@ -34,10 +34,10 @@ and Humanity.**
 ```mermaid
 xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
-    x-axis ["25/10", "01/11", "08/11"]
+    x-axis ["01/11", "08/11"]
     y-axis "Score" 0.400 --> 0.938
-    bar [0.467, 0.679, 0.614]
-    line [0.614, 0.814, 0.888]
+    bar [0.679, 0.614]
+    line [0.814, 0.888]
 ```
 
 #### 📉 Gap Index Dynamics (Humanity minus AI)
@@ -45,9 +45,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["25/10", "01/11", "08/11"]
+    x-axis ["01/11", "08/11"]
     y-axis "Gap" -0.324 --> 0.250
-    line [-0.146, -0.135, -0.274]
+    line [-0.135, -0.274]
 ```
 
 #### 📅 Daily Gap trajectory
@@ -84,7 +84,6 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 08/11 | 0.888 | 0.614 | −0.274 | [−0.473, −0.075] | 991 | 918 | FINAL |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
-| 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | FINAL |
 
 > 📌 Interim (reference, not on chart): 12/11 — AI 0.805 · Humanity 0.647 · Gap −0.158 · 541 / 506 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
