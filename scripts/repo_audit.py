@@ -250,10 +250,20 @@ if not m_blk:
     fail("cron: CRON_BATCH_META не найден в src/index.ts")
 else:
     crons_code = set(re.findall(r'"((?:[\d*/]+ ){4}[\d*/]+)"', m_blk.group(1)))
-    if crons_wr != crons_code:
-        fail(f"cron: триггеры расходятся: wrangler={sorted(crons_wr)} vs config={sorted(crons_code)}")
+
+    # 5 16 — это dispatch-слот (handleDedicatedDispatch), а не батч сбора.
+    # CRON_BATCH_META содержит только батчи сбора; wrangler.jsonc — ещё и dispatch.
+    # Сравниваем только батчи сбора (исключаем 5 16 из wrangler).
+    DISPATCH_CRON = "5 16 * * *"
+    crons_wr_collect = crons_wr - {DISPATCH_CRON}
+    if crons_wr_collect != crons_code:
+        fail(f"cron: батчи сбора расходятся: wrangler={sorted(crons_wr_collect)} vs config={sorted(crons_code)}")
+    elif DISPATCH_CRON not in crons_wr:
+        fail(f"cron: dispatch-слот '{DISPATCH_CRON}' отсутствует в wrangler.jsonc")
+    elif DISPATCH_CRON in crons_code:
+        fail(f"cron: dispatch-слот '{DISPATCH_CRON}' не должен быть в CRON_BATCH_META (это не батч сбора)")
     else:
-        ok(f"cron: триггеры согласованы ({len(crons_wr)}) — wrangler.jsonc == CRON_BATCH_META")
+        ok(f"cron: батчи сбора согласованы ({len(crons_wr_collect)}), dispatch-слот '{DISPATCH_CRON}' отдельно — OK")
 
 # ---------- 9. Language navigation ----------
 NAV_WHITELIST_GLOBS = (
