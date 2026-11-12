@@ -203,7 +203,6 @@ export default {
       "category": "researchers",
       "keywords": [
         "Stuart Russell",
-        "Russell",
         "Стюарт Рассел"
       ],
       "sources": [
