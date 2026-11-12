@@ -192,7 +192,7 @@ export default {
     },
     {
       "name": "Business & Human Rights Resource Centre",
-      "url": "https://www.business-humanrights.org/en/latest-news/feed/"
+      "url": "https://www.business-humanrights.org/en/feeds/latest-news/3/"
     }
   ]
 } as const;
