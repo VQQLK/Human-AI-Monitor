@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 11, 2026  
-**Baseline:** Updated on November 11, 2026 — based on 408 items (sample size: 392).
+**Updated:** November 12, 2026  
+**Baseline:** Updated on November 12, 2026 — based on 541 items (sample size: 506).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-11) | Status |
+| Metric | Value (11-12) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.548** | Current value |
-| **🔴 AI Score** | 🤖 **0.794** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.246** | AI is ahead |
-| **📊 CI95** | **[−0.510, +0.035]** | Inconclusive |
-| **⚡ Threshold Shifts** | **6** | Critical events detected |
-| **📈 Items Analyzed** | **408** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **392** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.647** | Current value |
+| **🔴 AI Score** | 🤖 **0.805** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.158** | AI is ahead |
+| **📊 CI95** | **[−0.395, +0.089]** | Inconclusive |
+| **⚡ Threshold Shifts** | **10** | Critical events detected |
+| **📈 Items Analyzed** | **541** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **506** | Axis-signal pairs |
 
 </div>
 
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["25/10", "27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11"]
-    y-axis "Gap" -0.449 --> 0.041
-    line [-0.349, -0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246]
+    x-axis ["27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11"]
+    y-axis "Gap" -0.380 --> 0.041
+    line [-0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | INTERIM |
 | 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | INTERIM |
 | 10/11 | 0.774 | 0.569 | −0.205 | [−0.480, +0.086] | 253 | 251 | INTERIM |
 | 08/11 | 0.883 | 0.615 | −0.269 | [−0.469, −0.070] | 966 | 895 | INTERIM |
@@ -76,7 +77,6 @@ xychart-beta
 | 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | INTERIM |
 | 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | INTERIM |
 | 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | INTERIM |
-| 25/10 | 0.850 | 0.500 | −0.349 | [−0.667, −0.019] | 1020 | 895 | INTERIM |
 
 #### 📚 Historical Protocols
 
@@ -86,7 +86,7 @@ xychart-beta
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 | 25/10 | 0.614 | 0.467 | −0.146 | [−0.520, +0.227] | 121 | 117 | FINAL |
 
-> 📌 Interim (reference, not on chart): 11/11 — AI 0.794 · Humanity 0.548 · Gap −0.246 · 408 / 392 items.
+> 📌 Interim (reference, not on chart): 12/11 — AI 0.805 · Humanity 0.647 · Gap −0.158 · 541 / 506 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -96,6 +96,180 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Nvidia — 2026-11-12**
+
+> Bracing for Nvidia's impact
+
+— *[Axios](https://www.axios.com/2026/11/12/bracing-for-nvidias-impact)*
+
+**Nvidia — 2026-11-12**
+
+> Jensen Huang, an architect of the AI boom, resigns as Nvidia CEO
+
+— *[Axios](https://www.axios.com/2026/11/12/nvidia-jensen-huang-out)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Jensen Huang, an architect of the AI boom, resigns as Nvidia CEO
+
+— *[Axios](https://www.axios.com/2026/11/12/nvidia-jensen-huang-out)*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-12**
+
+> Zelensky says Musk-owned satellite system throttled again
+
+— *[Axios](https://www.axios.com/2026/11/12/ukraine-starshield-restricted-spacex-russia-zelensky)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Jensen Huang's ouster triggers an AI earthquake
+
+— *[Axios](https://www.axios.com/2026/11/12/jensen-huang-nvidia-board)*
+
+**Nvidia — 2026-11-12**
+
+> LIVE: Jensen Huang resigns as Nvidia CEO as affairs raise security concerns
+
+— *[Al Jazeera](https://www.aljazeera.com/news/liveblog/2026/11/12/live-jensen-huang-resigns-as-nvidia-ceo-as-affairs-raise-security-concerns?traffic_source=rss)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> LIVE: Jensen Huang resigns as Nvidia CEO as affairs raise security concerns
+
+— *[Al Jazeera](https://www.aljazeera.com/news/liveblog/2026/11/12/live-jensen-huang-resigns-as-nvidia-ceo-as-affairs-raise-security-concerns?traffic_source=rss)*
+
+**Nvidia — 2026-11-12**
+
+> Trump heads to China amid Nvidia scandal: Will he get tougher on Beijing?
+
+— *[Al Jazeera](https://www.aljazeera.com/news/2026/11/12/trump-heads-to-china-amid-nvidia-scandal-will-he-get-tougher-on-beijing?traffic_source=rss)*
+
+**Nvidia — 2026-11-12**
+
+> Nvidia CEO Jensen Huang resigns, company says
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/nvidia-ceo-jensen-huang-resigns-company-says/)*
+
+**Nvidia — 2026-11-12**
+
+> Nvidia set to lose $700 billion in value as Jensen Huang resigns
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-stock-nvda-ceo-jensen-huang/)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Nvidia CEO Jensen Huang resigns, company says
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/nvidia-ceo-jensen-huang-resigns-company-says/)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Nvidia set to lose $700 billion in value as Jensen Huang resigns
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-stock-nvda-ceo-jensen-huang/)*
+
+**Nvidia — 2026-11-12**
+
+> Company under scrutiny for ties to Nvidia and China
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/megaspeed-nvidia-china-ties/)*
+
+**Nvidia — 2026-11-12**
+
+> Nvidia CEO Jensen Huang resigns in wake of affair, spy scandal
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-ceo-jensen-huang-resigns/)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Nvidia CEO Jensen Huang resigns in wake of affair, spy scandal
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-ceo-jensen-huang-resigns/)*
+
+**Nvidia — 2026-11-12**
+
+> Live updates: Huang exits Nvidia; Democrats look to Alaska, with Colom elected in Mississippi
+
+— *[The Hill — Policy](https://thehill.com/homenews/administration/6214786-live-updates-trump-midterms-alaska-congress/)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Live updates: Huang exits Nvidia; Democrats look to Alaska, with Colom elected in Mississippi
+
+— *[The Hill — Policy](https://thehill.com/homenews/administration/6214786-live-updates-trump-midterms-alaska-congress/)*
+
+**Nvidia — 2026-11-12**
+
+> Jensen Huang resigns from Nvidia following affair reports
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/12/nvidia-ousts-jensen-huang-amid-reports-of-affairs-with-two-women-01161630)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Jensen Huang resigns from Nvidia following affair reports
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/12/nvidia-ousts-jensen-huang-amid-reports-of-affairs-with-two-women-01161630)*
+
+**xAI — 2026-11-10**
+
+> Grok Build coding agent leaks oodles of confidential info, some belonging to SpaceXSI
+
+— *[Ars Technica — AI](https://arstechnica.com/security/2026/11/grok-build-coding-agent-leaks-oodles-of-confidential-info-some-belonging-to-spacexsi/)*
+
+**OpenAI — 2026-11-10**
+
+> ChatGPT is getting verified AI ‘Business Agents’
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub)*
+
+**Google — 2026-11-11**
+
+> Google’s AlphaGenome 2 zooms in on the cellular roots of disease
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1031524/google-deepmind-alphagenome-2-genetic-ai-model)*
+
+**Jensen Huang (Nvidia) — 2026-11-10**
+
+> The US is winning the AI race. Jensen Huang could have blown it
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1031063/jensen-huang-ai-race-us-china-spy)*
+
+**Google — 2026-11-11**
+
+> Google’s Tabletop AI experiment lets you build custom collaboration apps
+
+— *[The Verge — AI](https://www.theverge.com/tech/1031526/google-tabletop-ai-experiment-waitlist-availability)*
+
+**Nvidia — 2026-11-12**
+
+> Nvidia CEO Jensen Huang resigns amid spy, affair scandals
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1031689/jensen-huang-nvidia-ceo-resigns)*
+
+**Nvidia — 2026-11-11**
+
+> Nvidia is reportedly preparing to fire Jensen Huang
+
+— *[The Verge — AI](https://www.theverge.com/tech/1031652/jensen-huang-rumor)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Nvidia CEO Jensen Huang resigns amid spy, affair scandals
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1031689/jensen-huang-nvidia-ceo-resigns)*
+
+**Jensen Huang (Nvidia) — 2026-11-11**
+
+> Nvidia is reportedly preparing to fire Jensen Huang
+
+— *[The Verge — AI](https://www.theverge.com/tech/1031652/jensen-huang-rumor)*
+
+**Meta — 2026-11-12**
+
+> Meta’s New Agreements Bring Clean Manufacturing to Data Center Supply Chains
+
+— *[Meta AI Blog](https://about.fb.com/news/2026/11/meta-new-agreements-clean-manufacturing-data-center-supply-chains/)*
 
 **Nvidia — 2026-11-10**
 
@@ -217,168 +391,6 @@ xychart-beta
 
 — *[Axios](https://www.axios.com/2026/11/10/ai-race-politics-slowdown)*
 
-**Nvidia — 2026-11-10**
-
-> Jeffries pushes tighter China chip restrictions amid Nvidia CEO scandal
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6210410-jeffries-backs-china-ai-chip-restrictions/)*
-
-**Jensen Huang (Nvidia) — 2026-11-10**
-
-> Jeffries pushes tighter China chip restrictions amid Nvidia CEO scandal
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6210410-jeffries-backs-china-ai-chip-restrictions/)*
-
-**Nvidia — 2026-11-09**
-
-> Nvidia sued over Jensen Huang’s alleged spy affair
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/09/nvidia-sued-jensen-huang-alleged-spy-affair-01157660)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> Nvidia sued over Jensen Huang’s alleged spy affair
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/09/nvidia-sued-jensen-huang-alleged-spy-affair-01157660)*
-
-**Nvidia — 2026-11-10**
-
-> ‘This is a serious national security issue.’ GOP bucks Trump on Nvidia
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/09/republicans-trump-china-nvidia-scandal-01157896)*
-
-**Claude — 2026-11-09**
-
-> Anthropic launches new Claude Fable and Mythos 5.2 models
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> The future of AI hinges on… Jensen Huang’s sex life?
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1029990/jensen-huang-the-spy-who-loved-me)*
-
-**Nvidia — 2026-11-09**
-
-> Everything we know so far about the Nvidia spy scandal targeting CEO Jensen Huang
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> Everything we know so far about the Nvidia spy scandal targeting CEO Jensen Huang
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> Here’s what Trump said he knew about Jensen Huang
-
-— *[The Verge — AI](https://www.theverge.com/tech/1030446/trump-jensen-huang-press-conference)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> What could China get from Jensen Huang?
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1030328/what-could-china-get-from-jensen-huang)*
-
-**Google — 2026-11-09**
-
-> Gemini Robotics 2.5 accelerates real-world general dexterity
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/)*
-
-**OpenAI — 2026-11-09**
-
-> ChatGPT Enterprise now available in AWS Marketplace
-
-— *[OpenAI Blog](https://openai.com/index/chatgpt-enterprise-aws-marketplace)*
-
-**Nvidia — 2026-11-09**
-
-> Trump backs Nvidia's Huang amid affair, spy investigation
-
-— *[Axios](https://www.axios.com/2026/11/09/trump-jensen-huang-nvidia)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> Trump backs Nvidia's Huang amid affair, spy investigation
-
-— *[Axios](https://www.axios.com/2026/11/09/trump-jensen-huang-nvidia)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> Jensen Huang spy scandal rocks AI race
-
-— *[Axios](https://www.axios.com/2026/11/09/jensen-huang-spy-scandal-ai)*
-
-**Nvidia — 2026-11-08**
-
-> Nvidia will investigate CEO Jensen Huang’s relationship with possible Chinese spy
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> Is Jensen Huang’s job on the line? Yale’s Jeffrey Sonnenfeld estimates it’s “about a 50-50”
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/)*
-
-**Jensen Huang (Nvidia) — 2026-11-08**
-
-> Nvidia will investigate CEO Jensen Huang’s relationship with possible Chinese spy
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/)*
-
-**Nvidia — 2026-11-09**
-
-> Nvidia investigates CEO Jensen Huang over Chinese espionage concerns
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-jensen-huang-investigation-china-intelligence/)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> Nvidia investigates CEO Jensen Huang over Chinese espionage concerns
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-jensen-huang-investigation-china-intelligence/)*
-
-**Nvidia — 2026-11-09**
-
-> Nvidia stock slumps amid board investigation into CEO Jensen Huang
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-jensen-huang-stock-board-investigation-spy/)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> Nvidia stock slumps amid board investigation into CEO Jensen Huang
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-jensen-huang-stock-board-investigation-spy/)*
-
-**Nvidia — 2026-11-09**
-
-> Trump: Nvidia CEO an 'honorable guy'
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6207489-donald-trump-jensen-huang-nvidia-affair-allegations-chinese-spy/)*
-
-**Jensen Huang (Nvidia) — 2026-11-09**
-
-> Trump: Nvidia CEO an 'honorable guy'
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6207489-donald-trump-jensen-huang-nvidia-affair-allegations-chinese-spy/)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-09**
-
-> Musk spent big on Republicans in the midterms. He has little to show for it
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6205126-texas-election-blue-wave-impact/)*
-
-**Nvidia — 2026-11-08**
-
-> Nvidia launches investigation into reported Chinese spy effort targeting Jensen Huang
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/08/nvidia-investigation-chinese-spy-effort-jensen-huang-01155747)*
-
 ### 🧪 AI Researchers
 
 **Stuart Russell (UC Berkeley) — 2026-11-09**
@@ -386,18 +398,6 @@ xychart-beta
 > British comedian Russell Brand sentenced to over 10 years for rape and sexual assault
 
 — *[NPR — World](https://www.npr.org/2026/11/09/nx-s1-6034335/british-comedian-russell-brand-sentenced)*
-
-**Stuart Russell (UC Berkeley) — 2026-11-09**
-
-> Russell Brand Sentenced to 10½ Years in Jail for Rape and Sexual Assault
-
-— *[WSJ — World News](https://www.wsj.com/world/uk/russell-brand-sentenced-to-10-years-in-jail-for-rape-and-sexual-assault-271db16f?mod=rss_worldnews)*
-
-**Stuart Russell (UC Berkeley) — 2026-11-09**
-
-> Russell Brand sentenced to over 10 years for rape and sex assault
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/russell-brand-sentenced-prison-rape-sexual-assault/)*
 
 ## What is this
 
