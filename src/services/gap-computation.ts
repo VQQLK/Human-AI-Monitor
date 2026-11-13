@@ -102,11 +102,16 @@ export async function computeGapIndex(
   // Autonomy axes: voice only when the threshold is empirically confirmed (shift=yes).
   // Without shift=yes, the improvement is exogenous (human-driven), not self-modification.
   const AUTONOMY_AXES = new Set(["smd", "agg", "verification"]);
+  const UNREGISTERED_AXES = new Set(["agg", "hexad"]);  // family content unfixed — exclude from aggregation
   const posteriors: { [axis: string]: BetaParams } = {};
   for (const a of allAxes) {
     let signalsForAxis = buckets[a] || [];
     if (AUTONOMY_AXES.has(a)) {
       signalsForAxis = signalsForAxis.filter(s => normalizeShift(s.shift) === "yes");
+    }
+    if (UNREGISTERED_AXES.has(a)) {
+      // agg/hexad: content unfixed — exclude from aggregation (no posterior)
+      continue;
     }
     posteriors[a] = betaParamsFromSignals(signalsForAxis);
   }
@@ -114,6 +119,7 @@ export async function computeGapIndex(
   // 4. Exact posterior means (point estimates, no clamp needed — always in (0,1))
   const axisLevels: { [axis: string]: number } = {};
   for (const a of allAxes) {
+    if (UNREGISTERED_AXES.has(a)) continue;  // agg/hexad: not registered
     axisLevels[a] = betaMean(posteriors[a]);
   }
 
@@ -128,6 +134,7 @@ export async function computeGapIndex(
     };
   } = {};
   for (const a of allAxes) {
+    if (UNREGISTERED_AXES.has(a)) continue;  // agg/hexad: not registered
     const p = posteriors[a];
     const samples: number[] = new Array(mcSamples);
     for (let i = 0; i < mcSamples; i++) samples[i] = sampleBeta(p.alpha, p.beta, rng);
@@ -146,10 +153,15 @@ export async function computeGapIndex(
   // 5. Monte Carlo sampling of the Gap distribution (WEIGHTED).
   // Weights from src/config/weights.ts are applied to each axis.
   // This matches the documented formula: G = Σ(w_i * a_i) − Σ(w_j * h_j)
-  const aiParams = AI_AXES.map(a => posteriors[a]);
-  const humanParams = HUMAN_AXES.map(a => posteriors[a]);
-  const aiWeights = AI_AXES.map(a => AI_WEIGHTS[a]);
-  const humanWeights = HUMAN_AXES.map(a => HUMAN_WEIGHTS[a]);
+  // agg/hexad: exclude from aggregation, renormalize weights over registered axes
+  const registeredAiAxes = AI_AXES.filter(a => !UNREGISTERED_AXES.has(a));
+  const registeredHumanAxes = HUMAN_AXES.filter(a => !UNREGISTERED_AXES.has(a));
+  const sumAiWeights = registeredAiAxes.reduce((s, a) => s + AI_WEIGHTS[a], 0);
+  const sumHumanWeights = registeredHumanAxes.reduce((s, a) => s + HUMAN_WEIGHTS[a], 0);
+  const aiParams = registeredAiAxes.map(a => posteriors[a]);
+  const humanParams = registeredHumanAxes.map(a => posteriors[a]);
+  const aiWeights = registeredAiAxes.map(a => AI_WEIGHTS[a] / sumAiWeights);
+  const humanWeights = registeredHumanAxes.map(a => HUMAN_WEIGHTS[a] / sumHumanWeights);
   const run = sampleGapDistribution(aiParams, humanParams, mcSamples, rng, aiWeights, humanWeights);
 
   const aiSummary = summarize(run.aiSamples);
