@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年11月12日  
-**基线：** 2026年11月12日更新 — 基于 541 个项目（样本量：506）。
+**更新:** 2026年11月13日  
+**基线：** 2026年11月13日更新 — 基于 670 个项目（样本量：605）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (11-12) | 状态 |
+| 指标 | 数值 (11-13) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.647** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.805** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.158** | 人工智能领先 |
-| **📊 CI95** | **[−0.395, +0.089]** | 不确定 |
-| **⚡ 阈值变化** | **10** | 检测到关键事件 |
-| **📈 分析项目** | **541** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **506** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.659** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.814** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.155** | 人工智能领先 |
+| **📊 CI95** | **[−0.389, +0.083]** | 不确定 |
+| **⚡ 阈值变化** | **11** | 检测到关键事件 |
+| **📈 分析项目** | **670** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **605** | 轴-信号对 |
 
 </div>
 
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11"]
-    y-axis "差距" -0.380 --> 0.041
-    line [-0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158]
+    x-axis ["28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "13/11"]
+    y-axis "差距" -0.380 --> -0.001
+    line [-0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, -0.155]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 13/11 | 0.814 | 0.659 | −0.155 | [−0.389, +0.083] | 670 | 605 | 临时版 |
 | 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | 临时版 |
 | 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | 临时版 |
 | 10/11 | 0.774 | 0.569 | −0.205 | [−0.480, +0.086] | 253 | 251 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 30/10 | 0.771 | 0.670 | −0.101 | [−0.342, +0.150] | 583 | 531 | 临时版 |
 | 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | 临时版 |
 | 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | 临时版 |
-| 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | 临时版 |
 
 #### 📚 协议历史
 
@@ -86,7 +86,7 @@ xychart-beta
 | 08/11 | 0.888 | 0.614 | −0.274 | [−0.473, −0.075] | 991 | 918 | 最终版 |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：12/11 — AI 0.805 · 人类 0.647 · 差距 −0.158 · 541 / 506 items.
+> 📌 临时协议（仅供参考，不在图表上）：13/11 — AI 0.814 · 人类 0.659 · 差距 −0.155 · 670 / 605 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -96,6 +96,174 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> The Jensen Huang Scandal Should Change Everything
+
+— *[The Atlantic](https://www.theatlantic.com/international/2026/11/nvidia-affair-chips-china/689417/?utm_source=feed)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> The AI boom will survive without Jensen Huang, but there's a $500 billion funding hole to fill
+
+— *[Axios](https://www.axios.com/2026/11/13/ai-boom-without-jensen-huang-nvidia)*
+
+**Nvidia — 2026-11-13**
+
+> Nvidia CEO steps down. And, Sen. Chris Van Hollen to run for majority leader
+
+— *[NPR — World](https://www.npr.org/2026/11/13/g-s1-153532/up-first-newsletter-nvidia-jensen-huang-colette-kress-ukraine-russia-chris-van-hollen)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> Nvidia CEO steps down. And, Sen. Chris Van Hollen to run for majority leader
+
+— *[NPR — World](https://www.npr.org/2026/11/13/g-s1-153532/up-first-newsletter-nvidia-jensen-huang-colette-kress-ukraine-russia-chris-van-hollen)*
+
+**Nvidia — 2026-11-13**
+
+> [AINews] Jensen Huang resigns after 33 years leading NVIDIA
+
+— *[Latent Space](https://latent.space/p/ainews-jensen-huang-resigns-after-33-years-leading-nvidia/)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> [AINews] Jensen Huang resigns after 33 years leading NVIDIA
+
+— *[Latent Space](https://latent.space/p/ainews-jensen-huang-resigns-after-33-years-leading-nvidia/)*
+
+**Microsoft — 2026-11-13**
+
+> Eye Opener: Microsoft Outlook email outage
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/eye-opener-microsoft-outlook-email-outage/)*
+
+**Microsoft — 2026-11-13**
+
+> Widespread Microsoft 365 outage continues, impacting email and other services
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/widespread-microsoft-365-outage-continues-impacting-email-and-other-services/)*
+
+**Nvidia — 2026-11-13**
+
+> Former Nvidia CEO Jensen Huang willing to appear before Congress amid probe into alleged spy affair
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/former-nvidia-ceo-jensen-huang-willing-to-appear-before-congress-amid-probe-into-alleged-spy-affair/)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> Former Nvidia CEO Jensen Huang willing to appear before Congress amid probe into alleged spy affair
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/former-nvidia-ceo-jensen-huang-willing-to-appear-before-congress-amid-probe-into-alleged-spy-affair/)*
+
+**Microsoft — 2026-11-13**
+
+> Microsoft seeing "continued recovery" amid major worldwide outage
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/microsoft-battling-major-outage/)*
+
+**Nvidia — 2026-11-12**
+
+> Who is interim Nvidia CEO Colette Kress?
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6216664-nvidia-interim-ceo-colette-kress-jensen-huang-resignation-affairs/)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Who is interim Nvidia CEO Colette Kress?
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6216664-nvidia-interim-ceo-colette-kress-jensen-huang-resignation-affairs/)*
+
+**Microsoft — 2026-11-13**
+
+> Microsoft 'seeing encouraging recovery progress' in global Outlook, Teams outage
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6218199-microsoft-outage-recovery-process/)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Jensen Huang agrees to testify before Congress
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/12/jensen-huang-agrees-to-testify-01162650)*
+
+**Google — 2026-11-12**
+
+> Nonprofits sue Anthropic, Google, and other tech giants to freeze the AI arms race
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/12/nonprofits-sue-ai-companies-over-existential-risk-01161965)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Key House intel lawmakers urge probe of Huang’s relationship with alleged Chinese spy
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/12/house-intel-probe-nvidia-01162608)*
+
+**Nvidia — 2026-11-13**
+
+> Megaspeed lawyers up with US firm as Nvidia scandal broadens
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/12/megaspeed-lawyers-up-with-u-s-firm-as-nvidia-scandal-broadens-01164448)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Jensen Huang is out. What did China want from him?
+
+— *[The Verge — AI](https://www.theverge.com/podcast/1031260/nvidia-jensen-huang-resign-china-spy-scandal-ai-chips-trump)*
+
+**Nvidia — 2026-11-12**
+
+> Read Nvidia’s internal emails about the ‘extraordinarily difficult period’ amid CEO shakeup
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1032028/read-nvidias-internal-emails-jensen-huang)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> The Jensen Huang scandal is hardly over
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1032069/jensen-huang-resignation-affair-chips-smuggling)*
+
+**Claude — 2026-11-13**
+
+> Claude’s Duet agent is a little neurotic and surprisingly helpful
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1032518/claude-duet-ai-agent-hands-on)*
+
+**Google — 2026-11-12**
+
+> Google’s new Gemini model is better at understanding complicated questions
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1032505/google-search-ai-mode-gemini-4-hydrogen)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> Let’s talk about Jensen Huang’s many affairs!
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1032339/lets-talk-about-the-nvidia-shitshow)*
+
+**Nvidia — 2026-11-12**
+
+> Nvidia privately confirmed it could track chips to fight smuggling, even as industry publicly questioned feasibility
+
+— *[MIT Technology Review — AI](https://www.technologyreview.com/2026/11/12/1148483/nvidia-chip-tracking/)*
+
+**Meta — 2026-11-13**
+
+> llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem
+
+— *[Hugging Face Blog](https://huggingface.co/blog/ggml-org/llama-cpp-v1)*
+
+**Google — 2026-11-12**
+
+> Introducing Gemini 4 Hydrogen
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/introducing-gemini-4-hydrogen/)*
+
+**OpenAI — 2026-11-12**
+
+> How Amplitude ships product improvements in 1–2 days with OpenAI
+
+— *[OpenAI Blog](https://openai.com/business/customer-stories/amplitude)*
 
 **Nvidia — 2026-11-12**
 
@@ -228,174 +396,6 @@ xychart-beta
 > Google’s AlphaGenome 2 zooms in on the cellular roots of disease
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1031524/google-deepmind-alphagenome-2-genetic-ai-model)*
-
-**Jensen Huang (Nvidia) — 2026-11-10**
-
-> The US is winning the AI race. Jensen Huang could have blown it
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1031063/jensen-huang-ai-race-us-china-spy)*
-
-**Google — 2026-11-11**
-
-> Google’s Tabletop AI experiment lets you build custom collaboration apps
-
-— *[The Verge — AI](https://www.theverge.com/tech/1031526/google-tabletop-ai-experiment-waitlist-availability)*
-
-**Nvidia — 2026-11-12**
-
-> Nvidia CEO Jensen Huang resigns amid spy, affair scandals
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1031689/jensen-huang-nvidia-ceo-resigns)*
-
-**Nvidia — 2026-11-11**
-
-> Nvidia is reportedly preparing to fire Jensen Huang
-
-— *[The Verge — AI](https://www.theverge.com/tech/1031652/jensen-huang-rumor)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Nvidia CEO Jensen Huang resigns amid spy, affair scandals
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1031689/jensen-huang-nvidia-ceo-resigns)*
-
-**Jensen Huang (Nvidia) — 2026-11-11**
-
-> Nvidia is reportedly preparing to fire Jensen Huang
-
-— *[The Verge — AI](https://www.theverge.com/tech/1031652/jensen-huang-rumor)*
-
-**Meta — 2026-11-12**
-
-> Meta’s New Agreements Bring Clean Manufacturing to Data Center Supply Chains
-
-— *[Meta AI Blog](https://about.fb.com/news/2026/11/meta-new-agreements-clean-manufacturing-data-center-supply-chains/)*
-
-**Nvidia — 2026-11-10**
-
-> Scoop: Commerce Department received national security warning on Nvidia CEO affair
-
-— *[Axios](https://www.axios.com/2026/11/10/lutnick-nvidia-jensen-huang-china-memo)*
-
-**Jensen Huang (Nvidia) — 2026-11-10**
-
-> Scoop: Commerce Department received national security warning on Nvidia CEO affair
-
-— *[Axios](https://www.axios.com/2026/11/10/lutnick-nvidia-jensen-huang-china-memo)*
-
-**OpenAI — 2026-11-11**
-
-> AI Engineer Code Summit: OpenAI on New Ways of Working With Codex
-
-— *[Latent Space](https://latent.space/p/codex-work/)*
-
-**Jensen Huang (Nvidia) — 2026-11-11**
-
-> Jensen Huang Affair Strains Taiwan’s Devotion to Its Hometown Hero
-
-— *[WSJ — World News](https://www.wsj.com/world/asia/the-jensen-huang-scandal-is-testing-taiwans-devotion-to-its-hometown-hero-2a2914d9?mod=rss_worldnews)*
-
-**Nvidia — 2026-11-10**
-
-> Nvidia and Jensen Huang face shareholder lawsuit alleging investors were misled about spy affair
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/nvidia-jensen-huang-shareholder-lawsuit/)*
-
-**Jensen Huang (Nvidia) — 2026-11-10**
-
-> Nvidia and Jensen Huang face shareholder lawsuit alleging investors were misled about spy affair
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/nvidia-jensen-huang-shareholder-lawsuit/)*
-
-**Nvidia — 2026-11-10**
-
-> Nvidia hires Wachtell Lipton for Jensen Huang investigation
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/10/nvidia-wachtell-lipton-jensen-huang-01159501)*
-
-**Nvidia — 2026-11-11**
-
-> Senate Banking Republican calls on Nvidia CEO to resign
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/10/senate-banking-republican-nvidia-ceo-resign-01160543)*
-
-**Jensen Huang (Nvidia) — 2026-11-10**
-
-> Nvidia hires Wachtell Lipton for Jensen Huang investigation
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/10/nvidia-wachtell-lipton-jensen-huang-01159501)*
-
-**Jensen Huang (Nvidia) — 2026-11-11**
-
-> Senate Banking Republican calls on Nvidia CEO to resign
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/10/senate-banking-republican-nvidia-ceo-resign-01160543)*
-
-**Nvidia — 2026-11-11**
-
-> Nvidia loses ground in Washington chip fight after CEO spy scandal
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/10/nvidia-ceos-spy-scandal-tilts-capitol-hills-chip-fight-01160548)*
-
-**Nvidia — 2026-11-11**
-
-> Jensen Huang’s crisis becomes Nvidia’s Washington problem
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/11/jensen-huang-washington-problem-01160374)*
-
-**Jensen Huang (Nvidia) — 2026-11-11**
-
-> Jensen Huang’s crisis becomes Nvidia’s Washington problem
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/11/jensen-huang-washington-problem-01160374)*
-
-**Google — 2026-11-10**
-
-> Pay for Hugging Face Hub with your Google Cloud Account
-
-— *[Hugging Face Blog](https://huggingface.co/blog/hub-gcp-marketplace)*
-
-**Google — 2026-11-10**
-
-> Gemini 4 Carbon is now available
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/gemini-4-carbon-is-now-available/)*
-
-**OpenAI — 2026-11-10**
-
-> Singapore Airlines elevates travel & work with OpenAI technology
-
-— *[OpenAI Blog](https://openai.com/index/singapore-airlines-travel-work)*
-
-**OpenAI — 2026-11-10**
-
-> Cogent and OpenAI build cyber defense factories for enterprises
-
-— *[OpenAI Blog](https://openai.com/index/cogent-security)*
-
-**OpenAI — 2026-11-11**
-
-> ChatGPT Plus for veterans and servicemembers
-
-— *[OpenAI Blog](https://openai.com/index/chatgpt-plus-for-veterans)*
-
-**OpenAI — 2026-11-10**
-
-> Introducing Businesses in ChatGPT
-
-— *[OpenAI Blog](https://openai.com/index/introducing-businesses-chatgpt)*
-
-**Nvidia — 2026-11-10**
-
-> How Nvidia's crisis and politics could deliver the pause AI leaders want
-
-— *[Axios](https://www.axios.com/2026/11/10/ai-race-politics-slowdown)*
-
-**Nvidia — 2026-11-10**
-
-> Jeffries pushes tighter China chip restrictions amid Nvidia CEO scandal
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6210410-jeffries-backs-china-ai-chip-restrictions/)*
 
 ## 这是什么
 
