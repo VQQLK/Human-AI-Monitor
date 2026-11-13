@@ -36,7 +36,9 @@ export const getAIPrompt = (today: string) => [
   "  'Reduced covert action rate' = model behavior → smd.",
   "  Harm-reduction claims with awareness disclaimers ('cannot exclude') → shift=uncertain, never shift=yes.",
   "  Harm-reduction claim WITH explicit awareness control (protocol/metric in the primary source) → shift=yes, direction=down.",
-  "  A confirmed measured numeric level of a listed-family metric, stated WITHOUT a harm-reduction claim → shift=yes.",
+  "  A confirmed measured numeric level of a listed-family metric (smd/itq/cycle_velocity/verification) stated WITHOUT any harm-reduction claim → shift=yes.",
+  "  If the text contains a harm-reduction claim ('reduces', 'decreases', 'lowers' + harm metric), apply R-B2 (cannot exclude → uncertain) or R-B2+ (explicit awareness control → yes, down).",
+  "  A 'no'/'stable' event without a metric number → shift=no.",
   "Return ONLY JSON, no markdown."
 ].join(" ");
 
@@ -67,5 +69,9 @@ export const getHumanPrompt = (today: string) => [
   `11. If the text mentions an event date in the PAST relative to today (${today}), mark as stale_forecast.`,
   "12. topic_relevance = overall significance as Humanity signal, INDEPENDENT of axis match. HIGH (0.8-1.0) major Humanity news (institutional change, rights, mental health, education, governance); MEDIUM (0.5-0.7) notable Humanity item; LOW (0.2-0.4) minor mention; ZERO (0.0-0.1) not about Humanity.",
   "13. HUMAN ACHIEVEMENT FOCUS: Prioritize scientific discoveries, engineering feats, cultural milestones, and institutional successes. Measure human ingenuity alongside societal challenges. IGNORE trend-irrelevant noise (celebrity gossip, unrelated crime) but DO NOT ignore institutional failures, rights violations, or loss of trust — those are degradation signals, not noise.",
-  "Return ONLY JSON, no markdown."
+    "13b. SHIFT FOR HUMAN AXES (exhaustive):",
+  "  - If the text has NO numeric metric and NO change/reduction claim (achievement, state, discovery, stable event) → shift=no, direction=valence.",
+  "  - If the text has a confirmed threshold (numeric level) → shift=yes, direction=valence.",
+  "  - If the text has a harm-reduction claim: cannot exclude → uncertain; explicit awareness control → yes, down.",
+"Return ONLY JSON, no markdown."
 ].join(" ");
