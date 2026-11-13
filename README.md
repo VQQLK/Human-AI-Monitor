@@ -17,10 +17,10 @@ and Humanity.**
 
 | Metric | Value (11-13) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.659** | Current value |
-| **🔴 AI Score** | 🤖 **0.814** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.155** | AI is ahead |
-| **📊 CI95** | **[−0.389, +0.083]** | Inconclusive |
+| **🟢 Humanity Score** | 🌐 **0.839** | Current value |
+| **🔴 AI Score** | 🤖 **0.649** | Current value |
+| **⚖️ Gap Index** | ⚖️ **+0.190** | Humanity is ahead |
+| **📊 CI95** | **[−0.061, +0.442]** | Inconclusive |
 | **⚡ Threshold Shifts** | **11** | Critical events detected |
 | **📈 Items Analyzed** | **670** | Weekly sample |
 | **🔬 Sample Size (Bayesian)** | **605** | Axis-signal pairs |
@@ -35,9 +35,9 @@ and Humanity.**
 xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
     x-axis ["01/11", "08/11"]
-    y-axis "Score" 0.400 --> 0.938
-    bar [0.679, 0.614]
-    line [0.814, 0.888]
+    y-axis "Score" 0.400 --> 0.873
+    bar [0.679, 0.823]
+    line [0.814, 0.677]
 ```
 
 #### 📉 Gap Index Dynamics (Humanity minus AI)
@@ -46,8 +46,8 @@ xychart-beta
 xychart-beta
     title "Gap Index | Positive = Humanity leading, Negative = AI leading"
     x-axis ["01/11", "08/11"]
-    y-axis "Gap" -0.324 --> 0.250
-    line [-0.135, -0.274]
+    y-axis "Gap" -0.185 --> 0.250
+    line [-0.135, 0.146]
 ```
 
 #### 📅 Daily Gap trajectory
@@ -56,13 +56,13 @@ xychart-beta
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
     x-axis ["28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "13/11"]
-    y-axis "Gap" -0.380 --> -0.001
-    line [-0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, -0.155]
+    y-axis "Gap" -0.380 --> 0.290
+    line [-0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.190]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 13/11 | 0.814 | 0.659 | −0.155 | [−0.389, +0.083] | 670 | 605 | INTERIM |
+| 13/11 | 0.649 | 0.839 | +0.190 | [−0.061, +0.442] | 670 | 605 | INTERIM |
 | 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | INTERIM |
 | 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | INTERIM |
 | 10/11 | 0.774 | 0.569 | −0.205 | [−0.480, +0.086] | 253 | 251 | INTERIM |
@@ -82,10 +82,10 @@ xychart-beta
 
 | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 08/11 | 0.888 | 0.614 | −0.274 | [−0.473, −0.075] | 991 | 918 | FINAL |
+| 08/11 | 0.677 | 0.823 | +0.146 | [−0.095, +0.389] | 987 | 918 | FINAL |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 
-> 📌 Interim (reference, not on chart): 13/11 — AI 0.814 · Humanity 0.659 · Gap −0.155 · 670 / 605 items.
+> 📌 Interim (reference, not on chart): 13/11 — AI 0.649 · Humanity 0.839 · Gap +0.190 · 670 / 605 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
