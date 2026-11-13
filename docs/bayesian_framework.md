@@ -113,7 +113,7 @@ The geopolitical axis `g`: `ℓ(g)` is computed and published in `index_history`
 The values `M_shift ∈ {1.5, 1.0, 0.5}` and `M_dir ∈ {1.2, 1.0, 0.8}` are not derived from theory or from calibration on labeled data. This is a set of expert numbers without a documented protocol for obtaining them. As a consequence, the metric is not reproducible: the reader cannot verify why exactly 1.5 and not 1.3.
 
 **Limitation 2. Inconsistency between document and code.**
-At the time, code and documentation disagreed: the code used a simple mean, while `methodology.md` (v1.0.1) described a weighted formula. This inconsistency was one of the reasons for the migration to the Bayesian model (§3).
+At the time, the code applied a simple mean while `methodology.md` (v1.0.1) prescribed expert weights. The Bayesian model (§3) resolved this by fixing the weighted sum as the canonical aggregation (see `methodology.md` §3.2); the simple mean remains a reference-only aggregation.
 
 **Limitation 3. Multiplicativity on a bounded interval.**
 For `r_s = 1`, `σ_s = yes`, `d_s = up` we get `1 · 1.5 · 1.2 = 1.8`. Before `clamp` is applied, the value exceeds `[0, 1]` by a factor of 1.8. The `clamp` operation becomes dominant over aggregation: the nonlinearity at the boundaries erases the difference between items with high relevance.
@@ -124,8 +124,8 @@ Shift range: `1.5 / 0.5 = 3×`. Direction range: `1.2 / 0.8 = 1.5×`. Why shift 
 **Limitation 5. Point estimate without uncertainty.**
 The formula returns a single number without an interval. For `|S_a| < 10` (as in the week of September 14–20, 2026: 6 items in the protocol), the standard error of the mean exceeds the width of the neutral zone `[−0.1, 0.1]`, and the interpretation becomes indistinguishable from noise. The metric does not reflect this.
 
-**Limitation 6. Inconsistency with the symmetry hypothesis.**
-The hypothesis in §1.3 requires invariance under axis permutation within each group. The weighted-sum formula (§2.3) violates this: the weights `0.20` and `0.15` fix preferences between axes without justification. The simple mean (§2.2) is invariant, but is applied in the code without explicit theoretical motivation.
+**Limitation 6. Symmetry hypothesis vs canonical weights.**
+The hypothesis in §1.3 posits invariance under axis permutation within each group. The canonical aggregation is a weighted sum (`methodology.md` §3.2): the weights `0.20`, `0.15`, … are expert estimates (see `methodology.md` §6). They are not derived from theory or calibration; the simple mean is invariant under permutation and is retained as a reference-only aggregation. This is a construct choice, documented and not hidden.
 
 ---
 
@@ -190,21 +190,21 @@ where `α = α₀ + Σ v_s⁺`, `β = β₀ + Σ v_s⁻`.
 
 ### 3.3 Aggregation and Gap Index
 
-**AI_score and Human_score.** By the symmetry hypothesis (§1.3) both groups are equivalent, therefore aggregation is a **simple mean**:
+**AI_score and Human_score.** The **canonical** aggregation is a weighted sum (see `methodology.md` §3.2):
 
 ```
-AI_score    = (1/6) · Σ_{i=1}^{6} ℓ(a_i)
-Human_score = (1/6) · Σ_{j=1}^{6} ℓ(h_j)
+AI_score    = Σ_{i=1}^{6} w_i^AI · ℓ(a_i)
+Human_score = Σ_{j=1}^{6} w_j^H  · ℓ(h_j)
 ```
 
-This is the only aggregation that is invariant under axis permutation.
+The simple mean (§2.2) is invariant under axis permutation and is retained as a **reference-only** aggregation; it is not what the live API returns.
 
 **Important property:** if `ℓ(aᵢ) ~ Beta(αᵢ, βᵢ)` are independent, then `AI_score` **is not distributed as Beta** — it is a sum of Beta-distributed variables for which no closed-form density exists. This is not a defect of the model but its honesty: aggregation really does change the shape of the distribution.
 
 **Gap:**
 
 ```
-Gap = AI_score − Human_score
+Gap = Human_score − AI_score
 ```
 
 **Constructing the Gap distribution by Monte Carlo** (Robert & Casella 2004, ch. 3):
@@ -345,12 +345,12 @@ The Bayesian model corresponds to the five principles stated in `methodology.md`
 |---|---|---|
 | Axis level | Multiplicative heuristic | Posterior Beta |
 | Parameters | 4 unjustified numbers | 2 non-informative priors |
-| Aggregation | Simple mean (code) or weights (doc) | Simple mean |
+| Aggregation | Simple mean (code) or weights (doc) | Weighted sum (canonical), simple mean (reference) |
 | Gap | Scalar | Distribution |
 | Uncertainty | Hidden | Explicit (`CI₉₅`) |
 | Small samples | Falsely confident number | Honestly wide interval |
 | Updating | Full recomputation | Sequential (posterior → prior) |
-| Consistency with §1.3 | Violated by weights | Preserved |
+| Consistency with §1.3 | Weights not derived from symmetry | Weights are canonical; simple mean is reference |
 | Falsifiability | Weak | Strong |
 | Clamp artifacts | Present | None |
 

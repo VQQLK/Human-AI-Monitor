@@ -89,7 +89,7 @@ AI-score и Human-score — простые арифметические сред
 
 ### 2.5. Gap Index
 
-    Gap = AI_score − Human_score
+    Gap = Human_score − AI_score
 
 **Область значений:** Gap ∈ [−1, 1] (разность двух значений из [0,1]).
 

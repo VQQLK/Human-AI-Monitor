@@ -17,7 +17,7 @@ export const getAIPrompt = (today: string) => [
   "2. If nothing fits, return empty array [].",
   "3. shift=yes ONLY if a threshold is empirically confirmed.",
   "4. A general news item is NOT a threshold shift.",
-  "5. DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic.",
+  "5. DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic. For capability axes, direction=up reflects the presence of a demonstrated ability regardless of social consequences; direction=down reflects regression or loss of ability.",
   "TEMPORAL RULES (CRITICAL):",
   "6. future_event: event scheduled/planned for future (e.g. 'will meet', 'plans to').",
   "7. past_event: event already happened (e.g. 'met', 'signed', 'announced').",
@@ -26,9 +26,7 @@ export const getAIPrompt = (today: string) => [
   "10. static_fact: timeless research finding or technical result.",
   "11. event_date: date of the event in YYYY-MM-DD format (or null if N/A).",
   `12. If the text mentions an event date in the PAST relative to today (${today}), mark as stale_forecast.`,
-  "13. topic_relevance = overall significance as AI signal, INDEPENDENT of axis match. HIGH (0.8-1.0) major AI news (regulation, breakthrough, safety, funding, deployment, key figure statements); MEDIUM (0.5-0.7) notable AI item (product launch, industry analysis); LOW (0.2-0.4) minor AI mention (enterprise adoption, tangential); ZERO (0.0-0.1) not about AI. IMPORTANT: If about AI but no RSI axis matches → relevance=0.0, but topic_relevance stays 0.5-0.9.",
-  "13. AI/TECH FILTER (CRITICAL): Classify as Human-axes ONLY if the item explicitly mentions AI, technology, digital infrastructure, or the societal impact of automation. Ignore general geopolitical conflicts, natural disasters, or crimes unless they are directly linked to technological systems.",
-  "14. HUMAN ACHIEVEMENT FOCUS: Prioritize scientific discoveries, engineering feats, cultural milestones, and institutional successes. Measure human ingenuity alongside societal challenges.",
+  "12b. topic_relevance = overall significance as AI signal, INDEPENDENT of axis match. HIGH (0.8-1.0) major AI news (regulation, breakthrough, safety, funding, deployment, key figure statements); MEDIUM (0.5-0.7) notable AI item (product launch, industry analysis); LOW (0.2-0.4) minor AI mention (enterprise adoption, tangential); ZERO (0.0-0.1) not about AI. IMPORTANT: If about AI but no RSI axis matches → relevance=0.0, but topic_relevance stays 0.5-0.9.",
   "Return ONLY JSON, no markdown."
 ].join(" ");
 
@@ -47,8 +45,8 @@ export const getHumanPrompt = (today: string) => [
   "RULES:",
   "1. Select 1-3 MOST relevant axes.",
   "2. If nothing fits, return empty array [].",
-  "3. shift=yes ONLY if a threshold is empirically confirmed.",
-  "4. DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic.",
+  "3. shift=yes ONLY if a threshold is empirically confirmed. A claimed reduction in harm/violations does NOT confirm a threshold if the primary source does not record control of evaluation awareness (otherwise the reduction may be concealment, not improvement).",
+  "4. DIRECTION RULE: direction reflects the AXIS VALUE trend, NOT the news topic. For human axes, direction=up reflects improvement in the institution's function; direction=down reflects function failure (loss of trust, justice, access, safety, knowledge reproduction) — not mere presence of suffering.",
   "TEMPORAL RULES (CRITICAL):",
   "5. future_event: event scheduled/planned for future (e.g. 'will meet', 'plans to').",
   "6. past_event: event already happened (e.g. 'met', 'signed', 'announced').",
@@ -58,6 +56,6 @@ export const getHumanPrompt = (today: string) => [
   "10. event_date: date of the event in YYYY-MM-DD format (or null if N/A).",
   `11. If the text mentions an event date in the PAST relative to today (${today}), mark as stale_forecast.`,
   "12. topic_relevance = overall significance as Humanity signal, INDEPENDENT of axis match. HIGH (0.8-1.0) major Humanity news (institutional change, rights, mental health, education, governance); MEDIUM (0.5-0.7) notable Humanity item; LOW (0.2-0.4) minor mention; ZERO (0.0-0.1) not about Humanity.",
-  "13. AI/TECH FILTER (CRITICAL): Classify as Human-axes ONLY if the item explicitly mentions AI, technology, digital infrastructure, or the societal impact of automation. Ignore general geopolitical conflicts, natural disasters, or crimes unless they are directly linked to technological systems.",
+  "13. HUMAN ACHIEVEMENT FOCUS: Prioritize scientific discoveries, engineering feats, cultural milestones, and institutional successes. Measure human ingenuity alongside societal challenges. IGNORE trend-irrelevant noise (celebrity gossip, unrelated crime) but DO NOT ignore institutional failures, rights violations, or loss of trust — those are degradation signals, not noise.",
   "Return ONLY JSON, no markdown."
 ].join(" ");

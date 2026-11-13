@@ -15,7 +15,7 @@
 // From bayesian_framework.md §3.4.
 export const PI_TABLE: Record<string, Record<string, number>> = {
   yes:       { up: +1.0, stable: +0.5, down: -1.0, uncertain: +0.5 },
-  no:        { up: +0.3, stable:  0.0, down: -0.3, uncertain:  0.0 },
+  no:        { up: +0.3, stable: +0.3, down: -0.3, uncertain:  0.0 },  // stable = weak growth (was 0.0, killed all 'no' achievements)
   uncertain: { up:  0.0, stable:  0.0, down:  0.0, uncertain:  0.0 },
 };
 
@@ -40,7 +40,7 @@ export interface BetaParams {
 
 // ----- Legacy key normalization ------------------------------
 // Old rows may use Russian markers; migrated by 0006 but be safe.
-function normalizeShift(s: string): string {
+export function normalizeShift(s: string): string {
   if (s === '\u0434\u0430') return 'yes';            // да
   if (s === '\u043d\u0435\u0442') return 'no';       // нет
   if (s === '\u043d\u0435\u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0451\u043d\u043d\u043e') return 'uncertain';

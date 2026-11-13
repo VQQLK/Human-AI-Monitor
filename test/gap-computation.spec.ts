@@ -63,14 +63,15 @@ describe("computeGapIndex (Bayesian)", () => {
   // ----------------------------------------------------------------
   // 4. AI + Human, with (no, stable) = zero voice
   // ----------------------------------------------------------------
-  it("AI (yes, up), Human (no, stable, v=0)", async () => {
+  it("AI (yes, up), Human (no, stable, v=+0.15 after 0.0→+0.3 fix)", async () => {
     const env = createMockEnv([
       { axes: '["smd"]', relevance: 0.9, shift: "yes", direction: "up" },
       { axes: '["h1_science"]', relevance: 0.5, shift: "no", direction: "stable" },
     ]);
     const r = await computeGapIndex(env, RANGE, mulberry32(4));
     expect(r.axisLevels["smd"]).toBeCloseTo(1.4 / 1.9, 4);
-    expect(r.axisLevels["h1_science"]).toBe(0.5);
+    // no.stable = +0.3, rel = 0.5 → v = 0.15; alpha = 0.5 + 0.15 = 0.65; beta = 0.5; mean = 0.65/1.15 ≈ 0.5652
+    expect(r.axisLevels["h1_science"]).toBeCloseTo(0.65 / 1.15, 4);
   });
 
   // ----------------------------------------------------------------

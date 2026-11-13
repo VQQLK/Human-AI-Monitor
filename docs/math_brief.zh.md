@@ -89,7 +89,7 @@ AI-score 和 Human-score 是各自轴集上的简单算术平均：
 
 ### 2.5. Gap Index
 
-    Gap = AI_score − Human_score
+    Gap = Human_score − AI_score
 
 **值域：** Gap ∈ [−1, 1]（两个 [0,1] 值之差）。
 

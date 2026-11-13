@@ -19,6 +19,7 @@ import {
   Signal,
   BetaParams,
   betaParamsFromSignals,
+  normalizeShift,
   betaMean,
   sampleBeta,
   sampleGapDistribution,
@@ -98,9 +99,16 @@ export async function computeGapIndex(
 
   // 3. Posterior Beta(α, β) per axis (all AI + HUMAN + META)
   const allAxes: string[] = [...AI_AXES, ...HUMAN_AXES, ...META_AXES];
+  // Autonomy axes: voice only when the threshold is empirically confirmed (shift=yes).
+  // Without shift=yes, the improvement is exogenous (human-driven), not self-modification.
+  const AUTONOMY_AXES = new Set(["smd", "agg", "verification"]);
   const posteriors: { [axis: string]: BetaParams } = {};
   for (const a of allAxes) {
-    posteriors[a] = betaParamsFromSignals(buckets[a] || []);
+    let signalsForAxis = buckets[a] || [];
+    if (AUTONOMY_AXES.has(a)) {
+      signalsForAxis = signalsForAxis.filter(s => normalizeShift(s.shift) === "yes");
+    }
+    posteriors[a] = betaParamsFromSignals(signalsForAxis);
   }
 
   // 4. Exact posterior means (point estimates, no clamp needed — always in (0,1))

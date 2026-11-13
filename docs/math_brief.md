@@ -89,7 +89,7 @@ Point estimate: Ĝap = mean({Gap^(k)}).  95% credible interval: [q₀.₀₂₅,
 
 ### 2.5. Gap Index
 
-    Gap = AI_score − Human_score
+    Gap = Human_score − AI_score
 
 **Domain:** Gap ∈ [−1, 1] (difference of two [0,1] values).
 
