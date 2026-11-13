@@ -40,6 +40,7 @@ export const getAIPrompt = (today: string) => [
   "  If the text contains a harm-reduction claim ('reduces', 'decreases', 'lowers' + harm metric), apply R-B2 (cannot exclude → uncertain) or R-B2+ (explicit awareness control → yes, down).",
   "  A 'no'/'stable' event without a metric number → shift=no.",
   "  For capability axes (smd/itq/agg/cycle_velocity/verification/hexad): direction=up reflects the presence of a demonstrated ability REGARDLESS of whether the ability is beneficial or harmful. Sabotage, deception, alignment faking = capability = up (NOT uncertain, NOT down).",
+  "  agg/hexad: family content unfixed — do not assign until owner decision → axis=unmapped.",
   "Return ONLY JSON, no markdown."
 ].join(" ");
 
