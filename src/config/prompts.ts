@@ -27,6 +27,16 @@ export const getAIPrompt = (today: string) => [
   "11. event_date: date of the event in YYYY-MM-DD format (or null if N/A).",
   `12. If the text mentions an event date in the PAST relative to today (${today}), mark as stale_forecast.`,
   "12b. topic_relevance = overall significance as AI signal, INDEPENDENT of axis match. HIGH (0.8-1.0) major AI news (regulation, breakthrough, safety, funding, deployment, key figure statements); MEDIUM (0.5-0.7) notable AI item (product launch, industry analysis); LOW (0.2-0.4) minor AI mention (enterprise adoption, tangential); ZERO (0.0-0.1) not about AI. IMPORTANT: If about AI but no RSI axis matches → relevance=0.0, but topic_relevance stays 0.5-0.9.",
+  "12c. AXIS ASSIGNMENT — deterministic family lookup, do not infer from prose:",
+  "  - smd: covert_action_rate, sabotage_rate, alignment_faking_rate, monitor-evasion rates — model behavior hidden from oversight.",
+  "  - itq: METR time_horizon family, coding/reasoning/agentic benchmarks.",
+  "  - cycle_velocity: doubling_time, improvement-cycle duration, automatable R&D share.",
+  "  - verification: power of the audit TOOL — monitor recall/discriminability, monitor-defect datasets discovered (tool OUTPUT, not model behavior).",
+  "  Discriminator: whose property does the metric parameterize? Model behavior under observation → smd. Audit tool's output → verification.",
+  "  'Reduced covert action rate' = model behavior → smd.",
+  "  Harm-reduction claims with awareness disclaimers ('cannot exclude') → shift=uncertain, never shift=yes.",
+  "  Harm-reduction claim WITH explicit awareness control (protocol/metric in the primary source) → shift=yes, direction=down.",
+  "  A confirmed measured numeric level of a listed-family metric, stated WITHOUT a harm-reduction claim → shift=yes.",
   "Return ONLY JSON, no markdown."
 ].join(" ");
 
