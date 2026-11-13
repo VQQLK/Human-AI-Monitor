@@ -392,6 +392,17 @@ It is not a code refactor. It must follow this protocol.
 
 ---
 
+## 13b. Golden set: canonical expectations
+
+### GS-Euclid (2-domain item)
+**Expectation:** `h1_science` present; `h2_engineering` optional.
+
+**Rationale:** Euclid is a genuinely two-domain item — telescope (engineering) + 3D dark-matter map (science). The rule "select 1–3 most relevant axes" permits both. Pinning a single axis to force determinism would be fitting the prompt to a specific test (the same error as the circular examples in rule 38, identified and corrected in the current version).
+
+**Diagnostic endpoint:** `/classify?text=...&kind=human` → `axes ∋ h1_science`, `shift=no`, `direction=up`. `h2_engineering` presence is not a failure.
+
+---
+
 ## 14. Mathematical audit
 
 The mathematical core is **correctly constructed and validated against
