@@ -45,7 +45,7 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 
 ## 3. Current state
 
-- HEAD: d59bf7e (refactor: remove duplicate sync dispatch; last verified 2026-10-28)
+- HEAD: e12b9b7 (fix: minimal solution — Gap sign, weights canon, no.stable=+0.3, Human prompt, autonomy axes; last verified 2026-11-13)
 - **Baseline: 149 checks — 148 PASS / 1 WARN / 0 FAIL** (WARN = transient axis coverage, e.g. `hexad`; always verify via `bash scripts/run-audit.sh`)
 - Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
 - Math verification: **20/20 PASS** (see §14; runs inside audit as Phase 15)
