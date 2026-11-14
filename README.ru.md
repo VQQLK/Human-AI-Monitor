@@ -7,22 +7,22 @@
 
 ## 📊 Текущее состояние развития
 
-**Обновлено:** 13 ноября 2026  
-**Базовая линия:** Обновлено 13 ноября 2026 — на основе 670 элементов (размер выборки: 605).
+**Обновлено:** 14 ноября 2026  
+**Базовая линия:** Обновлено 14 ноября 2026 — на основе 803 элементов (размер выборки: 691).
 
 ### 🌍 Индекс разрыва Human–AI (Достижения vs Прогресс)
 
 <div align="center">
 
-| Метрика | Значение (13.11) | Статус |
+| Метрика | Значение (14.11) | Статус |
 |:---|:---:|:---:|
-| **🟢 Оценка Человечества** | 🌐 **0.839** | Текущее значение |
-| **🔴 Оценка ИИ** | 🤖 **0.649** | Текущее значение |
-| **⚖️ Индекс разрыва** | ⚖️ **+0.190** | Человечество впереди |
-| **📊 CI95** | **[−0.061, +0.442]** | Неопределённо |
-| **⚡ Ключевых сдвигов** | **11** | Обнаружены критические события |
-| **📈 Анализированных событий** | **670** | Недельная выборка |
-| **🔬 Размер выборки (байесовский)** | **605** | Пары «ось-сигнал» |
+| **🟢 Оценка Человечества** | 🌐 **0.830** | Текущее значение |
+| **🔴 Оценка ИИ** | 🤖 **0.682** | Текущее значение |
+| **⚖️ Индекс разрыва** | ⚖️ **+0.148** | Человечество впереди |
+| **📊 CI95** | **[−0.131, +0.426]** | Неопределённо |
+| **⚡ Ключевых сдвигов** | **13** | Обнаружены критические события |
+| **📈 Анализированных событий** | **803** | Недельная выборка |
+| **🔬 Размер выборки (байесовский)** | **691** | Пары «ось-сигнал» |
 
 </div>
 
@@ -54,13 +54,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Ежедневный разрыв | Положительный = Человечество впереди, Отрицательный = ИИ впереди"
-    x-axis ["27/10", "28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11"]
-    y-axis "Разрыв" -0.380 --> 0.041
-    line [-0.059, -0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158]
+    x-axis ["28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "14/11"]
+    y-axis "Разрыв" -0.380 --> 0.248
+    line [-0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148]
 ```
 
 | Дата | ИИ | Человечество | Разрыв | CI95 | Элементов | Выборка | Тип |
 |---|---|---|---|---|---|---|---|
+| 14/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | ПРОМЕЖУТОЧНЫЙ |
 | 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | ПРОМЕЖУТОЧНЫЙ |
 | 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | ПРОМЕЖУТОЧНЫЙ |
 | 10/11 | 0.774 | 0.569 | −0.205 | [−0.480, +0.086] | 253 | 251 | ПРОМЕЖУТОЧНЫЙ |
@@ -75,7 +76,6 @@ xychart-beta
 | 30/10 | 0.771 | 0.670 | −0.101 | [−0.342, +0.150] | 583 | 531 | ПРОМЕЖУТОЧНЫЙ |
 | 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | ПРОМЕЖУТОЧНЫЙ |
 | 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | ПРОМЕЖУТОЧНЫЙ |
-| 27/10 | 0.679 | 0.620 | −0.059 | [−0.370, +0.260] | 167 | 147 | ПРОМЕЖУТОЧНЫЙ |
 
 #### 📚 История протоколов
 
@@ -84,7 +84,7 @@ xychart-beta
 | 08/11 | 0.700 | 0.823 | +0.123 | [−0.144, +0.393] | 987 | 918 | ФИНАЛЬНЫЙ |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | ФИНАЛЬНЫЙ |
 
-> 📌 Промежуточный протокол (справочно, не на графике): 13/11 — ИИ 0.649 · Человечество 0.839 · Разрыв +0.190 · 670 / 605 items.
+> 📌 Промежуточный протокол (справочно, не на графике): 14/11 — ИИ 0.682 · Человечество 0.830 · Разрыв +0.148 · 803 / 691 items.
 > Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.
 
 ---
@@ -94,6 +94,108 @@ xychart-beta
 ## Мнения
 
 ### 🧠 Ведущие Лаборатории ИИ
+
+**Nvidia — 2026-11-13**
+
+> Nvidia's interim CEO inherits risky AI bets and a legal mess
+
+— *[NPR — World](https://www.npr.org/2026/11/13/nx-s1-6038868/nvidia-interim-ceo-colette-kress-ai-bets-investigation-lutnick)*
+
+**Jensen Huang (Nvidia) — 2026-11-14**
+
+> What Jensen Huang’s Downfall Means for Big Tech
+
+— *[WSJ — Tech](https://www.wsj.com/tech/what-jensen-huangs-downfall-means-for-big-tech-9e6ca5df?mod=rss_Technology)*
+
+**Nvidia — 2026-11-12**
+
+> Democrats launch Nvidia investigation, write scathing letter on Huang’s ‘scheme’ with Trump
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/12/democrats-launch-nvidia-investigation-write-scathing-letter-on-huangs-scheme-with-trump/)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Democrats launch Nvidia investigation, write scathing letter on Huang’s ‘scheme’ with Trump
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/12/democrats-launch-nvidia-investigation-write-scathing-letter-on-huangs-scheme-with-trump/)*
+
+**Nvidia — 2026-11-13**
+
+> Israel’s VCs see opportunity for challengers in Nvidia’s turmoil
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/13/israels-vcs-see-opportunity-for-challengers-in-nvidias-turmoil/)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> Jensen Huang didn’t show confidence in his successor, report says
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/13/jensen-huang-didnt-show-confidence-in-his-successor-report-says/)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> Jensen Huang’s departure blasts big hole in AI startup funding, VCs and founders say
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/13/jensen-huangs-departure-blasts-big-hole-in-ai-startup-funding-vcs-and-founders-say/)*
+
+**Nvidia — 2026-11-13**
+
+> Export-banned Nvidia chips are behind China’s most powerful AI models — uh-oh, Jensen!
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/13/export-banned-nvidia-chips-are-behind-chinas-most-powerful-ai-models-uh-oh-jensen/)*
+
+**OpenAI — 2026-11-13**
+
+> ChatGPT’s new Wallet lets AI agents shop and check out for you
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> The unfolding Jensen Huang scandal: a timeline
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/13/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/)*
+
+**Nvidia — 2026-11-14**
+
+> Behind the Nvidia Affair Sits a Vast Chinese Spying Machine
+
+— *[WSJ — World News](https://www.wsj.com/world/nvidia-china-espionage-spy-hacking-ai-174c366b?mod=rss_worldnews)*
+
+**Jensen Huang (Nvidia) — 2026-11-14**
+
+> Silicon Valley plots Jensen Huang’s comeback
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/13/silicon-valley-plots-jensen-huangs-comeback-01166322)*
+
+**OpenAI — 2026-11-13**
+
+> ChatGPT Wallet lets OpenAI’s Dots agents make purchases for you
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1033425/openai-chatgpt-wallet)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> What’s really at stake in the Jensen Huang saga
+
+— *[The Verge — AI](https://www.theverge.com/podcast/1032866/jensen-huang-nvidia-china-trump-vergecast)*
+
+**Jensen Huang (Nvidia) — 2026-11-14**
+
+> Jensen Huang and the decline of the visionary showman founder CEO
+
+— *[The Verge — AI](https://www.theverge.com/tech/1033781/nvidia-jensen-huang-last-visionary-showman-founder-ceo)*
+
+**OpenAI — 2026-11-13**
+
+> Introducing ChatGPT Wallet
+
+— *[OpenAI Blog](https://openai.com/index/introducing-chatgpt-wallet)*
+
+**OpenAI — 2026-11-13**
+
+> Shield helps technicians hand off legacy portal work with OpenAI
+
+— *[OpenAI Blog](https://openai.com/business/customer-stories/shield)*
 
 **Jensen Huang (Nvidia) — 2026-11-12**
 
@@ -292,108 +394,6 @@ xychart-beta
 > Jensen Huang's ouster triggers an AI earthquake
 
 — *[Axios](https://www.axios.com/2026/11/12/jensen-huang-nvidia-board)*
-
-**Nvidia — 2026-11-12**
-
-> LIVE: Jensen Huang resigns as Nvidia CEO as affairs raise security concerns
-
-— *[Al Jazeera](https://www.aljazeera.com/news/liveblog/2026/11/12/live-jensen-huang-resigns-as-nvidia-ceo-as-affairs-raise-security-concerns?traffic_source=rss)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> LIVE: Jensen Huang resigns as Nvidia CEO as affairs raise security concerns
-
-— *[Al Jazeera](https://www.aljazeera.com/news/liveblog/2026/11/12/live-jensen-huang-resigns-as-nvidia-ceo-as-affairs-raise-security-concerns?traffic_source=rss)*
-
-**Nvidia — 2026-11-12**
-
-> Trump heads to China amid Nvidia scandal: Will he get tougher on Beijing?
-
-— *[Al Jazeera](https://www.aljazeera.com/news/2026/11/12/trump-heads-to-china-amid-nvidia-scandal-will-he-get-tougher-on-beijing?traffic_source=rss)*
-
-**Nvidia — 2026-11-12**
-
-> Nvidia CEO Jensen Huang resigns, company says
-
-— *[CBS News — Technology](https://www.cbsnews.com/video/nvidia-ceo-jensen-huang-resigns-company-says/)*
-
-**Nvidia — 2026-11-12**
-
-> Nvidia set to lose $700 billion in value as Jensen Huang resigns
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-stock-nvda-ceo-jensen-huang/)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Nvidia CEO Jensen Huang resigns, company says
-
-— *[CBS News — Technology](https://www.cbsnews.com/video/nvidia-ceo-jensen-huang-resigns-company-says/)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Nvidia set to lose $700 billion in value as Jensen Huang resigns
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-stock-nvda-ceo-jensen-huang/)*
-
-**Nvidia — 2026-11-12**
-
-> Company under scrutiny for ties to Nvidia and China
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/megaspeed-nvidia-china-ties/)*
-
-**Nvidia — 2026-11-12**
-
-> Nvidia CEO Jensen Huang resigns in wake of affair, spy scandal
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-ceo-jensen-huang-resigns/)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Nvidia CEO Jensen Huang resigns in wake of affair, spy scandal
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/nvidia-ceo-jensen-huang-resigns/)*
-
-**Nvidia — 2026-11-12**
-
-> Live updates: Huang exits Nvidia; Democrats look to Alaska, with Colom elected in Mississippi
-
-— *[The Hill — Policy](https://thehill.com/homenews/administration/6214786-live-updates-trump-midterms-alaska-congress/)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Live updates: Huang exits Nvidia; Democrats look to Alaska, with Colom elected in Mississippi
-
-— *[The Hill — Policy](https://thehill.com/homenews/administration/6214786-live-updates-trump-midterms-alaska-congress/)*
-
-**Nvidia — 2026-11-12**
-
-> Jensen Huang resigns from Nvidia following affair reports
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/12/nvidia-ousts-jensen-huang-amid-reports-of-affairs-with-two-women-01161630)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Jensen Huang resigns from Nvidia following affair reports
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/12/nvidia-ousts-jensen-huang-amid-reports-of-affairs-with-two-women-01161630)*
-
-**xAI — 2026-11-10**
-
-> Grok Build coding agent leaks oodles of confidential info, some belonging to SpaceXSI
-
-— *[Ars Technica — AI](https://arstechnica.com/security/2026/11/grok-build-coding-agent-leaks-oodles-of-confidential-info-some-belonging-to-spacexsi/)*
-
-**OpenAI — 2026-11-10**
-
-> ChatGPT is getting verified AI ‘Business Agents’
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub)*
-
-**Google — 2026-11-11**
-
-> Google’s AlphaGenome 2 zooms in on the cellular roots of disease
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1031524/google-deepmind-alphagenome-2-genetic-ai-model)*
 
 ## Что это
 
