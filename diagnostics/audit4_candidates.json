@@ -1,0 +1,49 @@
+[
+ {
+  "label": "Interconnects (замена Synced)",
+  "url": "https://www.interconnects.ai/feed",
+  "ok": true,
+  "items": 20,
+  "first_date": "Sat, 14 Nov 2026 12:23:15 GMT"
+ },
+ {
+  "label": "The Decoder (замена Synced)",
+  "url": "https://www.the-decoder.com/feed/",
+  "ok": true,
+  "items": 10,
+  "first_date": "Sun, 15 Nov 2026 11:35:12 +0000"
+ },
+ {
+  "label": "Space.com (замена SpaceNews)",
+  "url": "https://www.space.com/feeds/all",
+  "ok": true,
+  "items": 50,
+  "first_date": "Sun, 15 Nov 2026 11:00:00 +0000"
+ },
+ {
+  "label": "NASASpaceflight (замена SpaceNews)",
+  "url": "https://www.nasaspaceflight.com/feed/",
+  "ok": true,
+  "items": 10,
+  "first_date": "Fri, 13 Nov 2026 04:24:28 +0000"
+ },
+ {
+  "label": "NASA news-release",
+  "url": "https://www.nasa.gov/news-release/feed/",
+  "ok": true,
+  "items": 10,
+  "first_date": "Fri, 13 Nov 2026 16:39:33 +0000"
+ },
+ {
+  "label": "ESA All",
+  "url": "https://www.esa.int/rssfeed/All",
+  "ok": false,
+  "err": "unreachable"
+ },
+ {
+  "label": "SpaceNews full-headers",
+  "url": "https://spacenews.com/feed/",
+  "ok": false,
+  "err": "unreachable"
+ }
+]

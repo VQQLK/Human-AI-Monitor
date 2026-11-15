@@ -1,0 +1,119 @@
+[
+ {
+  "label": "IHE текущий",
+  "url": "https://www.insidehighered.com/news/feed",
+  "ua": "browser",
+  "ok": false,
+  "err": "unreachable"
+ },
+ {
+  "label": "IHE /rss.xml",
+  "url": "https://www.insidehighered.com/rss.xml",
+  "ua": "browser",
+  "ok": true,
+  "bytes": 19319,
+  "items": 10,
+  "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?> <rss xmlns:dc=\"http://purl.org/dc/elements/1.1/\" version=\"2.0\" xml:base=\"https://www.insidehighered.com/\"> <channel> <title>Inside Higher Ed</title> <l"
+ },
+ {
+  "label": "IHE /rss",
+  "url": "https://www.insidehighered.com/rss",
+  "ua": "browser",
+  "ok": false,
+  "err": "unreachable"
+ },
+ {
+  "label": "IHE /feed",
+  "url": "https://www.insidehighered.com/feed",
+  "ua": "browser",
+  "ok": false,
+  "err": "unreachable"
+ },
+ {
+  "label": "SpaceNews python-UA",
+  "url": "https://spacenews.com/feed/",
+  "ua": "python",
+  "ok": false,
+  "err": "unreachable"
+ },
+ {
+  "label": "SpaceNews browser-UA",
+  "url": "https://spacenews.com/feed/",
+  "ua": "browser",
+  "ok": false,
+  "err": "unreachable"
+ },
+ {
+  "label": "DeepMind blog rss",
+  "url": "https://deepmind.google/blog/rss.xml",
+  "ua": "browser",
+  "ok": true,
+  "bytes": 68814,
+  "items": 100,
+  "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?> <rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:media=\"http://search.yahoo.com/mrss/\"><channel><title>Google DeepMind News</title><link>https:/"
+ },
+ {
+  "label": "Google AI blog rss",
+  "url": "https://blog.google/technology/ai/rss/",
+  "ua": "browser",
+  "ok": true,
+  "bytes": 29979,
+  "items": 20,
+  "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?> <rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" "
+ },
+ {
+  "label": "Synced browser-UA",
+  "url": "https://syncedreview.com/feed/",
+  "ua": "browser",
+  "ok": false,
+  "err": "unreachable"
+ },
+ {
+  "label": "LessWrong feed.xml",
+  "url": "https://www.lesswrong.com/feed.xml",
+  "ua": "browser",
+  "ok": true,
+  "bytes": 146431,
+  "items": 10,
+  "head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" xmlns:atom=\"http://www.w3.org/2005/Atom\" version=\"2.0\"><"
+ },
+ {
+  "label": "LessWrong rss",
+  "url": "https://www.lesswrong.com/rss",
+  "ua": "browser",
+  "ok": true,
+  "bytes": 146431,
+  "items": 10,
+  "head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" xmlns:atom=\"http://www.w3.org/2005/Atom\" version=\"2.0\"><"
+ },
+ {
+  "label": "Anthropic rss.xml",
+  "url": "https://www.anthropic.com/rss.xml",
+  "ua": "browser",
+  "ok": false,
+  "err": "unreachable"
+ },
+ {
+  "label": "Anthropic news rss",
+  "url": "https://www.anthropic.com/news/rss.xml",
+  "ua": "browser",
+  "ok": false,
+  "err": "unreachable"
+ },
+ {
+  "label": "Mistral rss.xml",
+  "url": "https://mistral.ai/rss.xml",
+  "ua": "browser",
+  "ok": true,
+  "bytes": 27726,
+  "items": 94,
+  "head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss version=\"2.0\"><channel><title>Mistral Blog</title><description>Latest news and updates from Mistral</description><link>https://mistral.ai/</link><item><title"
+ },
+ {
+  "label": "Mistral news rss",
+  "url": "https://mistral.ai/news/rss.xml",
+  "ua": "browser",
+  "ok": false,
+  "err": "unreachable"
+ }
+]

@@ -1,0 +1,563 @@
+{
+ "when": "2026-11-15T10:18:05.432380+00:00",
+ "human_n": 30,
+ "ai_n": 30,
+ "voices_n": 63,
+ "empty_refs": [
+  "Paul Christiano",
+  "Mira Murati",
+  "Mustafa Suleyman",
+  "Greg Brockman",
+  "Jakub Pachocki",
+  "Sundar Pichai",
+  "Satya Nadella",
+  "Fei-Fei Li",
+  "Yoshua Bengio",
+  "Max Tegmark",
+  "Nick Bostrom",
+  "Sergey Brin",
+  "Arkady Volozh",
+  "Arthur Mensch",
+  "Aidan Gomez",
+  "Moustapha Cisse",
+  "Pelonomi Moiloa",
+  "Liang Wenfeng",
+  "Yang Zhilin",
+  "Junyang Lin",
+  "Tang Jie",
+  "Wu Yonghui",
+  "Yan Junjie",
+  "Zhang Zhengyou",
+  "Fields Medal Winners",
+  "OpenAI",
+  "xAI",
+  "Google",
+  "Microsoft",
+  "Meta",
+  "Nvidia",
+  "DeepSeek",
+  "Alibaba Qwen",
+  "Moonshot AI",
+  "Zhipu AI",
+  "ByteDance",
+  "Tencent",
+  "Mistral AI",
+  "Perplexity AI",
+  "Nobel Prize Winners"
+ ],
+ "dangling": {
+  "The Hill — News": [
+   "Elon Musk",
+   "Jeff Bezos"
+  ],
+  "LessWrong — AI": [
+   "Stuart Russell",
+   "Eliezer Yudkowsky"
+  ],
+  "CBS News — World": [
+   "Bill Gates"
+  ]
+ },
+ "keyword_scripts": {
+  "latin": 63,
+  "cyrillic": 35,
+  "cjk": 13,
+  "cjk_voices": [
+   "Liang Wenfeng",
+   "Yang Zhilin",
+   "Junyang Lin",
+   "Tang Jie",
+   "Wu Yonghui",
+   "Yan Junjie",
+   "Zhang Zhengyou",
+   "DeepSeek",
+   "Alibaba Qwen",
+   "Moonshot AI",
+   "Zhipu AI",
+   "ByteDance",
+   "Tencent"
+  ]
+ },
+ "probe": {
+  "H:Pew Research Center": {
+   "n": 100,
+   "age": 0.9,
+   "i7": 14,
+   "o30": 18,
+   "mode": "v",
+   "err": null
+  },
+  "H:Reuters Institute": {
+   "n": 10,
+   "age": 13.0,
+   "i7": 0,
+   "o30": 90,
+   "mode": "v",
+   "err": null
+  },
+  "H:Al Jazeera": {
+   "n": 25,
+   "age": -0.0,
+   "i7": 25,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:NPR — World": {
+   "n": 10,
+   "age": 0.8,
+   "i7": 10,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:The Hindu — International": {
+   "n": 60,
+   "age": null,
+   "i7": null,
+   "o30": null,
+   "mode": "v",
+   "err": null
+  },
+  "H:ТАСС": {
+   "n": 99,
+   "age": -0.0,
+   "i7": 99,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:Our World in Data": {
+   "n": 10,
+   "age": 13.4,
+   "i7": 0,
+   "o30": 64,
+   "mode": "v",
+   "err": null
+  },
+  "H:Politico — Politics": {
+   "n": 30,
+   "age": null,
+   "i7": null,
+   "o30": null,
+   "mode": "v",
+   "err": null
+  },
+  "H:EFF (Electronic Frontier Foundation)": {
+   "n": 50,
+   "age": 1.5,
+   "i7": 5,
+   "o30": 20,
+   "mode": "v",
+   "err": null
+  },
+  "H:Aeon": {
+   "n": 20,
+   "age": 2.0,
+   "i7": 7,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:Psyche": {
+   "n": 20,
+   "age": 2.0,
+   "i7": 8,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:Axios": {
+   "n": 100,
+   "age": 0.7,
+   "i7": 100,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:The Atlantic": {
+   "n": 25,
+   "age": 0.5,
+   "i7": 51,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:Issues in Science and Technology": {
+   "n": 10,
+   "age": 3.0,
+   "i7": 4,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:STAT News": {
+   "n": 20,
+   "age": 1.5,
+   "i7": 20,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:FT Chinese (FT中文网)": {
+   "n": 20,
+   "age": 2.8,
+   "i7": 18,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:MIT News (Engineering)": {
+   "n": 16,
+   "age": 233.6,
+   "i7": 0,
+   "o30": 100,
+   "mode": "v",
+   "err": null
+  },
+  "H:SpaceNews": {
+   "n": null,
+   "age": null,
+   "i7": null,
+   "o30": null,
+   "mode": "-",
+   "err": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  "H:Noema Magazine": {
+   "n": 10,
+   "age": 1.7,
+   "i7": 3,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:Inside Higher Ed": {
+   "n": null,
+   "age": null,
+   "i7": null,
+   "o30": null,
+   "mode": "-",
+   "err": "HTTPError: HTTP Error 404: Not Found"
+  },
+  "H:Science": {
+   "n": 23,
+   "age": 2.8,
+   "i7": 23,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:Nature": {
+   "n": 75,
+   "age": 2.4,
+   "i7": 75,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:Quanta Magazine": {
+   "n": 5,
+   "age": 2.6,
+   "i7": 5,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:IEEE Spectrum": {
+   "n": 30,
+   "age": 1.6,
+   "i7": 6,
+   "o30": 10,
+   "mode": "v",
+   "err": null
+  },
+  "H:Phys.org": {
+   "n": 30,
+   "age": null,
+   "i7": null,
+   "o30": null,
+   "mode": "v",
+   "err": null
+  },
+  "H:3 Quarks Daily": {
+   "n": 20,
+   "age": -0.0,
+   "i7": 20,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:Business & Human Rights Resource Centre": {
+   "n": 12,
+   "age": -14.6,
+   "i7": 12,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:Google DeepMind Blog": {
+   "n": 0,
+   "age": null,
+   "i7": null,
+   "o30": null,
+   "mode": "v",
+   "err": null
+  },
+  "H:Haber 7": {
+   "n": 94,
+   "age": -0.0,
+   "i7": 94,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "H:New Scientist": {
+   "n": 10,
+   "age": 1.1,
+   "i7": 10,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:arXiv cs.AI": {
+   "n": 0,
+   "age": 0.2,
+   "i7": 1,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:arXiv cs.LG": {
+   "n": 0,
+   "age": 0.2,
+   "i7": 1,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:arXiv cs.CL": {
+   "n": 0,
+   "age": 0.2,
+   "i7": 1,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:Hugging Face Blog": {
+   "n": 907,
+   "age": 1.7,
+   "i7": 10,
+   "o30": 93,
+   "mode": "v",
+   "err": null
+  },
+  "A:arXiv cs.SE": {
+   "n": 0,
+   "age": 0.2,
+   "i7": 1,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:MIT Technology Review — AI": {
+   "n": 10,
+   "age": 2.6,
+   "i7": 4,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:Mistral AI": {
+   "n": 50,
+   "age": 10.4,
+   "i7": 0,
+   "o30": 92,
+   "mode": "v",
+   "err": null
+  },
+  "A:The Hill — Policy": {
+   "n": 15,
+   "age": 0.5,
+   "i7": 15,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:Meta AI Blog": {
+   "n": 10,
+   "age": 2.9,
+   "i7": 2,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:Politico — Technology": {
+   "n": 30,
+   "age": null,
+   "i7": null,
+   "o30": null,
+   "mode": "v",
+   "err": null
+  },
+  "A:Anthropic News": {
+   "n": 50,
+   "age": 5.4,
+   "i7": 1,
+   "o30": 84,
+   "mode": "v",
+   "err": null
+  },
+  "A:The Verge — AI": {
+   "n": 10,
+   "age": 0.8,
+   "i7": 21,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:Ars Technica — AI": {
+   "n": 20,
+   "age": 1.7,
+   "i7": 3,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:OpenAI Blog": {
+   "n": 1387,
+   "age": 1.8,
+   "i7": 19,
+   "o30": 78,
+   "mode": "v",
+   "err": null
+  },
+  "A:CBS News — Technology": {
+   "n": 30,
+   "age": -0.0,
+   "i7": 29,
+   "o30": 6,
+   "mode": "v",
+   "err": null
+  },
+  "A:WSJ — Tech": {
+   "n": 40,
+   "age": -0.0,
+   "i7": 32,
+   "o30": 8,
+   "mode": "v",
+   "err": null
+  },
+  "A:AI Alignment Forum": {
+   "n": 10,
+   "age": 4.0,
+   "i7": 6,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:Import AI (Jack Clark)": {
+   "n": 20,
+   "age": 5.9,
+   "i7": 1,
+   "o30": 80,
+   "mode": "v",
+   "err": null
+  },
+  "A:AI Now Institute": {
+   "n": 10,
+   "age": 1.5,
+   "i7": 4,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:TechCrunch AI": {
+   "n": 20,
+   "age": 0.4,
+   "i7": 20,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:BBC — Technology": {
+   "n": 21,
+   "age": 0.7,
+   "i7": 15,
+   "o30": 14,
+   "mode": "v",
+   "err": null
+  },
+  "A:The Guardian — AI": {
+   "n": 20,
+   "age": -0.0,
+   "i7": 42,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:FT — AI": {
+   "n": 25,
+   "age": 0.2,
+   "i7": 25,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:AI News (agents-radar)": {
+   "n": 30,
+   "age": 0.4,
+   "i7": 30,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:WSJ — World News": {
+   "n": 70,
+   "age": 0.0,
+   "i7": 54,
+   "o30": 10,
+   "mode": "v",
+   "err": null
+  },
+  "A:DARPA": {
+   "n": 10,
+   "age": 10.6,
+   "i7": 0,
+   "o30": 70,
+   "mode": "v",
+   "err": null
+  },
+  "A:The Quantum Insider": {
+   "n": 10,
+   "age": 1.7,
+   "i7": 10,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:Latent Space": {
+   "n": 20,
+   "age": 1.1,
+   "i7": 13,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  },
+  "A:Synced Review": {
+   "n": null,
+   "age": null,
+   "i7": null,
+   "o30": null,
+   "mode": "-",
+   "err": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  "H:Benton Institute for Broadband & Society": {
+   "n": 10,
+   "age": 2.0,
+   "i7": 3,
+   "o30": 0,
+   "mode": "v",
+   "err": null
+  }
+ }
+}

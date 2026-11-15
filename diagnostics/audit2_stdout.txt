@@ -1,0 +1,602 @@
+
+========================================================================
+B. Структурный аудит AI-пула (n=30)
+========================================================================
+  дубликаты имён: нет
+  дубликаты фидов: нет
+  дубликаты доменов: ['export.arxiv.org', 'feeds.content.dowjones.io', 'raw.githubusercontent.com']
+  AI.lang: {'en': 30}
+  AI.tier: {'1': 24, '2': 6}
+  AI: без lang: нет
+  AI: полный список имён:
+    - OpenAI Blog | en | tier 1 | https://openai.com/news/rss.xml
+    - Anthropic News | en | tier 1 | https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_anth
+    - Google DeepMind Blog | en | tier 1 | https://deepmind.google/blog/rss.xml
+    - Meta AI Blog | en | tier 1 | https://about.fb.com/news/feed/
+    - Mistral AI | en | tier 1 | https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_mist
+    - Hugging Face Blog | en | tier 1 | https://huggingface.co/blog/feed.xml
+    - arXiv cs.AI | en | tier 1 | http://export.arxiv.org/rss/cs.AI
+    - arXiv cs.LG | en | tier 1 | http://export.arxiv.org/rss/cs.LG
+    - arXiv cs.CL | en | tier 1 | http://export.arxiv.org/rss/cs.CL
+    - arXiv cs.SE | en | tier 2 | http://export.arxiv.org/rss/cs.SE
+    - MIT Technology Review — AI | en | tier 1 | https://www.technologyreview.com/topic/artificial-intelligence/feed
+    - The Verge — AI | en | tier 1 | https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+    - Ars Technica — AI | en | tier 2 | https://feeds.arstechnica.com/arstechnica/technology-lab
+    - AI Alignment Forum | en | tier 1 | https://www.alignmentforum.org/feed.xml
+    - Import AI (Jack Clark) | en | tier 1 | https://importai.substack.com/feed
+    - AI News (agents-radar) | en | tier 2 | https://duanyytop.github.io/agents-radar/feed.xml
+    - Politico — Technology | en | tier 1 | https://rss.politico.com/technology.xml
+    - The Hill — Policy | en | tier 1 | https://thehill.com/policy/feed/
+    - CBS News — Technology | en | tier 2 | https://www.cbsnews.com/latest/rss/main
+    - WSJ — World News | en | tier 1 | https://feeds.content.dowjones.io/public/rss/RSSWorldNews
+    - AI Now Institute | en | tier 1 | https://ainowinstitute.org/feed
+    - Latent Space | en | tier 1 | https://latent.space/feed
+    - TechCrunch AI | en | tier 2 | https://techcrunch.com/category/artificial-intelligence/feed/
+    - WSJ — Tech | en | tier 1 | https://feeds.content.dowjones.io/public/rss/RSSWSJD
+    - BBC — Technology | en | tier 1 | https://feeds.bbci.co.uk/news/technology/rss.xml
+    - FT — AI | en | tier 1 | https://www.ft.com/artificial-intelligence?format=rss
+    - The Guardian — AI | en | tier 1 | https://www.theguardian.com/technology/artificialintelligenceai/rss
+    - The Quantum Insider | en | tier 1 | https://thequantuminsider.com/feed/
+    - DARPA | en | tier 1 | https://www.darpa.mil/rss.xml
+    - Synced Review | en | tier 2 | https://syncedreview.com/feed/
+
+========================================================================
+C. Целостность Voices -> источники (n=63)
+========================================================================
+  Voices с ПУСТЫМ sources:[]: 40 из 63
+    Paul Christiano; Mira Murati; Mustafa Suleyman; Greg Brockman; Jakub Pachocki; Sundar Pichai; Satya Nadella; Fei-Fei Li; Yoshua Bengio; Max Tegmark; Nick Bostrom; Sergey Brin; Arkady Volozh; Arthur Mensch; Aidan Gomez; Moustapha Cisse; Pelonomi Moiloa; Liang Wenfeng; Yang Zhilin; Junyang Lin; Tang Jie; Wu Yonghui; Yan Junjie; Zhang Zhengyou; Fields Medal Winners; OpenAI; xAI; Google; Microsoft; Meta; Nvidia; DeepSeek; Alibaba Qwen; Moonshot AI; Zhipu AI; ByteDance; Tencent; Mistral AI; Perplexity AI; Nobel Prize Winners
+  Висячие ссылки (нет ни в HUMAN, ни в AI): 3
+   'CBS News — World'  <-  Bill Gates
+   'LessWrong — AI'  <-  Stuart Russell, Eliezer Yudkowsky
+   'The Hill — News'  <-  Elon Musk, Jeff Bezos
+
+  Справка по всем voices (name | category | refs):
+   Dario Amodei                           | frontier_labs     | Anthropic News
+   Claude                                 | frontier_labs     | Anthropic News
+   Sam Altman                             | frontier_labs     | OpenAI Blog
+   Jensen Huang                           | frontier_labs     | The Verge — AI,Ars Technica — AI
+   Ilya Sutskever                         | frontier_labs     | The Verge — AI,Ars Technica — AI,MIT Technology Review — AI
+   Elon Musk                              | frontier_labs     | The Verge — AI,Ars Technica — AI,The Hill — News,CBS News — Technology
+   Mark Zuckerberg                        | frontier_labs     | The Verge — AI,Politico — Technology
+   Demis Hassabis                         | frontier_labs     | Google DeepMind Blog,MIT Technology Review — AI
+   Yann LeCun                             | researchers       | The Verge — AI,MIT Technology Review — AI
+   Andrej Karpathy                        | researchers       | The Verge — AI,Ars Technica — AI
+   Geoffrey Hinton                        | researchers       | The Verge — AI,Ars Technica — AI
+   Paul Christiano                        | researchers       | -
+   Stuart Russell                         | researchers       | LessWrong — AI,AI Alignment Forum
+   Eliezer Yudkowsky                      | safety_philosophy | LessWrong — AI,AI Alignment Forum
+   Henry Shevlin                          | safety_philosophy | Aeon,Psyche,Noema Magazine
+   Yuk Hui                                | safety_philosophy | Noema Magazine
+   Jiang Xueqin                           | safety_philosophy | Noema Magazine
+   Marc Andreessen                        | investors         | The Verge — AI,Politico — Technology
+   Peter Thiel                            | investors         | Politico — Technology,The Hill — Policy
+   Paul Graham                            | investors         | The Verge — AI,Ars Technica — AI
+   Jeff Bezos                             | investors         | The Hill — News,CBS News — Technology,NPR — World
+   Bill Gates                             | investors         | NPR — World,CBS News — World,Our World in Data
+   Vitalik Buterin                        | crypto            | The Verge — AI,Ars Technica — AI
+   Alex Karp                              | enterprise        | Politico — Technology,The Hill — Policy,CBS News — Technology
+   Mira Murati                            | frontier_labs     | -
+   Mustafa Suleyman                       | frontier_labs     | -
+   Greg Brockman                          | frontier_labs     | -
+   Jakub Pachocki                         | frontier_labs     | -
+   Sundar Pichai                          | frontier_labs     | -
+   Satya Nadella                          | frontier_labs     | -
+   Fei-Fei Li                             | researchers       | -
+   Yoshua Bengio                          | researchers       | -
+   Max Tegmark                            | researchers       | -
+   Nick Bostrom                           | safety_philosophy | -
+   Sergey Brin                            | frontier_labs     | -
+   Arkady Volozh                          | frontier_labs     | -
+   Arthur Mensch                          | frontier_labs     | -
+   Aidan Gomez                            | frontier_labs     | -
+   Moustapha Cisse                        | researchers       | -
+   Pelonomi Moiloa                        | researchers       | -
+   Liang Wenfeng                          | frontier_labs     | -
+   Yang Zhilin                            | frontier_labs     | -
+   Junyang Lin                            | frontier_labs     | -
+   Tang Jie                               | frontier_labs     | -
+   Wu Yonghui                             | frontier_labs     | -
+   Yan Junjie                             | frontier_labs     | -
+   Zhang Zhengyou                         | frontier_labs     | -
+   Fields Medal Winners                   | mathematics       | -
+   OpenAI                                 | frontier_labs     | -
+   xAI                                    | frontier_labs     | -
+   Google                                 | frontier_labs     | -
+   Microsoft                              | frontier_labs     | -
+   Meta                                   | frontier_labs     | -
+   Nvidia                                 | frontier_labs     | -
+   DeepSeek                               | frontier_labs     | -
+   Alibaba Qwen                           | frontier_labs     | -
+   Moonshot AI                            | frontier_labs     | -
+   Zhipu AI                               | frontier_labs     | -
+   ByteDance                              | frontier_labs     | -
+   Tencent                                | frontier_labs     | -
+   Mistral AI                             | frontier_labs     | -
+   Perplexity AI                          | frontier_labs     | -
+   Nobel Prize Winners                    | mathematics       | -
+
+========================================================================
+D. Скрипты ключевых слов voices (latin / cyrillic / CJK)
+========================================================================
+  latin: 63/63   cyrillic: 35   CJK: 13
+  cyrillic у: Dario Amodei, Sam Altman, Jensen Huang, Ilya Sutskever, Elon Musk, Mark Zuckerberg, Demis Hassabis, Yann LeCun, Andrej Karpathy, Geoffrey Hinton, Paul Christiano, Stuart Russell ...
+  CJK у: Liang Wenfeng, Yang Zhilin, Junyang Lin, Tang Jie, Wu Yonghui, Yan Junjie, Zhang Zhengyou, DeepSeek, Alibaba Qwen, Moonshot AI, Zhipu AI, ByteDance, Tencent
+
+========================================================================
+E. Использование в коде: voices/sources/min_relevance/tier/weight/enabled
+========================================================================
+  (совпадений нет - код матчинга voices лежит вне collector, см. секцию G)
+
+========================================================================
+F. Живой пробинг фидов HUMAN+AI (SSL: v=verified, u=unverified-fallback)
+========================================================================
+  обработано: 60/60
+  источник                                         |    n | свеж(д) |  7д | >30д% | SSL | ошибка
+  H:Benton Institute for Broadband & Society       |   10 |    2.0 |   3 |     0 |   v | 
+  H:Reuters Institute                              |   10 |   13.0 |   0 |    90 |   v | 
+  H:Noema Magazine                                 |   10 |    1.7 |   3 |     0 |   v | 
+  H:Politico — Politics                            |   30 |      - |   - |     - |   v | 
+  H:NPR — World                                    |   10 |    0.8 |  10 |     0 |   v | 
+  H:Pew Research Center                            |  100 |    0.9 |  14 |    18 |   v | 
+  H:EFF (Electronic Frontier Foundation)           |   50 |    1.5 |   5 |    20 |   v | 
+  H:Our World in Data                              |   10 |   13.4 |   0 |    64 |   v | 
+  H:ТАСС                                           |   99 |   -0.0 |  99 |     0 |   v | 
+  H:FT Chinese (FT中文网)                             |   20 |    2.8 |  18 |     0 |   v | 
+  H:Al Jazeera                                     |   25 |   -0.0 |  25 |     0 |   v | 
+  H:The Hindu — International                      |   60 |      - |   - |     - |   v | 
+  H:Aeon                                           |   20 |    2.0 |   7 |     0 |   v | 
+  H:Psyche                                         |   20 |    2.0 |   8 |     0 |   v | 
+  H:3 Quarks Daily                                 |   20 |   -0.0 |  20 |     0 |   v | 
+  H:Axios                                          |  100 |    0.7 | 100 |     0 |   v | 
+  H:Science                                        |   23 |    2.8 |  23 |     0 |   v | 
+  H:MIT News (Engineering)                         |   16 |  233.6 |   0 |   100 |   v | 
+  H:SpaceNews                                      |    - |      - |   - |     - |   - | HTTPError: HTTP Error 403: Forbidden
+  H:The Atlantic                                   |   25 |    0.5 |  51 |     0 |   v | 
+  H:Inside Higher Ed                               |    - |      - |   - |     - |   - | HTTPError: HTTP Error 404: Not Found
+  H:Issues in Science and Technology               |   10 |    3.0 |   4 |     0 |   v | 
+  H:STAT News                                      |   20 |    1.5 |  20 |     0 |   v | 
+  H:IEEE Spectrum                                  |   30 |    1.6 |   6 |    10 |   v | 
+  H:Phys.org                                       |   30 |      - |   - |     - |   v | 
+  H:Nature                                         |   75 |    2.4 |  75 |     0 |   v | 
+  H:Quanta Magazine                                |    5 |    2.6 |   5 |     0 |   v | 
+  H:New Scientist                                  |   10 |    1.1 |  10 |     0 |   v | 
+  H:Business & Human Rights Resource Centre        |   12 |  -14.6 |  12 |     0 |   v | 
+  H:Haber 7                                        |   94 |   -0.0 |  94 |     0 |   v | 
+  A:OpenAI Blog                                    | 1387 |    1.8 |  19 |    78 |   v | 
+  A:Anthropic News                                 |   50 |    5.4 |   1 |    84 |   v | 
+  A:Google DeepMind Blog                           |    0 |      - |   - |     - |   v | 
+  A:Meta AI Blog                                   |   10 |    2.9 |   2 |     0 |   v | 
+  A:Mistral AI                                     |   50 |   10.4 |   0 |    92 |   v | 
+  A:Hugging Face Blog                              |  907 |    1.7 |  10 |    93 |   v | 
+  A:arXiv cs.AI                                    |    0 |    0.2 |   1 |     0 |   v | 
+  A:arXiv cs.LG                                    |    0 |    0.2 |   1 |     0 |   v | 
+  A:arXiv cs.CL                                    |    0 |    0.2 |   1 |     0 |   v | 
+  A:arXiv cs.SE                                    |    0 |    0.2 |   1 |     0 |   v | 
+  A:MIT Technology Review — AI                     |   10 |    2.6 |   4 |     0 |   v | 
+  A:The Verge — AI                                 |   10 |    0.8 |  21 |     0 |   v | 
+  A:Ars Technica — AI                              |   20 |    1.7 |   3 |     0 |   v | 
+  A:AI Alignment Forum                             |   10 |    4.0 |   6 |     0 |   v | 
+  A:Import AI (Jack Clark)                         |   20 |    5.9 |   1 |    80 |   v | 
+  A:AI News (agents-radar)                         |   30 |    0.4 |  30 |     0 |   v | 
+  A:Politico — Technology                          |   30 |      - |   - |     - |   v | 
+  A:The Hill — Policy                              |   15 |    0.5 |  15 |     0 |   v | 
+  A:CBS News — Technology                          |   30 |   -0.0 |  29 |     6 |   v | 
+  A:WSJ — World News                               |   70 |    0.0 |  54 |    10 |   v | 
+  A:AI Now Institute                               |   10 |    1.5 |   4 |     0 |   v | 
+  A:Latent Space                                   |   20 |    1.1 |  13 |     0 |   v | 
+  A:TechCrunch AI                                  |   20 |    0.4 |  20 |     0 |   v | 
+  A:WSJ — Tech                                     |   40 |   -0.0 |  32 |     8 |   v | 
+  A:BBC — Technology                               |   21 |    0.7 |  15 |    14 |   v | 
+  A:FT — AI                                        |   25 |    0.2 |  25 |     0 |   v | 
+  A:The Guardian — AI                              |   20 |   -0.0 |  42 |     0 |   v | 
+  A:The Quantum Insider                            |   10 |    1.7 |  10 |     0 |   v | 
+  A:DARPA                                          |   10 |   10.6 |   0 |    70 |   v | 
+  A:Synced Review                                  |    - |      - |   - |     - |   - | HTTPError: HTTP Error 403: Forbidden
+
+========================================================================
+G. Хранилище: поиск статей/бд в родителе /Users/id/Human-AI-Monitor
+========================================================================
+  [соседи]: d1-backup-20260928-161050.sql, human-ai-monitor-archive, human-ai-monitor-collector
+  (*.db/*.sqlite*/jsonl/parquet не найдено и здесь)
+
+========================================================================
+H. Git
+========================================================================
+  $ git status --short
+?? diagnostics/
+?? scripts/diagnose_sources.py
+?? scripts/diagnose_sources2.py
+  $ git log -3 --oneline
+83dec71 feat(sources): replace ScienceDaily (duplicate of Phys.org) with Haber 7 (TR, AI safety coverage)
+fdbd519 feat(voices): add Paul Christiano (ARC founder, RLHF co-author) to researchers
+7da65d9 chore: sync latest [skip ci]
+  $ git branch --show-current
+main
+
+[saved] diagnostics/audit2_summary.json + копии конфигов в diagnostics/
+
+========================================================================
+I. Дампы: sources_ai.yaml / axes_ai.yaml / axes_human.yaml
+========================================================================
+
+### config/sources_ai.yaml
+rss:
+- name: OpenAI Blog
+  url: https://openai.com/news/rss.xml
+  lang: en
+  tier: 1
+- name: Anthropic News
+  url: https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_anthropic_news.xml
+  lang: en
+  tier: 1
+- name: Google DeepMind Blog
+  url: https://deepmind.google/blog/rss.xml
+  lang: en
+  tier: 1
+- name: Meta AI Blog
+  url: https://about.fb.com/news/feed/
+  lang: en
+  tier: 1
+- name: Mistral AI
+  url: https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_mistral_news.xml
+  lang: en
+  tier: 1
+- name: Hugging Face Blog
+  url: https://huggingface.co/blog/feed.xml
+  lang: en
+  tier: 1
+- name: arXiv cs.AI
+  url: http://export.arxiv.org/rss/cs.AI
+  lang: en
+  tier: 1
+- name: arXiv cs.LG
+  url: http://export.arxiv.org/rss/cs.LG
+  lang: en
+  tier: 1
+- name: arXiv cs.CL
+  url: http://export.arxiv.org/rss/cs.CL
+  lang: en
+  tier: 1
+- name: arXiv cs.SE
+  url: http://export.arxiv.org/rss/cs.SE
+  lang: en
+  tier: 2
+- name: MIT Technology Review — AI
+  url: https://www.technologyreview.com/topic/artificial-intelligence/feed
+  lang: en
+  tier: 1
+- name: The Verge — AI
+  url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+  lang: en
+  tier: 1
+- name: Ars Technica — AI
+  url: https://feeds.arstechnica.com/arstechnica/technology-lab
+  lang: en
+  tier: 2
+- name: AI Alignment Forum
+  url: https://www.alignmentforum.org/feed.xml
+  lang: en
+  tier: 1
+- name: Import AI (Jack Clark)
+  url: https://importai.substack.com/feed
+  lang: en
+  tier: 1
+- name: AI News (agents-radar)
+  url: https://duanyytop.github.io/agents-radar/feed.xml
+  lang: en
+  tier: 2
+- name: Politico — Technology
+  url: https://rss.politico.com/technology.xml
+  lang: en
+  tier: 1
+  note: US AI policy, Congress, Trump AI Force — replaces AP News (403)
+- name: The Hill — Policy
+  url: https://thehill.com/policy/feed/
+  lang: en
+  tier: 1
+  note: US tech policy, AI regulation, geopolitics
+- name: CBS News — Technology
+  url: https://www.cbsnews.com/latest/rss/main
+  lang: en
+  tier: 2
+  note: US news including AI policy — replaces AP News
+- name: WSJ — World News
+  url: https://feeds.content.dowjones.io/public/rss/RSSWorldNews
+  lang: en
+  tier: 1
+  note: Geopolitics, global AI race, US-China — replaces Reuters (timeout)
+- name: AI Now Institute
+  url: https://ainowinstitute.org/feed
+  lang: en
+  tier: 1
+- name: Latent Space
+  url: https://latent.space/feed
+  lang: en
+  tier: 1
+  note: Техническая аналитика по AI, агенты, инфраструктура
+- name: TechCrunch AI
+  url: https://techcrunch.com/category/artificial-intelligence/feed/
+  lang: en
+  tier: 2
+
+- name: WSJ — Tech
+  url: https://feeds.content.dowjones.io/public/rss/RSSWSJD
+  lang: en
+  tier: 1
+  note: WSJ tech section — AI business and policy signals
+- name: BBC — Technology
+  url: https://feeds.bbci.co.uk/news/technology/rss.xml
+  lang: en
+  tier: 1
+  note: BBC Technology — neutral baseline for AI coverage
+- name: FT — AI
+  url: https://www.ft.com/artificial-intelligence?format=rss
+  lang: en
+  tier: 1
+  note: Financial Times AI vertical — enterprise and policy
+- name: The Guardian — AI
+  url: https://www.theguardian.com/technology/artificialintelligenceai/rss
+  lang: en
+  tier: 1
+  note: Guardian AI coverage — civil liberties and ethics angle
+- name: The Quantum Insider
+  url: https://thequantuminsider.com/feed/
+  lang: en
+  tier: 1
+  note: Quantum industry intelligence - market, policy, national strategies
+- name: DARPA
+  url: https://www.darpa.mil/rss.xml
+  lang: en
+  tier: 1
+  note: US Defense Advanced Research Projects Agency - national security AI, quantum, robotics
+- name: Synced Review
+  url: https://syncedreview.com/feed/
+  lang: en
+  tier: 2
+html_sources: []
+
+
+### config/axes_ai.yaml
+axes:
+  smd:
+    name: Self-Modification Depth
+    description: 'Глубина самомодификации: способность системы изменять собственный код или архитектуру
+      (L0–L4)'
+    threshold: Воспроизводимый L4 у ≥2 независимых систем
+    current: 'L4 (Anthropic R&D: 26% AL4, >90% AL3); L1-L2 (остальные)'
+    level: 0.45
+    keywords:
+    - self-modification
+    - self-referential
+    - meta-agent
+    - DGM
+    - Ouroboros
+    - HyperAgents
+    - Mendel Gödel Machine
+    examples_2026:
+    - 'Ouroboros: персистентная идентичность, фоновое сознание'
+    - 'MetaRSI-v1: RSI2 Agent переписывает собственную политику'
+    - 'Mendel Gödel Machine: итеративное переписывание кода'
+  itq:
+    name: Improvement Trajectory Quality
+    description: 'Качество траектории улучшения: наклон, ускорение, выход из плато'
+    threshold: Устойчивый перенос на Transfer Set + Acceleration > 0
+    current: Compute Plateau; перенос улучшений слабый
+    level: 0.25
+    keywords:
+    - self-evolution
+    - StudyBench
+    - transfer
+    - generalization
+    - compute plateau
+    - acceleration
+    examples_2026:
+    - 'StudyBench: Compute Plateau у всех методов'
+    - 'AI4AI-Bench: <20% прогресса до оптимума RSI'
+    - 'Guidance Gap: разрыв между самоэволюцией и in-context guidance'
+  agg:
+    name: Autonomous Goal Generation
+    description: 'Автономная генерация целей: новизна, реализуемость, качество'
+    threshold: Экспертная значимость целей без внешнего задания
+    current: Цели заданы промптом/платформой
+    level: 0.2
+    keywords:
+    - autonomous goals
+    - self-directed
+    - open-ended
+    - goal novelty
+    - feasibility
+    - curriculum
+    examples_2026:
+    - 'Paper2Agent: агенты комбинируют методы для новых открытий'
+    - 'OpenAI Astra: самогенерация jailbreak-инструкций (нестабильно)'
+    - 'Anthropic AARs: самостоятельный выбор исследовательских направлений'
+  cycle_velocity:
+    name: Cycle Velocity
+    description: 'Скорость цикла улучшений: время между поколениями'
+    threshold: <2 месяцев doubling + completion rate >50%
+    current: ~4 месяца doubling; насыщение покрытия
+    level: 0.4
+    keywords:
+    - task-horizon
+    - METR
+    - doubling time
+    - research cycle
+    - cycle velocity
+    - completion rate
+    examples_2026:
+    - 'METR: doubling time ~4 месяца (2024–2025)'
+    - 'Paper2Agent: 45 минут на создание агента из статьи'
+    - 'ResearchClawBench: 21.5/50 — полный цикл фрагментарен'
+  verification:
+    name: Verification Hierarchy
+    description: 'Иерархия верификации: кто проверяет улучшения (формально / выполнение / LLM / самооценка)'
+    threshold: False positive rate <5% без человеческого надзора
+    current: Человек — слой последней инстанции
+    level: 0.35
+    keywords:
+    - formal verification
+    - Lean
+    - alignment
+    - audit
+    - verification hierarchy
+    - false positive
+    examples_2026:
+    - 'Lean-верификация: 13 млн строк для теоремы Ферма'
+    - 'Paper2Agent: 593 из 599 инструментов прошли авто-валидацию'
+    - 'Инцидент с Hugging Face: агенты обманывают системы оценки'
+  hexad:
+    name: Phase Transition Detection
+    description: 'Детекция фазового перехода: MMD между SGD и гауссовым суррогатом'
+    threshold: Стабильное превышение MMD на ≥2 независимых системах
+    current: Не развёрнут
+    level: 0.05
+    keywords:
+    - phase transition
+    - MMD
+    - catastrophe theory
+    - LAN
+    - asymptotic normality
+    - Hexad
+    examples_2026:
+    - 'Hexad (Kain, Zenodo): тестируемый фреймворк'
+    - Не развёрнут на публичных системах
+geopolitics:
+  keywords:
+  - WAICO
+  - World AI Cooperation Organisation
+  - export controls
+  - AI race
+  - sovereign AI
+  - open weights
+  - compute divide
+  - frontier AI
+  actors:
+    western_cartel:
+      name: Западный картель безопасности
+      members:
+      - Anthropic
+      - OpenAI
+      - Google
+      - xAI
+      position: Координация стандартов безопасности, пауза фронтира
+    waico:
+      name: WAICO
+      members:
+      - Китай
+      - Россия
+      - Бразилия
+      - Иран
+      - Индонезия
+      - '+24'
+      position: Институциональное ускорение, недискриминация открытых весов
+    open_market:
+      name: Открытый рынок
+      members:
+      - Meta
+      - Nvidia
+      - Trump administration
+      position: Против координации, за превосходство
+
+
+### config/axes_human.yaml
+axes:
+  h1_science:
+    name: Scientific Breakthroughs
+    description: 'Фундаментальные открытия, медицина, космос, биология, физика'
+    threshold: Устойчивый рост числа прорывных открытий (Nobel, Nature, Science)
+    current: Стабильно; рост AI-assisted discoveries
+    level: 0.5
+    keywords:
+    - science
+    - discovery
+    - research
+    - nobel
+    - nature
+    - breakthrough
+    sources:
+    - Nature
+    - Science
+    - Nobel Prize
+  h2_engineering:
+    name: Engineering & Infrastructure
+    description: 'Инфраструктура, энергетика, транспорт, производственные прорывы'
+    threshold: Устойчивый рост инженерных проектов (мосты, энергосети, транспорт)
+    current: Стабильно; AI ускоряет проектирование
+    level: 0.5
+    keywords:
+    - engineering
+    - infrastructure
+    - energy
+    - transportation
+    - manufacturing
+    sources:
+    - MIT News
+    - IEEE Spectrum
+    - Nature Engineering
+  h3_culture:
+    name: Culture & Arts
+    description: 'Литература, музыка, искусство, сохранение культурного наследия'
+    threshold: Устойчивый рост культурных достижений и их доступности
+    current: Стабильно; AI генерирует контент
+    level: 0.5
+    keywords:
+    - culture
+    - art
+    - music
+    - literature
+    - heritage
+    - creativity
+    sources:
+    - ArtsJournal
+    - The Conversation
+    - Hyperallergic
+  h4_institutions:
+    name: Institutions & Education
+    description: 'Успехи университетов, реформы образования, международное сотрудничество'
+    threshold: Устойчивый рост качества образования и институционального доверия
+    current: Стабильно; AI меняет образование
+    level: 0.5
+    keywords:
+    - university
+    - education
+    - institution
+    - cooperation
+    - reform
+    sources:
+    - MIT News
+    - Stanford News
+    - OECD Education
+  h5_wellbeing:
+    name: Wellbeing & Health
+    description: 'Победы над болезнями, улучшение качества жизни, социальные инновации'
+    threshold: Устойчивое снижение смертности и роста продолжительности жизни
+    current: Стабильно; AI в медицине
+    level: 0.5
+    keywords:
+    - health
+    - wellbeing
+    - disease
+    - quality of life
+    - longevity
+    sources:
+    - WHO
+    - Science
+    - Nature Medicine
+  h6_governance:
+    name: Governance & Rights
+    description: 'Правовые победы, мирные инициативы, укрепление демократических институтов'
+    threshold: Устойчивый рост доверия к институтам и защите прав
+    current: Стабильно; AI в governance
+    level: 0.5
+    keywords:
+    - governance
+    - rights
+    - democracy
+    - rule of law
+    - peace
+    sources:
+    - V-Dem
+    - Business & Human Rights Resource Centre
+    - CPJ
+
