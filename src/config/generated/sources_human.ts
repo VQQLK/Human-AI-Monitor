@@ -125,12 +125,6 @@ export default {
       "tier": 1
     },
     {
-      "name": "ScienceDaily",
-      "url": "https://www.sciencedaily.com/rss/top/science.xml",
-      "lang": "en",
-      "tier": 1
-    },
-    {
       "name": "SpaceNews",
       "url": "https://spacenews.com/feed/",
       "lang": "en",
@@ -193,6 +187,12 @@ export default {
     {
       "name": "Business & Human Rights Resource Centre",
       "url": "https://www.business-humanrights.org/en/feeds/latest-news/3/"
+    },
+    {
+      "name": "Haber 7",
+      "url": "https://i12.haber7.net/sondakika/newsstand/latest.xml",
+      "lang": "tr",
+      "tier": 2
     }
   ]
 } as const;
