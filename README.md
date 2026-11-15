@@ -9,7 +9,7 @@ and Humanity.**
 ## 📊 Current State of Development
 
 **Updated:** November 15, 2026  
-**Baseline:** Updated on November 15, 2026 — based on 802 items (sample size: 691).
+**Baseline:** Updated on November 15, 2026 — based on 819 items (sample size: 704).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
@@ -20,10 +20,10 @@ and Humanity.**
 | **🟢 Humanity Score** | 🌐 **0.830** | Current value |
 | **🔴 AI Score** | 🤖 **0.682** | Current value |
 | **⚖️ Gap Index** | ⚖️ **+0.148** | Humanity is ahead |
-| **📊 CI95** | **[−0.131, +0.426]** | Inconclusive |
+| **📊 CI95** | **[−0.131, +0.427]** | Inconclusive |
 | **⚡ Threshold Shifts** | **13** | Critical events detected |
-| **📈 Items Analyzed** | **802** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **691** | Axis-signal pairs |
+| **📈 Items Analyzed** | **819** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **704** | Axis-signal pairs |
 
 </div>
 
@@ -62,7 +62,7 @@ xychart-beta
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 15/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
+| 15/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.427] | 819 | 704 | INTERIM |
 | 14/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
 | 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | INTERIM |
 | 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | INTERIM |
@@ -85,7 +85,7 @@ xychart-beta
 | 08/11 | 0.700 | 0.823 | +0.123 | [−0.144, +0.393] | 987 | 918 | FINAL |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 
-> 📌 Interim (reference, not on chart): 15/11 — AI 0.682 · Humanity 0.830 · Gap +0.148 · 802 / 691 items.
+> 📌 Interim (reference, not on chart): 15/11 — AI 0.682 · Humanity 0.830 · Gap +0.148 · 819 / 704 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
