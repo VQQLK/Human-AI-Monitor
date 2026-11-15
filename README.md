@@ -9,7 +9,7 @@ and Humanity.**
 ## 📊 Current State of Development
 
 **Updated:** November 15, 2026  
-**Baseline:** Updated on November 15, 2026 — based on 819 items (sample size: 704).
+**Baseline:** Updated on November 15, 2026 — based on 951 items (sample size: 774).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
@@ -17,13 +17,13 @@ and Humanity.**
 
 | Metric | Value (11-15) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.830** | Current value |
-| **🔴 AI Score** | 🤖 **0.682** | Current value |
-| **⚖️ Gap Index** | ⚖️ **+0.148** | Humanity is ahead |
-| **📊 CI95** | **[−0.131, +0.427]** | Inconclusive |
-| **⚡ Threshold Shifts** | **13** | Critical events detected |
-| **📈 Items Analyzed** | **819** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **704** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.816** | Current value |
+| **🔴 AI Score** | 🤖 **0.685** | Current value |
+| **⚖️ Gap Index** | ⚖️ **+0.131** | Humanity is ahead |
+| **📊 CI95** | **[−0.143, +0.406]** | Inconclusive |
+| **⚡ Threshold Shifts** | **17** | Critical events detected |
+| **📈 Items Analyzed** | **951** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **774** | Axis-signal pairs |
 
 </div>
 
@@ -57,12 +57,12 @@ xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
     x-axis ["29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "14/11", "15/11"]
     y-axis "Gap" -0.380 --> 0.248
-    line [-0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148, 0.148]
+    line [-0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148, 0.131]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 15/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.427] | 819 | 704 | INTERIM |
+| 15/11 | 0.685 | 0.816 | +0.131 | [−0.143, +0.406] | 951 | 774 | INTERIM |
 | 14/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
 | 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | INTERIM |
 | 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | INTERIM |
@@ -85,7 +85,7 @@ xychart-beta
 | 08/11 | 0.700 | 0.823 | +0.123 | [−0.144, +0.393] | 987 | 918 | FINAL |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 
-> 📌 Interim (reference, not on chart): 15/11 — AI 0.682 · Humanity 0.830 · Gap +0.148 · 819 / 704 items.
+> 📌 Interim (reference, not on chart): 15/11 — AI 0.685 · Humanity 0.816 · Gap +0.131 · 951 / 774 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -95,6 +95,156 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Nvidia — 2026-11-12**
+
+> 英伟达风波引发芯片出口限制担忧，中国AI企业股价大跌
+
+— *[FT Chinese (FT中文网)](https://www.ftchinese.com/story/001111367)*
+
+**Microsoft — 2026-11-13**
+
+> Courts, spies and MPs: How the Microsoft outage has been felt around the world
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cqp9d58eldlro?at_medium=RSS&at_campaign=rss)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> How the Jensen Huang scandal created a headache for business-friendly Singapore
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/ck1exevgql4qo?at_medium=RSS&at_campaign=rss)*
+
+**Nvidia — 2026-11-13**
+
+> Pressure grows on Trump's Commerce Secretary Lutnick in fallout from Nvidia scandal
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cqvg2d1eg7zro?at_medium=RSS&at_campaign=rss)*
+
+**Microsoft — 2026-11-13**
+
+> Why is Microsoft's outage lasting so long and will emails be lost?
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cwvg238zrnm5o?at_medium=RSS&at_campaign=rss)*
+
+**Microsoft — 2026-11-13**
+
+> Microsoft outage 'stark reminder' of how much we rely on tech
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cxzd9171m51qo?at_medium=RSS&at_campaign=rss)*
+
+**Microsoft — 2026-11-14**
+
+> Microsoft says services fully restored after day-long global outage
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/c6rrg51rkz09o?at_medium=RSS&at_campaign=rss)*
+
+**Nvidia — 2026-11-15**
+
+> Suspected China spy linked to Nvidia's ex-boss left in 2025, Megaspeed says
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cmdx1vpprk9vo?at_medium=RSS&at_campaign=rss)*
+
+**Meta — 2026-11-14**
+
+> Italy fines Meta €805m over accessing users' photos
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cwn83gxemk35o?at_medium=RSS&at_campaign=rss)*
+
+**OpenAI — 2026-11-13**
+
+> ChatGPT Launches Wallet Feature Allowing Users to Pay With Agents
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/chatgpt-launches-wallet-feature-allowing-users-to-pay-with-agents-2abcded2?mod=rss_Technology)*
+
+**Jensen Huang (Nvidia) — 2026-11-15**
+
+> How Jensen Huang Built the Backdoor Route That Keeps Beijing in the AI Race
+
+— *[WSJ — Tech](https://www.wsj.com/tech/jensen-huang-backdoor-ai-data-centers-a5e4499d?mod=rss_Technology)*
+
+**Nvidia — 2026-11-14**
+
+> Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/)*
+
+**Nvidia — 2026-11-14**
+
+> Asian governments react to Nvidia CEO Jensen Huang’s exit
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/)*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-14**
+
+> Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/)*
+
+**Jensen Huang (Nvidia) — 2026-11-14**
+
+> Asian governments react to Nvidia CEO Jensen Huang’s exit
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/)*
+
+**Jensen Huang (Nvidia) — 2026-11-14**
+
+> Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/)*
+
+**Nvidia — 2026-11-15**
+
+> Where was Nvidia’s security team?
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/)*
+
+**Nvidia — 2026-11-15**
+
+> Here's how Jensen Huang's abrupt resignation unfolded at Nvidia
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/jensen-huang-nvidia-resignation-scandal-timeline/)*
+
+**Jensen Huang (Nvidia) — 2026-11-15**
+
+> Here's how Jensen Huang's abrupt resignation unfolded at Nvidia
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/jensen-huang-nvidia-resignation-scandal-timeline/)*
+
+**Jensen Huang (Nvidia) — 2026-11-15**
+
+> An overview of Jensen Huang’s messy days
+
+— *[The Verge — AI](https://www.theverge.com/column/1033943/jensen-huang-nvidia-china-spying-scandal-resignation)*
+
+**Mistral AI — 2026-09-10**
+
+> Cloudera and Mistral Partner to Bring Specialized, Sovereign Intelligence to Enterprise Data
+
+— *[Mistral AI](https://mistral.ai/news/mistral-x-cloudera/)*
+
+**Mistral AI — 2026-09-16**
+
+> Mistral and Mozilla are bringing open, private and multilingual AI to your web browser
+
+— *[Mistral AI](https://mistral.ai/news/mistral-x-mozilla/)*
+
+**Mistral AI — 2026-10-06**
+
+> Introducing Mistral Large 4
+
+— *[Mistral AI](https://mistral.ai/news/mistral-large-4/)*
+
+**Mistral AI — 2026-10-21**
+
+> Mistral Advances AI for Engineering with NVIDIA
+
+— *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering/)*
+
+**Nvidia — 2026-10-21**
+
+> Mistral Advances AI for Engineering with NVIDIA
+
+— *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering/)*
 
 **OpenAI — 2026-11-14**
 
@@ -239,156 +389,6 @@ xychart-beta
 > [AINews] Jensen Huang resigns after 33 years leading NVIDIA
 
 — *[Latent Space](https://latent.space/p/ainews-jensen-huang-resigns-after-33-years-leading-nvidia/)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> [AINews] Jensen Huang resigns after 33 years leading NVIDIA
-
-— *[Latent Space](https://latent.space/p/ainews-jensen-huang-resigns-after-33-years-leading-nvidia/)*
-
-**Microsoft — 2026-11-13**
-
-> Eye Opener: Microsoft Outlook email outage
-
-— *[CBS News — Technology](https://www.cbsnews.com/video/eye-opener-microsoft-outlook-email-outage/)*
-
-**Microsoft — 2026-11-13**
-
-> Widespread Microsoft 365 outage continues, impacting email and other services
-
-— *[CBS News — Technology](https://www.cbsnews.com/video/widespread-microsoft-365-outage-continues-impacting-email-and-other-services/)*
-
-**Nvidia — 2026-11-13**
-
-> Former Nvidia CEO Jensen Huang willing to appear before Congress amid probe into alleged spy affair
-
-— *[CBS News — Technology](https://www.cbsnews.com/video/former-nvidia-ceo-jensen-huang-willing-to-appear-before-congress-amid-probe-into-alleged-spy-affair/)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> Former Nvidia CEO Jensen Huang willing to appear before Congress amid probe into alleged spy affair
-
-— *[CBS News — Technology](https://www.cbsnews.com/video/former-nvidia-ceo-jensen-huang-willing-to-appear-before-congress-amid-probe-into-alleged-spy-affair/)*
-
-**Microsoft — 2026-11-13**
-
-> Microsoft seeing "continued recovery" amid major worldwide outage
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/microsoft-battling-major-outage/)*
-
-**Nvidia — 2026-11-12**
-
-> Who is interim Nvidia CEO Colette Kress?
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6216664-nvidia-interim-ceo-colette-kress-jensen-huang-resignation-affairs/)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Who is interim Nvidia CEO Colette Kress?
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6216664-nvidia-interim-ceo-colette-kress-jensen-huang-resignation-affairs/)*
-
-**Microsoft — 2026-11-13**
-
-> Microsoft 'seeing encouraging recovery progress' in global Outlook, Teams outage
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6218199-microsoft-outage-recovery-process/)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Jensen Huang agrees to testify before Congress
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/12/jensen-huang-agrees-to-testify-01162650)*
-
-**Google — 2026-11-12**
-
-> Nonprofits sue Anthropic, Google, and other tech giants to freeze the AI arms race
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/12/nonprofits-sue-ai-companies-over-existential-risk-01161965)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Key House intel lawmakers urge probe of Huang’s relationship with alleged Chinese spy
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/12/house-intel-probe-nvidia-01162608)*
-
-**Nvidia — 2026-11-13**
-
-> Megaspeed lawyers up with US firm as Nvidia scandal broadens
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/12/megaspeed-lawyers-up-with-u-s-firm-as-nvidia-scandal-broadens-01164448)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Jensen Huang is out. What did China want from him?
-
-— *[The Verge — AI](https://www.theverge.com/podcast/1031260/nvidia-jensen-huang-resign-china-spy-scandal-ai-chips-trump)*
-
-**Nvidia — 2026-11-12**
-
-> Read Nvidia’s internal emails about the ‘extraordinarily difficult period’ amid CEO shakeup
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1032028/read-nvidias-internal-emails-jensen-huang)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> The Jensen Huang scandal is hardly over
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1032069/jensen-huang-resignation-affair-chips-smuggling)*
-
-**Claude — 2026-11-13**
-
-> Claude’s Duet agent is a little neurotic and surprisingly helpful
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1032518/claude-duet-ai-agent-hands-on)*
-
-**Google — 2026-11-12**
-
-> Google’s new Gemini model is better at understanding complicated questions
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1032505/google-search-ai-mode-gemini-4-hydrogen)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> Let’s talk about Jensen Huang’s many affairs!
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1032339/lets-talk-about-the-nvidia-shitshow)*
-
-**Nvidia — 2026-11-12**
-
-> Nvidia privately confirmed it could track chips to fight smuggling, even as industry publicly questioned feasibility
-
-— *[MIT Technology Review — AI](https://www.technologyreview.com/2026/11/12/1148483/nvidia-chip-tracking/)*
-
-**Meta — 2026-11-13**
-
-> llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem
-
-— *[Hugging Face Blog](https://huggingface.co/blog/ggml-org/llama-cpp-v1)*
-
-**Google — 2026-11-12**
-
-> Introducing Gemini 4 Hydrogen
-
-— *[Google DeepMind Blog](https://deepmind.google/blog/introducing-gemini-4-hydrogen/)*
-
-**OpenAI — 2026-11-12**
-
-> How Amplitude ships product improvements in 1–2 days with OpenAI
-
-— *[OpenAI Blog](https://openai.com/business/customer-stories/amplitude)*
-
-**Nvidia — 2026-11-12**
-
-> Bracing for Nvidia's impact
-
-— *[Axios](https://www.axios.com/2026/11/12/bracing-for-nvidias-impact)*
-
-**Nvidia — 2026-11-12**
-
-> Jensen Huang, an architect of the AI boom, resigns as Nvidia CEO
-
-— *[Axios](https://www.axios.com/2026/11/12/nvidia-jensen-huang-out)*
 
 ### 🧪 AI Researchers
 
