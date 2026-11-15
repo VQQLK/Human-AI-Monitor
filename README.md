@@ -9,7 +9,7 @@ and Humanity.**
 ## 📊 Current State of Development
 
 **Updated:** November 15, 2026  
-**Baseline:** Updated on November 15, 2026 — based on 951 items (sample size: 774).
+**Baseline:** Updated on November 15, 2026 — based on 884 items (sample size: 659).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
@@ -17,13 +17,13 @@ and Humanity.**
 
 | Metric | Value (11-15) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.816** | Current value |
-| **🔴 AI Score** | 🤖 **0.685** | Current value |
-| **⚖️ Gap Index** | ⚖️ **+0.131** | Humanity is ahead |
-| **📊 CI95** | **[−0.143, +0.406]** | Inconclusive |
+| **🟢 Humanity Score** | 🌐 **0.817** | Current value |
+| **🔴 AI Score** | 🤖 **0.647** | Current value |
+| **⚖️ Gap Index** | ⚖️ **+0.170** | Humanity is ahead |
+| **📊 CI95** | **[−0.123, +0.474]** | Inconclusive |
 | **⚡ Threshold Shifts** | **17** | Critical events detected |
-| **📈 Items Analyzed** | **951** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **774** | Axis-signal pairs |
+| **📈 Items Analyzed** | **884** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **659** | Axis-signal pairs |
 
 </div>
 
@@ -56,13 +56,13 @@ xychart-beta
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
     x-axis ["29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "14/11", "15/11"]
-    y-axis "Gap" -0.380 --> 0.248
-    line [-0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148, 0.131]
+    y-axis "Gap" -0.380 --> 0.270
+    line [-0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148, 0.170]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 15/11 | 0.685 | 0.816 | +0.131 | [−0.143, +0.406] | 951 | 774 | INTERIM |
+| 15/11 | 0.647 | 0.817 | +0.170 | [−0.123, +0.474] | 884 | 659 | INTERIM |
 | 14/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
 | 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | INTERIM |
 | 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | INTERIM |
@@ -85,7 +85,7 @@ xychart-beta
 | 08/11 | 0.700 | 0.823 | +0.123 | [−0.144, +0.393] | 987 | 918 | FINAL |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 
-> 📌 Interim (reference, not on chart): 15/11 — AI 0.685 · Humanity 0.816 · Gap +0.131 · 951 / 774 items.
+> 📌 Interim (reference, not on chart): 15/11 — AI 0.647 · Humanity 0.817 · Gap +0.170 · 884 / 659 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -162,18 +162,6 @@ xychart-beta
 
 — *[WSJ — Tech](https://www.wsj.com/tech/jensen-huang-backdoor-ai-data-centers-a5e4499d?mod=rss_Technology)*
 
-**Nvidia — 2026-11-14**
-
-> Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/)*
-
-**Nvidia — 2026-11-14**
-
-> Asian governments react to Nvidia CEO Jensen Huang’s exit
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/)*
-
 **Elon Musk (xAI, Tesla, SpaceX) — 2026-11-14**
 
 > Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang
@@ -197,12 +185,6 @@ xychart-beta
 > Where was Nvidia’s security team?
 
 — *[TechCrunch AI](https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/)*
-
-**Nvidia — 2026-11-15**
-
-> Here's how Jensen Huang's abrupt resignation unfolded at Nvidia
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/jensen-huang-nvidia-resignation-scandal-timeline/)*
 
 **Jensen Huang (Nvidia) — 2026-11-15**
 
@@ -246,12 +228,6 @@ xychart-beta
 
 — *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering/)*
 
-**OpenAI — 2026-11-14**
-
-> The OpenAI board member who fired Sam Altman says we still can’t trust AI CEOs
-
-— *[The Verge — AI](https://www.theverge.com/podcast/1032907/helen-toner-openai-cset-ai-safety-policy-interview)*
-
 **Sam Altman (OpenAI) — 2026-11-14**
 
 > The OpenAI board member who fired Sam Altman says we still can’t trust AI CEOs
@@ -269,12 +245,6 @@ xychart-beta
 > What Jensen Huang’s Downfall Means for Big Tech
 
 — *[WSJ — Tech](https://www.wsj.com/tech/what-jensen-huangs-downfall-means-for-big-tech-9e6ca5df?mod=rss_Technology)*
-
-**Nvidia — 2026-11-12**
-
-> Democrats launch Nvidia investigation, write scathing letter on Huang’s ‘scheme’ with Trump
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/12/democrats-launch-nvidia-investigation-write-scathing-letter-on-huangs-scheme-with-trump/)*
 
 **Jensen Huang (Nvidia) — 2026-11-12**
 
@@ -372,7 +342,7 @@ xychart-beta
 
 — *[Axios](https://www.axios.com/2026/11/13/ai-boom-without-jensen-huang-nvidia)*
 
-**Nvidia — 2026-11-13**
+**Jensen Huang (Nvidia) — 2026-11-13**
 
 > Nvidia CEO steps down. And, Sen. Chris Van Hollen to run for majority leader
 
@@ -380,15 +350,45 @@ xychart-beta
 
 **Jensen Huang (Nvidia) — 2026-11-13**
 
-> Nvidia CEO steps down. And, Sen. Chris Van Hollen to run for majority leader
-
-— *[NPR — World](https://www.npr.org/2026/11/13/g-s1-153532/up-first-newsletter-nvidia-jensen-huang-colette-kress-ukraine-russia-chris-van-hollen)*
-
-**Nvidia — 2026-11-13**
-
 > [AINews] Jensen Huang resigns after 33 years leading NVIDIA
 
 — *[Latent Space](https://latent.space/p/ainews-jensen-huang-resigns-after-33-years-leading-nvidia/)*
+
+**Microsoft — 2026-11-13**
+
+> Eye Opener: Microsoft Outlook email outage
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/eye-opener-microsoft-outlook-email-outage/)*
+
+**Microsoft — 2026-11-13**
+
+> Widespread Microsoft 365 outage continues, impacting email and other services
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/widespread-microsoft-365-outage-continues-impacting-email-and-other-services/)*
+
+**Jensen Huang (Nvidia) — 2026-11-13**
+
+> Former Nvidia CEO Jensen Huang willing to appear before Congress amid probe into alleged spy affair
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/former-nvidia-ceo-jensen-huang-willing-to-appear-before-congress-amid-probe-into-alleged-spy-affair/)*
+
+**Microsoft — 2026-11-13**
+
+> Microsoft seeing "continued recovery" amid major worldwide outage
+
+— *[CBS News — Technology](https://www.cbsnews.com/news/microsoft-battling-major-outage/)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Who is interim Nvidia CEO Colette Kress?
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6216664-nvidia-interim-ceo-colette-kress-jensen-huang-resignation-affairs/)*
+
+**Microsoft — 2026-11-13**
+
+> Microsoft 'seeing encouraging recovery progress' in global Outlook, Teams outage
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6218199-microsoft-outage-recovery-process/)*
 
 ### 🧪 AI Researchers
 
