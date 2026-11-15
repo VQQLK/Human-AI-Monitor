@@ -198,6 +198,17 @@ export default {
       "note": "Godfather of AI, Nobel Prize 2024"
     },
     {
+      "name": "Paul Christiano",
+      "affiliation": "Alignment Research Center (ARC)",
+      "category": "researchers",
+      "keywords": [
+        "Paul Christiano",
+        "Пол Кристиано",
+        "ARC founder"
+      ],
+      "note": "Founder of ARC, RLHF co-author, OpenAI Foundation board member"
+    },
+    {
       "name": "Stuart Russell",
       "affiliation": "UC Berkeley",
       "category": "researchers",
