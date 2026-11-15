@@ -75,7 +75,30 @@ export function extractVoice(item: {
     }
   }
 
-  return matches;
+  // Дедупликация (§16.1): если человек с affiliation, точно совпадающим
+  // с name компании-спикера, и компания тоже совпала — оставляем только
+  // человека. Устраняет дубли типа "Jensen Huang, Nvidia" (42/48 дублей
+  // в БД на 2026-11-15). Компании без affiliation (Google, Meta, OpenAI)
+  // и люди со сложным affiliation ("Google, Alphabet", "xAI, Tesla,
+  // SpaceX") не затрагиваются — их комбинации считаются независимыми
+  // сигналами.
+  const speakerNames = new Set(matches.map(m => m.speaker));
+  const deduped: ExtractedVoice[] = [];
+  const droppedCompanies = new Set<string>();
+
+  for (const m of matches) {
+    const aff = (m as any).affiliation as string | undefined;
+    if (aff && speakerNames.has(aff)) {
+      droppedCompanies.add(aff);
+      deduped.push(m);
+    } else if (droppedCompanies.has(m.speaker)) {
+      continue;
+    } else {
+      deduped.push(m);
+    }
+  }
+
+  return deduped;
 }
 
 export async function saveVoice(
