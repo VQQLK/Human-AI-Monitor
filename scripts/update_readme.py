@@ -275,9 +275,12 @@ def build_daily_mermaid(snapshots, lang):
     # Daily trajectory shows INTERIM snapshots only. FINAL points belong
     # to Historical Protocols and are not duplicated here.
     interims = [s for s in (snapshots or []) if s.get("is_interim") == 1]
+    # Limit to last 10 days (both chart and table must match)
+    interims = sorted(interims, key=lambda s: s["snapshot_date"])[-10:]
     if len(interims) < 2:
         return None
-    rows = sorted(interims, key=lambda s: s["snapshot_date"])[-15:]
+    # Use the already-limited interims list (10 days); no extra slice.
+    rows = sorted(interims, key=lambda s: s["snapshot_date"])
     labels = [week_end_to_ddmm(s["snapshot_date"]) for s in rows]
     gaps = [s["gap"] for s in rows]
     gap_line = ", ".join(f"{g:.3f}" for g in gaps)
@@ -307,7 +310,7 @@ def build_daily_table(snapshots, lang):
     if len(interims) < 2:
         return ""
     L = STRINGS[lang]
-    rows = sorted(interims, key=lambda s: s["snapshot_date"], reverse=True)[:15]
+    rows = sorted(interims, key=lambda s: s["snapshot_date"], reverse=True)[:10]
     header = (f"| {L['daily_col_date']} | {L['hist_col_ai']} | {L['hist_col_human']} "
               f"| {L['hist_col_gap']} | {L['daily_col_ci']} "
               f"| {L['hist_col_items']} | {L['hist_col_sample']} | {L['hist_col_type']} |")
