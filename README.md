@@ -9,7 +9,7 @@ and Humanity.**
 ## 📊 Current State of Development
 
 **Updated:** November 15, 2026  
-**Baseline:** Updated on November 15, 2026 — based on 884 items (sample size: 659).
+**Baseline:** Updated on November 15, 2026 — based on 868 items (sample size: 637).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
@@ -17,13 +17,13 @@ and Humanity.**
 
 | Metric | Value (11-15) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.817** | Current value |
+| **🟢 Humanity Score** | 🌐 **0.820** | Current value |
 | **🔴 AI Score** | 🤖 **0.647** | Current value |
-| **⚖️ Gap Index** | ⚖️ **+0.170** | Humanity is ahead |
-| **📊 CI95** | **[−0.123, +0.474]** | Inconclusive |
+| **⚖️ Gap Index** | ⚖️ **+0.173** | Humanity is ahead |
+| **📊 CI95** | **[−0.119, +0.481]** | Inconclusive |
 | **⚡ Threshold Shifts** | **17** | Critical events detected |
-| **📈 Items Analyzed** | **884** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **659** | Axis-signal pairs |
+| **📈 Items Analyzed** | **868** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **637** | Axis-signal pairs |
 
 </div>
 
@@ -56,13 +56,13 @@ xychart-beta
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
     x-axis ["04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "14/11", "15/11"]
-    y-axis "Gap" -0.380 --> 0.270
-    line [-0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148, 0.170]
+    y-axis "Gap" -0.380 --> 0.273
+    line [-0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148, 0.173]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 15/11 | 0.647 | 0.817 | +0.170 | [−0.123, +0.474] | 884 | 659 | INTERIM |
+| 15/11 | 0.647 | 0.820 | +0.173 | [−0.119, +0.481] | 868 | 637 | INTERIM |
 | 14/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
 | 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | INTERIM |
 | 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | INTERIM |
@@ -80,7 +80,7 @@ xychart-beta
 | 08/11 | 0.700 | 0.823 | +0.123 | [−0.144, +0.393] | 987 | 918 | FINAL |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 
-> 📌 Interim (reference, not on chart): 15/11 — AI 0.647 · Humanity 0.817 · Gap +0.170 · 884 / 659 items.
+> 📌 Interim (reference, not on chart): 15/11 — AI 0.647 · Humanity 0.820 · Gap +0.173 · 868 / 637 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -95,7 +95,7 @@ xychart-beta
 
 > 英伟达风波引发芯片出口限制担忧，中国AI企业股价大跌
 
-— *[FT Chinese (FT中文网)](https://www.ftchinese.com/story/001111367)*
+— *FT Chinese (FT中文网)*
 
 **Microsoft — 2026-11-13**
 
