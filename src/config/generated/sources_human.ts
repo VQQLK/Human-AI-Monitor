@@ -197,6 +197,48 @@ export default {
       "url": "https://i12.haber7.net/sondakika/newsstand/latest.xml",
       "lang": "tr",
       "tier": 2
+    },
+    {
+      "name": "WHO",
+      "url": "https://www.who.int/rss-feeds/news-english.xml",
+      "lang": "en",
+      "tier": 1,
+      "note": "WHO news; global health, outbreaks, health systems (audit 2026-11-15); anchors h5_wellbeing"
+    },
+    {
+      "name": "CPJ",
+      "url": "https://cpj.org/feed/",
+      "lang": "en",
+      "tier": 1,
+      "note": "Committee to Protect Journalists; press freedom, censorship (audit 2026-11-15); anchors h6_governance"
+    },
+    {
+      "name": "Nature Medicine",
+      "url": "https://www.nature.com/nm.rss",
+      "lang": "en",
+      "tier": 1,
+      "note": "medical research, health policy (audit 2026-11-15); anchors h5_wellbeing"
+    },
+    {
+      "name": "ArtsJournal",
+      "url": "https://www.artsjournal.com/feed",
+      "lang": "en",
+      "tier": 2,
+      "note": "arts and culture media aggregator (audit 2026-11-15); anchors h3_culture"
+    },
+    {
+      "name": "Hyperallergic",
+      "url": "https://hyperallergic.com/rss/",
+      "lang": "en",
+      "tier": 2,
+      "note": "contemporary art, culture policy (audit 2026-11-15); anchors h3_culture"
+    },
+    {
+      "name": "The Conversation",
+      "url": "https://theconversation.com/articles.atom",
+      "lang": "en",
+      "tier": 1,
+      "note": "academic expert commentary; universities, science and culture policy (audit 2026-11-15); anchors h3_culture"
     }
   ]
 } as const;

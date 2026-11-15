@@ -15,7 +15,6 @@ axes:
     sources:
     - Nature
     - Science
-    - Nobel Prize
   h2_engineering:
     name: Engineering & Infrastructure
     description: 'Инфраструктура, энергетика, транспорт, производственные прорывы'
@@ -29,9 +28,8 @@ axes:
     - transportation
     - manufacturing
     sources:
-    - MIT News
     - IEEE Spectrum
-    - Nature Engineering
+    - MIT News (Engineering)
   h3_culture:
     name: Culture & Arts
     description: 'Литература, музыка, искусство, сохранение культурного наследия'
@@ -47,8 +45,8 @@ axes:
     - creativity
     sources:
     - ArtsJournal
-    - The Conversation
     - Hyperallergic
+    - The Conversation
   h4_institutions:
     name: Institutions & Education
     description: 'Успехи университетов, реформы образования, международное сотрудничество'
@@ -62,9 +60,8 @@ axes:
     - cooperation
     - reform
     sources:
-    - MIT News
-    - Stanford News
-    - OECD Education
+    - MIT News (Engineering)
+    - Inside Higher Ed
   h5_wellbeing:
     name: Wellbeing & Health
     description: 'Победы над болезнями, улучшение качества жизни, социальные инновации'
@@ -78,8 +75,8 @@ axes:
     - quality of life
     - longevity
     sources:
-    - WHO
     - Science
+    - WHO
     - Nature Medicine
   h6_governance:
     name: Governance & Rights
@@ -94,6 +91,5 @@ axes:
     - rule of law
     - peace
     sources:
-    - V-Dem
     - Business & Human Rights Resource Centre
     - CPJ

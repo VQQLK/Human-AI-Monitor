@@ -3,7 +3,7 @@
 
 export default {
   "version": 1,
-  "updated": "2026-11-15-v5",
+  "updated": "2026-11-15-v6",
   "min_relevance": 0.2,
   "title_only_below": 0.5,
   "voices": [
@@ -213,6 +213,7 @@ export default {
         "Пол Кристиано",
         "ARC founder"
       ],
+      "sources": [],
       "note": "Founder of ARC, RLHF co-author, OpenAI Foundation board member"
     },
     {

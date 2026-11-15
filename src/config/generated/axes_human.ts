@@ -19,8 +19,7 @@ export default {
       ],
       "sources": [
         "Nature",
-        "Science",
-        "Nobel Prize"
+        "Science"
       ]
     },
     "h2_engineering": {
@@ -37,9 +36,8 @@ export default {
         "manufacturing"
       ],
       "sources": [
-        "MIT News",
         "IEEE Spectrum",
-        "Nature Engineering"
+        "MIT News (Engineering)"
       ]
     },
     "h3_culture": {
@@ -58,8 +56,8 @@ export default {
       ],
       "sources": [
         "ArtsJournal",
-        "The Conversation",
-        "Hyperallergic"
+        "Hyperallergic",
+        "The Conversation"
       ]
     },
     "h4_institutions": {
@@ -76,9 +74,8 @@ export default {
         "reform"
       ],
       "sources": [
-        "MIT News",
-        "Stanford News",
-        "OECD Education"
+        "MIT News (Engineering)",
+        "Inside Higher Ed"
       ]
     },
     "h5_wellbeing": {
@@ -95,8 +92,8 @@ export default {
         "longevity"
       ],
       "sources": [
-        "WHO",
         "Science",
+        "WHO",
         "Nature Medicine"
       ]
     },
@@ -114,7 +111,6 @@ export default {
         "peace"
       ],
       "sources": [
-        "V-Dem",
         "Business & Human Rights Resource Centre",
         "CPJ"
       ]

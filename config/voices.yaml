@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-11-15-v5
+updated: 2026-11-15-v6
 min_relevance: 0.2
 # Below this relevance, speaker must appear in title (not just summary).
 # Prevents "passing mention" false positives (e.g. California Dems letter
@@ -168,6 +168,7 @@ voices:
   - Paul Christiano
   - Пол Кристиано
   - ARC founder
+  sources: []
   note: Founder of ARC, RLHF co-author, OpenAI Foundation board member
 
 - name: Stuart Russell
