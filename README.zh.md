@@ -92,12 +92,6 @@ xychart-beta
 
 ### 🧠 前沿实验室
 
-**Nvidia — 2026-11-12**
-
-> 英伟达风波引发芯片出口限制担忧，中国AI企业股价大跌
-
-— *FT Chinese (FT中文网)*
-
 **Microsoft — 2026-11-13**
 
 > Courts, spies and MPs: How the Microsoft outage has been felt around the world
@@ -385,6 +379,12 @@ xychart-beta
 > Microsoft 'seeing encouraging recovery progress' in global Outlook, Teams outage
 
 — *[The Hill — Policy](https://thehill.com/policy/technology/6218199-microsoft-outage-recovery-process/)*
+
+**Jensen Huang (Nvidia) — 2026-11-12**
+
+> Jensen Huang agrees to testify before Congress
+
+— *[Politico — Technology](https://www.politico.com/news/2026/11/12/jensen-huang-agrees-to-testify-01162650)*
 
 ### 🧪 AI研究人员
 
