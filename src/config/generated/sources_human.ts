@@ -64,13 +64,6 @@ export default {
       "note": "Российское информагентство, экономика, политика"
     },
     {
-      "name": "FT Chinese (FT中文网)",
-      "url": "https://www.ftchinese.com/rss/news",
-      "lang": "zh",
-      "tier": 1,
-      "note": "Китайская версия Financial Times — экономика, неравенство"
-    },
-    {
       "name": "Al Jazeera",
       "url": "https://www.aljazeera.com/xml/rss/all.xml",
       "lang": "en",
