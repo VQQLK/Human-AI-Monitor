@@ -99,13 +99,6 @@ export default {
       "note": "Психология, внутренняя жизнь, смысл"
     },
     {
-      "name": "3 Quarks Daily",
-      "url": "https://3quarksdaily.com/feed",
-      "lang": "en",
-      "tier": 2,
-      "note": "Curated essays on culture, philosophy, science - AI and humanity angle"
-    },
-    {
       "name": "Axios",
       "url": "https://api.axios.com/feed/",
       "lang": "en",
@@ -239,6 +232,12 @@ export default {
       "lang": "en",
       "tier": 1,
       "note": "academic expert commentary; universities, science and culture policy (audit 2026-11-15); anchors h3_culture"
+    },
+    {
+      "name": "Fast Company",
+      "url": "https://www.fastcompany.com/latest/rss",
+      "lang": "en",
+      "tier": 2
     }
   ]
 } as const;

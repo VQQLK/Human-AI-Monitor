@@ -75,8 +75,6 @@ rss:
   lang: en
   tier: 1
   note: Психология, внутренняя жизнь, смысл
-
-  note: Curated essays on culture, philosophy, science - AI and humanity angle
 - name: Axios
   url: https://api.axios.com/feed/
   lang: en

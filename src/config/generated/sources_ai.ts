@@ -103,12 +103,6 @@ export default {
       "tier": 1
     },
     {
-      "name": "AI News (agents-radar)",
-      "url": "https://duanyytop.github.io/agents-radar/feed.xml",
-      "lang": "en",
-      "tier": 2
-    },
-    {
       "name": "Politico — Technology",
       "url": "https://rss.politico.com/technology.xml",
       "lang": "en",
