@@ -397,7 +397,7 @@ xychart-beta
 
 > For most people in this room, the most likely reason they will die is because of an AI accident.
 
-— *Fast Company (Hinton Lectures 2026)*
+— *[Fast Company (Hinton Lectures 2026)](https://www.fastcompany.com/91642227/openai-board-member-terrifying-prediction-you-will-die-from-ai-accident-chatgpt)*
 
 ## 这是什么
 
