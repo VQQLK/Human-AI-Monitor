@@ -13,7 +13,8 @@ export default {
       "name": "Anthropic News",
       "url": "https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_anthropic_news.xml",
       "lang": "en",
-      "tier": 1
+      "tier": 1,
+      "note": "community proxy 0xSMW — official Anthropic RSS unavailable (limitation logged)"
     },
     {
       "name": "Google DeepMind Blog",
@@ -29,9 +30,10 @@ export default {
     },
     {
       "name": "Mistral AI",
-      "url": "https://raw.githubusercontent.com/0xSMW/rss-feeds/main/feeds/feed_mistral_news.xml",
+      "url": "https://mistral.ai/rss.xml",
       "lang": "en",
-      "tier": 1
+      "tier": 1,
+      "note": "official RSS — replaces 0xSMW community proxy"
     },
     {
       "name": "Hugging Face Blog",
@@ -80,6 +82,13 @@ export default {
       "url": "https://feeds.arstechnica.com/arstechnica/technology-lab",
       "lang": "en",
       "tier": 2
+    },
+    {
+      "name": "LessWrong — AI",
+      "url": "https://www.lesswrong.com/feed.xml",
+      "lang": "en",
+      "tier": 1,
+      "note": "anchors Russell/Yudkowsky voices (dangling refs fixed 2026-11-15)"
     },
     {
       "name": "AI Alignment Forum",
@@ -189,10 +198,11 @@ export default {
       "note": "US Defense Advanced Research Projects Agency - national security AI, quantum, robotics"
     },
     {
-      "name": "Synced Review",
-      "url": "https://syncedreview.com/feed/",
+      "name": "The Decoder",
+      "url": "https://www.the-decoder.com/feed/",
       "lang": "en",
-      "tier": 2
+      "tier": 2,
+      "note": "replaces Synced Review (feed dead 403, audit 2026-11-15); daily AI news, EU perspective"
     }
   ],
   "html_sources": []

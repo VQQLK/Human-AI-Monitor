@@ -125,10 +125,11 @@ export default {
       "tier": 1
     },
     {
-      "name": "SpaceNews",
-      "url": "https://spacenews.com/feed/",
+      "name": "Space.com",
+      "url": "https://www.space.com/feeds/all",
       "lang": "en",
-      "tier": 1
+      "tier": 1,
+      "note": "replaces SpaceNews (feed dead 403, audit 2026-11-15); space, engineering, science policy"
     },
     {
       "name": "The Atlantic",
@@ -138,7 +139,7 @@ export default {
     },
     {
       "name": "Inside Higher Ed",
-      "url": "https://www.insidehighered.com/news/feed",
+      "url": "https://www.insidehighered.com/rss.xml",
       "lang": "en",
       "tier": 1
     },
@@ -186,7 +187,10 @@ export default {
     },
     {
       "name": "Business & Human Rights Resource Centre",
-      "url": "https://www.business-humanrights.org/en/feeds/latest-news/3/"
+      "url": "https://www.business-humanrights.org/en/feeds/latest-news/3/",
+      "lang": "en",
+      "tier": 1,
+      "note": "Business & human rights; labor, supply chains, tech accountability"
     },
     {
       "name": "Haber 7",

@@ -95,16 +95,17 @@ rss:
   url: https://news.mit.edu/rss/topic/engineering
   lang: en
   tier: 1
-- name: SpaceNews
-  url: https://spacenews.com/feed/
+- name: Space.com
+  url: https://www.space.com/feeds/all
   lang: en
   tier: 1
+  note: replaces SpaceNews (feed dead 403, audit 2026-11-15); space, engineering, science policy
 - name: The Atlantic
   url: https://www.theatlantic.com/feed/all/
   lang: en
   tier: 1
 - name: Inside Higher Ed
-  url: https://www.insidehighered.com/news/feed
+  url: https://www.insidehighered.com/rss.xml
   lang: en
   tier: 1
 - name: Issues in Science and Technology
@@ -138,6 +139,9 @@ rss:
 
 - name: Business & Human Rights Resource Centre
   url: https://www.business-humanrights.org/en/feeds/latest-news/3/
+  lang: en
+  tier: 1
+  note: Business & human rights; labor, supply chains, tech accountability
 
 - name: Haber 7
   url: https://i12.haber7.net/sondakika/newsstand/latest.xml

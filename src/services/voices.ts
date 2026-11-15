@@ -47,8 +47,12 @@ export function extractVoice(item: {
       // Unicode-aware word boundaries: \b only works for [A-Za-z0-9_],
       // fails for CJK and other non-Latin scripts. \p{L} matches any
       // Unicode letter, /u enables Unicode mode.
+      // CJK keywords: \p{L} lookarounds fail inside CJK text (a CJK name is
+      // almost always surrounded by other letters), so substring match there.
+      const kwEsc = escapeRegex(keyword.toLowerCase());
+      const hasCJK = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/.test(kwEsc);
       const re = new RegExp(
-        `(?<!\\p{L})${escapeRegex(keyword.toLowerCase())}(?!\\p{L})`,
+        hasCJK ? kwEsc : `(?<!\\p{L})${kwEsc}(?!\\p{L})`,
         'u'
       );
       // Scientific integrity (§12): speaker must be in TITLE.

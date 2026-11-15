@@ -1,10 +1,12 @@
 version: 1
-updated: 2026-10-08-v4
+updated: 2026-11-15-v5
 min_relevance: 0.2
 # Below this relevance, speaker must appear in title (not just summary).
 # Prevents "passing mention" false positives (e.g. California Dems letter
 # mentions Musk/Zuckerberg in summary only).
 title_only_below: 0.5
+# NOTE: matcher (src/services/voices.ts) applies title-only for ALL relevance
+# values (§12); this parameter is kept for history and is NOT read by code.
 voices:
 - name: Dario Amodei
   affiliation: Anthropic
@@ -38,6 +40,7 @@ voices:
   - OpenAI's CEO
   - OpenAI chief
   - Сэм Альтман
+  - 奥尔特曼
   sources:
   - OpenAI Blog
   note: CEO of OpenAI
@@ -52,6 +55,7 @@ voices:
   - Nvidia's CEO
   - Nvidia chief
   - Дженсен Хуанг
+  - 黄仁勋
   sources:
   - The Verge — AI
   - Ars Technica — AI
@@ -81,10 +85,11 @@ voices:
   - SpaceX CEO
   - Илон Маск
   - Маск
+  - 马斯克
   sources:
   - The Verge — AI
   - Ars Technica — AI
-  - The Hill — News
+  - The Hill — Policy
   - CBS News — Technology
   note: CEO of xAI, Tesla, SpaceX
 - name: Mark Zuckerberg
@@ -98,6 +103,7 @@ voices:
   - Meta chief
   - Марк Цукерберг
   - Цукерберг
+  - 扎克伯格
   sources:
   - The Verge — AI
   - Politico — Technology
@@ -113,6 +119,7 @@ voices:
   - DeepMind's CEO
   - DeepMind chief
   - Демис Хассабис
+  - 哈萨比斯
   sources:
   - Google DeepMind Blog
   - MIT Technology Review — AI
@@ -125,6 +132,7 @@ voices:
   - LeCun
   - ylecun
   - Ян Лекун
+  - 杨立昆
   sources:
   - The Verge — AI
   - MIT Technology Review — AI
@@ -148,6 +156,7 @@ voices:
   - Geoffrey Hinton
   - Hinton
   - Джеффри Хинтон
+  - 辛顿
   sources:
   - The Verge — AI
   - Ars Technica — AI
@@ -257,7 +266,7 @@ voices:
   - Bezos
   - Джефф Безос
   sources:
-  - The Hill — News
+  - The Hill — Policy
   - CBS News — Technology
   - NPR — World
   note: Founder of Amazon, Blue Origin
@@ -274,7 +283,7 @@ voices:
   - Гейтс
   sources:
   - NPR — World
-  - CBS News — World
+  - CBS News — Technology
   - Our World in Data
   note: Co-founder of Microsoft, philanthropist
 - name: Vitalik Buterin
@@ -349,6 +358,7 @@ voices:
   - Google chief
   - Alphabet CEO
   - Сундар Пичаи
+  - 皮查伊
   sources: []
   note: CEO of Google and Alphabet
 - name: Satya Nadella
@@ -361,6 +371,7 @@ voices:
   - Microsoft's CEO
   - Microsoft chief
   - Сатья Наделла
+  - 纳德拉
   sources: []
   note: CEO of Microsoft
 - name: Fei-Fei Li
@@ -542,6 +553,7 @@ voices:
   - DeepMind
   - AlphaFold
 
+  - 谷歌
 - name: Microsoft
   category: frontier_labs
   keywords:
@@ -549,6 +561,7 @@ voices:
   - Copilot
   - MAI-1
 
+  - 微软
 - name: Meta
   category: frontier_labs
   keywords:
@@ -564,6 +577,7 @@ voices:
   - Blackwell
   - H100
 
+  - 英伟达
 - name: DeepSeek
   category: frontier_labs
   keywords:

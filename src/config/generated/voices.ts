@@ -3,7 +3,7 @@
 
 export default {
   "version": 1,
-  "updated": "2026-10-08-v4",
+  "updated": "2026-11-15-v5",
   "min_relevance": 0.2,
   "title_only_below": 0.5,
   "voices": [
@@ -47,7 +47,8 @@ export default {
         "OpenAI CEO",
         "OpenAI's CEO",
         "OpenAI chief",
-        "Сэм Альтман"
+        "Сэм Альтман",
+        "奥尔特曼"
       ],
       "sources": [
         "OpenAI Blog"
@@ -65,7 +66,8 @@ export default {
         "NVIDIA CEO",
         "Nvidia's CEO",
         "Nvidia chief",
-        "Дженсен Хуанг"
+        "Дженсен Хуанг",
+        "黄仁勋"
       ],
       "sources": [
         "The Verge — AI",
@@ -102,12 +104,13 @@ export default {
         "Tesla CEO",
         "SpaceX CEO",
         "Илон Маск",
-        "Маск"
+        "Маск",
+        "马斯克"
       ],
       "sources": [
         "The Verge — AI",
         "Ars Technica — AI",
-        "The Hill — News",
+        "The Hill — Policy",
         "CBS News — Technology"
       ],
       "note": "CEO of xAI, Tesla, SpaceX"
@@ -123,7 +126,8 @@ export default {
         "Meta's CEO",
         "Meta chief",
         "Марк Цукерберг",
-        "Цукерберг"
+        "Цукерберг",
+        "扎克伯格"
       ],
       "sources": [
         "The Verge — AI",
@@ -142,7 +146,8 @@ export default {
         "Google DeepMind CEO",
         "DeepMind's CEO",
         "DeepMind chief",
-        "Демис Хассабис"
+        "Демис Хассабис",
+        "哈萨比斯"
       ],
       "sources": [
         "Google DeepMind Blog",
@@ -158,7 +163,8 @@ export default {
         "Yann LeCun",
         "LeCun",
         "ylecun",
-        "Ян Лекун"
+        "Ян Лекун",
+        "杨立昆"
       ],
       "sources": [
         "The Verge — AI",
@@ -189,7 +195,8 @@ export default {
       "keywords": [
         "Geoffrey Hinton",
         "Hinton",
-        "Джеффри Хинтон"
+        "Джеффри Хинтон",
+        "辛顿"
       ],
       "sources": [
         "The Verge — AI",
@@ -338,7 +345,7 @@ export default {
         "Джефф Безос"
       ],
       "sources": [
-        "The Hill — News",
+        "The Hill — Policy",
         "CBS News — Technology",
         "NPR — World"
       ],
@@ -359,7 +366,7 @@ export default {
       ],
       "sources": [
         "NPR — World",
-        "CBS News — World",
+        "CBS News — Technology",
         "Our World in Data"
       ],
       "note": "Co-founder of Microsoft, philanthropist"
@@ -456,7 +463,8 @@ export default {
         "Google's CEO",
         "Google chief",
         "Alphabet CEO",
-        "Сундар Пичаи"
+        "Сундар Пичаи",
+        "皮查伊"
       ],
       "sources": [],
       "note": "CEO of Google and Alphabet"
@@ -471,7 +479,8 @@ export default {
         "Microsoft CEO",
         "Microsoft's CEO",
         "Microsoft chief",
-        "Сатья Наделла"
+        "Сатья Наделла",
+        "纳德拉"
       ],
       "sources": [],
       "note": "CEO of Microsoft"
@@ -711,7 +720,8 @@ export default {
         "Google",
         "Gemini",
         "DeepMind",
-        "AlphaFold"
+        "AlphaFold",
+        "谷歌"
       ]
     },
     {
@@ -720,7 +730,8 @@ export default {
       "keywords": [
         "Microsoft",
         "Copilot",
-        "MAI-1"
+        "MAI-1",
+        "微软"
       ]
     },
     {
@@ -739,7 +750,8 @@ export default {
         "Nvidia",
         "CUDA",
         "Blackwell",
-        "H100"
+        "H100",
+        "英伟达"
       ]
     },
     {
