@@ -9,21 +9,21 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年11月14日  
-**基线：** 2026年11月14日更新 — 基于 803 个项目（样本量：691）。
+**更新:** 2026年11月15日  
+**基线：** 2026年11月15日更新 — 基于 802 个项目（样本量：691）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (11-14) | 状态 |
+| 指标 | 数值 (11-15) | 状态 |
 |:---|:---:|:---:|
 | **🟢 人类得分** | 🌐 **0.830** | 当前值 |
 | **🔴 人工智能得分** | 🤖 **0.682** | 当前值 |
 | **⚖️ 差距指数** | ⚖️ **+0.148** | 人类领先 |
 | **📊 CI95** | **[−0.131, +0.426]** | 不确定 |
 | **⚡ 阈值变化** | **13** | 检测到关键事件 |
-| **📈 分析项目** | **803** | 每周样本 |
+| **📈 分析项目** | **802** | 每周样本 |
 | **🔬 样本量（贝叶斯）** | **691** | 轴-信号对 |
 
 </div>
@@ -56,13 +56,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "14/11"]
+    x-axis ["29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "14/11", "15/11"]
     y-axis "差距" -0.380 --> 0.248
-    line [-0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148]
+    line [-0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148, 0.148]
 ```
 
 | 日期 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|
+| 15/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | 临时版 |
 | 14/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | 临时版 |
 | 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | 临时版 |
 | 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | 临时版 |
@@ -77,7 +78,6 @@ xychart-beta
 | 31/10 | 0.791 | 0.679 | −0.112 | [−0.340, +0.138] | 712 | 630 | 临时版 |
 | 30/10 | 0.771 | 0.670 | −0.101 | [−0.342, +0.150] | 583 | 531 | 临时版 |
 | 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | 临时版 |
-| 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | 临时版 |
 
 #### 📚 协议历史
 
@@ -86,7 +86,7 @@ xychart-beta
 | 08/11 | 0.700 | 0.823 | +0.123 | [−0.144, +0.393] | 987 | 918 | 最终版 |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：14/11 — AI 0.682 · 人类 0.830 · 差距 +0.148 · 803 / 691 items.
+> 📌 临时协议（仅供参考，不在图表上）：15/11 — AI 0.682 · 人类 0.830 · 差距 +0.148 · 802 / 691 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -96,6 +96,18 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**OpenAI — 2026-11-14**
+
+> The OpenAI board member who fired Sam Altman says we still can’t trust AI CEOs
+
+— *[The Verge — AI](https://www.theverge.com/podcast/1032907/helen-toner-openai-cset-ai-safety-policy-interview)*
+
+**Sam Altman (OpenAI) — 2026-11-14**
+
+> The OpenAI board member who fired Sam Altman says we still can’t trust AI CEOs
+
+— *[The Verge — AI](https://www.theverge.com/podcast/1032907/helen-toner-openai-cset-ai-safety-policy-interview)*
 
 **Nvidia — 2026-11-13**
 
@@ -379,23 +391,13 @@ xychart-beta
 
 — *[Axios](https://www.axios.com/2026/11/12/nvidia-jensen-huang-out)*
 
-**Jensen Huang (Nvidia) — 2026-11-12**
+### 🧪 AI研究人员
 
-> Jensen Huang, an architect of the AI boom, resigns as Nvidia CEO
+**Paul Christiano — 2026-11-13**
 
-— *[Axios](https://www.axios.com/2026/11/12/nvidia-jensen-huang-out)*
+> For most people in this room, the most likely reason they will die is because of an AI accident.
 
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-12**
-
-> Zelensky says Musk-owned satellite system throttled again
-
-— *[Axios](https://www.axios.com/2026/11/12/ukraine-starshield-restricted-spacex-russia-zelensky)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Jensen Huang's ouster triggers an AI earthquake
-
-— *[Axios](https://www.axios.com/2026/11/12/jensen-huang-nvidia-board)*
+— *Fast Company (Hinton Lectures 2026)*
 
 ## 这是什么
 

@@ -8,21 +8,21 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 14, 2026  
-**Baseline:** Updated on November 14, 2026 — based on 803 items (sample size: 691).
+**Updated:** November 15, 2026  
+**Baseline:** Updated on November 15, 2026 — based on 802 items (sample size: 691).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-14) | Status |
+| Metric | Value (11-15) | Status |
 |:---|:---:|:---:|
 | **🟢 Humanity Score** | 🌐 **0.830** | Current value |
 | **🔴 AI Score** | 🤖 **0.682** | Current value |
 | **⚖️ Gap Index** | ⚖️ **+0.148** | Humanity is ahead |
 | **📊 CI95** | **[−0.131, +0.426]** | Inconclusive |
 | **⚡ Threshold Shifts** | **13** | Critical events detected |
-| **📈 Items Analyzed** | **803** | Weekly sample |
+| **📈 Items Analyzed** | **802** | Weekly sample |
 | **🔬 Sample Size (Bayesian)** | **691** | Axis-signal pairs |
 
 </div>
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["28/10", "29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "14/11"]
+    x-axis ["29/10", "30/10", "31/10", "01/11", "03/11", "04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "14/11", "15/11"]
     y-axis "Gap" -0.380 --> 0.248
-    line [-0.125, -0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148]
+    line [-0.105, -0.101, -0.112, -0.139, -0.135, -0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148, 0.148]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 15/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
 | 14/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
 | 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | INTERIM |
 | 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | INTERIM |
@@ -76,7 +77,6 @@ xychart-beta
 | 31/10 | 0.791 | 0.679 | −0.112 | [−0.340, +0.138] | 712 | 630 | INTERIM |
 | 30/10 | 0.771 | 0.670 | −0.101 | [−0.342, +0.150] | 583 | 531 | INTERIM |
 | 29/10 | 0.757 | 0.652 | −0.105 | [−0.353, +0.154] | 452 | 422 | INTERIM |
-| 28/10 | 0.721 | 0.596 | −0.125 | [−0.409, +0.165] | 315 | 302 | INTERIM |
 
 #### 📚 Historical Protocols
 
@@ -85,7 +85,7 @@ xychart-beta
 | 08/11 | 0.700 | 0.823 | +0.123 | [−0.144, +0.393] | 987 | 918 | FINAL |
 | 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 
-> 📌 Interim (reference, not on chart): 14/11 — AI 0.682 · Humanity 0.830 · Gap +0.148 · 803 / 691 items.
+> 📌 Interim (reference, not on chart): 15/11 — AI 0.682 · Humanity 0.830 · Gap +0.148 · 802 / 691 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -95,6 +95,18 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**OpenAI — 2026-11-14**
+
+> The OpenAI board member who fired Sam Altman says we still can’t trust AI CEOs
+
+— *[The Verge — AI](https://www.theverge.com/podcast/1032907/helen-toner-openai-cset-ai-safety-policy-interview)*
+
+**Sam Altman (OpenAI) — 2026-11-14**
+
+> The OpenAI board member who fired Sam Altman says we still can’t trust AI CEOs
+
+— *[The Verge — AI](https://www.theverge.com/podcast/1032907/helen-toner-openai-cset-ai-safety-policy-interview)*
 
 **Nvidia — 2026-11-13**
 
@@ -378,23 +390,13 @@ xychart-beta
 
 — *[Axios](https://www.axios.com/2026/11/12/nvidia-jensen-huang-out)*
 
-**Jensen Huang (Nvidia) — 2026-11-12**
+### 🧪 AI Researchers
 
-> Jensen Huang, an architect of the AI boom, resigns as Nvidia CEO
+**Paul Christiano — 2026-11-13**
 
-— *[Axios](https://www.axios.com/2026/11/12/nvidia-jensen-huang-out)*
+> For most people in this room, the most likely reason they will die is because of an AI accident.
 
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-12**
-
-> Zelensky says Musk-owned satellite system throttled again
-
-— *[Axios](https://www.axios.com/2026/11/12/ukraine-starshield-restricted-spacex-russia-zelensky)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Jensen Huang's ouster triggers an AI earthquake
-
-— *[Axios](https://www.axios.com/2026/11/12/jensen-huang-nvidia-board)*
+— *Fast Company (Hinton Lectures 2026)*
 
 ## What is this
 
