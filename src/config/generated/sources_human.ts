@@ -126,7 +126,7 @@ export default {
     },
     {
       "name": "Space.com",
-      "url": "https://www.space.com/feeds/all",
+      "url": "https://www.space.com/feeds.xml",
       "lang": "en",
       "tier": 1,
       "note": "replaces SpaceNews (feed dead 403, audit 2026-11-15); space, engineering, science policy"
