@@ -12,6 +12,7 @@ export default defineConfig({
     }),
   ],
   test: {
+    exclude: ['**/node_modules/**', '**/dist/**', 'backups/**'],
     globals: true,
     testTimeout: 30000,
     hookTimeout: 10000,
