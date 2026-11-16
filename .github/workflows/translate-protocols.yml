@@ -2,8 +2,9 @@ name: Translate protocols to Russian and Chinese
 
 on:
   schedule:
-    # Every day at 13:50 UTC — 5 minutes after the worker's 13:45 UTC cron
-    # generates either the FINAL (Monday) or the INTERIM (Tue-Sun) protocol.
+    # Daily at 16:30 UTC — after the worker's 16:00 UTC cron has generated
+    # the FINAL (Monday) or INTERIM (Tue-Sun) protocol; the worker's separate
+    # 16:05 UTC dispatch covers the same week (just-closed week on Mondays).
     # Translation targets /protocols[0] (most recent week_start) automatically.
     - cron: '30 16 * * *'
   workflow_dispatch:

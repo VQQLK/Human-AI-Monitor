@@ -994,7 +994,15 @@ async function handleDedicatedDispatch(env: Env): Promise<void> {
 	const diff = now.getUTCDate() - day + (day === 0 ? -6 : 1);
 	const monday = new Date(now);
 	monday.setUTCDate(diff);
-	const weekToTranslate = monday.toISOString().split("T")[0];
+	// On Monday the OPEN week has no protocol row yet (first interim ~17:32 UTC),
+	// so /translate/<open-week> returns {error: "Protocol not found"} and the
+	// dispatched workflow fails fast (runs #37/#46/#56 — every Monday 16:05).
+	// The just-CLOSED week's FINAL was regenerated minutes ago (16:00 cron,
+	// offset=1) and its ru/zh must be re-translated from the FINAL content —
+	// target that week instead.
+	const target = new Date(monday);
+	if (day === 1) target.setUTCDate(target.getUTCDate() - 7);
+	const weekToTranslate = target.toISOString().split("T")[0];
 
 	try {
 		const existing = await env.DB.prepare(
@@ -1690,7 +1698,9 @@ export default {
 				const week = pathMatch ? pathMatch[1] : weekParam;
 				if (!week) return json({ error: "Missing week parameter (YYYY-MM-DD format)" }, 400);
 				const result = await translateAndSaveProtocol(env, week);
-				return json(result, 200);
+				// A week without a protocol row must not look like success:
+				// the GitHub workflow gates on HTTP status via curl -f.
+				return json(result, result && result.error ? 404 : 200);
 			}
 			if (path === "/generate") {
 				const weekParam = url.searchParams.get("week");
