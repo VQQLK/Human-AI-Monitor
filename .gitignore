@@ -214,3 +214,4 @@ voices_backup_*.json
 
 # Local backups (do not commit)
 backups/
+diagnostics/
