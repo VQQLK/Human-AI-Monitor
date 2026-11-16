@@ -34,10 +34,10 @@ and Humanity.**
 ```mermaid
 xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
-    x-axis ["01/11", "08/11"]
-    y-axis "Score" 0.400 --> 0.873
-    bar [0.679, 0.823]
-    line [0.814, 0.700]
+    x-axis ["—"]
+    y-axis "Score" 0.400 --> 0.800
+    bar [0]
+    line [0]
 ```
 
 #### 📉 Gap Index Dynamics (Humanity minus AI)
@@ -45,9 +45,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["01/11", "08/11"]
-    y-axis "Gap" -0.185 --> 0.250
-    line [-0.135, 0.123]
+    x-axis ["—"]
+    y-axis "Gap" -0.150 --> 0.250
+    line [0]
 ```
 
 #### 📅 Daily Gap trajectory
@@ -55,30 +55,20 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["04/11", "05/11", "06/11", "07/11", "08/11", "10/11", "11/11", "12/11", "14/11", "15/11"]
-    y-axis "Gap" -0.380 --> 0.273
-    line [-0.271, -0.258, -0.280, -0.272, -0.269, -0.205, -0.246, -0.158, 0.148, 0.173]
+    x-axis ["14/11", "15/11"]
+    y-axis "Gap" 0.048 --> 0.273
+    line [0.148, 0.173]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
 | 15/11 | 0.647 | 0.820 | +0.173 | [−0.119, +0.481] | 868 | 637 | INTERIM |
 | 14/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
-| 12/11 | 0.805 | 0.647 | −0.158 | [−0.395, +0.089] | 541 | 506 | INTERIM |
-| 11/11 | 0.794 | 0.548 | −0.246 | [−0.510, +0.035] | 407 | 392 | INTERIM |
-| 10/11 | 0.774 | 0.569 | −0.205 | [−0.480, +0.086] | 253 | 251 | INTERIM |
-| 08/11 | 0.883 | 0.615 | −0.269 | [−0.469, −0.070] | 966 | 895 | INTERIM |
-| 07/11 | 0.870 | 0.598 | −0.272 | [−0.486, −0.059] | 849 | 804 | INTERIM |
-| 06/11 | 0.853 | 0.574 | −0.280 | [−0.496, −0.057] | 716 | 692 | INTERIM |
-| 05/11 | 0.827 | 0.569 | −0.258 | [−0.489, −0.017] | 565 | 542 | INTERIM |
-| 04/11 | 0.800 | 0.529 | −0.271 | [−0.516, −0.003] | 417 | 382 | INTERIM |
 
 #### 📚 Historical Protocols
 
 | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 08/11 | 0.700 | 0.823 | +0.123 | [−0.144, +0.393] | 987 | 918 | FINAL |
-| 01/11 | 0.814 | 0.679 | −0.135 | [−0.351, +0.102] | 838 | 730 | FINAL |
 
 > 📌 Interim (reference, not on chart): 15/11 — AI 0.647 · Humanity 0.820 · Gap +0.173 · 868 / 637 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
