@@ -629,7 +629,9 @@ done
 echo
 HEALTH=$(curl -s "$URL/health" 2>/dev/null)
 echo "$HEALTH" | grep -q '"status": "ok"' && ok "health.status = ok" || fail "health.status НЕ ok"
-echo "$HEALTH" | grep -q '"version": "1.0.2"' && ok "health.version = 1.0.2" || warn "health.version НЕ 1.0.2"
+# Версия воркера сверяется с package.json ниже (PKG_VER ↔ WRK_VER).
+# Устаревший хардкод "1.0.2" удалён (аудит-фикс 2026-11-16): дублирующая
+# проверка с жёсткой версией давала ложный WARN после bump до 1.1.0.
 
 # Проверка синхронизации версий package.json ↔ воркер
 PKG_VER=$(python3 -c "import json; print(json.load(open('package.json'))['version'])" 2>/dev/null || echo "")
@@ -833,13 +835,18 @@ fi
 hdr "ФАЗА 13: CRON И АВТОМАТИЗАЦИЯ"
 
 if [ -f "wrangler.jsonc" ]; then
-    CRON_COUNT=0
-    c1=$(safe_count '"0 13' wrangler.jsonc)
-    c2=$(safe_count '"15 13' wrangler.jsonc)
-    c3=$(safe_count '"30 13' wrangler.jsonc)
-    c4=$(safe_count '"45 13' wrangler.jsonc)
-    c5=$(safe_count '"0 23' wrangler.jsonc)
-    CRON_COUNT=$((c1 + c2 + c3 + c4 + c5))
+    # Аудит-фикс 2026-11-16: хардкод-паттерны старого расписания ("0 13" и т.п.)
+    # не совпадали ни с одним актуальным триггером и всегда давали WARN.
+    # Считаем триггеры из wrangler.jsonc напрямую (как repo_audit.py, фаза 8).
+    CRON_COUNT=$(python3 -c "
+import json, re
+try:
+    s = open('wrangler.jsonc').read()
+    s = re.sub(r'/\*.*?\*/', '', s, flags=re.S)
+    s = re.sub(r'^\s*//.*$', '', s, flags=re.M)
+    print(len(json.loads(s)['triggers']['crons']))
+except Exception:
+    print(0)" 2>/dev/null || echo 0)
     
     if [ "$CRON_COUNT" -ge 5 ]; then
         ok "Найдено $CRON_COUNT cron триггеров"
