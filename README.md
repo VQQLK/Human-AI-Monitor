@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 15, 2026  
-**Baseline:** Updated on November 15, 2026 — based on 868 items (sample size: 637).
+**Updated:** November 16, 2026  
+**Baseline:** Updated on November 16, 2026 — based on 876 items (sample size: 650).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-15) | Status |
+| Metric | Value (11-16) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.820** | Current value |
-| **🔴 AI Score** | 🤖 **0.647** | Current value |
-| **⚖️ Gap Index** | ⚖️ **+0.173** | Humanity is ahead |
-| **📊 CI95** | **[−0.119, +0.481]** | Inconclusive |
+| **🟢 Humanity Score** | 🌐 **0.810** | Current value |
+| **🔴 AI Score** | 🤖 **0.814** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.004** | Balanced |
+| **📊 CI95** | **[−0.220, +0.362]** | Inconclusive |
 | **⚡ Threshold Shifts** | **17** | Critical events detected |
-| **📈 Items Analyzed** | **868** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **637** | Axis-signal pairs |
+| **📈 Items Analyzed** | **876** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **650** | Axis-signal pairs |
 
 </div>
 
@@ -34,10 +34,10 @@ and Humanity.**
 ```mermaid
 xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
-    x-axis ["—"]
-    y-axis "Score" 0.400 --> 0.800
-    bar [0]
-    line [0]
+    x-axis ["15/11", "15/11"]
+    y-axis "Score" 0.400 --> 0.864
+    bar [0.810, 0.810]
+    line [0.814, 0.814]
 ```
 
 #### 📉 Gap Index Dynamics (Humanity minus AI)
@@ -45,9 +45,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Gap Index | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["—"]
+    x-axis ["15/11", "15/11"]
     y-axis "Gap" -0.150 --> 0.250
-    line [0]
+    line [-0.004, -0.004]
 ```
 
 #### 📅 Daily Gap trajectory
@@ -69,9 +69,7 @@ xychart-beta
 
 | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-
-> 📌 Interim (reference, not on chart): 15/11 — AI 0.647 · Humanity 0.820 · Gap +0.173 · 868 / 637 items.
-> Last point is INTERIM — will be replaced by FINAL on Monday.
+| 15/11 | 0.814 | 0.810 | −0.004 | [−0.220, +0.362] | 876 | 650 | FINAL |
 
 ---
 
