@@ -685,8 +685,8 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 		+ "gap_ci95_low, gap_ci95_high, gap_std, "
 		+ "ai_score_ci95_low, ai_score_ci95_high, "
 		+ "human_score_ci95_low, human_score_ci95_high, "
-		+ "sample_size, statistically_significant, method"
-		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+		+ "sample_size, statistically_significant, method, instrument"
+		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 	).bind(
 		range.start,
 		gapResult.aiScore, gapResult.humanScore, gapResult.gap,
@@ -695,7 +695,8 @@ export async function generateAndSaveProtocol(env: Env, offsetWeeks: number): Pr
 		gapResult.aiScoreCi95[0], gapResult.aiScoreCi95[1],
 		gapResult.humanScoreCi95[0], gapResult.humanScoreCi95[1],
 		gapResult.sampleSize, gapResult.statisticallySignificant ? 1 : 0,
-		gapResult.method
+		gapResult.method,
+		JSON.stringify(gapResult.instrument)
 	).run();
 
 	// Persist daily snapshot (is_interim = 0, FINAL)
@@ -803,8 +804,8 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 		+ "gap_ci95_low, gap_ci95_high, gap_std, "
 		+ "ai_score_ci95_low, ai_score_ci95_high, "
 		+ "human_score_ci95_low, human_score_ci95_high, "
-		+ "sample_size, statistically_significant, method"
-		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+		+ "sample_size, statistically_significant, method, instrument"
+		+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 	).bind(
 		range.start,
 		gapResult.aiScore, gapResult.humanScore, gapResult.gap,
@@ -813,7 +814,8 @@ async function generateInterimProtocol(env: Env, offsetWeeks: number): Promise<a
 		gapResult.aiScoreCi95[0], gapResult.aiScoreCi95[1],
 		gapResult.humanScoreCi95[0], gapResult.humanScoreCi95[1],
 		gapResult.sampleSize, gapResult.statisticallySignificant ? 1 : 0,
-		gapResult.method
+		gapResult.method,
+		JSON.stringify(gapResult.instrument)
 	).run();
 
 	// Persist daily snapshot (is_interim = 1, INTERIM)
@@ -1159,6 +1161,9 @@ export default {
 			if (path === "/gap") {
 				const row: any = await env.DB.prepare("SELECT * FROM gap_history ORDER BY recorded_at DESC LIMIT 1").first();
 				if (!row) return json({ error: "No gap data" }, 404);
+				if (typeof row.instrument === "string") {
+					try { row.instrument = JSON.parse(row.instrument); } catch { /* keep raw */ }
+				}
 				return json(row, 200);
 			}
 			if (path === "/daily-snapshots") {

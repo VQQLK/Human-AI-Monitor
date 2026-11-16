@@ -19,6 +19,13 @@ export const PI_TABLE: Record<string, Record<string, number>> = {
   uncertain: { up:  0.0, stable:  0.0, down:  0.0, uncertain:  0.0 },
 };
 
+// ----- Voice table version -----------------------------------
+// Any change to PI_TABLE MUST bump PI_VERSION and document the change in
+// bayesian_framework.md §3.4. gap_history rows store pi_version; weeks
+// computed under an older version are NOT retroactively recomputed
+// (project decision 2026-11-16).
+export const PI_VERSION = "2026-11-15-v2";
+
 // ----- Jeffreys prior (non-informative) ---------------------
 export const ALPHA_0 = 0.5;
 export const BETA_0 = 0.5;

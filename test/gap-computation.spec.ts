@@ -180,3 +180,43 @@ describe("computeGapIndex (Bayesian)", () => {
     expect(a.gapCi95).toEqual(b.gapCi95);
   });
 });
+
+// ------------------------------------------------------------------
+// Instrument passport + prior-axis pruning (audit 2026-11-16, patch 1)
+// ------------------------------------------------------------------
+describe("computeGapIndex: instrument passport + prune", () => {
+  it("prior-only AI axis (smd, shift!=yes) is pruned from the aggregate", async () => {
+    const env = createMockEnv([
+      { axes: '["smd"]', relevance: 0.9, shift: "no", direction: "up" },
+      { axes: '["itq"]', relevance: 1.0, shift: "yes", direction: "up" },
+      { axes: '["h1_science"]', relevance: 0.5, shift: "yes", direction: "up" },
+    ]);
+    const r = await computeGapIndex(env, RANGE, mulberry32(11));
+    expect(r.instrument.axesAtPrior).toContain("smd");
+    expect(r.instrument.axesAtPrior).not.toContain("itq");
+    expect(r.instrument.axesInAggregate).toEqual({ ai: 1, human: 1 });
+    expect(r.instrument.effectiveVotes.ai).toBeCloseTo(1.0, 2);
+    expect(r.instrument.signalUtilization).toBeGreaterThan(0);
+    expect(r.instrument.piVersion).toBe("2026-11-15-v2");
+    expect(r.axisLevels["smd"]).toBe(0.5); // still recorded, just excluded from the aggregate
+  });
+
+  it("all-AI-prior fallback: side score = prior 0.5, gap well-defined (no NaN)", async () => {
+    const env = createMockEnv([
+      { axes: '["h1_science"]', relevance: 0.5, shift: "yes", direction: "up" },
+    ]);
+    const r = await computeGapIndex(env, RANGE, mulberry32(12));
+    expect(r.aiScore).toBeCloseTo(0.5, 1);
+    expect(r.gap).toBeCloseTo(r.humanScore - r.aiScore, 3);
+    expect(r.instrument.axesInAggregate.ai).toBe(0);
+  });
+
+  it("informed+prior mix renormalizes over informed axes only (regression: old code kept prior at 0.5)", async () => {
+    const env = createMockEnv([
+      { axes: '["smd"]', relevance: 0.9, shift: "no", direction: "up" },   // filtered -> prior -> pruned
+      { axes: '["itq"]', relevance: 1.0, shift: "yes", direction: "up" },  // alpha 1.5 -> level 0.75
+    ]);
+    const r = await computeGapIndex(env, RANGE, mulberry32(13));
+    expect(r.aiScore).toBeCloseTo(0.75, 1); // old behavior: ~0.607
+  });
+});

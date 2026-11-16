@@ -28,6 +28,9 @@ import {
   isSignificant,
   DEFAULT_MC_SAMPLES,
   cryptoRng,
+  ALPHA_0,
+  BETA_0,
+  PI_VERSION,
 } from './bayesian-gap';
 
 // ----- Result type ------------------------------------------
@@ -60,6 +63,19 @@ export interface GapResult {
   sampleSize: number;
   statisticallySignificant: boolean;
   method: 'bayesian';
+
+  // Instrument passport: how THIS week's aggregate was actually computed
+  // (audit 2026-11-16 §7). Persisted to gap_history.instrument (JSON).
+  instrument: {
+    axesDeclared: number;
+    axesInAggregate: { ai: number; human: number };
+    axesAtPrior: string[];
+    axesExcludedUnregistered: string[];
+    effectiveVotes: { ai: number; human: number };
+    signalUtilization: number;
+    filters: { autonomyAxes: string[]; autonomyRule: string };
+    piVersion: string;
+  };
 }
 
 // ----- Helpers ----------------------------------------------
@@ -154,19 +170,47 @@ export async function computeGapIndex(
   // Weights from src/config/weights.ts are applied to each axis.
   // This matches the documented formula: G = Σ(w_i * a_i) − Σ(w_j * h_j)
   // agg/hexad: exclude from aggregation, renormalize weights over registered axes
-  const registeredAiAxes = AI_AXES.filter(a => !UNREGISTERED_AXES.has(a));
-  const registeredHumanAxes = HUMAN_AXES.filter(a => !UNREGISTERED_AXES.has(a));
+  // Prune (audit 2026-11-16, variant (г)): an axis with ZERO net evidence
+  // (alpha and beta still exactly at the Jeffreys prior) does not participate
+  // in the aggregate; weights renormalize over informed axes only — the same
+  // mechanism as UNREGISTERED_AXES, but evidence-driven instead of name-based.
+  // Rationale: a prior-only axis at level 0.5 silently drags the side score
+  // toward 0.5 (week 2026-11-09: +0.168 of the +0.172 Gap came from smd and
+  // verification sitting at prior).
+  // Criterion is exact-zero, not a threshold: betaParamsFromSignals adds v
+  // only when v != 0, so alpha/beta stay exactly ALPHA_0/BETA_0 iff every
+  // signal contributed v = 0 (or was filtered out). No arbitrary cutoff.
+  const isInformed = (a: string): boolean => {
+    const p = posteriors[a];
+    return p.alpha > ALPHA_0 || p.beta > BETA_0;
+  };
+  const registeredAiAxes = AI_AXES.filter(a => !UNREGISTERED_AXES.has(a) && isInformed(a));
+  const registeredHumanAxes = HUMAN_AXES.filter(a => !UNREGISTERED_AXES.has(a) && isInformed(a));
+  const axesAtPrior = [...AI_AXES, ...HUMAN_AXES].filter(a => !UNREGISTERED_AXES.has(a) && !isInformed(a));
+  // Guard: a side with NO informed axes falls back to the prior itself
+  // (level 0.5) instead of dividing by zero; the passport flags it via
+  // axesInAggregate == 0.
+  const PRIOR_PARAMS: BetaParams = { alpha: ALPHA_0, beta: BETA_0 };
   const sumAiWeights = registeredAiAxes.reduce((s, a) => s + AI_WEIGHTS[a], 0);
   const sumHumanWeights = registeredHumanAxes.reduce((s, a) => s + HUMAN_WEIGHTS[a], 0);
-  const aiParams = registeredAiAxes.map(a => posteriors[a]);
-  const humanParams = registeredHumanAxes.map(a => posteriors[a]);
-  const aiWeights = registeredAiAxes.map(a => AI_WEIGHTS[a] / sumAiWeights);
-  const humanWeights = registeredHumanAxes.map(a => HUMAN_WEIGHTS[a] / sumHumanWeights);
+  const aiParams = registeredAiAxes.length ? registeredAiAxes.map(a => posteriors[a]) : [PRIOR_PARAMS];
+  const humanParams = registeredHumanAxes.length ? registeredHumanAxes.map(a => posteriors[a]) : [PRIOR_PARAMS];
+  const aiWeights = registeredAiAxes.length ? registeredAiAxes.map(a => AI_WEIGHTS[a] / sumAiWeights) : [1];
+  const humanWeights = registeredHumanAxes.length ? registeredHumanAxes.map(a => HUMAN_WEIGHTS[a] / sumHumanWeights) : [1];
   const run = sampleGapDistribution(aiParams, humanParams, mcSamples, rng, aiWeights, humanWeights);
 
   const aiSummary = summarize(run.aiSamples);
   const humanSummary = summarize(run.humanSamples);
   const gapSummary = summarize(run.gapSamples);
+
+  // 5b. Instrument passport (audit 2026-11-16 §7): publish HOW the aggregate
+  // was computed, so the Gap is never read without its machinery.
+  const netVotes = (a: string): number => {
+    const p = posteriors[a];
+    return (p.alpha - ALPHA_0) + (p.beta - BETA_0);
+  };
+  const aiNetVotes = registeredAiAxes.reduce((s, a) => s + netVotes(a), 0);
+  const humanNetVotes = registeredHumanAxes.reduce((s, a) => s + netVotes(a), 0);
 
   // 6. Interpretation and significance
   const interpretation = interpretGap(gapSummary.mean);
@@ -192,5 +236,18 @@ export async function computeGapIndex(
     sampleSize,
     statisticallySignificant: significant,
     method: 'bayesian',
+    instrument: {
+      axesDeclared: AI_AXES.length + HUMAN_AXES.length + META_AXES.length,
+      axesInAggregate: { ai: registeredAiAxes.length, human: registeredHumanAxes.length },
+      axesAtPrior,
+      axesExcludedUnregistered: [...UNREGISTERED_AXES],
+      effectiveVotes: { ai: round4(aiNetVotes), human: round4(humanNetVotes) },
+      signalUtilization: sampleSize > 0 ? round4((aiNetVotes + humanNetVotes) / sampleSize) : 0,
+      filters: {
+        autonomyAxes: [...AUTONOMY_AXES],
+        autonomyRule: 'AI-side autonomy axes: only signals with shift=yes vote',
+      },
+      piVersion: PI_VERSION,
+    },
   };
 }
