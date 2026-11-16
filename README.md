@@ -9,7 +9,7 @@ and Humanity.**
 ## 📊 Current State of Development
 
 **Updated:** November 16, 2026  
-**Baseline:** Updated on November 16, 2026 — based on 876 items (sample size: 650).
+**Baseline:** Updated on November 16, 2026 — based on 889 items (sample size: 652).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
@@ -17,13 +17,13 @@ and Humanity.**
 
 | Metric | Value (11-16) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.810** | Current value |
+| **🟢 Humanity Score** | 🌐 **0.811** | Current value |
 | **🔴 AI Score** | 🤖 **0.814** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.004** | Balanced |
-| **📊 CI95** | **[−0.220, +0.362]** | Inconclusive |
+| **⚖️ Gap Index** | ⚖️ **−0.003** | Balanced |
+| **📊 CI95** | **[−0.219, +0.363]** | Inconclusive |
 | **⚡ Threshold Shifts** | **17** | Critical events detected |
-| **📈 Items Analyzed** | **876** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **650** | Axis-signal pairs |
+| **📈 Items Analyzed** | **889** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **652** | Axis-signal pairs |
 
 </div>
 
@@ -36,7 +36,7 @@ xychart-beta
     title "🟢 Humanity (bars) vs 🔴 AI (line) | History"
     x-axis ["15/11", "15/11"]
     y-axis "Score" 0.400 --> 0.864
-    bar [0.810, 0.810]
+    bar [0.811, 0.811]
     line [0.814, 0.814]
 ```
 
@@ -47,7 +47,7 @@ xychart-beta
     title "Gap Index | Positive = Humanity leading, Negative = AI leading"
     x-axis ["15/11", "15/11"]
     y-axis "Gap" -0.150 --> 0.250
-    line [-0.004, -0.004]
+    line [-0.003, -0.003]
 ```
 
 #### 📅 Daily Gap trajectory
@@ -69,7 +69,7 @@ xychart-beta
 
 | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
-| 15/11 | 0.814 | 0.810 | −0.004 | [−0.220, +0.362] | 876 | 650 | FINAL |
+| 15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 889 | 652 | FINAL |
 
 ---
 
@@ -78,6 +78,96 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Nvidia — 2026-11-16**
+
+> Trump heads to Asia to meet with Xi and Putin amid Nvidia fallout
+
+— *[NPR — World](https://www.npr.org/2026/11/16/nx-s1-6041738/trump-xi-and-putin-china-nvidia)*
+
+**Nvidia — 2026-11-16**
+
+> Elon Musk joins 'Bring Jensen Back' campaign to reinstate the ex-Nvidia boss
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cry49plv8v3go?at_medium=RSS&at_campaign=rss)*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-16**
+
+> Elon Musk joins 'Bring Jensen Back' campaign to reinstate the ex-Nvidia boss
+
+— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cry49plv8v3go?at_medium=RSS&at_campaign=rss)*
+
+**Nvidia — 2026-11-16**
+
+> Nvidia’s Days as an Open Checkbook for the AI Economy Are Numbered
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/nvidias-days-as-an-open-checkbook-for-the-ai-economy-are-numbered-90c7b388?mod=rss_Technology)*
+
+**Nvidia — 2026-11-15**
+
+> Bessent Urges Nvidia to Pick Outsider as Next CEO
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/bessent-urges-nvidia-to-pick-outsider-as-next-ceo-f9d21a83?mod=rss_Technology)*
+
+**Nvidia — 2026-11-16**
+
+> Trump Administration to Name Nvidia Among AI ‘National Champions’
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/trump-administration-to-name-nvidia-among-ai-national-champions-c9284344?mod=rss_Technology)*
+
+**Jensen Huang (Nvidia) — 2026-11-16**
+
+> The Campaign to Bring Back Jensen Huang as Nvidia CEO
+
+— *[WSJ — Tech](https://www.wsj.com/tech/the-campaign-to-bring-back-jensen-huang-as-nvidia-ceo-e91b0b2c?mod=rss_Technology)*
+
+**Jensen Huang (Nvidia) — 2026-11-16**
+
+> Nvidia CEO Ouster Reverberates Globally
+
+— *[WSJ — Tech](https://www.wsj.com/cio-journal/nvidia-ceo-ouster-reverberates-globally-c882938d?mod=rss_Technology)*
+
+**Jensen Huang (Nvidia) — 2026-11-15**
+
+> Is bad news for Jensen Huang also bad news for the AI industry?
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/15/is-bad-news-for-jensen-huang-also-bad-news-for-the-ai-industry/)*
+
+**Google — 2026-11-16**
+
+> Google Maps can now build trip itineraries with real-time details about each stop
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/16/google-maps-can-now-build-trip-itineraries-with-real-time-details-about-each-stop/)*
+
+**Jensen Huang (Nvidia) — 2026-11-15**
+
+> Megaspeed says Alice Huang left in 2025 as company conducts internal probe over Nvidia fallout
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/megaspeed-alice-huang-nvidia-jensen-huang-china/)*
+
+**Jensen Huang (Nvidia) — 2026-11-16**
+
+> Live updates: Trump heads to Asia, backs calls for Huang's reinstatement amid Nvidia scandal
+
+— *[The Hill — Policy](https://thehill.com/policy/transportation/6221658-live-updates-duffy-faa-outage-nvidia-trump-democrats-senate-leadership-battle/)*
+
+**OpenAI — 2026-11-16**
+
+> More ways to move care forward with ChatGPT for Healthcare
+
+— *[OpenAI Blog](https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare)*
+
+**OpenAI — 2026-11-16**
+
+> LVMH’s Media Division announces strategic partnership with OpenAI
+
+— *[OpenAI Blog](https://openai.com/index/lvmh-media-division-partnership)*
+
+**OpenAI — 2026-11-16**
+
+> The King’s Trust and OpenAI launch £1m partnership
+
+— *[OpenAI Blog](https://openai.com/index/the-kings-trust-and-openai)*
 
 **Microsoft — 2026-11-13**
 
@@ -282,96 +372,6 @@ xychart-beta
 > ChatGPT Wallet lets OpenAI’s Dots agents make purchases for you
 
 — *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1033425/openai-chatgpt-wallet)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> What’s really at stake in the Jensen Huang saga
-
-— *[The Verge — AI](https://www.theverge.com/podcast/1032866/jensen-huang-nvidia-china-trump-vergecast)*
-
-**Jensen Huang (Nvidia) — 2026-11-14**
-
-> Jensen Huang and the decline of the visionary showman founder CEO
-
-— *[The Verge — AI](https://www.theverge.com/tech/1033781/nvidia-jensen-huang-last-visionary-showman-founder-ceo)*
-
-**OpenAI — 2026-11-13**
-
-> Introducing ChatGPT Wallet
-
-— *[OpenAI Blog](https://openai.com/index/introducing-chatgpt-wallet)*
-
-**OpenAI — 2026-11-13**
-
-> Shield helps technicians hand off legacy portal work with OpenAI
-
-— *[OpenAI Blog](https://openai.com/business/customer-stories/shield)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> The Jensen Huang Scandal Should Change Everything
-
-— *[The Atlantic](https://www.theatlantic.com/international/2026/11/nvidia-affair-chips-china/689417/?utm_source=feed)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> The AI boom will survive without Jensen Huang, but there's a $500 billion funding hole to fill
-
-— *[Axios](https://www.axios.com/2026/11/13/ai-boom-without-jensen-huang-nvidia)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> Nvidia CEO steps down. And, Sen. Chris Van Hollen to run for majority leader
-
-— *[NPR — World](https://www.npr.org/2026/11/13/g-s1-153532/up-first-newsletter-nvidia-jensen-huang-colette-kress-ukraine-russia-chris-van-hollen)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> [AINews] Jensen Huang resigns after 33 years leading NVIDIA
-
-— *[Latent Space](https://latent.space/p/ainews-jensen-huang-resigns-after-33-years-leading-nvidia/)*
-
-**Microsoft — 2026-11-13**
-
-> Eye Opener: Microsoft Outlook email outage
-
-— *[CBS News — Technology](https://www.cbsnews.com/video/eye-opener-microsoft-outlook-email-outage/)*
-
-**Microsoft — 2026-11-13**
-
-> Widespread Microsoft 365 outage continues, impacting email and other services
-
-— *[CBS News — Technology](https://www.cbsnews.com/video/widespread-microsoft-365-outage-continues-impacting-email-and-other-services/)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> Former Nvidia CEO Jensen Huang willing to appear before Congress amid probe into alleged spy affair
-
-— *[CBS News — Technology](https://www.cbsnews.com/video/former-nvidia-ceo-jensen-huang-willing-to-appear-before-congress-amid-probe-into-alleged-spy-affair/)*
-
-**Microsoft — 2026-11-13**
-
-> Microsoft seeing "continued recovery" amid major worldwide outage
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/microsoft-battling-major-outage/)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Who is interim Nvidia CEO Colette Kress?
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6216664-nvidia-interim-ceo-colette-kress-jensen-huang-resignation-affairs/)*
-
-**Microsoft — 2026-11-13**
-
-> Microsoft 'seeing encouraging recovery progress' in global Outlook, Teams outage
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/6218199-microsoft-outage-recovery-process/)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Jensen Huang agrees to testify before Congress
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/12/jensen-huang-agrees-to-testify-01162650)*
 
 ### 🧪 AI Researchers
 
