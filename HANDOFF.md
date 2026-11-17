@@ -7,7 +7,7 @@
 ## 1. Project overview
 
 Cloudflare Worker that:
-- Collects RSS signals from 59 sources (34 AI + 25 Human)
+- Collects RSS signals from 65 sources (30 AI + 35 Human)
 - Classifies items via LLM (@cf/qwen/qwen3-30b-a3b-fp8)
 - Computes Bayesian Gap Index: Gap = Human_score − AI_score
 - Exposes API: /gap, /axes-history, /protocols, /health, /classify, /voices, /backfill-voices
@@ -41,15 +41,16 @@ Deploy: push to main → workflows → sync-protocols.yml updates README.
 | src/services/voices.ts            | extractVoice() + saveVoice()                 |
 | src/config/generated/voices.ts    | Auto-generated from voices.yaml              |
 | migrations/0014_voices.sql        | D1 migration: voices table                   |
+| migrations/0018_gap_instrument.sql | D1 migration: instrument passport (audit fix) |
 | HANDOFF.md                        | This file                                    |
 
 ## 3. Current state
 
-- HEAD: e12b9b7 (fix: minimal solution — Gap sign, weights canon, no.stable=+0.3, Human prompt, autonomy axes; last verified 2026-11-13)
-- **Baseline: 149 checks — 148 PASS / 1 WARN / 0 FAIL** (WARN = transient axis coverage, e.g. `hexad`; always verify via `bash scripts/run-audit.sh`)
+- HEAD: 9b9286b (fix: minimal solution — Gap sign, weights canon, no.stable=+0.3, Human prompt, autonomy axes; last verified 2026-11-13)
+- **Baseline: 148 checks — 146 PASS / 2 WARN / 0 FAIL** (WARN = transient axis coverage, e.g. `hexad`; always verify via `bash scripts/run-audit.sh`)
 - Audit script version: **v4.9** (15 phases; Phase 15 = math verification)
 - Math verification: **20/20 PASS** (see §14; runs inside audit as Phase 15)
-- Sources: 60 (30 AI + 30 Human)
+- Sources: 65 (30 AI + 35 Human)
 - Axes: 13 (6 AI + 6 Human + 1 META)
 - Source languages: en + ru (TASS) + zh (FT Chinese)
 - Batch capacity per run: 60 (planned: 59)
@@ -196,8 +197,9 @@ The bot pushed README — rebase resolves cleanly.
 
 | Time                          | What                              |
 | ----------------------------- | --------------------------------- |
-| 15:00, 15:15, 15:30, 15:45    | Daytime collection (4 batches)    |
+| 15:00, 15:15, 15:30           | Daytime collection (3 batches)    |
 | 16:00                         | Evening collection + protocol     |
+| 16:05                         | 4th batch (dispatch)              |
 | 16:00 Tue-Sun                 | Daily interim protocol            |
 | 16:00 Mon                     | Weekly FINAL protocol             |
 | 16:05 (worker dispatch)       | translate + sync (handleDedicatedDispatch, 2 fetch) |
@@ -422,6 +424,8 @@ accumulates.
 | Equal-tailed CI | Empirical quantiles (not normal approx) | Correct for U-shaped Beta |
 | Two-sided significance | CI95 does not contain 0 | Bayesian credible interval test |
 | Weight validation | Sum = 1.0, each ∈ (0, 1) | Fail-fast at module load |
+| Prune rule | Axes with zero net evidence (alpha=beta=0.5) excluded | Evidence-driven (isInformed) |
+| Instrument passport | Published in /gap and gap_history | `instrument` JSON object |
 
 All eight components are mathematically sound. No errors were found.
 
@@ -676,7 +680,7 @@ If count is 0 but items exist, check `extractVoice()` logic — name-in-title is
 
 ## 16. Voices feature (automated quote extraction)
 
-Extracts curated mentions from 61 speakers (AI lab leaders, researchers, investors, **14 AI companies**; policy category emptied 2026-10-08) when they are named in news headlines. Includes CJK frontier labs (DeepSeek, Moonshot, Qwen, Zhipu, ByteDance, MiniMax, Tencent).
+Extracts curated mentions from 63 speakers (AI lab leaders, researchers, investors, **14 AI companies**; policy category emptied 2026-10-08) when they are named in news headlines. Includes CJK frontier labs (DeepSeek, Moonshot, Qwen, Zhipu, ByteDance, MiniMax, Tencent).
 
 ### Critical extraction logic (DO NOT CHANGE WITHOUT REVIEW)
 

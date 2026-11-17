@@ -236,7 +236,7 @@ The table `π(σ, d) ∈ [−1, 1]`:
 - `(yes, down) = −1.0` — full evidence of decline: the shift is confirmed and the direction is negative.
 - `(yes, stable) = +0.5` — shift present, direction undefined; half in favor of growth (conservative).
 - `(no, up/down) = ±0.3` — no shift, but a trend exists; weak evidence (30% of full).
-- `(no, stable) = 0.0` — nothing is happening.
+- `(no, stable) = +0.3` — nothing is happening.
 - `(uncertain, *) = 0.0` — under uncertainty the signal does not vote (the "do no harm" principle).
 
 The scale `{1.0, 0.5, 0.3, 0.0}` is expert-based and open to calibration. Unlike the v1 multipliers, it is:
