@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 16, 2026  
-**Baseline:** Updated on November 16, 2026 — based on 889 items (sample size: 652).
+**Updated:** November 17, 2026  
+**Baseline:** Updated on November 17, 2026 — based on 296 items (sample size: 221).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-16) | Status |
+| Metric | Value (11-17) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.811** | Current value |
-| **🔴 AI Score** | 🤖 **0.814** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.003** | Balanced |
-| **📊 CI95** | **[−0.219, +0.363]** | Inconclusive |
-| **⚡ Threshold Shifts** | **17** | Critical events detected |
-| **📈 Items Analyzed** | **889** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **652** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.664** | Current value |
+| **🔴 AI Score** | 🤖 **0.753** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.089** | AI is ahead |
+| **📊 CI95** | **[−0.378, +0.257]** | Inconclusive |
+| **⚡ Threshold Shifts** | **5** | Critical events detected |
+| **📈 Items Analyzed** | **296** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **221** | Axis-signal pairs |
 
 </div>
 
@@ -55,13 +55,14 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["14/11", "15/11"]
-    y-axis "Gap" 0.048 --> 0.273
-    line [0.148, 0.173]
+    x-axis ["14/11", "15/11", "17/11"]
+    y-axis "Gap" -0.189 --> 0.273
+    line [0.148, 0.173, -0.089]
 ```
 
 | Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|
+| 17/11 | 0.753 | 0.664 | −0.089 | [−0.378, +0.257] | 296 | 221 | INTERIM |
 | 15/11 | 0.647 | 0.820 | +0.173 | [−0.119, +0.481] | 868 | 637 | INTERIM |
 | 14/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
 
@@ -71,6 +72,9 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 889 | 652 | FINAL |
 
+> 📌 Interim (reference, not on chart): 17/11 — AI 0.753 · Humanity 0.664 · Gap −0.089 · 296 / 221 items.
+> Last point is INTERIM — will be replaced by FINAL on Monday.
+
 ---
 
 
@@ -78,6 +82,150 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Jensen Huang (Nvidia) — 2026-11-17**
+
+> Jensen Huang | AI rainmaker meets his Waterloo
+
+— *[The Hindu — International](https://www.thehindu.com/sci-tech/technology/jensen-huang-ai-rainmaker-meets-his-waterloo/article71702817.ece)*
+
+**Nvidia — 2026-11-17**
+
+> U.S. blocks China’s remote access to AI chips after Nvidia scandal; China slams move
+
+— *[The Hindu — International](https://www.thehindu.com/news/international/us-blocks-chinas-remote-access-to-ai-chips-after-nvidia-scandal-china-slams-move/article71711869.ece)*
+
+**Jensen Huang (Nvidia) — 2026-11-17**
+
+> Trump is in Asia ahead of Xi, Putin summit. And, tech leaders want Huang back at Nvidia
+
+— *[NPR — World](https://www.npr.org/2026/11/17/g-s1-153950/up-first-newsletter-faa-ground-stop-trump-asia-trip-nvidia-lindsay-clancy)*
+
+**Jensen Huang (Nvidia) — 2026-11-17**
+
+> Alice Huang’s Husband Built a Data-Center Empire Backed by the Chinese State
+
+— *[WSJ — Tech](https://www.wsj.com/world/china/alice-huangs-husband-built-a-data-center-empire-backed-by-the-chinese-state-78389c9a?mod=rss_Technology)*
+
+**Nvidia — 2026-11-17**
+
+> How Nvidia’s Board Made Billions While Overseeing the Company
+
+— *[WSJ — Tech](https://www.wsj.com/business/how-nvidias-board-made-billions-while-overseeing-the-company-0473818c?mod=rss_Technology)*
+
+**Jensen Huang (Nvidia) — 2026-11-16**
+
+> Trump says ex-Nvidia CEO Jensen Huang’s affair with an alleged Chinese spy did not threaten national security
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/16/trump-says-ex-nvidia-ceo-jensen-huangs-affair-with-an-alleged-chinese-spy-did-not-threaten-national-security/)*
+
+**Jensen Huang (Nvidia) — 2026-11-16**
+
+> Sam Altman on Nvidia without Jensen Huang: The industry will be ‘fine’
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/16/sam-altman-on-nvidia-without-jensen-huang-the-industry-will-be-fine/)*
+
+**Sam Altman (OpenAI) — 2026-11-16**
+
+> Sam Altman on Nvidia without Jensen Huang: The industry will be ‘fine’
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/16/sam-altman-on-nvidia-without-jensen-huang-the-industry-will-be-fine/)*
+
+**Nvidia — 2026-11-16**
+
+> All the questions Nvidia should answer on Tuesday — but probably won’t
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/16/all-the-questions-nvidia-should-answer-on-tuesday-but-probably-wont/)*
+
+**OpenAI — 2026-11-16**
+
+> California state AG sues OpenAI over rogue agent incidents
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/)*
+
+**Jensen Huang (Nvidia) — 2026-11-17**
+
+> Nvidia’s first big move after Jensen Huang’s exit targets national security
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/17/nvidias-first-big-move-after-jensen-huangs-exit-targets-national-security/)*
+
+**Perplexity AI — 2026-11-17**
+
+> [AINews] Perplexity hits a $1B revenue run rate, up 4x in 2026
+
+— *[Latent Space](https://latent.space/p/ainews-perplexity-hits-a-1b-revenue-run-rate-up-4x-in-2026/)*
+
+**Nvidia — 2026-11-17**
+
+> Why Neither Trump Nor Xi Is Likely to Raise Nvidia at Their Summit
+
+— *[WSJ — World News](https://www.wsj.com/world/china/why-neither-trump-nor-xi-is-likely-to-raise-nvidia-at-their-summit-5b93bc1a?mod=rss_worldnews)*
+
+**Jensen Huang (Nvidia) — 2026-11-17**
+
+> Jensen Huang Really Liked Selling China Advanced AI Chips
+
+— *[LessWrong — AI](https://www.lesswrong.com/posts/T3oJfyHEy6uLEJ9FB/jensen-huang-really-liked-selling-china-advanced-ai-chips)*
+
+**xAI — 2026-11-17**
+
+> Grok Bot took unapproved actions, ignored orders to stop, and then denied it
+
+— *[Ars Technica — AI](https://arstechnica.com/security/2026/11/grok-bot-took-unapproved-actions-ignored-orders-to-stop-and-then-denied-it/)*
+
+**Google — 2026-11-16**
+
+> Google Maps can now create trip itineraries for you
+
+— *[The Verge — AI](https://www.theverge.com/tech/1034110/google-ask-maps-ai-trip-planning)*
+
+**Jensen Huang (Nvidia) — 2026-11-16**
+
+> Nvidia’s board is reportedly ‘not considering’ hiring Jensen Huang back
+
+— *[The Verge — AI](https://www.theverge.com/tech/1034501/nvidia-board-jensen-huang-not-bringing-back)*
+
+**OpenAI — 2026-11-16**
+
+> OpenAI wants to stop deepfakes from overwhelming child abuse tiplines
+
+— *[The Verge — AI](https://www.theverge.com/policy/1034527/openai-csam-classifier)*
+
+**OpenAI — 2026-11-16**
+
+> California sues OpenAI over rogue AI hacking incidents
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1034815/california-openai-hugging-face-lawsuit)*
+
+**Jensen Huang (Nvidia) — 2026-11-16**
+
+> Tech leaders are convinced that Jensen Huang’s exit was a plot against him
+
+— *[The Verge — AI](https://www.theverge.com/tech/1035027/tech-leaders-nvidia-jensen-huang-theories)*
+
+**Sam Altman (OpenAI) — 2026-11-16**
+
+> Sam Altman says he wants everyone ‘to have a lot of RAM’
+
+— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1034787/sam-altman-ram-shortage-semafor)*
+
+**Jensen Huang (Nvidia) — 2026-11-16**
+
+> The open-source movement wants Jensen Huang back
+
+— *[MIT Technology Review — AI](https://www.technologyreview.com/2026/11/16/1148624/the-open-source-movement-wants-jensen-huang-back/)*
+
+**OpenAI — 2026-11-17**
+
+> Introducing OpenAI for Chile
+
+— *[OpenAI Blog](https://openai.com/index/introducing-openai-for-chile)*
+
+**OpenAI — 2026-11-16**
+
+> at the Frontier: How scientists use ChatGPT
+
+— *[OpenAI Blog](https://openai.com/index/science-at-the-frontier)*
 
 **Nvidia — 2026-11-16**
 
@@ -234,152 +382,6 @@ xychart-beta
 > Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang
 
 — *[TechCrunch AI](https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/)*
-
-**Jensen Huang (Nvidia) — 2026-11-14**
-
-> Asian governments react to Nvidia CEO Jensen Huang’s exit
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/)*
-
-**Jensen Huang (Nvidia) — 2026-11-14**
-
-> Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/)*
-
-**Nvidia — 2026-11-15**
-
-> Where was Nvidia’s security team?
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/)*
-
-**Jensen Huang (Nvidia) — 2026-11-15**
-
-> Here's how Jensen Huang's abrupt resignation unfolded at Nvidia
-
-— *[CBS News — Technology](https://www.cbsnews.com/news/jensen-huang-nvidia-resignation-scandal-timeline/)*
-
-**Jensen Huang (Nvidia) — 2026-11-15**
-
-> An overview of Jensen Huang’s messy days
-
-— *[The Verge — AI](https://www.theverge.com/column/1033943/jensen-huang-nvidia-china-spying-scandal-resignation)*
-
-**Mistral AI — 2026-09-10**
-
-> Cloudera and Mistral Partner to Bring Specialized, Sovereign Intelligence to Enterprise Data
-
-— *[Mistral AI](https://mistral.ai/news/mistral-x-cloudera/)*
-
-**Mistral AI — 2026-09-16**
-
-> Mistral and Mozilla are bringing open, private and multilingual AI to your web browser
-
-— *[Mistral AI](https://mistral.ai/news/mistral-x-mozilla/)*
-
-**Mistral AI — 2026-10-06**
-
-> Introducing Mistral Large 4
-
-— *[Mistral AI](https://mistral.ai/news/mistral-large-4/)*
-
-**Mistral AI — 2026-10-21**
-
-> Mistral Advances AI for Engineering with NVIDIA
-
-— *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering/)*
-
-**Nvidia — 2026-10-21**
-
-> Mistral Advances AI for Engineering with NVIDIA
-
-— *[Mistral AI](https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering/)*
-
-**Sam Altman (OpenAI) — 2026-11-14**
-
-> The OpenAI board member who fired Sam Altman says we still can’t trust AI CEOs
-
-— *[The Verge — AI](https://www.theverge.com/podcast/1032907/helen-toner-openai-cset-ai-safety-policy-interview)*
-
-**Nvidia — 2026-11-13**
-
-> Nvidia's interim CEO inherits risky AI bets and a legal mess
-
-— *[NPR — World](https://www.npr.org/2026/11/13/nx-s1-6038868/nvidia-interim-ceo-colette-kress-ai-bets-investigation-lutnick)*
-
-**Jensen Huang (Nvidia) — 2026-11-14**
-
-> What Jensen Huang’s Downfall Means for Big Tech
-
-— *[WSJ — Tech](https://www.wsj.com/tech/what-jensen-huangs-downfall-means-for-big-tech-9e6ca5df?mod=rss_Technology)*
-
-**Jensen Huang (Nvidia) — 2026-11-12**
-
-> Democrats launch Nvidia investigation, write scathing letter on Huang’s ‘scheme’ with Trump
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/12/democrats-launch-nvidia-investigation-write-scathing-letter-on-huangs-scheme-with-trump/)*
-
-**Nvidia — 2026-11-13**
-
-> Israel’s VCs see opportunity for challengers in Nvidia’s turmoil
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/13/israels-vcs-see-opportunity-for-challengers-in-nvidias-turmoil/)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> Jensen Huang didn’t show confidence in his successor, report says
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/13/jensen-huang-didnt-show-confidence-in-his-successor-report-says/)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> Jensen Huang’s departure blasts big hole in AI startup funding, VCs and founders say
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/13/jensen-huangs-departure-blasts-big-hole-in-ai-startup-funding-vcs-and-founders-say/)*
-
-**Nvidia — 2026-11-13**
-
-> Export-banned Nvidia chips are behind China’s most powerful AI models — uh-oh, Jensen!
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/13/export-banned-nvidia-chips-are-behind-chinas-most-powerful-ai-models-uh-oh-jensen/)*
-
-**OpenAI — 2026-11-13**
-
-> ChatGPT’s new Wallet lets AI agents shop and check out for you
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> The unfolding Jensen Huang scandal: a timeline
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/13/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/)*
-
-**Nvidia — 2026-11-14**
-
-> Behind the Nvidia Affair Sits a Vast Chinese Spying Machine
-
-— *[WSJ — World News](https://www.wsj.com/world/nvidia-china-espionage-spy-hacking-ai-174c366b?mod=rss_worldnews)*
-
-**Jensen Huang (Nvidia) — 2026-11-14**
-
-> Silicon Valley plots Jensen Huang’s comeback
-
-— *[Politico — Technology](https://www.politico.com/news/2026/11/13/silicon-valley-plots-jensen-huangs-comeback-01166322)*
-
-**OpenAI — 2026-11-13**
-
-> ChatGPT Wallet lets OpenAI’s Dots agents make purchases for you
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1033425/openai-chatgpt-wallet)*
-
-### 🧪 AI Researchers
-
-**Paul Christiano — 2026-11-13**
-
-> For most people in this room, the most likely reason they will die is because of an AI accident.
-
-— *[Fast Company (Hinton Lectures 2026)](https://www.fastcompany.com/91642227/openai-board-member-terrifying-prediction-you-will-die-from-ai-accident-chatgpt)*
 
 ## What is this
 
