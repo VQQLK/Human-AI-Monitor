@@ -50,6 +50,8 @@ STRINGS = {
         "voices_header": "Voices",
         "daily_header": "#### 📅 Daily Gap trajectory",
         "daily_col_date": "Date",
+        "daily_col_week": "Week",
+        "daily_legend": "> ● = weekly FINAL (closed week); other points — INTERIM accumulation. A week change between adjacent dates is not a daily move.",
         "daily_col_ci": "CI95",
     },
     "ru": {
@@ -76,6 +78,8 @@ STRINGS = {
         "voices_header": "Мнения",
         "daily_header": "#### 📅 Ежедневная траектория разрыва",
         "daily_col_date": "Дата",
+        "daily_col_week": "Неделя",
+        "daily_legend": "> ● = итог недели (FINAL, закрытая неделя); остальные точки — накопление (INTERIM). Смена недели между соседними датами не является суточным изменением.",
         "daily_col_ci": "CI95",
     },
     "zh": {
@@ -102,6 +106,8 @@ STRINGS = {
         "voices_header": "声音",
         "daily_header": "#### 📅 每日差距轨迹",
         "daily_col_date": "日期",
+        "daily_col_week": "周",
+        "daily_legend": "> ● = 周终值（FINAL，已结束的周）；其余点为临时累积（INTERIM）。相邻日期之间的周切换不是单日变化。",
         "daily_col_ci": "CI95",
     },
 }
@@ -282,7 +288,8 @@ def build_daily_mermaid(snapshots, lang):
         return None
     # Use the already-limited interims list (10 days); no extra slice.
     rows = sorted(interims, key=lambda s: s["snapshot_date"])
-    labels = [week_end_to_ddmm(s["snapshot_date"]) for s in rows]
+    labels = [week_end_to_ddmm(s["snapshot_date"]) + (" ●" if s.get("is_interim") == 0 else "")
+              for s in rows]
     gaps = [s["gap"] for s in rows]
     gap_line = ", ".join(f"{g:.3f}" for g in gaps)
     x_axis = ", ".join(f'"{l}"' for l in labels)
@@ -312,10 +319,10 @@ def build_daily_table(snapshots, lang):
         return ""
     L = STRINGS[lang]
     rows = sorted(interims, key=lambda s: s["snapshot_date"], reverse=True)[:10]
-    header = (f"| {L['daily_col_date']} | {L['hist_col_ai']} | {L['hist_col_human']} "
+    header = (f"| {L['daily_col_date']} | {L['daily_col_week']} | {L['hist_col_ai']} | {L['hist_col_human']} "
               f"| {L['hist_col_gap']} | {L['daily_col_ci']} "
               f"| {L['hist_col_items']} | {L['hist_col_sample']} | {L['hist_col_type']} |")
-    sep = "|---|---|---|---|---|---|---|---|"
+    sep = "|---|---|---|---|---|---|---|---|---|"
     lines = [header, sep]
     for s in rows:
         ci_lo = s.get("gap_ci95_low")
@@ -327,8 +334,10 @@ def build_daily_table(snapshots, lang):
         gap = fmt_gap(s["gap"]) if s.get("gap") is not None else "—"
         items = s.get("items_count") if s.get("items_count") is not None else "—"
         sample = s.get("sample_size") if s.get("sample_size") is not None else "—"
-        typ = L["type_interim"] if s["is_interim"] == 1 else L["type_final"]
-        lines.append(f"| {date_lbl} | {ai} | {human} | {gap} | {ci} | {items} | {sample} | {typ} |")
+        typ = L["type_interim"] if s["is_interim"] == 1 else L["type_final"] + " ●"
+        ws = s.get("week_start"); we = s.get("week_end")
+        wk = (week_end_to_ddmm(ws) + "–" + week_end_to_ddmm(we)) if ws and we else "—"
+        lines.append(f"| {date_lbl} | {wk} | {ai} | {human} | {gap} | {ci} | {items} | {sample} | {typ} |")
     return "\n".join(lines)
 
 
@@ -581,7 +590,7 @@ def update_readme(path, lang, weeks, snapshots=None, voices=None, dry=False):
     daily_table_md = build_daily_table(snapshots or [], lang)
     blocks = []
     if daily_md:
-        daily_parts = [f"{L['daily_header']}\n\n{daily_md}"]
+        daily_parts = [f"{L['daily_header']}\n\n{daily_md}\n\n{L['daily_legend']}"]
         if daily_table_md:
             daily_parts.append(daily_table_md)
         blocks.append("\n\n".join(daily_parts).rstrip())

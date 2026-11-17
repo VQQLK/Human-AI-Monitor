@@ -55,17 +55,19 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["14/11", "15/11", "16/11", "17/11"]
+    x-axis ["14/11", "15/11", "16/11 ●", "17/11"]
     y-axis "Gap" -0.189 --> 0.273
     line [0.148, 0.173, -0.003, -0.089]
 ```
 
-| Date | AI | Humanity | Gap | CI95 | Items | Sample | Type |
-|---|---|---|---|---|---|---|---|
-| 17/11 | 0.753 | 0.664 | −0.089 | [−0.378, +0.257] | 296 | 221 | INTERIM |
-| 16/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 892 | 652 | FINAL |
-| 15/11 | 0.647 | 0.820 | +0.173 | [−0.119, +0.481] | 868 | 637 | INTERIM |
-| 14/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
+> ● = weekly FINAL (closed week); other points — INTERIM accumulation. A week change between adjacent dates is not a daily move.
+
+| Date | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
+|---|---|---|---|---|---|---|---|---|
+| 17/11 | 16/11–22/11 | 0.753 | 0.664 | −0.089 | [−0.378, +0.257] | 296 | 221 | INTERIM |
+| 16/11 | 09/11–15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 892 | 652 | FINAL ● |
+| 15/11 | 09/11–15/11 | 0.647 | 0.820 | +0.173 | [−0.119, +0.481] | 868 | 637 | INTERIM |
+| 14/11 | 09/11–15/11 | 0.682 | 0.830 | +0.148 | [−0.131, +0.426] | 802 | 691 | INTERIM |
 
 #### 📚 Historical Protocols
 
