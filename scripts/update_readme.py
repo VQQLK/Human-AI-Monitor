@@ -274,7 +274,8 @@ def build_daily_mermaid(snapshots, lang):
     """Build mermaid block for daily Gap trajectory. Returns None if < 2 points."""
     # Daily trajectory shows INTERIM snapshots only. FINAL points belong
     # to Historical Protocols and are not duplicated here.
-    interims = [s for s in (snapshots or []) if s.get("is_interim") == 1]
+    # Включаем все снимки (в т.ч. понедельник с is_interim=0), так как API отдает только актуальные
+    interims = snapshots or []
     # Limit to last 10 days (both chart and table must match)
     interims = sorted(interims, key=lambda s: s["snapshot_date"])[-10:]
     if len(interims) < 2:
@@ -306,7 +307,7 @@ def build_daily_table(snapshots, lang):
     """Build markdown table for daily snapshots (newest first). Returns "" if < 2 points."""
     # Daily trajectory shows INTERIM snapshots only. FINAL points belong
     # to Historical Protocols and are not duplicated here.
-    interims = [s for s in (snapshots or []) if s.get("is_interim") == 1]
+    interims = snapshots or []
     if len(interims) < 2:
         return ""
     L = STRINGS[lang]
