@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 17, 2026  
-**Baseline:** Updated on November 17, 2026 — based on 296 items (sample size: 221).
+**Updated:** November 18, 2026  
+**Baseline:** Updated on November 18, 2026 — based on 453 items (sample size: 323).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-17) | Status |
+| Metric | Value (11-18) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.664** | Current value |
-| **🔴 AI Score** | 🤖 **0.753** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.089** | AI is ahead |
-| **📊 CI95** | **[−0.378, +0.257]** | Inconclusive |
-| **⚡ Threshold Shifts** | **5** | Critical events detected |
-| **📈 Items Analyzed** | **296** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **221** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.689** | Current value |
+| **🔴 AI Score** | 🤖 **0.811** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.122** | AI is ahead |
+| **📊 CI95** | **[−0.348, +0.171]** | Inconclusive |
+| **⚡ Threshold Shifts** | **7** | Critical events detected |
+| **📈 Items Analyzed** | **453** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **323** | Axis-signal pairs |
 
 </div>
 
@@ -55,15 +55,16 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["14/11", "15/11", "16/11 ●", "17/11"]
-    y-axis "Gap" -0.189 --> 0.273
-    line [0.148, 0.173, -0.003, -0.089]
+    x-axis ["14/11", "15/11", "16/11 ●", "17/11", "18/11"]
+    y-axis "Gap" -0.222 --> 0.273
+    line [0.148, 0.173, -0.003, -0.089, -0.122]
 ```
 
 > ● = weekly FINAL (closed week); other points — INTERIM accumulation. A week change between adjacent dates is not a daily move.
 
 | Date | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|---|
+| 18/11 | 16/11–22/11 | 0.811 | 0.689 | −0.122 | [−0.348, +0.171] | 453 | 323 | INTERIM |
 | 17/11 | 16/11–22/11 | 0.753 | 0.664 | −0.089 | [−0.378, +0.257] | 296 | 221 | INTERIM |
 | 16/11 | 09/11–15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 892 | 652 | FINAL ● |
 | 15/11 | 09/11–15/11 | 0.647 | 0.820 | +0.173 | [−0.119, +0.481] | 868 | 637 | INTERIM |
@@ -75,7 +76,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 889 | 652 | FINAL |
 
-> 📌 Interim (reference, not on chart): 17/11 — AI 0.753 · Humanity 0.664 · Gap −0.089 · 296 / 221 items.
+> 📌 Interim (reference, not on chart): 18/11 — AI 0.811 · Humanity 0.689 · Gap −0.122 · 453 / 323 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -85,6 +86,138 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Jensen Huang (Nvidia) — 2026-11-18**
+
+> Mary Peltola flips Alaska's Senate seat. And, Nvidia won't reinstate Jensen Huang
+
+— *[NPR — World](https://www.npr.org/2026/11/18/g-s1-154145/up-first-newsletter-mary-peltola-alaska-trump-asia-nvidia-tech-issues-ai)*
+
+**Nvidia — 2026-11-18**
+
+> Nvidia Results Show AI Demand Remains Robust
+
+— *[WSJ — Tech](https://www.wsj.com/cio-journal/nvidia-results-show-ai-demand-remains-robust-927869f4?mod=rss_Technology)*
+
+**Nvidia — 2026-11-18**
+
+> Nvidia’s Strong Fundamentals Give New CEO a Much-Needed Tailwind
+
+— *[WSJ — Tech](https://www.wsj.com/business/nvidias-strong-fundamentals-give-new-ceo-a-much-needed-tailwind-65859856?mod=rss_Technology)*
+
+**Jensen Huang (Nvidia) — 2026-11-18**
+
+> Nvidia Reports Faster Growth, Says Jensen Huang Won’t Return as CEO
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/nvidia-nvda-3q-2027-earnings-report-stock-6e642303?mod=rss_Technology)*
+
+**Nvidia — 2026-11-18**
+
+> Nvidia’s Interim CEO Has a Tough Challenge: Keep the Growth, Leave the Baggage
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/nvidias-interim-ceo-has-a-tough-challenge-keep-the-growth-leave-the-baggage-6ff55c85?mod=rss_Technology)*
+
+**Google — 2026-11-17**
+
+> Amazon and Google will together own nearly 30% of Anthropic after its IPO
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/17/amazon-and-google-will-together-own-nearly-30-of-anthropic-after-its-ipo/)*
+
+**Jensen Huang (Nvidia) — 2026-11-17**
+
+> Nvidia says its open source AI strategy remains intact after Jensen Huang’s exit
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/17/nvidia-says-its-open-source-ai-strategy-remains-intact-after-jensen-huangs-exit/)*
+
+**Jensen Huang (Nvidia) — 2026-11-17**
+
+> SEC reportedly investigating Nvidia amid Huang exit
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/17/sec-reportedly-investigating-nvidia-amid-huang-exit/)*
+
+**Jensen Huang (Nvidia) — 2026-11-17**
+
+> Nvidia says it doesn’t plan to reappoint Jensen Huang as CEO
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/17/nvidia-says-it-doesnt-plan-to-reappoint-jensen-huang-as-ceo/)*
+
+**Jensen Huang (Nvidia) — 2026-11-17**
+
+> Nvidia is abandoning China after Jensen Huang’s ouster
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/17/nvidia-is-abandoning-china-after-jensen-huangs-ouster/)*
+
+**Nvidia — 2026-11-18**
+
+> Nvidia clarifies when it will — and won’t —keep financing neoclouds
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/18/nvidia-clarifies-when-it-will-and-wont-keep-financing-neoclouds/)*
+
+**Jensen Huang (Nvidia) — 2026-11-18**
+
+> Nvidia’s startup stakes ballooned to $65B, but Huang’s exit puts future deals in doubt
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/17/nvidias-startup-stakes-ballooned-to-65b-but-huangs-exit-puts-future-deals-in-doubt/)*
+
+**Nvidia — 2026-11-18**
+
+> Nvidia promises that revenue will keep soaring — for now
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/17/nvidia-promises-that-revenue-will-keep-soaring-for-now/)*
+
+**OpenAI — 2026-11-18**
+
+> [AINews] GPT-6.2 Astra, the #2 Frontier Model is better and 20%-600% cheaper, but has mixed reviews; 6.2 Sol likely main workhorse
+
+— *[Latent Space](https://latent.space/p/ainews-gpt-6-2-astra-the-2-frontier-model-is-better-and-20-600-cheaper-but-has-mixed-reviews-6-2-sol/)*
+
+**Nvidia — 2026-11-18**
+
+> Nvidia’s Strong Results Do Little to Settle Questions About Its Future
+
+— *[WSJ — World News](https://www.wsj.com/world/nvidias-strong-results-do-little-to-settle-questions-about-its-future-d1ba999d?mod=rss_worldnews)*
+
+**Jensen Huang (Nvidia) — 2026-11-18**
+
+> Can Nvidia bounce back from Jensen Huang's scandal?
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/can-nvidia-bounce-back-from-jensen-huangs-scandal/)*
+
+**Jensen Huang (Nvidia) — 2026-11-18**
+
+> Jensen Huang unlikely to return to Nvidia after scandal
+
+— *[CBS News — Technology](https://www.cbsnews.com/video/jensen-huang-unlikely-to-return-to-nvidia-after-scandal/)*
+
+**Jensen Huang (Nvidia) — 2026-11-18**
+
+> Nvidia rejects Huang offer to return as CEO
+
+— *[The Hill — Policy](https://thehill.com/policy/technology/6227405-nvidia-jensen-huang-return-unlikely-affair-scandals/)*
+
+**Meta — 2026-11-18**
+
+> Meta Welcomes Loblaw as First Canadian Retail Partner to Muse
+
+— *[Meta AI Blog](https://about.fb.com/news/2026/11/meta-welcomes-loblaw-as-first-canadian-retail-partner-to-muse/)*
+
+**OpenAI — 2026-11-17**
+
+> Introducing GPT-6.2 Astra and Sol
+
+— *[OpenAI Blog](https://openai.com/index/introducing-gpt-6-2-astra-sol)*
+
+**OpenAI — 2026-11-18**
+
+> Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT
+
+— *[OpenAI Blog](https://openai.com/index/le-groupe-figaro-and-openai-announce-partnership)*
+
+**OpenAI — 2026-11-17**
+
+> Introducing ChatGPT for Sales
+
+— *[OpenAI Blog](https://openai.com/index/introducing-chatgpt-for-sales)*
 
 **Jensen Huang (Nvidia) — 2026-11-17**
 
@@ -253,138 +386,6 @@ xychart-beta
 > Nvidia’s Days as an Open Checkbook for the AI Economy Are Numbered
 
 — *[WSJ — Tech](https://www.wsj.com/tech/ai/nvidias-days-as-an-open-checkbook-for-the-ai-economy-are-numbered-90c7b388?mod=rss_Technology)*
-
-**Nvidia — 2026-11-15**
-
-> Bessent Urges Nvidia to Pick Outsider as Next CEO
-
-— *[WSJ — Tech](https://www.wsj.com/tech/ai/bessent-urges-nvidia-to-pick-outsider-as-next-ceo-f9d21a83?mod=rss_Technology)*
-
-**Nvidia — 2026-11-16**
-
-> Trump Administration to Name Nvidia Among AI ‘National Champions’
-
-— *[WSJ — Tech](https://www.wsj.com/tech/ai/trump-administration-to-name-nvidia-among-ai-national-champions-c9284344?mod=rss_Technology)*
-
-**Jensen Huang (Nvidia) — 2026-11-16**
-
-> The Campaign to Bring Back Jensen Huang as Nvidia CEO
-
-— *[WSJ — Tech](https://www.wsj.com/tech/the-campaign-to-bring-back-jensen-huang-as-nvidia-ceo-e91b0b2c?mod=rss_Technology)*
-
-**Jensen Huang (Nvidia) — 2026-11-16**
-
-> Nvidia CEO Ouster Reverberates Globally
-
-— *[WSJ — Tech](https://www.wsj.com/cio-journal/nvidia-ceo-ouster-reverberates-globally-c882938d?mod=rss_Technology)*
-
-**Jensen Huang (Nvidia) — 2026-11-15**
-
-> Is bad news for Jensen Huang also bad news for the AI industry?
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/15/is-bad-news-for-jensen-huang-also-bad-news-for-the-ai-industry/)*
-
-**Google — 2026-11-16**
-
-> Google Maps can now build trip itineraries with real-time details about each stop
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/16/google-maps-can-now-build-trip-itineraries-with-real-time-details-about-each-stop/)*
-
-**Jensen Huang (Nvidia) — 2026-11-15**
-
-> Megaspeed says Alice Huang left in 2025 as company conducts internal probe over Nvidia fallout
-
-— *[The Hill — Policy](https://thehill.com/policy/technology/megaspeed-alice-huang-nvidia-jensen-huang-china/)*
-
-**Jensen Huang (Nvidia) — 2026-11-16**
-
-> Live updates: Trump heads to Asia, backs calls for Huang's reinstatement amid Nvidia scandal
-
-— *[The Hill — Policy](https://thehill.com/policy/transportation/6221658-live-updates-duffy-faa-outage-nvidia-trump-democrats-senate-leadership-battle/)*
-
-**OpenAI — 2026-11-16**
-
-> More ways to move care forward with ChatGPT for Healthcare
-
-— *[OpenAI Blog](https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare)*
-
-**OpenAI — 2026-11-16**
-
-> LVMH’s Media Division announces strategic partnership with OpenAI
-
-— *[OpenAI Blog](https://openai.com/index/lvmh-media-division-partnership)*
-
-**OpenAI — 2026-11-16**
-
-> The King’s Trust and OpenAI launch £1m partnership
-
-— *[OpenAI Blog](https://openai.com/index/the-kings-trust-and-openai)*
-
-**Microsoft — 2026-11-13**
-
-> Courts, spies and MPs: How the Microsoft outage has been felt around the world
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cqp9d58eldlro?at_medium=RSS&at_campaign=rss)*
-
-**Jensen Huang (Nvidia) — 2026-11-13**
-
-> How the Jensen Huang scandal created a headache for business-friendly Singapore
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/ck1exevgql4qo?at_medium=RSS&at_campaign=rss)*
-
-**Nvidia — 2026-11-13**
-
-> Pressure grows on Trump's Commerce Secretary Lutnick in fallout from Nvidia scandal
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cqvg2d1eg7zro?at_medium=RSS&at_campaign=rss)*
-
-**Microsoft — 2026-11-13**
-
-> Why is Microsoft's outage lasting so long and will emails be lost?
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cwvg238zrnm5o?at_medium=RSS&at_campaign=rss)*
-
-**Microsoft — 2026-11-13**
-
-> Microsoft outage 'stark reminder' of how much we rely on tech
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cxzd9171m51qo?at_medium=RSS&at_campaign=rss)*
-
-**Microsoft — 2026-11-14**
-
-> Microsoft says services fully restored after day-long global outage
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/c6rrg51rkz09o?at_medium=RSS&at_campaign=rss)*
-
-**Nvidia — 2026-11-15**
-
-> Suspected China spy linked to Nvidia's ex-boss left in 2025, Megaspeed says
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cmdx1vpprk9vo?at_medium=RSS&at_campaign=rss)*
-
-**Meta — 2026-11-14**
-
-> Italy fines Meta €805m over accessing users' photos
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cwn83gxemk35o?at_medium=RSS&at_campaign=rss)*
-
-**OpenAI — 2026-11-13**
-
-> ChatGPT Launches Wallet Feature Allowing Users to Pay With Agents
-
-— *[WSJ — Tech](https://www.wsj.com/tech/ai/chatgpt-launches-wallet-feature-allowing-users-to-pay-with-agents-2abcded2?mod=rss_Technology)*
-
-**Jensen Huang (Nvidia) — 2026-11-15**
-
-> How Jensen Huang Built the Backdoor Route That Keeps Beijing in the AI Race
-
-— *[WSJ — Tech](https://www.wsj.com/tech/jensen-huang-backdoor-ai-data-centers-a5e4499d?mod=rss_Technology)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-14**
-
-> Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/)*
 
 ## What is this
 
