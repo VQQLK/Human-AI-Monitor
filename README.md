@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 18, 2026  
-**Baseline:** Updated on November 18, 2026 — based on 453 items (sample size: 323).
+**Updated:** November 19, 2026  
+**Baseline:** Updated on November 19, 2026 — based on 603 items (sample size: 422).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-18) | Status |
+| Metric | Value (11-19) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.689** | Current value |
-| **🔴 AI Score** | 🤖 **0.811** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.122** | AI is ahead |
-| **📊 CI95** | **[−0.348, +0.171]** | Inconclusive |
-| **⚡ Threshold Shifts** | **7** | Critical events detected |
-| **📈 Items Analyzed** | **453** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **323** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.718** | Current value |
+| **🔴 AI Score** | 🤖 **0.831** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.113** | AI is ahead |
+| **📊 CI95** | **[−0.314, +0.165]** | Inconclusive |
+| **⚡ Threshold Shifts** | **10** | Critical events detected |
+| **📈 Items Analyzed** | **603** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **422** | Axis-signal pairs |
 
 </div>
 
@@ -55,15 +55,16 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["14/11", "15/11", "16/11 ●", "17/11", "18/11"]
+    x-axis ["14/11", "15/11", "16/11 ●", "17/11", "18/11", "19/11"]
     y-axis "Gap" -0.222 --> 0.273
-    line [0.148, 0.173, -0.003, -0.089, -0.122]
+    line [0.148, 0.173, -0.003, -0.089, -0.122, -0.113]
 ```
 
 > ● = weekly FINAL (closed week); other points — INTERIM accumulation. A week change between adjacent dates is not a daily move.
 
 | Date | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|---|
+| 19/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 603 | 422 | INTERIM |
 | 18/11 | 16/11–22/11 | 0.811 | 0.689 | −0.122 | [−0.348, +0.171] | 453 | 323 | INTERIM |
 | 17/11 | 16/11–22/11 | 0.753 | 0.664 | −0.089 | [−0.378, +0.257] | 296 | 221 | INTERIM |
 | 16/11 | 09/11–15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 892 | 652 | FINAL ● |
@@ -76,7 +77,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 889 | 652 | FINAL |
 
-> 📌 Interim (reference, not on chart): 18/11 — AI 0.811 · Humanity 0.689 · Gap −0.122 · 453 / 323 items.
+> 📌 Interim (reference, not on chart): 19/11 — AI 0.831 · Humanity 0.718 · Gap −0.113 · 603 / 422 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -86,6 +87,114 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Nvidia — 2026-11-19**
+
+> Nvidia Is the Central Bank to AI’s Circular Economy. See Where the Money Goes.
+
+— *[WSJ — Tech](https://www.wsj.com/finance/stocks/nvidia-is-the-central-bank-to-ais-circular-economy-see-where-the-money-goes-da480b61?mod=rss_Technology)*
+
+**OpenAI — 2026-11-19**
+
+> Anthropic vs. OpenAI: The Financial Metrics Behind the AI Battle
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/anthropic-vs-openai-the-financial-metrics-behind-the-ai-battle-4f5b90c0?mod=rss_Technology)*
+
+**Jensen Huang (Nvidia) — 2026-11-19**
+
+> Uber Co-Founder Kalanick Teases Protest at Nvidia as Calls for Huang’s Return Continue
+
+— *[WSJ — Tech](https://www.wsj.com/tech/ai/uber-co-founder-kalanick-teases-protest-at-nvidia-as-calls-for-huangs-return-continue-37c4f635?mod=rss_Technology)*
+
+**Jensen Huang (Nvidia) — 2026-11-19**
+
+> The Morning Risk Report: The Jensen Huang Saga Has Reinvigorated Washington’s China Hawks
+
+— *[WSJ — Tech](https://www.wsj.com/risk-compliance-journal/the-morning-risk-report-the-jensen-huang-saga-has-reinvigorated-washingtons-china-hawks-00536beb?mod=rss_Technology)*
+
+**Nvidia — 2026-11-18**
+
+> Nvidia created a weird bit of intrigue by not filing a routine SEC report
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/18/nvidia-created-a-weird-bit-of-intrigue-by-not-filing-a-routine-sec-report/)*
+
+**Satya Nadella (Microsoft) — 2026-11-18**
+
+> Microsoft CEO Satya Nadella remains confident in Nvidia after Huang’s exit
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-remains-confident-in-nvidia-after-huangs-exit/)*
+
+**Satya Nadella (Microsoft) — 2026-11-18**
+
+> Satya Nadella predicts AI agents will reshuffle the economics of the web
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/18/satya-nadella-predicts-ai-agents-will-reshuffle-the-economics-of-the-web/)*
+
+**Jensen Huang (Nvidia) — 2026-11-18**
+
+> Microsoft CEO Satya Nadella remains confident in Nvidia after Huang’s exit
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-remains-confident-in-nvidia-after-huangs-exit/)*
+
+**Satya Nadella (Microsoft) — 2026-11-19**
+
+> Microsoft CEO Satya Nadella explains why he asked 60K employees to quit
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/)*
+
+**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-18**
+
+> Elon Musk says ousting Jensen Huang is like ‘kicking Michael Jordan off your team’
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/18/elon-musk-says-ousting-jensen-huang-is-like-kicking-michael-jordan-off-your-team/)*
+
+**Satya Nadella (Microsoft) — 2026-11-18**
+
+> Amidst fears of AI cyberattacks, Satya Nadella says lots of critical infrastructure is ‘unpatchable’
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/18/amidst-fears-of-ai-cyberattacks-satya-nadella-says-lots-of-critical-infrastructure-is-unpatchable/)*
+
+**Jensen Huang (Nvidia) — 2026-11-18**
+
+> Elon Musk says ousting Jensen Huang is like ‘kicking Michael Jordan off your team’
+
+— *[TechCrunch AI](https://techcrunch.com/2026/11/18/elon-musk-says-ousting-jensen-huang-is-like-kicking-michael-jordan-off-your-team/)*
+
+**Google — 2026-11-19**
+
+> [AINews] Gemini 4 Neon: GDM's Opus/Sol Contender
+
+— *[Latent Space](https://latent.space/p/ainews-gemini-4-neon-gdm-s-opus-sol-contender/)*
+
+**Nvidia — 2026-11-19**
+
+> Wall Street Pledged $500 Billion for Nvidia. Not a Dollar Has Been Deployed.
+
+— *[WSJ — World News](https://www.wsj.com/world/wall-street-pledged-500-billion-for-nvidia-not-a-dollar-has-been-deployed-6bee9560?mod=rss_worldnews)*
+
+**Meta — 2026-11-19**
+
+> Meta premieres India’s First Government-Led Microdrama Series on Scams Awareness
+
+— *[Meta AI Blog](https://about.fb.com/news/2026/11/meta-premieres-indias-first-government-led-microdrama-series-on-scams-awareness/)*
+
+**Google — 2026-11-18**
+
+> Introducing Gemini 4 Neon
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/introducing-gemini-4-neon/)*
+
+**OpenAI — 2026-11-18**
+
+> Advancing chip design with OpenAI models
+
+— *[OpenAI Blog](https://openai.com/index/advancing-chip-design-with-our-models)*
+
+**OpenAI — 2026-11-18**
+
+> How Sumitomo Life’s leaders helped teams adopt ChatGPT Enterprise
+
+— *[OpenAI Blog](https://openai.com/business/customer-stories/sumitomo-life)*
 
 **Jensen Huang (Nvidia) — 2026-11-18**
 
@@ -278,114 +387,6 @@ xychart-beta
 > California state AG sues OpenAI over rogue agent incidents
 
 — *[TechCrunch AI](https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/)*
-
-**Jensen Huang (Nvidia) — 2026-11-17**
-
-> Nvidia’s first big move after Jensen Huang’s exit targets national security
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/17/nvidias-first-big-move-after-jensen-huangs-exit-targets-national-security/)*
-
-**Perplexity AI — 2026-11-17**
-
-> [AINews] Perplexity hits a $1B revenue run rate, up 4x in 2026
-
-— *[Latent Space](https://latent.space/p/ainews-perplexity-hits-a-1b-revenue-run-rate-up-4x-in-2026/)*
-
-**Nvidia — 2026-11-17**
-
-> Why Neither Trump Nor Xi Is Likely to Raise Nvidia at Their Summit
-
-— *[WSJ — World News](https://www.wsj.com/world/china/why-neither-trump-nor-xi-is-likely-to-raise-nvidia-at-their-summit-5b93bc1a?mod=rss_worldnews)*
-
-**Jensen Huang (Nvidia) — 2026-11-17**
-
-> Jensen Huang Really Liked Selling China Advanced AI Chips
-
-— *[LessWrong — AI](https://www.lesswrong.com/posts/T3oJfyHEy6uLEJ9FB/jensen-huang-really-liked-selling-china-advanced-ai-chips)*
-
-**xAI — 2026-11-17**
-
-> Grok Bot took unapproved actions, ignored orders to stop, and then denied it
-
-— *[Ars Technica — AI](https://arstechnica.com/security/2026/11/grok-bot-took-unapproved-actions-ignored-orders-to-stop-and-then-denied-it/)*
-
-**Google — 2026-11-16**
-
-> Google Maps can now create trip itineraries for you
-
-— *[The Verge — AI](https://www.theverge.com/tech/1034110/google-ask-maps-ai-trip-planning)*
-
-**Jensen Huang (Nvidia) — 2026-11-16**
-
-> Nvidia’s board is reportedly ‘not considering’ hiring Jensen Huang back
-
-— *[The Verge — AI](https://www.theverge.com/tech/1034501/nvidia-board-jensen-huang-not-bringing-back)*
-
-**OpenAI — 2026-11-16**
-
-> OpenAI wants to stop deepfakes from overwhelming child abuse tiplines
-
-— *[The Verge — AI](https://www.theverge.com/policy/1034527/openai-csam-classifier)*
-
-**OpenAI — 2026-11-16**
-
-> California sues OpenAI over rogue AI hacking incidents
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1034815/california-openai-hugging-face-lawsuit)*
-
-**Jensen Huang (Nvidia) — 2026-11-16**
-
-> Tech leaders are convinced that Jensen Huang’s exit was a plot against him
-
-— *[The Verge — AI](https://www.theverge.com/tech/1035027/tech-leaders-nvidia-jensen-huang-theories)*
-
-**Sam Altman (OpenAI) — 2026-11-16**
-
-> Sam Altman says he wants everyone ‘to have a lot of RAM’
-
-— *[The Verge — AI](https://www.theverge.com/ai-artificial-intelligence/1034787/sam-altman-ram-shortage-semafor)*
-
-**Jensen Huang (Nvidia) — 2026-11-16**
-
-> The open-source movement wants Jensen Huang back
-
-— *[MIT Technology Review — AI](https://www.technologyreview.com/2026/11/16/1148624/the-open-source-movement-wants-jensen-huang-back/)*
-
-**OpenAI — 2026-11-17**
-
-> Introducing OpenAI for Chile
-
-— *[OpenAI Blog](https://openai.com/index/introducing-openai-for-chile)*
-
-**OpenAI — 2026-11-16**
-
-> at the Frontier: How scientists use ChatGPT
-
-— *[OpenAI Blog](https://openai.com/index/science-at-the-frontier)*
-
-**Nvidia — 2026-11-16**
-
-> Trump heads to Asia to meet with Xi and Putin amid Nvidia fallout
-
-— *[NPR — World](https://www.npr.org/2026/11/16/nx-s1-6041738/trump-xi-and-putin-china-nvidia)*
-
-**Nvidia — 2026-11-16**
-
-> Elon Musk joins 'Bring Jensen Back' campaign to reinstate the ex-Nvidia boss
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cry49plv8v3go?at_medium=RSS&at_campaign=rss)*
-
-**Elon Musk (xAI, Tesla, SpaceX) — 2026-11-16**
-
-> Elon Musk joins 'Bring Jensen Back' campaign to reinstate the ex-Nvidia boss
-
-— *[BBC — Technology](https://www.bbc.co.uk/news/articles/cry49plv8v3go?at_medium=RSS&at_campaign=rss)*
-
-**Nvidia — 2026-11-16**
-
-> Nvidia’s Days as an Open Checkbook for the AI Economy Are Numbered
-
-— *[WSJ — Tech](https://www.wsj.com/tech/ai/nvidias-days-as-an-open-checkbook-for-the-ai-economy-are-numbered-90c7b388?mod=rss_Technology)*
 
 ## What is this
 
