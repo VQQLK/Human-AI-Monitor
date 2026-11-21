@@ -8,21 +8,21 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 20, 2026  
-**Baseline:** Updated on November 20, 2026 — based on 603 items (sample size: 422).
+**Updated:** November 21, 2026  
+**Baseline:** Updated on November 21, 2026 — based on 599 items (sample size: 422).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-20) | Status |
+| Metric | Value (11-21) | Status |
 |:---|:---:|:---:|
 | **🟢 Humanity Score** | 🌐 **0.718** | Current value |
 | **🔴 AI Score** | 🤖 **0.831** | Current value |
 | **⚖️ Gap Index** | ⚖️ **−0.113** | AI is ahead |
 | **📊 CI95** | **[−0.314, +0.165]** | Inconclusive |
 | **⚡ Threshold Shifts** | **10** | Critical events detected |
-| **📈 Items Analyzed** | **603** | Weekly sample |
+| **📈 Items Analyzed** | **599** | Weekly sample |
 | **🔬 Sample Size (Bayesian)** | **422** | Axis-signal pairs |
 
 </div>
@@ -55,15 +55,16 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["14/11", "15/11", "16/11 ●", "17/11", "18/11", "19/11", "20/11"]
+    x-axis ["14/11", "15/11", "16/11 ●", "17/11", "18/11", "19/11", "20/11", "21/11"]
     y-axis "Gap" -0.222 --> 0.273
-    line [0.148, 0.173, -0.003, -0.089, -0.122, -0.113, -0.113]
+    line [0.148, 0.173, -0.003, -0.089, -0.122, -0.113, -0.113, -0.113]
 ```
 
 > ● = weekly FINAL (closed week); other points — INTERIM accumulation. A week change between adjacent dates is not a daily move.
 
 | Date | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|---|
+| 21/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 599 | 422 | INTERIM |
 | 20/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 603 | 422 | INTERIM |
 | 19/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 603 | 422 | INTERIM |
 | 18/11 | 16/11–22/11 | 0.811 | 0.689 | −0.122 | [−0.348, +0.171] | 453 | 323 | INTERIM |
@@ -78,7 +79,7 @@ xychart-beta
 |---|---|---|---|---|---|---|---|
 | 15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 889 | 652 | FINAL |
 
-> 📌 Interim (reference, not on chart): 20/11 — AI 0.831 · Humanity 0.718 · Gap −0.113 · 603 / 422 items.
+> 📌 Interim (reference, not on chart): 21/11 — AI 0.831 · Humanity 0.718 · Gap −0.113 · 599 / 422 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
