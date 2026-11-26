@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年11月25日  
-**基线：** 2026年11月25日更新 — 基于 4 个项目（样本量：1）。
+**更新:** 2026年11月26日  
+**基线：** 2026年11月26日更新 — 基于 31 个项目（样本量：3）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (11-25) | 状态 |
+| 指标 | 数值 (11-26) | 状态 |
 |:---|:---:|:---:|
 | **🟢 人类得分** | 🌐 **0.505** | 当前值 |
 | **🔴 人工智能得分** | 🤖 **0.584** | 当前值 |
 | **⚖️ 差距指数** | ⚖️ **−0.079** | 人工智能领先 |
 | **📊 CI95** | **[−0.941, +0.868]** | 不确定 |
 | **⚡ 阈值变化** | **0** | 无关键事件 |
-| **📈 分析项目** | **4** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **1** | 轴-信号对 |
+| **📈 分析项目** | **31** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **3** | 轴-信号对 |
 
 </div>
 
@@ -56,15 +56,16 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["16/11 ●", "17/11", "18/11", "19/11", "20/11", "21/11", "22/11", "23/11 ●", "24/11", "25/11"]
+    x-axis ["17/11", "18/11", "19/11", "20/11", "21/11", "22/11", "23/11 ●", "24/11", "25/11", "26/11"]
     y-axis "差距" -0.222 --> 0.097
-    line [-0.003, -0.089, -0.122, -0.113, -0.113, -0.113, -0.113, -0.113, -0.003, -0.079]
+    line [-0.089, -0.122, -0.113, -0.113, -0.113, -0.113, -0.113, -0.003, -0.079, -0.079]
 ```
 
 > ● = 周终值（FINAL，已结束的周）；其余点为临时累积（INTERIM）。相邻日期之间的周切换不是单日变化。
 
 | 日期 | 周 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|---|
+| 26/11 | 23/11–29/11 | 0.584 | 0.505 | −0.079 | [−0.941, +0.868] | 31 | 3 | 临时版 |
 | 25/11 | 23/11–29/11 | 0.584 | 0.505 | −0.079 | [−0.941, +0.868] | 4 | 1 | 临时版 |
 | 24/11 | 23/11–29/11 | 0.503 | 0.500 | −0.003 | [−0.917, +0.921] | 0 | 0 | 临时版 |
 | 23/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 599 | 422 | 最终版 ● |
@@ -74,7 +75,6 @@ xychart-beta
 | 19/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 603 | 422 | 临时版 |
 | 18/11 | 16/11–22/11 | 0.811 | 0.689 | −0.122 | [−0.348, +0.171] | 453 | 323 | 临时版 |
 | 17/11 | 16/11–22/11 | 0.753 | 0.664 | −0.089 | [−0.378, +0.257] | 296 | 221 | 临时版 |
-| 16/11 | 09/11–15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 892 | 652 | 最终版 ● |
 
 #### 📚 协议历史
 
@@ -83,7 +83,7 @@ xychart-beta
 | 22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 599 | 422 | 最终版 |
 | 15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 889 | 652 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：25/11 — AI 0.584 · 人类 0.505 · 差距 −0.079 · 4 / 1 items.
+> 📌 临时协议（仅供参考，不在图表上）：26/11 — AI 0.584 · 人类 0.505 · 差距 −0.079 · 31 / 3 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -93,6 +93,30 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Meta — 2026-11-26**
+
+> Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon
+
+— *[Hugging Face Blog](https://huggingface.co/blog/ggml-org/llamacpp-amd-bench)*
+
+**Perplexity AI — 2026-11-22**
+
+> Perplexity and Intelligence
+
+— *[OpenAI Blog](https://openai.com/index/perplexity-and-intelligence)*
+
+**OpenAI — 2026-11-23**
+
+> OpenAI and Cisco introduce Shirudo
+
+— *[OpenAI Blog](https://openai.com/index/introducing-shirudo)*
+
+**OpenAI — 2026-11-24**
+
+> Clay helps sales teams win with Codex and ChatGPT
+
+— *[OpenAI Blog](https://openai.com/business/customer-stories/clay-plugins-openai)*
 
 **Google — 2026-11-24**
 
@@ -369,30 +393,6 @@ xychart-beta
 > Alice Huang’s Husband Built a Data-Center Empire Backed by the Chinese State
 
 — *[WSJ — Tech](https://www.wsj.com/world/china/alice-huangs-husband-built-a-data-center-empire-backed-by-the-chinese-state-78389c9a?mod=rss_Technology)*
-
-**Nvidia — 2026-11-17**
-
-> How Nvidia’s Board Made Billions While Overseeing the Company
-
-— *[WSJ — Tech](https://www.wsj.com/business/how-nvidias-board-made-billions-while-overseeing-the-company-0473818c?mod=rss_Technology)*
-
-**Jensen Huang (Nvidia) — 2026-11-16**
-
-> Trump says ex-Nvidia CEO Jensen Huang’s affair with an alleged Chinese spy did not threaten national security
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/16/trump-says-ex-nvidia-ceo-jensen-huangs-affair-with-an-alleged-chinese-spy-did-not-threaten-national-security/)*
-
-**Jensen Huang (Nvidia) — 2026-11-16**
-
-> Sam Altman on Nvidia without Jensen Huang: The industry will be ‘fine’
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/16/sam-altman-on-nvidia-without-jensen-huang-the-industry-will-be-fine/)*
-
-**Sam Altman (OpenAI) — 2026-11-16**
-
-> Sam Altman on Nvidia without Jensen Huang: The industry will be ‘fine’
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/16/sam-altman-on-nvidia-without-jensen-huang-the-industry-will-be-fine/)*
 
 ## 这是什么
 

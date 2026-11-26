@@ -7,22 +7,22 @@
 
 ## 📊 Текущее состояние развития
 
-**Обновлено:** 25 ноября 2026  
-**Базовая линия:** Обновлено 25 ноября 2026 — на основе 4 элементов (размер выборки: 1).
+**Обновлено:** 26 ноября 2026  
+**Базовая линия:** Обновлено 26 ноября 2026 — на основе 31 элементов (размер выборки: 3).
 
 ### 🌍 Индекс разрыва Human–AI (Достижения vs Прогресс)
 
 <div align="center">
 
-| Метрика | Значение (25.11) | Статус |
+| Метрика | Значение (26.11) | Статус |
 |:---|:---:|:---:|
 | **🟢 Оценка Человечества** | 🌐 **0.505** | Текущее значение |
 | **🔴 Оценка ИИ** | 🤖 **0.584** | Текущее значение |
 | **⚖️ Индекс разрыва** | ⚖️ **−0.079** | ИИ впереди |
 | **📊 CI95** | **[−0.941, +0.868]** | Неопределённо |
 | **⚡ Ключевых сдвигов** | **0** | Критических событий нет |
-| **📈 Анализированных событий** | **4** | Недельная выборка |
-| **🔬 Размер выборки (байесовский)** | **1** | Пары «ось-сигнал» |
+| **📈 Анализированных событий** | **31** | Недельная выборка |
+| **🔬 Размер выборки (байесовский)** | **3** | Пары «ось-сигнал» |
 
 </div>
 
@@ -54,15 +54,16 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Ежедневный разрыв | Положительный = Человечество впереди, Отрицательный = ИИ впереди"
-    x-axis ["16/11 ●", "17/11", "18/11", "19/11", "20/11", "21/11", "22/11", "23/11 ●", "24/11", "25/11"]
+    x-axis ["17/11", "18/11", "19/11", "20/11", "21/11", "22/11", "23/11 ●", "24/11", "25/11", "26/11"]
     y-axis "Разрыв" -0.222 --> 0.097
-    line [-0.003, -0.089, -0.122, -0.113, -0.113, -0.113, -0.113, -0.113, -0.003, -0.079]
+    line [-0.089, -0.122, -0.113, -0.113, -0.113, -0.113, -0.113, -0.003, -0.079, -0.079]
 ```
 
 > ● = итог недели (FINAL, закрытая неделя); остальные точки — накопление (INTERIM). Смена недели между соседними датами не является суточным изменением.
 
 | Дата | Неделя | ИИ | Человечество | Разрыв | CI95 | Элементов | Выборка | Тип |
 |---|---|---|---|---|---|---|---|---|
+| 26/11 | 23/11–29/11 | 0.584 | 0.505 | −0.079 | [−0.941, +0.868] | 31 | 3 | ПРОМЕЖУТОЧНЫЙ |
 | 25/11 | 23/11–29/11 | 0.584 | 0.505 | −0.079 | [−0.941, +0.868] | 4 | 1 | ПРОМЕЖУТОЧНЫЙ |
 | 24/11 | 23/11–29/11 | 0.503 | 0.500 | −0.003 | [−0.917, +0.921] | 0 | 0 | ПРОМЕЖУТОЧНЫЙ |
 | 23/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 599 | 422 | ФИНАЛЬНЫЙ ● |
@@ -72,7 +73,6 @@ xychart-beta
 | 19/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 603 | 422 | ПРОМЕЖУТОЧНЫЙ |
 | 18/11 | 16/11–22/11 | 0.811 | 0.689 | −0.122 | [−0.348, +0.171] | 453 | 323 | ПРОМЕЖУТОЧНЫЙ |
 | 17/11 | 16/11–22/11 | 0.753 | 0.664 | −0.089 | [−0.378, +0.257] | 296 | 221 | ПРОМЕЖУТОЧНЫЙ |
-| 16/11 | 09/11–15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 892 | 652 | ФИНАЛЬНЫЙ ● |
 
 #### 📚 История протоколов
 
@@ -81,7 +81,7 @@ xychart-beta
 | 22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 599 | 422 | ФИНАЛЬНЫЙ |
 | 15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 889 | 652 | ФИНАЛЬНЫЙ |
 
-> 📌 Промежуточный протокол (справочно, не на графике): 25/11 — ИИ 0.584 · Человечество 0.505 · Разрыв −0.079 · 4 / 1 items.
+> 📌 Промежуточный протокол (справочно, не на графике): 26/11 — ИИ 0.584 · Человечество 0.505 · Разрыв −0.079 · 31 / 3 items.
 > Последняя точка — ПРОМЕЖУТОЧНАЯ, будет заменена ФИНАЛЬНОЙ в понедельник.
 
 ---
@@ -91,6 +91,30 @@ xychart-beta
 ## Мнения
 
 ### 🧠 Ведущие Лаборатории ИИ
+
+**Meta — 2026-11-26**
+
+> Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon
+
+— *[Hugging Face Blog](https://huggingface.co/blog/ggml-org/llamacpp-amd-bench)*
+
+**Perplexity AI — 2026-11-22**
+
+> Perplexity and Intelligence
+
+— *[OpenAI Blog](https://openai.com/index/perplexity-and-intelligence)*
+
+**OpenAI — 2026-11-23**
+
+> OpenAI and Cisco introduce Shirudo
+
+— *[OpenAI Blog](https://openai.com/index/introducing-shirudo)*
+
+**OpenAI — 2026-11-24**
+
+> Clay helps sales teams win with Codex and ChatGPT
+
+— *[OpenAI Blog](https://openai.com/business/customer-stories/clay-plugins-openai)*
 
 **Google — 2026-11-24**
 
@@ -367,30 +391,6 @@ xychart-beta
 > Alice Huang’s Husband Built a Data-Center Empire Backed by the Chinese State
 
 — *[WSJ — Tech](https://www.wsj.com/world/china/alice-huangs-husband-built-a-data-center-empire-backed-by-the-chinese-state-78389c9a?mod=rss_Technology)*
-
-**Nvidia — 2026-11-17**
-
-> How Nvidia’s Board Made Billions While Overseeing the Company
-
-— *[WSJ — Tech](https://www.wsj.com/business/how-nvidias-board-made-billions-while-overseeing-the-company-0473818c?mod=rss_Technology)*
-
-**Jensen Huang (Nvidia) — 2026-11-16**
-
-> Trump says ex-Nvidia CEO Jensen Huang’s affair with an alleged Chinese spy did not threaten national security
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/16/trump-says-ex-nvidia-ceo-jensen-huangs-affair-with-an-alleged-chinese-spy-did-not-threaten-national-security/)*
-
-**Jensen Huang (Nvidia) — 2026-11-16**
-
-> Sam Altman on Nvidia without Jensen Huang: The industry will be ‘fine’
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/16/sam-altman-on-nvidia-without-jensen-huang-the-industry-will-be-fine/)*
-
-**Sam Altman (OpenAI) — 2026-11-16**
-
-> Sam Altman on Nvidia without Jensen Huang: The industry will be ‘fine’
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/16/sam-altman-on-nvidia-without-jensen-huang-the-industry-will-be-fine/)*
 
 ## Что это
 
