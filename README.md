@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 24, 2026  
-**Baseline:** Updated on November 24, 2026 — based on 0 items (sample size: 0).
+**Updated:** November 25, 2026  
+**Baseline:** Updated on November 25, 2026 — based on 4 items (sample size: 1).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-24) | Status |
+| Metric | Value (11-25) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.500** | Current value |
-| **🔴 AI Score** | 🤖 **0.503** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.003** | Balanced |
-| **📊 CI95** | **[−0.917, +0.921]** | Inconclusive |
+| **🟢 Humanity Score** | 🌐 **0.505** | Current value |
+| **🔴 AI Score** | 🤖 **0.584** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.079** | AI is ahead |
+| **📊 CI95** | **[−0.941, +0.868]** | Inconclusive |
 | **⚡ Threshold Shifts** | **0** | No critical events |
-| **📈 Items Analyzed** | **0** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **0** | Axis-signal pairs |
+| **📈 Items Analyzed** | **4** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **1** | Axis-signal pairs |
 
 </div>
 
@@ -55,15 +55,16 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["15/11", "16/11 ●", "17/11", "18/11", "19/11", "20/11", "21/11", "22/11", "23/11 ●", "24/11"]
-    y-axis "Gap" -0.222 --> 0.273
-    line [0.173, -0.003, -0.089, -0.122, -0.113, -0.113, -0.113, -0.113, -0.113, -0.003]
+    x-axis ["16/11 ●", "17/11", "18/11", "19/11", "20/11", "21/11", "22/11", "23/11 ●", "24/11", "25/11"]
+    y-axis "Gap" -0.222 --> 0.097
+    line [-0.003, -0.089, -0.122, -0.113, -0.113, -0.113, -0.113, -0.113, -0.003, -0.079]
 ```
 
 > ● = weekly FINAL (closed week); other points — INTERIM accumulation. A week change between adjacent dates is not a daily move.
 
 | Date | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|---|
+| 25/11 | 23/11–29/11 | 0.584 | 0.505 | −0.079 | [−0.941, +0.868] | 4 | 1 | INTERIM |
 | 24/11 | 23/11–29/11 | 0.503 | 0.500 | −0.003 | [−0.917, +0.921] | 0 | 0 | INTERIM |
 | 23/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 599 | 422 | FINAL ● |
 | 22/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 599 | 422 | INTERIM |
@@ -73,7 +74,6 @@ xychart-beta
 | 18/11 | 16/11–22/11 | 0.811 | 0.689 | −0.122 | [−0.348, +0.171] | 453 | 323 | INTERIM |
 | 17/11 | 16/11–22/11 | 0.753 | 0.664 | −0.089 | [−0.378, +0.257] | 296 | 221 | INTERIM |
 | 16/11 | 09/11–15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 892 | 652 | FINAL ● |
-| 15/11 | 09/11–15/11 | 0.647 | 0.820 | +0.173 | [−0.119, +0.481] | 868 | 637 | INTERIM |
 
 #### 📚 Historical Protocols
 
@@ -82,7 +82,7 @@ xychart-beta
 | 22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 599 | 422 | FINAL |
 | 15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 889 | 652 | FINAL |
 
-> 📌 Interim (reference, not on chart): 24/11 — AI 0.503 · Humanity 0.500 · Gap −0.003 · 0 / 0 items.
+> 📌 Interim (reference, not on chart): 25/11 — AI 0.584 · Humanity 0.505 · Gap −0.079 · 4 / 1 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -92,6 +92,18 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Google — 2026-11-24**
+
+> From spectrum to structure: Identifying molecules with Mass Spec Skills for Google Antigravity
+
+— *[Google DeepMind Blog](https://deepmind.google/blog/interpreting-mass-spectra-with-google-antigravity/)*
+
+**OpenAI — 2026-11-24**
+
+> GPT-6 models demonstrate intrinsic protein-design capabilities
+
+— *[OpenAI Blog](https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities)*
 
 **Nvidia — 2026-11-19**
 
@@ -380,18 +392,6 @@ xychart-beta
 > Sam Altman on Nvidia without Jensen Huang: The industry will be ‘fine’
 
 — *[TechCrunch AI](https://techcrunch.com/2026/11/16/sam-altman-on-nvidia-without-jensen-huang-the-industry-will-be-fine/)*
-
-**Nvidia — 2026-11-16**
-
-> All the questions Nvidia should answer on Tuesday — but probably won’t
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/16/all-the-questions-nvidia-should-answer-on-tuesday-but-probably-wont/)*
-
-**OpenAI — 2026-11-16**
-
-> California state AG sues OpenAI over rogue agent incidents
-
-— *[TechCrunch AI](https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/)*
 
 ## What is this
 
