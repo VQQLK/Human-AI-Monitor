@@ -9,22 +9,22 @@
 
 ## 📊 当前状态
 
-**更新:** 2026年11月26日  
-**基线：** 2026年11月26日更新 — 基于 31 个项目（样本量：3）。
+**更新:** 2026年11月27日  
+**基线：** 2026年11月27日更新 — 基于 68 个项目（样本量：51）。
 
 ### 🌍 人类–人工智能差距指数（成就 vs 进步）
 
 <div align="center">
 
-| 指标 | 数值 (11-26) | 状态 |
+| 指标 | 数值 (11-27) | 状态 |
 |:---|:---:|:---:|
-| **🟢 人类得分** | 🌐 **0.505** | 当前值 |
-| **🔴 人工智能得分** | 🤖 **0.584** | 当前值 |
-| **⚖️ 差距指数** | ⚖️ **−0.079** | 人工智能领先 |
-| **📊 CI95** | **[−0.941, +0.868]** | 不确定 |
-| **⚡ 阈值变化** | **0** | 无关键事件 |
-| **📈 分析项目** | **31** | 每周样本 |
-| **🔬 样本量（贝叶斯）** | **3** | 轴-信号对 |
+| **🟢 人类得分** | 🌐 **0.469** | 当前值 |
+| **🔴 人工智能得分** | 🤖 **0.585** | 当前值 |
+| **⚖️ 差距指数** | ⚖️ **−0.116** | 人工智能领先 |
+| **📊 CI95** | **[−0.671, +0.545]** | 不确定 |
+| **⚡ 阈值变化** | **1** | 检测到关键事件 |
+| **📈 分析项目** | **68** | 每周样本 |
+| **🔬 样本量（贝叶斯）** | **51** | 轴-信号对 |
 
 </div>
 
@@ -56,15 +56,16 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "每日差距 | 正值 = 人类领先，负值 = 人工智能领先"
-    x-axis ["17/11", "18/11", "19/11", "20/11", "21/11", "22/11", "23/11 ●", "24/11", "25/11", "26/11"]
+    x-axis ["18/11", "19/11", "20/11", "21/11", "22/11", "23/11 ●", "24/11", "25/11", "26/11", "27/11"]
     y-axis "差距" -0.222 --> 0.097
-    line [-0.089, -0.122, -0.113, -0.113, -0.113, -0.113, -0.113, -0.003, -0.079, -0.079]
+    line [-0.122, -0.113, -0.113, -0.113, -0.113, -0.113, -0.003, -0.079, -0.079, -0.116]
 ```
 
 > ● = 周终值（FINAL，已结束的周）；其余点为临时累积（INTERIM）。相邻日期之间的周切换不是单日变化。
 
 | 日期 | 周 | AI | 人类 | 差距 | CI95 | 项目 | 样本 | 类型 |
 |---|---|---|---|---|---|---|---|---|
+| 27/11 | 23/11–29/11 | 0.585 | 0.469 | −0.116 | [−0.671, +0.545] | 68 | 51 | 临时版 |
 | 26/11 | 23/11–29/11 | 0.584 | 0.505 | −0.079 | [−0.941, +0.868] | 31 | 3 | 临时版 |
 | 25/11 | 23/11–29/11 | 0.584 | 0.505 | −0.079 | [−0.941, +0.868] | 4 | 1 | 临时版 |
 | 24/11 | 23/11–29/11 | 0.503 | 0.500 | −0.003 | [−0.917, +0.921] | 0 | 0 | 临时版 |
@@ -74,7 +75,6 @@ xychart-beta
 | 20/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 603 | 422 | 临时版 |
 | 19/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 603 | 422 | 临时版 |
 | 18/11 | 16/11–22/11 | 0.811 | 0.689 | −0.122 | [−0.348, +0.171] | 453 | 323 | 临时版 |
-| 17/11 | 16/11–22/11 | 0.753 | 0.664 | −0.089 | [−0.378, +0.257] | 296 | 221 | 临时版 |
 
 #### 📚 协议历史
 
@@ -83,7 +83,7 @@ xychart-beta
 | 22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 599 | 422 | 最终版 |
 | 15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 889 | 652 | 最终版 |
 
-> 📌 临时协议（仅供参考，不在图表上）：26/11 — AI 0.584 · 人类 0.505 · 差距 −0.079 · 31 / 3 items.
+> 📌 临时协议（仅供参考，不在图表上）：27/11 — AI 0.585 · 人类 0.469 · 差距 −0.116 · 68 / 51 items.
 > 最后一点为临时版，将于周一替换为最终版。
 
 ---
@@ -93,6 +93,18 @@ xychart-beta
 ## 声音
 
 ### 🧠 前沿实验室
+
+**Jensen Huang (Nvidia) — 2026-11-25**
+
+> Republican wants FBI and CIA answers before questioning Nvidia chief
+
+— *[NPR — World](https://www.npr.org/2026/11/25/nx-s1-6052417/nvidia-jensen-huang-reaction-republicans-congress-investigation)*
+
+**Nvidia — 2026-11-23**
+
+> 2028 Democrats say Nvidia news is another example of corruption in government
+
+— *[Politico — Politics](https://www.politico.com/news/2026/11/23/democrats-2028-nvidia-trump-corruption-message-01181056)*
 
 **Meta — 2026-11-26**
 
@@ -381,18 +393,6 @@ xychart-beta
 > U.S. blocks China’s remote access to AI chips after Nvidia scandal; China slams move
 
 — *[The Hindu — International](https://www.thehindu.com/news/international/us-blocks-chinas-remote-access-to-ai-chips-after-nvidia-scandal-china-slams-move/article71711869.ece)*
-
-**Jensen Huang (Nvidia) — 2026-11-17**
-
-> Trump is in Asia ahead of Xi, Putin summit. And, tech leaders want Huang back at Nvidia
-
-— *[NPR — World](https://www.npr.org/2026/11/17/g-s1-153950/up-first-newsletter-faa-ground-stop-trump-asia-trip-nvidia-lindsay-clancy)*
-
-**Jensen Huang (Nvidia) — 2026-11-17**
-
-> Alice Huang’s Husband Built a Data-Center Empire Backed by the Chinese State
-
-— *[WSJ — Tech](https://www.wsj.com/world/china/alice-huangs-husband-built-a-data-center-empire-backed-by-the-chinese-state-78389c9a?mod=rss_Technology)*
 
 ## 这是什么
 

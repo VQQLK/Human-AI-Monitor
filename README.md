@@ -8,22 +8,22 @@ and Humanity.**
 
 ## 📊 Current State of Development
 
-**Updated:** November 26, 2026  
-**Baseline:** Updated on November 26, 2026 — based on 31 items (sample size: 3).
+**Updated:** November 27, 2026  
+**Baseline:** Updated on November 27, 2026 — based on 68 items (sample size: 51).
 
 ### 🌍 Human–AI Gap Index (Achievements vs Progress)
 
 <div align="center">
 
-| Metric | Value (11-26) | Status |
+| Metric | Value (11-27) | Status |
 |:---|:---:|:---:|
-| **🟢 Humanity Score** | 🌐 **0.505** | Current value |
-| **🔴 AI Score** | 🤖 **0.584** | Current value |
-| **⚖️ Gap Index** | ⚖️ **−0.079** | AI is ahead |
-| **📊 CI95** | **[−0.941, +0.868]** | Inconclusive |
-| **⚡ Threshold Shifts** | **0** | No critical events |
-| **📈 Items Analyzed** | **31** | Weekly sample |
-| **🔬 Sample Size (Bayesian)** | **3** | Axis-signal pairs |
+| **🟢 Humanity Score** | 🌐 **0.469** | Current value |
+| **🔴 AI Score** | 🤖 **0.585** | Current value |
+| **⚖️ Gap Index** | ⚖️ **−0.116** | AI is ahead |
+| **📊 CI95** | **[−0.671, +0.545]** | Inconclusive |
+| **⚡ Threshold Shifts** | **1** | Critical events detected |
+| **📈 Items Analyzed** | **68** | Weekly sample |
+| **🔬 Sample Size (Bayesian)** | **51** | Axis-signal pairs |
 
 </div>
 
@@ -55,15 +55,16 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Daily Gap | Positive = Humanity leading, Negative = AI leading"
-    x-axis ["17/11", "18/11", "19/11", "20/11", "21/11", "22/11", "23/11 ●", "24/11", "25/11", "26/11"]
+    x-axis ["18/11", "19/11", "20/11", "21/11", "22/11", "23/11 ●", "24/11", "25/11", "26/11", "27/11"]
     y-axis "Gap" -0.222 --> 0.097
-    line [-0.089, -0.122, -0.113, -0.113, -0.113, -0.113, -0.113, -0.003, -0.079, -0.079]
+    line [-0.122, -0.113, -0.113, -0.113, -0.113, -0.113, -0.003, -0.079, -0.079, -0.116]
 ```
 
 > ● = weekly FINAL (closed week); other points — INTERIM accumulation. A week change between adjacent dates is not a daily move.
 
 | Date | Week | AI | Humanity | Gap | CI95 | Items | Sample | Type |
 |---|---|---|---|---|---|---|---|---|
+| 27/11 | 23/11–29/11 | 0.585 | 0.469 | −0.116 | [−0.671, +0.545] | 68 | 51 | INTERIM |
 | 26/11 | 23/11–29/11 | 0.584 | 0.505 | −0.079 | [−0.941, +0.868] | 31 | 3 | INTERIM |
 | 25/11 | 23/11–29/11 | 0.584 | 0.505 | −0.079 | [−0.941, +0.868] | 4 | 1 | INTERIM |
 | 24/11 | 23/11–29/11 | 0.503 | 0.500 | −0.003 | [−0.917, +0.921] | 0 | 0 | INTERIM |
@@ -73,7 +74,6 @@ xychart-beta
 | 20/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 603 | 422 | INTERIM |
 | 19/11 | 16/11–22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 603 | 422 | INTERIM |
 | 18/11 | 16/11–22/11 | 0.811 | 0.689 | −0.122 | [−0.348, +0.171] | 453 | 323 | INTERIM |
-| 17/11 | 16/11–22/11 | 0.753 | 0.664 | −0.089 | [−0.378, +0.257] | 296 | 221 | INTERIM |
 
 #### 📚 Historical Protocols
 
@@ -82,7 +82,7 @@ xychart-beta
 | 22/11 | 0.831 | 0.718 | −0.113 | [−0.314, +0.165] | 599 | 422 | FINAL |
 | 15/11 | 0.814 | 0.811 | −0.003 | [−0.219, +0.363] | 889 | 652 | FINAL |
 
-> 📌 Interim (reference, not on chart): 26/11 — AI 0.584 · Humanity 0.505 · Gap −0.079 · 31 / 3 items.
+> 📌 Interim (reference, not on chart): 27/11 — AI 0.585 · Humanity 0.469 · Gap −0.116 · 68 / 51 items.
 > Last point is INTERIM — will be replaced by FINAL on Monday.
 
 ---
@@ -92,6 +92,18 @@ xychart-beta
 ## Voices
 
 ### 🧠 Frontier Labs
+
+**Jensen Huang (Nvidia) — 2026-11-25**
+
+> Republican wants FBI and CIA answers before questioning Nvidia chief
+
+— *[NPR — World](https://www.npr.org/2026/11/25/nx-s1-6052417/nvidia-jensen-huang-reaction-republicans-congress-investigation)*
+
+**Nvidia — 2026-11-23**
+
+> 2028 Democrats say Nvidia news is another example of corruption in government
+
+— *[Politico — Politics](https://www.politico.com/news/2026/11/23/democrats-2028-nvidia-trump-corruption-message-01181056)*
 
 **Meta — 2026-11-26**
 
@@ -380,18 +392,6 @@ xychart-beta
 > U.S. blocks China’s remote access to AI chips after Nvidia scandal; China slams move
 
 — *[The Hindu — International](https://www.thehindu.com/news/international/us-blocks-chinas-remote-access-to-ai-chips-after-nvidia-scandal-china-slams-move/article71711869.ece)*
-
-**Jensen Huang (Nvidia) — 2026-11-17**
-
-> Trump is in Asia ahead of Xi, Putin summit. And, tech leaders want Huang back at Nvidia
-
-— *[NPR — World](https://www.npr.org/2026/11/17/g-s1-153950/up-first-newsletter-faa-ground-stop-trump-asia-trip-nvidia-lindsay-clancy)*
-
-**Jensen Huang (Nvidia) — 2026-11-17**
-
-> Alice Huang’s Husband Built a Data-Center Empire Backed by the Chinese State
-
-— *[WSJ — Tech](https://www.wsj.com/world/china/alice-huangs-husband-built-a-data-center-empire-backed-by-the-chinese-state-78389c9a?mod=rss_Technology)*
 
 ## What is this
 
